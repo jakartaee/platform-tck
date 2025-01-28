@@ -18,7 +18,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${ee.tck.version}</version>
+            <version>${jakarta.tck.tools.version}</version>
         </dependency>
     </dependencies>
 
@@ -59,7 +59,7 @@
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
                                     <artifactId>common</artifactId>
-                                    <version>${ee.tck.version}</version>
+                                    <version>${jakarta.tck.tools.version}</version>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/classes</outputDirectory>

@@ -131,7 +131,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.ee.version}</version>
+            <version>${jakarta.tck.tools.version}</version>
             <scope>test</scope>
         </dependency>
         

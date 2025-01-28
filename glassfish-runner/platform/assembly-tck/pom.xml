@@ -41,7 +41,6 @@
         <tck.artifactId>assembly-tck</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
         <ts.home>./jakartaeetck</ts.home>
-        <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
         <version.jakarta.tck.arquillian>${project.version}</version.jakarta.tck.arquillian>
     </properties>
 
@@ -110,7 +109,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${project.version}</version>
+            <version>${jakarta.tck.tools.version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.main.common</groupId>

@@ -44,7 +44,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
-            <version>${project.version}</version>
+            <version>${jakarta.tck.tools.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

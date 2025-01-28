@@ -35,7 +35,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

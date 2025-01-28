@@ -43,7 +43,7 @@
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <ts.home>${basedir}/jakartaeetck</ts.home>
         
-        <jakarta.tck.tools.version>11.0.0-M2</jakarta.tck.tools.version>
+        <jakarta.tck.tools.version>11.0.0-RC1</jakarta.tck.tools.version>
         <jakarta.tck.arquillian.version>11.0.0-M1</jakarta.tck.arquillian.version>
         <jakarta.tck.transactions.version>2.0.0-M1</jakarta.tck.transactions.version>
     </properties>
