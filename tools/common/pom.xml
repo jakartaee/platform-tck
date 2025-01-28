@@ -106,7 +106,8 @@
         </dependency>
     </dependencies>
 
-    <build><!-- Include the container descriptors in the output artifact -->
+    <build>
+        <!-- Include the container descriptors in the output artifact -->
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -120,6 +121,10 @@
                 <excludes>
                     <exclude>**/build.xml</exclude>
                 </excludes>
+            </resource>
+            <!-- Include the standard resources as well -->
+            <resource>
+                <directory>src/main/resources</directory>
             </resource>
         </resources>
         <plugins>
