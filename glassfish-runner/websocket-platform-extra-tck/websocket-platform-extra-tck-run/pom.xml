@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  /*
- * Copyright (c) 2022, 2023 Contributors to the Eclipse Foundation.
+ * Copyright (c) 2022, 2025 Contributors to the Eclipse Foundation.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -84,6 +84,12 @@
             <artifactId>websocket-tck-platform-tests</artifactId>
             <version>${jakarta.tck.websocket.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>common</artifactId>
+            <version>11.0.0-RC2</version>
+        </dependency>
 
         <!-- The Arquillian connector that starts GlassFish and deploys archives to it. -->
         <dependency>
@@ -163,6 +169,7 @@
             <!-- Configuring and running the TCK -->
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.2</version>
                 <executions>
                     <execution>
                         <id>gf-tests</id>
