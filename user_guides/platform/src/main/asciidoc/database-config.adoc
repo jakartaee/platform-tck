@@ -1,8 +1,6 @@
 
-[[GFAVUb]][[c-configuring-your-backend-database]]
-
-C Configuring Your Backend Database
------------------------------------
+[[c-configuring-your-backend-database]]
+= Configuring Your Backend Database (Needs Rewrite)
 
 This appendix explains how to configure a backend database to use with a
 Jakarta Platform, Enterprise Edition server being tested against the Jakarta
@@ -10,16 +8,13 @@ EE {tck_version} TCK.
 
 The topics included in this appendix are as follows:
 
-* link:#GFKNA[Overview]
-* link:#GFKNR[The init.<database> Ant Target]
-* link:#GFKMW[Database Properties in ts.jte]
-* link:#GFKOC[Database DDL and DML Files]
-* link:#GFKND[CMP Table Creation]
+* <<c.1-overview>>
+* <<c.2-the-init.database-ant-target>>
+* <<c.3-database-properties-in-ts.jte>>
+* <<c.4-database-ddl-and-dml-files>>
 
-[[GFKNA]][[c.1-overview]]
-
-C.1 Overview
-~~~~~~~~~~~~
+[[c.1-overview]]
+== Overview
 
 All Jakarta Platform, Enterprise Edition servers tested against the Jakarta EE
 11 TCK must be configured with a database and JDBC 4.1-compliant drivers.
@@ -54,10 +49,8 @@ link:config.html#GEWTQ[Configuring a Jakarta EE {tck_version} Server]. The final
 initializing your database for TCK by running `init.<`database> target,
 is explained more in the next section.
 
-[[GFKNR]][[c.2-the-init.database-ant-target]]
-
-C.2 The init.<database> Ant Target
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[c.2-the-init.database-ant-target]]
+== The init.<database> Ant Target
 
 Before your Jakarta Platform, Enterprise Edition server database can be
 tested against the Jakarta EE {tck_version} Platform TCK, the database must be initialized for
@@ -68,8 +61,7 @@ TCK.
 This Ant target references database properties in `ts.jte` file and
 database-specific DDL and DML files to generate SQL statement files that
 are read by the Jakarta EE {tck_version} Platform TCK when you start the test suite. The DDL and
-DML files are described later in this appendix, in link:#GFKOC[Database
-DDL and DML Files].
+DML files are described later in this appendix, in <<c.4-database-ddl-and-dml-files>>.
 
 The Jakarta EE {tck_version} Platform TCK includes the following database-specific Ant targets:
 
@@ -91,10 +83,8 @@ backend for a specific database; for example, OracleInet/Oracle Inet
 driver; OracleDD/Oracle DataDirect driver. These targets are configured
 in the `<TS_HOME>/xml/initdb.xml` file.
 
-[[GFKMW]][[c.3-database-properties-in-ts.jte]]
-
-C.3 Database Properties in ts.jte
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[c.3-database-properties-in-ts.jte]]
+== Database Properties in ts.jte
 
 Listed below are the names and descriptions for the database properties
 you need to set for TCK testing.
@@ -103,8 +93,7 @@ Note that some properties take the form property`.ri`. In all cases,
 properties with an `.ri` suffix are used for interoperability testing
 only. In such cases, the property value applies to the Jakarta Platform,
 Enterprise Edition VI server (the server you want to test) and the
-property`.ri` value applies to the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.1
-server. For example:
+property`.ri` value applies to the Jakarta Platform, Enterprise Edition CI, Eclipse {glassfish_version} server. For example:
 
 [source,oac_no_warn]
 ----
@@ -115,9 +104,8 @@ db.dml.file.ri=RI_DML_filename
 The property`.ri` properties are only used in two-server configurations;
 that is, when you are performing interoperability tests.
 
-[[sthref60]][[GFKMJ]]
 
-===== Table D-1 ts.jte Database Properties
+=== Table D-1 ts.jte Database Properties
 
 [width="100%",cols="35%,65%",options="header",]
 |=======================================================================
@@ -190,10 +178,8 @@ Apache Derby.
 |=======================================================================
 
 
-[[GFKOC]][[c.4-database-ddl-and-dml-files]]
-
-C.4 Database DDL and DML Files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[c.4-database-ddl-and-dml-files]]
+== Database DDL and DML Files
 
 For each supported database type, the Jakarta EE {tck_version} Platform TCK includes a set of
 DDL and DML files in subdirectories off the `<TS_HOME>/sql` directory.
@@ -258,21 +244,5 @@ After updating `initdb.xml`, you invoke the new target with:
 ant -f <TS_HOME>/bin/xml/initdb.xml init.databasename
 ----
 
-[[GFKND]][[c.5-cmp-table-creation]]
-
-C.5 CMP Table Creation
-~~~~~~~~~~~~~~~~~~~~~~
-
-If the application server under test does not provide an option to
-automatically create tables used by CMP Entity EJBs, the needed SQL is
-provided in `<TS_HOME>/sql/`database`/`database`.cmp.sql`.
-
-Setting the `ts.jte` property `create.cmp.tables=true` instructs the
-`init.`databasename target to create the tables defined in the
-`<TS_HOME>/sql/`database`/`database`.cmp.sql` file.
-
-If you set `create.cmp.tables=false` in the `ts.jte` file, it is
-expected that you will create the necessary CMP tables at deployment
-time.
 
 

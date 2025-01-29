@@ -1,8 +1,8 @@
 
-[[GBFUV]][[debugging-test-problems]]
+[[debugging-test-problems]]
+= Debugging Test Problems (Needs Rewrite)
 
-8 Debugging Test Problems
--------------------------
+When tests fail to execute properly, there are a number of reasons that
 
 There are a number of reasons that tests can fail to execute properly.
 This chapter provides some approaches for dealing with these failures.
@@ -11,17 +11,13 @@ test harness in GUI mode. This is a dummy change and will be reverted.
 
 This chapter includes the following topics:
 
-* link:#GBFYP[Overview]
-* link:#GBFVF[Test Tree]
-* link:#GBFWI[Folder Information]
-* link:#GBFVP[Test Information]
-* link:#GBFVZ[Report Files]
-* link:#GBFYF[Configuration Failures]
+* <<debug-overview>>
+* <<test-tree>>
+* <<report-files>>
+* <<configuration-failures>>
 
-[[GBFYP]][[overview]]
-
-8.1 Overview
-~~~~~~~~~~~~
+[[debug-overview]]
+== Overview
 
 The goal of a test run is for all tests in the test suite that are not
 filtered out to have passing results. If the root test suite folder
@@ -38,10 +34,8 @@ troubleshooting a test run. See the JavaTest User's Guide and JavaTest
 online help for detailed descriptions of the tools described in this
 chapter.
 
-[[GBFVF]][[test-tree]]
-
-8.2 Test Tree
-~~~~~~~~~~~~~
+[[test-tree]]
+== Test Tree
 
 Use the test tree in the JavaTest GUI to identify specific folders and
 tests that had errors or failing results. Color codes are used to
@@ -53,41 +47,6 @@ indicate status as follows:
 * White: Test not run
 * Gray: Test filtered out (not run)
 
-[[GBFWI]][[folder-information]]
-
-8.3 Folder Information
-~~~~~~~~~~~~~~~~~~~~~~
-
-Click a folder in the test tree in the JavaTest GUI to display its tabs.
-
-Choose the Error and the Failed tabs to view the lists of all tests in
-and under a folder that were not successfully run. You can double-click
-a test in the lists to view its test information.
-
-[[GBFVP]][[test-information]]
-
-8.4 Test Information
-~~~~~~~~~~~~~~~~~~~~
-
-To display information about a test in the JavaTest GUI, click its icon
-in the test tree or double-click its name in a folder status tab. The
-tab contains detailed information about the test run and, at the bottom
-of the window, a brief status message identifying the type of failure or
-error. This message may be sufficient for you to identify the cause of
-the error or failure.
-
-If you need more information to identify the cause of the error or
-failure, use the following tabs listed in order of importance:
-
-* Test Run Messages contains a Message list and a Message section that
-display the messages produced during the test run.
-
-* Test Run Details contains a two-column table of name/value pairs
-recorded when the test was run.
-
-* Configuration contains a two-column table of the test environment
-name/value pairs derived from the configuration data actually used to
-run the test.
 
 
 [NOTE]
@@ -101,22 +60,18 @@ information.
 =======================================================================
 
 
-[[GBFVZ]][[report-files]]
-
-8.5 Report Files
-~~~~~~~~~~~~~~~~
+[[report-files]]
+== Report Files
 
 Report files are another good source of troubleshooting information. You
 may view the individual test results of a batch run in the JavaTest
 Summary window, but there are also a wide range of HTML report files
 that you can view in the JavaTest ReportBrowser or in the external
 browser or your choice following a test run. See
-link:using.html#GBFVK[Test Reports] for more information.
+<<test-reports>> for more information.
 
-[[GBFYF]][[configuration-failures]]
-
-8.6 Configuration Failures
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[configuration-failures]]
+== Configuration Failures
 
 Configuration failures are easily recognized because many tests fail the
 same way. When all your tests begin to fail, you may want to stop the

@@ -33,7 +33,7 @@
 
     <properties>
         <asciidoctorj.diagram.version>2.3.1</asciidoctorj.diagram.version>
-        <asciidoctorj.maven.plugin.version>3.1.0</asciidoctorj.maven.plugin.version>
+        <asciidoctorj.maven.plugin.version>3.1.1</asciidoctorj.maven.plugin.version>
         <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
 
         <!-- plugin versions -->
@@ -110,10 +110,11 @@
                         <sourceDocumentName>book.adoc</sourceDocumentName>
                         <backend>pdf</backend>
                         <outputFile>${doc.pdf}</outputFile>
+                        <enableVerbose>true</enableVerbose>
                         <attributes>
-                            <imagesDir>img</imagesDir>
+                            <imagesDir>.</imagesDir>
                             <pdf-theme>${project.build.directory}/generated-docs/theme/jakartaee-theme.yml</pdf-theme>
-                            <title-logo-image>image:jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]</title-logo-image>
+                            <title-logo-image>image:img/jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]</title-logo-image>
                             <doctype>book</doctype>
                             <status>${status}</status>
                             <compat-mode></compat-mode>

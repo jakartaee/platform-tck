@@ -1,8 +1,6 @@
 
-[[GFAVUc]][[d-ejbql-schema]]
-
-D EJBQL Schema
---------------
+[[d-ejbql-schema]]
+= EJBQL Schema
 
 The Jakarta Enterprise Beans, EJB-QL tests perform queries against a CMP 2.0 abstract persistence
 model that you deploy before you start the test runs.
@@ -12,22 +10,15 @@ Section 9.3.5, "EJB QL and SQL," in the EJB 3.1 Specification
 shows how the Jakarta Platform, Enterprise Edition CI translates EJB QL to
 SQL, which helps to clarify the EJB QL semantics.
 
-This appendix includes information about the following topics:
 
-* link:#GFKSI[Persistence Schema Relationships]
-* link:#GFKQT[SQL Statements for CMP 1.1 Finders]
-
-[[GFKSI]][[d.1-persistence-schema-relationships]]
-
-D.1 Persistence Schema Relationships
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[d.1-persistence-schema-relationships]]
+== Persistence Schema Relationships
 
 The figure, link:#GFKUU[Figure E-1], below, contains detailed
 information about the persistence schema relationships.
 
 [[GFKUU]]
-
-===== Figure E-1 Persistence Schema Relationships
+=== Figure E-1 Persistence Schema Relationships
 image:img/ejbschema.png["Persistence Schema Relationships"]
 
 Note: EJB in the figure above is a  references to Jakarta Enterprise Beans. 
@@ -177,70 +168,5 @@ CustomerLocal customer;(cmr)
 
 |================================
 
-
-[[GFKQT]][[d.2-sql-statements-for-cmp-1.1-finders]]
-
-D.2 SQL Statements for CMP 1.1 Finders
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Listed below are the SQL statements used for CMP 1.1 finders in:
-
-* `ejb/ee/bb/entity/cmp/clientviewtest`
-* `interop/ejb/entity/cmp/clientviewtest`
-* `ejb/ee/bb/entity/cmp/complexpktest`
-* `ejb/ee/tx/txECMPbean`
-
-[[GFKSD]][[d.2.1-ejbeebbentitycmpclientviewtest-interopejbentitycmpclientviewtest]]
-
-D.2.1 ejb/ee/bb/entity/cmp/clientviewtest, interop/ejb/entity/cmp/clientviewtest
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-[source,oac_no_warn]
-----
-<method-name>findWithinPrimaryKeyRange</method-name>
-<sql>SELECT "KEY_ID" FROM "TestBeanEJBTable" WHERE "KEY_ID" BETWEEN ?1 AND ?2</sql>
-<method-name>findWithinPriceRange</method-name>
-<sql>SELECT "KEY_ID" FROM "TestBeanEJBTable" WHERE "PRICE" BETWEEN ?1 AND ?2</sql>
-<method-name>findByName</method-name>
-<sql>SELECT "KEY_ID" FROM "TestBeanEJBTable" WHERE "BRAND_NAME" = ?1</sql>
-<method-name>findAllBeans</method-name>
-<sql>SELECT "KEY_ID" FROM "TestBeanEJBTable"</sql>
-<method-name>findByPrice</method-name>
-<sql>SELECT "KEY_ID" FROM "TestBeanEJBTable" WHERE "PRICE" = ?1</sql>
-<method-name>findByNameSingle</method-name>
-<sql>SELECT "KEY_ID" FROM "TestBeanEJBTable" WHERE "BRAND_NAME" = ?1</sql>
-----
-
-[[GFKQU]][[d.2.2-ejbeebbentitycmpcomplexpktest]]
-
-D.2.2 ejb/ee/bb/entity/cmp/complexpktest
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-[source,oac_no_warn]
-----
-<method-name>findByPrice</method-name>
-<sql>SELECT "BRAND_NAME", "ID" FROM "TestBeanEJBTable" WHERE "PRICE" = ?1</sql>
-<method-name>findById</method-name>
-<sql>SELECT "BRAND_NAME", "ID" FROM "TestBeanEJBTable" WHERE "ID" = ?1</sql>
-<method-name>findByName</method-name>
-<sql>SELECT  "BRAND_NAME", "ID" FROM "TestBeanEJBTable" WHERE "BRAND_NAME" = ?1</sql>
-----
-
-[[GFKSB]][[d.2.3-ejbeetxtxecmpbean]]
-
-D.2.3 ejb/ee/tx/txECMPbean
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-[source,oac_no_warn]
-----
-<method-name>findByName</method-name>
-<sql>SELECT "KEY_ID" FROM "TxECMPBeanEJBTable" WHERE "BRAND_NAME" = ?1</sql>
-<method-name>findWithinPrimaryKeyRange</method-name>
-<sql>SELECT "KEY_ID" FROM "TxECMPBeanEJBTable" WHERE "PRICE" BETWEEN ?1 AND ?2</sql>
-<method-name>findByPrice</method-name>
-<sql>SELECT "KEY_ID" FROM "TxECMPBeanEJBTable" WHERE "PRICE" = ?1</sql>
-<method-name>findWithinPrimaryKeyRange</method-name>
-<sql>SELECT "KEY_ID" FROM "TxECMPBeanEJBTable" WHERE "KEY_ID" BETWEEN ?1 AND ?2</sql>
-----
 
 

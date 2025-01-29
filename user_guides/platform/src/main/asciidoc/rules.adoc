@@ -1,28 +1,21 @@
 
-[[GBFSN]][[procedure-for-jakarta-platform-enterprise-edition-11.0-certification]]
-
-2 Procedure for Jakarta Platform, Enterprise Edition 11.0 Certification
------------------------------------------------------------------------
+[[procedure-for-jakarta-platform-enterprise-edition-certification]]
+== Procedure for Jakarta Platform, Enterprise Edition {tck_version}.0 Certification
 
 This chapter describes the compatibility testing procedure and
 compatibility requirements for Jakarta Platform, Enterprise Edition Version
-11.
+{tck_version}.
 
 This chapter contains the following sections:
 
-* link:#CJACEHEF[Certification Overview]
-* link:#CJAJFCJI[Compatibility Requirements]
-* link:#CJACBJIB[Jakarta Platform, Enterprise Edition Version 11 Test
-Appeals Process]
-* link:#CJAHFAJE[Specifications for Jakarta Platform, Enterprise Edition
-Version 11]
-* link:#CJAHIGAB[Libraries for Jakarta Platform, Enterprise Edition Version
-8]
+* <<certification-overview>>
+* <<compatibility-requirements>>
+* <<appeals-process-ee>>
+* <<specifications-for-jakarta-platform-enterprise-edition-version>>
+* <<libraries-for-jakarta-platform-enterprise-edition-version>>
 
-[[CJACEHEF]][[certification-overview]]
-
-2.1 Certification Overview
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[certification-overview]]
+== Certification Overview
 
 The certification process for Jakarta EE {tck_version}.0 consists of the
 following activities:
@@ -31,33 +24,27 @@ following activities:
 (TCK) and execute it in accordance with the instructions in this User's
 Guide.
 * Ensure that you meet the requirements outlined in
-link:#CJAJFCJI[Section 2.2, "Compatibility Requirements,"] below.
+<<compatibility-requirements>> below.
 
 * Certify to the Eclipse Foundation that you have finished
-testing and that you meet all of the compatibility requirements,
+testing and that you meet all the compatibility requirements,
 as required by the Eclipse Foundation TCK License.
 
-[[CJAJFCJI]][[compatibility-requirements]]
-
-2.2 Compatibility Requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[compatibility-requirements]]
+== Compatibility Requirements
 
 The compatibility requirements for Jakarta EE {tck_version}.0 consist of meeting the
 requirements set forth by the rules and associated definitions contained
 in this section.
 
-[[sthref6]][[definitions]]
-
-2.2.1 Definitions
-^^^^^^^^^^^^^^^^^
+[[definitions]]
+=== Definitions
 
 These definitions are for use only with these compatibility requirements
 and are not intended for any other purpose.
 
-
-[[sthref7]][[sthref8]]
-
-===== Table 2-1 Definitions
+[[definitions-table]]
+==== Table 2-1 Definitions
 
 [width="100%",cols="25%,75%",options="header",]
 |=======================================================================
@@ -241,11 +228,8 @@ clients and endpoints from a WSDL description as specified by the JAXWS
 Specification.
 |=======================================================================
 
-
-[[CJAFEGEH]][[rules-for-jakarta-platform-enterprise-edition-version-11.0-products]]
-
-2.2.2 Rules for Jakarta Platform, Enterprise Edition Version 11 Products
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[rules-for-jakarta-platform-enterprise-edition-version-products]]
+=== Rules for Jakarta Platform, Enterprise Edition Version 11 Products
 
 The following rules apply for each implementation:
 
@@ -444,95 +428,18 @@ EE25 A Java-to-WSDL Tool must not produce Java-to-WSDL Output from
 source code that does not conform to the Java Language Specification
 (JLS).
 
-[[CJACBJIB]][[jakarta-platform-enterprise-edition-test-appeals-process]]
+[[appeals-process-ee]]
+== Jakarta Platform, Enterprise Edition Version 11 Test Appeals Process
+See <<tck-test-appeals-steps>> for the Jakarta Platform, Enterprise Edition Version 11 Test Appeals Process.
 
-2.3 Jakarta Platform, Enterprise Edition Test Appeals Process
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Jakarta has a well established process for managing challenges to its
-TCKs. Any implementor may submit a challenge to one or more tests in the
-Jakarta EE TCK as it relates to their implementation.  Implementor
-means the entity as a whole in charge of producing the final certified release.
-*Challenges filed should represent the consensus of that entity*.
-
-2.3.1 Valid Challenges
-^^^^^^^^^^^^^^^^^^^^^^
-Any test case (e.g., test class, @Test method), test case configuration (e.g., deployment descriptor), test beans, annotations, and other resources considered part of the TCK may be challenged.
-
-The following scenarios are considered in scope for test challenges:
-
-* Claims that a test assertion conflicts with the specification.
-* Claims that a test asserts requirements over and above that of the specification.
-* Claims that an assertion of the specification is not sufficiently implementable.
-* Claims that a test is not portable or depends on a particular implementation.
-
-2.3.2 Invalid Challenges
-^^^^^^^^^^^^^^^^^^^^^^^^
-The following scenarios are considered out of scope for test challenges and will be immediately closed if filed:
-
-* Challenging an implementation’s claim of passing a test.  Certification is an honor system and these issues must be raised directly with the implementation.
-* Challenging the usefulness of a specification requirement.  The challenge process cannot be used to bypass the specification process and raise in question the need or relevance of a specification requirement.
-* Claims the TCK is inadequate or missing assertions required by the specification.  See the Improvement section, which is outside the scope of test challenges.
-* Challenges that do not represent a consensus of the implementing community will be closed until such time that the community does agree or agreement cannot be made.  The test challenge process is not the place for implementations to initiate their own internal discussions.
-* Challenges to tests that are already excluded for any reason.
-* Challenges that an excluded test should not have been excluded and should be re-added should be opened as a new enhancement request
-
-Test challenges must be made in writing via the {TechnologyShortName} specification project issue tracker
-as described in link:#CJAJEAEI[Section 2.3.3, "TCK Test Appeals Steps."]
-
-All tests found to be invalid will be placed on the Exclude List
-for that version of the {TechnologyShortName} TCK.
-
-
-[[CJAJEAEI]][[tck-test-appeals-steps]]
-
-2.3.3 TCK Test Appeals Steps
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1. Challenges should be filed via the Jakarta EE Platform specification project’s issue tracker using the label `challenge` and include the following information:
-* The relevant specification version and section number(s)
-* The coordinates of the challenged test(s)
-* The exact TCK and exclude list versions
-* The implementation being tested, including name and company
-* The full test name
-* A full description of why the test is invalid and what the correct behavior is believed to be
-* Any supporting material; debug logs, test output, test logs, run scripts, etc.
-
-2. Specification project evaluates the challenge. +
-Challenges can be resolved by a specification project lead, or a project challenge triage team, after a consensus of the specification project committers is reached or attempts to gain consensus fails.
-Specification projects may exercise lazy consensus, voting or any practice that follows the principles of Eclipse Foundation Development Process.
-The expected timeframe for a response is two weeks or less.
-If consensus cannot be reached by the specification project for a prolonged period of time, the default recommendation is to exclude the tests and address the dispute in a future revision of the specification.
-
-3.  Accepted Challenges. +
-A consensus that a test produces invalid results will result in the exclusion of that test from certification requirements, and an immediate update and release of an official distribution of the TCK including the new exclude list. The associated `challenge` issue must be closed with an `accepted` label to indicate it has been resolved.
-
-4.  Rejected Challenges and Remedy. +
-When a`challenge` issue is rejected, it must be closed with a label of `invalid` to indicate it has been rejected.
-There appeal process for challenges rejected on technical terms is outlined in Escalation Appeal.
-If, however, an implementer feels the TCK challenge process was not followed, an appeal issue should be filed with specification project’s TCK issue tracker using the label `challenge-appeal`.
-A project lead should escalate the issue with the Jakarta EE Specification Committee via email (jakarta.ee-spec@eclipse.org).
-The committee will evaluate the matter purely in terms of due process.
-If the appeal is accepted, the original TCK challenge issue will be reopened and a label of `appealed-challenge` added, along with a discussion of the appeal decision, and the `challenge-appeal` issue with be closed.
-If the appeal is rejected, the `challenge-appeal` issue should closed with a label of `invalid`.
-
-5. Escalation Appeal. +
-If there is a concern that a TCK process issue has not been resolved satisfactorily, the
-https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Development Process Grievance Handling] procedure should be followed to escalate the resolution. Note that this is not a mechanism to attempt to handle implementation specific issues.
-
-
-[[CJAHFAJE]][[specifications-for-jakarta-platform-enterprise-edition-version-11.0]]
-
-2.4 Specifications for Jakarta Platform, Enterprise Edition Version 11.0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[specifications-for-jakarta-platform-enterprise-edition-version]]
+== Specifications for Jakarta Platform, Enterprise Edition Version 11.0
 
 The Specifications for Jakarta Platform, Enterprise Edition 11.0 are found on
 the Eclipse Foundation, Jakarta EE Specifications web site at `https://jakarta.ee/specifications/platform/11/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
-[[CJAHIGAB]][[libraries-for-jakarta-platform-enterprise-edition-version-11.0]]
-
-2.5 Libraries for Jakarta Platform, Enterprise Edition Version 11.0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[libraries-for-jakarta-platform-enterprise-edition-version]]
+== Libraries for Jakarta Platform, Enterprise Edition Version {tck_version}.0
 
 The following list constitutes the complete list of packages that are
 required for Jakarta EE {tck_version}.0:

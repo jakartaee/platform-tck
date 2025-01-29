@@ -1,28 +1,20 @@
-
-[[GJJPZ]][[procedure-for-jakarta-platform-enterprise-edition-11-web-profile-certification]]
-
-3 Procedure for Jakarta Platform, Enterprise Edition 11 Web Profile Certification
----------------------------------------------------------------------------------
+[[procedure-for-jakarta-platform-enterprise-edition-web-profile-certification]]
+= Procedure for Jakarta Platform, Enterprise Edition 11 Web Profile Certification
+(Needs Refectoring with the rules.adoc)
 
 This chapter describes the compatibility testing procedure and
-compatibility requirements for Jakarta Platform, Enterprise Edition Version 11
-Web Profile.
+compatibility requirements for Jakarta Platform, Enterprise Edition Version {tck_version} Web Profile.
 
 This chapter contains the following sections:
 
-* link:#CEGEJDGE[Certification Overview]
-* link:#CEGFGHIC[Compatibility Requirements]
-* link:#CEGHFFED[Jakarta Platform, Enterprise Edition Version 11 Test
-Appeals Process]
-* link:#CEGEHIBD[Specifications for Jakarta Platform, Enterprise Edition
-Version 11, Web Profile]
-* link:#CEGFDIEG[Libraries for Jakarta Platform, Enterprise Edition Version
-11, Web Profile]
+* <<certification-overview-wp>>
+* <<compatibility-requirements-wp>>
+* <<jakarta-tck-appeals-process>>
+* <<specifications-for-jakarta-platform-enterprise-edition-web-profile>>
+* <<libraries-for-jakarta-platform-enterprise-edition-web-profile>>
 
-[[CEGEJDGE]][[certification-overview]]
-
-3.1 Certification Overview
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[certification-overview-wp]]
+== Certification Overview
 
 The certification process for Jakarta EE {tck_version}, Web Profile consists of the following activities:
 
@@ -36,24 +28,19 @@ Requirements,” below.
 testing and that you meet all of the compatibility requirements,
 as required by the Eclipse Foundation TCK License.
 
-[[CEGFGHIC]][[compatibility-requirements]]
-
-3.2 Compatibility Requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[compatibility-requirements-wp]]
+== Compatibility Requirements
 
 The compatibility requirements for Jakarta EE {tck_version}, Web Profile consist of meeting the requirements set forth by the rules and
 associated definitions contained in this section.
 
-[[sthref10]][[definitions]]
-
-3.2.1 Definitions
-^^^^^^^^^^^^^^^^^
+[[definitions-wp]]
+=== Definitions
 
 These definitions are for use only with these compatibility requirements
 and are not intended for any other purpose.
 
-[[sthref11]][[sthref12]]
-
+[[definitions-table-wp]]
 Table 3-1 Definitions
 
 [width="100%",cols="25%,75%",options="header",]
@@ -234,10 +221,8 @@ Specification.
 |=======================================================================
 
 
-[[CEGCFBHB]][[rules-for-jakarta-platform-enterprise-edition-version-11-products]]
-
-3.2.2 Rules for Jakarta Platform, Enterprise Edition Version 11 Products
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[rules-for-jakarta-platform-enterprise-edition-version-11-products]]
+=== Rules for Jakarta Platform, Enterprise Edition Version {tck_version} Products
 
 The following rules apply for each implementation:
 
@@ -386,14 +371,8 @@ when processed by the Runtime, must not cause the functional
 programmatic behavior of the Runtime to vary from the functional
 programmatic behavior of the Runtime in the absence of that comment.
 
-EE-WP20 Compatibility testing for the Jakarta EE {tck_version} Web Profile consists of
-running the tests for the technologies defined in
-link:intro.html#BHCGFHDI[Section 1.2.2, "Jakarta EE {tck_version} Web Profile
-Technologies Tested With Jakarta EE {tck_version} Platform TCK."] If optional technologies
-defined in the Jakarta EE {tck_version} Web Profile platform are implemented in
-addition to the required Jakarta EE {tck_version} Web Profile technologies,
-corresponding tests within this TCK for those additional technologies
-must also be run.
+EE-WP20 Compatibility testing for the Jakarta EE {tck_version} Web Profile consists ofrunning the tests for the technologies defined in
+<<jakarta-ee-technologies-tested-with-jakarta-ee-platform-tck>> If optional technologies defined in the Jakarta EE {tck_version} Web Profile platform are implemented in addition to the required Jakarta EE {tck_version} Web Profile technologies, corresponding tests within this TCK for those additional technologies must also be run.
 
 EE-WP21 Compliance testing for Jakarta EE {tck_version} Web Profile consists of running
 the Jakarta EE {tck_version} Web Profile TCK tests and the following Technology
@@ -436,94 +415,18 @@ EE-WP25 A Java-to-WSDL Tool must not produce Java-to-WSDL Output from
 source code that does not conform to the Java Language Specification
 (JLS).
 
-[[CEGHFFED]][[jakarta-platform-enterprise-edition-test-appeals-process]]
+[[appeals-process-wp]]
+== Jakarta Platform, Enterprise Edition Version {tck_version} Web Progile Test Appeals Process
+See <<tck-test-appeals-steps>> for the Jakarta Platform, Enterprise Edition Version 11 Web Profile Test Appeals Process.
 
-3.3 Jakarta Platform, Enterprise Edition Test Appeals Process
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Jakarta has a well established process for managing challenges to its
-TCKs. Any implementor may submit a challenge to one or more tests in the
-Jakarta EE TCK as it relates to their implementation.  Implementor
-means the entity as a whole in charge of producing the final certified release.
-*Challenges filed should represent the consensus of that entity*.
-
-3.3.1 Valid Challenges
-^^^^^^^^^^^^^^^^^^^^^^
-Any test case (e.g., test class, @Test method), test case configuration (e.g., deployment descriptor), test beans, annotations, and other resources considered part of the TCK may be challenged.
-
-The following scenarios are considered in scope for test challenges:
-
-* Claims that a test assertion conflicts with the specification.
-* Claims that a test asserts requirements over and above that of the specification.
-* Claims that an assertion of the specification is not sufficiently implementable.
-* Claims that a test is not portable or depends on a particular implementation.
-
-3.3.2 Invalid Challenges
-^^^^^^^^^^^^^^^^^^^^^^^^
-The following scenarios are considered out of scope for test challenges and will be immediately closed if filed:
-
-* Challenging an implementation’s claim of passing a test.  Certification is an honor system and these issues must be raised directly with the implementation.
-* Challenging the usefulness of a specification requirement.  The challenge process cannot be used to bypass the specification process and raise in question the need or relevance of a specification requirement.
-* Claims the TCK is inadequate or missing assertions required by the specification.  See the Improvement section, which is outside the scope of test challenges.
-* Challenges that do not represent a consensus of the implementing community will be closed until such time that the community does agree or agreement cannot be made.  The test challenge process is not the place for implementations to initiate their own internal discussions.
-* Challenges to tests that are already excluded for any reason.
-* Challenges that an excluded test should not have been excluded and should be re-added should be opened as a new enhancement request
-
-Test challenges must be made in writing via the {TechnologyShortName} specification project issue tracker
-as described in link:#CJAJEAEI[Section 2.3.3, "TCK Test Appeals Steps."]
-
-All tests found to be invalid will be placed on the Exclude List
-for that version of the {TechnologyShortName} TCK.
-
-
-[[CJAJEAEI]][[tck-test-appeals-steps]]
-
-3.3.3 TCK Test Appeals Steps
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1. Challenges should be filed via the Jakarta EE Platform specification project’s issue tracker using the label `challenge` and include the following information:
-* The relevant specification version and section number(s)
-* The coordinates of the challenged test(s)
-* The exact TCK and exclude list versions
-* The implementation being tested, including name and company
-* The full test name
-* A full description of why the test is invalid and what the correct behavior is believed to be
-* Any supporting material; debug logs, test output, test logs, run scripts, etc.
-
-2. Specification project evaluates the challenge. +
-Challenges can be resolved by a specification project lead, or a project challenge triage team, after a consensus of the specification project committers is reached or attempts to gain consensus fails.
-Specification projects may exercise lazy consensus, voting or any practice that follows the principles of Eclipse Foundation Development Process.
-The expected timeframe for a response is two weeks or less.
-If consensus cannot be reached by the specification project for a prolonged period of time, the default recommendation is to exclude the tests and address the dispute in a future revision of the specification.
-
-3.  Accepted Challenges. +
-A consensus that a test produces invalid results will result in the exclusion of that test from certification requirements, and an immediate update and release of an official distribution of the TCK including the new exclude list. The associated `challenge` issue must be closed with an `accepted` label to indicate it has been resolved.
-
-4.  Rejected Challenges and Remedy. +
-When a`challenge` issue is rejected, it must be closed with a label of `invalid` to indicate it has been rejected.
-There appeal process for challenges rejected on technical terms is outlined in Escalation Appeal.
-If, however, an implementer feels the TCK challenge process was not followed, an appeal issue should be filed with specification project’s TCK issue tracker using the label `challenge-appeal`.
-A project lead should escalate the issue with the Jakarta EE Specification Committee via email (jakarta.ee-spec@eclipse.org).
-The committee will evaluate the matter purely in terms of due process.
-If the appeal is accepted, the original TCK challenge issue will be reopened and a label of `appealed-challenge` added, along with a discussion of the appeal decision, and the `challenge-appeal` issue with be closed.
-If the appeal is rejected, the `challenge-appeal` issue should closed with a label of `invalid`.
-
-5. Escalation Appeal. +
-If there is a concern that a TCK process issue has not been resolved satisfactorily, the
-https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Development Process Grievance Handling] procedure should be followed to escalate the resolution. Note that this is not a mechanism to attempt to handle implementation specific issues.
-
-[[CEGEHIBD]][[specifications-for-jakarta-platform-enterprise-edition-version-11-web-profile]]
-
-3.4 Specifications for Jakarta Platform, Enterprise Edition Version 11, Web Profile
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[specifications-for-jakarta-platform-enterprise-edition-web-profile]]
+== Specifications for Jakarta Platform, Enterprise Edition Version {tck_version}, Web Profile
 
 The Specifications for Jakarta Platform, Enterprise Edition 11, Web Profile are found on the Eclipse Foundation, Jakarta EE Specification web
 site at `https://jakarta.ee/specifications/webprofile/11/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
-[[CEGFDIEG]][[3libraries-for-jakarta-platform-enterprise-edition-version-11-web-profile]]
-
-3.5 Libraries for Jakarta Platform, Enterprise Edition Version 11, Web Profile
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[libraries-for-jakarta-platform-enterprise-edition-web-profile]]
+== Libraries for Jakarta Platform, Enterprise Edition Version {tck_version}, Web Profile
 
 The following location provides a list of packages that constitute the
 required class libraries for the full Java EE {tck_version} platform:

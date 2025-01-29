@@ -1,8 +1,6 @@
 
-[[GFAON]][[building-and-debugging-tests]]
-
-10 Building and Debugging Tests
--------------------------------
+[[building-and-debugging-tests]]
+= Building and Debugging Tests (Needs Rewrite)
 
 For final certification and branding, all tests must be run through the
 JavaTest test harness. However, you can execute different Ant targets
@@ -19,16 +17,14 @@ for certification, except in the case of rebuildable tests.
 
 This chapter includes the following topics:
 
-* link:#GFATJ[Configuring Your Build Environment]
-* link:#GFAPW[Building the Tests]
-* link:#GFARS[Running the Tests]
-* link:#GFATN[Listing the Contents of dist/classes Directories]
-* link:#GFATK[Debugging Service Tests]
+* <<configuring-your-build-environment>>
+* <<building-the-tests>>
+* <<running-the-tests>>
+* <<listing-the-contents-of-distclasses-directories>>
+* <<debugging-service-tests>>
 
-[[GFATJ]][[configuring-your-build-environment]]
-
-10.1 Configuring Your Build Environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[configuring-your-build-environment]]
+== Configuring Your Build Environment
 
 Complete the following steps to set up your environment to build,
 deploy, and run the TCK tests using Ant. The following example is for
@@ -54,8 +50,8 @@ export PATH
 installed.
 * `JAVAEE_HOME` to the directory in which the Jakarta Platform, Enterprise
 Edition Compatible Implementation (CI) is installed.
-2.  Unset `ANT_HOME`, if it is currently set in your environment.
-3.  Change to the `<TS_HOME>/bin` directory and verify that the `ts.jte`
+*.  Unset `ANT_HOME`, if it is currently set in your environment.
+*.  Change to the `<TS_HOME>/bin` directory and verify that the `ts.jte`
 file has the following properties set:
 * `webserver.home`: the directory in which the CI Web Server is
 installed
@@ -66,57 +62,22 @@ Edition CI is installed for reference to the packager tool used by the
 build infrastructure
 * `ts.classpath`: required classes needed for building/running the TCK
 
-[[GFAPW]][[building-the-tests]]
-
-10.2 Building the Tests
-~~~~~~~~~~~~~~~~~~~~~~~
+[[building-the-tests]]
+== Building the Tests (Needs Rewrite)
 
 To build the Jakarta EE {tck_version} Platform TCK tests using Ant, complete the following
 steps:
 
-1.  To build a single test directory, type the following: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests/test_dir 
-ant clean build
-----
-This cleans and builds the tests in the directory specified for
-test_dir.
-2.  To list the classes directory for this test that was built, type the
-following: +
-[source,oac_no_warn]
-----
-ant lc
-----
-or +
-[source,oac_no_warn]
-----
-ant llc
-----
-3.  To list the distribution directory of archives for this test that
-was built, type the following: +
-[source,oac_no_warn]
-----
-ant pd
-----
-or +
-[source,oac_no_warn]
-----
-ant pc
-----
 
-[[GFARS]][[running-the-tests]]
 
-10.3 Running the Tests
-~~~~~~~~~~~~~~~~~~~~~~
 
-To run the Jakarta EE {tck_version} Platform TCK tests using Ant, use one of the following
-procedures.
+[[running-the-tests]]
+== Running the Tests
 
-[[GFAOW]][[to-run-a-single-test-directory]]
+To run the Jakarta EE {tck_version} Platform TCK tests using Maven, use one of the following procedures.
 
-10.3.1 To Run a Single Test Directory
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[to-run-a-single-test-directory]]
+=== To Run a Single Test Directory (Needs Rewrite)
 
 To run a single test directory, type the following:
 
@@ -128,10 +89,8 @@ ant runclient
 
 This runs all tests in test_dir.
 
-[[GFARF]][[to-run-a-single-test-within-a-test-directory]]
-
-10.3.2 To Run a Single Test Within a Test Directory
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[to-run-a-single-test-within-a-test-directory]
+=== To Run a Single Test Within a Test Directory
 
 To run a single test within a test directory, type the following:
 
@@ -147,10 +106,8 @@ the directory and execute the `list.tests` Ant task. The actual test
 name displays to the right of the pound sign (#), which follows the
 fully qualified name of the client class.
 
-[[GFATN]][[listing-the-contents-of-distclasses-directories]]
-
-10.4 Listing the Contents of dist/classes Directories
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[listing-the-contents-of-distclasses-directories]]
+== Listing the Contents of dist/classes Directories (Needs Rewrite)
 
 You can use various Ant targets to list the contents of corresponding
 `dist/classes` directories from the `src` directory without leaving the
@@ -177,13 +134,13 @@ directory, they will list the contents of the current directory.
 
 
 [NOTE]
-=======================================================================
+======================================================================
 
 `pc`, `lc`, and `llc` also support the `-Dbuild.vi` property for listing
 the rebuildable tests. The rebuildable tests are located under
 `<TS_HOME>/classes_vi_built` instead of `<TS_HOME>/classes`.
 
-=======================================================================
+======================================================================
 
 
 The following listing shows sample output for the Ant `lc` target.
@@ -210,10 +167,8 @@ HelloEJB.class
 HelloHome.class
 ----
 
-[[GFATK]][[debugging-service-tests]]
-
-10.5 Debugging Service Tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[debugging-service-tests]]
+== Debugging Service Tests (Needs Rewrite)
 
 The Jakarta EE {tck_version} Platform TCK service tests test the compatibility of the Jakarta
 Platform, Enterprise Edition Service APIs: Jakarta Mail, JDBC, Jakarta Messaging, Jakarta Transactions,
@@ -240,22 +195,20 @@ set.
 
 
 [NOTE]
-=======================================================================
+======================================================================
 
 You can only use this mechanism for debugging purposes. For
 certification, you must run using the default set of vehicles.
 
-=======================================================================
+======================================================================
 
 
-[[GFASE]][[examples]]
-
-10.5.1 Examples
-^^^^^^^^^^^^^^^
+[examples]
+=== Examples (Needs Rewrite)
 
 [[GFATY]]
 
-===== Example 10-1 Restricting the JDBC Test Run
+==== Example 10-1 Restricting the JDBC Test Run
 
 To restrict the JDBC test run to the servlet and Jakarta Server Pages vehicles only, set
 the following system property in the `<TS_HOME>/bin/build.xml` file for
@@ -273,10 +226,8 @@ Before you run the test or tests, you should temporarily rename the file
 Note that you must remove these properties before you run the Jakarta EE {tck_version}
 TCK test suite for certification.
 
-[[GFARW]][[obtaining-additional-debugging-information]]
-
-10.5.2 Obtaining Additional Debugging Information
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[obtaining-additional-debugging-information]
+=== Obtaining Additional Debugging Information (Needs Rewrite)
 
 When running the JavaTest harness in command-line mode, you can obtain
 additional debugging information by setting the `HARNESS_DEBUG`

@@ -2,7 +2,10 @@
 = Jakarta EE Platform, Enterprise Edition {tck_version} Test Compatibility Kit User's Guide, Release 11 for Jakarta EE
 :tck_version: 11
 :glassfish_version: GlassFish 8.0
+:doctype: book
 :toc:
+
+:leveloffset: 1
 
 include::title.adoc[]
 
@@ -29,6 +32,8 @@ include::troubleshooting.adoc[]
 include::building.adoc[]
 
 include::portingpackage.adoc[]
+
+include::appeals.adoc[]
 
 include::commonappdeploy.adoc[]
 

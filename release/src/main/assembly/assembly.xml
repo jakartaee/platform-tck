@@ -54,6 +54,12 @@
             <outputDirectory>guides</outputDirectory>
             <source>../tcks/apis/persistence/persistence-outside-container/docs/userguide/target/generated-docs/Jakarta-Persistence-TCK-Users-Guide.pdf</source>
         </file>
+
+        <!-- GlassFish example runners -->
+        <file>
+            <outputDirectory>glassfish-runner</outputDirectory>
+            <source>../glassfish-runner</source>
+        </file>
     </files>
 
     <fileSets>

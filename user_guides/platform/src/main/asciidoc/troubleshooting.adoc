@@ -1,17 +1,14 @@
 
-[[GFAHF]][[troubleshooting]]
-
-9 Troubleshooting
------------------
+[[common-troubleshooting]]
+= Troubleshooting
+:doctype: book
 
 This chapter explains how to debug test failures that you could
 encounter as you run the Jakarta Platform, Enterprise Edition Compatibility
 Test Suite.
 
-[[GFAUR]][[common-tck-problems-and-resolutions]]
-
-10 Common TCK Problems and Resolutions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[common-tck-problems-and-resolutions]]
+= Common TCK Problems and Resolutions
 
 This section lists common problems that you may encounter as you run the
 Jakarta Platform, Enterprise Edition Test Compatibility Kit software on
@@ -71,14 +68,12 @@ Resolution: +
 Ensure that the `cts.jar` and `tsharness.jar` files can be loaded by the
 extension class loader of your Jakarta Platform, Enterprise Edition server.
 
-[[GFAGN]][[support]]
-
-9.2 Support
-~~~~~~~~~~~
+[[support]]
+== Support
 
 Jakarta EE is a community sponsored and community supported project. If you need additional
 assistance, you can reach out to the specific developer community. You will find the 
 list of all Eclipse EE4J projects at `https://projects.eclipse.org/projects/ee4j`. All the sub-projects
-are listed. Each project page has details regarding how to contact thir developer community.
+are listed. Each project page has details regarding how to contact their developer community.
 
 
