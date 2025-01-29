@@ -1,8 +1,6 @@
+[[installation]]
+== Installation
 :glassfish_version: GlassFish 8.0
-[[GBFTP]][[installation]]
-
-4 Installation
---------------
 
 This chapter explains how to install the Jakarta EE {tck_version} Platform TCK software and
 perform a sample test run to verify your installation and familiarize
@@ -17,15 +15,14 @@ Configuration,"] for instructions on configuring your test environment.
 
 This chapter covers the following topics:
 
-* link:#installing-the-ci[Installing the Jakarta EE {tck_version} Compatible Implementation]
-* link:#installing-the-jakarta-ee-11-platform-tck[Installing the Jakarta EE {tck_version} Platform TCK]
-* link:#verifying-your-installation-optional[Verifying Your Installation (Optional)]
+* <<installing-the-ci>>
+* <<installing-the-jakarta-ee-platform-tck>>
+* <<verifying-your-installation-optional>>
 
 [[installing-the-ci]]
-4.1 Installing the Jakarta EE {tck_version} Compatible Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Installing the Jakarta EE {tck_version} Compatible Implementation
 
-[[sthref14]]
+How to install the Jakarta EE {tck_version} CI, Eclipse {glassfish_version}
 
 ==== Before You Begin
 
@@ -50,10 +47,8 @@ EE {tck_version} CI.
 <JAVAEE_HOME>/bin/asadmin start-domain
 ----
 
-[[GEVHP]][[installing-the-jakarta-ee-11-platform-tck]]
-
-4.2 Installing the Jakarta EE {tck_version} Platform TCK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[installing-the-jakarta-ee-platform-tck]]
+=== Installing the Jakarta EE {tck_version} Platform TCK
 
 Complete the following procedure to install the Jakarta EE {tck_version} Platform TCK on a
 system running the Solaris, Linux, or Windows operating system.
@@ -92,10 +87,8 @@ After you complete the installation, follow the directions in
 link:config.html#GBFVV[Chapter 5, "Setup and Configuration,"] to set up
 and configure the Jakarta EE {tck_version} Platform TCK test suite.
 
-[[GEVGZ]][[verifying-your-installation-optional]]
-
-4.3 Verifying Your Installation (Optional)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[verifying-your-installation-optional]]
+=== Verifying Your Installation (Optional)
 
 This procedure is optional. After installing the Jakarta EE {tck_version} CI and Jakarta
 EE {tck_version} TCK, you may want to verify your installation by running the TCK

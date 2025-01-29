@@ -1,8 +1,6 @@
-
-[[GBFWO]][[executing-tests]]
-
-7 Executing Tests
------------------
+[[executing-tests]]
+= Executing Tests
+:doctype: book
 
 The Jakarta EE {tck_version} Platform TCK uses the JavaTest harness to execute the tests in the
 test suite. For detailed instructions that explain how to run and use
@@ -10,29 +8,22 @@ JavaTest, see the JavaTest User's Guide and Reference.
 
 This chapter includes the following topics:
 
-* link:#GFADX[Jakarta EE {tck_version} Platform TCK Operating Assumptions]
-* link:#GBFUZ[Starting JavaTest]
-* link:#GFACS[Validating Your Test Configuration]
-* link:#GBFWM[Running a Subset of the Tests]
-* link:#GBFVK[Test Reports]
-
+* <<jakarta-ee-platform-tck-operating-assumptions>>
+* <<starting-javatest>>
+* <<validating-your-test-configuration>>
+* <<running-a-subset-of-the-tests>>
+* <<test-reports>>
 
 [NOTE]
-=======================================================================
-
-The instructions in this chapter assume that you have installed and
-configured your test environment as described
-inlink:install.html#GBFTP[Chapter 4, "Installation,"] and
-link:config.html#GBFVV[Chapter 5, "Setup and Configuration,"]
+============
+The instructions in this chapter assume that you have installed and configured your test environment as described
+<<installation>> and <<setup-and-configuration>>
 respectively.
+============
 
-=======================================================================
 
-
-[[GFADX]][[jakarta-ee-11-platform-tck-operating-assumptions]]
-
-7.1 Jakarta EE {tck_version} Platform TCK Operating Assumptions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[jakarta-ee-platform-tck-operating-assumptions]]
+== Jakarta EE {tck_version} Platform TCK Operating Assumptions
 
 The following are assumed in this chapter:
 
@@ -46,10 +37,8 @@ machine.
 * Implementations of the technologies to be tested are properly
 installed and configured.
 
-[[GBFUZ]][[starting-javatest]]
-
-7.2 Starting JavaTest
-~~~~~~~~~~~~~~~~~~~~~
+[[starting-javatest]]
+== Starting JavaTest
 
 There are two general ways to run Jakarta EE {tck_version} Platform TCK using the JavaTest
 harness software:
@@ -67,72 +56,14 @@ server configurations, and for running tests in batch mode.
 
 
 [NOTE]
-=======================================================================
-
-The `build.xml` file in `<TS_HOME>/bin` contains the various Ant 
+====
+The `build.xml` file in `<TS_HOME>/bin` contains the various Ant
 targets for the Jakarta EE {tck_version} Platform TCK test suite
-
-=======================================================================
-
-
-[[GBFWH]][[to-start-javatest-in-gui-mode]]
-
-7.2.1 To Start JavaTest in GUI Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1.  Set the `TS_HOME` environment variable to the directory in which the
-Jakarta EE {tck_version} Platform TCK is installed.
-2.  Change to the `<TS_HOME>/bin` directory.
-3.  Copy <TS_HOME>/bin/ts.jte.jdk11 as <TS_HOME>/bin/ts.jte for JakartaEE {tck_version}.
-Ensure that the `ts.jte` file contains information relevant to your
-setup. +
-Refer to link:config.html#GBFVV[Chapter 5, "Setup and Configuration,"]
-for detailed configuration instructions.
-4.  Execute the `ant gui` target to start the JavaTest GUI: +
-[source,oac_no_warn]
-----
-ant gui
-----
-Using the JavaTest GUI to run TCK tests is described later in this
-guide. For detailed information about using the JavaTest interface, see
-the JavaTest User's Guide. +
-
-[NOTE]
-=======================================================================
-
-The forward and reverse keywords are available to filter the interop
-and/or rebuildable tests during a selected test run when running tests
-in the following directory only:
-
-[source,oac_no_warn]
-----
-<TS_HOME>/src/com/sun/ts/tests/interop
-----
-
-Forward tests are interop tests that run from the Vendor Implementation
-to the Compatible Implementation, as well as rebuildable tests that run
-only against the Vendor Implementation. Reverse tests (with test names
-ending in `_reverse`) are interop tests that run from the Compatible
-Implementation to the Vendor Implementation, as well as rebuildable
-tests that run only against the Compatible Implementation.
-
-To set one of these keywords in the Javatest GUI, select the Configure
-menu item, then select Change Configuration, then select Keywords, and
-set the appropriate keyword.
-
-When one of these keywords has been set, executing tests in the
-directories above causes only those tests that match the keyword to be
-run. This can be useful when trying to debug failures with a particular
-test configuration. Note, however, for certification all tests in both
-directions must pass.
-
-=======================================================================
+====
 
 
-[[GFAEF]][[to-start-javatest-in-command-line-mode]]
-
-7.2.2 To Start JavaTest in Command-Line Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[running-test-cli]]
+=== To Run Test in Command-Line Mode (Needs Rewrite)
 
 1.  Set the `TS_HOME` environment variable to the directory in which
 Jakarta EE {tck_version} Platform TCK was installed.
@@ -148,9 +79,8 @@ ant runclient
 ----
 This runs all tests in the current directory and any subdirectories.
 
-[[GCMCU]]
-
-===== Example 7-1 Running the Jakarta EE {tck_version} Platform TCK Signature Tests
+[[running-sigtest-example]]
+==== Example 7-1 Running the Jakarta EE {tck_version} Platform TCK Signature Tests (Needs Rewrite)
 
 To run the Jakarta EE {tck_version} Platform TCK signature tests, enter the following commands:
 
@@ -160,9 +90,8 @@ cd <TS_HOME>/src/com/sun/ts/tests/signaturetest/javaee
 ant runclient
 ----
 
-[[GCMBV]]
-
-===== Example 7-2 Running a Single Test Directory
+[[running-tests-package]]
+==== Example 7-2 Running a Single Test Directory (Needs Rewrite)
 
 To run a single test directory in the `forward` direction, enter the
 following commands:
@@ -173,9 +102,8 @@ cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/jakarta_xml_ws/Dispatch
 ant -Dkeywords=forward runclient
 ----
 
-[[GCMCA]]
-
-===== Example 7-3 Running a Subset of Test Directories
+[[running-subset-tests]]
+==== Example 7-3 Running a Subset of Test Directories (Needs Rewrite)
 
 To run a subset of test directories in the `reverse` direction, enter
 the following commands:
@@ -186,43 +114,11 @@ cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api
 ant -Dkeywords=reverse runclient
 ----
 
-[[GFACS]][[validating-your-test-configuration]]
+[[validating-your-test-configuration]]
+== Validating Your Test Configuration
 
-7.3 Validating Your Test Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[[GFADI]][[to-validate-your-configuration-in-gui-mode]]
-
-7.3.1 To Validate Your Configuration in GUI Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1.  Start the JavaTest GUI and step through the basic configuration
-steps, if required, as described in link:config.html#GEYOD[Section 5.5.2,
-"The Configuration Interview."]
-2.  In the JavaTest GUI tree view, expand the following directories:
-`com`, `sun`, `ts`, `tests`, `samples`.
-3.  Highlight the `samples` directory, right-click, and choose *Execute
-These Tests*. +
-If a work directory has not been specified, you are prompted to specify
-or create a new one.
-4.  From the *JavaTest* main menu, select *File*, then select *Create Work
-Directory*. The *Create Work Directory* dialog is displayed.
-5.  Locate or enter the name of the directory to which the test harness
-will write temporary files (for example, `/tmp/JTWork`), and click
-*Create*.
-6.  From the JavaTest main menu, select *Run Tests*, then select *Start* to
-run the default tests. +
-If your configuration information is incomplete, you are prompted to
-supply the missing parameters. +
-The JavaTest status bar grows while JavaTest tracks statistics relative
-to the files done, tests found, and tests done.
-7.  Check the results. +
-Test progress and results are displayed by the JavaTest harness.
-
-[[GFACO]][[to-validate-your-configuration-in-command-line-mode]]
-
-7.3.2 To Validate Your Configuration in Command-Line Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[to-validate-your-configuration-in-command-line-mode]]
+=== To Validate Your Configuration in Command-Line Mode (Needs Rewrite)
 
 .  Go to the `<TS_HOME>/src/com/sun/ts/tests/samples` directory.
 .  Start the the test run by executing the following command: 
@@ -253,33 +149,12 @@ Reports are written to the report directory you specified in
 written to the `/tmp/JTreport` directory (Solaris/Linux) or
 `C:\temp\JTreport` (Windows).
 
-[[GBFWM]][[running-a-subset-of-the-tests]]
+[[running-a-subset-of-the-tests]]
+== Running a Subset of the Tests (Needs Rewrite)
 
-7.4 Running a Subset of the Tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[to-run-a-subset-of-tests-in-command-line-mode]]
 
-[[GBFVT]][[to-run-a-subset-of-tests-in-gui-mode]]
-
-7.4.1 To Run a Subset of Tests in GUI Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1.  From the JavaTest main menu, select *Configure*, then select *Edit
-Configuration*.
-2.  In the Configuration Editor, select *Specify Tests to Run?* from the
-option list on the left. +
-You are asked whether you want to run all or a subset of the test suite.
-3.  Click *Yes*, and then *Next* to run a subset of tests.
-4.  Select the tests you want to run from the displayed test tree, and
-then click *Done*. +
-You can select entire branches of the test tree, or use `Ctrl+Click` or
-`Shift+Click` to select multiple tests or ranges of tests, respectively. +
-After clicking *Done*, you are returned to the JavaTest main window.
-5.  Select *Run Tests*, then select *Start* to run the tests you selected.
-
-[[GBFWK]][[to-run-a-subset-of-tests-in-command-line-mode]]
-
-7.4.2 To Run a Subset of Tests in Command-Line Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=== To Run a Subset of Tests in Command-Line Mode
 
 1.  Change to the directory containing the tests you want to run. +
 For example, `<TS_HOME>/src/com/sun/ts/tests/samples`.
@@ -295,39 +170,9 @@ subdirectories are run.
 
 [[GBFVL]][[to-run-a-subset-of-tests-in-batch-mode-based-on-prior-result-status]]
 
-7.4.3 To Run a Subset of Tests in Batch Mode Based on Prior Result
-Status
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can run certain tests in batch mode based on the test's prior run
-status by specifying the `priorStatus` system property when invoking
-Ant.
-
-Invoke `ant` with the `priorStatus` property.
-
-The accepted values for the `priorStatus` property are any combination
-of the following:
-
-* `fail`
-* `pass`
-* `error`
-* `notRun`
-
-For example, you could run all Jakarta EE {tck_version} tests with a status of failed
-and error by invoking the following commands:
-
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests/ejb
-ant -DpriorStatus="fail,error" runclient
-----
-
-Note that multiple `priorStatus` values must be separated by commas.
-
-[[sthref25]][[using-keywords-to-test-required-and-optional-technologies]]
-
-7.5 Using Keywords to Test Required and Optional Technologies
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[using-keywords-to-test]]
+== Using Keywords to Test Required Technologies (Needs Rewrite)
 
 The Jakarta EE TCK includes some tests that may be optional depending on
 your implementation. For example, certain technologies are now optional
@@ -336,14 +181,10 @@ technologies which are optional for Web Profile implementations, but may
 be implemented. If implemented, optional tests must be run and pass.
 There are two mechanisms in place in the TCK which control whether or
 not a given set of tests is run - the `javaee.level` property in the
-`ts.jte` file (see link:#BCGBAHFF[Section 7.5.1, "Setting the
-javaee.level Property"]) and keywords (see link:#BCGHGJIC[Section 7.5.2,
-"Using Keywords to Create Groups and Subsets of Tests"]).
+`ts.jte` file (see <<setting-the-javaee.level-property>>) and keywords (see <<using-keywords-to-create-groups-and-subsets-of-tests>>).
 
-[[BCGBAHFF]][[setting-the-javaee.level-property]]
-
-7.5.1 Setting the javaee.level Property
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[setting-the-javaee.level-property]]
+=== Setting the javaee.level Property
 
 The `ts.jte` file includes the `javaee.level` property. This property
 serves two purposes. First, it is used to determine whether the
@@ -363,10 +204,8 @@ The default setting is as follows:
 javaee.level=full
 ----
 
-[[BCGHGJIC]][[using-keywords-to-create-groups-and-subsets-of-tests]]
-
-7.5.2 Using Keywords to Create Groups and Subsets of Tests
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[using-keywords-to-create-groups-and-subsets-of-tests]]
+=== Using Keywords to Create Groups and Subsets of Tests (Needs Rewrite)
 
 Each test in TCK has keywords associated with it. The keywords are used
 to create groups and subsets of tests. At test execution time, a user
@@ -392,12 +231,8 @@ required technologies in both the Full and Web profile, run/omit running
 optional sets of tests in TCK, and run the Interoperability and
 Rebuildable tests in forward and reverse directions.
 
-[[sthref26]][[to-use-keywords-to-run-required-technologies]]
-
-7.5.2.1 To Use Keywords to Run Required Technologies
-++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-[[sthref27]]
+[[to-use-keywords-to-run-required-technologies]]
+==== To Use Keywords to Run Required Technologies (Needs Rewrite)
 
 ===== Example 7-4 Running Tests for Required Technologies in the Full Profile
 
@@ -409,7 +244,6 @@ ant -Dkeywords=javaee runclient
 
 Only tests that are required by the Full Profile will be run.
 
-[[sthref28]]
 
 ===== Example 7-5 Running Tests for All Required Technologies in the Web Profile
 
@@ -421,8 +255,6 @@ ant -Dkeywords=javaee_web_profile runclient
 
 Only tests that are required by the Web Profile will be run.
 
-[[sthref29]]
-
 ===== Example 7-6 Running All Required Tests Except Connector Tests in the Full Profile
 
 [source,oac_no_warn]
@@ -431,7 +263,6 @@ cd <TS_HOME>/src/com/sun/ts/tests
 ant -Dkeywords="javaee & !connector" runclient
 ----
 
-[[sthref30]]
 
 ===== Example 7-7 Running All EJB Tests in the Full Profile
 
@@ -441,7 +272,6 @@ cd <TS_HOME>/src/com/sun/ts/tests
 ant -Dkeywords=ejb runclient
 ----
 
-[[sthref31]]
 
 ===== Example 7-8 Running All EJB 3.2 Tests in the Full Profile
 
@@ -451,7 +281,6 @@ cd <TS_HOME>/src/com/sun/ts/tests
 ant -Dkeywords=ejb32 runclient
 ----
 
-[[sthref32]]
 
 ===== Example 7-9 Running All EJB Tests in the Web Profile
 
@@ -461,51 +290,8 @@ cd <TS_HOME>/src/com/sun/ts/tests
 ant -Dkeywords=ejb_web_profile runclient
 ----
 
-[[sthref33]][[to-use-keywords-to-run-optional-technologies-with-the-full-profile]]
-
-7.5.2.2 To Use Keywords to Run Optional Technologies With the Full Profile
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Keywords can be used to run subsets of tests from areas that are not
-required by the Jakarta EE {tck_version} platform specification. link:#BAGGCEJC[Table
-7-1] lists optional subsets of tests that can be run for the Full
-Profile and provides the technology-to-keyword mappings for each of the
-optional areas.
-
-[[sthref34]][[BAGGCEJC]]
-
-===== Table 7-1 Keyword to Technology Mappings for Full Profile Optional
-Subsets
-
-[width="100%",cols="50%,50%",options="header",]
-|=======================================================================
-|Technology |Keyword
-|EJB 1.x, CMP, BMP, entity beans |`ejb_1x_optional or` `javaee_optional`
-|EJB 2.x, CMP, BMP, entity beans |`ejb_2x_optional` or `javaee_optional`
-|EJBQL |`javaee_optional`
-|JAXR |`javaee_optional`
-|=======================================================================
-
-
-[[sthref35]]
-
-===== Example 7-10 Running Tests for All Optional Technologies in the Full Profile
-
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests
-ant -Dkeywords=javaee_optional runclient
-----
-
-[[sthref36]]
-
-===== Example 7-11 Running Jakarta Registries test stage is no longer supported
-
-
-[[GKKFN]][[to-use-keywords-to-run-optional-subsets-of-tests-with-the-web-profile]]
-
-7.5.2.3 To Use Keywords to Run Optional Subsets of Tests With the Web Profile
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+[[to-use-keywords-to-run-optional-subsets-of-tests-with-the-web-profile]]
+==== To Use Keywords to Run Optional Subsets of Tests With the Web Profile (Needs Rewrite)
 
 Keywords can be used to run subsets of tests from additional areas that
 are not required by the Jakarta EE {tck_version} Web Profile specification. For
@@ -520,15 +306,12 @@ the tests in both areas.
 ant -Dkeywords="(javaee_web_profile|connector_web_profile) runclient
 ----
 
-link:#GLAEV[Table 7-2] lists optional subsets of tests that can be run
+<<keyword-web-profile-optional-table>> lists optional subsets of tests that can be run
 for the Web Profile and provides the technology-to-keyword mappings for
 each of the optional areas.
 
-[[sthref37]][[GLAEV]]
-
-===== Table 7-2 Keyword to Technology Mappings for Web Profile Optional
-Subsets
-
+[[keyword-web-profile-optional-table]]
+.Keyword to Technology Mappings for Web Profile Optional Subsets
 [width="100%",cols="50%,50%",options="header",]
 |==================================
 |Technology |Keyword
@@ -541,11 +324,9 @@ Subsets
 
 
 To add tests for other technologies, select the appropriate keyword from
-link:#GLAEV[Table 7-2]. This table provides a mapping of keywords to
+<<keyword-web-profile-optional-table>>. This table provides a mapping of keywords to
 optional technologies (test directories) in the test suite and indicates
 optional test areas for the Jakarta EE {tck_version} Web Profile.
-
-[[sthref38]]
 
 ===== Example 7-12 Running Tests for All Optional Technologies in the Web Profile
 
@@ -555,8 +336,6 @@ cd <TS_HOME>/src/com/sun/ts/tests
 ant -Dkeywords=javaee_web_profile_optional runclient
 ----
 
-[[sthref39]]
-
 ===== Example 7-13 Running the Optional Jakarta Authorization and Authentication Tests With All Required Web Profile Tests
 
 [source,oac_no_warn]
@@ -565,19 +344,15 @@ cd <TS_HOME>/src/com/sun/ts/tests
 ant -Dkeywords="javaee_web_profile | jacc_web_profile | jaspic_web_profile" runclient
 ----
 
-[[sthref40]][[to-use-keywords-to-run-optional-subsets-for-jakarta-enterprise-beans-lite]]
+[[to-use-keywords-to-run-optional-subsets-for-jakarta-enterprise-beans-lite]]
+==== To Use Keywords to Run Optional Subsets for Jakarta Enterprise Beans Lite
 
-7.5.2.4 To Use Keywords to Run Optional Subsets for Jakarta Enterprise Beans Lite
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Table 1-1 shows the TCK keywords you can use to test optional Jakarta Enterprise Beans (formerly EJB) Lite
+<<keyword-optional-jakarta-enterprise-beans-lite-table>> shows the TCK keywords you can use to test optional Jakarta Enterprise Beans (formerly EJB) Lite
 components. Components denoted with an asterisk (*) are pruned
 components; components without an asterisk are not required by EJB Lite.
 
-[[sthref41]][[sthref42]]
-
-===== Table 7-3 TCK Keywords for Optional Jakarta Enterprise Beans Lite Components
-
+[[keyword-optional-jakarta-enterprise-beans-lite-table]]
+.TCK Keywords for Optional Jakarta Enterprise Beans Lite Components
 [width="100%",cols="50%,50%",options="header",]
 |=======================================================================
 |Component |TCK Keyword
@@ -600,62 +375,7 @@ components; components without an asterisk are not required by EJB Lite.
 |=======================================================================
 
 
-Support for the following features has been made optional in this
-release:
-
-* EJB 2.1 and earlier Entity Bean Component Contract for
-Container-Managed Persistence and Bean-Managed Persistence
-* Client View of an EJB 2.1 and earlier Entity Bean
-* EJB QL: Query Language for Container-Managed Persistence Query Methods
-
-[[sthref43]][[to-use-keywords-to-run-tests-in-selected-vehicles]]
-
-7.5.2.5 To Use Keywords to Run Tests in Selected Vehicles
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-The following vehicle keywords can be used to select or exclude the
-vehicles in which tests are run:
-
-* connectorservlet_vehicle
-* ejblitesecuredjsp_vehicle
-* ejbliteservlet_vehicle
-* ejbliteservlet2_vehicle
-* pmservlet_vehicle
-* puservlet_vehicle
-* wsservlet_vehicle
-* servlet_vehicle
-* jsp_vehicle
-* web_vehicle
-* appclient_vehicle
-* wsappclient_vehicle
-* ejb_vehicle
-* wsejb_vehicle
-
-These vehicles are defined in the
-`<TS_HOME>/src/com/sun/ts/tests/common/vehicle` subdirectory structures.
-
-[[sthref44]]
-
-===== Example 7-14 Running Tests in the Jakarta Enterprise Beans (EJB) Vehicle Only
-
-[source,oac_no_warn]
-----
-ant -Dkeywords="ejb_vehicle"  runclient
-----
-
-[[sthref45]]
-
-===== Example 7-15 Running Tests in Vehicles Other Than the Jakarta Enterprise Beans Vehicle
-
-[source,oac_no_warn]
-----
-ant -Dkeywords="!ejb_vehicle"  runclient
-----
-
-[[sthref46]][[to-use-keywords-to-run-tests-in-forward-and-reverse-directions]]
-
-7.5.2.6 To Use Keywords to Run Tests in Forward and Reverse Directions
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==== To Use Keywords to Run Tests in Forward and Reverse Directions (Needs Rewrite)
 
 The `forward` and `reverse` keywords can be used to filter the interop
 and/or rebuildable tests during a selected test run when running tests
@@ -678,16 +398,12 @@ rebuildable tests that run only against the Compatible Implementation.
 To set one of these keywords when running in command-line mode, set the
 appropriate keyword using the keyword system property.
 
-[[sthref47]]
-
 ===== Example 7-16 Running Tests in the Forward Direction
 
 [source,oac_no_warn]
 ----
 ant -Dkeywords=forward runclient
 ----
-
-[[sthref48]]
 
 ===== Example 7-17 Running Tests in the Reverse Direction
 
@@ -706,23 +422,8 @@ run. This can be useful when trying to debug failures with a particular
 test configuration. Note, however, for certification all tests in both
 directions must pass.
 
-[[sthref49]][[running-interop-or-jwsjax-ws-reverse-tests]]
 
-7.6 Running Interop or Jakarta XML Web Service Reverse Tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-If you are running Interop or XML Web Service reverse tests, which run
-against the Jakarta EE {tck_version} CI, you must start the standalone deployment
-server in a separate shell on the same host as the TCK harness. The
-default deployment porting implementation goes through a standalone
-deployment server with a dedicated classpath. To start the standalone
-deployment server, change to the `<TS_HOME>/bin` directory and execute
-the `start.auto.deployment.server` Ant task.
-
-[[sthref50]][[rebuilding-test-directories]]
-
-7.7 Rebuilding Test Directories
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rebuilding Test Directories (Needs Rewrite)
 
 The following directories require rebuilding, which is done by running
 the `configure.datasource.tests` Ant target:
@@ -749,10 +450,8 @@ The following directories require rebuilding:
 This can be done by running the `update.metadata.token.values` Ant
 target.
 
-[[GBFVK]][[test-reports]]
-
-7.8 Test Reports
-~~~~~~~~~~~~~~~~
+[[test-reports]]
+== Test Reports (Needs Rewrite)
 
 A set of report files is created for every test run. These report files
 can be found in the report directory you specify. After a test run is
@@ -776,30 +475,8 @@ recommended that you always run the report target from `<TS_HOME>/bin`,
 from which reports are generated containing information about which
 tests were or were not run.
 
-[[GBFWD]][[creating-test-reports]]
-
-7.8.1 Creating Test Reports
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-[[GBFVH]][[to-create-a-test-report-in-gui-mode]]
-
-7.8.1.1 To Create a Test Report in GUI Mode
-+++++++++++++++++++++++++++++++++++++++++++
-
-1.  From the JavaTest main menu, select *Report*, then select *Create
-Report*. +
-You are prompted to specify a directory to use for your test reports.
-2.  Specify the directory you want to use for your reports, and then
-click *OK*. +
-Use the *Filter* list to specify whether you want to generate reports for
-the current configuration, all tests, or a custom set of tests. +
-You are asked whether you want to view report now.
-3.  Click *Yes* to display the new report in the JavaTest ReportBrowser.
-
-[[GBFVC]][[to-create-a-test-report-in-command-line-mode]]
-
-7.8.1.2 To Create a Test Report in Command-Line Mode
-++++++++++++++++++++++++++++++++++++++++++++++++++++
+[[creating-test-reports]]
+=== Creating Test Reports
 
 Specify where you want to create the test report.
 
@@ -824,9 +501,7 @@ For example:
 ant -Dreport.dir="none"
 ----
 
-[[sthref51]]
-
-Troubleshooting
+==== Troubleshooting
 
 Although you can run the `report` Ant target from any test directory,
 its support is not guaranteed in the lower level directories. It is
@@ -834,26 +509,8 @@ recommended that you always run the `report` target from
 `<TS_HOME)/bin`, from which reports are generated containing information
 about which tests were or were not run.cc
 
-[[GBFVB]][[viewing-an-existing-test-report]]
-
-7.8.2 Viewing an Existing Test Report
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-[[GBFVO]][[to-view-an-existing-report-in-the-javatest-report-browser]]
-
-7.8.2.1 To View an Existing Report in the JavaTest Report Browser
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-1.  From the JavaTest main menu, select Report, then select Open Report. +
-You are prompted to specify the directory containing the report you want
-to open.
-2.  Select the report directory you want to open, and then click Open. +
-The selected report set is opened in the JavaTest Report Browser.
-
-[[GBFWB]][[to-view-an-existing-report-in-a-web-browser]]
-
-7.8.2.2 To View an Existing Report in a Web Browser
-+++++++++++++++++++++++++++++++++++++++++++++++++++
+[[viewing-an-existing-test-report]]
+=== Viewing an Existing Test Report
 
 Use the Web browser of your choice to view the `report.html` file in the
 report directory you specified from the command line or in `ts.jte`.

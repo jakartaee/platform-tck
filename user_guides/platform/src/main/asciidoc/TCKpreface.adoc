@@ -1,8 +1,5 @@
-
-[[GBFTI]][[preface]]
-
-Preface
--------
+= Preface
+:doctype: book
 
 [NOTE]
 ========================================================================
@@ -34,45 +31,38 @@ test suite.
 
 
 [NOTE]
-=======================================================================
+========
 
 URLs are provided so you can locate resources quickly. However, these
 URLs are subject to changes that are beyond the control of the authors
 of this guide.
 
-=======================================================================
+========
 
 
-[[GBFUS]][[who-should-use-this-book]]
-
-Who Should Use This Book
-~~~~~~~~~~~~~~~~~~~~~~~~
+[[who-should-use-this-book]]
+= Who Should Use This Book
 
 This guide is for developers of the Jakarta EE {tck_version} technology to assist them
 in running the test suite that verifies compatibility of their
 implementation of the Jakarta EE {tck_version} Specification.
 
 
-[[GJFXS]][[before-you-read-this-book]]
-
-Before You Read This Book
-~~~~~~~~~~~~~~~~~~~~~~~~~
+[[before-you-read-this-book]]
+= Before You Read This Book
 
 Before reading this guide, you should familiarize yourself with the Java
-programming language, the Jakarta Platform, Enterprise Edition 11 (Jakarta EE
-9) Specification, and the JavaTest documentation.
+programming language, the Jakarta Platform, Enterprise Edition {tck_version} Specification, and the JavaTest documentation.
 
-The Jakarta Platform, Enterprise Edition 11 (Jakarta EE {tck_version}) Specification can be
+The Jakarta Platform, Enterprise Edition {tck_version} Specification can be
 downloaded from `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
 For documentation on the test harness used for running the Jakarta EE {tck_version} Platform TCK
 test suite, see
 `https://wiki.openjdk.java.net/display/CodeTools/Documentation`.
 
-[[GBFWF]][[typographic-conventions]]
-
-Typographic Conventions
-~~~~~~~~~~~~~~~~~~~~~~~
+[[typographic-conventions]]
+= Typographic Conventions
 
 The following table describes the typographic conventions that are used
 in this book.
@@ -113,14 +103,13 @@ The command to remove a file is `rm` filename.
 |=======================================================================
 
 
-[[FWBSD]][[shell-prompts-in-command-examples]]
-
-Shell Prompts in Command Examples
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[shell-prompts-in-command-examples]]
+= Shell Prompts in Command Examples
 
 The following table shows the default UNIX system prompt and superuser
 prompt for the C shell, Bourne shell, and Korn shell.
 
+.Shell Prompts
 [width="100%",cols="50%,50%",options="header",]
 |=====================================================
 |Shell |Prompt
@@ -131,6 +120,3 @@ prompt for the C shell, Bourne shell, and Korn shell.
 |Bash shell |`shell_name-shell_version$`
 |Bash shell for superuser |`shell_name-shell_version#`
 |=====================================================
-
-
-

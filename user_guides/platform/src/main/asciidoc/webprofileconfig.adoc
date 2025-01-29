@@ -1,8 +1,5 @@
-
-[[GJRHB]][[setup-and-configuration-for-testing-with-the-jakarta-ee-11-web-profile]]
-
-6 Setup and Configuration for Testing with the Jakarta EE {tck_version} Web Profile
-------------------------------------------------------------------------
+[[setup-and-configuration-for-testing-with-the-jakarta-ee-11-web-profile]]
+= Setup and Configuration for Testing with the Jakarta EE {tck_version} Web Profile
 
 This chapter describes how to configure the Jakarta EE {tck_version} Platform TCK test suite to
 work with your Jakarta EE {tck_version} Web Profile test environment. It is recommended
@@ -11,8 +8,7 @@ Profile CI and then with your Jakarta EE {tck_version} Web Profile server.
 
 [[GLSEL]][[configuring-the-jakarta-ee-11-web-profile-test-environment]]
 
-6.1 Configuring the Jakarta EE {tck_version} Web Profile Test Environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== Configuring the Jakarta EE {tck_version} Web Profile Test Environment
 
 The instructions in this section and in
 link:config.html#GEWWA[Configuring Your Application Server as the VI]
@@ -21,21 +17,17 @@ Windows, and Linux platforms.
 
 [[GJWED]][[to-run-tests-against-a-jakarta-ee-11-web-profile-implementation]]
 
-6.1.1 To Run Tests Against a Jakarta EE {tck_version} Web Profile Implementation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+== To Run Tests Against a Jakarta EE {tck_version} Web Profile Implementation
 
 The Jakarta EE {tck_version} Platform TCK is the Technology Compatibility Kit (TCK) for the Jakarta
 Platform, Enterprise Edition as well as the Jakarta EE {tck_version} Web Profile.
 Implementations of the full Jakarta Platform, Enterprise Edition must pass
 all of the tests as defined by Jakarta EE {tck_version} Platform TCK Rules in
-link:rules.html#GBFSN[Chapter 2, "Procedure for Jakarta Platform, Enterprise
-Edition 11 Certification"].
+<<procedure-for-jakarta-platform-enterprise-edition-certification>>.
 
 Implementations of the Jakarta EE {tck_version} Web Profile must run the tests that
 verify requirements defined by the Jakarta EE {tck_version} Web Profile Specification.
-These tests are defined by the Rules in link:rules-wp.html#GJJPZ[Chapter
-3, "Procedure for Jakarta Platform, Enterprise Edition 11 Web Profile
-Certification"]. These requirements are a subset of the tests contained
+These tests are defined by the Rules in <<procedure-for-jakarta-platform-enterprise-edition-web-profile-certification>>. These requirements are a subset of the tests contained
 in the Jakarta EE {tck_version} Platform TCK test suite. The test suite provides a mechanism
 whereby only those tests for the Jakarta EE {tck_version} Web Profile will be run. The
 following steps explain how to use this mechanism.
@@ -75,15 +67,5 @@ will report that no tests were found.
 
 =======================================================================
 
-* In the JavaTest GUI, open the test suite and perform the following
-steps:
-1.  Select View, then select Filters, then select CurrentConfiguration.
-2.  Select Configure, then select ChangeConfiguration, then select
-Keywords.
-3.  In the Keywords dialog, select the Select Tests that Match check
-box, specify the `javaee_web_profile` keyword in the field, then click
-Done. +
-Only those tests that are valid in the Jakarta EE {tck_version} Web Profile will be
-enabled in the test tree.
-
+TODO: maven surefire/failsafe web group setting
 

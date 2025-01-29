@@ -1,8 +1,7 @@
 
 [[GBFVV]][[setup-and-configuration]]
 
-5 Setup and Configuration
--------------------------
+== Setup and Configuration
 
 This chapter describes how to set up the Jakarta EE {tck_version} Platform TCK test suite and
 configure it to work with your test environment. It is recommended that
@@ -11,17 +10,14 @@ with your Jakarta EE {tck_version} server.
 
 This chapter includes the following topics:
 
-* link:#GEWTL[Allowed Modifications]
-* link:#GEWTP[Configuring the Test Environment]
-* link:#GEWTQ[Configuring a Jakarta EE {tck_version} Server]
-* link:#GEXPP[Modifying Environment Settings for Specific Technology
-Tests]
-* link:#GEYPB[Using the JavaTest Harness Configuration GUI]
+* <<allowed-modifications>>
+* <<configuring-the-test-environment>>
+* <<configuring-a-jakarta-ee-11-server>>
+* <<modifying-environment-settings-for-specific-technology-tests>>
 
 [[GEWTL]][[allowed-modifications]]
 
-5.1 Allowed Modifications
-~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Allowed Modifications
 
 You can modify the following test suite components only:
 
@@ -33,13 +29,9 @@ You can modify the following test suite components only:
 
 [[GEWTP]][[configuring-the-test-environment]]
 
-5.2 Configuring the Test Environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== Configuring the Test Environment
 
-The instructions in this section and in link:#GEWWA[Section 5.3.3,
-"Configuring Your Application Server as the VI,"] step you through the
-configuration process for the Solaris, Microsoft Windows, and Linux
-platforms.
+The instructions in this section and in <<configuring-your-application-server-as-the-vi>> step you through the configuration process for the Linux and Microsoft Windows.
 
 All TCK test configuration procedures are based on running the Ant
 scripts against a set of build targets. The primary location of any
@@ -48,20 +40,9 @@ configuration settings you are likely to make is the
 `javaee_vi.xml` and `initdb.xml` Ant configuration files and the
 vendor-specific SQL files. These two files contain predefined Ant
 targets that are implemented such that they automatically configure the
-Jakarta EE {tck_version} CI and its associated database in order to pass the TCK. A
+Jakarta EE {tck_version} CI and its associated database in order to pass the TCK. An
 Implementer may choose to implement these targets to work with their server
-environment to perform the steps described in link:#GEWWA[Section 5.3.3,
-"Configuring Your Application Server as the VI."]
-
-
-[NOTE]
-=======================================================================
-
-Ant targets are available at all levels of the TCK source tree that
-allow you to execute a wide variety of test scenarios and
-configurations.
-
-=======================================================================
+environment to perform the steps described in <<configuring-your-application-server-as-the-vi>>.
 
 
 [[sthref15]]
@@ -79,59 +60,43 @@ platform to be tested for certification.
 2.  Implement the porting package APIs. +
 Some functionality in the Jakarta EE {tck_version} platform is not completely specified
 by an API. To handle this situation, the Jakarta EE {tck_version} Platform TCK test suite
-defines a set of interfaces in the `com.sun.cts.porting` package, which
-serve to abstract any implementation-specific code. You must create your
-own implementations of the porting package interfaces to work with your
+defines a set of interfaces which serve to abstract any implementation-specific code. You must create your own implementations of the porting package interfaces to work with your
 particular Jakarta EE {tck_version} server environment. See
-link:portingpackage.html#GFAUG[Section 11.2, "Porting Package APIs,"] for
+<<implementing-the-porting-package>> for
 additional information about the porting APIs. API documentation for the
 porting package interfaces is available in the `<TS_HOME>/docs/api`
 directory.
 3.  Set up the Jakarta Platform, Enterprise Edition Compatible
-Implementation (CI) server. +
-See link:#GEWUI[Section 5.3.2, "Configuring the Jakarta EE {tck_version} CI as the
-VI,"] for a list of the modifications that must be made to run CTS
-against the Jakarta EE {tck_version} CI.
-4.  Set up the vendor's Jakarta EE {tck_version} server implementation (VI). +
-See link:#GEWWA[Section 5.3.3, "Configuring Your Application Server as
-the VI,"] for a list of the modifications that must be made to run CTS
-against the vendor's Jakarta EE {tck_version} server.
-5.  Validate your configuration. +
-Run the sample tests provided. If the tests pass, your basic
-configuration is valid. See link:using.html#GFACS[Section 7.3,
-"Validating Your Test Configuration,"] for information about using
-JavaTest to run the sample tests.
-6.  Run the TCK tests. +
-See link:using.html#GBFWO[Chapter 7, "Executing Tests,"] for information
-about Starting JavaTest and running tests.
+Implementation (CI) server. See <<configuring-the-java-ee-ci-as-the-vi>> for a list of the modifications that must be made to run CTS against the Jakarta EE {tck_version} CI.
+4.  Set up the vendor's Jakarta EE {tck_version} server implementation (VI). 
+See <<configuring-your-application-server-as-the-vi>> for a list of the modifications that must be made to run CTS against the vendor's Jakarta EE {tck_version} server.
+5.  Validate your configuration. Run the sample tests provided. If the tests pass, your basic
+configuration is valid. See <<[validating-your-test-configuration>> for information about using Maven/Arquillian to run the sample tests.
+6.  Run the TCK tests. See <<executing-tests>> for information
+about using Maven to start running tests.
 
 [[GEWTQ]][[configuring-a-jakarta-ee-11-server]]
 
-5.3 Configuring a Jakarta EE {tck_version} Server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== Configuring a Jakarta EE {tck_version} Server
 
 This section describes how to configure the Jakarta EE {tck_version} server under test.
 You can run the TCK tests against the Jakarta EE {tck_version} CI or your own Jakarta
 Platform, Enterprise Edition server. When performing interoperability
 (interop) tests or web service-based tests, you will be running two Jakarta
-EE {tck_version} CI servers, one of which must be a Jakarta EE {tck_version} CI using, or configured to
-use a database. For example, Eclipse GlassFish 6.1 is bundled and configured to use
-the Apache Derby database.
+EE {tck_version} CI servers, one of which must be a Jakarta EE {tck_version} CI using, or configured to use a database. For example, Eclipse {glassfish_version} is bundled and configured to use the Apache Derby database.
 
 For the purposes of this section, it is useful to clarify three terms as
 they are used here:
 
-* Compatible Implementation (CI): Jakarta EE {tck_version} CI, for example, Eclipse GlassFish 6.1
-* Vendor Implemention (VI): Jakarta EE {tck_version} implementation from a vendor other
-than Eclipse; typically, the goal of running the TCK is to certify a Jakarta
+* Compatible Implementation (CI): Jakarta EE {tck_version} CI, for example, {glassfish_version}
+* Vendor Implemention (VI): Jakarta EE {tck_version} implementation from a vendor wanting to certify; typically, the goal of running the TCK is to certify a Jakarta
 EE {tck_version} VI; in some cases, for purposes of familiarizing yourself with TCK,
 you may choose to run the Jakarta EE {tck_version} CI as the VI
-* Bundled Derby: Apache Derby database bundled with the Jakarta EE {tck_version} CI, Eclipse GlassFish 6.1
+* Bundled Derby: Apache Derby database bundled with the Jakarta EE {tck_version} CI, Eclipse {glassfish_version}
 
 [[GEWSQ]][[java-platform-enterprise-edition-server-configuration-scenarios]]
 
-5.3.1 Jakarta Platform, Enterprise Edition Server Configuration Scenarios
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=== Jakarta Platform, Enterprise Edition Server Configuration Scenarios
 
 There are three general scenarios for configuring Jakarta EE {tck_version} servers for
 Jakarta EE {tck_version} Platform TCK testing (Note: in the following images, Java EE refers to Jakarta EE.
@@ -144,16 +109,14 @@ Use the Jakarta EE {tck_version} CI as the Jakarta EE {tck_version} VI; you may 
 sanity check to make sure you are comfortable with using the Jakarta EE {tck_version}
 TCK against a known standard CI with certified sample applications
 before proceeding with tests against your Jakarta EE {tck_version} VI. See
-link:#GEWUI[Section 5.3.2, "Configuring the Jakarta EE {tck_version} CI as the VI,"]
-for instructions.
+<<configuring-the-java-ee-ci-as-the-vi>> for instructions.
 
 * Configure your Jakarta EE {tck_version} VI as Server Under Test +
 image:img/serverpath-vi.png["VI as Server Under Test"]
 
 This is the primary goal of using the Jakarta EE {tck_version} Platform TCK; you will eventually
 need to configure the Jakarta EE {tck_version} implementation you want to certify. See
-link:#GEWWA[Section 5.3.3, "Configuring Your Application Server as the
-VI,"] for instructions.
+<<configuring-your-application-server-as-the-vi>> for instructions.
 
 * Configure two Jakarta EE {tck_version} servers for the purpose of interop testing +
 image:img/serverpath-interop.png["Two Servers for Interop Testing"]
@@ -171,10 +134,8 @@ server match those in the `ts.jte` file.
 
 These configuration scenarios are described in the following sections.
 
-[[GEWUI]][[configuring-the-java-ee-8-ri-as-the-vi]]
-
-5.3.2 Configuring the Jakarta EE {tck_version} CI as the VI
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[configuring-the-java-ee-ci-as-the-vi]]
+=== Configuring the Jakarta EE {tck_version} CI as the VI
 
 To configure the Jakarta EE {tck_version} CI as the server under test (that is, to use
 the Jakarta EE {tck_version} CI as the VI) follow the steps listed below. In this
@@ -205,126 +166,63 @@ implementation class that is used for obtaining URLs. +
 The default setting for the CI porting implementation is
 `com.sun.ts.lib.implementation.sun.common.SunRIURL`.
 ..  Set the database-related properties in the `<TS_HOME>/bin/ts.jte`
-file. +
-link:database-config.html#GFKMW[Section C.3, "Database Properties in
-ts.jte,"] lists the names and descriptions for the database properties
+file. <<c.3-database-properties-in-ts.jte>>lists the names and descriptions for the database properties
 you need to set.
-..  Add the following JVM option to the `command.testExecuteAppClient`
-property to enable the Security Manager in the application client
-container: +
-+
-[source,oac_no_warn]
-----
--Djava.security.manager
-
-----
 .  Install the Jakarta EE {tck_version} CI and configure basic settings, as described
-in link:install.html#GBFTP[Chapter 4, "Installation."]
-.  Start the Jakarta EE {tck_version} CI application server. +
+in <<installation>>
+.  Start the Jakarta EE {tck_version} CI application server.
 Refer to the application server documentation for complete instructions.
-.  Enable the Security Manager. +
-If you are using the Jakarta EE {tck_version} CI, execute the following command from
-the command line: +
-+
-[source,oac_no_warn]
-----
-asadmin create-jvm-options -Djava.security.manager
-
-----
-+
-.  Stop and restart your application server so it is running with the
-Security Manager enabled.
 .  Change to the `<TS_HOME>/bin` directory.
-.  Start your backend database. +
-If you are using Derby as your backend database, execute the
-`start.javadb` Ant target: +
-+
-[source,oac_no_warn]
-----
-ant -f xml/impl/glassfish/s1as.xml start.javadb
+.  Start your backend database.
+    If you are using Derby as your backend database, execute the
+    `start.javadb` Ant target:
+    [source,oac_no_warn]
+    ----
+    ant -f xml/impl/glassfish/s1as.xml start.javadb
+    ----
+    Otherwise, refer to your backend database administration documentation
+    for information about starting your database server.
+    .  Initialize your backend database.
+    If you are using Derby as your backend database, execute the
+    `init.derby` Ant target:
+    [source,oac_no_warn]
+    ----
+    ant -f xml/init.xml init.derby
+    ----
+    If you are not using Derby as your backend database, refer to
+   <<c-configuring-your-backend-database>>
+    [NOTE]
+    =======================================================================
+    If you are using MySQL or MS SQL Server as your backend database, see
+    <<backend-database-setup>> for additional
+    database setup instructions.
+    =======================================================================
+.  Run the configuration Ant target.
+    [source,oac_no_warn]
+    ----
+    ant config.vi
+    ----
+    [NOTE]
+    =======================================================================
+    By default, the `config.vi` Ant task configures the entire application
+    server. Sometimes you may not want or need to configure everything, such
+    as connector RAR files. If you are not performing connector-related
+    tests, you can avoid the deployment and configuration of RAR files by
+    using the Ant option `-Dskip.config.connector=true`. This will reduce
+    configuration times, the deployment of unneeded RAR files, and the
+    creation of unnecessary resources on the server under test. For example,
+    the following command will do this.
+    [source,oac_no_warn]
+    ----
+    ant -Dskip.config.connector=true config.vi
+    ----
+    =======================================================================
 
-----
-+
-Otherwise, refer to your backend database administration documentation
-for information about starting your database server.
-.  Initialize your backend database. +
-If you are using Derby as your backend database, execute the
-`init.derby` Ant target: +
-+
-[source,oac_no_warn]
-----
-ant -f xml/init.xml init.derby
+. Continue on to <<executing-tests>> for instructions on running tests.
 
-----
-+
-If you are not using Derby as your backend database, refer to
-link:database-config.html#GFAVUb[Appendix C, "Configuring Your Backend
-Database."] +
-+
-[NOTE]
-=======================================================================
+[[configuring-your-application-server-as-the-vi]]
+=== Configuring Your Application Server as the VI
 
-If you are using MySQL or MS SQL Server as your backend database, see
-link:#GJLGQ[Section 5.4.24, "Backend Database Setup,"] for additional
-database setup instructions.
-
-=======================================================================
-+
-.  Run the configuration Ant target. +
-+
-[source,oac_no_warn]
-----
-ant config.vi
-----
-+
-[NOTE]
-=======================================================================
-
-By default, the `config.vi` Ant task configures the entire application
-server. Sometimes you may not want or need to configure everything, such
-as connector RAR files. If you are not performing connector-related
-tests, you can avoid the deployment and configuration of RAR files by
-using the Ant option `-Dskip.config.connector=true`. This will reduce
-configuration times, the deployment of unneeded RAR files, and the
-creation of unnecessary resources on the server under test. For example,
-the following command will do this.
-[source,oac_no_warn]
-----
-ant -Dskip.config.connector=true config.vi
-----
-
-=======================================================================
-
-. Build the special web services clients. +
-The special webservices tests under the `webservices12/specialcases`
-directory have prebuilt endpoints, but the clients are not prebuilt. The
-clients will be built after the endpoints are first predeployed to the
-application server under test. +
-During the build, the clients import the WSDLs (by means of the Jakarta EE
-`wsimport` and `wsgen` tools) from the predeployed webservices
-endpoints. This process verifies that importing a WSDL from a
-predeployed webservice endpoint works properly. +
-To build the special webservices clients, the following command must be
-executed: +
-+
-[source,oac_no_warn]
-----
-ant build.special.webservices.clients 
-----
-+
-This predeploys all the special webservices endpoints, builds all the
-special webservices clients, and then undeploys the special webservices
-endpoints. See link:portingpackage.html#GKLJO[Section 11.2.2, "Ant-Based
-Deployment Interface,"] for more information about the Ant-based
-deployment interface, including guidelines for creating your own
-Ant-based deployment implementation.
-. Continue on to link:using.html#GBFWO[Chapter 7, "Executing Tests,"]
-for instructions on running tests.
-
-[[GEWWA]][[configuring-your-application-server-as-the-vi]]
-
-5.3.3 Configuring Your Application Server as the VI
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To use a Jakarta EE {tck_version} server other than the Jakarta EE {tck_version} CI, follow the steps
 below.
@@ -355,30 +253,12 @@ The default setting is `com.sun.tools.ws.ant.WsImport`.
 implementation class that is used for obtaining URLs.
 
 ..  Set the database-related properties in the `<TS_HOME>/bin/ts.jte`
-file. +
-link:database-config.html#GFKMW[Section C.3, "Database Properties in
-ts.jte,"] lists the names and descriptions for the database properties
-you need to set.
-
-..  Add the following JVM option to the `command.testExecuteAppClient`
-property to enable the Security Manager in the application client
-container: 
-+
-[source,oac_no_warn]
-----
--Djava.security.manager
-
-----
-+
-Add this option to the list of other -D JVM options for this property. +
-These settings can vary, but must match whatever you used when setting
-up your Jakarta Platform, Enterprise Edition server.
+file. <<c.3-database-properties-in-ts.jte>> lists the names and descriptions for the database properties you need to set.
 
 .  Install the Jakarta Platform, Enterprise Edition VI and configure basic
 settings. +
 If you want to configure your Jakarta Platform, Enterprise Edition server
-using Ant configuration target similar to the target for the Jakarta EE {tck_version}
-CI, as described in link:install.html#GBFTP[Chapter 4, "Installation,"]
+using Ant configuration target similar to the target for the Jakarta EE {tck_version} CI, as described in <<installation>>
 you will need to modify the `<TS_HOME>/bin/xml/javaee_vi.xml` file to
 implement the defined Ant targets for your application server. Then run:
 +
@@ -391,9 +271,6 @@ ant config.vi
 The Ant configuration targets you implement, if any, may vary. Whichever
 configuration method you choose, make sure that all configuration steps
 in this procedure are completed as shown.
-
-.  Enable the Security Manager and then stop and restart your
-application server so it is running with the Security Manager enabled.
 
 .  Provide alternate endpoint and WSDL URLs, if necessary. +
 The `<TS_HOME>/bin` directory contains the following `.dat` files:
@@ -419,32 +296,33 @@ environment.
 ..  If you choose to not implement the `javaee_vi.xml` targets, execute
 the following command to specify the appropriate DML file: +
 (Derby DB Example) 
-+
+
 [source,oac_no_warn]
 ----
-ant -Dtarget.dml.file=tssql.stmt \
+ant -Dtarget.dml.file=tssql.stmt 
 -Ddml.file=javadb/javadb.dml.sql copy.dml.file
-
 ----
-+
+
 ..  Execute the following command to initialize your particular
 database: 
-+
+
+
 [source,oac_no_warn]
 ----
 ant -f <TS_HOME>/bin/xml/initdb.xml init.Database
 ----
-+
+
+
 For example, to initialize a Derby DB database: 
-+
+
 [source,oac_no_warn]
 ----
 ant -f <TS_HOME>/bin/xml/initdb.xml init.javadb
 
 ----
-+
-Refer to link:database-config.html#GFAVUb[Appendix C, "Configuring Your
-Backend Database,"] for detailed database configuration and
+
+
+Refer to <<c-configuring-your-backend-database>> for detailed database configuration and
 initialization instructions and a list of database-specific
 initialization targets.
 
@@ -463,26 +341,16 @@ file. By default, `user1`, `user2`, `user3, password1`, `password2`, and
 server. +
 For the purpose of running the TCK test suite, these should be set as
 follows: 
-+
+
+.User Password Groups
 [width="100%",cols="33%,33%,34%",options="header",]
-|=========================================
+|====================
 |User |Password |Groups
 |`j2ee_vi` |`j2ee_vi` |`staff`
 |`javajoe` |`javajoe` |`guest`
 |`j2ee` |`j2ee` |`staff`, `mgr`, `asadmin`
 |`j2ee_ri` |`j2ee_ri` |`staff`
-|=========================================
-+
-Note that adding the `asadmin` group is only necessary when running
-against the Eclipse GlassFish 6.1 Jakarta EE {tck_version} CI application server. It is required in this case
-because the management Jakarta Enterprise Bean (MEjb) in the Jakarta EE {tck_version} server is protected
-with the `asadmin` group. Other appservers may or may not choose to
-protect their MEjb. If necessary for your appserver implementation, you
-should also add the group name with which your MEjb is protected. +
-Also make sure the principal to role-mappings that are specified in the
-runtime XML files are properly mapped in your
-environment (TODO: confirm that we can also delete mention of principal (user) => role-mappings). Note that the principal-to-role mappings may vary for each
-application.
+|====================
 
 . Make sure that the appropriate JDBC 4.1-compliant database driver
 class, any associated database driver native libraries, and the correct
@@ -547,21 +415,6 @@ test goals. +
 
 .. Restart your Jakarta EE {tck_version} server.
 
-.. Build the special Web services clients. +
-This step may be bypassed at this time if you are not going to
-immediately run the tests under
-`<TS_HOME>/src/com/sun/ts/tests/webservices12`. However, you must return
-to this configuration section and complete it in order to run these
-tests. +
-The special Web services tests under the `webservices12/specialcases`
-directory have prebuilt endpoints, but the clients are not prebuilt. The
-clients will be built after the endpoints are first predeployed to the
-application server under test. +
-During the build the clients import the WSDLs (by means of the Jakarta EE
-`wsimport` and `wsgen` tools) from the predeployed Web services
-endpoints. This process verifies that importing a WSDL from a
-predeployed Web service endpoint works properly.
-
 .. Install the Jakarta EE {tck_version} CI.
 
 .. Set the following properties in your `<TS_HOME>/bin/ts.jte` file. +
@@ -570,77 +423,10 @@ The current values should be saved since they will be needed later in this step.
 * Set the `javaee.home.ri` property to the location where the Jakarta EE {tck_version}
 CI is installed.
 
-* Set the `wsgen.ant.classname` property to the Jakarta EE {tck_version} application
-server Ant task that in turn calls the `wsimport` Java-to-WSDL tool. It
-must be set to: 
-+
-[source,oac_no_warn]
-----
-com.sun.tools.ws.ant.WsGen
-
-----
-+
-* Set the `wsgen.classpath` property to: 
-+
-[source,oac_no_warn]
-----
-${javaee.classes.ri}:${tools.jar}
-
-----
-+
-* Set the `wsimport.ant.classname` property to the Jakarta EE {tck_version} application
-server Ant task that in turn calls the `wsimport` WSDL-to-Java tool. +
-It must be set to `com.sun.tools.ws.ant.WsImport`
-
-* Set the `wsimport.classpath` property to the following value: 
-+
-[source,oac_no_warn]
-----
-${javaee.classes.ri}:${tools.jar}
-
-----
-+
-..  Build the special Web services clients by executing the following command: 
-+
-[source,oac_no_warn]
-----
-ant build.special.webservices.clients 
-
-----
-+
-This predeploys all the special Web services endpoints, builds all the
-special webservices clients, and then undeploys the special webservices
-endpoints. See link:portingpackage.html#GKLJO[Section 11.2.2, "Ant-Based
-Deployment Interface,"] for more information about the Ant-based
-deployment interface, including guidelines for creating your own
-Ant-based deployment implementation.
-
-..  Once this command completes successfully, the following `ts.jte`
-properties must be set back to their previous values:
-
-* `wsgen.ant.classname`
-
-* `wsgen.classpath`
-
-* `wsimport.ant.classname`
-
-* `wsimport.classpath`
-
-..  The following `webservices12-url-props.dat` properties must be set
-back to their original values:
-
-* `specialcases.defaultserviceref.wsdlloc`
-
-* `specialcases.nameattrserviceref.wsdlloc`
-
-* `specialcases.providerserviceref.wsdlloc`
-
 . Continue on to link:using.html#GBFWO[Chapter 7, "Executing Tests"].
 
-[[GEXPP]][[modifying-environment-settings-for-specific-technology-tests]]
-
-5.4 Modifying Environment Settings for Specific Technology Tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[modifying-environment-settings-for-specific-technology-tests]]
+== Modifying Environment Settings for Specific Technology Tests
 
 Before you can run any of the technology-specific Jakarta EE {tck_version} Platform TCK tests,
 you must supply certain information that JavaTest needs to run the tests
@@ -663,33 +449,27 @@ properties you may want to modify for your particular test environment.
 
 This section includes the following topics:
 
-* link:#GEXQT[Test Harness Setup]
-* link:#GEXOS[Windows-Specific Properties]
-* link:#GEXPE[Test Execution Command Setup]
-* link:#GEXPB[Jakarta Servlet Test Setup]
-* link:#CBDDGJFC[Jakarta WebSocket Test Setup]
-* link:#GEXON[JDBC Test Setup]
-* link:#GEXOT[Jakarta Mail Test Setup]
-* link:#GEXPU[Jakarta XML Registry Test Setup]
-* link:#GJKPO[Jakarta RESTful Web Services Test Setup]
-* link:#GEXOF[Jakarta Connector Test Setup]
-* link:#GEXPV[XA Test Setup]
-* link:#GKKOJ[Jakarta Enterprise Beans 4.0 Test Setup]
-* link:#GEXOX[Jakarta Enterprise Beans Timer Test Setup]
-* link:#GEXQB[Entity Bean Container-Managed Persistence Test Setup for Jakarta Enterprise Beans V 1.1]
-* link:#GEXOL[Jakarta Persistence API Test Setup]
-* link:#GEXPT[Jakarta Messaging Test Setup]
-* link:#GKWVB[Jakarta Authentication Test Setup]
-* link:#GEYBI[Jakarta Authorization Test Setup]
-* link:#GEYAM[WSDL: Webservice Test and Runtime Notes]
-* link:#CEGCHDEA[Jakarta Security API Test Setup]
-* link:#GEYNX[Signature Test Setup]
-* link:#GJLGQ[Backend Database Setup]
+* <<test-harness-setup>>
+* <<windows-specific-properties>>
+* <<test-execution-command-setup>>
+* <<jakarta-servlet-test-setup>>
+* <<jakarta-websocket-test-setup>>
+* <<jdbc-test-setup>>
+* <<jakarta-mail-test-setup>>
+* <<jakarta-restful-web-services-test-setup>>
+* <<jakarta-connector-test-setup>>
+* <<xa-test-setup>>
+* <<jakarta-enterprise-beans-3.2-test-setup>>
+* <<jakarta-enterprise-beans-timer-test-setup>>
+* <<jakarta-persistence-api-test-setup>>
+* <<jakarta-messaging-test-setup>>
+* <<jakarta-security-api-test-setup>>
+* <<signature-test-setup>>
+* <<backend-database-setup>>
 
 [[GEXQT]][[test-harness-setup]]
 
-5.4.1 Test Harness Setup
-^^^^^^^^^^^^^^^^^^^^^^^^
+=== Test Harness Setup
 
 Verify that the following properties, which are used by the test
 harness, have been set in the `<TS_HOME>/bin/ts.jte` file:
@@ -701,7 +481,6 @@ harness.log.port=2000
 harness.log.traceflag=[true | false]
 deployment_host.1=<hostname>
 deployment_host.2=<hostname>
-porting.ts.deploy2.class.1=<vendor-deployment-class>
 porting.ts.login.class.1=<vendor-login-class>
 porting.ts.url.class.1=<vendor-url-class>
 porting.ts.jms.class.1=<vendor-jms-class>
@@ -743,8 +522,7 @@ will write temporary files.
 
 [[GEXOS]][[windows-specific-properties]]
 
-5.4.2 Windows-Specific Properties
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=== Windows-Specific Properties
 
 When configuring the Jakarta EE {tck_version} Platform TCK for the Windows environment, set the
 following properties in `<TS_HOME>/bin/ts.jte`:
@@ -775,8 +553,7 @@ specify drive letters in any path properties in `ts.jte`.
 
 [[GEXPE]][[test-execution-command-setup]]
 
-5.4.3 Test Execution Command Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=== Test Execution Command Setup
 
 The test execution command properties are used by the test harness. By
 default, the `ts.jte` file defines a single command line for each of the
@@ -826,8 +603,7 @@ CI, adjust these properties accordingly.
 
 [[GEXPB]][[jakarta-servlet-test-setup]]
 
-5.4.4 Jakarta Servlet Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=== Jakarta Servlet Test Setup
 
 Make sure that the following servlet properties have been set in the
 `ts.jte` file:
@@ -874,8 +650,7 @@ default hostname (for example, `webServerHost`). The default is
 
 [[CBDDGJFC]][[jakarta-websocket-test-setup]]
 
-5.4.5 Jakarta WebSocket Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=== Jakarta WebSocket Test Setup
 
 Make sure that the following WebSocket property has been set in the
 `ts.jte` file:
@@ -890,8 +665,7 @@ socket to send or receive a message. A multiple of 5 of this time is
 also used to test socket timeouts.
 
 The Jakarta WebSocket tests also use the following properties: `webServerHost`
-and `webServerPort`. See link:#GEWUI[Section 5.3.2, "Configuring the
-Jakarta EE {tck_version} CI as the VI,"] for more information about setting these
+and `webServerPort`. See <<configuring-the-java-ee-ci-as-the-vi>> for more information about setting these
 properties.
 
 
@@ -912,8 +686,7 @@ handshake has failed.
 
 [[GEXON]][[jdbc-test-setup]]
 
-5.4.6 JDBC Test Setup
-^^^^^^^^^^^^^^^^^^^^^
+=== JDBC Test Setup
 
 The JDBC tests require you to set the timezone by modifying the `tz`
 property in the `ts.jte` file. On Solaris systems, you can check the
@@ -926,16 +699,14 @@ setting is in `/usr/share/lib/zoneinfo/US`.
 [NOTE]
 =======================================================================
 
-The `tz` property is only used for Solaris configurations; it does not
+The `tz` property is only used for Linux configurations; it does not
 apply to Windows XP/2000.
 
 =======================================================================
 
 
-[[GEXOT]][[jakarta-mail-test-setup]]
-
-5.4.7 Jakarta Mail Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[jakarta-mail-test-setup]]
+=== Jakarta Mail Test Setup (Full Platform Only)
 
 Complete the following tasks before you run the Jakarta Mail tests:
 
@@ -973,19 +744,16 @@ ant populateMailbox
 
 [[GJKPO]][[jakarta-restful-web-services-test-setup]]
 
-5.4.8 Jakarta RESTful Web Services Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=== Jakarta RESTful Web Services Test Setup
 
 This section explains how to set up the test environment to run the
-Jakarta RESTful Web Services tests using the Jakarta EE {tck_version} Compatible Implementation and/or a
-Vendor Implementation. This setup also includes steps for
+Jakarta RESTful Web Services tests using the Jakarta EE {tck_version} Compatible Implementation and/or a Vendor Implementation. This setup also includes steps for
 packaging/repackaging and publishing the packaged/repackaged WAR files
 as well.
 
 [[GJYCL]][[to-configure-your-environment-to-run-the-jakarta-restful-web-services-tests-against-the-jakarta-ee-8-ci]]
 
-5.4.8.1 To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against the Jakarta EE {tck_version} CI
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==== To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against the Jakarta EE {tck_version} CI
 
 Copy <TS_HOME>/bin/ts.jte.jdk11 as <TS_HOME>/bin/ts.jte if JAVA_HOME is Java SE 11.
 Edit your `<TS_HOME>/bin/ts.jte` file and set the following environment
@@ -1008,8 +776,7 @@ directory contains packaging instructions.
 
 [[GJYBC]][[to-package-war-files-for-deployment-on-the-jakarta-ee-8-ci]]
 
-5.4.8.2 To Package WAR files for Deployment on the Jakarta EE {tck_version} CI
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==== To Package WAR files for Deployment on the Jakarta EE {tck_version} CI
 
 The Jakarta EE {tck_version} Platform TCK test suite does not come with prebuilt test WAR files
 for deployment on Jakarta EE {tck_version} CI. The test suite includes a command to
@@ -1030,8 +797,7 @@ the Jakarta EE {tck_version} CI.
 
 [[GJYBR]][[to-configure-your-environment-to-run-the-jakarta-restful-web-services-tests-against-a-vendor-implementation]]
 
-5.4.8.3 To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against a Vendor Implementation
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==== To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against a Vendor Implementation
 
 Complete the following steps to configure your test environment to run
 the Jakarta RESTful Web Services tests against your vendor implementation. Before you can run
@@ -1065,11 +831,9 @@ The default setting for this property is `jersey`.
 
 [[GJYDD]][[to-repackage-war-files-for-deployment-on-the-vendor-implementation]]
 
-5.4.8.4 To Repackage WAR files for Deployment on the Vendor Implementation
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==== To Repackage WAR files for Deployment on the Vendor Implementation
 
-To run the Jakarta RESTful Web Services tests against a vendor's implementation in a Jakarta EE
-8-compliant application server, the tests need to be repackaged to
+To run the Jakarta RESTful Web Services tests against a vendor's implementation in a Jakarta EE {tck_version} compliant application server, the tests need to be repackaged to
 include the VI-specific servlet, and the VI-specific servlet must be
 defined in the deployment descriptor.
 
@@ -1117,7 +881,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 In this example, the `<servlet-class>` element has a value of
 `servlet_adaptor`, which is a placeholder for the
 implementation-specific Servlet class. An Eclipse Jersey-specific deployment
-descriptor also comes with the Jakarta EE {tck_version} CI, Eclipse GlassFish 6.1, and has the values for the
+descriptor also comes with the Jakarta EE {tck_version} CI, Eclipse {glassfish_version}, and has the values for the
 `com.sun.jersey.spi.container.servlet.ServletContainer`:
 
 [source,oac_no_warn]
@@ -1190,13 +954,10 @@ jaxrs_rs_get_web.war.${jaxrs_impl_name}
 This creates a `web.xml.${jaxrs_impl_name}` file for each test based on
 the VI's servlet class name and repackages the tests.
 
-[[GEXOF]][[jakarta-connector-test-setup]]
+[[jakarta-connector-test-setup]]
+=== Jakarta Connector Test Setup (Full Platform Only)
 
-5.4.9 Jakarta Connector Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The Jakarta Connector tests verify that a Jakarta EE {tck_version} server correctly implements
-the Jakarta Connector V1.7 specification. The Connector compatibility tests
+The Jakarta Connector tests verify that a Jakarta EE {tck_version} server correctly implements the Jakarta Connector V1.7 specification. The Connector compatibility tests
 ensure that your Jakarta EE {tck_version} server still supports the Connector V1.0
 functionality.
 
@@ -1213,8 +974,7 @@ tests.
 
 [[GJVGT]][[extension-libraries]]
 
-5.4.9.1 Extension Libraries
-++++++++++++++++++++++++++++
+==== Extension Libraries
 
 The following Connector files are deployed as part of the `config.vi`
 Ant target:
@@ -1241,7 +1001,8 @@ Ant target:
 =======================================================================
 
 RAR files with an `old` prefix are used to test the support of RAs that
-are bundled with an older version of the `ra.xml` files.
+are bundled with an older version of the `ra.xml` files.  TODO: These need to
+be built for the EE 11 dist.
 
 =======================================================================
 
@@ -1272,11 +1033,9 @@ requirements that are listed in section 20.3 in the specification.
 
 [[GJVGO]][[connector-resource-adapters-and-classloading]]
 
-5.4.9.2 Connector Resource Adapters and Classloading
-+++++++++++++++++++++++++++++++++++++++++++++++++++++
+==== Connector Resource Adapters and Classloading
 
-Jakarta EE {tck_version} Platform TCK has scenarios in which multiple standalone RAR files that
-use the same shared library (for example, `whitebox.jar`) are referenced
+Jakarta EE {tck_version} Platform TCK has scenarios in which multiple standalone RAR files that use the same shared library (for example, `whitebox.jar`) are referenced
 from an application component.
 
 Each standalone RAR file gets loaded in its own classloader. Since the
@@ -1292,8 +1051,7 @@ type inconsistency issues.
 
 [[GJVHD]][[use-case-problem-scenario]]
 
-5.4.9.3 Use Case Problem Scenario
-++++++++++++++++++++++++++++++++++
+=== Use Case Problem Scenario
 
 Assume that RAR1 and RAR2 are standalone RAR files that are referred to
 by an application, where:
@@ -1335,8 +1093,7 @@ copied.
 
 [[GJVHK]][[required-porting-package]]
 
-5.4.9.4 Required Porting Package
-+++++++++++++++++++++++++++++++++
+==== Required Porting Package
 
 The Jakarta EE {tck_version} Platform TCK test suite treats the `whitebox.jar` dependency as an
 Installed Library dependency instead of bundling the dependency (or
@@ -1363,15 +1120,13 @@ portable manner.
 
 [[GJVHH]][[creating-security-mappings-for-the-connector-rar-files]]
 
-5.4.9.5 Creating Security Mappings for the Connector RAR Files
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==== Creating Security Mappings for the Connector RAR Files
 
 The Ant target `create.security.eis.mappings` in the
 `<TS_HOME>/bin/xml/impl/glassfish/connector.xml` file maps Resource
 Adapter user information to existing user information in the CI.
 
-For the Eclipse GlassFish 6.1 CI, these mappings add a line to the `domain.xml` file, similar
-to the one shown below, and should include 6 of these mappings:
+For the Eclipse {glassfish_version} CI, these mappings add a line to the `domain.xml` file, similar to the one shown below, and should include 6 of these mappings:
 
 [source,oac_no_warn]
 ----
@@ -1396,8 +1151,7 @@ would be required in the connector runtime:
 
 [[GJVGX]][[creating-required-server-side-jvm-options]]
 
-5.4.9.6 Creating Required Server-Side JVM Options
-++++++++++++++++++++++++++++++++++++++++++++++++++
+==== Creating Required Server-Side JVM Options
 
 Create the required JVM options that enable user information to be set
 and/or passed from the `ts.jte` file to the server. The RAR files use
@@ -1416,10 +1170,8 @@ server under test:
 -Deislogin.password=cts1
 ----
 
-[[GEXPV]][[xa-test-setup]]
-
-5.4.10 XA Test Setup
-^^^^^^^^^^^^^^^^^^^^
+[[xa-test-setup]]
+=== XA Test Setup (Full Platform Only)
 
 The XA Test setup requires that the `ejb_Tsr.ear` file be deployed as
 part of the `config.vi` Ant target. The `ejb_Tsr.ear` file contains an
@@ -1500,7 +1252,7 @@ asadmin  create-jdbc-resource --connectionpoolid cts-derby-XA-pool \
 +
 If two or more JDBC resource elements point to the same connection pool
 element, they use the same pool connection at runtime. Jakarta EE {tck_version} Platform TCK
-does reuse the same connection pool ID for testing the Jakarta EE {tck_version} CI Eclipse GlassFish 6.1.
+does reuse the same connection pool ID for testing the Jakarta EE {tck_version} CI Eclipse {glassfish_version}.
 
 .  Make sure that the following EIS and RAR files have been deployed
 into your environment before you run the XA tests:
@@ -1537,10 +1289,8 @@ get deployed when the `config.vi` Ant task is run. Note that there are
 currently no `JDBCwhitebox` source files and no `JDNCwhitebox` RAR
 files.
 
-[[GKKOJ]][[jakarta-enterprise-beans-3.2-test-setup]]
-
-5.4.11 Jakarta Enterprise Beans 4.0 Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[jakarta-enterprise-beans-3.2-test-setup]]
+=== Jakarta Enterprise Beans 4.0 Test Setup
 
 This section explains special configuration that needs to be completed
 before running the Jakarta Enterprise Beans 4.0 DataSource and Stateful Timeout tests.
@@ -1562,8 +1312,7 @@ support.
 
 [[GJYBW]][[to-configure-the-test-environment-to-run-the-jakarta-enterprise-beans-4.0-datasource-tests]]
 
-5.4.11.1 To Configure the Test Environment to Run the Jakarta Enterprise Beans 4.0 DataSource Tests
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==== To Configure the Test Environment to Run the Jakarta Enterprise Beans 4.0 DataSource Tests
 
 The EJB 3.2 DataSource tests under the following `tests/ejb30`
 directories require you to run the Ant task in Step link:#BABBGJAF[2].
@@ -1597,8 +1346,7 @@ testing.
 
 [[GJYCF]][[to-configure-the-test-environment-to-run-the-jakarta-enterprise-beans-4.0-stateful-timeout-tests]]
 
-5.4.11.2 To Configure the Test Environment to Run the Jakarta Enterprise Beans 4.0 Stateful Timeout Tests
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==== To Configure the Test Environment to Run the Jakarta Enterprise Beans 4.0 Stateful Timeout Tests
 
 The Jakarta Enterprise Beans 4.0 Stateful Timeout Tests in the following test directories
 require special setup:
@@ -1622,8 +1370,7 @@ implementation strategy in the target server.
 
 [[GEXOX]][[jakarta-enterprise-beans-timer-test-setup]]
 
-5.4.12 Jakarta Enterprise Beans Timer Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=== Jakarta Enterprise Beans Timer Test Setup
 
 Set the following properties in the `ts.jte` file to configure the Jakarta Enterprise Beans
 timer tests:
@@ -1663,67 +1410,13 @@ ejb/ee/bb/entity/bmp/allowedmethostest
 ejb/ee/bb/entity/cmp20/allowedmethodstest
 ----
 
-When testing against the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.1, you must
+When testing against the Jakarta Platform, Enterprise Edition CI, Eclipse {glassfish_version}, you must
 first start the Derby DB and initialize it in addition to any other database
-you may be using, as explained in link:#GEWUI[Configuring the Jakarta EE {tck_version}
-CI as the VI].
-
-[[GEXQB]][[entity-bean-container-managed-persistence-test-setup-for-jakarta-enterprise-beans-v-1.1]]
-
-5.4.13 Entity Bean Container-Managed Persistence Test Setup for Jakarta Enterprise Beans V 1.1
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Your Jakarta Platform, Enterprise Edition implementation should map the
-following instance variables to a backend datastore. These are needed to
-run the TCK entity bean container-managed persistence (cmp1.1) tests.
-
-The Jakarta Platform, Enterprise Edition CI creates the table used by
-container-managed persistence by appending `"Table"` to the bean name.
-For example, if your bean name is `TestEJB`, the table that will be
-created will be `TestEJBTable`.
-
-The container-managed fields for most `cmp` tests must have the
-following names and the following Java types:
-
-[width="50%",cols="50%,50%",options="header",]
-|======================
-|Column Name |Java Type
-|`key_id` |Integer
-|`brand_name` |String
-|`price` |Float
-|======================
+you may be using, as explained in <<configuring-the-java-ee-ci-as-the-vi>>
 
 
-These instance variable names correspond to the following database
-schema:
-
-[source,oac_no_warn]
-----
-KEY_ID (INTEGER NOT NULL)
-BRAND_NAME (VARCHAR(32))
-PRICE (FLOAT)
-PRIMARY KEY (KEY_ID)
-----
-
-These instance variables are used in the transactional entity test bean
-for the transactional test cases (`tx`) and in the database support
-utility class for the bean behavior test cases (`bb`). These instance
-variables, used in the enterprise bean tests, must be accessible at
-deployment time.
-
-The Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.1 provides the container-managed
-persistence implementation-specific features as part of its runtime XML
-file. Your Jakarta Platform, Enterprise Edition platform implementation
-needs to map the container-managed fields to the appropriate backend
-datastore. The manner in which you do this is implementation-specific.
-The `DeploymentInfo` class provides all of the runtime XML information
-as an object that is passed to the `TSDeploymentInterface`
-implementation.
-
-[[GEXOL]][[jakarta-persistence-api-test-setup]]
-
-5.4.14 Jakarta Persistence API Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[jakarta-persistence-api-test-setup]]
+=== Jakarta Persistence API Test Setup
 
 The Jakarta Persistence API tests exercise the requirements as defined in
 the Jakarta Persistence API Specification. This specification defines a
@@ -1741,8 +1434,7 @@ regarding entity managers.
 
 [[GJKPA]][[to-configure-the-test-environment-to-run-the-jakarta-persistence-pluggability-tests]]
 
-5.4.14.1 To Configure the Test Environment to Run the Jakarta Persistence Pluggability Tests
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==== To Configure the Test Environment to Run the Jakarta Persistence Pluggability Tests
 
 The Jakarta Persistence Pluggability tests under the
 `src/com/sun/ts/tests/jpa/ee/pluggability` directory ensure that a
@@ -1762,8 +1454,7 @@ the `src/com/sun/ts/tests/jpa` directory.
 
 [[sthref19]][[enabling-second-level-caching-support]]
 
-5.4.14.2 Enabling Second Level Caching Support
-++++++++++++++++++++++++++++++++++++++++++++++
+==== Enabling Second Level Caching Support
 
 Jakarta Persistence supports the use of a second-level cache by the
 persistence provider. The `ts.jte` file provides a property that
@@ -1776,8 +1467,7 @@ support second level caching, set the value to false.
 
 [[GEXOW]][[persistence-test-vehicles]]
 
-5.4.14.3 Persistence Test Vehicles
-++++++++++++++++++++++++++++++++++
+==== Persistence Test Vehicles
 
 The persistence tests are run in a variety of "vehicles" from which the
 entity manager is obtained and the transaction type is defined for use.
@@ -1828,8 +1518,7 @@ configure a non-transactional resource with the logical name
 
 [[GEXPY]][[generatedvalue-annotation]]
 
-5.4.14.4 GeneratedValue Annotation
-++++++++++++++++++++++++++++++++++
+==== GeneratedValue Annotation
 
 The Jakarta Persistence API Specification also defines the requirements for
 the `GeneratedValue` annotation. The default for this annotation is
@@ -1867,13 +1556,10 @@ the `unitName` `CTS-EM` for Jakarta Transactions entity managers. This correspon
 entity managers, which correspond to a `non-jta-data-source`
 `jdbc/DB_no_tx`.
 
-[[GEXPT]][[jakarta-messaging-test-setup]]
+[[jakarta-messaging-test-setup]]
+=== Jakarta Messaging Test Setup (Full Platform Only)
 
-5.4.15 Jakarta Messaging Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This section explains how to set up and configure the Jakarta EE {tck_version} Platform TCK test
-suite before running the Jakarta Messaging tests.
+This section explains how to set up and configure the Jakarta EE {tck_version} Platform TCK test suite before running the Jakarta Messaging tests.
 
 
 [NOTE]
@@ -1887,8 +1573,7 @@ The client-specified values for `JMSDeliveryMode`, `JMSExpiration`, and
 
 [[sthref20]][[to-configure-a-slow-running-system]]
 
-5.4.15.1 To Configure a Slow Running System
-+++++++++++++++++++++++++++++++++++++++++++
+==== To Configure a Slow Running System
 
 Make sure that the following property has been set in the `ts.jte` file:
 
@@ -1905,8 +1590,7 @@ that you should be, you need to increase the value of this parameter.
 
 [[sthref21]][[to-test-your-jakarta-messaging-resource-adapter]]
 
-5.4.15.2 To Test Your Jakarta Messaging Resource Adapter
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==== To Test Your Jakarta Messaging Resource Adapter
 
 If your implementation supports Jakarta Messaging as a Resource Adapter, you must set
 the name of the `jmsra.name` property in the `ts.jte` file to the name
@@ -1928,8 +1612,7 @@ This rebuilds the tests under
 
 [[sthref22]][[to-create-jakarta-messaging-administered-objects]]
 
-5.4.15.3 To Create Jakarta Messaging Administered Objects
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==== To Create Jakarta Messaging Administered Objects
 
 If you do not have an API to create Jakarta Messaging Administered objects, and you
 cannot create an Ant target equivalent to `config.vi`, you can use the
@@ -2106,8 +1789,7 @@ in the `ts.jte` file.
 
 [[GEYAM]][[wsdl-webservice-test-and-runtime-notes]]
 
-5.4.18 WSDL: Webservice Test and Runtime Notes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=== WSDL: Webservice Test and Runtime Notes
 
 In addition to the WSDL elements described later in this section, the
 Jakarta Platform, Enterprise Edition CI webservice runtime DTDs contain two
@@ -2151,8 +1833,7 @@ specified in the `<wsdl-publish-location>` tag.
 
 [[GEYAJ]][[wsdl-ts.jte-properties]]
 
-5.4.18.1 WSDL ts.jte Properties
-+++++++++++++++++++++++++++++++
+==== WSDL ts.jte Properties
 
 For file URL publishing, the TCK defines two properties in the `ts.jte`
 file, named `wsdlRepository1` and `wsdlRepository2`, which specify the
@@ -2226,14 +1907,13 @@ Edition implementation used as the interop test machine. See
 
 [[GEYCO]][[webservice-endpoint-wsdl-elements]]
 
-5.4.18.2 Webservice Endpoint WSDL Elements
-++++++++++++++++++++++++++++++++++++++++++
+==== Webservice Endpoint WSDL Elements
 
 The following are the webservice endpoint WSDL elements:
 
 [[GEYMW]][[setting-endpoint-address]]
 
-5.4.18.2.1 Setting Endpoint Address
+===== Setting Endpoint Address
 
 [source,oac_no_warn]
 ----
@@ -2298,7 +1978,7 @@ http://localhost:8000/GoogleServletContext/GoogleSearch
 
 [[GEYLR]][[jakarta-enterprise-beans-endpoint-security]]
 
-5.4.18.2.2 Jakarta Enterprise Beans Endpoint Security
+===== Jakarta Enterprise Beans Endpoint Security
 
 [source,oac_no_warn]
 ----
@@ -2329,7 +2009,7 @@ For example:
 
 [[GEYNB]][[transport-guarantee]]
 
-5.4.18.2.3 Transport Guarantee
+===== Transport Guarantee
 
 [source,oac_no_warn]
 ----
@@ -2348,7 +2028,7 @@ the default HTTP port. For `INTEGRAL/CONFIDENTIAL`, the scheme will be
 
 [[GEYMY]][[publishing-final-wsdl-during-deployment]]
 
-5.4.18.2.4 Publishing Final WSDL During Deployment
+===== Publishing Final WSDL During Deployment
 
 * URL publishing: no extra information required. +
 The final WSDL document for each webservice endpoint is always published
@@ -2402,8 +2082,7 @@ a file URL; for example:
 
 [[GEYLF]][[webservice-client-wsdl-elements]]
 
-5.4.18.3 Webservice Client WSDL Elements
-++++++++++++++++++++++++++++++++++++++++
+===== Webservice Client WSDL Elements
 
 In the TCK for file publishing, the directory in which to publish the
 file WSDL is specified in the `<wsdl-publish-location>` tag for the
@@ -2448,7 +2127,7 @@ document, which in this case would be
 
 [[GEYLV]][[resolving-container-managed-ports]]
 
-5.4.18.3.1 Resolving Container-Managed Ports
+===== Resolving Container-Managed Ports
 
 [source,oac_no_warn]
 ----
@@ -2516,8 +2195,7 @@ matches a webservice's `wsdl-publish-location` could be:
 
 [[CEGCHDEA]][[jakarta-security-api-test-setup]]
 
-5.4.19 Jakarta Security API Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=== Jakarta Security API Test Setup
 
 Complete the following steps before you run the Jakarta Security API tests:
 
@@ -2602,15 +2280,13 @@ init.ldap.
 
 [[GEYNX]][[signature-test-setup]]
 
-5.4.20 Signature Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=== Signature Test Setup
 
 The signature test setup includes the following:
 
 [[GEYPN]][[sigtestclasspath-property]]
 
-5.4.20.1 sigTestClasspath Property
-++++++++++++++++++++++++++++++++++
+==== sigTestClasspath Property
 
 Set the `sigTestClasspath` property in the `<TS_HOME>/bin/ts.jte` file
 to include a `CLASSPATH` containing the following:
@@ -2633,8 +2309,7 @@ running against the Jakarta Platform, Enterprise Edition CI
 
 [[GEYOS]][[additional-signature-test-information]]
 
-5.4.20.2 Additional Signature Test Information
-++++++++++++++++++++++++++++++++++++++++++++++
+==== Additional Signature Test Information
 
 The Jakarta EE {tck_version} Platform TCK signature tests perform verifications in two different
 modes: static and reflection. The test results list which SPEC API signature
@@ -2733,8 +2408,7 @@ additional debugging information.
 
 [[GJLGQ]][[backend-database-setup]]
 
-5.4.21 Backend Database Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=== Backend Database Setup
 
 The following sections address special backend database setup
 considerations:
@@ -2744,8 +2418,7 @@ considerations:
 
 [[GJLIB]][[setup-considerations-for-mysql]]
 
-5.4.21.1 Setup Considerations for MySQL
-+++++++++++++++++++++++++++++++++++++++
+==== Setup Considerations for MySQL
 
 The Jakarta Persistence API (formerly JPA) tests require delimited identifiers for
 the native query tests. If you are using delimited identifiers on MySQL,
@@ -2760,8 +2433,7 @@ sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,ANSI_QU
 
 [[GJLHU]][[setup-considerations-for-ms-sql-server]]
 
-5.4.21.2 Setup Considerations for MS SQL Server
-+++++++++++++++++++++++++++++++++++++++++++++++
+==== Setup Considerations for MS SQL Server
 
 If your database already exists and if you use a case-sensitive
 collation on MS SQL Server, execute the following command to modify the
@@ -2772,167 +2444,5 @@ database and avert errors caused by case-sensitive collation:
 ALTER DATABASE ctsdb
 COLLATE Latin1_General_CS_AS ;
 ----
-
-[NOTE]
-=======================================================================
-
-You need to generate your own deployment plan for each module type,
-using the deployment tool that comes with your Jakarta Platform, Enterprise
-Edition server.
-
-=======================================================================
-
-[[GEYPB]][[using-the-javatest-harness-configuration-gui]]
-
-5.5 Using the JavaTest Harness Configuration GUI
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-You can use the JavaTest harness GUI to modify general test settings and
-to quickly get started with the default TCK test environment. After
-familiarizing yourself with these basic configuration settings, you will
-probably want to continue with the instructions in link:#GEXPP[Modifying
-Environment Settings for Specific Technology Tests].
-
-[[GEYNM]][[basic-configuration-overview]]
-
-5.5.1 Basic Configuration Overview
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-In order for the JavaTest harness to execute the test suite, it requires
-information about how your computing environment is configured.
-
-The JavaTest harness requires two types of configuration information:
-
-. Test environment: This is data used by the tests. For example, the
-path to the Java runtime, how to start the product being tested, network
-resources, and other information required by the tests in order to run.
-This information does not change frequently and usually stays constant
-from test run to test run.
-
-. Test parameters: This is information used by the JavaTest harness to
-run the tests. Test parameters are values used by the JavaTest harness
-that determine which tests in the test suite are run, how the tests
-should be run, and where the test reports are stored. This information
-often changes from test run to test run.
-
-When you execute the JavaTest harness software for the first time, the
-JavaTest harness displays a Welcome dialog box that guides you through
-the initial startup configuration.
-
-* If it is able to open a test suite, the JavaTest harness displays a
-Welcome to JavaTest dialog box that guides you through the process of
-either opening an existing work directory or creating a new work
-directory as described in the JavaTest online help.
-
-* If the JavaTest harness is unable to open a test suite, it displays a
-Welcome to JavaTest dialog box that guides you through the process of
-opening both a test suite and a work directory as described in the
-JavaTest documentation.
-
-Once the JavaTest harness GUI is displayed, whenever you choose Run
-Tests and then Start to begin a test run, the JavaTest harness
-determines whether all of the required configuration information has
-been supplied:
-
-* If the test environment and parameters have been completely
-configured, the test run starts immediately.
-
-* If any required configuration information is missing, the
-configuration editor displays a series of questions asking you the
-necessary information. This is called the configuration interview. When
-you have entered the configuration data, you are asked if you wish to
-proceed with running the test.
-
-[[GEYOD]][[the-configuration-interview]]
-
-5.5.2 The Configuration Interview
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To configure the JavaTest harness to run the Jakarta EE {tck_version} Platform TCK tests,
-complete the following steps. Note that you only need to complete these
-steps the first time you start the JavaTest harness. After you complete
-these steps, you can either run all or a subset of the tests, as
-described in link:using.html#GBFWO[Chapter 7, "Executing Tests"].
-
-.  Change to the `<TS_HOME>/bin` directory and start the JavaTest test
-harness: 
-+
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant gui
-----
-+
-The Welcome screen displays.
-
-.  Click *File*, then click *Create Work Directory* to create a new work
-directory. +
-If you already have a working directory you want to use, click *File*,
-then click *Open Work Directory* instead. +
-At this point, the JavaTest harness is preconfigured to run the basic
-TCK tests.
-
-.  If you want to run the test suite at this time using your current
-configuration settings, select *Run Tests* from the main menu, then select
-*Start*. +
-The default tests are executed with the default configuration settings. +
-If you do not want to run the test suite at this time, continue with the
-steps below to modify your test configuration.
-
-.  Select *Configure* from the main menu, then select *Edit Configuration*. +
-The *Configuration Welcome* screen displays.
-
-.  Click *Next* (right arrow). +
-You are prompted to specify one or more configuration files that contain
-information about your test environment. By default, this file is
-`<TS_HOME>/bin/ts.jte`.
-
-.  Accept the default configuration file and click *Next*. +
-You are prompted to specify a test environment.
-
-.  Select either `ts_unix` or `ts_win32`, and then click *Next*. +
-Choose `ts_unix` if you are running the tests in a Unix or Linux
-environment; choose `ts_win32` if you are running the tests under
-Windows. +
-After making your selection and clicking *Next*, you are prompted to
-specify whether you want to run all or a subset of the test suite.
-
-.  Specify whether you want to run all or a subset of the tests, and
-then click *Next*. +
-Select *Yes* to run a subset of the tests; select *No* to run all tests. +
-If you select *Yes*, proceed to the next step. If you select *No*, skip to
-Step 10.
-
-.  Select the tests you want to run from the displayed test tree, and
-then click *Next*. +
-You can select entire branches of the test tree, or use `Ctrl+Click` or
-`Shift+Click` to select multiple tests or ranges of tests, respectively.
-
-. Specify whether you want to use an exclude list, and then click
-*Next*. +
-Select Yes to use an exclude list; select No to not use an exclude list. +
-If you select *Yes*, proceed to the next step. If you select *No*, skip to
-Step 13.
-
-. Specify the exclude list you want to use, and then click *Next*. +
-Select `initial` to use the default list; select `custom` to use a
-custom list. +
-If you select `custom`, proceed to the next step. If you select
-`initial`, skip to Step 13.
-
-. Specify the custom exclude list file to use, and then click *Next*.
-
-. Click *Done* to accept and save your configuration settings. +
-You are prompted to specify the location in which you want to save your
-configuration settings.
-
-. Specify the file in which you want to save your configuration
-settings, and then click *Save File*. +
-You are returned to the JavaTest main window.
-
-. If you want to run the test suite at this time using your current
-configuration settings, select Run Tests from the main menu, then select
-*Start*. +
-The default tests are executed with the settings you specified.
 
 

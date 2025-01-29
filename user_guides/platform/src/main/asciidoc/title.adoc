@@ -1,14 +1,12 @@
 
-[[oracle]] 
-Eclipse Foundation™
--------------------
+= Eclipse Foundation™
 
 Jakarta Platform, Enterprise Edition 11 Test Compatibility Kit User's
 Guide
 
 Release 11 for Jakarta EE
 
-June 2022
+March 2025
 
 Provides detailed instructions for obtaining, installing, configuring,
 and using the Eclipse Jakarta, Enterprise Edition 11 Compatibility Test

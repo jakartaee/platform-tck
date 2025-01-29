@@ -1,8 +1,5 @@
-
-[[GBFOW]][[introduction]]
-
-1 Introduction
---------------
+[[introduction]]
+= Introduction
 
 This document provides instructions for installing, configuring, and
 running the Jakarta Platform, Enterprise Edition 11 Test Compatibility Kit
@@ -10,17 +7,15 @@ running the Jakarta Platform, Enterprise Edition 11 Test Compatibility Kit
 
 This chapter includes the following topics:
 
-* link:#GBFTK[Compatibility Testing]
-* link:#GEUYK[About Jakarta EE {tck_version} Platform TCK]
-* link:#GEVAD[Hardware Requirements]
-* link:#GEVBB[Software Requirements]
-* link:#GEVCL[Additional Jakarta EE {tck_version} Platform TCK Requirements]
-* link:#GBFQW[Getting Started With the Jakarta EE {tck_version} Platform TCK Test Suite]
+* <<compatibility-testing>>
+* <<about-jakarta-ee-11-platform-tck>>
+* <<hardware-requirements>>
+* <<software-requirements>>
+* <<additional-jakarta-ee-platform-tck-requirements>>
+* <<getting-started-with-the-jakarta-ee-platform-tck-test-suite>>
 
-[[GBFTK]][[compatibility-testing]]
-
-1.1 Compatibility Testing
-~~~~~~~~~~~~~~~~~~~~~~~~~
+[[compatibility-testing]]
+== Compatibility Testing
 
 Compatibility testing differs from traditional product testing in a
 number of ways. The focus of compatibility testing is to test those
@@ -36,10 +31,8 @@ specification and compabitle implementation for that feature.
 Compatibility testing is not primarily concerned with robustness,
 performance, or ease of use.
 
-[[GBFQN]][[why-compatibility-testing-is-important]]
-
-1.1.1 Why Compatibility Testing is Important
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[why-compatibility-testing-is-important]
+=== Why Compatibility Testing is Important
 
 Jakarta Platform compatibility is important to different groups involved
 with Jakarta technologies for different reasons:
@@ -59,24 +52,19 @@ from disparate sources and deploy them with confidence.
 * Conformance testing benefits Jakarta Platform implementors by ensuring a
 level playing field for all Jakarta Platform ports.
 
-[[GBFPR]][[compatibility-rules]]
-
-1.1.2 Compatibility Rules
-^^^^^^^^^^^^^^^^^^^^^^^^^
+[compatibility-rules]
+=== Compatibility Rules
 
 Compatibility criteria for all technology implementations are embodied
 in the Compatibility Rules that apply to a specified technology. The
 Jakarta EE {tck_version} Platform TCK tests for adherence to these Rules as described in
 link:rules.html#GBFSN[Chapter 2, "Procedure for Jakarta Platform, Enterprise
 Edition 11 Certification,"] for Jakarta EE {tck_version} and
-link:rules-wp.html#GJJPZ[Chapter 3, "Procedure for Jakarta Platform,
-Enterprise Edition 11 Web Profile Certification,"] for Jakarta EE {tck_version} Web
+<<procedure-for-jakarta-platform-enterprise-edition-web-profile-certification>> for Jakarta EE {tck_version} Web
 Profile.
 
-[[GBFPW]][[tck-overview]]
-
-1.1.3 TCK Overview
-^^^^^^^^^^^^^^^^^^
+[tck-overview]
+=== TCK Overview
 
 A Jakarta EE {tck_version} Platform TCK is a set of tools and tests used to verify that a
 Implementer's implementation of Jakarta EE {tck_version} technology conforms to the
@@ -96,14 +84,11 @@ platform.
 
 The definition of required tests will change over time. Before your
 final certification test pass, be sure to download the latest Exclude
-List for the Jakarta EE {tck_version} Platform TCK. The definition of required tests will change
-over time. See link:#GEUYQ[Section 1.2.5, "Exclude Lists,"] for more
+List for the Jakarta EE {tck_version} Platform TCK. The definition of required tests will change over time. See <<exclude-lists>> for more
 information.
 
-[[GBFPB]][[jakarta-community-community-process-program-and-compatibility-testing]]
-
-1.1.4 Jakarta Specification Community Process Program and Compatibility Testing
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[spec-proc-and-compatibility-testing]]
+=== Jakarta Specification Community Process Program and Compatibility Testing
 
 The Jakarta EE Specification Process (JESP) program is the
 formalization of the open process that has been used since 2019 to
@@ -120,10 +105,8 @@ direction of the responsible specification project committer group:
 For further information about the JESP program, go to Jakarta EE
 Specification Process community page (https://jakarta.ee/specifications).
 
-[[GEUYK]][[about-jakarta-ee-11-platform-tck]]
-
-1.2 About Jakarta EE {tck_version} Platform TCK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[about-jakarta-ee-11-platform-tck]]
+== About Jakarta EE {tck_version} Platform TCK
 
 Jakarta EE {tck_version} Platform TCK is a portable, configurable, automated test suite for
 verifying the compliance of a Implementer's implementation of the Jakarta EE {tck_version}
@@ -134,10 +117,8 @@ For documentation on the test harness used for running the Jakarta EE {tck_versi
 test suite, see
 https://wiki.openjdk.java.net/display/CodeTools/Documentation.
 
-[[sthref4]][[jakarta-ee-11-technologies-tested-with-jakarta-ee-11-platform-tck]]
-
-1.2.1 Jakarta EE {tck_version} Technologies Required for Jakarta EE {tck_version} Platform Compatibility
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[jakarta-ee-technologies-tested-with-jakarta-ee-platform-tck]]
+=== Jakarta EE {tck_version} Technologies Required for Jakarta EE {tck_version} Platform Compatibility
 
 The Jakarta EE {tck_version} Platform Specification defines the required and optional component specifications.
 The full list with specification version requirements is defined in the Platform EE Specification document (https://jakarta.ee/specifications/platform/11/), see the heading 'Full Jakarta(TM) EE Product Requirements,'
@@ -208,10 +189,8 @@ Jakarta EE {tck_version} Platform TCK provides compatibility certification verif
 * Jakarta Web Socket
 * Jakarta XML Web Services
 
-[[BHCGFHDI]][[jakarta-ee-11-web-profile-technologies-tested-with-jakarta-ee-11-platform-tck]]
-
-1.2.2 Jakarta EE {tck_version} Web Profile Technologies Tested With Jakarta EE {tck_version} Platform TCK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[jakarta-ee-11-web-profile-technologies-tested-with-jakarta-ee-11-platform-tck]
+=== Jakarta EE {tck_version} Web Profile Technologies Tested With Jakarta EE {tck_version} Platform TCK
 
 The Jakarta EE {tck_version} Web Profile Specification defines the required component specifications.
 The complete list with specification version requirements is defined in the Web Profile specification document (https://jakarta.ee/specifications/webprofile/11/), see heading 'Web Profile Definition', sub-heading 'Required Components'.
@@ -255,10 +234,8 @@ Jakarta EE {tck_version} Platform TCK provides compatibility certification verif
 * Jakarta Transactions
 * Jakarta Web Socket
 
-[[GEUZS]][[tck-tests]]
-
-1.2.3 TCK Tests
-^^^^^^^^^^^^^^^
+[tck-tests]
+=== TCK Tests
 
 The Jakarta EE {tck_version} Platform TCK contains API tests and enterprise edition tests, which
 are tests that start in the Jakarta EE {tck_version} platform and use the underlying
@@ -284,12 +261,8 @@ Vendor Implementation, or VI in this document. When they pass
 all of the tests, they will apply for and be granted certification.
 
 * Before you do anything with the test suite, read the rules in
-link:rules.html#GBFSN[Chapter 2, "Procedure for Jakarta Platform, Enterprise
-Edition 8 Certification,"] or link:rules-wp.html#GJJPZ[Chapter 3,
-"Procedure for Jakarta Platform, Enterprise Edition 11 Web Profile
-Certification."] These chapters explain the certification process and
-provides a definitive list of certification rules for Jakarta EE {tck_version} and Jakarta
-EE {tck_version} Web Profile implementations.
+<<procedure-for-jakarta-platform-enterprise-edition-certification>> or <<procedure-for-jakarta-platform-enterprise-edition-web-profile-certification>> These chapters explain the certification process and
+provides a definitive list of certification rules for Jakarta EE {tck_version} and Jakarta EE {tck_version} Web Profile implementations.
 * Next, take a look at the test assertions in the Assertion List, which
 you can find in the Jakarta EE {tck_version} Platform TCK documentation bundle. The assertions
 explain what each test is testing. When you run the tests with the
@@ -303,7 +276,7 @@ EE {tck_version} Web Profile implementation.
 
 
 [NOTE]
-=======================================================================
+======================================================================
 
 In the instructions in this document, variables in angle brackets need
 to be expanded for each platform. For example, `<TS_HOME>` becomes
@@ -311,36 +284,15 @@ to be expanded for each platform. For example, `<TS_HOME>` becomes
 forward slashes (`/`) used in all of the examples need to be replaced
 with backslashes (`\`) for Windows.
 
-=======================================================================
+======================================================================
 
 
-[[GEUYR]][[javatest-harness]]
+[javatest-harness]
+=== Arquillian and Junit5
 
-1.2.4 JavaTest Harness
-^^^^^^^^^^^^^^^^^^^^^^
+The Arquillian and Junit5 are set of tools designed to run and
+manage test suites on different Java platforms.
 
-The JavaTest harness version 5.0 is a set of tools designed to run and
-manage test suites on different Java platforms. The JavaTest harness can
-be described as both a Java application and a set of compatibility
-testing tools. It can run tests on different kinds of Java platforms and
-it allows the results to be browsed online within the JavaTest GUI, or
-offline in the HTML reports that the JavaTest harness generates.
-
-The JavaTest harness includes the applications and tools that are used
-for test execution and test suite management. It supports the following
-features:
-
-* Sequencing of tests, allowing them to be loaded and executed
-automatically
-* Graphic user interface (GUI) for ease of use
-* Automated reporting capability to minimize manual errors
-* Failure analysis
-* Test result auditing and auditable test specification framework
-* Distributed testing environment support
-
-To run tests using the JavaTest harness, you specify which tests in the
-test suite to run, how to run them, and where to put the results as
-described in link:using.html#GBFWO[Chapter 7, "Executing Tests."]
 
 The tests that make up the TCK are precompiled and indexed within the
 TCK test directory structure. When a test run is started, the JavaTest
@@ -349,10 +301,8 @@ directories that have been selected. While scanning, the JavaTest
 harness selects the appropriate tests according to any matches with the
 filters you are using and queues them up for execution.
 
-[[GEUYQ]][[exclude-lists]]
-
-1.2.5 Exclude Lists
-^^^^^^^^^^^^^^^^^^^
+[[exclude-lists]]
+=== Exclude Lists (Needs rewrite)
 
 The Jakarta EE {tck_version} Platform TCK includes an Exclude List contained in a `.jtx` file.
 This is a list of test file URLs that identify tests which do not have
@@ -366,13 +316,13 @@ EE {tck_version} TCK.
 
 
 [NOTE]
-=======================================================================
+======================================================================
 
 Always make sure you are using an up-to-date copy of the Exclude List
 before running the Jakarta EE {tck_version} Platform TCK test suite to verify your
 implementation.
 
-=======================================================================
+======================================================================
 
 
 A test might be in the Exclude List for reasons such as:
@@ -395,22 +345,17 @@ based on a particular file system behavior, and so on) may be excluded.
 
 
 [NOTE]
-=======================================================================
+======================================================================
 
 Implementers are not permitted to alter or modify Exclude Lists. Changes to
 an Exclude List can only be made by using the procedure described in
-link:rules.html#CJAICHHD[Section 2.3.1, "Jakarta Platform, Enterprise
-Edition TCK Test Appeals Steps,"] and
-link:rules-wp.html#CEGCHJGH[Section 3.3.1, "Jakarta Platform, Enterprise
-Edition TCK Test Appeals Steps."]
+<<appeals-process-ee>> and <<appeals-process-wp>>
 
-=======================================================================
+======================================================================
 
 
-[[GEUZN]][[apache-ant]]
-
-1.2.6 Apache Ant
-^^^^^^^^^^^^^^^^
+[[apache-ant]]
+=== Apache Ant
 
 The Jakarta EE {tck_version} CI, Jakarta EE {tck_version} Web Profile CI, and Jakarta EE {tck_version} Platform TCK require
 implementations of Apache Ant 1.9.7 from the Apache Ant Project
@@ -446,7 +391,7 @@ Apache Ant is protected under the Apache Software, License 2.0, which is
 is available on the Apache Ant Project license page at 
 `http://ant.apache.org/license.html`.
 
-===== Installing Apache Ant
+==== Installing Apache Ant
 
 * Download the Apache Ant 1.9.7 binary bundle from the Apache Ant 
   Project.
@@ -456,10 +401,8 @@ is available on the Apache Ant Project license page at
   `apache-ant-<version>` directory
 * Add `<ANT_HOME>/bin` directory to the environment variable `PATH`
 
-[[GEVAD]][[hardware-requirements]]
-
-1.3 Hardware Requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~
+[[hardware-requirements]]
+== Hardware Requirements
 
 The following section lists the hardware requirements for the Jakarta EE {tck_version}
 TCK software, using the Jakarta EE {tck_version} CI or Jakarta EE {tck_version} Web Profile CI.
@@ -474,10 +417,8 @@ All systems should meet the following recommended hardware requirements:
 repository, and the database
 * Network access to the Internet
 
-[[GEVBB]][[software-requirements]]
-
-1.4 Software Requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~
+[[software-requirements]]
+== Software Requirements
 
 You can run the Jakarta EE {tck_version} Platform TCK software on platforms running the
 Linux software that meet the following software requirements:
@@ -487,19 +428,15 @@ Linux software that meet the following software requirements:
 ** CentOS Linux 7
 
 ** Alpine Linux v3.12
-* Java SE 8 (1.8) or 11
+* Java SE 17 or 21
 * Jakarta EE {tck_version} CI or Jakarta EE {tck_version} Web Profile CI
 * Mail server that supports the IMAP and SMTP protocols
 * One of the following databases:
-
 ** MySQL
-
 ** Apache Derby
 
-[[GEVCL]][[additional-jakarta-ee-11-platform-tck-requirements]]
-
-1.5 Additional Jakarta EE {tck_version} Platform TCK Requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[additional-jakarta-ee-platform-tck-requirements]]
+== Additional Jakarta EE {tck_version} Platform TCK Requirements
 
 In addition to the instructions and requirements described in this
 document, all Jakarta EE {tck_version} Platform implementations must
@@ -536,10 +473,8 @@ All Jakarta EE {tck_version} Web Profile implementations must also pass the stan
 * Jakarta Security -- see https://jakarta.ee/specifications/security/3.0/ for additional details
 
 
-[[GBFQW]][[getting-started-with-the-jakarta-ee-11-platform-tck-test-suite]]
-
-1.6 Getting Started With the Jakarta EE {tck_version} Platform TCK Test Suite
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[getting-started-with-the-jakarta-ee-platform-tck-test-suite]]
+== Getting Started With the Jakarta EE {tck_version} Platform TCK Test Suite
 
 Installing, configuring, and using the Jakarta EE {tck_version} Platform TCK involves the
 following general steps:
