@@ -39,7 +39,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>appclient-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -54,7 +54,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>assembly-tck-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -69,7 +69,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>connector-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -84,7 +84,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>ejb30-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -99,7 +99,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>ejb32-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -114,7 +114,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>el-platform-tck-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -129,7 +129,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>integration-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -144,7 +144,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>javaee-tck-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -159,7 +159,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>rest-platform-tck-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -174,7 +174,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>javamail-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -189,7 +189,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>jdbc-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -204,7 +204,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>jms-tck-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -219,7 +219,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>persistence-platform-tck-tests-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -231,10 +231,25 @@
                         <configuration>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>jsonb-platform-tck</artifactId>
-                            <version>${project.version}</version>
+                            <version>${tck.test.jsonb.version}</version>
                             <packaging>jar</packaging>
-                            <file>jsonb-platform-tck-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <file>jsonb-platform-tck-${tck.test.jsonb.version}.jar</file>
+                            <generatePom>false</generatePom>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-jsonp-platform-tck</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>jsonp-platform-tck</artifactId>
+                            <version>${tck.test.jsonp.version}</version>
+                            <packaging>jar</packaging>
+                            <file>jsonp-platform-tck-${tck.test.jsonp.version}.jar</file>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -249,7 +264,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>pages-platform-tck-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -264,7 +279,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>transactions-tck-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
 
@@ -280,7 +295,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>signaturetest-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -295,7 +310,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>tsharness-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -310,7 +325,7 @@
                             <version>2.2.0</version>
                             <packaging>jar</packaging>
                             <file>websocket-tck-platform-tests-2.2.0.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                     <execution>
@@ -325,7 +340,7 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>xa-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
+                            <generatePom>false</generatePom>
                         </configuration>
                     </execution>
                 </executions>
