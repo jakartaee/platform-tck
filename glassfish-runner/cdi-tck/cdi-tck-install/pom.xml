@@ -94,7 +94,6 @@
                             <file>${project.build.directory}/cdi-tck-4.1.0/artifacts/cdi-tck-api-4.1.0.jar</file>
                             <javadoc>${project.build.directory}/cdi-tck-4.1.0/artifacts/cdi-tck-api-4.1.0-javadoc.jar</javadoc>
                             <sources>${project.build.directory}/cdi-tck-4.1.0/artifacts/cdi-tck-api-4.1.0-sources.jar</sources>
-                            <generatePom>true</generatePom>
                         </configuration>
                     </execution>
 
@@ -110,7 +109,6 @@
                             <version>4.1.0</version>
                             <packaging>jar</packaging>
                             <file>${project.build.directory}/cdi-tck-4.1.0/artifacts/cdi-tck-ext-lib-4.1.0.jar</file>
-                            <generatePom>true</generatePom>
                         </configuration>
                     </execution>
 
@@ -126,7 +124,6 @@
                             <version>4.1.0</version>
                             <packaging>jar</packaging>
                             <file>${project.build.directory}/cdi-tck-4.1.0/artifacts/cdi-tck-core-impl-4.1.0.jar</file>
-                            <generatePom>true</generatePom>
                         </configuration>
                     </execution>
                     <execution>
