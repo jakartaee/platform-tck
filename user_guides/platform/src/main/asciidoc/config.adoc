@@ -1432,6 +1432,11 @@ to Chapter 7 of the Jakarta Persistence API Specification
 (`https://jakarta.ee/specifications/persistence/3.0`) for additional information
 regarding entity managers.
 
+[NOTE]
+====
+There is a test of installing a custom Jakarta Persistence provider in the Jakarta Persistence API tests. The tests expect that the log.file.location from the ts.jte file has been propagated to a system property in the server environment. Normally this is automatically done by the TCK harness, but if  your Jakarta Persistence integration causes the custom `jakarta.persistence.spi.PersistenceProvider` or `jakarta.persistence.spi.ProviderUtil` to initialize before the TCK harness, you may need to set the system property manually.
+====
+
 [[GJKPA]][[to-configure-the-test-environment-to-run-the-jakarta-persistence-pluggability-tests]]
 
 ==== To Configure the Test Environment to Run the Jakarta Persistence Pluggability Tests

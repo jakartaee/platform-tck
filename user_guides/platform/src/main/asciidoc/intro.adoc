@@ -302,38 +302,18 @@ harness selects the appropriate tests according to any matches with the
 filters you are using and queues them up for execution.
 
 [[exclude-lists]]
-=== Exclude Lists (Needs rewrite)
+=== Exclude Tests
 
-The Jakarta EE {tck_version} Platform TCK includes an Exclude List contained in a `.jtx` file.
-This is a list of test file URLs that identify tests which do not have
-to be run for the specific version of the TCK being used. Whenever tests
-are run, the JavaTest harness automatically excludes any test on the
-Exclude List from being executed.
+As of version {tck_version}, the Jakarta EE Platform TCK uses Junit5 `org.junit.jupiter.api.Disabled` annotations to exclude tests from the test suite. Test methods or classes that are successfully challenged are annotated with the `@Disabled("https://link-to-challenge-issue")` and released in a new service release.
 
-A implementor is not required to pass or run any test on the Exclude List.
-The Exclude List file, `<TS_HOME>/bin/ts.jtx`, is included in the Jakarta
-EE {tck_version} TCK.
-
-
-[NOTE]
-======================================================================
-
-Always make sure you are using an up-to-date copy of the Exclude List
-before running the Jakarta EE {tck_version} Platform TCK test suite to verify your
-implementation.
-
-======================================================================
-
+A implementor is not required to pass or run any tests that are annotated with the `@Disabled("...")` tag. The `@Disabled("...")` annotation is used to indicate that the test is not required for certification. When a service release is made to exclude tests due to a challenge, the tests with any `@Disabled("...")` annotations are removed from the test suite by the Junit5 framework.
 
 A test might be in the Exclude List for reasons such as:
 
-* An error in an underlying implementation API has been discovered which
-does not allow the test to execute properly.
-* An error in the specification that was used as the basis of the test
-has been discovered.
+* An error in an underlying implementation API has been discovered which does not allow the test to execute properly.
+* An error in the specification that was used as the basis of the test has been discovered.
 * An error in the test itself has been discovered.
-* The test fails due to a bug in the tools (such as the JavaTest
-harness, for example).
+* The test fails due to a bug in the tools (such as the Arquillian/Junit5 harness, for example).
 
 In addition, all tests are run against the compatible implementations.
 Any tests that cannot be run on a compatible Jakarta Platform may be put on the
@@ -346,11 +326,9 @@ based on a particular file system behavior, and so on) may be excluded.
 
 [NOTE]
 ======================================================================
-
 Implementers are not permitted to alter or modify Exclude Lists. Changes to
 an Exclude List can only be made by using the procedure described in
 <<appeals-process-ee>> and <<appeals-process-wp>>
-
 ======================================================================
 
 
@@ -424,10 +402,7 @@ You can run the Jakarta EE {tck_version} Platform TCK software on platforms runn
 Linux software that meet the following software requirements:
 
 * Operating Systems:
-
-** CentOS Linux 7
-
-** Alpine Linux v3.12
+** Any operating system that supports the Java SE 17 or 21 platform
 * Java SE 17 or 21
 * Jakarta EE {tck_version} CI or Jakarta EE {tck_version} Web Profile CI
 * Mail server that supports the IMAP and SMTP protocols
@@ -438,6 +413,7 @@ Linux software that meet the following software requirements:
 [[additional-jakarta-ee-platform-tck-requirements]]
 == Additional Jakarta EE {tck_version} Platform TCK Requirements
 
+// edburns check these versions and links please
 In addition to the instructions and requirements described in this
 document, all Jakarta EE {tck_version} Platform implementations must
 also pass the standalone TCKs for the following technologies:
@@ -460,6 +436,7 @@ also pass the standalone TCKs for the following technologies:
 
 All Jakarta EE {tck_version} Web Profile implementations must also pass the standalone TCKs for the following technologies:
 
+// edburns check these versions and links please
 * Jakarta Authentication -- see https://jakarta.ee/specifications/authentication/3.0/ for additional details
 * Jakarta Bean Validation -- see https://jakarta.ee/specifications/bean-validation/3.0/ for additional details
 * Jakarta Concurrency -- see https://jakarta.ee/specifications/concurrency/3.0/ for additional details

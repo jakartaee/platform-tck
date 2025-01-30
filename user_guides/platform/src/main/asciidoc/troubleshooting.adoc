@@ -41,6 +41,7 @@ Set the `-Djavatest.maxOutputSize=`nnn system parameter in the
 `runclient` and/or `gui` targets in the `<TS_HOME>/bin/build.xml` file
 to a value that is higher than the default setting of `100,000` on the
 JavaTest VM.
+
 * Problem: +
 When you start the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.1 on 
 Windows by using the `javaee -verbose` command, the system may not find
@@ -67,6 +68,17 @@ RemoteLoggingInitException
 Resolution: +
 Ensure that the `cts.jar` and `tsharness.jar` files can be loaded by the
 extension class loader of your Jakarta Platform, Enterprise Edition server.
+
+* Problem: +
+When running the Jakarta Persistence TCK tests you see an error log message containing:
+[source,oac_no_warn]
+----
+LogFileProcessor setup failed
+Please verify that the property log.file.location exists in ts.jte
+----
+
+Resolution: +
+You may have the `log.file.location` set in the ts.jte file, but if your Jakarta Persistence integration eagerly loads the testcase custom persistence provider, it may do so before the `log.file.location` property is set by the TCK harness code. To resolve this issue, you can set the `log.file.location` system property in your server configuration.
 
 [[support]]
 == Support
