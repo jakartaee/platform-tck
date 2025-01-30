@@ -1,0 +1,45 @@
+<cache xmlns="https://maven.apache.org/BUILD-CACHE-CONFIG/1.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="https://maven.apache.org/BUILD-CACHE-CONFIG/1.2.0 https://maven.apache.org/xsd/build-cache-config-1.2.0.xsd">
+  <configuration>
+    <hashAlgorithm>XXMM</hashAlgorithm>
+    <enabled>true</enabled>
+    <!-- activated via cli -->
+    <!-- to disable it just use -Dmaven.build.cache.enabled=false -->
+    <!--
+      -Dmaven.build.cache.remote.url=http://nexus-service.nexus.svc.cluster.local:8081/repository/maven-build-cache -Dmaven.build.cache.remote.enabled=true
+      -Dmaven.build.cache.remote.save.enabled=true -Dmaven.build.cache.remote.server.id=nexus-cred
+    -->
+    <!--    <remote enabled="true" saveToRemote="true" id="nexus-cred">-->
+    <!--      <url>http://nexus-service.nexus.svc.cluster.local:8081/repository/maven-build-cache</url>-->
+    <!--    </remote>-->
+  </configuration>
+  <input>
+    <global>
+      <glob>{*.java,*.xml,*.properties,*.mod,*.adoc}</glob>
+      <includes>
+        <include glob="{*.xml,*.properties,*.jsp,*.css}">src/main/webapp</include>
+      </includes>
+      <excludes>
+        <exclude glob="*Jenkinsfile*" />
+        <exclude glob="./idea/*" />
+      </excludes>
+    </global>
+  </input>
+  <executionControl>
+    <runAlways>
+      <goalsLists>
+        <goalsList artifactId="maven-install-plugin">
+          <goals>
+            <goal>install</goal>
+          </goals>
+        </goalsList>
+        <goalsList artifactId="maven-deploy-plugin">
+          <goals>
+            <goal>deploy</goal>
+          </goals>
+        </goalsList>
+      </goalsLists>
+    </runAlways>
+  </executionControl>
+</cache>
+
