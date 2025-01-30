@@ -153,18 +153,6 @@ The default setting is `localhost`.
 ..  Set the `webServerPort` property to the port number of the host on
 which the Web server is running and configured with the CI. +
 The default setting is `8001`.
-..  Set the `wsgen.ant.classname` property to the Vendor's
-implementation class that mimics the CI Ant task that in turn calls the
-`wsgen` Java-to-WSDL tool. +
-The default setting is `com.sun.tools.ws.ant.WsGen`.
-..  Set the `wsimport.ant.classname` property to the Vendor's
-implementation class that mimics the CI Ant task that in turn calls the
-`wsimport` WSDL-to-Java tool. +
-The default setting is `com.sun.tools.ws.ant.WsImport`.
-..  Set the `porting.ts.url.class` property to your porting
-implementation class that is used for obtaining URLs. +
-The default setting for the CI porting implementation is
-`com.sun.ts.lib.implementation.sun.common.SunRIURL`.
 ..  Set the database-related properties in the `<TS_HOME>/bin/ts.jte`
 file. <<c.3-database-properties-in-ts.jte>>lists the names and descriptions for the database properties
 you need to set.
