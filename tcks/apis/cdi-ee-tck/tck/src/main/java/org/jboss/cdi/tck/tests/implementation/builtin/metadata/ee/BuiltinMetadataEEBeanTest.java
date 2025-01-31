@@ -21,7 +21,7 @@ import static org.jboss.cdi.tck.cdi.Sections.BEAN_METADATA_EE;
 import java.io.IOException;
 import java.net.URL;
 
-import com.gargoylesoftware.htmlunit.WebClient;
+import org.htmlunit.WebClient;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.test.api.ArquillianResource;

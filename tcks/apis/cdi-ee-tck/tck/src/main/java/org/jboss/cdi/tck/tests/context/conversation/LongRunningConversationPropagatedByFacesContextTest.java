@@ -15,16 +15,14 @@
  */
 package org.jboss.cdi.tck.tests.context.conversation;
 
-import static org.jboss.cdi.tck.TestGroups.INTEGRATION;
-import static org.jboss.cdi.tck.cdi.Sections.BUILTIN_SCOPES;
-import static org.jboss.cdi.tck.cdi.Sections.CONVERSATION_CONTEXT_EE;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
-
 import java.time.Duration;
 
+import org.htmlunit.NicelyResynchronizingAjaxController;
+import org.htmlunit.WebClient;
+import org.htmlunit.html.HtmlInput;
+import org.htmlunit.html.HtmlPage;
+import org.htmlunit.html.HtmlSubmitInput;
+import org.htmlunit.html.HtmlTextInput;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.selenium.DriverPool;
 import org.jboss.cdi.tck.selenium.ExtendedWebDriver;
@@ -32,19 +30,18 @@ import org.jboss.cdi.tck.selenium.WebPage;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.test.audit.annotations.SpecAssertion;
-import org.jboss.test.audit.annotations.SpecAssertions;
 import org.jboss.test.audit.annotations.SpecVersion;
-import org.testng.annotations.Test;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
 
-import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlInput;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
-import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
+import static org.jboss.cdi.tck.TestGroups.INTEGRATION;
+import static org.jboss.cdi.tck.cdi.Sections.BUILTIN_SCOPES;
+import static org.jboss.cdi.tck.cdi.Sections.CONVERSATION_CONTEXT_EE;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 /**
  * @author Nicklas Karlsson
@@ -62,69 +59,78 @@ public class LongRunningConversationPropagatedByFacesContextTest extends Abstrac
     public static WebArchive createTestArchive() {
         return new WebArchiveBuilder()
                 .withTestClassDefinition(LongRunningConversationPropagatedByFacesContextTest.class)
-                .withClasses(Storm.class, ConversationTestPhaseListener.class, ConversationStatusServlet.class, Cloud.class,
-                        OutermostFilter.class).withWebResource("storm.xhtml").withWebResource("storm-ajax.xhtml")
-                .withWebResource("thunder.xhtml").withWebResource("lightening.xhtml")
-                .withWebResource("faces-config.xml", "/WEB-INF/faces-config.xml").withWebXml("web.xml").build();
+                .withClasses(
+                    Storm.class,
+                    ConversationTestPhaseListener.class,
+                    ConversationStatusServlet.class,
+                    Cloud.class,
+                    OutermostFilter.class)
+                .withWebResource("storm.xhtml")
+                .withWebResource("storm-ajax.xhtml")
+                .withWebResource("thunder.xhtml")
+                .withWebResource("lightening.xhtml")
+                .withWebResource("faces-config.xml", "/WEB-INF/faces-config.xml")
+                .withWebXml("web.xml")
+                .build();
     }
 
     @Test
     @SpecAssertion(section = CONVERSATION_CONTEXT_EE, id = "l")
     @SpecAssertion(section = BUILTIN_SCOPES, id = "ba")
     public void testConversationPropagated() throws Exception {
+        try (WebClient webClient = new WebClient()) {
 
-        WebClient webClient = new WebClient();
+            HtmlPage storm = webClient.getPage(getPath("storm.jsf"));
 
-        HtmlPage storm = webClient.getPage(getPath("storm.jsf"));
+            // Begin long-running conversation
+            HtmlSubmitInput beginConversationButton = getFirstMatchingElement(storm, HtmlSubmitInput.class, "beginConversationButton");
+            storm = beginConversationButton.click();
 
-        // Begin long-running conversation
-        HtmlSubmitInput beginConversationButton = getFirstMatchingElement(storm, HtmlSubmitInput.class,
-                "beginConversationButton");
-        storm = beginConversationButton.click();
-        // Set input value
-        HtmlTextInput stormStrength = getFirstMatchingElement(storm, HtmlTextInput.class, "stormStrength");
-        stormStrength.setValueAttribute(STORM_STRENGTH);
-        String stormCid = getCid(storm);
-        // Submit value and forward to the next form
-        HtmlSubmitInput thunderButton = getFirstMatchingElement(storm, HtmlSubmitInput.class, "thunderButton");
-        HtmlPage thunder = thunderButton.click();
+            // Set input value
+            HtmlTextInput stormStrength = getFirstMatchingElement(storm, HtmlTextInput.class, "stormStrength");
+            stormStrength.setValueAttribute(STORM_STRENGTH);
+            String stormCid = getCid(storm);
 
-        assertEquals(stormCid, getCid(thunder));
-        stormStrength = getFirstMatchingElement(thunder, HtmlTextInput.class, "stormStrength");
-        assertEquals(stormStrength.getValueAttribute(), STORM_STRENGTH);
+            // Submit value and forward to the next form
+            HtmlSubmitInput thunderButton = getFirstMatchingElement(storm, HtmlSubmitInput.class, "thunderButton");
+            HtmlPage thunder = thunderButton.click();
+
+            assertEquals(stormCid, getCid(thunder));
+            stormStrength = getFirstMatchingElement(thunder, HtmlTextInput.class, "stormStrength");
+            assertEquals(stormStrength.getValueAttribute(), STORM_STRENGTH);
+        }
     }
 
     @Test
     @SpecAssertion(section = CONVERSATION_CONTEXT_EE, id = "m")
     public void testConversationPropagatedOverRedirect() throws Exception {
+        try (WebClient webClient = new WebClient()) {
+            HtmlPage storm = webClient.getPage(getPath("storm.jsf"));
 
-        WebClient webClient = new WebClient();
+            // Begin long-running conversation
+            HtmlSubmitInput beginConversationButton = getFirstMatchingElement(storm, HtmlSubmitInput.class, "beginConversationButton");
+            storm = beginConversationButton.click();
 
-        HtmlPage storm = webClient.getPage(getPath("storm.jsf"));
+            // Set input value
+            HtmlTextInput stormStrength = getFirstMatchingElement(storm, HtmlTextInput.class, "stormStrength");
+            stormStrength.setValueAttribute(REDIRECT_STORM_STRENGTH);
+            String stormCid = getCid(storm);
 
-        // Begin long-running conversation
-        HtmlSubmitInput beginConversationButton = getFirstMatchingElement(storm, HtmlSubmitInput.class,
-                "beginConversationButton");
-        storm = beginConversationButton.click();
-        // Set input value
-        HtmlTextInput stormStrength = getFirstMatchingElement(storm, HtmlTextInput.class, "stormStrength");
-        stormStrength.setValueAttribute(REDIRECT_STORM_STRENGTH);
-        String stormCid = getCid(storm);
-        // Submit value and redirect to the next form
-        HtmlSubmitInput lighteningButton = getFirstMatchingElement(storm, HtmlSubmitInput.class, "lighteningButton");
-        HtmlPage lightening = lighteningButton.click();
+            // Submit value and redirect to the next form
+            HtmlSubmitInput lighteningButton = getFirstMatchingElement(storm, HtmlSubmitInput.class, "lighteningButton");
+            HtmlPage lightening = lighteningButton.click();
 
-        assertTrue(lightening.getWebResponse().getWebRequest().getUrl().toString().contains("lightening.jsf"));
-        assertEquals(stormCid, getCid(lightening));
-        stormStrength = getFirstMatchingElement(lightening, HtmlTextInput.class, "stormStrength");
-        assertEquals(stormStrength.getValueAttribute(), REDIRECT_STORM_STRENGTH);
+            assertTrue(lightening.getWebResponse().getWebRequest().getUrl().toString().contains("lightening.jsf"));
+            assertEquals(stormCid, getCid(lightening));
+            stormStrength = getFirstMatchingElement(lightening, HtmlTextInput.class, "stormStrength");
+            assertEquals(stormStrength.getValueAttribute(), REDIRECT_STORM_STRENGTH);
+        }
     }
 
     @Test
     @SpecAssertion(section = CONVERSATION_CONTEXT_EE, id = "l")
     public void testConversationPropagatedAjax() throws Exception {
-
-        String selenium = System.getProperty("run.selenium", "false");
+        String selenium = System.getProperty("run.selenium", "true");
         if ("true".equals(selenium)) {
             DriverPool driverPool = new DriverPool();
             ExtendedWebDriver webDriver = driverPool.getOrNewInstance();
@@ -140,7 +146,7 @@ public class LongRunningConversationPropagatedByFacesContextTest extends Abstrac
             page.waitReqJs();
 
             WebElement conversationId = page.findElement(By.id("ajaxForm:conversationId"));
-            String cid = conversationId.getAttribute("value");
+            String cid = conversationId.getDomProperty("value");
             assertFalse(cid.isEmpty());
 
             WebElement stormStrength = page.findElement(By.id("ajaxForm:stormStrength"));
@@ -156,33 +162,37 @@ public class LongRunningConversationPropagatedByFacesContextTest extends Abstrac
             thunderPage.waitForPageToLoad(Duration.ofSeconds(120));
 
             stormStrength = thunderPage.findElement(By.id("form:stormStrength"));
-            assertEquals(stormStrength.getAttribute("value"), AJAX_STORM_STRENGTH);
+            assertEquals(stormStrength.getDomProperty("value"), AJAX_STORM_STRENGTH);
 
             driverPool.returnInstance(webDriver);
             driverPool.quitAll();
         } else {
-            WebClient webClient = new WebClient();
-            webClient.setAjaxController(new NicelyResynchronizingAjaxController());
+            // Currently HTMLUnit doesn't support newer JS versions, and likely will never.
+            // So the code below will not easily pass
 
-            HtmlPage storm = webClient.getPage(getPath("storm-ajax.jsf"));
+            try (WebClient webClient = new WebClient()) {
+                webClient.setAjaxController(new NicelyResynchronizingAjaxController());
 
-            // Begin long-running conversation - note that we use ajax
-            HtmlSubmitInput beginConversationButton = getFirstMatchingElement(storm, HtmlSubmitInput.class,
-                    "beginConversationButton");
-            storm = beginConversationButton.click();
-            String cid = getFirstMatchingElement(storm, HtmlInput.class, "conversationId").getValueAttribute();
-            assertFalse(cid.isEmpty());
+                HtmlPage storm = webClient.getPage(getPath("storm-ajax.jsf"));
 
-            // Set input value
-            HtmlTextInput stormStrength = getFirstMatchingElement(storm, HtmlTextInput.class, "stormStrength");
-            stormStrength.setValueAttribute(AJAX_STORM_STRENGTH);
-            // Submit value - note that we use ajax
-            HtmlSubmitInput thunderButton = getFirstMatchingElement(storm, HtmlSubmitInput.class, "thunderButton");
-            thunderButton.click();
+                // Begin long-running conversation - note that we use ajax
+                HtmlSubmitInput beginConversationButton = getFirstMatchingElement(storm, HtmlSubmitInput.class,
+                        "beginConversationButton");
+                storm = beginConversationButton.click();
+                String cid = getFirstMatchingElement(storm, HtmlInput.class, "conversationId").getValueAttribute();
+                assertFalse(cid.isEmpty());
 
-            HtmlPage thunder = webClient.getPage(getPath("thunder.jsf", cid));
-            stormStrength = getFirstMatchingElement(thunder, HtmlTextInput.class, "stormStrength");
-            assertEquals(stormStrength.getValueAttribute(), AJAX_STORM_STRENGTH);
+                // Set input value
+                HtmlTextInput stormStrength = getFirstMatchingElement(storm, HtmlTextInput.class, "stormStrength");
+                stormStrength.setValueAttribute(AJAX_STORM_STRENGTH);
+                // Submit value - note that we use ajax
+                HtmlSubmitInput thunderButton = getFirstMatchingElement(storm, HtmlSubmitInput.class, "thunderButton");
+                thunderButton.click();
+
+                HtmlPage thunder = webClient.getPage(getPath("thunder.jsf", cid));
+                stormStrength = getFirstMatchingElement(thunder, HtmlTextInput.class, "stormStrength");
+                assertEquals(stormStrength.getValueAttribute(), AJAX_STORM_STRENGTH);
+            }
 	    }
     }
 
