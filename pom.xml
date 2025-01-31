@@ -107,7 +107,7 @@
         <jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>
 
         <!-- Jakarta TCK Tools version from the independently released tools submodule -->
-        <jakarta.tck.tools.version>11.0.0-RC2</jakarta.tck.tools.version>
+        <jakarta.tck.tools.version>11.0.0-RC3</jakarta.tck.tools.version>
 
         <!-- Jakarta Transactions -->
         <jakarta.transaction-api.version>2.0.1</jakarta.transaction-api.version>

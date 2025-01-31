@@ -6,6 +6,7 @@ This distribution contains the Jakarta EE TCK ${project.version}
 * artifacts - the TCK test artifacts
 * bin - The root configuration and script directory
 * guides - The user guides for the Platform TCK and bundled TCKs.
+* javadoc - The javadoc for the TCK porting APIs and common code
 * sql - The SQL scripts for setting up various databases for the TCK
 * src - the source for the TCK tests
 
