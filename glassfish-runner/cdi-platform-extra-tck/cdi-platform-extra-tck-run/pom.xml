@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation. All rights reserved.
+    Copyright (c) 2022, 2025 Contributors to the Eclipse Foundation.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -35,15 +35,12 @@
 
     <properties>
         <cdi.tck-4-1.version>4.1.0</cdi.tck-4-1.version>
-        <tck.version>4.1.0-M1</tck.version>
+        <tck.version>4.1.0-M2</tck.version>
         
         <glassfish.root>${project.build.directory}</glassfish.root>
 
         <!-- Note M6 still has some failures, future M7 passes all -->
         <glassfish.version>8.0.0-M9</glassfish.version>
-
-        <!-- This matches the htmlunit version in TCK -->
-        <htmlunit.version>2.50.0</htmlunit.version>
 
         <maven.build.cache.enabled>false</maven.build.cache.enabled>
 
@@ -234,11 +231,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>net.sourceforge.htmlunit</groupId>
-            <artifactId>htmlunit</artifactId>
-            <version>${htmlunit.version}</version>
-            <scope>test</scope>
-        </dependency>
+		    <groupId>org.htmlunit</groupId>
+    		<artifactId>htmlunit</artifactId>
+    		<version>4.9.0</version>
+    		<scope>test</scope>
+		</dependency>
+        
 
         <dependency>
             <groupId>org.jboss.weld</groupId>
@@ -387,10 +385,9 @@
                         <id>run ee tck</id>
                         <goals>
                             <goal>integration-test</goal>
+                            <goal>verify</goal>
                         </goals>
-                        <phase>integration-test</phase>
                         <configuration>
-                            <skipITs>${skip.ee.cdi.tck}</skipITs>
                             <argLine>-Xmx768m</argLine>
                             <!-- Surefire / TestNG Properties -->
                             <!-- The suite, the exclude and the test dependencies together determine which tests are being run -->
