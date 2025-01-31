@@ -40,6 +40,7 @@
         <tck.artifactId>el-platform-tck</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
         <ts.home>./jakartaeetck</ts.home>
+        <jakarta.el-api.version>6.0.1</jakarta.el-api.version>
         <version.jakarta.tck.arquillian>11.0.0-M1</version.jakarta.tck.arquillian>
     </properties>
 
@@ -75,6 +76,7 @@
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
+            <version>${jakarta.el-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
