@@ -40,10 +40,19 @@ import jakarta.persistence.PersistenceUnit;
 public class AppManagedNoTxVehicleBean extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
         implements AppManagedNoTxVehicleIF, java.io.Serializable {
 
+    /**
+     * Default constructor for AppManagedNoTxVehicleBean.
+     * Calls the superclass constructor.
+     */
     public AppManagedNoTxVehicleBean() {
         super();
     }
 
+    /**
+     * Returns the type of the vehicle.
+     *
+     * @return the vehicle type as a String
+     */
     protected String getVehicleType() {
         return APPMANAGEDNOTX;
     }
@@ -51,6 +60,13 @@ public class AppManagedNoTxVehicleBean extends com.sun.ts.tests.common.vehicle.e
     private EntityManagerFactory emf;
 
     // ================== business methods ====================================
+    /**
+     * Runs the test with the given arguments and properties.
+     *
+     * @param args the arguments for the test
+     * @param props the properties for the test
+     * @return the RemoteStatus of the test run
+     */
     @Remove
     public RemoteStatus runTest(String[] args, Properties props) {
         props.put("persistence.unit.name", "CTS-EM-NOTX");
@@ -71,21 +87,41 @@ public class AppManagedNoTxVehicleBean extends com.sun.ts.tests.common.vehicle.e
     }
     /////////////////////////////////////////////////////////////////////////
 
+    /**
+     * Sets the session context.
+     *
+     * @param sessionContext the SessionContext to be set
+     */
     @Resource
     public void setSessionContext(SessionContext sessionContext) {
         this.sessionContext = sessionContext;
     }
 
+    /**
+     * Sets the EntityManagerFactory.
+     *
+     * @param emf the EntityManagerFactory to be set
+     */
     @PersistenceUnit(unitName = "CTS-EM-NOTX")
     public void setEntityManagerFactory(EntityManagerFactory emf) {
         this.emf = emf;
         this.entityManagerFactory = emf;
     }
 
+    /**
+     * Sets the EntityManager.
+     *
+     * @param entityManager the EntityManager to be set
+     */
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
+    /**
+     * Returns the EntityTransaction.
+     *
+     * @return the EntityTransaction
+     */
     protected EntityTransaction getEntityTransaction() {
         return new EntityTransactionWrapper(getEntityManager().getTransaction());
     }

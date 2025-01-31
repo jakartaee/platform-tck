@@ -45,7 +45,6 @@ import jakarta.resource.spi.work.WorkManager;
  * supports annotations when there is no ra.xml (Assertion 268) and the transaction support is Local.
  *
  */
-
 @Connector(description = "CTS Test Resource Adapter with No DD", displayName = "whitebox-anno_no_md.rar", vendorName = "Java Software", eisType = "TS EIS", version = "1.6", licenseDescription = "CTS License Required", licenseRequired = true, authMechanisms = @AuthenticationMechanism(credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential, authMechanism = "BasicPassword", description = "Basic Password Authentication"), reauthenticationSupport = false, securityPermissions = @SecurityPermission(description = "Security Perm description"), transactionSupport = TransactionSupport.TransactionSupportLevel.LocalTransaction, requiredWorkContexts = {
         HintsContext.class, SecurityContext.class })
 public class AnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.Serializable {
@@ -60,8 +59,7 @@ public class AnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.Se
 
     private String serverSideUser = ""; // corresponds to ts.jte's 'user' property
 
-    private String serverSidePwd = ""; // corresponds to ts.jte's 'password'
-                                       // property
+    private String serverSidePwd = ""; // corresponds to ts.jte's 'password' property
 
     private String eisUser = ""; // corresponds to ts.jte's 'user1' property
 
@@ -71,8 +69,8 @@ public class AnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.Se
     private String raName;
 
     /**
-     * constructor
-     **/
+     * Constructor for AnnotatedResourceAdapterImpl.
+     */
     public AnnotatedResourceAdapterImpl() {
         debug("enterred constructor...");
 
@@ -88,7 +86,12 @@ public class AnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.Se
     // Begin ResourceAdapter interface requirements
     //
 
-    /* must implement for ResourceAdapter interface requirement */
+    /**
+     * Starts the resource adapter.
+     *
+     * @param bsc the bootstrap context
+     * @throws ResourceAdapterInternalException if an internal error occurs
+     */
     public void start(BootstrapContext bsc) throws ResourceAdapterInternalException {
         debug("enterred start");
 
@@ -103,28 +106,45 @@ public class AnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.Se
         debug("leaving start");
     }
 
-    /* must implement for ResourceAdapter interface requirement */
+    /**
+     * Stops the resource adapter.
+     */
     public void stop() {
         debug("entered stop");
         debug("leaving stop");
     }
 
-    /* must implement for ResourceAdapter interface requirement */
+    /**
+     * Activates an endpoint.
+     *
+     * @param factory the message endpoint factory
+     * @param spec the activation spec
+     * @throws NotSupportedException if the operation is not supported
+     */
     public void endpointActivation(MessageEndpointFactory factory, ActivationSpec spec) throws NotSupportedException {
-
         debug("enterred endpointActivation");
         debug("leaving endpointActivation");
     }
 
-    /* must implement for ResourceAdapter interface requirement */
+    /**
+     * Deactivates an endpoint.
+     *
+     * @param ep the message endpoint factory
+     * @param spec the activation spec
+     */
     public void endpointDeactivation(MessageEndpointFactory ep, ActivationSpec spec) {
         debug("enterred endpointDeactivation");
         debug("leaving endpointDeactivation");
     }
 
-    /* must implement for ResourceAdapter interface requirement */
+    /**
+     * Gets the XA resources.
+     *
+     * @param specs the activation specs
+     * @return an array of XA resources
+     * @throws ResourceException if a resource error occurs
+     */
     public XAResource[] getXAResources(ActivationSpec[] specs) throws ResourceException {
-
         debug("enterred getXAResources");
         debug("leaving getXAResources");
 
@@ -135,17 +155,13 @@ public class AnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.Se
     // END ResourceAdapter interface requirements
     //
 
-    /*
-     * @name equals
-     * 
-     * @desc compares this object with the given object.
-     * 
-     * @param Object obj
-     * 
-     * @return boolean
+    /**
+     * Compares this object with the given object.
+     *
+     * @param obj the object to compare
+     * @return true if the objects are equal, false otherwise
      */
     public boolean equals(Object obj) {
-
         if ((obj == null) || !(obj instanceof AnnotatedResourceAdapterImpl)) {
             return false;
         }
@@ -173,17 +189,20 @@ public class AnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.Se
         return true;
     }
 
-    /*
-     * @name hashCode
-     * 
-     * @desc gets the hashcode for this object.
-     * 
-     * @return int
+    /**
+     * Gets the hashcode for this object.
+     *
+     * @return the hashcode
      */
     public int hashCode() {
         return this.getClass().getName().hashCode();
     }
 
+    /**
+     * Sets the resource adapter name.
+     *
+     * @param name the new resource adapter name
+     */
     public void setRaName(String name) {
         this.raName = name;
 
@@ -193,43 +212,93 @@ public class AnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.Se
         debug(str);
     }
 
+    /**
+     * Gets the resource adapter name.
+     *
+     * @return the resource adapter name
+     */
     public String getRaName() {
         debug("AnnotatedResourceAdapterImpl.getRAName");
         return raName;
     }
 
+    /**
+     * Debugging method.
+     *
+     * @param out the debug message
+     */
     public void debug(String out) {
         Debug.trace("AnnotatedResourceAdapterImpl:  " + out);
     }
 
+    /**
+     * Sets the server-side user.
+     *
+     * @param val the new server-side user
+     */
     public void setServerSideUser(String val) {
         this.serverSideUser = val;
     }
 
+    /**
+     * Gets the server-side user.
+     *
+     * @return the server-side user
+     */
     public String getServerSideUser() {
         return this.serverSideUser;
     }
 
+    /**
+     * Sets the server-side password.
+     *
+     * @param val the new server-side password
+     */
     public void setServerSidePwd(String val) {
         this.serverSidePwd = val;
     }
 
+    /**
+     * Gets the server-side password.
+     *
+     * @return the server-side password
+     */
     public String getServerSidePwd() {
         return this.serverSidePwd;
     }
 
+    /**
+     * Sets the EIS user.
+     *
+     * @param val the new EIS user
+     */
     public void setEisUser(String val) {
         this.eisUser = val;
     }
 
+    /**
+     * Gets the EIS user.
+     *
+     * @return the EIS user
+     */
     public String getEisUser() {
         return this.eisUser;
     }
 
+    /**
+     * Sets the EIS password.
+     *
+     * @param val the new EIS password
+     */
     public void setEisPwd(String val) {
-        this.eisUser = val;
+        this.eisPwd = val;
     }
 
+    /**
+     * Gets the EIS password.
+     *
+     * @return the EIS password
+     */
     public String getEisPwd() {
         return this.eisPwd;
     }

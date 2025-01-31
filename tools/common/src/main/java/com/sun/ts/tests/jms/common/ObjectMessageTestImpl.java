@@ -27,11 +27,7 @@ import jakarta.jms.ObjectMessage;
 
 /**
  * Class Declaration.
- * 
- * 
- * @see
  *
- * @author
  * @version 1.2, 09/26/00
  */
 public class ObjectMessageTestImpl extends MessageTestImpl implements ObjectMessage {
@@ -41,7 +37,6 @@ public class ObjectMessageTestImpl extends MessageTestImpl implements ObjectMess
      * Class Constructor.
      * 
      * 
-     * @see
      */
     public ObjectMessageTestImpl() {
         super();
@@ -55,7 +50,6 @@ public class ObjectMessageTestImpl extends MessageTestImpl implements ObjectMess
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setObject(Serializable object) throws JMSException {
         this.object = object;
@@ -69,7 +63,6 @@ public class ObjectMessageTestImpl extends MessageTestImpl implements ObjectMess
      *
      * @exception JMSException
      *
-     * @see
      */
     public Serializable getObject() throws JMSException {
         return object;

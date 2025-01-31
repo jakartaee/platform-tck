@@ -67,7 +67,7 @@ java/
 sun/
 ...
 </PRE>
- * <p> A few notes about the design of the meta-index:
+ * A few notes about the design of the meta-index:
  *
  * <UL>
  *
@@ -106,7 +106,7 @@ sun/
  *
  * </UL>
  *
- * <p> To avoid changing the behavior of the current application
+ * To avoid changing the behavior of the current application
  * loader and other loaders, the current MetaIndex implementation in
  * the JDK requires that the directory containing the meta-index be
  * registered with the MetaIndex class before construction of the

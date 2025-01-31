@@ -31,12 +31,7 @@ import jakarta.jms.MessageNotWriteableException;
 
 /**
  * Class Declaration.
- * 
- * 
- * @see
  *
- * @author
- * @version 1.2, 09/26/00
  */
 public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     private HashMap htable;
@@ -45,7 +40,6 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
      * Class Constructor.
      * 
      * 
-     * @see
      */
     public MapMessageTestImpl() {
         super();
@@ -314,7 +308,7 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Return the Java object value with the given name.
      * 
-     * <P>
+     *
      * Note that this method can be used to return in objectified format, an object that had been stored in the Map with the
      * equivalent <CODE>setObject</CODE> method call, or it's equivalent primitive set<type> method.
      * 
@@ -570,7 +564,7 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Set a Java object value with the given name, into the Map.
      * 
-     * <P>
+     *
      * Note that this method only works for the objectified primitive object types (Integer, Double, Long ...), String's and
      * byte arrays.
      * 

@@ -77,7 +77,7 @@ import com.sun.ts.lib.util.sec.net.www.ParseUtil;
  * principal-based entries.
  *
  *
- * <p>
+ *
  * This object stores the policy for entire Java runtime, and is the amalgamation of multiple static policy
  * configurations that resides in files. The algorithm for locating the policy file(s) and reading their information
  * into this <code>Policy</code> object is:
@@ -127,7 +127,7 @@ import com.sun.ts.lib.util.sec.net.www.ParseUtil;
  * All non-bold items above must appear as is (although case doesn't matter and some are optional, as noted below).
  * principal entries are optional and need not be present. Italicized items represent variable values.
  *
- * <p>
+ *
  * A grant entry must begin with the word <code>grant</code>. The <code>signedBy</code>,<code>codeBase</code> and
  * <code>principal</code> name/value pairs are optional. If they are not present, then any signer (including unsigned
  * code) will match, and any codeBase will match. Note that the <i>principalClass</i> may be set to the wildcard value,
@@ -135,18 +135,18 @@ import com.sun.ts.lib.util.sec.net.www.ParseUtil;
  * to the wildcard value, *, allowing it to match any <code>Principal</code> name. When setting the <i>principalName</i>
  * to the *, do not surround the * with quotes.
  *
- * <p>
+ *
  * A permission entry must begin with the word <code>permission</code>. The word <code><i>Type</i></code> in the
  * template above is a specific permission type, such as <code>java.io.FilePermission</code> or
  * <code>java.lang.RuntimePermission</code>.
  *
- * <p>
+ *
  * The "<i>action</i>" is required for many permission types, such as <code>java.io.FilePermission</code> (where it
  * specifies what type of file access that is permitted). It is not required for categories such as
  * <code>java.lang.RuntimePermission</code> where it is not necessary - you either have the permission specified by the
  * <code>"<i>name</i>"</code> value following the type name or you don't.
  *
- * <p>
+ *
  * The <code>signedBy</code> name/value pair for a permission entry is optional. If present, it indicates a signed
  * permission. That is, the permission class itself must be signed by the given alias in order for it to be granted. For
  * example, suppose you have the following grant entry:
@@ -157,21 +157,21 @@ import com.sun.ts.lib.util.sec.net.www.ParseUtil;
  *   }
  * </pre>
  *
- * <p>
+ *
  * Then this permission of type <i>Foo</i> is granted if the <code>Foo.class</code> permission has been signed by the
  * "FooSoft" alias, or if XXX <code>Foo.class</code> is a system class (i.e., is found on the CLASSPATH).
  *
  *
- * <p>
+ *
  * Items that appear in an entry must appear in the specified order (<code>permission</code>, <i>Type</i>,
  * "<i>name</i>", and "<i>action</i>"). An entry is terminated with a semicolon.
  *
- * <p>
+ *
  * Case is unimportant for the identifiers (<code>permission</code>, <code>signedBy</code>, <code>codeBase</code>, etc.)
  * but is significant for the <i>Type</i> or for any string that is passed in as a value.
- * <p>
  *
- * <p>
+ *
+ *
  * An example of two entries in a policy configuration file is
  * 
  * <pre>
@@ -195,7 +195,7 @@ import com.sun.ts.lib.util.sec.net.www.ParseUtil;
  * as part of its target name. When such a permission is evaluated (such as during a security check), <b>${{self}}</b>
  * is replaced with one or more Principal class/name pairs. The exact replacement performed depends upon the contents of
  * the grant clause to which the permission belongs.
- * <p>
+ *
  *
  * If the grant clause does not contain any principal information, the permission will be ignored (permissions
  * containing <b>${{self}}</b> in their target names are only valid in the context of a principal-based grant clause).
@@ -223,7 +223,7 @@ import com.sun.ts.lib.util.sec.net.www.ParseUtil;
  * current <code>AccessControlContext</code>.
  *
  *
- * <p>
+ *
  * For PrivateCredentialPermissions, you can also use "<b>self</b>" instead of "<b>${{self}}</b>". However the use of
  * "<b>self</b>" is deprecated in favour of "<b>${{self}}</b>".
  *
@@ -332,23 +332,23 @@ public class PolicyFile extends java.security.Policy {
      * All non-italicized items above must appear as is (although case doesn't matter and some are optional, as noted
      * below). Italicized items represent variable values.
      *
-     * <p>
+     *
      * A grant entry must begin with the word <code>grant</code>. The <code>signedBy</code> and <code>codeBase</code>
      * name/value pairs are optional. If they are not present, then any signer (including unsigned code) will match, and any
      * codeBase will match.
      *
-     * <p>
+     *
      * A permission entry must begin with the word <code>permission</code>. The word <code><i>Type</i></code> in the
      * template above would actually be a specific permission type, such as <code>java.io.FilePermission</code> or
      * <code>java.lang.RuntimePermission</code>.
      *
-     * <p>
+     *
      * The "<i>action</i>" is required for many permission types, such as <code>java.io.FilePermission</code> (where it
      * specifies what type of file access is permitted). It is not required for categories such as
      * <code>java.lang.RuntimePermission</code> where it is not necessary - you either have the permission specified by the
      * <code>"<i>name</i>"</code> value following the type name or you don't.
      *
-     * <p>
+     *
      * The <code>signedBy</code> name/value pair for a permission entry is optional. If present, it indicates a signed
      * permission. That is, the permission class itself must be signed by the given alias in order for it to be granted. For
      * example, suppose you have the following grant entry:
@@ -359,20 +359,20 @@ public class PolicyFile extends java.security.Policy {
      *   }
      * </pre>
      *
-     * <p>
+     *
      * Then this permission of type <i>Foo</i> is granted if the <code>Foo.class</code> permission has been signed by the
      * "FooSoft" alias, or if <code>Foo.class</code> is a system class (i.e., is found on the CLASSPATH).
      *
-     * <p>
+     *
      * Items that appear in an entry must appear in the specified order (<code>permission</code>, <i>Type</i>,
      * "<i>name</i>", and "<i>action</i>"). An entry is terminated with a semicolon.
      *
-     * <p>
+     *
      * Case is unimportant for the identifiers (<code>permission</code>, <code>signedBy</code>, <code>codeBase</code>, etc.)
      * but is significant for the <i>Type</i> or for any string that is passed in as a value.
-     * <p>
      *
-     * <p>
+     *
+     *
      * An example of two entries in a policy configuration file is
      * 
      * <pre>
@@ -382,7 +382,7 @@ public class PolicyFile extends java.security.Policy {
      *   grant signedBy "Duke" {
      *          permission java.io.FilePermission "/tmp/*", "read,write";
      *   };
-     * <p>
+     *
      *   // grant everyone the following permission
      *
      *   grant {
@@ -971,7 +971,7 @@ public class PolicyFile extends java.security.Policy {
      * This includes the permissions currently associated with the domain as well as the policy permissions granted to the
      * domain's CodeSource, ClassLoader, and Principals.
      *
-     * <p>
+     *
      * Note that this <code>Policy</code> implementation has special handling for PrivateCredentialPermissions. When this
      * method encounters a <code>PrivateCredentialPermission</code> which specifies "self" as the <code>Principal</code>
      * class and name, it does not add that <code>Permission</code> to the returned <code>PermissionCollection</code>.
@@ -980,7 +980,7 @@ public class PolicyFile extends java.security.Policy {
      * as specified in the originally granted permission, as well as the Class and name for the respective
      * <code>Principal</code>.
      *
-     * <p>
+     *
      *
      * @param domain the Permissions granted to this <code>ProtectionDomain</code> are returned.
      *
@@ -1301,10 +1301,10 @@ public class PolicyFile extends java.security.Policy {
     }
 
     /**
-     * <p>
+     *
      *
      * @param sp the SelfPermission that needs to be expanded
-     * <p>
+     *
      *
      * @param entryPs list of principals for the Policy entry.
      *
@@ -1798,22 +1798,22 @@ public class PolicyFile extends java.security.Policy {
 
     /**
      * Each entry in the policy configuration file is represented by a PolicyEntry object.
-     * <p>
+     *
      *
      * A PolicyEntry is a (CodeSource,Permission) pair. The CodeSource contains the (URL, PublicKey) that together identify
      * where the Java bytecodes come from and who (if anyone) signed them. The URL could refer to localhost. The URL could
      * also be null, meaning that this policy entry is given to all comers, as long as they match the signer field. The
      * signer could be null, meaning the code is not signed.
-     * <p>
+     *
      *
      * The Permission contains the (Type, Name, Action) triplet.
-     * <p>
+     *
      *
      * For now, the Policy object retrieves the public key from the X.509 certificate on disk that corresponds to the
      * signedBy alias specified in the Policy config file. For reasons of efficiency, the Policy object keeps a hashtable of
      * certs already read in. This could be replaced by a secure internal key store.
      *
-     * <p>
+     *
      * For example, the entry
      * 
      * <pre>

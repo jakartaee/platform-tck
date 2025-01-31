@@ -39,11 +39,7 @@ import jakarta.jms.StreamMessage;
 
 /**
  * Class Declaration.
- * 
- * 
- * @see
  *
- * @author
  * @version 1.2, 09/26/00
  */
 public class StreamMessageTestImpl extends MessageTestImpl implements StreamMessage {
@@ -646,7 +642,7 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Read a Java object from the stream message.
      * 
-     * <P>
+     *
      * Note that this method can be used to return in objectified format, an object that had been written to the Stream with
      * the equivalent <CODE>writeObject</CODE> method call, or it's equivalent primitive write<type> method.
      * 
@@ -938,7 +934,7 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Write a Java object to the stream message.
      * 
-     * <P>
+     *
      * Note that this method only works for the objectified primitive object types (Integer, Double, Long ...), String's and
      * byte arrays.
      * 

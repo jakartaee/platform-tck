@@ -202,7 +202,7 @@ public class FpUtils {
     /**
      * Returns {@code true} if the specified number is infinitely large in magnitude, {@code false} otherwise.
      *
-     * <p>
+     *
      * Note that this method is equivalent to the {@link Double#isInfinite(double) Double.isInfinite} method; the
      * functionality is included in this class for convenience.
      *
@@ -216,7 +216,7 @@ public class FpUtils {
     /**
      * Returns {@code true} if the specified number is infinitely large in magnitude, {@code false} otherwise.
      *
-     * <p>
+     *
      * Note that this method is equivalent to the {@link Float#isInfinite(float) Float.isInfinite} method; the functionality
      * is included in this class for convenience.
      *
@@ -230,7 +230,7 @@ public class FpUtils {
     /**
      * Returns {@code true} if the specified number is a Not-a-Number (NaN) value, {@code false} otherwise.
      *
-     * <p>
+     *
      * Note that this method is equivalent to the {@link Double#isNaN(double) Double.isNaN} method; the functionality is
      * included in this class for convenience.
      *
@@ -244,7 +244,7 @@ public class FpUtils {
     /**
      * Returns {@code true} if the specified number is a Not-a-Number (NaN) value, {@code false} otherwise.
      *
-     * <p>
+     *
      * Note that this method is equivalent to the {@link Float#isNaN(float) Float.isNaN} method; the functionality is
      * included in this class for convenience.
      *
@@ -285,7 +285,7 @@ public class FpUtils {
      * Returns unbiased exponent of a {@code double}; for subnormal values, the number is treated as if it were normalized.
      * That is for all finite, non-zero, positive numbers <i>x</i>, <code>scalb(<i>x</i>, -ilogb(<i>x</i>))</code> is always
      * in the range [1, 2).
-     * <p>
+     *
      * Special cases:
      * <ul>
      * <li>If the argument is NaN, then the result is 2<sup>30</sup>.
@@ -346,7 +346,7 @@ public class FpUtils {
      * Returns unbiased exponent of a {@code float}; for subnormal values, the number is treated as if it were normalized.
      * That is for all finite, non-zero, positive numbers <i>x</i>, <code>scalb(<i>x</i>, -ilogb(<i>x</i>))</code> is always
      * in the range [1, 2).
-     * <p>
+     *
      * Special cases:
      * <ul>
      * <li>If the argument is NaN, then the result is 2<sup>30</sup>.
@@ -434,7 +434,7 @@ public class FpUtils {
      * n)} is subnormal, {@code scalb(scalb(x, n), -n)} may not equal <i>x</i>. When the result is non-NaN, the result has
      * the same sign as {@code d}.
      *
-     * <p>
+     *
      * Special cases:
      * <ul>
      * <li>If the first argument is NaN, NaN is returned.
@@ -516,7 +516,7 @@ public class FpUtils {
      * subnormal, precision may be lost; that is, when {@code scalb(x, n)} is subnormal, {@code scalb(scalb(x, n), -n)} may
      * not equal <i>x</i>. When the result is non-NaN, the result has the same sign as {@code f}.
      *
-     * <p>
+     *
      * Special cases:
      * <ul>
      * <li>If the first argument is NaN, NaN is returned.
@@ -552,7 +552,7 @@ public class FpUtils {
      * Returns the floating-point number adjacent to the first argument in the direction of the second argument. If both
      * arguments compare as equal the second argument is returned.
      *
-     * <p>
+     *
      * Special cases:
      * <ul>
      * <li>If either argument is a NaN, then NaN is returned.
@@ -629,7 +629,7 @@ public class FpUtils {
      * Returns the floating-point number adjacent to the first argument in the direction of the second argument. If both
      * arguments compare as equal, the second argument is returned.
      *
-     * <p>
+     *
      * Special cases:
      * <ul>
      * <li>If either argument is a NaN, then NaN is returned.
@@ -708,7 +708,7 @@ public class FpUtils {
      * Double.POSITIVE_INFINITY)}; however, a {@code nextUp} implementation may run faster than its equivalent
      * {@code nextAfter} call.
      *
-     * <p>
+     *
      * Special Cases:
      * <ul>
      * <li>If the argument is NaN, the result is NaN.
@@ -738,7 +738,7 @@ public class FpUtils {
      * Double.POSITIVE_INFINITY)}; however, a {@code nextUp} implementation may run faster than its equivalent
      * {@code nextAfter} call.
      *
-     * <p>
+     *
      * Special Cases:
      * <ul>
      * <li>If the argument is NaN, the result is NaN.
@@ -768,7 +768,7 @@ public class FpUtils {
      * Double.NEGATIVE_INFINITY)}; however, a {@code nextDown} implementation may run faster than its equivalent
      * {@code nextAfter} call.
      *
-     * <p>
+     *
      * Special Cases:
      * <ul>
      * <li>If the argument is NaN, the result is NaN.
@@ -800,7 +800,7 @@ public class FpUtils {
      * Float.NEGATIVE_INFINITY)}; however, a {@code nextDown} implementation may run faster than its equivalent
      * {@code nextAfter} call.
      *
-     * <p>
+     *
      * Special Cases:
      * <ul>
      * <li>If the argument is NaN, the result is NaN.
@@ -858,7 +858,7 @@ public class FpUtils {
      * floating-point value and the {@code double} value next larger in magnitude. Note that for non-NaN <i>x</i>,
      * <code>ulp(-<i>x</i>) == ulp(<i>x</i>)</code>.
      *
-     * <p>
+     *
      * Special Cases:
      * <ul>
      * <li>If the argument is NaN, then the result is NaN.
@@ -903,7 +903,7 @@ public class FpUtils {
      * floating-point value and the {@code float} value next larger in magnitude. Note that for non-NaN <i>x</i>,
      * <code>ulp(-<i>x</i>) == ulp(<i>x</i>)</code>.
      *
-     * <p>
+     *
      * Special Cases:
      * <ul>
      * <li>If the argument is NaN, then the result is NaN.
@@ -947,7 +947,7 @@ public class FpUtils {
      * Returns the signum function of the argument; zero if the argument is zero, 1.0 if the argument is greater than zero,
      * -1.0 if the argument is less than zero.
      *
-     * <p>
+     *
      * Special Cases:
      * <ul>
      * <li>If the argument is NaN, then the result is NaN.
@@ -967,7 +967,7 @@ public class FpUtils {
      * Returns the signum function of the argument; zero if the argument is zero, 1.0f if the argument is greater than zero,
      * -1.0f if the argument is less than zero.
      *
-     * <p>
+     *
      * Special Cases:
      * <ul>
      * <li>If the argument is NaN, then the result is NaN.

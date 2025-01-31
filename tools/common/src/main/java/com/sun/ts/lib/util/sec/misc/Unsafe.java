@@ -44,15 +44,15 @@ public final class Unsafe {
     /**
      * Provides the caller with the capability of performing unsafe operations.
      *
-     * <p>
+     *
      * The returned <code>Unsafe</code> object should be carefully guarded by the caller, since it can be used to read and
      * write data at arbitrary memory addresses. It must never be passed to untrusted code.
      *
-     * <p>
+     *
      * Most methods in this class are very low-level, and correspond to a small number of hardware instructions (on typical
      * machines). Compilers are encouraged to optimize these methods accordingly.
      *
-     * <p>
+     *
      * Here is a suggested idiom for using unsafe operations:
      *
      * <blockquote>
@@ -90,7 +90,7 @@ public final class Unsafe {
      * Fetches a value from a given Java variable. More specifically, fetches a field or array element within the given
      * object <code>o</code> at the given offset, or (if <code>o</code> is null) from the memory address whose numerical
      * value is the given offset.
-     * <p>
+     *
      * The results are undefined unless one of the following cases is true:
      * <ul>
      * <li>The offset was obtained from {@link #objectFieldOffset} on the {@link java.lang.reflect.Field} of some Java field
@@ -106,10 +106,10 @@ public final class Unsafe {
      * The value referred to is the <code>N</code><em>th</em> element of the array.
      *
      * </ul>
-     * <p>
+     *
      * If one of the above cases is true, the call references a specific Java variable (field or array element). However,
      * the results are undefined if that variable is not in fact of the type returned by this method.
-     * <p>
+     *
      * This method refers to a variable by means of two parameters, and so it provides (in effect) a
      * <em>double-register</em> addressing mode for Java variables. When the object reference is null, this method uses its
      * offset as an absolute address. This is similar in operation to methods such as {@link #getInt(long)}, which provide
@@ -128,10 +128,10 @@ public final class Unsafe {
 
     /**
      * Stores a value into a given Java variable.
-     * <p>
+     *
      * The first two parameters are interpreted exactly as with {@link #getInt(Object, long)} to refer to a specific Java
      * variable (field or array element). The given value is stored into that variable.
-     * <p>
+     *
      * The variable must be of the same type as the method parameter <code>x</code>.
      *
      * @param o Java heap object in which the variable resides, if any, else null
@@ -151,7 +151,7 @@ public final class Unsafe {
 
     /**
      * Stores a reference value into a given Java variable.
-     * <p>
+     *
      * Unless the reference <code>x</code> being stored is either null or matches the field type, the results are undefined.
      * If the reference <code>o</code> is non-null, car marks or other store barriers for that object (if the VM requires
      * them) are updated.
@@ -407,7 +407,7 @@ public final class Unsafe {
      * Fetches a native pointer from a given memory address. If the address is zero, or does not point into a block obtained
      * from {@link #allocateMemory}, the results are undefined.
      *
-     * <p>
+     *
      * If the native pointer is less than 64 bits wide, it is extended as an unsigned number to a Java long. The pointer may
      * be indexed by any given byte offset, simply by adding that offset (as a simple integer) to the long representing the
      * pointer. The number of bytes actually read from the target address maybe determined by consulting
@@ -421,7 +421,7 @@ public final class Unsafe {
      * Stores a native pointer into a given memory address. If the address is zero, or does not point into a block obtained
      * from {@link #allocateMemory}, the results are undefined.
      *
-     * <p>
+     *
      * The number of bytes actually written at the target address maybe determined by consulting {@link #addressSize}.
      *
      * @see #getAddress(long)
@@ -546,11 +546,11 @@ public final class Unsafe {
      * Report the location of a given field in the storage allocation of its class. Do not expect to perform any sort of
      * arithmetic on this offset; it is just a cookie which is passed to the unsafe heap memory accessors.
      *
-     * <p>
+     *
      * Any given field will always have the same offset and base, and no two distinct fields of the same class will ever
      * have the same offset and base.
      *
-     * <p>
+     *
      * As of 1.4.1, offsets for fields are represented as long values, although the Sun JVM does not use the most
      * significant 32 bits. However, JVM implementations which store static fields at absolute addresses can use long
      * offsets and null base pointers to express the field locations in a form usable by {@link #getInt(Object,long)}.
@@ -562,15 +562,15 @@ public final class Unsafe {
 
     /**
      * Report the location of a given static field, in conjunction with {@link #staticFieldBase}.
-     * <p>
+     *
      * Do not expect to perform any sort of arithmetic on this offset; it is just a cookie which is passed to the unsafe
      * heap memory accessors.
      *
-     * <p>
+     *
      * Any given field will always have the same offset, and no two distinct fields of the same class will ever have the
      * same offset.
      *
-     * <p>
+     *
      * As of 1.4.1, offsets for fields are represented as long values, although the Sun JVM does not use the most
      * significant 32 bits. It is hard to imagine a JVM technology which needs more than a few bits to encode an offset
      * within a non-array object, However, for consistency with other methods in this class, this method reports its result
@@ -582,7 +582,7 @@ public final class Unsafe {
 
     /**
      * Report the location of a given static field, in conjunction with {@link #staticFieldOffset}.
-     * <p>
+     *
      * Fetch the base "Object", if any, with which static fields of the given class can be accessed via methods like
      * {@link #getInt(Object, long)}. This value may be null. This value may refer to an object which is a "cookie", not
      * guaranteed to be a real Object, and it should not be used in any way except as argument to the get and put routines
@@ -662,23 +662,23 @@ public final class Unsafe {
     public native void throwException(Throwable ee);
 
     /**
-     * Atomically update Java variable to <tt>x</tt> if it is currently holding <tt>expected</tt>.
+     * Atomically update Java variable to <code>x</code> if it is currently holding <code>expected</code>.
      * 
-     * @return <tt>true</tt> if successful
+     * @return <code>true</code> if successful
      */
     public final native boolean compareAndSwapObject(Object o, long offset, Object expected, Object x);
 
     /**
-     * Atomically update Java variable to <tt>x</tt> if it is currently holding <tt>expected</tt>.
+     * Atomically update Java variable to <code>x</code> if it is currently holding <code>expected</code>.
      * 
-     * @return <tt>true</tt> if successful
+     * @return <code>true</code> if successful
      */
     public final native boolean compareAndSwapInt(Object o, long offset, int expected, int x);
 
     /**
-     * Atomically update Java variable to <tt>x</tt> if it is currently holding <tt>expected</tt>.
+     * Atomically update Java variable to <code>x</code> if it is currently holding <code>expected</code>.
      * 
-     * @return <tt>true</tt> if successful
+     * @return <code>true</code> if successful
      */
     public final native boolean compareAndSwapLong(Object o, long offset, long expected, long x);
 
@@ -756,8 +756,8 @@ public final class Unsafe {
     public native void putOrderedLong(Object o, long offset, long x);
 
     /**
-     * Unblock the given thread blocked on <tt>park</tt>, or, if it is not blocked, cause the subsequent call to
-     * <tt>park</tt> not to block. Note: this operation is "unsafe" solely because the caller must somehow ensure that the
+     * Unblock the given thread blocked on <code>park</code>, or, if it is not blocked, cause the subsequent call to
+     * <code>park</code> not to block. Note: this operation is "unsafe" solely because the caller must somehow ensure that the
      * thread has not been destroyed. Nothing special is usually required to ensure this when called from Java (in which
      * there will ordinarily be a live reference to the thread) but this is not nearly-automatically so when calling from
      * native code.
@@ -768,18 +768,18 @@ public final class Unsafe {
     public native void unpark(Object thread);
 
     /**
-     * Block current thread, returning when a balancing <tt>unpark</tt> occurs, or a balancing <tt>unpark</tt> has already
+     * Block current thread, returning when a balancing <code>unpark</code> occurs, or a balancing <code>unpark</code> has already
      * occurred, or the thread is interrupted, or, if not absolute and time is not zero, the given time nanoseconds have
      * elapsed, or if absolute, the given deadline in milliseconds since Epoch has passed, or spuriously (i.e., returning
-     * for no "reason"). Note: This operation is in the Unsafe class only because <tt>unpark</tt> is, so it would be strange
+     * for no "reason"). Note: This operation is in the Unsafe class only because <code>unpark</code> is, so it would be strange
      * to place it elsewhere.
      */
     public native void park(boolean isAbsolute, long time);
 
     /**
      * Gets the load average in the system run queue assigned to the available processors averaged over various periods of
-     * time. This method retrieves the given <tt>nelem</tt> samples and assigns to the elements of the given
-     * <tt>loadavg</tt> array. The system imposes a maximum of 3 samples, representing averages over the last 1, 5, and 15
+     * time. This method retrieves the given <code>nelem</code> samples and assigns to the elements of the given
+     * <code>loadavg</code> array. The system imposes a maximum of 3 samples, representing averages over the last 1, 5, and 15
      * minutes, respectively.
      *
      * @params loadavg an array of double of size nelems

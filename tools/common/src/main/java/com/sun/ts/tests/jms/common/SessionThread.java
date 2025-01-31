@@ -36,12 +36,6 @@ import jakarta.jms.TopicSession;
 
 /**
  * Class Declaration.
- * 
- * 
- * @see
- * 
- * @author
- * @version 1.16, 09/27/00
  */
 public class SessionThread extends Thread {
     private QueueConnection qConnection = null;

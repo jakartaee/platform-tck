@@ -45,19 +45,32 @@ import jakarta.resource.spi.work.WorkCompletedException;
 import jakarta.resource.spi.work.WorkException;
 import jakarta.resource.spi.work.WorkRejectedException;
 
-/*
+/**
  * This class is used to assist with testing API Assertions.
  */
 public class APIAssertionTest {
 
+    /**
+     * Default constructor for the APIAssertionTest class.
+     * This constructor does not perform any initialization.
+     */
     public APIAssertionTest() {
     }
 
+
+    /**
+     * Checks the ManagedConnection API.
+     *
+     * @param mcon the ManagedConnection instance to be checked
+     */
     public static void checkManagedConnectionAPI(ManagedConnection mcon) {
         if (mcon == null) {
             // should not get here
             Debug.trace("Error - null MetaData passed into APIAssertionTest.checkMetaData()");
-        }
+        }        if (mcon == null) {
+                // should not get here
+                Debug.trace("Error - null MetaData passed into APIAssertionTest.checkMetaData()");
+            }
 
         try {
             PrintWriter p = mcon.getLogWriter();
@@ -84,6 +97,11 @@ public class APIAssertionTest {
         }
     }
 
+    /**
+     * Checks the ManagedConnectionMetaData API.
+     *
+     * @param mdata the ManagedConnectionMetaData instance to be checked
+     */
     public static void checkMetaDataAPI(ManagedConnectionMetaData mdata) {
         if (mdata == null) {
             // should not get here
@@ -120,6 +138,9 @@ public class APIAssertionTest {
         }
     }
 
+    /**
+     * runTests - runs all the tests.
+     */
     public void runTests() {
         checkNotSupportedException();
         checkResourceException();

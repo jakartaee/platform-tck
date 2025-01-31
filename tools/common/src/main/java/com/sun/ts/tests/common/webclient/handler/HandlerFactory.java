@@ -60,7 +60,6 @@
 package com.sun.ts.tests.common.webclient.handler;
 
 /**
- * <PRE>
  * The HandlerManager is responsible for returning the appropriate handler instance based on the provided value.
  */
 public class HandlerFactory {

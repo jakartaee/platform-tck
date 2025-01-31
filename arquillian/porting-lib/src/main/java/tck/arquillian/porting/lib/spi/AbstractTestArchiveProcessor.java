@@ -22,6 +22,7 @@ public abstract class AbstractTestArchiveProcessor implements TestArchiveProcess
     /**
      * Called on completion of the Arquillian configuration. Subclasses that override this method must
      * call super.initalize(descriptor) to ensure that the {@link TestArchiveProcessor} producer instance is set.
+     * @param descriptor the Arquillian configuration descriptor
      */
     public void initalize(@Observes ArquillianDescriptor descriptor) {
         archiveProcessorProducer.set(this);

@@ -228,7 +228,7 @@ public class ServletTestUtil {
     }
 
     /**
-     * Returns the provided String array in the following format: <tt>[n1,n2,n...]</tt>
+     * Returns the provided String array in the following format: <code>[n1,n2,n...]</code>
      * 
      * @param sArray - an array of Objects
      * @return - a String based off the values in the array
@@ -244,7 +244,7 @@ public class ServletTestUtil {
     }
 
     /**
-     * Returns the provided Enumeration as a String in the following format: <tt>[n1,n2,n...]</tt>
+     * Returns the provided Enumeration as a String in the following format: <code>[n1,n2,n...]</code>
      * 
      * @param e - an Enumeration
      * @return - a printable version of the contents of the Enumeration

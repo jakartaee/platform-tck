@@ -20,12 +20,24 @@
 
 package com.sun.ts.tests.common.connector.util;
 
+/**
+ * Custom exception class for application-specific exceptions.
+ */
 public class AppException extends Exception {
 
+    /**
+     * Default constructor for AppException.
+     * Calls the superclass constructor with no arguments.
+     */
     public AppException() {
         super();
     }
 
+    /**
+     * Constructor for AppException with a specified error message.
+     *
+     * @param msg the error message to be associated with this exception
+     */
     public AppException(String msg) {
         super(msg);
     }

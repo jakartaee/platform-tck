@@ -39,17 +39,26 @@ import java.net.UnknownHostException;
  */
 
 public abstract class AbstractUrlClient extends BaseUrlClient {
-
+    /**
+     * The logger for this class.
+     */
     protected final Logger logger = LoggerFactory.getLogger(getClass());
-
+    /**
+     * apitest property name
+     */
     protected static final String APITEST = "apitest";
-
+    /**
+     * no servlet name
+     */
     protected static final String DONOTUSEServletName = "NoServletName";
 
     private InetAddress[] _addrs = null;
 
     private String _servlet = null;
 
+    /**
+     * Constructor.
+     */
     protected AbstractUrlClient() {
         // Construct a default context root based on the class name of
         // the concrete subclass of this class.
@@ -160,10 +169,21 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
         _servlet = servlet;
     }
 
+    /**
+     * Gets the name of the servlet to use when building a request for a single servlet API test.
+     *
+     * @return the name of the servlet
+     */
     protected String getServletName() {
         return _servlet;
     }
 
+    /**
+     * Returns a string containing the local interface information.
+     *
+     * @param returnAddresses if true, returns IP addresses; if false, returns hostnames
+     * @return a string containing the local interface information
+     */
     protected String getLocalInterfaceInfo(boolean returnAddresses) {
         String result = null;
         initInetAddress();
@@ -213,18 +233,46 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
         }
     }
 
+    /**
+     * Returns the request string.
+     *
+     * @param rq - the request string
+     * @return the request string
+     */
     protected String getRequest(String rq) {
         return rq;
     }
 
+    /**
+     * Builds a url string.
+     * @param protocol - the protocol
+     * @param hostname - the hostname
+     * @param portnum - the port number
+     * @param sContext - the context
+     * @return the url string
+     */
     protected String getURLString(String protocol, String hostname, int portnum, String sContext) {
         return protocol + "://" + hostname + ":" + portnum + "/" + sContext;
     }
-
+    /**
+     * Builds a URL.
+     * @param protocol - the protocol
+     * @param hostname - the hostname
+     * @param portnum - the port number
+     * @param sContext - the context
+     * @return the url string
+     * @throws MalformedURLException - if an error occurs
+     */
     protected URL getURL(String protocol, String hostname, int portnum, String sContext) throws MalformedURLException {
         return new URL(protocol + "://" + hostname + ":" + portnum + "/" + sContext);
     }
 
+    /**
+     * Opens a URLConnection.
+     * @param newURL - the URL
+     * @return the URLConnection
+     * @throws IOException - if an error occurs
+     */
     public URLConnection getHttpsURLConnection(URL newURL) throws IOException {
         // open HttpsURLConnection using TSHttpsURLConnection
         URLConnection httpsURLConn = null;

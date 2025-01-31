@@ -36,9 +36,9 @@ public class WebLog extends SimpleLog {
     }
 
     /**
-     * <p>
+     *
      * Do the actual logging. This method assembles the message and then prints to <code>System.err</code>.
-     * </p>
+     *
      */
     protected void log(int type, Object message, Throwable t) {
         StringBuffer buf = new StringBuffer(64);

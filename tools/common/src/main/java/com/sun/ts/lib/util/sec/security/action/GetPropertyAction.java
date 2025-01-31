@@ -19,12 +19,12 @@ package com.sun.ts.lib.util.sec.security.action;
 /**
  * A convenience class for retrieving the string value of a system property as a privileged action.
  *
- * <p>
+ *
  * An instance of this class can be used as the argument of <code>AccessController.doPrivileged</code>.
  *
- * <p>
+ *
  * The following code retrieves the value of the system property named <code>"prop"</code> as a privileged action:
- * <p>
+ *
  *
  * <pre>
  * String s = java.security.AccessController.doPrivileged(new GetPropertyAction("prop"));
