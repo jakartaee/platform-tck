@@ -33,7 +33,7 @@ import org.jboss.test.audit.annotations.SpecAssertions;
 import org.jboss.test.audit.annotations.SpecVersion;
 import org.testng.annotations.Test;
 
-import com.gargoylesoftware.htmlunit.WebClient;
+import org.htmlunit.WebClient;
 
 @Test(groups = INTEGRATION)
 @SpecVersion(spec = "cdi", version = "2.0")

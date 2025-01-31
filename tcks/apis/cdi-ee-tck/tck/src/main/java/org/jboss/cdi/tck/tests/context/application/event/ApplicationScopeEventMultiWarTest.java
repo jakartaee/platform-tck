@@ -23,8 +23,8 @@ import java.net.URL;
 
 import jakarta.servlet.ServletContext;
 
-import com.gargoylesoftware.htmlunit.TextPage;
-import com.gargoylesoftware.htmlunit.WebClient;
+import org.htmlunit.TextPage;
+import org.htmlunit.WebClient;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.Testable;
 import org.jboss.arquillian.test.api.ArquillianResource;

@@ -41,10 +41,10 @@ import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecVersion;
 import org.testng.annotations.Test;
 
-import com.gargoylesoftware.htmlunit.Page;
-import com.gargoylesoftware.htmlunit.TextPage;
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.util.Cookie;
+import org.htmlunit.Page;
+import org.htmlunit.TextPage;
+import org.htmlunit.WebClient;
+import org.htmlunit.util.Cookie;
 
 /**
  *

@@ -20,16 +20,15 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.output.NullOutputStream;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverLogLevel;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.chromium.ChromiumNetworkConditions;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v108.network.Network;
-import org.openqa.selenium.devtools.v108.network.model.Request;
-import org.openqa.selenium.devtools.v108.network.model.RequestId;
-import org.openqa.selenium.devtools.v108.network.model.ResponseReceived;
-import org.openqa.selenium.devtools.v108.network.model.TimeSinceEpoch;
+import org.openqa.selenium.devtools.v130.network.Network;
+import org.openqa.selenium.devtools.v130.network.model.Request;
+import org.openqa.selenium.devtools.v130.network.model.RequestId;
+import org.openqa.selenium.devtools.v130.network.model.ResponseReceived;
+import org.openqa.selenium.devtools.v130.network.model.TimeSinceEpoch;
 import org.openqa.selenium.html5.LocalStorage;
 import org.openqa.selenium.html5.Location;
 import org.openqa.selenium.html5.SessionStorage;
@@ -95,6 +94,7 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
     /**
      * initializes the extended functionality
      */
+    @Override
     public void postInit() {
         DevTools devTools = getDevTools();
         //we store always the last request for further reference
@@ -250,15 +250,18 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
         return delegate.getCommandExecutor();
     }
 
+    @Override
     public void get(String url) {
         lastGet = url;
         delegate.get(url);
     }
 
+    @Override
     public String getTitle() {
         return delegate.getTitle();
     }
 
+    @Override
     public String getCurrentUrl() {
         return delegate.getCurrentUrl();
     }
@@ -271,10 +274,12 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
         return delegate.print(printOptions);
     }
 
+    @Override
     public WebElement findElement(By locator) {
         return delegate.findElement(locator);
     }
 
+    @Override
     public List<WebElement> findElements(By locator) {
         return delegate.findElements(locator);
     }
@@ -283,16 +288,19 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
         return delegate.findElements(context, findCommand, locator);
     }
 
+    @Override
     public String getPageSource() {
         return delegate.getPageSource();
     }
 
+    @Override
     public String getPageText() {
         String head = delegate.findElement(By.tagName("head")).getAttribute("innerText").replaceAll("[\\s\\n ]", " ");
         String body = delegate.findElement(By.tagName("body")).getAttribute("innerText").replaceAll("[\\s\\n ]", " ");
         return head + " " + body;
     }
 
+    @Override
     public String getPageTextReduced() {
         String head = delegate.findElement(By.tagName("head")).getAttribute("innerText");
         String body = delegate.findElement(By.tagName("body")).getAttribute("innerText");
@@ -304,6 +312,7 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
      * resets the current tab and gives it a clean slate
      * that way we do not have to build up the entire tab again
      */
+    @Override
     public void reset() {
         DevTools devTools = delegate.getDevTools();
         devTools.clearListeners();
@@ -321,6 +330,7 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
      * hence reset now is the preferred way to recycle tabs instead
      * of using close
      */
+    @Override
     public void close() {
         reset();
         delegate.close();
@@ -329,14 +339,17 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
     /**
      * quits the driver entirely
      */
+    @Override
     public void quit() {
         delegate.quit();
     }
 
+    @Override
     public Set<String> getWindowHandles() {
         return delegate.getWindowHandles();
     }
 
+    @Override
     public String getWindowHandle() {
         return delegate.getWindowHandle();
     }
@@ -349,14 +362,17 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
         return delegate.executeAsyncScript(script, args);
     }
 
+    @Override
     public TargetLocator switchTo() {
         return delegate.switchTo();
     }
 
+    @Override
     public Navigation navigate() {
         return delegate.navigate();
     }
 
+    @Override
     public Options manage() {
         return delegate.manage();
     }
@@ -432,6 +448,7 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
         return delegate.getDevTools().send(Network.getResponseBody(data.requestId)).getBody();
     }
 
+    @Override
     public String getRequestData() {
         HttpCycleData data = getLastGetData();
         return data.request.getPostData().orElse("");
@@ -467,6 +484,7 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
         });
     }
 
+    @Override
     public void printProcessedResponses() {
         sortResponses();
 
@@ -481,6 +499,7 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
                 });
     }
 
+    @Override
     public ChromeDriver getDelegate() {
         return delegate;
     }
@@ -523,8 +542,6 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
         prefs.put("intl.accept_languages", "en");
         options.setExperimentalOption("prefs", prefs);
         options.addArguments("--lang=en");
-
-        options.setLogLevel(ChromeDriverLogLevel.OFF);
 
         ExtendedWebDriver driver = new ChromeDevtoolsDriver(options);
         driver.manage().timeouts().implicitlyWait(WebPage.STD_TIMEOUT);
