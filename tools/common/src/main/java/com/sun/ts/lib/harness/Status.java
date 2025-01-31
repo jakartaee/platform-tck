@@ -433,11 +433,11 @@ public class Status {
      * Convenience exit() function for the main() of tests to exit in such a way that the status passes up across process
      * boundaries without losing information (ie exit codes don't give the associated text of the status and return codes
      * when exceptions are thrown could cause unintended results).
-     * <p>
-     * <p>
+     *
+     *
      * An identifying marker is written to the error stream, which the script running the test watches for as the last
      * output before returning, followed by the type and reason
-     * <p>
+     *
      * The method does not return. It calls System.exit with a value dependent on the type.
      */
     public void exit() {

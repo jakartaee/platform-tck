@@ -38,20 +38,19 @@ import com.sun.ts.lib.util.sec.security.util.ResourcesMgr;
  * The policy for a Java runtime (specifying which permissions are available for code from various principals) is
  * represented as a separate persistent configuration. The configuration may be stored as a flat ASCII file, as a
  * serialized binary file of the Policy class, or as a database.
- * <p>
  *
- * <p>
+ *
  * The Java runtime creates one global Policy object, which is used to represent the static policy configuration file.
  * It is consulted by a ProtectionDomain when the protection domain initializes its set of permissions.
- * <p>
  *
- * <p>
+ *
+ *
  * The Policy <code>init</code> method parses the policy configuration file, and then populates the Policy object. The
  * Policy object is agnostic in that it is not involved in making policy decisions. It is merely the Java runtime
  * representation of the persistent policy configuration file.
- * <p>
  *
- * <p>
+ *
+ *
  * When a protection domain needs to initialize its set of permissions, it executes code such as the following to ask
  * the global Policy object to populate a Permissions object with the appropriate permissions:
  * 
@@ -60,7 +59,7 @@ import com.sun.ts.lib.util.sec.security.util.ResourcesMgr;
  *  Permissions perms = policy.getPermissions(protectiondomain)
  * </pre>
  *
- * <p>
+ *
  * The protection domain contains CodeSource object, which encapsulates its codebase (URL) and public key attributes. It
  * also contains the principals associated with the domain. The Policy object evaluates the global policy in light of
  * who the principal is and what the code source is and returns an appropriate Permissions object.
@@ -122,7 +121,7 @@ public class PolicyParser {
 
     /**
      * Reads a policy configuration into the Policy object using a Reader object.
-     * <p>
+     *
      *
      * @param policy the policy Reader object.
      *
@@ -680,9 +679,9 @@ public class PolicyParser {
 
     /**
      * Each grant entry in the policy configuration file is represented by a GrantEntry object.
-     * <p>
      *
-     * <p>
+     *
+     *
      * For example, the entry
      * 
      * <pre>
@@ -820,13 +819,13 @@ public class PolicyParser {
         /**
          * A PrincipalEntry consists of the <code>Principal</code> class and <code>Principal</code> name.
          *
-         * <p>
+         *
          *
          * @param principalClass the <code>Principal</code> class.
-         * <p>
+         *
          *
          * @param principalName the <code>Principal</code> name.
-         * <p>
+         *
          */
         public PrincipalEntry(String principalClass, String principalName) {
             if (principalClass == null || principalName == null)
@@ -879,7 +878,7 @@ public class PolicyParser {
          * Test for equality between the specified object and this object. Two PrincipalEntries are equal if their
          * PrincipalClass and PrincipalName values are equal.
          *
-         * <p>
+         *
          *
          * @param obj the object to test for equality with this object.
          *
@@ -903,7 +902,7 @@ public class PolicyParser {
         /**
          * Return a hashcode for this <code>PrincipalEntry</code>.
          *
-         * <p>
+         *
          *
          * @return a hashcode for this <code>PrincipalEntry</code>.
          */
@@ -918,9 +917,9 @@ public class PolicyParser {
 
     /**
      * Each permission entry in the policy configuration file is represented by a PermissionEntry object.
-     * <p>
      *
-     * <p>
+     *
+     *
      * For example, the entry
      * 
      * <pre>

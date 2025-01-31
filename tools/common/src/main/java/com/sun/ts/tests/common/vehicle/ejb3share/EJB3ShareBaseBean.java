@@ -28,7 +28,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
+/**
+ * Abstract base class for EJB3 share beans.
+ * Provides common functionality for EJB3 share beans.
+ */
 abstract public class EJB3ShareBaseBean implements EJB3ShareIF {
+
+    /**
+     * The key for the test name in the properties.
+     */
     public static final String FINDER_TEST_NAME_KEY = "testName";
 
     public static final String STATELESS3 = "stateless3";
@@ -45,13 +53,29 @@ abstract public class EJB3ShareBaseBean implements EJB3ShareIF {
 
     protected SessionContext sessionContext;
 
+    /**
+     * Returns the type of the vehicle.
+     *
+     * @return the vehicle type as a String
+     */
     protected abstract String getVehicleType();
 
+    /**
+     * Default constructor for EJB3ShareBaseBean.
+     * Calls the superclass constructor.
+     */
     protected EJB3ShareBaseBean() {
         super();
     }
 
     // ================== business methods ====================================
+    /**
+     * Runs the test with the given arguments and properties.
+     *
+     * @param args the arguments for the test
+     * @param props the properties for the test
+     * @return the RemoteStatus of the test run
+     */
     public RemoteStatus runTest(String[] args, Properties props) {
 
         try {
@@ -83,6 +107,12 @@ abstract public class EJB3ShareBaseBean implements EJB3ShareIF {
         return sTestStatus;
     }
 
+    /**
+     * Retrieves the test name from the properties.
+     *
+     * @param props the properties containing the test name
+     * @return the test name as a String
+     */
     protected String getTestName(Properties props) {
         String testName = TestUtil.getProperty(props, FINDER_TEST_NAME_KEY);
         if (testName == null) {
@@ -91,6 +121,11 @@ abstract public class EJB3ShareBaseBean implements EJB3ShareIF {
         return testName;
     }
 
+    /**
+     * Initializes the test client.
+     *
+     * @param testClient the test client to be initialized
+     */
     private void initClient(EETest testClient) {
         if (testClient instanceof UseEntityManager) {
             EntityManager em = getEntityManager();
@@ -114,25 +149,60 @@ abstract public class EJB3ShareBaseBean implements EJB3ShareIF {
 
     }
 
+    /**
+     * Returns the session context.
+     *
+     * @return the SessionContext
+     */
     public SessionContext getSessionContext() {
         return sessionContext;
     }
 
+    /**
+     * Sets the session context.
+     *
+     * @param sessionContext the SessionContext to be set
+     */
     abstract public void setSessionContext(SessionContext sessionContext);
 
+    /**
+     * Returns the entity manager.
+     *
+     * @return the EntityManager
+     */
     public EntityManager getEntityManager() {
         return entityManager;
     }
 
+    /**
+     * Returns the entity manager factory.
+     *
+     * @return the EntityManagerFactory
+     */
     public EntityManagerFactory getEntityManagerFactory() {
         return entityManagerFactory;
     }
 
+    /**
+     * Sets the entity manager factory.
+     *
+     * @param emf the EntityManagerFactory to be set
+     */
     public void setEntityManagerFactory(EntityManagerFactory emf) {
         // do nothing this gets overridden in subclass
     }
 
+    /**
+     * Returns the entity transaction.
+     *
+     * @return the EntityTransaction
+     */
     abstract protected EntityTransaction getEntityTransaction();
 
+    /**
+     * Sets the entity manager.
+     *
+     * @param entityManager the EntityManager to be set
+     */
     abstract public void setEntityManager(EntityManager entityManager);
 }

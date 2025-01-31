@@ -37,10 +37,10 @@ public class TagLibraryComparitor {
     ValidationConfiguration configuration;
 
     /**
-     * <p>
+     *
      * Constructs a new TagLibraryComparitor that will use the provided {@link ValidationConfiguration} to perform its
      * comparison.
-     * </p>
+     *
      * 
      * @param configuration - ValidationConfiguration
      */
@@ -49,9 +49,9 @@ public class TagLibraryComparitor {
     }
 
     /**
-     * <p>
+     *
      * Sets a new {@link ValidationConfiguration} to use when performing comparisons.
-     * </p>
+     *
      * 
      * @param configuration - ValidationConfiguration
      */
@@ -60,7 +60,7 @@ public class TagLibraryComparitor {
     }
 
     /**
-     * <p>
+     *
      * Performs a comparison of two {@link TagLibraryDescriptor} objects using the configured
      * {@link ValidationConfiguration}.
      * 

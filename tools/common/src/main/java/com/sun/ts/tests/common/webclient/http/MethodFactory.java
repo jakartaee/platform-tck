@@ -37,10 +37,9 @@ import com.sun.ts.lib.porting.TSURL;
 
 /**
  * Simple factory class which returns HttpMethod implementations based on a request line.
- * <p>
- * For example, a request line of <tt>GET /index.jsp HTTP/1.0</tt> would return an HttpMethod implementation that
+ *
+ * For example, a request line of <code>GET /index.jsp HTTP/1.0</code> would return an HttpMethod implementation that
  * handles GET requests using HTTP/1.0.
- * </p>
  */
 
 public class MethodFactory {

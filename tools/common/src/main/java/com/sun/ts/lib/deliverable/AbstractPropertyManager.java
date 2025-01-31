@@ -24,7 +24,6 @@ import java.util.Properties;
 /**
  * This class serves as a well known place for harness, util, and porting classes to retrieve property values.
  *
- * @created August 22, 2002
  * @author Kyle Grucci
  * @deprecated
  */
@@ -34,9 +33,14 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     private Properties jteProperties;
 
     private String tmp = File.separator + "tmp";
-
+    /**
+     * This is a flag to indicate if the values are reversed
+     */
     protected static boolean bReversed;
 
+    /**
+     * Constructor for the AbstractPropertyManager object
+     */
     protected AbstractPropertyManager() {
     }
 
@@ -97,7 +101,7 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     /**
      * This method swaps all of the following interop values in TSPropertyManager...
      *
-     * @param sDirection
+     * @param sDirection - "interop" or "default"
      */
     @Override
     public void swapInteropPropertyValues(String sDirection) {
@@ -116,10 +120,16 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
         }
     }
 
+    /**
+     * Set forward mode
+     */
     protected void forwardValues() {
         bReversed = false;
     }
 
+    /**
+     * set reverse mode
+     */
     protected void reverseValues() {
         bReversed = true;
     }
@@ -140,7 +150,7 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
      *
      * @param sPropKeys - Properties to retrieve
      * @return Properties - property/value pairs
-     * @exception PropertyNotSetException
+     * @exception PropertyNotSetException - if property is not set
      */
     @Override
     public Properties getTestSpecificProperties(String[] sPropKeys) throws PropertyNotSetException {
@@ -178,7 +188,7 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
      *
      * @param sKey - Property to retrieve
      * @return String - property value
-     * @exception PropertyNotSetException
+     * @exception PropertyNotSetException - if property is not set
      */
     @Override
     public String getProperty(String sKey) throws PropertyNotSetException {
@@ -193,7 +203,7 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
      * gets property value with default
      *
      * @param sKey - Property to retrieve
-     * @param def
+     * @param def - default value to use
      * @return String - property value
      */
     @Override
@@ -277,7 +287,7 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
      * Sets the jteProperties attribute of the AbstractPropertyManager object
      *
      * @param p The new jteProperties value
-     * @exception PropertyNotSetException
+     * @exception PropertyNotSetException - if property is not set
      */
     protected final void setJteProperties(Properties p) throws PropertyNotSetException {
         jteProperties = p;

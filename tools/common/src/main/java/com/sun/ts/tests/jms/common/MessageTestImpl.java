@@ -32,10 +32,7 @@ import jakarta.jms.MessageNotReadableException;
 /**
  * Class Declaration.
  * 
- * 
- * @see
  *
- * @author
  * @version 1.2, 09/26/00
  */
 public class MessageTestImpl implements Message {
@@ -91,7 +88,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public String getJMSMessageID() throws JMSException {
         return JMSMessageID;
@@ -105,7 +101,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setJMSMessageID(String id) throws JMSException {
         JMSMessageID = id;
@@ -119,7 +114,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public long getJMSTimestamp() throws JMSException {
         return JMSTimestamp;
@@ -133,7 +127,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setJMSTimestamp(long timestamp) throws JMSException {
         JMSTimestamp = timestamp;
@@ -147,7 +140,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public byte[] getJMSCorrelationIDAsBytes() throws JMSException {
         return JMSCorrelationIDAsBytes;
@@ -161,7 +153,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setJMSCorrelationIDAsBytes(byte[] correlationID) throws JMSException {
         JMSCorrelationIDAsBytes = correlationID;
@@ -175,7 +166,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setJMSCorrelationID(String correlationID) throws JMSException {
         JMSCorrelationID = correlationID;
@@ -189,7 +179,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public String getJMSCorrelationID() throws JMSException {
         return JMSCorrelationID;
@@ -203,7 +192,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public Destination getJMSReplyTo() throws JMSException {
         return JMSReplyTo;
@@ -217,7 +205,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setJMSReplyTo(Destination replyTo) throws JMSException {
         JMSReplyTo = replyTo;
@@ -231,7 +218,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public Destination getJMSDestination() throws JMSException {
         return JMSDestination;
@@ -245,7 +231,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setJMSDestination(Destination destination) throws JMSException {
         JMSDestination = destination;
@@ -259,7 +244,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public int getJMSDeliveryMode() throws JMSException {
         return JMSDeliveryMode;
@@ -273,7 +257,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setJMSDeliveryTime(long deliveryTime) throws JMSException {
         JMSDeliveryTime = deliveryTime;
@@ -287,7 +270,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public long getJMSDeliveryTime() throws JMSException {
         return JMSDeliveryTime;
@@ -301,7 +283,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setJMSDeliveryMode(int deliveryMode) throws JMSException {
         JMSDeliveryMode = deliveryMode;
@@ -315,7 +296,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public boolean getJMSRedelivered() throws JMSException {
         return JMSRedelivered;
@@ -329,7 +309,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setJMSRedelivered(boolean redelivered) throws JMSException {
         JMSRedelivered = redelivered;
@@ -343,7 +322,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public String getJMSType() throws JMSException {
         return JMSType;
@@ -357,7 +335,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setJMSType(String type) throws JMSException {
         JMSType = type;
@@ -371,7 +348,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public long getJMSExpiration() throws JMSException {
         return JMSExpiration;
@@ -385,7 +361,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setJMSExpiration(long expiration) throws JMSException {
         JMSExpiration = expiration;
@@ -399,7 +374,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public int getJMSPriority() throws JMSException {
         return JMSPriority;
@@ -413,7 +387,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setJMSPriority(int priority) throws JMSException {
         JMSPriority = priority;
@@ -425,7 +398,6 @@ public class MessageTestImpl implements Message {
      * 
      * @exception JMSException
      *
-     * @see
      */
     public void clearProperties() throws JMSException {
         properties.clear();
@@ -441,7 +413,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public boolean propertyExists(String name) throws JMSException {
         return properties.containsKey(name);
@@ -457,7 +428,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public boolean getBooleanProperty(String name) throws JMSException {
         if (propertyExists(name)) {
@@ -477,7 +447,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public byte getByteProperty(String name) throws JMSException {
         if (propertyExists(name)) {
@@ -497,7 +466,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public short getShortProperty(String name) throws JMSException {
         if (propertyExists(name)) {
@@ -517,7 +485,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public int getIntProperty(String name) throws JMSException {
         if (propertyExists(name)) {
@@ -537,7 +504,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public long getLongProperty(String name) throws JMSException {
         if (propertyExists(name)) {
@@ -557,7 +523,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public float getFloatProperty(String name) throws JMSException {
         if (propertyExists(name)) {
@@ -577,7 +542,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public double getDoubleProperty(String name) throws JMSException {
         if (propertyExists(name)) {
@@ -597,7 +561,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public String getStringProperty(String name) throws JMSException {
         if (propertyExists(name)) {
@@ -617,7 +580,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public Object getObjectProperty(String name) throws JMSException {
         if (propertyExists(name)) {
@@ -635,7 +597,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public Enumeration getPropertyNames() throws JMSException {
         return properties.keys();
@@ -653,7 +614,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setBooleanProperty(String name, boolean value) throws JMSException {
         properties.put(name, Boolean.valueOf(value));
@@ -668,7 +628,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setByteProperty(String name, byte value) throws JMSException {
         properties.put(name, Byte.valueOf(value));
@@ -683,7 +642,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setShortProperty(String name, short value) throws JMSException {
         properties.put(name, Short.valueOf(value));
@@ -698,7 +656,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setIntProperty(String name, int value) throws JMSException {
         properties.put(name, Integer.valueOf(value));
@@ -713,7 +670,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setLongProperty(String name, long value) throws JMSException {
         properties.put(name, Long.valueOf(value));
@@ -728,7 +684,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setFloatProperty(String name, float value) throws JMSException {
         properties.put(name, Float.valueOf(value));
@@ -743,7 +698,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setDoubleProperty(String name, double value) throws JMSException {
         properties.put(name, Double.valueOf(value));
@@ -758,7 +712,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setStringProperty(String name, String value) throws JMSException {
         properties.put(name, value);
@@ -773,7 +726,6 @@ public class MessageTestImpl implements Message {
      *
      * @exception JMSException
      *
-     * @see
      */
     public void setObjectProperty(String name, Object value) throws JMSException {
         properties.put(name, value);

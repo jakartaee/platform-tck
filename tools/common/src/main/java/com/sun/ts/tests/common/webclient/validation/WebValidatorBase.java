@@ -64,7 +64,7 @@ public abstract class WebValidatorBase implements ValidationStrategy {
     protected WebTestCase _case = null;
 
     /**
-     * <tt>validate</tt> Will validate the response against the configured TestCase.
+     * <code>validate</code> Will validate the response against the configured TestCase.
      *
      *
      * <ul>
@@ -102,29 +102,29 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * <li>Check the HTTP status code</li>
      * <ul>
      * <li>
-     * <p>
+     *
      * If status code is -1, then return true
-     * </p>
+     *
      * </li>
      * <li>
-     * <p>
+     *
      * If test case status code null and response 4xx, return failure, print error; return false
-     * </p>
+     *
      * </li>
      * <li>
-     * <p>
+     *
      * If test case status code null and response 5xx, return failure include response body; return false
-     * <p>
+     *
      * </li>
      * <li>
-     * <p>
+     *
      * If test case status code null, and response not 4xx or 5xx, return true
-     * </p>
+     *
      * </li>
      * <li>
-     * <p>
+     *
      * Test case status code not null, compare it with the response status code; return true if equal
-     * <p>
+     *
      * <li>
      * </ul>
      * </ul>
@@ -206,15 +206,15 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * <li>Check search strings</li>
      * <ul>
      * <li>
-     * <p>
+     *
      * If list of Strings is null, return true.
-     * </p>
+     *
      * </li>
      * <li>
-     * <p>
+     *
      * If list of Strings is not null, scan response body. If string is found, return true, otherwise display error and
      * return false.
-     * </p>
+     *
      * </li>
      * </ul>
      * </ul>
@@ -279,15 +279,15 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * <li>Check search strings</li>
      * <ul>
      * <li>
-     * <p>
+     *
      * If list of Strings is null, return true.
-     * </p>
+     *
      * </li>
      * <li>
-     * <p>
+     *
      * If list of Strings is not null, scan response body. If string is found, return true, otherwise display error and
      * return false.
-     * </p>
+     *
      * </li>
      * </ul>
      * </ul>
@@ -352,15 +352,15 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * <li>Check search strings</li>
      * <ul>
      * <li>
-     * <p>
+     *
      * If list of Strings is null, return true.
-     * </p>
+     *
      * </li>
      * <li>
-     * <p>
+     *
      * If list of Strings is not null, scan response body. If string is found, return true, otherwise display error and
      * return false.
-     * </p>
+     *
      * </li>
      * </ul>
      * </ul>
@@ -410,15 +410,15 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * <li>Check unexpected search strings</li>
      * <ul>
      * <li>
-     * <p>
+     *
      * If list of Strings is null, return true.
-     * </p>
+     *
      * </li>
      * <li>
-     * <p>
+     *
      * If list of Strings is not null, scan response body. If string is not found, return true, otherwise display error and
      * return false.
-     * <p>
+     *
      * </li>
      * </ul>
      * </ul>
@@ -458,15 +458,15 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * <li>Check the goldenfile</li>
      * <ul>
      * <li>
-     * <p>
+     *
      * If goldenfile is null, return true.
-     * </p>
+     *
      * </li>
      * <li>
-     * <p>
+     *
      * If goldenfile is not null, compare the goldenfile with the response. If equal, return true, otherwise display error
      * and return false.
-     * <p>
+     *
      * </li>
      * </ul>
      * </ul>
@@ -482,15 +482,15 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * <li>Check reason-phrase</li>
      * <ul>
      * <li>
-     * <p>
+     *
      * If configured reason-phrase is null, return true.
-     * </p>
+     *
      * </li>
      * <li>
-     * <p>
+     *
      * If configured reason-phrase is not null, compare the reason-phrases with the response. If equal, return true,
      * otherwise display error and return false.
-     * <p>
+     *
      * </li>
      * </ul>
      * </ul>
@@ -516,15 +516,15 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * <li>Check expected headers</li>
      * <ul>
      * <li>
-     * <p>
+     *
      * If there are no expected headers, return true.
-     * </p>
+     *
      * </li>
      * <li>
-     * <p>
+     *
      * If there are expected headers, scan the response for the expected headers. If all expected headers are found, return
      * true, otherwise display an error and return false.
-     * <p>
+     *
      * </li>
      * </ul>
      * </ul>
@@ -582,15 +582,15 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * <li>Check unexpected headers</li>
      * <ul>
      * <li>
-     * <p>
+     *
      * If there are no configured unexpected headers, return true.
-     * </p>
+     *
      * </li>
      * <li>
-     * <p>
+     *
      * If there are configured unexpected headers, scan the response for the unexpected headers. If the headers are not
      * found, return true, otherwise display an error and return false.
-     * <p>
+     *
      * </li>
      * </ul>
      * </ul>

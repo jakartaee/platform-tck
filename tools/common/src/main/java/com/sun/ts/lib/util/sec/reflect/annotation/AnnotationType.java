@@ -59,8 +59,8 @@ public class AnnotationType {
 
     /**
      * Returns an AnnotationType instance for the specified annotation type.
-     *
-     * @throw IllegalArgumentException if the specified class object for does not represent a valid annotation type
+     * @param annotationClass the class object for the annotation type
+     * @return an AnnotationType instance for the specified annotation type
      */
     public static synchronized AnnotationType getInstance(Class annotationClass) {
         AnnotationType result = com.sun.ts.lib.util.sec.misc.SharedSecrets.getJavaLangAccess().getAnnotationType(annotationClass);
@@ -74,19 +74,12 @@ public class AnnotationType {
      * Sole constructor.
      *
      * @param annotationClass the class object for the annotation type
-     * @throw IllegalArgumentException if the specified class object for does not represent a valid annotation type
      */
     private AnnotationType(final Class<?> annotationClass) {
         if (!annotationClass.isAnnotation())
             throw new IllegalArgumentException("Not an annotation type");
 
-        Method[] methods = AccessController.doPrivileged(new PrivilegedAction<Method[]>() {
-            public Method[] run() {
-                // Initialize memberTypes and defaultValues
-                return annotationClass.getDeclaredMethods();
-            }
-        });
-
+        Method[] methods = annotationClass.getDeclaredMethods();
         for (Method method : methods) {
             if (method.getParameterTypes().length != 0)
                 throw new IllegalArgumentException(method + " has params");
@@ -116,6 +109,8 @@ public class AnnotationType {
     /**
      * Returns the type that must be returned by the invocation handler of a dynamic proxy in order to have the dynamic
      * proxy return the specified type (which is assumed to be a legal member type for an annotation).
+     * @param type the type to be returned by the invocation handler
+     * @return the type that must be returned by the invocation handler of a dynamic proxy in order to have the dynamic
      */
     public static Class invocationHandlerReturnType(Class type) {
         // Translate primitives to wrappers
@@ -141,35 +136,35 @@ public class AnnotationType {
     }
 
     /**
-     * Returns member types for this annotation type (member name -> type mapping).
+     * @return member types for this annotation type (member name -> type mapping).
      */
     public Map<String, Class> memberTypes() {
         return memberTypes;
     }
 
     /**
-     * Returns members of this annotation type (member name -> associated Method object mapping).
+     * @return members of this annotation type (member name -> associated Method object mapping).
      */
     public Map<String, Method> members() {
         return members;
     }
 
     /**
-     * Returns the default values for this annotation type (Member name -> default value mapping).
+     * @return the default values for this annotation type (Member name -> default value mapping).
      */
     public Map<String, Object> memberDefaults() {
         return memberDefaults;
     }
 
     /**
-     * Returns the retention policy for this annotation type.
+     * @return the retention policy for this annotation type.
      */
     public RetentionPolicy retention() {
         return retention;
     }
 
     /**
-     * Returns true if this this annotation type is inherited.
+     * @return  true if this this annotation type is inherited.
      */
     public boolean isInherited() {
         return inherited;
@@ -177,6 +172,7 @@ public class AnnotationType {
 
     /**
      * For debugging.
+     * @return a string representation of this annotation type.
      */
     public String toString() {
         StringBuffer s = new StringBuffer("Annotation Type:" + "\n");

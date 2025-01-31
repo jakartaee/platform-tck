@@ -47,12 +47,12 @@ public interface TSDeploymentInterface {
      * This method is called by the test harness to deploy an .ear file into your Java EE implementation. We extract such
      * info as the app earfile from the provided deployment information. The following properties are available for this
      * method's use:
-     * <p>
+     *
      * generateSQL - "true" if SQL is to be generated for CMP beans
-     * <p>
-     * <p>
+     *
+     *
      * deployment_host - the host where this app is to be deployed
-     * <p>
+     *
      *
      * All additional information is queryable from the DeploymentInfo interface.
      *

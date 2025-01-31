@@ -25,6 +25,9 @@ import org.apache.commons.httpclient.Header;
 
 import com.sun.ts.lib.util.TestUtil;
 
+/**
+ * Handler for the ALLOW header.
+ */
 public class ALLOWHandler implements Handler {
 
     private static final Handler HANDLER = new ALLOWHandler();
@@ -34,6 +37,11 @@ public class ALLOWHandler implements Handler {
     private ALLOWHandler() {
     }
 
+    /**
+     * Returns the singleton instance of this class.
+     *
+     * @return the singleton instance of this class.
+     */
     public static Handler getInstance() {
         return HANDLER;
     }

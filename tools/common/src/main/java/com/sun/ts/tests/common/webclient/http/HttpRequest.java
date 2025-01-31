@@ -218,12 +218,12 @@ public class HttpRequest {
      * <code>setAuthenticationCredentials configures the request to
      * perform authentication.
      *
-     * <p><code>username</code> and <code>password</code> cannot be null.
-     * </p>
+     *<code>username</code> and <code>password</code> cannot be null.
      *
-     * <p>
+     *
+     *
      * It is legal for <code>realm</code> to be null.
-     * </p>
+     *
      *
      * @param username the user
      * @param password the user's password

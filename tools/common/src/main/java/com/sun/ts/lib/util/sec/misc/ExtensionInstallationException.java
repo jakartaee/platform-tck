@@ -26,7 +26,7 @@ package com.sun.ts.lib.util.sec.misc;
 public class ExtensionInstallationException extends Exception {
 
     /*
-     * <p> Construct a new exception with an exception reason </p>
+     * Construct a new exception with an exception reason </p>
      */
     public ExtensionInstallationException(String s) {
         super(s);

@@ -381,6 +381,7 @@ public abstract class BaseUrlClient extends EETest {
      *
      * @param args a <code>String[]</code> value
      * @param p a <code>Properties</code> value
+     * @exception Exception if an error occurs
      */
     public void setup(String[] args, Properties p) throws Exception {
         _props = p;
@@ -411,7 +412,7 @@ public abstract class BaseUrlClient extends EETest {
 
     /**
      * <code>cleanup</code> is called by the test harness to cleanup after text execution
-     *
+     * @exception Exception if an error occurs
      */
     public void cleanup() throws Exception {
         TestUtil.logMsg("[BaseUrlClient] Test cleanup OK");
@@ -465,10 +466,9 @@ public abstract class BaseUrlClient extends EETest {
     }
 
     /**
-     * <PRE>
      * Sets the appropriate test properties based
       * on the values stored in TEST_PROPS
-     * </PRE>
+     * @param testCase a <code>WebTestCase</code> value
      */
     protected void setTestProperties(WebTestCase testCase) {
         HttpRequest req = testCase.getRequest();

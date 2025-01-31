@@ -76,7 +76,7 @@ public class XidImpl implements Xid {
     /*
      * Convert to String
      *
-     * <p> This is normally used to display the XidImpl when debugging.
+     * This is normally used to display the XidImpl when debugging.
      */
 
     /**

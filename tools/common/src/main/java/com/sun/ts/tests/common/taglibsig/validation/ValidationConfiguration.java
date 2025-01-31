@@ -70,11 +70,11 @@ public class ValidationConfiguration {
     }
 
     /**
-     * <p>
+     *
      * Adds the name of a {@link Validator} implementation to this configuration. The name must be a known name (i.e. be a
      * constant name defined by this class), or a {@link Validator} will not be added. If a non-standard validator is
      * required, use <code>addValidator(String, String)</code> instead.
-     * </p>
+     *
      *
      * @param validatorName - Validator name
      */
@@ -85,9 +85,9 @@ public class ValidationConfiguration {
     }
 
     /**
-     * <p>
+     *
      * Adds a custom {@link Validator} name to the current configuration.
-     * </p>
+     *
      * 
      * @param validatorName - Validator name
      * @param validatorClass - The class name of this {@link Validator}
@@ -97,9 +97,9 @@ public class ValidationConfiguration {
     }
 
     /**
-     * <p>
+     *
      * Removes the specified {@link Validator} name from the current configuration.
-     * </p>
+     *
      * 
      * @param validatorName - Validator name
      */
@@ -108,9 +108,9 @@ public class ValidationConfiguration {
     }
 
     /**
-     * <p>
+     *
      * Returns an Iterator of the {@link Validator} names in the current configuration.
-     * </p>
+     *
      * 
      * @return Iterator of this configuration's {@link Validator} names
      */
@@ -119,9 +119,9 @@ public class ValidationConfiguration {
     }
 
     /**
-     * <p>
+     *
      * Returns the name of the {@link Validator} implementation class.
-     * </p>
+     *
      * 
      * @param validatorName - Validator name
      * @return The name of the {@link Validator} implementation class.
@@ -131,9 +131,9 @@ public class ValidationConfiguration {
     }
 
     /**
-     * <p>
+     *
      * True if {@link Validator} names have been added to the current configuration, otherwise false.
-     * </p>
+     *
      * 
      * @return True if {@link Validator} names have been added to the current configuration, otherwise false.
      */

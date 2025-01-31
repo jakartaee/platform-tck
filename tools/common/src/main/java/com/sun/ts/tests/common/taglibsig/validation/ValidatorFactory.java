@@ -29,9 +29,9 @@ public class ValidatorFactory {
     }
 
     /**
-     * <p>
+     *
      * Returns an instance of a {@link Validator} based on the provided class name.
-     * </p>
+     *
      * 
      * @param className - The name of the Validator's implementation class
      * @return a Validator instance of the class exists, otherwise null

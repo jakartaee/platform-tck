@@ -24,7 +24,6 @@ import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.Properties;
 
-import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.servlet.ServletException;
@@ -34,7 +33,7 @@ import jakarta.servlet.http.HttpServletRequest;
  * Factorize code used by JSP and Servlets.
  *
  * @see com.sun.ts.tests.common.web.ServletWrapper
- * @see com.sun.ts.common.util.TestUtil
+ * @see com.sun.ts.lib.util.TestUtil
  */
 public class WebUtil {
 

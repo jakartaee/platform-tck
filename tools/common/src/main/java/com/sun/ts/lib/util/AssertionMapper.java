@@ -230,7 +230,7 @@ public final class AssertionMapper {
             addedAssertions.add(k);
         }
         return resultBuffer.toString().trim();
-        // TODO: remove <code> <tt> from assertion description
+        // TODO: remove <code> <code> from assertion description
     }
 
     // ------------------------ static nested class ---------------------------
@@ -476,7 +476,7 @@ public final class AssertionMapper {
                 if (currentDescription == null) {
                     currentDescription = content;
                 } else { // some descriptions have formatting elements <code>,
-                         // <tt>,which
+                         // <code>,which
                     // may be treated as nested elements of description by the parser
                     currentDescription += " " + content;
                 }

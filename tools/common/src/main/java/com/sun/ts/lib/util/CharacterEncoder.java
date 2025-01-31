@@ -51,9 +51,7 @@ import java.nio.ByteBuffer;
  *
  * @version 1.38, 11/17/05
  * @author Chuck McManis
- * @see CharacterDecoder;
- * @see UCEncoder
- * @see UUEncoder
+ * @see CharacterDecoder
  * @see BASE64Encoder
  */
 public abstract class CharacterEncoder {
@@ -173,9 +171,9 @@ public abstract class CharacterEncoder {
 
     /**
      * Return a byte array from the remaining bytes in this ByteBuffer.
-     * <P>
+     *
      * The ByteBuffer's position will be advanced to ByteBuffer's limit.
-     * <P>
+     *
      * To avoid an extra copy, the implementation will attempt to return the byte array backing the ByteBuffer. If this is
      * not possible, a new byte array will be created.
      */
@@ -213,7 +211,7 @@ public abstract class CharacterEncoder {
 
     /**
      * Encode the <i>aBuffer</i> ByteBuffer and write the encoded result to the OutputStream <i>aStream</i>.
-     * <P>
+     *
      * The ByteBuffer's position will be advanced to ByteBuffer's limit.
      */
     public void encode(ByteBuffer aBuffer, OutputStream aStream) throws IOException {
@@ -223,7 +221,7 @@ public abstract class CharacterEncoder {
 
     /**
      * A 'streamless' version of encode that simply takes a ByteBuffer and returns a string containing the encoded buffer.
-     * <P>
+     *
      * The ByteBuffer's position will be advanced to ByteBuffer's limit.
      */
     public String encode(ByteBuffer aBuffer) {
@@ -290,7 +288,7 @@ public abstract class CharacterEncoder {
 
     /**
      * Encode the <i>aBuffer</i> ByteBuffer and write the encoded result to the OutputStream <i>aStream</i>.
-     * <P>
+     *
      * The ByteBuffer's position will be advanced to ByteBuffer's limit.
      */
     public void encodeBuffer(ByteBuffer aBuffer, OutputStream aStream) throws IOException {
@@ -300,7 +298,7 @@ public abstract class CharacterEncoder {
 
     /**
      * A 'streamless' version of encode that simply takes a ByteBuffer and returns a string containing the encoded buffer.
-     * <P>
+     *
      * The ByteBuffer's position will be advanced to ByteBuffer's limit.
      */
     public String encodeBuffer(ByteBuffer aBuffer) {

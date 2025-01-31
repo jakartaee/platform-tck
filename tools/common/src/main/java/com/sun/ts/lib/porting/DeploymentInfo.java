@@ -37,7 +37,7 @@ import java.util.Map;
  * and any mail configuration information is provided.</li>
  * <li>EJB References - For each EJB reference, the EJB name and its corresponding JNDI name is provided.</li>
  * </ul>
- * <p>
+ *
  * See: javaee.home.ri/lib/dtds/sun-application_5_0-0.dtd javaee.home.ri/lib/dtds/sun-application-client_5_0-0.dtd
  * javaee.home.ri/lib/dtds/sun-ejb-jar_3_0-0.dtd javaee.home.ri/lib/dtds/sun-web-app_2_5-0.dtd for more and updated
  * information.

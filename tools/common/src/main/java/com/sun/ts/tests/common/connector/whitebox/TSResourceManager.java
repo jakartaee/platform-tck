@@ -69,15 +69,15 @@ public class TSResourceManager {
 
     /**
      * Starts the new Global Transaction branch. transaction can be started in three ways.
-     * <p>
+     *
      * 1. With no flags (TMNOFLAGS) : This is starting a new transaction
-     * </p>
-     * <p>
+     *
+     *
      * 2. With join flag(TMJOIN) : This is joining new transaction
-     * </p>
-     * <p>
+     *
+     *
      * 3. With resume flag(TRESUME) : This is resuming a suspended transaction
-     * </p>
+     *
      *
      * @param xid Global Id for the transaction.
      * @param flags Flags used for Transaction. For more details see JTA spec.

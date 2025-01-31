@@ -40,9 +40,6 @@ import jakarta.jms.MessageNotWriteableException;
 /**
  * Class Declaration.
  *
- * @see
- *
- * @author
  */
 public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessage {
     static final private ObjectStreamField[] serialPersistentFields = { new ObjectStreamField("buf", byte[].class) };
@@ -62,8 +59,7 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Class Constructor.
      *
-     * @see
-     */
+/
     public BytesMessageTestImpl() {
         super();
         init();
@@ -73,8 +69,7 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
      * Method Declaration.
      *
      *
-     * @see
-     */
+/
     private void init() {
         buf = new byte[0];
         baos = new ByteArrayOutputStream();
@@ -88,8 +83,7 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
      *
      * @exception IOException
      *
-     * @see
-     */
+/
     private void writeObject(ObjectOutputStream oos) throws IOException {
         dos.flush();
         buf = baos.toByteArray();
@@ -104,8 +98,7 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
      * @exception ClassNotFoundException
      * @exception IOException
      *
-     * @see
-     */
+/
     private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
         ois.defaultReadObject();
         baos = new ByteArrayOutputStream();
@@ -121,8 +114,7 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
      *
      * @exception JMSException
      *
-     * @see
-     */
+/
     public void clearBody() throws JMSException {
         buf = null;
         bais = null;
@@ -402,7 +394,7 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Read in a string that has been encoded using a modified UTF-8 format from the BytesMessage.
      *
-     * <P>
+     *
      * For more information on the UTF-8 format, see "File System Safe UCS Transformation Format (FSS_UFT)", X/Open
      * Preliminary Specification, X/Open Company Ltd., Document Number: P316. This information also appears in ISO/IEC
      * 10646, Annex P.
@@ -662,7 +654,7 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Write a string to the BytesMessage using UTF-8 encoding in a machine-independent manner.
      *
-     * <P>
+     *
      * For more information on the UTF-8 format, see "File System Safe UCS Transformation Format (FSS_UFT)", X/Open
      * Preliminary Specification, X/Open Company Ltd., Document Number: P316. This information also appears in ISO/IEC
      * 10646, Annex P.
@@ -729,7 +721,7 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Write a Java object to the BytesMessage.
      *
-     * <P>
+     *
      * Note that this method only works for the objectified primitive object types (Integer, Double, Long ...), String's and
      * byte arrays.
      *

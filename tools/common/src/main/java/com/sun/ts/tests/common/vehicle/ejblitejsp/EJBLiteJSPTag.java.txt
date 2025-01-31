@@ -62,7 +62,7 @@ public class EJBLiteJSPTag extends Client implements SimpleTag {
 
     /**
      * Sets the parent of this tag, for collaboration purposes.
-     * <p>
+     *
      * The container invokes this method only if this tag invocation is
      * nested within another tag invocation.
      *

@@ -32,40 +32,49 @@ import jakarta.resource.spi.work.TransactionContext;
 import jakarta.resource.spi.work.WorkException;
 import jakarta.resource.spi.work.WorkManager;
 
+/**
+ * AnnoWorkManager is a class that manages work submissions and transactions
+ * using the Jakarta Resource SPI WorkManager and XATerminator.
+ */
 public class AnnoWorkManager {
     private BootstrapContext bsc = null;
-
     private WorkManager wmgr;
-
     private Xid myxid;
-
     private Xid mynestxid;
-
     private XATerminator xa;
 
+    /**
+     * Constructor for AnnoWorkManager.
+     *
+     * @param val the BootstrapContext to initialize the WorkManager and XATerminator
+     */
     public AnnoWorkManager(BootstrapContext val) {
-        debug("enterred constructor");
+        debug("entered constructor");
         this.bsc = val;
         this.wmgr = bsc.getWorkManager();
         this.xa = bsc.getXATerminator();
-
         debug("leaving constructor");
     }
 
+    /**
+     * Runs a series of tests including work submission and transaction context work.
+     */
     public void runTests() {
-        debug("enterred runTests");
+        debug("entered runTests");
         doWork();
         doTCWork();
         submitNestedXidWork();
         debug("leaving runTests");
     }
 
+    /**
+     * Submits a work object to the WorkManager.
+     */
     public void doWork() {
-        debug("enterred doWork");
+        debug("entered doWork");
 
         try {
             WorkImpl workimpl = new WorkImpl(wmgr);
-
             ExecutionContext ec = new ExecutionContext();
             WorkListenerImpl wl = new WorkListenerImpl();
             wmgr.doWork(workimpl, 5000, ec, wl);
@@ -80,6 +89,11 @@ public class AnnoWorkManager {
         debug("leaving doWork");
     }
 
+    /**
+     * Starts a new transaction context.
+     *
+     * @return the initialized TransactionContext
+     */
     private TransactionContext startTx() {
         TransactionContext tc = new TransactionContext();
         try {
@@ -92,8 +106,8 @@ public class AnnoWorkManager {
         return tc;
     }
 
-    /*
-     * This will be used to help verify assertion Connector:SPEC:55 from the annotation point of view.
+    /**
+     * Submits a work object with a transaction context to the WorkManager.
      */
     public void doTCWork() {
         try {
@@ -117,34 +131,51 @@ public class AnnoWorkManager {
         }
     }
 
+    /**
+     * Sets the Xid for this AnnoWorkManager.
+     *
+     * @param xid the Xid to set
+     */
     public void setXid(Xid xid) {
         this.myxid = xid;
     }
 
+    /**
+     * Gets the Xid for this AnnoWorkManager.
+     *
+     * @return the current Xid
+     */
     public Xid getXid() {
         return this.myxid;
     }
 
+    /**
+     * Sets the nested Xid for this AnnoWorkManager.
+     *
+     * @param xid the nested Xid to set
+     */
     public void setNestXid(Xid xid) {
         this.mynestxid = xid;
     }
 
+    /**
+     * Gets the nested Xid for this AnnoWorkManager.
+     *
+     * @return the current nested Xid
+     */
     public Xid getNestXid() {
         return this.mynestxid;
     }
 
-    /*
-     * This is used to help verify assertion: Connector:SPEC:210 While the spec is clear to state that nested work contexts
-     * are to be supported, it appears there may be some grey area wrt nested work objects with transaction contexts. It may
-     * be the case that nested transaction contexts may not be clearly defined in the connector 1.6 spec - so we will test
-     * nested work objs where only 1 of the work objs has transactioncontext.
+    /**
+     * Submits nested work objects where only one of the work objects has a transaction context.
      */
     public void submitNestedXidWork() {
         try {
             XidImpl myid = new XidImpl();
             NestedWorkXid1 workid = new NestedWorkXid1(wmgr, myid, NestedWorkXid1.ContextType.EXECUTION_CONTEXT);
 
-            // setting up the xid so it can be commited later.
+            // setting up the xid so it can be committed later.
             setNestXid(myid);
 
             TransactionContext tc = startTx();
@@ -166,8 +197,12 @@ public class AnnoWorkManager {
         }
     }
 
+    /**
+     * Logs debug messages.
+     *
+     * @param out the debug message to log
+     */
     public void debug(String out) {
         Debug.trace("AnnoWorkManager:  " + out);
     }
-
 }

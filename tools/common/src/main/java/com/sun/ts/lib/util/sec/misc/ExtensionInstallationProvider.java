@@ -25,7 +25,7 @@ package com.sun.ts.lib.util.sec.misc;
 public interface ExtensionInstallationProvider {
 
     /*
-     * <p> Request the installation of an extension in the extension directory </p>
+     * Request the installation of an extension in the extension directory </p>
      *
      * @param requestExtInfo information on the extension that need to be installed
      * 

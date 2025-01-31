@@ -243,10 +243,10 @@ public abstract class EETest implements Serializable {
     }
 
     /**
-     * <p>
+     *
      * This method is only called when test are run outside of JavaTest. If a testcase name is passed within argv, then that
      * testcase is run. Otherwise, all testcases within this implementation of EETest are run.
-     * </p>
+     *
      * 
      * @param argv an array of arguments that a test may use
      * @param log Stream passed to TestUtil for standard loggin
