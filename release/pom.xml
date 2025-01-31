@@ -36,6 +36,7 @@
     </properties>
 
     <dependencies>
+        <!-- Web Profile TCK Dependencies -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>appclient</artifactId>
@@ -146,6 +147,8 @@
             <artifactId>xa</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <!-- Additional Platform TCK Dependencies -->
     </dependencies>
 
     <build>
