@@ -9,10 +9,15 @@
     </formats>
 
     <files>
+        <!-- Root README -->
+        <file>
+            <source>README.adoc</source>
+            <filtered>true</filtered>
+        </file>
         <!-- This is the final EFTL license -->
         <file>
-            <source>../LICENSE_EFTL.md</source>
-            <destName>LICENSE.md</destName>
+            <source>../LICENSE_EFTL.adoc</source>
+            <destName>LICENSE.adoc</destName>
         </file>
         <file>
             <source>artifact-install.pom</source>
@@ -54,23 +59,9 @@
             <outputDirectory>guides</outputDirectory>
             <source>../tcks/apis/persistence/persistence-outside-container/docs/userguide/target/generated-docs/Jakarta-Persistence-TCK-Users-Guide.pdf</source>
         </file>
-
-        <!-- GlassFish example runners -->
-        <file>
-            <outputDirectory>glassfish-runner</outputDirectory>
-            <source>../glassfish-runner</source>
-        </file>
     </files>
 
     <fileSets>
-        <!-- Root README -->
-        <fileSet>
-            <directory>${project.basedir}</directory>
-            <outputDirectory>/</outputDirectory>
-            <includes>
-                <include>README.adoc</include>
-            </includes>
-        </fileSet>
         <!-- legacy config stuff, some probably obsolete -->
         <fileSet>
             <directory>${project.basedir}/../install/jakartaee/bin</directory>
@@ -87,6 +78,32 @@
         <fileSet>
             <directory>${project.basedir}/../sql</directory>
             <outputDirectory>sql</outputDirectory>
+        </fileSet>
+
+        <!-- TCK Test Sources -->
+        <fileSet>
+            <directory>${project.basedir}/../tcks</directory>
+            <outputDirectory>src/tcks</outputDirectory>
+            <includes>
+                <include>**/src/**</include>
+                <include>**/pom.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/../arquillian</directory>
+            <outputDirectory>src/arquillian</outputDirectory>
+            <includes>
+                <include>**/src/**</include>
+                <include>**/pom.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/../tools</directory>
+            <outputDirectory>src/tools</outputDirectory>
+            <includes>
+                <include>**/src/**</include>
+                <include>**/pom.xml</include>
+            </includes>
         </fileSet>
     </fileSets>
 

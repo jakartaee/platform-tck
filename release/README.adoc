@@ -1,0 +1,19 @@
+= Jakarta EE TCK Distribution
+
+This distribution contains the Jakarta EE TCK ${project.version}
+
+* LICENSE.adoc - Eclipse Foundation Technology Compatibility Kit License
+* artifacts - the TCK test artifacts
+* bin - The root configuration and script directory
+* guides - The user guides for the Platform TCK and bundled TCKs.
+* sql - The SQL scripts for setting up various databases for the TCK
+* src - the source for the TCK tests
+
+== Getting Started
+Open the guides/Jakarta-Platform-TCK-Users-Guide.pdf and follow the instructions to get started.
+
+== Sample Runners
+You can find sample maven test runners in the platform-tck repository at:
+https://github.com/jakartaee/platform-tck/tree/main/glassfish-runner
+
+Each runner targets a specific platform TCK test artifact.
