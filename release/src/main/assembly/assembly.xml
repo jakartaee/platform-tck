@@ -137,13 +137,32 @@
             <outputDirectory>artifacts</outputDirectory>
             <useProjectArtifact>true</useProjectArtifact>
         </dependencySet>
+        <!-- javadoc -->
+        <dependencySet>
+            <includes>
+                <include>jakarta.tck.arquillian:tck-porting-lib:jar:javadoc</include>
+            </includes>
+            <useTransitiveDependencies>false</useTransitiveDependencies>
+            <outputDirectory>/javadoc/tck-porting-lib</outputDirectory>
+            <useProjectArtifact>true</useProjectArtifact>
+            <unpack>true</unpack>
+        </dependencySet>
+        <dependencySet>
+            <includes>
+                <include>jakarta.tck:common:jar:javadoc</include>
+            </includes>
+            <useTransitiveDependencies>false</useTransitiveDependencies>
+            <outputDirectory>/javadoc/common</outputDirectory>
+            <useProjectArtifact>false</useProjectArtifact>
+            <unpack>true</unpack>
+        </dependencySet>
         <dependencySet>
             <includes>
                 <include>jakarta.enterprise:cdi-tck-dist-libs</include>
             </includes>
             <useTransitiveDependencies>false</useTransitiveDependencies>
             <outputDirectory>/lib</outputDirectory>
-            <useProjectArtifact>false</useProjectArtifact>
+            <useProjectArtifact>true</useProjectArtifact>
             <unpack>true</unpack>
         </dependencySet>
     </dependencySets>

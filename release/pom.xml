@@ -36,6 +36,17 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>tck-porting-lib</artifactId>
+            <version>${arquillian.jakarta.tck.version}</version>
+            <classifier>javadoc</classifier>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>samples</artifactId>
+        </dependency>
+
         <!-- Web Profile TCK Dependencies -->
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -51,6 +62,12 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
             <version>${jakarta.tck.tools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>common</artifactId>
+            <version>${jakarta.tck.tools.version}</version>
+            <classifier>javadoc</classifier>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

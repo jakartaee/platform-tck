@@ -25,4 +25,31 @@
             <artifactId>arquillian-container-spi</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>javadoc-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <!-- switch on dependency-driven aggregation -->
+                            <includeDependencySources>true</includeDependencySources>
+
+                            <dependencySourceExcludes>
+                                <dependencySourceExclude>org.jboss.arquillian.container:*</dependencySourceExclude>
+                                <dependencySourceExclude>org.jboss.arquillian.test:*</dependencySourceExclude>
+                                <dependencySourceExclude>org.junit.jupiter:*</dependencySourceExclude>
+                            </dependencySourceExcludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
