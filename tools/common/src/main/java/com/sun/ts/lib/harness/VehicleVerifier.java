@@ -20,9 +20,12 @@
 
 package com.sun.ts.lib.harness;
 
-import com.sun.ts.lib.util.*;
-import java.util.*;
-import java.io.*;
+import java.io.File;
+import java.util.Arrays;
+import java.util.Properties;
+
+import com.sun.ts.lib.util.ConfigUtil;
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  * This class is used by the TS harness to figure out which vehicles are to be used by the Service tests in the TS.

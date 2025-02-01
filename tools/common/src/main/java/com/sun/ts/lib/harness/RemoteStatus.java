@@ -16,8 +16,7 @@
 
 package com.sun.ts.lib.harness;
 
-import java.io.*;
-import com.sun.ts.lib.harness.Status;
+import java.io.Serializable;
 
 public class RemoteStatus implements Serializable {
     int type;

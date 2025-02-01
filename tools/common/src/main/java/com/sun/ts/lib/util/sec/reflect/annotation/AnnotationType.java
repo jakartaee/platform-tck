@@ -16,11 +16,12 @@
 
 package com.sun.ts.lib.util.sec.reflect.annotation;
 
-import java.lang.annotation.*;
-import java.lang.reflect.*;
-import java.util.*;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents an annotation type at run time. Used to type-check annotations and apply member defaults.

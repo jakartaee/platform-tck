@@ -18,10 +18,7 @@ package com.sun.ts.tests.common.connector.whitebox.permissiondd;
 
 import java.io.FilePermission;
 import java.net.SocketPermission;
-import java.security.AccessControlException;
-import java.security.AccessController;
 import java.security.Permission;
-import java.security.PrivilegedExceptionAction;
 import java.util.PropertyPermission;
 
 import javax.transaction.xa.Xid;
@@ -86,10 +83,6 @@ public class PermissionDDWorkManager {
             // if we have perms we should get here
             debug("SUCCESS:  validateRequiredPermSet passed.");
             ConnectorStatus.getConnectorStatus().logState("SUCCESS:  validateRequiredPermSet passed.");
-        } catch (AccessControlException ex) {
-            debug("FAILURE:  validateRequiredPermSet throwing AccessControlException.");
-            ConnectorStatus.getConnectorStatus().logState("FAILURE:  validateRequiredPermSet throwing AccessControlException.");
-            Debug.printDebugStack(ex);
         } catch (Exception ex) {
             debug("FAILURE:  validateRequiredPermSet had unexpected Exception.");
             ConnectorStatus.getConnectorStatus().logState("FAILURE:  validateRequiredPermSet had unexpected Exception.");
@@ -105,17 +98,9 @@ public class PermissionDDWorkManager {
             // call a priviledged method
             PropertyPermission readPropertyPerm = new PropertyPermission("TestPropertyPerm", "read");
 
-            try {
-                doCheckPermission(readPropertyPerm);
-                // should get here
-                debug("SUCCESS:  validateRestrictedLocalPerm() has grant for read of TestPropertyPerm");
-            } catch (AccessControlException ex) {
-                // should not get here.
-                debug("FAILURE:  validateRestrictedLocalPerm() threw unexpected exception for read of TestPropertyPerm.");
-                ConnectorStatus.getConnectorStatus().logState("FAILURE:  validateRestrictedLocalPerm() threw AccessControlException.");
-                Debug.printDebugStack(ex);
-                return;
-            }
+            doCheckPermission(readPropertyPerm);
+            // should get here
+            debug("SUCCESS:  validateRestrictedLocalPerm() has grant for read of TestPropertyPerm");
             debug("SUCCESS:  validateRestrictedLocalPerm passed.");
             ConnectorStatus.getConnectorStatus().logState("SUCCESS:  validateRestrictedLocalPerm passed.");
 
@@ -130,13 +115,6 @@ public class PermissionDDWorkManager {
     }
 
     public void doCheckPermission(Permission pp) throws Exception {
-        final Permission perm = pp;
-        AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
-            public Void run() throws AccessControlException {
-                AccessController.checkPermission(perm);
-                return null;
-            }
-        });
     }
 
     public void setXid(Xid xid) {

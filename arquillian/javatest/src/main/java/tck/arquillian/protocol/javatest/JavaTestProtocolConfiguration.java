@@ -3,8 +3,6 @@ package tck.arquillian.protocol.javatest;
 import org.jboss.arquillian.container.test.spi.client.protocol.ProtocolConfiguration;
 import tck.arquillian.protocol.common.ProtocolCommonConfig;
 
-import java.nio.file.Files;
-
 public class JavaTestProtocolConfiguration implements ProtocolConfiguration, ProtocolCommonConfig {
     // test working directory
     private String workDir;

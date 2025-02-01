@@ -16,17 +16,19 @@
 
 package com.sun.ts.lib.harness;
 
-import java.io.*;
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-import com.sun.ts.lib.util.*;
-import java.util.*;
-import com.sun.ts.lib.harness.Status;
-import com.sun.ts.tests.common.vehicle.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.deliverable.*;
-import java.net.*;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.Map;
+import java.util.Properties;
+import java.util.StringTokenizer;
+import java.util.Vector;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.vehicle.VehicleRunnable;
+import com.sun.ts.tests.common.vehicle.VehicleRunnerFactory;
 
 /**
  * This abstract class must be extended by all clients of tests of J2EE service apis; for example, JDBC, RMI-IIOP,
