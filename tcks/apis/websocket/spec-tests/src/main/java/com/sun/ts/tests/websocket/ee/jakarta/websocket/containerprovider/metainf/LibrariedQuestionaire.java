@@ -17,9 +17,6 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.containerprovider.metainf;
 
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-
 import jakarta.websocket.ContainerProvider;
 import jakarta.websocket.WebSocketContainer;
 
@@ -29,28 +26,20 @@ public class LibrariedQuestionaire {
 		TCKContainerProvider.setOriginalContainer(origContainer);
 
 		String name = null;
+		ClassLoader origCl = Thread.currentThread().getContextClassLoader();
+		try {
+			TCKClassLoader myCl = new TCKClassLoader(origCl);
+			Thread.currentThread().setContextClassLoader(myCl);
 
-		name = AccessController.doPrivileged(new PrivilegedAction<String>() {
-			@Override
-			public String run() {
-				String name = null;
-				ClassLoader origCl = Thread.currentThread().getContextClassLoader();
-				try {
-					TCKClassLoader myCl = new TCKClassLoader(origCl);
-					Thread.currentThread().setContextClassLoader(myCl);
+			WebSocketContainer container = ContainerProvider.getWebSocketContainer();
 
-					WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-
-					if (TCKWebSocketContainer.class.isInstance(container))
-						name = TCKWebSocketContainer.class.getName();
-					else
-						name = container.getClass().getName();
-				} finally {
-					Thread.currentThread().setContextClassLoader(origCl);
-				}
-				return name;
-			}
-		});
+			if (TCKWebSocketContainer.class.isInstance(container))
+				name = TCKWebSocketContainer.class.getName();
+			else
+				name = container.getClass().getName();
+		} finally {
+			Thread.currentThread().setContextClassLoader(origCl);
+		}
 		return name;
 	}
 

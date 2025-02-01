@@ -16,7 +16,6 @@
 
 package com.sun.ts.lib.harness;
 
-import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 
 import java.io.File;
@@ -29,8 +28,6 @@ import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.Vector;

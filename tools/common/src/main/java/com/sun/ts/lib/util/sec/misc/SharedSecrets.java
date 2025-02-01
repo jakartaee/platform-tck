@@ -22,7 +22,6 @@ import java.io.File;
 import java.io.FileDescriptor;
 import java.security.ProtectionDomain;
 
-import java.security.AccessController;
 
 /**
  * A repository of "shared secrets", which are a mechanism for calling implementation-private methods in another package
@@ -48,8 +47,6 @@ public class SharedSecrets {
     private static JavaIOFileDescriptorAccess javaIOFileDescriptorAccess;
 
     private static JavaSecurityProtectionDomainAccess javaSecurityProtectionDomainAccess;
-
-    private static JavaSecurityAccess javaSecurityAccess;
 
     public static JavaUtilJarAccess javaUtilJarAccess() {
         if (javaUtilJarAccess == null) {
@@ -122,16 +119,5 @@ public class SharedSecrets {
             unsafe.ensureClassInitialized(ProtectionDomain.class);
 
         return javaSecurityProtectionDomainAccess;
-    }
-
-    public static void setJavaSecurityAccess(JavaSecurityAccess jsa) {
-        javaSecurityAccess = jsa;
-    }
-
-    public static JavaSecurityAccess getJavaSecurityAccess() {
-        if (javaSecurityAccess == null) {
-            unsafe.ensureClassInitialized(AccessController.class);
-        }
-        return javaSecurityAccess;
     }
 }

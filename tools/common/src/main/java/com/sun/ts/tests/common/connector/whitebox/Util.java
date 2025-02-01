@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.security.auth.Subject;
@@ -47,19 +44,14 @@ public class Util {
                 return pc;
             }
         } else {
-            PasswordCredential pc = (PasswordCredential) AccessController.doPrivileged(new PrivilegedAction() {
-                public Object run() {
-                    Set creds = subject.getPrivateCredentials(PasswordCredential.class);
-                    Iterator iter = creds.iterator();
-                    while (iter.hasNext()) {
-                        PasswordCredential temp = (PasswordCredential) iter.next();
-                        if (temp.getManagedConnectionFactory().equals(mcf)) {
-                            return temp;
-                        }
-                    }
-                    return null;
+            PasswordCredential pc = null;
+            Set<PasswordCredential> creds = subject.getPrivateCredentials(PasswordCredential.class);
+            for (PasswordCredential temp : creds) {
+                if (temp.getManagedConnectionFactory().equals(mcf)) {
+                    pc = temp;
+                    break;
                 }
-            });
+            }
             if (pc == null) {
                 throw new SecurityException("No PasswordCredential found");
             } else {

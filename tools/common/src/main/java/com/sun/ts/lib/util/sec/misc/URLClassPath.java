@@ -16,20 +16,17 @@
 
 package com.sun.ts.lib.util.sec.misc;
 
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Hashtable;
 import java.util.NoSuchElementException;
 import java.util.Stack;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.jar.JarFile;
-import com.sun.ts.lib.util.sec.misc.JarIndex;
-import com.sun.ts.lib.util.sec.misc.InvalidJarIndexException;
 import com.sun.ts.lib.util.sec.net.www.ParseUtil;
 import java.util.zip.ZipEntry;
 import java.util.jar.JarEntry;
@@ -47,16 +44,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.security.AccessController;
-import java.security.AccessControlException;
 import java.security.CodeSigner;
-import java.security.Permission;
-import java.security.PrivilegedAction;
-import java.security.PrivilegedExceptionAction;
 import java.security.cert.Certificate;
-import com.sun.ts.lib.util.sec.misc.FileURLMapper;
 
 /**
  * This class is used to maintain a search path of URLs for loading classes and resources from both JAR files and
@@ -72,23 +62,21 @@ public class URLClassPath {
     private static final boolean DEBUG;
 
     static {
-        JAVA_VERSION = java.security.AccessController
-                .doPrivileged(new com.sun.ts.lib.util.sec.security.action.GetPropertyAction("java.version"));
-        DEBUG = (java.security.AccessController
-                .doPrivileged(new com.sun.ts.lib.util.sec.security.action.GetPropertyAction("sun.misc.URLClassPath.debug")) != null);
+        JAVA_VERSION = System.getProperty("java.version");
+        DEBUG = System.getProperty("sun.misc.URLClassPath.debug") != null;
     }
 
     /* The original search path of URLs. */
-    private ArrayList path = new ArrayList();
+    private ArrayList<URL> path = new ArrayList<>();
 
     /* The stack of unopened URLs */
-    Stack urls = new Stack();
+    Stack<URL> urls = new Stack<>();
 
     /* The resulting search path of Loaders */
-    ArrayList loaders = new ArrayList();
+    ArrayList<Loader> loaders = new ArrayList<>();
 
     /* Map of each URL opened to its corresponding Loader */
-    HashMap lmap = new HashMap();
+    HashMap<URL, Loader> lmap = new HashMap<>();
 
     /* The jar protocol handler to use when creating new URLs */
     private URLStreamHandler jarHandler;
@@ -102,9 +90,7 @@ public class URLClassPath {
      * @param factory the URLStreamHandlerFactory to use when creating new URLs
      */
     public URLClassPath(URL[] urls, URLStreamHandlerFactory factory) {
-        for (int i = 0; i < urls.length; i++) {
-            path.add(urls[i]);
-        }
+        Collections.addAll(path, urls);
         push(urls);
         if (factory != null) {
             jarHandler = factory.createURLStreamHandler("jar");
@@ -133,7 +119,7 @@ public class URLClassPath {
      */
     public URL[] getURLs() {
         synchronized (urls) {
-            return (URL[]) path.toArray(new URL[path.size()]);
+            return path.toArray(new URL[path.size()]);
         }
     }
 
@@ -184,8 +170,8 @@ public class URLClassPath {
      * @param name the resource name
      * @return an Enumeration of all the urls having the specified name
      */
-    public Enumeration findResources(final String name, final boolean check) {
-        return new Enumeration() {
+    public Enumeration<URL> findResources(final String name, final boolean check) {
+        return new Enumeration<>() {
             private int index = 0;
 
             private URL url = null;
@@ -209,7 +195,7 @@ public class URLClassPath {
                 return next();
             }
 
-            public Object nextElement() {
+            public URL nextElement() {
                 if (!next()) {
                     throw new NoSuchElementException();
                 }
@@ -230,8 +216,8 @@ public class URLClassPath {
      * @param name the resource name
      * @return an Enumeration of all the resources having the specified name
      */
-    public Enumeration getResources(final String name, final boolean check) {
-        return new Enumeration() {
+    public Enumeration<Resource> getResources(final String name, final boolean check) {
+        return new Enumeration<>() {
             private int index = 0;
 
             private Resource res = null;
@@ -255,7 +241,7 @@ public class URLClassPath {
                 return next();
             }
 
-            public Object nextElement() {
+            public Resource nextElement() {
                 if (!next()) {
                     throw new NoSuchElementException();
                 }
@@ -284,7 +270,7 @@ public class URLClassPath {
                 if (urls.empty()) {
                     return null;
                 } else {
-                    url = (URL) urls.pop();
+                    url = urls.pop();
                 }
             }
             // Skip this URL if it already has a Loader. (Loader
@@ -311,30 +297,22 @@ public class URLClassPath {
             loaders.add(loader);
             lmap.put(url, loader);
         }
-        return (Loader) loaders.get(index);
+        return loaders.get(index);
     }
 
     /*
      * Returns the Loader for the specified base URL.
      */
     private Loader getLoader(final URL url) throws IOException {
-        try {
-            return (Loader) java.security.AccessController.doPrivileged(new java.security.PrivilegedExceptionAction() {
-                public Object run() throws IOException {
-                    String file = url.getFile();
-                    if (file != null && file.endsWith("/")) {
-                        if ("file".equals(url.getProtocol())) {
-                            return new FileLoader(url);
-                        } else {
-                            return new Loader(url);
-                        }
-                    } else {
-                        return new JarLoader(url, jarHandler, lmap);
-                    }
-                }
-            });
-        } catch (java.security.PrivilegedActionException pae) {
-            throw (IOException) pae.getException();
+        String file = url.getFile();
+        if (file != null && file.endsWith("/")) {
+            if ("file".equals(url.getProtocol())) {
+                return new FileLoader(url);
+            } else {
+                return new Loader(url);
+            }
+        } else {
+            return new JarLoader(url, jarHandler, lmap);
         }
     }
 
@@ -423,8 +401,7 @@ public class URLClassPath {
                  * For a HTTP connection we use the HEAD method to check if the resource exists.
                  */
                 URLConnection uc = url.openConnection();
-                if (uc instanceof HttpURLConnection) {
-                    HttpURLConnection hconn = (HttpURLConnection) uc;
+                if (uc instanceof HttpURLConnection hconn) {
                     hconn.setRequestMethod("HEAD");
                     if (hconn.getResponseCode() >= HttpURLConnection.HTTP_BAD_REQUEST) {
                         return null;
@@ -451,6 +428,7 @@ public class URLClassPath {
             try {
                 uc = url.openConnection();
                 InputStream in = uc.getInputStream();
+                in.close();
             } catch (Exception e) {
                 return null;
             }
@@ -507,12 +485,12 @@ public class URLClassPath {
 
         private URLStreamHandler handler;
 
-        private HashMap lmap;
+        private HashMap<URL, Loader> lmap;
 
         /*
          * Creates a new JarLoader for the specified URL referring to a JAR file.
          */
-        JarLoader(URL url, URLStreamHandler jarHandler, HashMap loaderMap) throws IOException {
+        JarLoader(URL url, URLStreamHandler jarHandler, HashMap<URL, Loader> loaderMap) throws IOException {
             super(new URL("jar", "", -1, url + "!/", jarHandler));
             csu = url;
             handler = jarHandler;
@@ -556,43 +534,33 @@ public class URLClassPath {
 
         private void ensureOpen() throws IOException {
             if (jar == null) {
-                try {
-                    java.security.AccessController.doPrivileged(new java.security.PrivilegedExceptionAction() {
-                        public Object run() throws IOException {
-                            if (DEBUG) {
-                                System.err.println("Opening " + csu);
-                                Thread.dumpStack();
-                            }
+                if (DEBUG) {
+                    System.err.println("Opening " + csu);
+                    Thread.dumpStack();
+                }
 
-                            jar = getJarFile(csu);
-                            index = JarIndex.getJarIndex(jar, metaIndex);
-                            if (index != null) {
-                                String[] jarfiles = index.getJarFiles();
-                                // Add all the dependent URLs to the lmap so that loaders
-                                // will not be created for them by
-                                // URLClassPath.getLoader(int)
-                                // if the same URL occurs later on the main class path. We
-                                // set
-                                // Loader to null here to avoid creating a Loader for each
-                                // URL until we actually need to try to load something from
-                                // them.
-                                for (int i = 0; i < jarfiles.length; i++) {
-                                    try {
-                                        URL jarURL = new URL(csu, jarfiles[i]);
-                                        // If a non-null loader already exists, leave it alone.
-                                        if (!lmap.containsKey(jarURL)) {
-                                            lmap.put(jarURL, null);
-                                        }
-                                    } catch (MalformedURLException e) {
-                                        continue;
-                                    }
-                                }
+                jar = getJarFile(csu);
+                index = JarIndex.getJarIndex(jar, metaIndex);
+                if (index != null) {
+                    String[] jarfiles = index.getJarFiles();
+                    // Add all the dependent URLs to the lmap so that loaders
+                    // will not be created for them by
+                    // URLClassPath.getLoader(int)
+                    // if the same URL occurs later on the main class path. We
+                    // set
+                    // Loader to null here to avoid creating a Loader for each
+                    // URL until we actually need to try to load something from
+                    // them.
+                    for (String jarfile : jarfiles) {
+                        try {
+                            URL jarURL = new URL(csu, jarfile);
+                            // If a non-null loader already exists, leave it alone.
+                            if (!lmap.containsKey(jarURL)) {
+                                lmap.put(jarURL, null);
                             }
-                            return null;
+                        } catch (MalformedURLException e) {
                         }
-                    });
-                } catch (java.security.PrivilegedActionException pae) {
-                    throw (IOException) pae.getException();
+                    }
                 }
             }
         }
@@ -631,9 +599,6 @@ public class URLClassPath {
             final URL url;
             try {
                 url = new URL(getBaseURL(), ParseUtil.encodePath(name, false));
-            } catch (MalformedURLException e) {
-                return null;
-                // throw new IllegalArgumentException("name");
             } catch (IOException e) {
                 return null;
             }
@@ -661,15 +626,15 @@ public class URLClassPath {
 
                 public Manifest getManifest() throws IOException {
                     return jar.getManifest();
-                };
+                }
 
                 public Certificate[] getCertificates() {
                     return entry.getCertificates();
-                };
+                }
 
                 public CodeSigner[] getCodeSigners() {
                     return entry.getCodeSigners();
-                };
+                }
             };
         }
 
@@ -723,7 +688,7 @@ public class URLClassPath {
             try {
                 ensureOpen();
             } catch (IOException e) {
-                throw (InternalError) new InternalError().initCause(e);
+                throw new InternalError(e);
             }
             final JarEntry entry = jar.getJarEntry(name);
             if (entry != null)
@@ -741,7 +706,7 @@ public class URLClassPath {
          * helper method uses a HashSet to store the URLs of jar files that have been searched and uses it to avoid going into
          * an infinite loop, looking for a non-existent resource
          */
-        Resource getResource(final String name, boolean check, Set visited) {
+        Resource getResource(final String name, boolean check, Set<URL> visited) {
 
             Resource res;
             Object[] jarFiles;
@@ -770,11 +735,7 @@ public class URLClassPath {
                             /*
                              * no loader has been set up for this jar file before
                              */
-                            newLoader = (JarLoader) AccessController.doPrivileged(new PrivilegedExceptionAction() {
-                                public Object run() throws IOException {
-                                    return new JarLoader(url, handler, lmap);
-                                }
-                            });
+                            newLoader = new JarLoader(url, handler, lmap);
 
                             /*
                              * this newly opened jar file has its own index, merge it into the parent's index, taking into account the
@@ -789,9 +750,7 @@ public class URLClassPath {
                             /* put it in the global hashtable */
                             lmap.put(url, newLoader);
                         }
-                    } catch (java.security.PrivilegedActionException pae) {
-                        continue;
-                    } catch (MalformedURLException e) {
+                    } catch (IOException ioe) {
                         continue;
                     }
 
@@ -803,7 +762,7 @@ public class URLClassPath {
                         try {
                             newLoader.ensureOpen();
                         } catch (IOException e) {
-                            throw (InternalError) new InternalError().initCause(e);
+                            throw new InternalError(e);
                         }
                         final JarEntry entry = newLoader.jar.getJarEntry(name);
                         if (entry != null) {
@@ -935,23 +894,23 @@ public class URLClassPath {
                     return new Resource() {
                         public String getName() {
                             return name;
-                        };
+                        }
 
                         public URL getURL() {
                             return url;
-                        };
+                        }
 
                         public URL getCodeSourceURL() {
                             return getBaseURL();
-                        };
+                        }
 
                         public InputStream getInputStream() throws IOException {
                             return new FileInputStream(file);
-                        };
+                        }
 
                         public int getContentLength() throws IOException {
                             return (int) file.length();
-                        };
+                        }
                     };
                 }
             } catch (Exception e) {

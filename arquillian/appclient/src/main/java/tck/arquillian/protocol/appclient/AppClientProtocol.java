@@ -20,20 +20,40 @@ import org.jboss.arquillian.core.api.Injector;
 import org.jboss.arquillian.core.api.Instance;
 import org.jboss.arquillian.core.api.annotation.Inject;
 
+/**
+ * Implementation of the Arquillian Protocol interface for Application Client testing.
+ * This protocol handles the deployment and execution of tests in a Jakarta EE
+ * Application Client container environment.
+ */
 public class AppClientProtocol implements Protocol<AppClientProtocolConfiguration> {
     @Inject
     private Instance<Injector> injectorInstance;
 
+    /**
+     * {@inheritDoc}
+     * @return The configuration class for the Application Client protocol
+     */
     @Override
     public Class<AppClientProtocolConfiguration> getProtocolConfigurationClass() {
         return AppClientProtocolConfiguration.class;
     }
 
+    /**
+     * {@inheritDoc}
+     * @return A protocol description identifying this as the "appclient" protocol
+     */
     @Override
     public ProtocolDescription getDescription() {
         return new ProtocolDescription("appclient");
     }
 
+    /**
+     * {@inheritDoc}
+     * Creates and returns a deployment packager configured for Application Client deployments.
+     * The packager is injected with Arquillian dependencies before being returned.
+     * 
+     * @return An initialized AppClientDeploymentPackager instance
+     */
     @Override
     public DeploymentPackager getPackager() {
         AppClientDeploymentPackager packager = new AppClientDeploymentPackager();
@@ -43,6 +63,15 @@ public class AppClientProtocol implements Protocol<AppClientProtocolConfiguratio
         return packager;
     }
 
+    /**
+     * {@inheritDoc}
+     * Creates and returns a method executor that can run tests in an Application Client container.
+     * 
+     * @param protocolConfiguration The protocol-specific configuration
+     * @param metaData Metadata about the deployed application
+     * @param callback Callback for handling command results
+     * @return A ContainerMethodExecutor configured for Application Client test execution
+     */
     @Override
     public ContainerMethodExecutor getExecutor(AppClientProtocolConfiguration protocolConfiguration, ProtocolMetaData metaData,
             CommandCallback callback) {

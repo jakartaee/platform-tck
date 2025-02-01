@@ -32,11 +32,9 @@ public class Debug {
     private static String args;
 
     static {
-        args = java.security.AccessController
-                .doPrivileged(new com.sun.ts.lib.util.sec.security.action.GetPropertyAction("java.security.debug"));
+        args = System.getProperty("java.security.debug");
 
-        String args2 = java.security.AccessController
-                .doPrivileged(new com.sun.ts.lib.util.sec.security.action.GetPropertyAction("java.security.auth.debug"));
+        String args2 = System.getProperty("java.security.auth.debug");
 
         if (args == null) {
             args = args2;
