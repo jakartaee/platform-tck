@@ -28,24 +28,6 @@ for more information.
 
 Files
 -----
-TSDeployment.java
-	An implementation of the TSDeploymentInterface that enables automatic
-	deployment for the Java EE Reference Implementation.
-
-TSDeployment.java.manual
-	An implementation of the TSDeploymentInterface that prompts the user
-	to deploy and undeploy applications at the appropriate times during
-	testing.  This class demonstrates the use of the DeploymentInfo class.
-	It has no dependencies on platform-specific features.  Use this as
-	a template for building your own automatic deployer / undeployer.
-
-	To use this file, swap TSDeployment.java and TSDeployment.java.manual
-	and run gmake from the $TS_HOME/src/common/ directory.
-
-TSLauncher.java
-	Provides implementation-specific code for launching applications for
-	interactive tests and other needs.  Platforms that support Runtime.exec
-	most likely need not modify this file.
 
 TSLoginContext.java
 	Provides implementation-specific code for allowing a program to 
