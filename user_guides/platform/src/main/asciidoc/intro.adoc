@@ -58,8 +58,7 @@ level playing field for all Jakarta Platform ports.
 Compatibility criteria for all technology implementations are embodied
 in the Compatibility Rules that apply to a specified technology. The
 Jakarta EE {tck_version} Platform TCK tests for adherence to these Rules as described in
-link:rules.html#GBFSN[Chapter 2, "Procedure for Jakarta Platform, Enterprise
-Edition 11 Certification,"] for Jakarta EE {tck_version} and
+<<procedure-for-jakarta-platform-enterprise-edition-certification>> for Jakarta EE {tck_version} and
 <<procedure-for-jakarta-platform-enterprise-edition-web-profile-certification>> for Jakarta EE {tck_version} Web
 Profile.
 
@@ -243,14 +242,13 @@ the JDBC 4.2 API to populate the database tables with data, queries the
 database, and compares the returned results against the expected
 results.
 
-[[GEUZU]]
-
-.*Figure 1-1 Typical Jakarta Platform, Enterprise Edition Workflow*
+[[figure-1-1]]
+.*Typical Jakarta Platform, Enterprise Edition Workflow*
 image:img/overviewa.png["Typical Jakarta Platform, Enterprise Edition Workflow"]
 
 Note: References in diagram to Java EE refer to Jakarta EE.
 
-link:#GEUZU[Figure 1-1] shows how most Implementers will use the test
+<<figure-1-1>> shows how most Implementers will use the test
 suite. They will set up and run the test suite with the Jakarta Platform,
 Enterprise Edition 11 Compatible Implementation (Jakarta EE {tck_version} CI) first to
 become familiar with the testing process. Then they will set up and run

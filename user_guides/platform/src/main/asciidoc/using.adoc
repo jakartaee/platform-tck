@@ -70,8 +70,7 @@ Jakarta EE {tck_version} Platform TCK was installed.
 2.  Change to any subdirectory under `<TS_HOME>/src/com/sun/ts/tests`.
 3.  Ensure that the `ts.jte` file contains information relevant to your
 setup. +
-Refer to link:config.html#GBFVV[Chapter 5, "Setup and Configuration,"]
-for detailed configuration instructions.
+Refer to <<setup-and-configuration>> for detailed configuration instructions.
 4.  Execute the `runclient` Ant target to start the JavaTest: +
 [source,oac_no_warn]
 ----
@@ -165,10 +164,9 @@ For example, `<TS_HOME>/src/com/sun/ts/tests/samples`.
 ant runclient
 ----
 +
-The tests in `<TS_HOME>/src/com/sun/ts/tests/samples` and its
-subdirectories are run.
+The tests in `<TS_HOME>/src/com/sun/ts/tests/samples` and its subdirectories are run.
 
-[[GBFVL]][[to-run-a-subset-of-tests-in-batch-mode-based-on-prior-result-status]]
+[[to-run-a-subset-of-tests-in-batch-mode-based-on-prior-result-status]]
 
 
 [[using-keywords-to-test]]

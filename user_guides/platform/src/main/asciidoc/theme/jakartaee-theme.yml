@@ -80,6 +80,7 @@ heading:
   h4-font-size: $base-font-size * 1.1
   h5-font-size: $base-font-size * 1.0
   margin-bottom: $base-line-height-length
+  part-break-before: always
 link:
   font-color: #002FA7
 list:

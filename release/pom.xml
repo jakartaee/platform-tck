@@ -32,7 +32,7 @@
 
     <properties>
         <tck.test.jsonb.version>3.0.0-SNAPSHOT</tck.test.jsonb.version>
-        <tck.test.jsonp.version>2.1.0-SNAPSHOT</tck.test.jsonp.version>
+        <tck.test.jsonp.version>11.0.0-SNAPSHOT</tck.test.jsonp.version>
     </properties>
 
     <dependencies>
@@ -136,6 +136,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>jsonp-platform-tck</artifactId>
+            <version>${tck.test.jsonp.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>pages-platform-tck</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -183,7 +189,7 @@
                             <descriptors>
                                 <descriptor>src/main/assembly/assembly.xml</descriptor>
                             </descriptors>
-                            <finalName>platform-tck-${project.version}</finalName>
+                            <finalName>jakartaeetck-${project.version}</finalName>
                         </configuration>
                     </execution>
                 </executions>

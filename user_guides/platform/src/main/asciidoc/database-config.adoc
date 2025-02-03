@@ -24,8 +24,7 @@ database.
 To perform interoperability testing, you need to configure two Jakarta
 Platform, Enterprise Edition servers and two databases, one of which
 must be the Jakarta Platform, Enterprise Edition RI with the bundled Apache Derby
-database. See link:config.html#GEWSQ[Jakarta Platform, Enterprise Edition
-Server Configuration Scenarios] for more information.
+database. See <<java-platform-enterprise-edition-server-configuration-scenarios>> for more information.
 
 For the purposes of Jakarta EE {tck_version} Platform TCK testing, all database configuration
 properties required by the TCK are made in the `<TS_HOME>/bin/ts.jte`
@@ -44,19 +43,15 @@ implementation for your database and for TCK.
 TCK.
 
 The procedure for configuring your Jakarta Platform, Enterprise Edition
-server for your database is described in
-link:config.html#GEWTQ[Configuring a Jakarta EE {tck_version} Server]. The final step,
-initializing your database for TCK by running `init.<`database> target,
-is explained more in the next section.
+server for your database is described in <<configuring-a-jakarta-ee-11-server>>. The final step,
+initializing your database for TCK by running `init.<`database> target, is explained more in the next section.
 
 [[c.2-the-init.database-ant-target]]
 == The init.<database> Ant Target
 
 Before your Jakarta Platform, Enterprise Edition server database can be
 tested against the Jakarta EE {tck_version} Platform TCK, the database must be initialized for
-TCK by means of the Ant `init.<`database> target. For example, the
-`init.javadb` Ant task is used to initialize the Apache Derby database for
-TCK.
+TCK by means of the Ant `init.<database>` target. For example, the `init.javadb` Ant task is used to initialize the Apache Derby database for TCK.
 
 This Ant target references database properties in `ts.jte` file and
 database-specific DDL and DML files to generate SQL statement files that
