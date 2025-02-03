@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     Copyright (c) 2023 Oracle and/or its affiliates. All rights reserved.
@@ -13,21 +14,33 @@
     https://www.gnu.org/software/classpath/license.html.
 
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+    
+    **********************************
+    TODO: THIS POM NEEDS MAJOR CLEANUP
+    **********************************
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.9</version>
+        <relativePath />
+    </parent>
+
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jms-tck</artifactId>
-    <version>10.0.0-SNAPSHOT</version>
+    <version>11.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.glassfish</groupId>
-        <artifactId>standalone-tck</artifactId>
-        <version>10.0.0</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+
     <properties>
+        <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
+        <glassfish.root>${project.build.directory}</glassfish.root>
+        <glassfish.version>8.0.0-M9</glassfish.version>
+        <glassfish.version.main>8</glassfish.version.main>
+        
         <tck.artifactId>jakarta.jms-tck</tck.artifactId>
         <tck.version>3.1.0</tck.version>
         <admin.user>admin</admin.user>
@@ -37,8 +50,8 @@
         <jndi.fs.dir>/tmp/ri_admin_objects</jndi.fs.dir>
         <jndi.factory.initial>java.naming.factory.initial=com.sun.jndi.fscontext.RefFSContextFactory</jndi.factory.initial>
         <jndi.provider.url>java.naming.provider.url=file:///${jndi.fs.dir}</jndi.provider.url>
-        <ri.home>${project.build.directory}/${glassfish.toplevel.dir}/mq</ri.home>
-        <exec.asadmin>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</exec.asadmin>
+        <ri.home>${glassfish.home}/mq</ri.home>
+        <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
         <exec.imqusermgr>${ri.home}/bin/imqusermgr</exec.imqusermgr>
         <exec.imqusermgr.part2/>
         <exec.imqobjmgr>${ri.home}/bin/imqobjmgr</exec.imqobjmgr>
@@ -48,85 +61,65 @@
         <exec.imqbrokerd>${ri.home}/bin/imqbrokerd</exec.imqbrokerd>
         <exec.imqbrokerd.part2/>
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>${junit.jupiter.version}</version>
+                <version>5.11.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.9.3.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <dependencies>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit.jupiter.version}</version>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>jms-tck</artifactId>
+            <version>11.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
+            <version>11.0.0-RC4</version>
         </dependency>
+    
         <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-glassfish-managed-6</artifactId>
-            <version>1.0.0.Alpha1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.glassfish.hk2</groupId>
-                    <artifactId>hk2-locator</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>jakartatck</groupId>
-            <artifactId>jms-tck</artifactId>
-            <version>10.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.main.common</groupId>
-            <artifactId>simple-glassfish-api</artifactId>
-            <version>${glassfish.version}</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>1.7.0.Alpha14</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-core</artifactId>
-            <version>1.7.0.Alpha14</version>
         </dependency>
+        
+        <!--
+            The Arquillian connector that starts GlassFish and deploys archives to it.
+        -->
         <dependency>
-            <groupId>org.glassfish.hk2</groupId>
-            <artifactId>hk2-locator</artifactId>
-            <version>3.0.3</version>
+            <groupId>org.omnifaces.arquillian</groupId>
+            <artifactId>arquillian-glassfish-server-managed</artifactId>
+            <version>1.7</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
-    <profiles>
-        <profile>
-            <id>full</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>web</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
-            </properties>
-        </profile>
-    </profiles>
+
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.2.0</version>
                 <executions>
@@ -151,8 +144,8 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>3.0.0</version>
                 <executions>
@@ -368,8 +361,9 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>exec-maven-plugin</artifactId>
                 <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
                 <executions>
                     <execution>
                         <id>StopDomain1</id>
@@ -530,13 +524,13 @@
                                 <exclude>**/ee*/**</exclude>
                             </excludes>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.jms-api.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-corba-omgapi.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/imq.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/jms.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/fscontext.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/glassfish/modules/jakarta.jms-api.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/glassfish/modules/glassfish-corba-omgapi.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derbyclient.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derby.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/mq/lib/imq.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/mq/lib/jms.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/mq/lib/fscontext.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <dependenciesToScan>jakartatck:jms-tck</dependenciesToScan>
                             <systemPropertyVariables>
@@ -557,4 +551,22 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>full</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+            </properties>
+        </profile>
+        <profile>
+            <id>web</id>
+            <properties>
+                <glassfish-artifact-id>web</glassfish-artifact-id>
+            </properties>
+        </profile>
+    </profiles>
 </project>
