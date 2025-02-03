@@ -35,7 +35,7 @@
     <description>javaee</description>
 
     <properties>
-        <junit.jupiter.version>5.11.3</junit.jupiter.version>
+        <junit.jupiter.version>5.11.4</junit.jupiter.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
