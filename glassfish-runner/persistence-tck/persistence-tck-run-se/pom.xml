@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2024 Contributors to the Eclipse Foundation.
+    Copyright (c) 2024, 2025 Contributors to the Eclipse Foundation.
     Copyright (c) 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -33,7 +33,7 @@
 
     <properties>
         <!--Glassfish properties-->
-        <glassfish.version>8.0.0-JDK17-M6</glassfish.version>
+        <glassfish.version>8.0.0-M9</glassfish.version>
         <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
         <glassfish.module.dir>${glassfish.home}/glassfish/modules</glassfish.module.dir>
         
@@ -57,7 +57,6 @@
         
         <!--Dependencies version-->
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
-        <jakarta.ee.version>11.0.0-M1</jakarta.ee.version>
         <persistence.tck.version>3.2.0</persistence.tck.version>
         <persistence.api.version>3.2.0</persistence.api.version>
         
@@ -131,7 +130,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
+            <version>11.0.0-RC4</version>
             <scope>test</scope>
         </dependency>
         

@@ -40,7 +40,7 @@
     </repositories>
     <properties>
         <!--glassfish properties-->
-        <glassfish.container.version>8.0.0-M2</glassfish.container.version>
+        <glassfish.version>8.0.0-M2</glassfish.version>
         <glassfish.toplevel.dir>${project.build.directory}/glassfish8</glassfish.toplevel.dir>
         <glassfish.module.dir>${glassfish.toplevel.dir}/glassfish/modules</glassfish.module.dir>
         <exec.asadmin>${glassfish.toplevel.dir}/bin/asadmin</exec.asadmin>
@@ -204,7 +204,7 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.container.version}</version>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
