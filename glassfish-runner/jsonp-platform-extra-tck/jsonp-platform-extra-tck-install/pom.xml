@@ -42,26 +42,25 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.1.0</version>
+                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <artifactId>download-maven-plugin</artifactId>
+                <version>1.13.0</version>
+                <configuration>
+                    <url>${tck.test.jsonp.extra.url}</url>
+                    <unpack>true</unpack>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                </configuration>
                 <executions>
                     <execution>
-                        <phase>generate-resources</phase>
-                        <configuration>
-
-                            <target>
-                                <get src="${tck.test.jsonp.extra.url}" dest="${project.build.directory}/${tck.test.jsonp.extra.file}" skipexisting="true" verbose="true"/>
-                                <unzip src="${project.build.directory}/${tck.test.jsonp.extra.file}" dest="${project.build.directory}" overwrite="true"/>
-                            </target>
-
-                        </configuration>
+                        <id>download-pages-extra-tck</id>
                         <goals>
-                            <goal>run</goal>
+                            <goal>wget</goal>
                         </goals>
+                        <phase>generate-resources</phase>
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
                 <executions>
