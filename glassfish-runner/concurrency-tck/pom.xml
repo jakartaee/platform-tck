@@ -131,6 +131,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
                 <configuration>
                     <release>17</release>
                 </configuration>
@@ -164,6 +165,7 @@
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.2</version>
 
                 <configuration>
                     <argLine>-Xmx768m</argLine>
