@@ -8,7 +8,7 @@ encounter as you run the Jakarta Platform, Enterprise Edition Compatibility
 Test Suite.
 
 [[common-tck-problems-and-resolutions]]
-= Common TCK Problems and Resolutions
+== Common TCK Problems and Resolutions
 
 This section lists common problems that you may encounter as you run the
 Jakarta Platform, Enterprise Edition Test Compatibility Kit software on
@@ -49,11 +49,11 @@ the specified path and could display one of the following errors: +
 [source,oac_no_warn]
 ----
 "Verify that JAVA_HOME is set correctly"
-"Verify that JAVAEE_HOME is set correctly"
+"Verify that JAKARTAEE_HOME is set correctly"
 ----
 Resolution: +
 Set `JAVA_HOME` to the path where the version of Java being used was
-installed and set `JAVAEE_HOME` to the location of the Jakarta Platform,
+installed and set `JAKARTAEE_HOME` to the location of the Jakarta Platform,
 Enterprise Edition installation directory.
 * Problem: +
 If the `cts.jar` and the `tsharness.jar` files are not loadable by the

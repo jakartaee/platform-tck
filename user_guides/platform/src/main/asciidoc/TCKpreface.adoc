@@ -58,7 +58,11 @@ The Jakarta Platform, Enterprise Edition {tck_version} Specification can be
 downloaded from `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
 For documentation on the test harness used for running the Jakarta EE {tck_version} Platform TCK
-test suite, see
+test suite, see:
+
+* https://github.com/arquillian/arquillian-core[Arquillian]
+* https://junit.org/junit5/[Junit5]
+
 `https://wiki.openjdk.java.net/display/CodeTools/Documentation`.
 
 [[typographic-conventions]]

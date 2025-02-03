@@ -109,13 +109,11 @@ Specification Process community page (https://jakarta.ee/specifications).
 == About Jakarta EE {tck_version} Platform TCK
 
 Jakarta EE {tck_version} Platform TCK is a portable, configurable, automated test suite for
-verifying the compliance of a Implementer's implementation of the Jakarta EE {tck_version}
-technologies. Jakarta EE {tck_version} Platform TCK includes version 5.0 of the JavaTest
-harness.
+verifying the compliance of an Implementer's implementation of the Jakarta EE {tck_version} technologies.
 
 For documentation on the test harness used for running the Jakarta EE {tck_version} Platform TCK
-test suite, see
-https://wiki.openjdk.java.net/display/CodeTools/Documentation.
+test suite, see https://github.com/arquillian/arquillian-core[Arquillian]
+and https://junit.org/junit5/[Junit5] for the underlying test framework documentation.
 
 [[jakarta-ee-technologies-tested-with-jakarta-ee-platform-tck]]
 === Jakarta EE {tck_version} Technologies Required for Jakarta EE {tck_version} Platform Compatibility
@@ -263,11 +261,6 @@ all of the tests, they will apply for and be granted certification.
 * Before you do anything with the test suite, read the rules in
 <<procedure-for-jakarta-platform-enterprise-edition-certification>> or <<procedure-for-jakarta-platform-enterprise-edition-web-profile-certification>> These chapters explain the certification process and
 provides a definitive list of certification rules for Jakarta EE {tck_version} and Jakarta EE {tck_version} Web Profile implementations.
-* Next, take a look at the test assertions in the Assertion List, which
-you can find in the Jakarta EE {tck_version} Platform TCK documentation bundle. The assertions
-explain what each test is testing. When you run the tests with the
-JavaTest GUI, the assertion being tested as part of the test description
-of the currently selected test is displayed.
 * Third, install and configure the Jakarta EE {tck_version} Platform TCK software and the Jakarta
 EE {tck_version} CI or Jakarta EE {tck_version} Web Profile CI and run the tests as described in
 this guide. This will familiarize you with the testing process.
@@ -287,19 +280,13 @@ with backslashes (`\`) for Windows.
 ======================================================================
 
 
-[javatest-harness]
+[[testing-harness]]
 === Arquillian and Junit5
 
-The Arquillian and Junit5 are set of tools designed to run and
-manage test suites on different Java platforms.
+The Arquillian and Junit5 are set of tools designed to run and manage test suites on different Java platforms.
 
 
-The tests that make up the TCK are precompiled and indexed within the
-TCK test directory structure. When a test run is started, the JavaTest
-harness scans through the set of tests that are located under the
-directories that have been selected. While scanning, the JavaTest
-harness selects the appropriate tests according to any matches with the
-filters you are using and queues them up for execution.
+The tests that make up the TCK are precompiled and bundled in the TCK distribution/artifacts directory as test jars. You will need to create a runner that supports executing Junit5 unit tests. The {glassfish_version} compatibile implementation used maven with the failsafe plugin to run the tests.
 
 [[exclude-lists]]
 === Exclude Tests
@@ -335,35 +322,11 @@ an Exclude List can only be made by using the procedure described in
 [[apache-ant]]
 === Apache Ant
 
-The Jakarta EE {tck_version} CI, Jakarta EE {tck_version} Web Profile CI, and Jakarta EE {tck_version} Platform TCK require
-implementations of Apache Ant 1.9.7 from the Apache Ant Project
-(`http://ant.apache.org/`). Apache Ant is a free, open-source,
+There are example setup scripts for the TCK test databases that use of Apache Ant 1.9.7 from the Apache Ant Project (`http://ant.apache.org/`). Apache Ant is a free, open-source,
 Java-based build tool, similar in some ways to the make tool, but more
 flexible, cross-platform compatible, and centered around XML-based
-configuration files.
+configuration files. You do not need to use these scripts, but the SQL statements in the scripts will have to be loaded into your testing database in order for the TCK tests to pass.
 
-Ant is invoked in the Jakarta EE {tck_version} CI, Jakarta EE {tck_version} Web Profile CI, and Jakarta
-EE {tck_version} TCK in conjunction with various XML files containing Ant targets.
-These Ant targets provide a convenient way to automate various
-configuration tasks for Jakarta EE {tck_version} Platform TCK. For example, the initial
-configuration of the Jakarta EE {tck_version} CI or Jakarta EE {tck_version} Web Profile CI for TCK is
-done by means of the `config.vi` Ant target.
-
-The Ant configuration targets are there for your convenience. When
-configuring your Jakarta EE {tck_version} or Jakarta EE {tck_version} Web Profile implementation for
-the Jakarta EE {tck_version} Platform TCK, you can either set up your environment to use the Ant
-tools, or you can perform some or all of your configuration procedures
-manually. Jakarta EE {tck_version} Platform TCK includes the Ant Contrib package, and the tasks
-included with Ant Contrib are used within the TCK build files. See
-`http://ant-contrib.sourceforge.net/` for more information about Ant
-Contrib.
-
-This User's Guide does not provide in-depth instruction on Ant internals
-or how to configure Ant targets for your particular Jakarta EE {tck_version} or Jakarta EE
-8 Web Profile implementation. For complete information about Ant, refer
-to the extensive documentation on the Apache Ant Project site. The
-Apache Ant Manual is available at
-`http://ant.apache.org/manual/index.html`.
 
 Apache Ant is protected under the Apache Software, License 2.0, which is
 is available on the Apache Ant Project license page at 
@@ -457,13 +420,12 @@ Installing, configuring, and using the Jakarta EE {tck_version} Platform TCK inv
 following general steps:
 
 1.  Download, install, and configure a Jakarta EE {tck_version} CI or Jakarta EE {tck_version} Web
-Profile CI. For example Eclipse GlassFish 6.1.
+Profile CI. For example Eclipse {glassfish_version}.
 2.  Download and install the Jakarta EE {tck_version} Platform TCK package.
 3.  Configure your database to work with your CI.
-4.  Configure TCK to work with your database and CI.
+4.  Configure the TCK to work with your database and CI.
 5.  Run the TCK tests.
 
 The remainder of this guide explains these steps in detail. If you just
 want to get started quickly with the Jakarta EE {tck_version} Platform TCK using the most basic
-test configuration, refer to link:install.html#GBFTP[Chapter 4,
-"Installation."]
+test configuration, refer to <<installation>>.

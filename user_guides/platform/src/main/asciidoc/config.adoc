@@ -1,7 +1,5 @@
-
-[[GBFVV]][[setup-and-configuration]]
-
-== Setup and Configuration
+[[setup-and-configuration]]
+= Setup and Configuration
 
 This chapter describes how to set up the Jakarta EE {tck_version} Platform TCK test suite and
 configure it to work with your test environment. It is recommended that
@@ -17,7 +15,7 @@ This chapter includes the following topics:
 
 [[GEWTL]][[allowed-modifications]]
 
-=== Allowed Modifications
+== Allowed Modifications
 
 You can modify the following test suite components only:
 
@@ -96,7 +94,7 @@ you may choose to run the Jakarta EE {tck_version} CI as the VI
 
 [[GEWSQ]][[java-platform-enterprise-edition-server-configuration-scenarios]]
 
-=== Jakarta Platform, Enterprise Edition Server Configuration Scenarios
+== Jakarta Platform, Enterprise Edition Server Configuration Scenarios
 
 There are three general scenarios for configuring Jakarta EE {tck_version} servers for
 Jakarta EE {tck_version} Platform TCK testing (Note: in the following images, Java EE refers to Jakarta EE.
@@ -135,7 +133,7 @@ server match those in the `ts.jte` file.
 These configuration scenarios are described in the following sections.
 
 [[configuring-the-java-ee-ci-as-the-vi]]
-=== Configuring the Jakarta EE {tck_version} CI as the VI
+== Configuring the Jakarta EE {tck_version} CI as the VI
 
 To configure the Jakarta EE {tck_version} CI as the server under test (that is, to use
 the Jakarta EE {tck_version} CI as the VI) follow the steps listed below. In this
@@ -209,7 +207,7 @@ Refer to the application server documentation for complete instructions.
 . Continue on to <<executing-tests>> for instructions on running tests.
 
 [[configuring-your-application-server-as-the-vi]]
-=== Configuring Your Application Server as the VI
+== Configuring Your Application Server as the VI
 
 
 To use a Jakarta EE {tck_version} server other than the Jakarta EE {tck_version} CI, follow the steps
@@ -360,7 +358,7 @@ server.
 . Execute the `add.interop.certs` Ant target. +
 +
 [NOTE]
-=======================================================================
+======================================================================
 
 This step installs server side certificates for interoperability
 testing; that is, it installs the CI's server certificate to VI and VI's
@@ -368,7 +366,7 @@ server certificate into the CI. This step is necessary for mutual
 authentication tests in which both the server and client authenticate to
 each other.
 
-=======================================================================
+======================================================================
 +
 
 . [[BABEGCJH]] Install the client-side certificate in the `trustStore` on the Jakarta EE {tck_version}
@@ -426,13 +424,13 @@ sections that follow.
 
 
 [NOTE]
-=======================================================================
+======================================================================
 
 This section only discusses a small subset of the properties you can
 modify. Refer to the `ts.jte` file for information about the many other
 properties you may want to modify for your particular test environment.
 
-=======================================================================
+======================================================================
 
 
 This section includes the following topics:
@@ -531,12 +529,12 @@ ri.applicationRoot=C:
 
 
 [NOTE]
-=======================================================================
+======================================================================
 
 When configuring the CI and TCK for the Windows environment, never
 specify drive letters in any path properties in `ts.jte`.
 
-=======================================================================
+======================================================================
 
 
 [[GEXPE]][[test-execution-command-setup]]
@@ -580,13 +578,13 @@ command line since there is no application client container involved.
 
 
 [NOTE]
-=======================================================================
+======================================================================
 
 The default settings are specific to the Jakarta Platform, Enterprise
 Edition CI. If you are not using the Jakarta Platform, Enterprise Edition
 CI, adjust these properties accordingly.
 
-=======================================================================
+======================================================================
 
 
 [[GEXPB]][[jakarta-servlet-test-setup]]
@@ -636,8 +634,7 @@ the Jakarta EE {tck_version} security tests as well as by the
 default hostname (for example, `webServerHost`). The default is
 "server".
 
-[[CBDDGJFC]][[jakarta-websocket-test-setup]]
-
+[[jakarta-websocket-test-setup]]
 === Jakarta WebSocket Test Setup
 
 Make sure that the following WebSocket property has been set in the
@@ -658,7 +655,7 @@ properties.
 
 
 [NOTE]
-=======================================================================
+======================================================================
 
 The SSL related tests under
 `/ts/javaeetck/src/com/sun/ts/tests/websocket/platform/jakarta/websocket/server/handshakerequest/authenticatedssl/`
@@ -669,11 +666,10 @@ hostname is used instead of the localhost, the tests in this suite might
 fail with the below exception - jakarta.websocket.DeploymentException: SSL
 handshake has failed.
 
-=======================================================================
+======================================================================
 
 
-[[GEXON]][[jdbc-test-setup]]
-
+[[jdbc-test-setup]]
 === JDBC Test Setup
 
 The JDBC tests require you to set the timezone by modifying the `tz`
@@ -685,12 +681,12 @@ setting is in `/usr/share/lib/zoneinfo/US`.
 
 
 [NOTE]
-=======================================================================
+======================================================================
 
 The `tz` property is only used for Linux configurations; it does not
 apply to Windows XP/2000.
 
-=======================================================================
+======================================================================
 
 
 [[jakarta-mail-test-setup]]
@@ -730,8 +726,7 @@ cd <TS_HOME>/bin
 ant populateMailbox
 ----
 
-[[GJKPO]][[jakarta-restful-web-services-test-setup]]
-
+[[jakarta-restful-web-services-test-setup]]
 === Jakarta RESTful Web Services Test Setup
 
 This section explains how to set up the test environment to run the
@@ -739,8 +734,7 @@ Jakarta RESTful Web Services tests using the Jakarta EE {tck_version} Compatible
 packaging/repackaging and publishing the packaged/repackaged WAR files
 as well.
 
-[[GJYCL]][[to-configure-your-environment-to-run-the-jakarta-restful-web-services-tests-against-the-jakarta-ee-8-ci]]
-
+[[to-configure-your-environment-to-run-the-jakarta-restful-web-services-tests-against-the-jakarta-ee-8-ci]]
 ==== To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against the Jakarta EE {tck_version} CI
 
 Copy <TS_HOME>/bin/ts.jte.jdk11 as <TS_HOME>/bin/ts.jte if JAVA_HOME is Java SE 11.
@@ -763,7 +757,6 @@ An Ant script, jersey.xml, in the `<TS_HOME>/bin/xml/impl/glassfish`
 directory contains packaging instructions.
 
 [[GJYBC]][[to-package-war-files-for-deployment-on-the-jakarta-ee-8-ci]]
-
 ==== To Package WAR files for Deployment on the Jakarta EE {tck_version} CI
 
 The Jakarta EE {tck_version} Platform TCK test suite does not come with prebuilt test WAR files
@@ -986,13 +979,13 @@ Ant target:
 
 
 [NOTE]
-=======================================================================
+======================================================================
 
 RAR files with an `old` prefix are used to test the support of RAs that
 are bundled with an older version of the `ra.xml` files.  TODO: These need to
 be built for the EE 11 dist.
 
-=======================================================================
+======================================================================
 
 
 The manifest file in each RAR file includes a reference to the whitebox
@@ -1039,7 +1032,7 @@ type inconsistency issues.
 
 [[GJVHD]][[use-case-problem-scenario]]
 
-=== Use Case Problem Scenario
+==== Use Case Problem Scenario
 
 Assume that RAR1 and RAR2 are standalone RAR files that are referred to
 by an application, where:
@@ -1421,9 +1414,9 @@ to Chapter 7 of the Jakarta Persistence API Specification
 regarding entity managers.
 
 [NOTE]
-====
+===
 There is a test of installing a custom Jakarta Persistence provider in the Jakarta Persistence API tests. The tests expect that the log.file.location from the ts.jte file has been propagated to a system property in the server environment. Normally this is automatically done by the TCK harness, but if  your Jakarta Persistence integration causes the custom `jakarta.persistence.spi.PersistenceProvider` or `jakarta.persistence.spi.ProviderUtil` to initialize before the TCK harness, you may need to set the system property manually.
-====
+===
 
 [[GJKPA]][[to-configure-the-test-environment-to-run-the-jakarta-persistence-pluggability-tests]]
 
@@ -1499,14 +1492,14 @@ demarcation
 
 
 [NOTE]
-=======================================================================
+======================================================================
 
 For vehicles using a `RESOURCE_LOCAL` transaction type, be sure to
 configure a non-transactional resource with the logical name
 `jdbc/DB_no_tx`. Refer to the `ts.jte` file for information about the
 `jdbc.db` property.
 
-=======================================================================
+======================================================================
 
 
 [[GEXPY]][[generatedvalue-annotation]]
@@ -1530,7 +1523,7 @@ one listed in link:#GEXOO[Example 5-1].
 
 [[GEXOO]]
 
-===== Example 5-1 GeneratedValue Annotation Test Table
+==== Example 5-1 GeneratedValue Annotation Test Table
 
 [source,oac_no_warn]
 ----
@@ -1556,17 +1549,17 @@ This section explains how to set up and configure the Jakarta EE {tck_version} P
 
 
 [NOTE]
-=======================================================================
+======================================================================
 
 The client-specified values for `JMSDeliveryMode`, `JMSExpiration`, and
 `JMSPriority` must not be overridden when running the TCK Jakarta Messaging tests.
 
-=======================================================================
+======================================================================
 
 
 [[sthref20]][[to-configure-a-slow-running-system]]
 
-==== To Configure a Slow Running System
+=== To Configure a Slow Running System
 
 Make sure that the following property has been set in the `ts.jte` file:
 
@@ -1583,7 +1576,7 @@ that you should be, you need to increase the value of this parameter.
 
 [[sthref21]][[to-test-your-jakarta-messaging-resource-adapter]]
 
-==== To Test Your Jakarta Messaging Resource Adapter
+=== To Test Your Jakarta Messaging Resource Adapter
 
 If your implementation supports Jakarta Messaging as a Resource Adapter, you must set
 the name of the `jmsra.name` property in the `ts.jte` file to the name
@@ -1605,7 +1598,7 @@ This rebuilds the tests under
 
 [[sthref22]][[to-create-jakarta-messaging-administered-objects]]
 
-==== To Create Jakarta Messaging Administered Objects
+=== To Create Jakarta Messaging Administered Objects
 
 If you do not have an API to create Jakarta Messaging Administered objects, and you
 cannot create an Ant target equivalent to `config.vi`, you can use the
@@ -1771,207 +1764,19 @@ testT2
 ----
 +
 [NOTE]
-=======================================================================
+======================================================================
 
 Implementations of `TSJMSAdminInterface` are called inside the JavaTest
 VM. The `com.sun.ts.lib.deliverable.cts.CTSPropertyManager` class, which
 is available to these implementations, provides access to any property
 in the `ts.jte` file.
 
-=======================================================================
+======================================================================
 
-[[GEYAM]][[wsdl-webservice-test-and-runtime-notes]]
-
-=== WSDL: Webservice Test and Runtime Notes
-
-In addition to the WSDL elements described later in this section, the
-Jakarta Platform, Enterprise Edition CI webservice runtime DTDs contain two
-new optional elements for publishing and lookup of final WSDLs for a
-deployed webservice endpoint. These new tags are
-`<wsdl-publish-location>` and `<wsdl-override>`, and are used by the CTS
-to automate all TCK webservices tests, regardless of the host or port
-used to run the tests.
-
-These WSDL tags are also used when performing file URL publishing, as
-required by Jakarta Implementing Web Services 1.4. Jakarta Implementing 
-Web Services 1.4 states that http URL and file URL publishing
-must be supported on a Jakarta Platform, Enterprise Edition platform. In
-addition, the `<wsdl-override>` is used as a mechanism for satisfying
-the partial WSDL requirement in the Jakarta Implementing Web Services 
-1.4 specification. This mechanism
-enables the specification of the location of the final full published
-WSDL of a deployed webservice endpoint within the client EAR when only a
-partial WSDL is packaged, which enables client access to the full WSDL
-and correct SOAP address to communicate with the webservice.
-
-The `<wsdl-publish-location>` tag tells the Jakarta Platform, Enterprise
-Edition CI where to publish the final WSDL for the deployed webservice
-endpoint. As stated above, the final WSDL can be published to a file URL
-or http URL, although the tag is really only necessary for file URL
-publishing, and is ignored if http URL publishing is specified (http is
-the default publishing used by the Jakarta Platform, Enterprise Edition
-CI). This tag is included in all TCK tests for consistency and to aid as
-a mechanism in automation.
-
-By default, the Jakarta Platform, Enterprise Edition CI publishes the final
-WSDL during deployment to a http URL following a standard URL naming
-scheme. See below for details about the Jakarta Platform, Enterprise
-Edition CI runtime. This default can be overriden to explicitly do file
-URL publishing.
-
-The `<wsdl-override>` tag tells the client application EAR where to
-lookup the final published WSDL for the deployed webservice endpoint.
-This will be either a `file` URL or an `http` URL to match what is
-specified in the `<wsdl-publish-location>` tag.
-
-[[GEYAJ]][[wsdl-ts.jte-properties]]
-
-==== WSDL ts.jte Properties
-
-For file URL publishing, the TCK defines two properties in the `ts.jte`
-file, named `wsdlRepository1` and `wsdlRepository2`, which specify the
-file system directory location to use for publishing final WSDLs that
-use file URL publishing.
-
-The `wsdlRepository1` is used for the Vendor Jakarta Platform, Enterprise
-Edition Implementation. The `wsdlRepository2` is used for the CI Jakarta
-Platform, Enterprise Edition Implementation, and is only used for CTS
-webservices interoperability testing. These directories get created by
-the TCK harness at runtime. The default settings in the `ts.jte` file
-will create these directories under:
-
-[source,oac_no_warn]
-----
-wsdlRepository1=<TS_HOME>/tmp/wsdlRepository1
-wsdlRepository2=<TS_HOME>/tmp/wsdlRepository2
-----
-
-For file URL publishing, the WSDL tag settings could be as follows:
-
-[source,oac_no_warn]
-----
-$TS_HOME/src/com/sun/ts/tests/webservices/wsdlImport/file/Simple1
-Webservice Endpoint
-<wsdl-publish-location>
-file:wsdlRepository1/Simple1File
-</wsdl-publish-location>
-
-Webservice Client Application
-<wsdl-override>
-file:wsdlRepository1/Simple1File/Simple1FileSvc.wsdl
-</wsdl-override>
-----
-
-In this case, the TCK harness substitutes `wsdlRepository1` with the
-setting in the `<TS_HOME>/bin/ts.jte` file.
-
-For `http` URL publishing, the tag settings might be:
-
-[source,oac_no_warn]
-----
-$TS_HOME/src/com/sun/ts/tests/webservices/wsdlImport/http/Simple1
-Webservice Endpoint
-<wsdl-publish-location>
-http://webServerHost.1:webServerPort.1/Simple1Http/ws4ee?WSDL
-</wsdl-publish-location>
-
-Webservice Client Application
-<wsdl-override>
-http://webServerHost.1:webServerPort.1/Simple1Http/ws4ee?WSDL
-</wsdl-override>
-----
-
-In this case, the TCK harness substitutes the
-webServerHost.1:webServerPort.1 with the settings in the
-`<TS_HOME>/bin/ts.jte` file.
-
-
-[NOTE]
-=======================================================================
-
-In the case of interop webservices tests, the TCK harness substitutes
-the `webServerHost.2:webServerPort.2` with the settings in the `ts.jte`
-file. This host and port defines the CI Jakarta Platform, Enterprise
-Edition implementation used as the interop test machine. See
-`tests/interop/webservices` for these tests.
-
-=======================================================================
-
-
-[[GEYCO]][[webservice-endpoint-wsdl-elements]]
-
-==== Webservice Endpoint WSDL Elements
-
-The following are the webservice endpoint WSDL elements:
-
-[[GEYMW]][[setting-endpoint-address]]
-
-===== Setting Endpoint Address
-
-[source,oac_no_warn]
-----
-element : endpoint-address-uri
-----
-
-The endpoint address URI is used to compose the endpoint address URL
-through which the endpoint can be accessed. It is required for Jakarta Enterprise Beans
-endpoints and optional for servlet endpoints.
-
-The `endpoint-address-uri` can have an optional leading forward slash
-(`/`). It must be a fixed pattern (no asterisk (`*`) wildcards).
-
-* Jakarta Enterprise Beans Example: +
-For Jakarta Enterprise Beans endpoints, the URI is relative to root of the web server; for
-example, if the web server is listening at `http://localhost:8000`, an
-endpoint address URI of `google/GoogleSearch` would result in an
-endpoint address of: +
-[source,oac_no_warn]
-----
-http://localhost:8000/google/GoogleSearch
-----
-Note that the first portion of the URI (`google`) should not conflict
-with the context root of any deployed web application. +
-[source,oac_no_warn]
-----
-<enterprise-beans>
-    <module-name>ejb.jar</module-name>
-    <ejb>
-      <ejb-name>GoogleEjb</ejb-name>
-      <webservice-endpoint>
-        <port-component-name>GoogleSearchPort</port-component-name>
-        <endpoint-address-uri>google/GoogleSearch</endpoint-address-uri>
-      </webservice-endpoint>
-    </ejb>
-</enterprise-beans>
-----
-* Servlet Example: +
-For servlet endpoints, the `endpoint-address-uri` is only needed if the
-servlet does not have a servlet-mapping `url-pattern` in its `web.xml`.
-Its value is relative to the context root of the servlet's web
-application. +
-[source,oac_no_warn]
-----
-<web>
-    <module-name>web.war</module-name>
-    <context-root>GoogleServletContext</context-root>
-    <servlet>
-        <servlet-name>MyGoogleServlet</servlet-name>
-        <webservice-endpoint>
-           <port-component-name>GoogleSearchPort</port-component-name>
-           <endpoint-address-uri>/GoogleSearch</endpoint-address-uri>
-         </webservice-endpoint>
-    </servlet>
-</web>
-----
-In this case, the target endpoint address would be: +
-[source,oac_no_warn]
-----
-http://localhost:8000/GoogleServletContext/GoogleSearch
-----
 
 [[GEYLR]][[jakarta-enterprise-beans-endpoint-security]]
 
-===== Jakarta Enterprise Beans Endpoint Security
+==== Jakarta Enterprise Beans Endpoint Security
 
 [source,oac_no_warn]
 ----
@@ -2002,7 +1807,7 @@ For example:
 
 [[GEYNB]][[transport-guarantee]]
 
-===== Transport Guarantee
+==== Transport Guarantee
 
 [source,oac_no_warn]
 ----
@@ -2021,7 +1826,7 @@ the default HTTP port. For `INTEGRAL/CONFIDENTIAL`, the scheme will be
 
 [[GEYMY]][[publishing-final-wsdl-during-deployment]]
 
-===== Publishing Final WSDL During Deployment
+==== Publishing Final WSDL During Deployment
 
 * URL publishing: no extra information required. +
 The final WSDL document for each webservice endpoint is always published
@@ -2075,7 +1880,7 @@ a file URL; for example:
 
 [[GEYLF]][[webservice-client-wsdl-elements]]
 
-===== Webservice Client WSDL Elements
+==== Webservice Client WSDL Elements
 
 In the TCK for file publishing, the directory in which to publish the
 file WSDL is specified in the `<wsdl-publish-location>` tag for the
@@ -2120,7 +1925,7 @@ document, which in this case would be
 
 [[GEYLV]][[resolving-container-managed-ports]]
 
-===== Resolving Container-Managed Ports
+==== Resolving Container-Managed Ports
 
 [source,oac_no_warn]
 ----
@@ -2148,7 +1953,7 @@ Interface is mapped. Only required for each `port-component-ref` in the
 
 [[GEYOG]][[overriding-wsdl]]
 
-===== 5.4.18.3.2 Overriding WSDL
+==== 5.4.18.3.2 Overriding WSDL
 
 [source,oac_no_warn]
 ----
@@ -2195,13 +2000,13 @@ Complete the following steps before you run the Jakarta Security API tests:
 .  Set the following properties in the ts.jte file: 
 +
 [NOTE]
-=======================================================================
+======================================================================
 
 An LDAP server is required in Jakarta Security API testing. You could either use
 an already existing external LDAP server or use TCK script to install an
 internal LDAP server.
 
-=======================================================================
+======================================================================
 +
 Choose one of these two options to make an LDAP server ready for
 testing:
@@ -2210,17 +2015,17 @@ testing:
 installed by default.) 
 +
 [NOTE]
-=======================================================================
+======================================================================
 
 .  Ensure the ldap.server property is unbounded.
 .  Ensure the path of ldap.ldif.file is correct.
 .  Ensure the port 11389 is not occupied. Kill any related process
 using port 11389.
 
-=======================================================================
+======================================================================
 +
 [NOTE]
-=========================================
+========================================
 
 Parts of ts.jte:
 
@@ -2228,12 +2033,12 @@ Parts of ts.jte:
 * `ldap.install.server=true`
 * `ldap.ldif.file=$\{ts.home}/bin/ldap.ldif`
 
-=========================================
+========================================
 +
 .  Use external LDAP server. 
 +
 [NOTE]
-=======================================================================
+======================================================================
 
 .  Ensure the port of LDAP server is 11389.
 .  Update ldap.install.server property as false since TCK script need
@@ -2241,14 +2046,14 @@ not install LDAP server.
 .  Import ldap.ldif file into Ldap server. You can get ldap.ldif from
 `<TS_HOME>/install/jakartaee/bin/ldap.ldif`.
 
-=======================================================================
+======================================================================
 +
 [NOTE]
-=========================================
+========================================
 
 Part of ts.jte - ldap.install.server=false
 
-=========================================
+========================================
 +
 .  Configure the VI environment using these commands to run the
 Jakarta Security API test (including Derby, internal Ldap server which are
@@ -2263,12 +2068,12 @@ required by Jakarta Security 1.0):
 ..  ant init.ldap 
 +
 [NOTE]
-=======================================================================
+======================================================================
 
 If you use the external LDAP server, do not run the command ant
 init.ldap.
 
-=======================================================================
+======================================================================
 
 
 [[GEYNX]][[signature-test-setup]]
@@ -2279,7 +2084,7 @@ The signature test setup includes the following:
 
 [[GEYPN]][[sigtestclasspath-property]]
 
-==== sigTestClasspath Property
+=== sigTestClasspath Property
 
 Set the `sigTestClasspath` property in the `<TS_HOME>/bin/ts.jte` file
 to include a `CLASSPATH` containing the following:
@@ -2302,7 +2107,7 @@ running against the Jakarta Platform, Enterprise Edition CI
 
 [[GEYOS]][[additional-signature-test-information]]
 
-==== Additional Signature Test Information
+=== Additional Signature Test Information
 
 The Jakarta EE {tck_version} Platform TCK signature tests perform verifications in two different
 modes: static and reflection. The test results list which SPEC API signature
@@ -2391,17 +2196,17 @@ The failure means that the `java.lang.Object jakarta.el.ELContext.getContext(jav
 from `getContext(Class key)` to `getContext(Class<?> key)`.  The same correction is needed for the other identified methods as well.
 
 [NOTE]
-=======================================================================
+======================================================================
 
 Refer to link:debug.html#GBFUV[Chapter 8, "Debugging Test Problems"] for
 additional debugging information.
 
-=======================================================================
+======================================================================
 
 
 [[GJLGQ]][[backend-database-setup]]
 
-=== Backend Database Setup
+== Backend Database Setup
 
 The following sections address special backend database setup
 considerations:
@@ -2411,7 +2216,7 @@ considerations:
 
 [[GJLIB]][[setup-considerations-for-mysql]]
 
-==== Setup Considerations for MySQL
+=== Setup Considerations for MySQL
 
 The Jakarta Persistence API (formerly JPA) tests require delimited identifiers for
 the native query tests. If you are using delimited identifiers on MySQL,
@@ -2426,7 +2231,7 @@ sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,ANSI_QU
 
 [[GJLHU]][[setup-considerations-for-ms-sql-server]]
 
-==== Setup Considerations for MS SQL Server
+=== Setup Considerations for MS SQL Server
 
 If your database already exists and if you use a case-sensitive
 collation on MS SQL Server, execute the following command to modify the

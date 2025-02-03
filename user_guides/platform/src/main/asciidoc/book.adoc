@@ -11,33 +11,48 @@ include::title.adoc[]
 
 include::TCKpreface.adoc[]
 
+// Page break
+<<<
 include::intro.adoc[]
 
+<<<
 include::rules.adoc[]
 
+<<<
 include::rules-wp.adoc[]
 
+<<<
 include::install.adoc[tck_version={tck_version},glassfish_version={glassfish_version}]
 
+<<<
 include::config.adoc[]
 
+<<<
 include::webprofileconfig.adoc[]
 
+<<<
 include::using.adoc[]
 
+<<<
 include::debug.adoc[]
 
+<<<
 include::troubleshooting.adoc[]
 
+<<<
 include::building.adoc[]
 
+<<<
 include::portingpackage.adoc[]
 
+<<<
 include::appeals.adoc[]
 
+<<<
 include::commonappdeploy.adoc[]
 
+<<<
 include::database-config.adoc[]
 
+<<<
 include::jms-resource-adaptr.adoc[]
-

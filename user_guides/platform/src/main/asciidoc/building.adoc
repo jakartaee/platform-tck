@@ -48,7 +48,7 @@ export PATH
 ----
 * `JAVA_HOME` to the directory in which the Java SE 8 or 11 software is
 installed.
-* `JAVAEE_HOME` to the directory in which the Jakarta Platform, Enterprise
+* `JAKARTAEE_HOME` to the directory in which the Jakarta Platform, Enterprise
 Edition Compatible Implementation (CI) is installed.
 *.  Unset `ANT_HOME`, if it is currently set in your environment.
 *.  Change to the `<TS_HOME>/bin` directory and verify that the `ts.jte`
