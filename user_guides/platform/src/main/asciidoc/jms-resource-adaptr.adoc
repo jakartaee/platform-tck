@@ -30,12 +30,12 @@ Complete the following steps to set up Eclipse {glassfish_version} in your envir
 1.  Set the following environment variables in your shell environment:
 * JAVA_HOME to the directory where the Java SE 8 software has been
 installed
-* JAVAEE_HOME to the directory where the Jakarta EE {tck_version} CI (Eclipse {glassfish_version}) software has been
+* JAKARTAEE_HOME to the directory where the Jakarta EE {tck_version} CI (Eclipse {glassfish_version}) software has been
 installed
 * TS_HOME to the directory where the Jakarta EE {tck_version} Platform TCK software has been
 installed
 2.  Update your PATH environment variable to include the following
-directories: JAVA_HOME/bin, JAVAEE_HOME/bin, TS_HOME/bin, and
+directories: JAVA_HOME/bin, JAKARTAEE_HOME/bin, TS_HOME/bin, and
 ANT_HOME/bin.
 
 [[f.2-configuring-jakarta-ee-11-platform-tck]]
@@ -67,7 +67,7 @@ classes, needs to be added to the AppClient classpath in the `ts.jte`
 file. This JAR file will also be copied to the appropriate directory in
 your Jakarta EE {tck_version} environment when the `config.vi` Ant task, which is
 described in the next section, is invoked. For the Jakarta EE {tck_version} CI Eclipse GlassFish 6.1, the
-file is copied to the `JAVAEE_HOME/lib` directory.
+file is copied to the `JAKARTAEE_HOME/lib` directory.
 
 [[f.3-configuring-the-jakarta-ee-8-CI-for-the-standalone-jakarta-messaging-resource-adapter]]
 == Configuring a Jakarta EE {tck_version} CI for the Standalone Jakarta Messaging Resource Adapter
@@ -81,7 +81,7 @@ The config.vi Ant task executes scripts, which configure your Jakarta EE {tck_ve
 environment for TCK 11. One of the ant scripts that gets executed will
 configure and deploy the standalone Jakarta Messaging Resource Adapter, copy the JAR
 file containing the classes for the standalone Jakarta Messaging Resource Adapter to
-the `JAVAEE_HOME/lib` directory, create the Jakarta Messaging connector connect ion
+the `JAKARTAEE_HOME/lib` directory, create the Jakarta Messaging connector connect ion
 pools and resources, and create the necessary Jakarta Messaging administration
 objects. The following Ant scripts are called by the `config.vi` Ant task:
 * TS_HOME/bin/xml/impl/glassfish/jmsra.xml

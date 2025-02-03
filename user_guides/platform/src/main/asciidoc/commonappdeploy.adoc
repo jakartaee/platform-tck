@@ -21,10 +21,6 @@ directories.
 With Associated Common Applications
 |`ejb/ee/tx/session` |`ejb/ee/tx/txbean`
 
-|`ejb/ee/tx/entity/bmp` |`ejb/ee/tx/txEbean`
-
-|`ejb/ee/tx/entity/cmp` |`ejb/ee/tx/txECMPbean`
-
 |`ejb/ee/tx/entity/pm` |`ejb/ee/tx/txEPMbean`
 
 |`connector/ee/localTx/msginflow` |`common/connector/whitebox`
@@ -53,29 +49,6 @@ With Associated Common Applications
 
 |`ejb/ee/pm/ejbql` |`ejb/ee/pm/ejbql/schema`
 
-|`ejb/ee/tx/session/stateful/bm/TxMDBMS_Direct`
-|`ejb/ee/tx/session/stateful/bm/TxMDBMSBeans/BeanA`
-
-|`ejb/ee/tx/session/stateful/bm/TxMDBMSBeans/BeanB`
-|`ejb/ee/tx/session/stateful/bm/TxMDBMSBeans/BeanC`
-
-|`tests/ejb/ee/tx/session/stateful/bm/TxMDBMS_Indirect`
-|`ejb/ee/tx/session/stateful/bm/TxMDBMSBeans/BeanA`
-
-|`ejb/ee/tx/session/stateful/bm/TxMDBMSBeans/BeanB`
-|`ejb/ee/tx/session/stateful/bm/TxMDBMSBeans/BeanC`
-
-|`ejb/ee/tx/session/stateful/bm/TxMDBSS_Direct`
-|`ejb/ee/tx/session/stateful/bm/TxMDBSSBeans/BeanA`
-
-|`ejb/ee/tx/session/stateful/bm/TxMDBSSBeans/BeanB`
-|`tests/ejb/ee/tx/session/stateful/bm/TxMDBSSBeans/BeanC`
-
-|`ejb/ee/tx/session/stateful/bm/TxMDBSS_Indirect`
-|`ejb/ee/tx/session/stateful/bm/TxMDBSSBeans/BeanA`
-
-|`ejb/ee/tx/session/stateful/bm/TxMDBSSBeans/BeanB`
-|`ejb/ee/tx/session/stateful/bm/TxMDBSSBeans/BeanC`
 |=======================================================================
 
 

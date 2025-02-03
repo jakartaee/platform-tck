@@ -1,6 +1,6 @@
 
 [[procedure-for-jakarta-platform-enterprise-edition-certification]]
-== Procedure for Jakarta Platform, Enterprise Edition {tck_version}.0 Certification
+= Procedure for Jakarta Platform, Enterprise Edition {tck_version}.0 Certification
 
 This chapter describes the compatibility testing procedure and
 compatibility requirements for Jakarta Platform, Enterprise Edition Version
@@ -229,7 +229,7 @@ Specification.
 |=======================================================================
 
 [[rules-for-jakarta-platform-enterprise-edition-version-products]]
-=== Rules for Jakarta Platform, Enterprise Edition Version 11 Products
+== Rules for Jakarta Platform, Enterprise Edition Version 11 Products
 
 The following rules apply for each implementation:
 

@@ -1,6 +1,6 @@
 
 [[jakarta-tck-appeals-process]]
-== Jakarta TCK Test Appeals Process
+= Jakarta TCK Test Appeals Process
 
 Jakarta has a well established process for managing challenges to its
 TCKs. Any implementor may submit a challenge to one or more tests in the
@@ -8,7 +8,7 @@ Jakarta EE TCK as it relates to their implementation.  Implementor
 means the entity as a whole in charge of producing the final certified release.
 *Challenges filed should represent the consensus of that entity*.
 
-=== Valid Challenges
+== Valid Challenges
 Any test case (e.g., test class, @Test method), test case configuration (e.g., deployment descriptor), test beans, annotations, and other resources considered part of the TCK may be challenged.
 
 The following scenarios are considered in scope for test challenges:
@@ -18,7 +18,7 @@ The following scenarios are considered in scope for test challenges:
 * Claims that an assertion of the specification is not sufficiently implementable.
 * Claims that a test is not portable or depends on a particular implementation.
 
-=== Invalid Challenges
+== Invalid Challenges
 The following scenarios are considered out of scope for test challenges and will be immediately closed if filed:
 
 * Challenging an implementation’s claim of passing a test.  Certification is an honor system and these issues must be raised directly with the implementation.
@@ -36,7 +36,7 @@ for that version of the {TechnologyShortName} TCK.
 
 
 [[tck-test-appeals-steps]]
-=== TCK Test Appeals Steps
+== TCK Test Appeals Steps
 
 1. Challenges should be filed via the Jakarta EE Platform specification project’s issue tracker using the label `challenge` and include the following information:
 * The relevant specification version and section number(s)
