@@ -6,17 +6,13 @@ work with your Jakarta EE {tck_version} Web Profile test environment. It is reco
 that you first set up the testing environment using the Jakarta EE {tck_version} Web
 Profile CI and then with your Jakarta EE {tck_version} Web Profile server.
 
-[[GLSEL]][[configuring-the-jakarta-ee-11-web-profile-test-environment]]
-
+[[configuring-the-jakarta-ee-11-web-profile-test-environment]]
 == Configuring the Jakarta EE {tck_version} Web Profile Test Environment
 
-The instructions in this section and in
-link:config.html#GEWWA[Configuring Your Application Server as the VI]
-step you through the configuration process for the Solaris, Microsoft
-Windows, and Linux platforms.
+The instructions in this section and in <<configuring-your-application-server-as-the-vi>>
+step you through the configuration process for the Solaris, Microsoft Windows, and Linux platforms.
 
-[[GJWED]][[to-run-tests-against-a-jakarta-ee-11-web-profile-implementation]]
-
+[[to-run-tests-against-a-jakarta-ee-11-web-profile-implementation]]
 == To Run Tests Against a Jakarta EE {tck_version} Web Profile Implementation
 
 The Jakarta EE {tck_version} Platform TCK is the Technology Compatibility Kit (TCK) for the Jakarta

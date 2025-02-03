@@ -206,8 +206,7 @@ certification, you must run using the default set of vehicles.
 [examples]
 === Examples (Needs Rewrite)
 
-[[GFATY]]
-
+[[running-the-jdbc-test-run]]
 ==== Example 10-1 Restricting the JDBC Test Run
 
 To restrict the JDBC test run to the servlet and Jakarta Server Pages vehicles only, set

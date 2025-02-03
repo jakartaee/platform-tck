@@ -14,10 +14,10 @@ SQL, which helps to clarify the EJB QL semantics.
 [[d.1-persistence-schema-relationships]]
 == Persistence Schema Relationships
 
-The figure, link:#GFKUU[Figure E-1], below, contains detailed
+The figure, <<figure-e-1>>, below, contains detailed
 information about the persistence schema relationships.
 
-[[GFKUU]]
+[[figure-e-1]]
 === Figure E-1 Persistence Schema Relationships
 image:img/ejbschema.png["Persistence Schema Relationships"]
 
