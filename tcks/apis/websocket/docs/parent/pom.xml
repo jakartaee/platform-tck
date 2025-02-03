@@ -32,7 +32,7 @@
         <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
 
         <!-- plugin versions -->
-        <asciidoctorj.version>2.5.11</asciidoctorj.version>
+        <asciidoctorj.version>3.0.0</asciidoctorj.version>
         <doc.pdf>Jakarta-${jakarta.spec.name}-TCK-Users-Guide.pdf</doc.pdf>
         <freemarker.version>2.3.32</freemarker.version>
         <!-- the short name of the specification this user guide is for, eg: Platform, JsonB,... -->
