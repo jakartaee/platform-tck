@@ -42,9 +42,6 @@
         <ts.home>./jakartaeetck</ts.home>
         <jakarta.el-api.version>6.0.1</jakarta.el-api.version>
         <version.jakarta.tck.arquillian>11.0.0-M1</version.jakarta.tck.arquillian>
-        <tck.test.el.platform.file>jakartaeetck-${tck.test.el.platform.version}-dist.zip</tck.test.el.platform.file>
-        <tck.test.el.platform.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.el.platform.file}</tck.test.el.platform.url>
-        <tck.test.el.platform.version>${project.version}</tck.test.el.platform.version>
     </properties>
 
     <dependencyManagement>
@@ -70,11 +67,6 @@
             <artifactId>junit-vintage-engine</artifactId>
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>${tck.artifactId}</artifactId>
-            <version>${tck.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.el</groupId>
@@ -257,48 +249,6 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
-                <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
-                <configuration>
-                    <url>${tck.test.el.platform.url}</url>
-                    <unpack>true</unpack>
-                    <outputDirectory>${project.build.directory}</outputDirectory>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>004-download-el-platform-tck</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-install-plugin</artifactId>
-                <executions>
-
-                    <execution>
-                        <id>005-install-el-platform-tck-jar</id>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <file>${project.build.directory}/jakartaeetck/artifacts/el-platform-tck-${tck.test.el.platform.version}.jar</file>
-                            <sources>${project.build.directory}/jakartaeetck/artifacts/el-platform-tck-${tck.test.el.platform.version}-sources.jar</sources>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>el-platform-tck</artifactId>
-                            <version>${tck.test.el.platform.version}</version>
-                            <packaging>jar</packaging>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
 
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -321,7 +271,6 @@
                             </includes>
                             <!-- Select the @Tag("tck-javatest") tests -->
                             <groups>${groups}</groups>
-                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <junit.log.traceflag>true</junit.log.traceflag>
