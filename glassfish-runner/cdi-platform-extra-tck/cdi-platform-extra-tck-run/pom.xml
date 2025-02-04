@@ -35,7 +35,8 @@
 
     <properties>
         <cdi.tck-4-1.version>4.1.0</cdi.tck-4-1.version>
-        <tck.version>4.1.0-M3</tck.version>
+        <!-- The CDI EE Platform Integration TCK Version -->
+        <tck.version>11.0.0-SNAPSHOT</tck.version>
         
         <glassfish.root>${project.build.directory}</glassfish.root>
 
