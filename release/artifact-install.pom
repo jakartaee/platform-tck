@@ -28,6 +28,22 @@
                 <version>3.1.3</version>
                 <executions>
                     <execution>
+                        <id>install-tck-parent</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>project</artifactId>
+                            <version>${project.version}</version>
+                            <packaging>pom</packaging>
+                            <file>project-${project.version}.pom</file>
+                            <generatePom>false</generatePom>
+                        </configuration>
+                    </execution>
+
+                    <execution>
                         <id>install-appclient</id>
                         <phase>package</phase>
                         <goals>
@@ -292,9 +308,9 @@
                         <configuration>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>signaturetest</artifactId>
-                            <version>${project.version}</version>
+                            <version>${jakarta.tck.tools.version}</version>
                             <packaging>jar</packaging>
-                            <file>signaturetest-${project.version}.jar</file>
+                            <file>signaturetest-${jakarta.tck.tools.version}.jar</file>
                             <generatePom>false</generatePom>
                         </configuration>
                     </execution>
