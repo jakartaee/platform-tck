@@ -81,9 +81,7 @@ status. For a given platform to be certified, all of the required tests
 must pass. The definition of required tests may change from platform to
 platform.
 
-The definition of required tests will change over time. Before your
-final certification test pass, be sure to download the latest Exclude
-List for the Jakarta EE {tck_version} Platform TCK. The definition of required tests will change over time. See <<exclude-lists>> for more
+The definition of required tests will change over time. Before your final certification test pass, be sure to download the latest Jakarta EE {tck_version} Platform TCK. The definition of required tests will change over time. See <<exclude-lists>> for more
 information.
 
 [[spec-proc-and-compatibility-testing]]
@@ -311,8 +309,7 @@ based on a particular file system behavior, and so on) may be excluded.
 
 [NOTE]
 ======================================================================
-Implementers are not permitted to alter or modify Exclude Lists. Changes to
-an Exclude List can only be made by using the procedure described in
+Implementers are not permitted to alter or modify Excluded Tests. Changes the Excluded Tests can only be made by using the procedure described in
 <<appeals-process-ee>> and <<appeals-process-wp>>
 ======================================================================
 

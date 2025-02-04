@@ -97,21 +97,9 @@ following commands:
 
 [source,oac_no_warn]
 ----
-cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/jakarta_xml_ws/Dispatch
-ant -Dkeywords=forward runclient
+mvn ...
 ----
 
-[[running-subset-tests]]
-==== Example 7-3 Running a Subset of Test Directories (Needs Rewrite)
-
-To run a subset of test directories in the `reverse` direction, enter
-the following commands:
-
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api
-ant -Dkeywords=reverse runclient
-----
 
 [[validating-your-test-configuration]]
 == Validating Your Test Configuration
@@ -372,59 +360,9 @@ components; components without an asterisk are not required by EJB Lite.
 |EJB Embeddable Container |`ejb_embeddable_optional`
 |=======================================================================
 
-
-==== To Use Keywords to Run Tests in Forward and Reverse Directions (Needs Rewrite)
-
-The `forward` and `reverse` keywords can be used to filter the interop
-and/or rebuildable tests during a selected test run when running tests
-in one of the following directories only:
-
-[source,oac_no_warn]
-----
-<TS_HOME>/src/com/sun/ts/tests/jaxws
-<TS_HOME>/src/com/sun/ts/tests/jws
-<TS_HOME>/src/com/sun/ts/tests/interop
-----
-
-`Forward` tests are interop tests that run from the Vendor
-Implementation to the Compatible Implementation, as well as rebuildable
-tests that run only against the Vendor Implementation. Reverse tests
-(with test names ending in _reverse) are interop tests that run from the
-Compatible Implementation to the Vendor Implementation, as well as
-rebuildable tests that run only against the Compatible Implementation.
-
-To set one of these keywords when running in command-line mode, set the
-appropriate keyword using the keyword system property.
-
-===== Example 7-16 Running Tests in the Forward Direction
-
-[source,oac_no_warn]
-----
-ant -Dkeywords=forward runclient
-----
-
-===== Example 7-17 Running Tests in the Reverse Direction
-
-[source,oac_no_warn]
-----
-ant -Dkeywords=reverse runclient
-----
-
-To set one of these keywords in the Javatest GUI, select the Configure
-menu item, then select Change Configuration, then select Keywords, and
-set the appropriate keyword.
-
-When one of these keywords has been set, executing tests in the
-directories above causes only those tests that match the keyword to be
-run. This can be useful when trying to debug failures with a particular
-test configuration. Note, however, for certification all tests in both
-directions must pass.
-
-
 == Rebuilding Test Directories (Needs Rewrite)
 
-The following directories require rebuilding, which is done by running
-the `configure.datasource.tests` Ant target:
+The following directories require rebuilding, which is done by running the `configure.datasource.tests` Ant target:
 
 * `com/sun/ts/tests/ejb30/lite/packaging/war/datasource`
 * `com/sun/ts/tests/ejb30/assembly/appres`
@@ -434,13 +372,10 @@ When the `configure.datasource.tests` Ant target is run from any
 directory, it rebuilds these directories and any required
 subdirectories.
 
-The `com/sun/ts/tests/jms/ee20/resourcedefs` directory must also be
-rebuilt. Run the `build.special.webservices.clients` Ant target to
-rebuild the tests in this directory.
+=== JMS (Full Platform Only)
+The `com/sun/ts/tests/jms/ee20/resourcedefs` tests may need to be updated and rebuilt for resource definitions...
 
-The database properties in the TCK bundle are set to Derby database. If
-any other database is used, the `update.metadata.token.values` ant
-target needs to be executed for metadata-complete tests.
+The database properties in the TCK bundle are set to Derby database. If any other database is used, ...
 
 The following directories require rebuilding:
 `src\com\sun\ts\tests\appclient\deploy\metadatacomplete\testapp.`
