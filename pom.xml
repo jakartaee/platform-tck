@@ -62,7 +62,7 @@
         <module>tcks/profiles/platform/jdbc</module>
         <module>tcks/profiles/platform/samples</module>
         <module>tcks/profiles/platform/xa</module>
-        <module>tools</module>
+        <!--module>tools</module-->
         <module>tsharness</module>
         <module>user_guides</module>
         <module>webartifacts/jsf</module>
