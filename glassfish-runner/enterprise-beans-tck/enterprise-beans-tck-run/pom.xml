@@ -12,11 +12,11 @@
   
   ejb30 lite env tests:
   
-  mvn spotless:apply && mvn clean install -Dglassfish.version=8.0.0-SNAPSHOT -Dmaven.build.cache.enabled=false -Pejb30,exclude-timeout,ejb30_lite_env
+  mvn clean install -Dglassfish.version=8.0.0-SNAPSHOT -Dmaven.build.cache.enabled=false -Pejb30,exclude-timeout,ejb30_lite_env
   
   ejb30 assembly, misc and tx tests:
   
-  mvn spotless:apply && mvn clean install -Dglassfish.version=8.0.0-SNAPSHOT -Dmaven.build.cache.enabled=false -Pejb30,exclude-timeout,ejb30_assembly_misc_tx
+  mvn clean install -Dglassfish.version=8.0.0-SNAPSHOT -Dmaven.build.cache.enabled=false -Pejb30,exclude-timeout,ejb30_assembly_misc_tx
   
   etc
   
