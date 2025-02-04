@@ -739,6 +739,7 @@
                         </goals>
                         <phase>validate</phase>
                         <configuration>
+                            <skip>${release}</skip>
                             <pom combine.children="append">
                                 <sortPom combine.children="append">
                                     <nrOfIndentSpace>4</nrOfIndentSpace>
