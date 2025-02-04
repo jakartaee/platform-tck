@@ -27,7 +27,7 @@
     </parent>
 
     <artifactId>expression-language-extra-tck-install</artifactId>
-    <version>6.0.0-SNAPSHOT</version>
+    <version>11.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta Expression Language Platform Substitute TCK</name>
 
@@ -73,7 +73,7 @@
                             <file>${project.build.directory}/jakartaeetck/artifacts/el-platform-tck-${tck.test.expression-language-extra.version}.jar</file>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>el-platform-tck</artifactId>
-                            <version>6.0.0-M1</version>
+                            <version>${tck.test.expression-language-extra.version}</version>
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
