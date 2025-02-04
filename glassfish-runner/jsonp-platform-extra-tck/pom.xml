@@ -27,7 +27,7 @@
     </parent>
 
     <groupId>jakarta.tck</groupId>
-    <artifactId>jsonp-platform-extra-tck</artifactId>
+    <artifactId>jsonb-platform-extra-tck</artifactId>
     <version>11.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
