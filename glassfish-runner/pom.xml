@@ -44,7 +44,7 @@
         <module>connector-platform-tck</module>
         -->
         <module>enterprise-beans-tck</module>
-        <module>expression-language-platform-tck</module>
+        <module>expression-language-platform-subst-tck</module>
         <module>expression-language-tck</module>
         <module>jsonb-platform-extra-tck</module>
         <module>jsonb-tck</module>
