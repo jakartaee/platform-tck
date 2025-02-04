@@ -252,22 +252,6 @@ ant config.vi
 The Ant configuration targets you implement, if any, may vary. Whichever
 configuration method you choose, make sure that all configuration steps
 in this procedure are completed as shown.
-
-.  Provide alternate endpoint and WSDL URLs, if necessary. +
-The `<TS_HOME>/bin` directory contains the following `.dat` files:
-* `jaxws-url-props.dat`
-* `jws-url-props.dat`
-* `webservices12-url-props.dat` 
-+
-These files contain the webservice endpoint and WSDL URLs that the CTS
-tests use when running against the CI. In the porting package used by
-the TCK, the URLs are returned as is since this is the form that the CI
-expects. You may need an alternate form of these URLs to run the CTS
-tests in your environment. However, you MUST NOT modify the existing
-`.dat` files, but instead make any necessary changes in your own porting
-implementation class to transform the URLs appropriately for your
-environment.
-
 .  Install and configure a database for the server under test.
 
 .  Start your database.

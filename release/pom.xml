@@ -31,7 +31,7 @@
     <name>Jakarta TCK Release</name>
 
     <properties>
-        <tck.test.jsonb.version>3.0.0-SNAPSHOT</tck.test.jsonb.version>
+        <tck.test.jsonb.version>11.0.0-SNAPSHOT</tck.test.jsonb.version>
         <tck.test.jsonp.version>11.0.0-SNAPSHOT</tck.test.jsonp.version>
     </properties>
 
@@ -50,16 +50,6 @@
         <!-- Web Profile TCK Dependencies -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>appclient</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>assembly-tck</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
             <version>${jakarta.tck.tools.version}</version>
         </dependency>
@@ -71,8 +61,20 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>connector</artifactId>
+            <artifactId>common</artifactId>
+            <version>${jakarta.tck.tools.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>cdi-tck-ee-impl</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>cdi-tck-ee-impl</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -81,8 +83,20 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>ejb30</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>ejb32</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>ejb32</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -91,13 +105,20 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>el-platform-tck</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>integration</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>javaee-tck</artifactId>
+            <artifactId>integration</artifactId>
             <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
@@ -105,19 +126,10 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>javamail</artifactId>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>rest-platform-tck</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>jdbc</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>jms-tck</artifactId>
-            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -126,8 +138,20 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>persistence-platform-tck-tests</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>jsonb-platform-tck</artifactId>
             <version>${tck.test.jsonb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>jsonb-platform-tck</artifactId>
+            <version>${tck.test.jsonb.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -147,8 +171,20 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>pages-platform-tck</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>transactions-tck</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>transactions-tck</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -167,11 +203,89 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>xa</artifactId>
-            <version>${project.version}</version>
+            <artifactId>websocket-tck-platform-tests</artifactId>
+            <version>2.2.0</version>
+            <classifier>sources</classifier>
         </dependency>
 
         <!-- Additional Platform TCK Dependencies -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>appclient</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>appclient</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>assembly-tck</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>connector</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>javaee-tck</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>javaee-tck</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>javamail</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>javamail</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>jdbc</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>jdbc</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>jms-tck</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>jms-tck</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>xa</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>xa</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+
     </dependencies>
 
     <build>

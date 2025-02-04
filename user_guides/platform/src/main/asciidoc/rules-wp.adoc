@@ -75,9 +75,8 @@ operating systems and device drivers.
 specification and which contains configuration information for a set of
 Java classes, archive, or other feature defined in the specification.
 
-|Conformance Tests |All tests in the Test Suite for an indicated
-Technology Under Test, as released and distributed by the Eclipse Foundation, excluding
-those tests on the Exclude List for the Technology Under Test.
+|Conformance Tests |All tests in the Test Suite for an indicated Technology Under Test, as released and distributed by the Eclipse Foundation, excluding
+those tests in the Excluded Test set for the Technology Under Test.
 
 |Container |An implementation of the associated Libraries, as specified
 in the Specifications, and a version of a Java Platform, Standard
@@ -99,19 +98,8 @@ Standard Edition and Java Platform Enterprise Edition.
 than the Jakarta Enterprise Specification Process. The Endorsed Standard packages are
 listed later in this chapter.
 
-|Exclude List |The most current list of tests, released and distributed by the
-Eclipse Foundation, that are not required to be passed to certify
-conformance. The Jakarta EE Specification Committee may add to the Exclude List for that
-Test Suite as needed at any time, in which case the updated TCK version
-supplants any previous Exclude Lists for that Test Suite.
+|Excluded Tests |Each release of a TCK may include tests that are annotated as excluded. These tests are not required to be run by the TCK user.
 
-|Java-to-WSDL Output |Output of a Java-to-WSDL Tool that is required for
-Web service deployment and invocation.
-
-|Java-to-WSDL Tool |A software development tool that implements or
-incorporates a function that generates web service endpoint descriptions
-in WSDL and XML schema format from Source Code as specified by the JAXWS
-Specification.
 
 |Jakarta Server Page |A text-based document that uses Jakarta Server Pages technology.
 
@@ -211,13 +199,6 @@ the Maintenance Lead as applicable to a given Version of the Technology.
 |Version |A release of the Technology, as produced through the
 Jakarta EE Specification Process (JESP).
 
-|WSDL-to-Java Output |Output of a WSDL-to-Java tool that is required for
-Web service deployment and invocation.
-
-|WSDL-to-Java Tool |A software development tool that implements or
-incorporates a function that generates web service interfaces for
-clients and endpoints from a WSDL description as specified by the JAXWS
-Specification.
 |=======================================================================
 
 
@@ -257,8 +238,7 @@ website and apply to all vendor compatible implementations.
 EE-WP3 The testing tools supplied as part of the Test Suite or as
 updated by the Maintenance Lead must be used to certify compliance.
 
-EE-WP4 The Exclude List associated with the Test Suite cannot be
-modified.
+EE-WP4 The Excluded Tests associated with the Test Suite cannot be modified.
 
 EE-WP5 The Maintenance Lead may define exceptions to these Rules. Such
 exceptions would be made available as above, and will apply to all vendor implementations.

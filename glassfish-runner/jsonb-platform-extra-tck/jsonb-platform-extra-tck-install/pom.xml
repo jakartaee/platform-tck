@@ -28,15 +28,15 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>jsonb-tck-install</artifactId>
-    <version>3.0.0-SNAPSHOT</version>
+    <version>11.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta JSON-B Extra TCK</name>
 
     <properties>
-        <tck.test.jsonb.extra.file>jakarta-jsonb-extra-tck-${tck.test.jsonb.version}.zip</tck.test.jsonb.extra.file>
+        <tck.test.jsonb.extra.file>jakartaeetck-${tck.test.jsonb.version}-dist.zip</tck.test.jsonb.extra.file>
         <tck.test.jsonb.extra.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.jsonb.extra.file}</tck.test.jsonb.extra.url>
         
-        <tck.test.jsonb.version>3.0.0-M1</tck.test.jsonb.version>
+        <tck.test.jsonb.version>${project.version}</tck.test.jsonb.version>
     </properties>
 
     <build>
@@ -44,21 +44,19 @@
             <plugin>
                 <groupId>com.googlecode.maven-download-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.9.0</version>
+                <version>1.13.0</version>
                 <configuration>
+                    <url>${tck.test.jsonb.extra.url}</url>
                     <unpack>true</unpack>
                     <outputDirectory>${project.build.directory}</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
                         <id>download-jsonb-extra-tck</id>
+                        <phase>generate-resources</phase>
                         <goals>
                             <goal>wget</goal>
                         </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <url>${tck.test.jsonb.extra.url}</url>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -74,8 +72,8 @@
                         </goals>
                         <phase>process-resources</phase>
                         <configuration>
-                            <file>${project.build.directory}/jsonb-platform-tck-${tck.test.jsonb.version}.jar</file>
-                            <sources>${project.build.directory}/jsonb-platform-tck-${tck.test.jsonb.version}-sources.jar</sources>
+                            <file>${project.build.directory}/jakartaeetck/artifacts/jsonb-platform-tck-${tck.test.jsonb.version}.jar</file>
+                            <sources>${project.build.directory}/jakartaeetck/artifacts/jsonb-platform-tck-${tck.test.jsonb.version}-sources.jar</sources>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>jsonb-platform-tck</artifactId>
                             <version>${tck.test.jsonb.version}</version>

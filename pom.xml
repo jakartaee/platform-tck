@@ -35,6 +35,7 @@
 
     <modules>
         <module>arquillian</module>
+        <module>tcks/apis/cdi-ee-tck/tck</module>
         <module>tcks/apis/connector</module>
         <module>tcks/apis/enterprise-beans/ejb30</module>
         <!-- PENDING: Additional action necessary to expurgate WebServices content. -->
