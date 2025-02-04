@@ -29,7 +29,7 @@
 
     <groupId>jakarta</groupId>
     <artifactId>glassfish-restful-tests</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
+    <version>11.0.0-SNAPSHOT</version>
 
     <name>TCK: Run Jakarta REST Platform Extra TCK</name>
     <description>
@@ -43,7 +43,7 @@
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <!-- Use JDK17 to run with GF-8.0.0-JDK17-M7 -->
         <glassfish.version>8.0.0-JDK17-M9</glassfish.version>
-        <tck.version>4.0.0-M1</tck.version>
+        <tck.version>11.0.0-SNAPSHOT</tck.version>
     </properties>
 
     <!-- The Junit5 test frameworks -->
@@ -152,6 +152,7 @@
                         </goals>
                         <configuration>
                             <dependenciesToScan>jakarta.tck:rest-platform-tck</dependenciesToScan>
+                            <groups>${testGroups}</groups>
                             
                             <systemPropertyVariables>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
@@ -190,12 +191,14 @@
             </activation>
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <testGroups>platform</testGroups>
             </properties>
         </profile>
         <profile>
             <id>web</id>
             <properties>
                 <glassfish-artifact-id>web</glassfish-artifact-id>
+                <testGroups>web</testGroups>
             </properties>
         </profile>
     </profiles>

@@ -253,6 +253,8 @@
                     </execution>
                 </executions>
             </plugin>
+
+
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.0.0-M5</version>
@@ -274,7 +276,6 @@
                             </includes>
                             <!-- Select the @Tag("tck-javatest") tests -->
                             <groups>${groups}</groups>
-                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <junit.log.traceflag>true</junit.log.traceflag>
