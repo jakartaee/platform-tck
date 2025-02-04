@@ -69,6 +69,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>${tck.artifactId}</artifactId>
+            <version>${tck.version}</version>
+        </dependency>
+        <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
             <version>${jakarta.el-api.version}</version>
