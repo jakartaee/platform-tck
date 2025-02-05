@@ -131,7 +131,6 @@
                 <include>${project.groupId}:pages-platform-tck</include>
                 <include>${project.groupId}:transactions-tck</include>
                 <include>${project.groupId}:signaturetest</include>
-                <include>${project.groupId}:tsharness</include>
                 <include>${project.groupId}:websocket-tck-platform-tests</include>
                 <include>${project.groupId}:xa</include>
             </includes>

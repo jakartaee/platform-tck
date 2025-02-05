@@ -195,7 +195,7 @@ can be used as templates.
 
 What Goes In My Deliverable
 ---------------------------
-The $TS_HOME/lib/sigtest.jar and $TS_HOME/lib/tsharness.jar must be available
+The $TS_HOME/lib/sigtest.jar must be available
 to the signature tests as well as the signature files, the signature map file
 and the package list file (the file named "sig-test-pkg-list.txt").
 User must also include the test framework classes located in the
