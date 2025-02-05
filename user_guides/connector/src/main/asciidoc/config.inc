@@ -88,8 +88,6 @@ documentation bundle in the `docs/api` directory.
 This target performs the following tasks:
 * Stops the application server running the {TechnologyShortName}
 {TechnologyVersion} CI
-* Copies the TCK-dependent files `${tslib.name}.jar` and `tsharness.jar`
-into the application server's external library folder
 * Starts the application server
 * Sets the appropriate JVM options in the runtime
 * Creates connection pools and connection resources

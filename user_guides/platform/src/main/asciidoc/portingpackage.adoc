@@ -53,7 +53,7 @@ The following `com.sun.cts.porting` porting interfaces need to be implemented:
 
 * `TSLoginContextInterface`
 * `TSURLInterface`
-* `TSJMSAdminInterface`
+* `TSJMSAdminInterface` (Full Platform Only)
 * `TSHttpsURLConnectionInterface`
 
 To use specific implementations of these classes, you simply modify the

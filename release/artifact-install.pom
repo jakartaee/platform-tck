@@ -315,21 +315,6 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-tsharness</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>tsharness</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>tsharness-${project.version}.jar</file>
-                            <generatePom>false</generatePom>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>install-websocket-tck-platform-tests</id>
                         <phase>package</phase>
                         <goals>

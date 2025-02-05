@@ -29,9 +29,7 @@ You can modify the following test suite components only:
 The instructions in this section and in <<configuring-your-application-server-as-the-vi>> step you through the configuration process for the Linux and Microsoft Windows.
 
 All TCK test configuration procedures are based on running the Ant
-scripts against a set of build targets. The primary location of any
-configuration settings you are likely to make is the
-`<TS_HOME>/bin/ts.jte` environment file. You may also want to modify the
+scripts against a set of build targets. The primary location of any configuration settings you are likely to make is the `<TS_HOME>/bin/ts.jte` environment file. You may also want to modify the
 `javaee_vi.xml` and `initdb.xml` Ant configuration files and the
 vendor-specific SQL files. These two files contain predefined Ant
 targets that are implemented such that they automatically configure the
@@ -39,9 +37,14 @@ Jakarta EE {tck_version} CI and its associated database in order to pass the TCK
 Implementer may choose to implement these targets to work with their server
 environment to perform the steps described in <<configuring-your-application-server-as-the-vi>>.
 
+[NOTE]
+====
+The `<TS_HOME>/bin/ts.jte` environment file contains many properties that are no longer in use in the TCK. While we have transitioned from the JavaTest framework used in Jakarta EE 10 and earlier in Jakarta EE 11, there are still remnants in the EE 11 TCK, and these do use some properties in the `ts.jte` file.
 
-[[sthref15]]
+The full list of `ts.jte` file properties that need a value is given in <<full-list-tsjte-properties>>.
+====
 
+[[config-before-you-begin]]
 === Before You Begin
 
 In these instructions, variables in angle brackets need to be expanded
@@ -220,16 +223,6 @@ The default setting is `localhost`.
 which the Web server is running and configured with the CI. +
 The default setting is `8001`.
 
-..  Set the `wsgen.ant.classname` property to the Vendor's
-implementation class that mimics the CI Ant task that in turn calls the
-`wsgen` Java-to-WSDL tool. +
-The default setting is `com.sun.tools.ws.ant.WsGen`.
-
-..  Set the `wsimport.ant.classname` property to the Vendor's
-implementation class that mimics the CI Ant task that in turn calls the
-`wsimport` WSDL-to-Java tool. +
-The default setting is `com.sun.tools.ws.ant.WsImport`.
-
 ..  Set the `porting.ts.url.class` property to your porting
 implementation class that is used for obtaining URLs.
 
@@ -366,12 +359,7 @@ policy file or files on your Jakarta EE {tck_version} server. +
 This file contains the grant statements used by the test harness,
 signature tests, and API tests.
 
-.. Append the file `<TS_HOME>/bin/client_policy.append` to the
-application client's Java policy file, which is referenced in the
-`TestExecuteAppClient` section of the `ts.jte` file.
-
-.. Make the appropriate transaction interoperability setting on the
-Jakarta EE {tck_version} server and the server that is running the Jakarta EE {tck_version} CI. +
+.. Make the appropriate transaction interoperability setting on the Jakarta EE {tck_version} server and the server that is running the Jakarta EE {tck_version} CI.
 
 
 .. If necessary, refer to the sections later in this chapter for
@@ -405,9 +393,7 @@ sections that follow.
 [NOTE]
 ======================================================================
 
-This section only discusses a small subset of the properties you can
-modify. Refer to the `ts.jte` file for information about the many other
-properties you may want to modify for your particular test environment.
+This section only discusses a small subset of the properties you can modify. Refer to the <<full-list-tsjte-properties>> for what other properties in the `ts.jte` file may be relevant for your particular test environment.
 
 ======================================================================
 
@@ -435,8 +421,7 @@ This section includes the following topics:
 [[test-harness-setup]]
 === Test Harness Setup
 
-Verify that the following properties, which are used by the test
-harness, have been set in the `<TS_HOME>/bin/ts.jte` file:
+Verify that the following properties, which are used by the test harness, have been set in the `<TS_HOME>/bin/ts.jte` file:
 
 [source,oac_no_warn]
 ----
@@ -465,12 +450,6 @@ setting is `2000`.
 verbose debugging output for the tests. The value of the property is set
 to `false` by default. Set the property to `true` to turn debugging on.
 
-* The `deployment_host.1` and `deployment_host.2` properties specify the
-systems where the vendor's Jakarta Platform, Enterprise Edition server and
-the Jakarta Platform, Enterprise Edition CI server are running. By default,
-JavaTest will use the `orb.host` and `orb.host.ri` systems, which are
-set in the `ts.jte` file.
-
 * The porting class `.1` and `.2` property sets specify the class names
 of porting class implementations. By default, both property sets point
 to the Jakarta Platform, Enterprise Edition CI-specific classes. To run the
@@ -479,10 +458,93 @@ should always point to the Jakarta Platform, Enterprise Edition CI classes.
 Modify the `.1` set to point to implementations that work in your
 specific Jakarta Platform, Enterprise Edition environment.
 
-* The `-Dcts.tmp` option for the `testExecute` and
-`testExecuteAppClient` commands in the `ts.jte` file have been set. This
-Java option tells the test suite the location to which the test suite
-will write temporary files.
+[[full-list-tsjte-properties]]
+==== Complete List of `ts.jte' Properties
+
+These are the properties that need to have a in the `ts.jte` file provied to the test runner:
+
+* s1as
+* s1as.modules
+* Driver
+* authpassword
+* authuser
+* binarySize
+* cofSize
+* cofTypeSize
+* db.dml.file
+* db.supports.sequence
+* db1
+* db2
+* DriverManager
+* ftable
+* generateSQL
+* harness.log.port
+* harness.log.traceflag
+* harness.socket.retry.count
+* harness.temp.directory
+* imap.port
+* iofile
+* java.naming.factory.initial
+* javamail.mailbox
+* javamail.password
+* javamail.protocol
+* javamail.root.path
+* javamail.server
+* javamail.username
+* jdbc.db
+* jms_timeout
+* jstl.db.user
+* jstl.db.password
+* log.file.location
+* logical.hostname.servlet
+* longvarbinarySize
+* mailuser1
+* org.omg.CORBA.ORBClass
+* password
+* password1
+* platform.mode
+* porting.ts.HttpsURLConnection.class.1
+* porting.ts.HttpsURLConnection.class.2
+* porting.ts.login.class.1
+* porting.ts.login.class.2
+* porting.ts.url.class.1
+* porting.ts.url.class.2
+* porting.ts.jms.class.1
+* porting.ts.jms.class.2
+* porting.ts.deploy.class.1
+* porting.ts.deploy.class.2
+* ptable
+* rapassword1
+* rapassword2
+* rauser1
+* rauser2
+* securedWebServicePort
+* sigTestClasspath
+* smtp.port
+* transport_protocol
+* ts_home
+* user
+* user1
+* varbinarySize
+* variable.mapper
+* vehicle_ear_name
+* webServerHost
+* webServerPort
+* whitebox-anno_no_md
+* whitebox-mdcomplete
+* whitebox-mixedmode
+* whitebox-multianno
+* whitebox-notx
+* whitebox-notx-param
+* whitebox-permissiondd
+* whitebox-tx
+* whitebox-tx-param
+* whitebox-xa
+* whitebox-xa-param
+* work.dir
+* ws_wait
+
+Many of these properties can simply be left to their default values. Those that need specific values are described in the relevant sections of the configuration chapter.
 
 [[windows-specific-properties]]
 === Windows-Specific Properties
@@ -712,9 +774,7 @@ as well.
 [[to-configure-your-environment-to-run-the-jakarta-restful-web-services-tests-against-the-jakarta-ee-8-ci]]
 ==== To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against the Jakarta EE {tck_version} CI
 
-Copy <TS_HOME>/bin/ts.jte.jdk11 as <TS_HOME>/bin/ts.jte if JAVA_HOME is Java SE 11.
-Edit your `<TS_HOME>/bin/ts.jte` file and set the following environment
-variables:
+Edit your `<TS_HOME>/bin/ts.jte` file and set the following environment variables:
 
 .  Set the `jaxrs_impl_lib` property to point to the Jakarta RESTful Web Services CI. +
 The default setting for this property is
@@ -1067,7 +1127,7 @@ mechanism that a deployer can use to provide Installed Libraries in a
 portable manner.
 
 [[creating-security-mappings--connector-rar-files]]
-==== Creating Security Mappings for the Connector RAR Files
+==== Creating Security Mappings for the Connector RAR Files (Full Platform Only)
 
 The Ant target `create.security.eis.mappings` in the
 `<TS_HOME>/bin/xml/impl/glassfish/connector.xml` file maps Resource
@@ -1259,8 +1319,8 @@ support.
 [[configure-the-tests-ejb-datasource-tests]]
 ==== To Configure the Test Environment to Run the Jakarta Enterprise Beans 4.0 DataSource Tests
 
-The EJB 3.2 DataSource tests under the following `tests/ejb30`
-directories require you to run the Ant task in Step <<configure_datasource_tests>>.
+The EJB 3.2 DataSource tests under the following `jakarta.tck:ejb30` artifact packages
+may require you to update the  `@DataSourceDefinition` used in the test class to match your database environment. You are allowed to recompile these tests with those changes before running them.
 
 * `com/sun/ts/tests/ejb30/lite/packaging/war/datasource`
 * `com/sun/ts/tests/ejb30/misc/datasource`

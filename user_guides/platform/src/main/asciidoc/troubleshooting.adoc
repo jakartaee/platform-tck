@@ -55,19 +55,6 @@ Resolution: +
 Set `JAVA_HOME` to the path where the version of Java being used was
 installed and set `JAKARTAEE_HOME` to the location of the Jakarta Platform,
 Enterprise Edition installation directory.
-* Problem: +
-If the `cts.jar` and the `tsharness.jar` files are not loadable by the
-extension classloader of your Jakarta Platform, Enterprise Edition server,
-the following exception will be displayed in the window where the server
-was started when you attempt to run the tests: +
-[source,oac_no_warn]
-----
-java.lang.NoClassDefFoundError: com/sun/cts/util
-RemoteLoggingInitException
-----
-Resolution: +
-Ensure that the `cts.jar` and `tsharness.jar` files can be loaded by the
-extension class loader of your Jakarta Platform, Enterprise Edition server.
 
 * Problem: +
 When running the Jakarta Persistence TCK tests you see an error log message containing:

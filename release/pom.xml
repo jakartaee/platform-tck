@@ -199,11 +199,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>tsharness</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>websocket-tck-platform-tests</artifactId>
             <version>2.2.0</version>
         </dependency>

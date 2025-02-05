@@ -68,7 +68,7 @@ environment variables:
   `web.deployment.handler` property to point to your deployment handler
   XML file in the `<TS_HOME>/bin/deploy` directory.Make sure that you
   implement the `—deploy` and `—deploy.all` targets in this file.
-  f.  To copy the `tsharness.jar` and `jtatck.jar` files to the server's
+  f.  To copy the `jtatck.jar` files to the server's
   extension directory, change to the `<TS_HOME>/bin` directory and execute
   the following command: +
   `ant config.vi`
@@ -144,7 +144,7 @@ environment variables:
   `web.deployment.handler` property to point to your deployment handler
   XML file in the `<TS_HOME>/bin/deploy` directory.Make sure that you
   implement the `—deploy` and `—deploy.all` targets in this file.
-  g.  To copy the `tsharness.jar` and `jtatck.jar` files to the server's
+  g.  To copy the `jtatck.jar` files to the server's
   extension directory, change to the `<TS_HOME>/bin` directory and execute
   the following command: +
   `ant config.vi`
