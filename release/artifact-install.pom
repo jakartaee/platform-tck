@@ -239,6 +239,37 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>install-persistence-platform-tck-common</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>persistence-platform-tck-common</artifactId>
+                            <version>${project.version}</version>
+                            <packaging>jar</packaging>
+                            <file>persistence-platform-tck-common-${project.version}.jar</file>
+                            <generatePom>false</generatePom>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-persistence-platform-tck-spec-tests</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>persistence-platform-tck-spec-tests</artifactId>
+                            <version>${project.version}</version>
+                            <packaging>jar</packaging>
+                            <file>persistence-platform-tck-spec-tests-${project.version}.jar</file>
+                            <generatePom>false</generatePom>
+                        </configuration>
+                    </execution>
+
+                    <execution>
                         <id>install-jsonb-platform-tck</id>
                         <phase>package</phase>
                         <goals>
