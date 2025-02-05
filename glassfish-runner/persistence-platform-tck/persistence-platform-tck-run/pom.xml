@@ -76,6 +76,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <dependencies>
         <!-- Jakarta EE dependencies -->
         <dependency>
@@ -115,18 +116,10 @@
             <version>${version.persistence.tck}</version>
             <scope>test</scope>
         </dependency>
-        
-        <!-- TCK tools dependencies (the TCK above depends on these-->
         <dependency>
             <groupId>jakarta.tck</groupId>
-            <artifactId>common</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>dbprocedures</artifactId>
-            <version>3.2.0</version>
+            <artifactId>persistence-platform-tck-dbprocedures</artifactId>
+            <version>${version.persistence.tck}</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -135,6 +128,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        
+        <!-- TCK tools dependencies (the TCK above depends on these) -->
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>common</artifactId>
+            <version>${jakarta.tck.tools.version}</version>
+        </dependency>
+        
 
         <!-- Junit -->
         <dependency>
@@ -176,11 +177,7 @@
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+        
 
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
@@ -220,40 +217,22 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-api-maven</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-spi-maven</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>11.0.0-M1</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>${project.version}</version>
+            <version>11.0.0-M1</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>${project.version}</version>
+            <version>11.0.0-M1</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${project.version}</version>
+            <version>11.0.0-M1</version>
         </dependency>
     </dependencies>
 
@@ -353,7 +332,7 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
-                                    <artifactId>dbprocedures</artifactId>
+                                    <artifactId>persistence-platform-tck-dbprocedures</artifactId>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
                                     <destFileName>dbprocedures.jar</destFileName>
@@ -478,6 +457,14 @@
         </profile>
         <profile>
             <id>appclient</id>
+            
+            <dependencies>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-appclient</artifactId>
+                    <version>11.0.0-M1</version>
+                </dependency>
+            </dependencies>
 
             <build>
                 <plugins>
