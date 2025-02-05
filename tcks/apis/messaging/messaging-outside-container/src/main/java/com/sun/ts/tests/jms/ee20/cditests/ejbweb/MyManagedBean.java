@@ -26,10 +26,10 @@ import java.util.Properties;
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import jakarta.jms.JMSConnectionFactory;
 import jakarta.jms.JMSConsumer;
 import jakarta.jms.JMSContext;
@@ -37,7 +37,7 @@ import jakarta.jms.Queue;
 import jakarta.jms.TextMessage;
 import jakarta.jms.Topic;
 
-@ManagedBean(value = "mybean")
+@Named("mybean")
 public class MyManagedBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -45,7 +45,7 @@ public class MyManagedBean implements Serializable {
 
 	private long timeout;
 
-	private static final Logger logger = (Logger) System.getLogger(MyManagedBean.class.getName());
+	private static final Logger logger = System.getLogger(MyManagedBean.class.getName());
 
 	// JMSContext CDI injection specifying ConnectionFactory
 	@Inject

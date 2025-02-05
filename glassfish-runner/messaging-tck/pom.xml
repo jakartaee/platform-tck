@@ -511,7 +511,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>3.5.2</version>
                 <executions>
                     <execution>
                         <id>gf-tests</id>
@@ -532,7 +532,7 @@
                                 <additionalClasspathElement>${glassfish.home}/mq/lib/jms.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${glassfish.home}/mq/lib/fscontext.jar</additionalClasspathElement>
                             </additionalClasspathElements>
-                            <dependenciesToScan>jakartatck:jms-tck</dependenciesToScan>
+                            <dependenciesToScan>jakarta.tck:jms-tck</dependenciesToScan>
                             <systemPropertyVariables>
                                 <user>j2ee</user>
                                 <password>j2ee</password>
