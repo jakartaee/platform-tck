@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 4.0
+#Version 1.0.9
 
 CLSS public abstract jakarta.el.ELContext
 cons public init()
@@ -490,20 +490,23 @@ fld public final static jakarta.faces.application.FacesMessage$Severity SEVERITY
 fld public final static jakarta.faces.application.FacesMessage$Severity SEVERITY_INFO
 fld public final static jakarta.faces.application.FacesMessage$Severity SEVERITY_WARN
 fld public final static java.lang.String FACES_MESSAGES = "jakarta.faces.Messages"
-fld public final static java.util.List VALUES
-fld public final static java.util.Map VALUES_MAP
+fld public final static java.util.List<jakarta.faces.application.FacesMessage$Severity> VALUES
+fld public final static java.util.Map<java.lang.String,jakarta.faces.application.FacesMessage$Severity> VALUES_MAP
 innr public static Severity
 intf java.io.Serializable
+meth public boolean equals(java.lang.Object)
 meth public boolean isRendered()
+meth public int hashCode()
 meth public jakarta.faces.application.FacesMessage$Severity getSeverity()
 meth public java.lang.String getDetail()
 meth public java.lang.String getSummary()
+meth public java.lang.String toString()
 meth public void rendered()
 meth public void setDetail(java.lang.String)
 meth public void setSeverity(jakarta.faces.application.FacesMessage$Severity)
 meth public void setSummary(java.lang.String)
 supr java.lang.Object
-hfds SEVERITY_ERROR_NAME,SEVERITY_FATAL_NAME,SEVERITY_INFO_NAME,SEVERITY_WARN_NAME,_MODIFIABLE_MAP,detail,rendered,serialVersionUID,severity,summary,values
+hfds SEVERITY_ERROR_NAME,SEVERITY_FATAL_NAME,SEVERITY_INFO_NAME,SEVERITY_WARN_NAME,detail,rendered,serialVersionUID,severity,summary,values
 
 CLSS public static jakarta.faces.application.FacesMessage$Severity
  outer jakarta.faces.application.FacesMessage
@@ -717,9 +720,11 @@ hfds wrapped
 CLSS public abstract jakarta.faces.application.StateManager
 cons public init()
 fld public final static java.lang.String FULL_STATE_SAVING_VIEW_IDS_PARAM_NAME = "jakarta.faces.FULL_STATE_SAVING_VIEW_IDS"
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.1")
 fld public final static java.lang.String IS_BUILDING_INITIAL_STATE = "jakarta.faces.IS_BUILDING_INITIAL_STATE"
 fld public final static java.lang.String IS_SAVING_STATE = "jakarta.faces.IS_SAVING_STATE"
 fld public final static java.lang.String PARTIAL_STATE_SAVING_PARAM_NAME = "jakarta.faces.PARTIAL_STATE_SAVING"
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.1")
 fld public final static java.lang.String SERIALIZE_SERVER_STATE_PARAM_NAME = "jakarta.faces.SERIALIZE_SERVER_STATE"
 fld public final static java.lang.String STATE_SAVING_METHOD_CLIENT = "client"
 fld public final static java.lang.String STATE_SAVING_METHOD_PARAM_NAME = "jakarta.faces.STATE_SAVING_METHOD"
@@ -837,8 +842,11 @@ meth public abstract jakarta.faces.event.ActionListener[] getActionListeners()
 meth public abstract void addActionListener(jakarta.faces.event.ActionListener)
 meth public abstract void removeActionListener(jakarta.faces.event.ActionListener)
 meth public abstract void setImmediate(boolean)
+meth public jakarta.el.MethodExpression getActionExpression()
+meth public void setActionExpression(jakarta.el.MethodExpression)
 
 CLSS public abstract interface jakarta.faces.component.ActionSource2
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.1")
 intf jakarta.faces.component.ActionSource
 meth public abstract jakarta.el.MethodExpression getActionExpression()
 meth public abstract void setActionExpression(jakarta.el.MethodExpression)
@@ -934,7 +942,7 @@ CLSS public jakarta.faces.component.UICommand
 cons public init()
 fld public final static java.lang.String COMPONENT_FAMILY = "jakarta.faces.Command"
 fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.Command"
-intf jakarta.faces.component.ActionSource2
+intf jakarta.faces.component.ActionSource
 meth public boolean isImmediate()
 meth public jakarta.el.MethodExpression getActionExpression()
 meth public jakarta.faces.event.ActionListener[] getActionListeners()
@@ -1136,7 +1144,7 @@ meth public void setValue(java.lang.Object)
 meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 meth public void setVar(java.lang.String)
 supr jakarta.faces.component.UIComponentBase
-hfds _initialDescendantFullComponentState,_rowDeltaStates,_rowTransientStates,baseClientId,baseClientIdLength,clientIdBuilder,isNested,model,oldVar
+hfds EMPTY_DATA_MODEL,_initialDescendantFullComponentState,_rowDeltaStates,_rowTransientStates,baseClientId,baseClientIdLength,clientIdBuilder,isNested,model,oldVar
 hcls FacesDataModelAnnotationLiteral,PropertyKeys
 
 CLSS public jakarta.faces.component.UIForm
@@ -1145,6 +1153,7 @@ fld public final static java.lang.String COMPONENT_FAMILY = "jakarta.faces.Form"
 fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.Form"
 intf jakarta.faces.component.NamingContainer
 intf jakarta.faces.component.UniqueIdVendor
+meth public boolean invokeOnComponent(jakarta.faces.context.FacesContext,java.lang.String,jakarta.faces.component.ContextCallback)
 meth public boolean isPrependId()
 meth public boolean isSubmitted()
 meth public boolean visitTree(jakarta.faces.component.visit.VisitContext,jakarta.faces.component.visit.VisitCallback)
@@ -1410,11 +1419,14 @@ fld public final static java.lang.String INVALID_MESSAGE_ID = "jakarta.faces.com
 meth protected boolean compareValues(java.lang.Object,java.lang.Object)
 meth protected void validateValue(jakarta.faces.context.FacesContext,java.lang.Object)
 meth public jakarta.el.ValueExpression getValueExpression(java.lang.String)
+meth public java.lang.Object getSubmittedValue()
 meth public java.lang.Object[] getSelectedValues()
 meth public java.lang.String getFamily()
 meth public void setSelectedValues(java.lang.Object[])
+meth public void setSubmittedValue(java.lang.Object)
 meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 supr jakarta.faces.component.UIInput
+hfds submittedValue
 hcls ArrayIterator
 
 CLSS public jakarta.faces.component.UISelectOne
@@ -1434,7 +1446,7 @@ CLSS public jakarta.faces.component.UIViewAction
 cons public init()
 fld public final static java.lang.String COMPONENT_FAMILY = "jakarta.faces.ViewAction"
 fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.ViewAction"
-intf jakarta.faces.component.ActionSource2
+intf jakarta.faces.component.ActionSource
 meth public boolean isImmediate()
 meth public boolean isOnPostback()
 meth public boolean isRendered()
@@ -1758,7 +1770,7 @@ meth public void setStyleClass(java.lang.String)
 meth public void setTitle(java.lang.String)
 meth public void setXmlns(java.lang.String)
 supr jakarta.faces.component.UIOutput
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlBody$PropertyKeys
  outer jakarta.faces.component.html.HtmlBody
@@ -1800,7 +1812,6 @@ meth public void setHeaderClass(java.lang.String)
 meth public void setRowHeader(boolean)
 meth public void setStyleClass(java.lang.String)
 supr jakarta.faces.component.UIColumn
-hfds OPTIMIZED_PACKAGE
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlColumn$PropertyKeys
  outer jakarta.faces.component.html.HtmlColumn
@@ -1878,7 +1889,7 @@ meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 meth public void setType(java.lang.String)
 supr jakarta.faces.component.UICommand
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlCommandButton$PropertyKeys
  outer jakarta.faces.component.html.HtmlCommandButton
@@ -1982,7 +1993,7 @@ meth public void setTarget(java.lang.String)
 meth public void setTitle(java.lang.String)
 meth public void setType(java.lang.String)
 supr jakarta.faces.component.UICommand
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlCommandLink$PropertyKeys
  outer jakarta.faces.component.html.HtmlCommandLink
@@ -2040,7 +2051,6 @@ meth public void setOnevent(java.lang.String)
 meth public void setRender(java.lang.String)
 meth public void setResetValues(java.lang.Boolean)
 supr jakarta.faces.component.UICommand
-hfds OPTIMIZED_PACKAGE
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlCommandScript$PropertyKeys
  outer jakarta.faces.component.html.HtmlCommandScript
@@ -2129,7 +2139,7 @@ meth public void setSummary(java.lang.String)
 meth public void setTitle(java.lang.String)
 meth public void setWidth(java.lang.String)
 supr jakarta.faces.component.UIData
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlDataTable$PropertyKeys
  outer jakarta.faces.component.html.HtmlDataTable
@@ -2183,7 +2193,6 @@ meth public void setPublic(java.lang.String)
 meth public void setRootElement(java.lang.String)
 meth public void setSystem(java.lang.String)
 supr jakarta.faces.component.UIOutput
-hfds OPTIMIZED_PACKAGE
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlDoctype$PropertyKeys
  outer jakarta.faces.component.html.HtmlDoctype
@@ -2248,7 +2257,7 @@ meth public void setStyleClass(java.lang.String)
 meth public void setTarget(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UIForm
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlForm$PropertyKeys
  outer jakarta.faces.component.html.HtmlForm
@@ -2332,7 +2341,7 @@ meth public void setTitle(java.lang.String)
 meth public void setUsemap(java.lang.String)
 meth public void setWidth(java.lang.String)
 supr jakarta.faces.component.UIGraphic
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlGraphicImage$PropertyKeys
  outer jakarta.faces.component.html.HtmlGraphicImage
@@ -2375,7 +2384,6 @@ meth public void setDir(java.lang.String)
 meth public void setLang(java.lang.String)
 meth public void setXmlns(java.lang.String)
 supr jakarta.faces.component.UIOutput
-hfds OPTIMIZED_PACKAGE
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlHead$PropertyKeys
  outer jakarta.faces.component.html.HtmlHead
@@ -2401,7 +2409,6 @@ meth public int getMaxlength()
  anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 meth public int getSize()
  anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
-meth public java.lang.Object saveState(jakarta.faces.context.FacesContext)
 meth public java.lang.String getAccept()
 meth public java.lang.String getAccesskey()
 meth public java.lang.String getAlt()
@@ -2469,7 +2476,7 @@ meth public void setStyleClass(java.lang.String)
 meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UIInput
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlInputFile$PropertyKeys
  outer jakarta.faces.component.html.HtmlInputFile
@@ -2520,7 +2527,6 @@ cons public init()
 fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.HtmlInputHidden"
 innr protected final static !enum PropertyKeys
 supr jakarta.faces.component.UIInput
-hfds OPTIMIZED_PACKAGE
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlInputHidden$PropertyKeys
  outer jakarta.faces.component.html.HtmlInputHidden
@@ -2600,7 +2606,7 @@ meth public void setStyleClass(java.lang.String)
 meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UIInput
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlInputSecret$PropertyKeys
  outer jakarta.faces.component.html.HtmlInputSecret
@@ -2709,7 +2715,7 @@ meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 meth public void setType(java.lang.String)
 supr jakarta.faces.component.UIInput
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlInputText$PropertyKeys
  outer jakarta.faces.component.html.HtmlInputText
@@ -2811,7 +2817,7 @@ meth public void setStyleClass(java.lang.String)
 meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UIInput
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlInputTextarea$PropertyKeys
  outer jakarta.faces.component.html.HtmlInputTextarea
@@ -2883,7 +2889,6 @@ meth public void setTooltip(boolean)
 meth public void setWarnClass(java.lang.String)
 meth public void setWarnStyle(java.lang.String)
 supr jakarta.faces.component.UIMessage
-hfds OPTIMIZED_PACKAGE
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlMessage$PropertyKeys
  outer jakarta.faces.component.html.HtmlMessage
@@ -2945,7 +2950,6 @@ meth public void setTooltip(boolean)
 meth public void setWarnClass(java.lang.String)
 meth public void setWarnStyle(java.lang.String)
 supr jakarta.faces.component.UIMessages
-hfds OPTIMIZED_PACKAGE
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlMessages$PropertyKeys
  outer jakarta.faces.component.html.HtmlMessages
@@ -3025,7 +3029,7 @@ meth public void setStyleClass(java.lang.String)
 meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UIOutcomeTarget
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlOutcomeTargetButton$PropertyKeys
  outer jakarta.faces.component.html.HtmlOutcomeTargetButton
@@ -3124,7 +3128,7 @@ meth public void setTarget(java.lang.String)
 meth public void setTitle(java.lang.String)
 meth public void setType(java.lang.String)
 supr jakarta.faces.component.UIOutcomeTarget
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlOutcomeTargetLink$PropertyKeys
  outer jakarta.faces.component.html.HtmlOutcomeTargetLink
@@ -3182,7 +3186,6 @@ meth public void setStyle(java.lang.String)
 meth public void setStyleClass(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UIOutput
-hfds OPTIMIZED_PACKAGE
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlOutputFormat$PropertyKeys
  outer jakarta.faces.component.html.HtmlOutputFormat
@@ -3251,7 +3254,7 @@ meth public void setStyleClass(java.lang.String)
 meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UIOutput
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlOutputLabel$PropertyKeys
  outer jakarta.faces.component.html.HtmlOutputLabel
@@ -3351,7 +3354,7 @@ meth public void setTarget(java.lang.String)
 meth public void setTitle(java.lang.String)
 meth public void setType(java.lang.String)
 supr jakarta.faces.component.UIOutput
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlOutputLink$PropertyKeys
  outer jakarta.faces.component.html.HtmlOutputLink
@@ -3410,7 +3413,6 @@ meth public void setStyle(java.lang.String)
 meth public void setStyleClass(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UIOutput
-hfds OPTIMIZED_PACKAGE
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlOutputText$PropertyKeys
  outer jakarta.faces.component.html.HtmlOutputText
@@ -3501,7 +3503,7 @@ meth public void setSummary(java.lang.String)
 meth public void setTitle(java.lang.String)
 meth public void setWidth(java.lang.String)
 supr jakarta.faces.component.UIPanel
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlPanelGrid$PropertyKeys
  outer jakarta.faces.component.html.HtmlPanelGrid
@@ -3578,7 +3580,7 @@ meth public void setOnmouseup(java.lang.String)
 meth public void setStyle(java.lang.String)
 meth public void setStyleClass(java.lang.String)
 supr jakarta.faces.component.UIPanel
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlPanelGroup$PropertyKeys
  outer jakarta.faces.component.html.HtmlPanelGroup
@@ -3659,7 +3661,7 @@ meth public void setStyleClass(java.lang.String)
 meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UISelectBoolean
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlSelectBooleanCheckbox$PropertyKeys
  outer jakarta.faces.component.html.HtmlSelectBooleanCheckbox
@@ -3764,7 +3766,7 @@ meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 meth public void setUnselectedClass(java.lang.String)
 supr jakarta.faces.component.UISelectMany
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlSelectManyCheckbox$PropertyKeys
  outer jakarta.faces.component.html.HtmlSelectManyCheckbox
@@ -3867,7 +3869,7 @@ meth public void setStyleClass(java.lang.String)
 meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UISelectMany
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlSelectManyListbox$PropertyKeys
  outer jakarta.faces.component.html.HtmlSelectManyListbox
@@ -3964,7 +3966,7 @@ meth public void setStyleClass(java.lang.String)
 meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UISelectMany
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlSelectManyMenu$PropertyKeys
  outer jakarta.faces.component.html.HtmlSelectManyMenu
@@ -4062,7 +4064,7 @@ meth public void setStyleClass(java.lang.String)
 meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UISelectOne
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlSelectOneListbox$PropertyKeys
  outer jakarta.faces.component.html.HtmlSelectOneListbox
@@ -4159,7 +4161,7 @@ meth public void setStyleClass(java.lang.String)
 meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UISelectOne
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlSelectOneMenu$PropertyKeys
  outer jakarta.faces.component.html.HtmlSelectOneMenu
@@ -4263,7 +4265,7 @@ meth public void setStyleClass(java.lang.String)
 meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
 supr jakarta.faces.component.UISelectOne
-hfds EVENT_NAMES,OPTIMIZED_PACKAGE
+hfds EVENT_NAMES
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlSelectOneRadio$PropertyKeys
  outer jakarta.faces.component.html.HtmlSelectOneRadio
@@ -4567,6 +4569,7 @@ meth public void setResponse(java.lang.Object)
 meth public void setResponseBufferSize(int)
 meth public void setResponseCharacterEncoding(java.lang.String)
 meth public void setResponseContentLength(int)
+meth public void setResponseContentLengthLong(long)
 meth public void setResponseContentType(java.lang.String)
 meth public void setResponseHeader(java.lang.String,java.lang.String)
 meth public void setResponseStatus(int)
@@ -4635,11 +4638,11 @@ meth public java.security.Principal getUserPrincipal()
 meth public java.util.Iterator<java.lang.String> getRequestParameterNames()
 meth public java.util.Iterator<java.util.Locale> getRequestLocales()
 meth public java.util.Locale getRequestLocale()
-meth public java.util.Map getInitParameterMap()
 meth public java.util.Map<java.lang.String,java.lang.Object> getApplicationMap()
 meth public java.util.Map<java.lang.String,java.lang.Object> getRequestCookieMap()
 meth public java.util.Map<java.lang.String,java.lang.Object> getRequestMap()
 meth public java.util.Map<java.lang.String,java.lang.Object> getSessionMap()
+meth public java.util.Map<java.lang.String,java.lang.String> getInitParameterMap()
 meth public java.util.Map<java.lang.String,java.lang.String> getRequestHeaderMap()
 meth public java.util.Map<java.lang.String,java.lang.String> getRequestParameterMap()
 meth public java.util.Map<java.lang.String,java.lang.String[]> getRequestHeaderValuesMap()
@@ -4663,6 +4666,7 @@ meth public void setResponse(java.lang.Object)
 meth public void setResponseBufferSize(int)
 meth public void setResponseCharacterEncoding(java.lang.String)
 meth public void setResponseContentLength(int)
+meth public void setResponseContentLengthLong(long)
 meth public void setResponseContentType(java.lang.String)
 meth public void setResponseHeader(java.lang.String,java.lang.String)
 meth public void setResponseStatus(int)
@@ -5195,6 +5199,16 @@ meth public java.lang.Object getAsObject(jakarta.faces.context.FacesContext,jaka
 meth public java.lang.String getAsString(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent,java.lang.Object)
 supr java.lang.Object
 
+CLSS public jakarta.faces.convert.UUIDConverter
+cons public init()
+fld public final static java.lang.String CONVERTER_ID = "jakarta.faces.UUID"
+fld public final static java.lang.String STRING_ID = "jakarta.faces.converter.STRING"
+fld public final static java.lang.String UUID_ID = "jakarta.faces.converter.UUIDConverter.UUID"
+intf jakarta.faces.convert.Converter<java.util.UUID>
+meth public java.lang.String getAsString(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent,java.util.UUID)
+meth public java.util.UUID getAsObject(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent,java.lang.String)
+supr java.lang.Object
+
 CLSS public abstract interface jakarta.faces.el.CompositeComponentExpressionHolder
 meth public abstract jakarta.el.ValueExpression getExpression(java.lang.String)
 
@@ -5331,7 +5345,7 @@ meth public void processAction(jakarta.faces.event.ActionEvent)
 meth public void restoreState(jakarta.faces.context.FacesContext,java.lang.Object)
 meth public void setTransient(boolean)
 supr java.lang.Object
-hfds ACTION_LISTENER_ZEROARG_SIG,LOGGER,isTransient,methodExpressionOneArg,methodExpressionZeroArg
+hfds ACTION_LISTENER_ZEROARG_SIG,isTransient,methodExpressionOneArg,methodExpressionZeroArg
 
 CLSS public jakarta.faces.event.MethodExpressionValueChangeListener
 cons public init()
@@ -5378,7 +5392,7 @@ meth public java.lang.String getName()
 meth public java.lang.String toString()
 meth public static jakarta.faces.event.PhaseId phaseIdValueOf(java.lang.String)
 supr java.lang.Object
-hfds ANY_PHASE_NAME,APPLY_REQUEST_VALUES_NAME,INVOKE_APPLICATION_NAME,PROCESS_VALIDATIONS_NAME,RENDER_RESPONSE_NAME,RESTORE_VIEW_NAME,UPDATE_MODEL_VALUES_NAME,nextOrdinal,ordinal,phaseName,values
+hfds ANY_PHASE_NAME,APPLY_REQUEST_VALUES_NAME,INVOKE_APPLICATION_NAME,PROCESS_VALIDATIONS_NAME,RENDER_RESPONSE_NAME,RESTORE_VIEW_NAME,UPDATE_MODEL_VALUES_NAME,VALUES_BY_NAME,nextOrdinal,ordinal,phaseName,values
 
 CLSS public abstract interface jakarta.faces.event.PhaseListener
 intf java.io.Serializable
@@ -5402,6 +5416,7 @@ supr jakarta.faces.event.SystemEvent
 hfds serialVersionUID
 
 CLSS public jakarta.faces.event.PostConstructCustomScopeEvent
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.1")
 cons public init(jakarta.faces.context.FacesContext,jakarta.faces.event.ScopeContext)
 cons public init(jakarta.faces.event.ScopeContext)
 meth public jakarta.faces.event.ScopeContext getContext()
@@ -5461,6 +5476,7 @@ supr jakarta.faces.event.SystemEvent
 hfds serialVersionUID
 
 CLSS public jakarta.faces.event.PreDestroyCustomScopeEvent
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.1")
 cons public init(jakarta.faces.context.FacesContext,jakarta.faces.event.ScopeContext)
 cons public init(jakarta.faces.event.ScopeContext)
 meth public jakarta.faces.event.ScopeContext getContext()
@@ -6172,7 +6188,7 @@ CLSS public abstract jakarta.faces.render.Renderer<%0 extends jakarta.faces.comp
 cons public init()
 fld public final static java.lang.String PASSTHROUGH_RENDERER_LOCALNAME_KEY = "elementName"
 meth public boolean getRendersChildren()
-meth public java.lang.Object getConvertedValue(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent,java.lang.Object)
+meth public java.lang.Object getConvertedValue(jakarta.faces.context.FacesContext,{jakarta.faces.render.Renderer%0},java.lang.Object)
 meth public java.lang.String convertClientId(jakarta.faces.context.FacesContext,java.lang.String)
 meth public void decode(jakarta.faces.context.FacesContext,{jakarta.faces.render.Renderer%0})
 meth public void encodeBegin(jakarta.faces.context.FacesContext,{jakarta.faces.render.Renderer%0}) throws java.io.IOException
@@ -6396,9 +6412,17 @@ supr jakarta.faces.FacesException
 hfds message,messages,serialVersionUID
 
 CLSS public abstract interface jakarta.faces.view.ActionSource2AttachedObjectHandler
-intf jakarta.faces.view.AttachedObjectHandler
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.1")
+intf jakarta.faces.view.ActionSourceAttachedObjectHandler
 
 CLSS public abstract interface jakarta.faces.view.ActionSource2AttachedObjectTarget
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.1")
+intf jakarta.faces.view.ActionSourceAttachedObjectTarget
+
+CLSS public abstract interface jakarta.faces.view.ActionSourceAttachedObjectHandler
+intf jakarta.faces.view.AttachedObjectHandler
+
+CLSS public abstract interface jakarta.faces.view.ActionSourceAttachedObjectTarget
 intf jakarta.faces.view.AttachedObjectTarget
 
 CLSS public abstract interface jakarta.faces.view.AttachedObjectHandler
@@ -6891,6 +6915,7 @@ meth public void write(int) throws java.io.IOException
 meth public void write(java.lang.String) throws java.io.IOException
 meth public void write(java.lang.String,int,int) throws java.io.IOException
 supr java.lang.Object
+hfds WRITE_BUFFER_SIZE,writeBuffer
 
 CLSS public abstract interface java.lang.Appendable
 meth public abstract java.lang.Appendable append(char) throws java.io.IOException
@@ -6913,8 +6938,10 @@ meth public abstract !hasdefault java.lang.String since()
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
 cons protected init(java.lang.String,int)
+innr public final static EnumDesc
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
+intf java.lang.constant.Constable
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected final void finalize()
 meth public final boolean equals(java.lang.Object)
@@ -6923,9 +6950,11 @@ meth public final int hashCode()
 meth public final int ordinal()
 meth public final java.lang.Class<{java.lang.Enum%0}> getDeclaringClass()
 meth public final java.lang.String name()
+meth public final java.util.Optional<java.lang.Enum$EnumDesc<{java.lang.Enum%0}>> describeConstable()
 meth public java.lang.String toString()
 meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
 supr java.lang.Object
+hfds name,ordinal
 
 CLSS public java.lang.Exception
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -6934,6 +6963,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
+hfds serialVersionUID
 
 CLSS public abstract interface java.lang.Iterable<%0 extends java.lang.Object>
 meth public abstract java.util.Iterator<{java.lang.Iterable%0}> iterator()
@@ -6962,6 +6992,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Exception
+hfds serialVersionUID
 
 CLSS public java.lang.Throwable
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -6984,6 +7015,8 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,depth,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public abstract interface java.lang.annotation.Annotation
 meth public abstract boolean equals(java.lang.Object)
@@ -7024,6 +7057,9 @@ CLSS public abstract interface !annotation java.lang.annotation.Target
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.annotation.ElementType[] value()
 
+CLSS public abstract interface java.lang.constant.Constable
+meth public abstract java.util.Optional<? extends java.lang.constant.ConstantDesc> describeConstable()
+
 CLSS public abstract interface java.util.EventListener
 
 CLSS public java.util.EventObject
@@ -7033,6 +7069,7 @@ intf java.io.Serializable
 meth public java.lang.Object getSource()
 meth public java.lang.String toString()
 supr java.lang.Object
+hfds serialVersionUID
 
 CLSS public abstract interface java.util.Map<%0 extends java.lang.Object, %1 extends java.lang.Object>
 innr public abstract interface static Entry

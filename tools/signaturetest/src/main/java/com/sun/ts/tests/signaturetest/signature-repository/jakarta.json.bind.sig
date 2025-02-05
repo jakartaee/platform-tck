@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 3.0
+#Version 1.0.9
 
 CLSS public abstract interface jakarta.json.bind.Jsonb
 intf java.lang.AutoCloseable
@@ -72,6 +72,8 @@ hfds serialVersionUID
 CLSS public abstract interface jakarta.json.bind.adapter.JsonbAdapter<%0 extends java.lang.Object, %1 extends java.lang.Object>
 meth public abstract {jakarta.json.bind.adapter.JsonbAdapter%0} adaptFromJson({jakarta.json.bind.adapter.JsonbAdapter%1}) throws java.lang.Exception
 meth public abstract {jakarta.json.bind.adapter.JsonbAdapter%1} adaptToJson({jakarta.json.bind.adapter.JsonbAdapter%0}) throws java.lang.Exception
+
+CLSS abstract interface jakarta.json.bind.adapter.package-info
 
 CLSS public abstract interface !annotation jakarta.json.bind.annotation.JsonbAnnotation
  anno 0 java.lang.annotation.Documented()
@@ -178,6 +180,8 @@ CLSS public abstract interface !annotation jakarta.json.bind.annotation.JsonbVis
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.Class<? extends jakarta.json.bind.config.PropertyVisibilityStrategy> value()
 
+CLSS abstract interface jakarta.json.bind.annotation.package-info
+
 CLSS public final jakarta.json.bind.config.BinaryDataStrategy
 fld public final static java.lang.String BASE_64 = "BASE_64"
 fld public final static java.lang.String BASE_64_URL = "BASE_64_URL"
@@ -203,6 +207,10 @@ CLSS public abstract interface jakarta.json.bind.config.PropertyVisibilityStrate
 meth public abstract boolean isVisible(java.lang.reflect.Field)
 meth public abstract boolean isVisible(java.lang.reflect.Method)
 
+CLSS abstract interface jakarta.json.bind.config.package-info
+
+CLSS abstract interface jakarta.json.bind.package-info
+
 CLSS public abstract interface jakarta.json.bind.serializer.DeserializationContext
 meth public abstract <%0 extends java.lang.Object> {%%0} deserialize(java.lang.Class<{%%0}>,jakarta.json.stream.JsonParser)
 meth public abstract <%0 extends java.lang.Object> {%%0} deserialize(java.lang.reflect.Type,jakarta.json.stream.JsonParser)
@@ -217,6 +225,8 @@ CLSS public abstract interface jakarta.json.bind.serializer.SerializationContext
 meth public abstract <%0 extends java.lang.Object> void serialize(java.lang.String,{%%0},jakarta.json.stream.JsonGenerator)
 meth public abstract <%0 extends java.lang.Object> void serialize({%%0},jakarta.json.stream.JsonGenerator)
 
+CLSS abstract interface jakarta.json.bind.serializer.package-info
+
 CLSS public abstract jakarta.json.bind.spi.JsonbProvider
 cons protected init()
 meth public abstract jakarta.json.bind.JsonbBuilder create()
@@ -224,6 +234,8 @@ meth public static jakarta.json.bind.spi.JsonbProvider provider()
 meth public static jakarta.json.bind.spi.JsonbProvider provider(java.lang.String)
 supr java.lang.Object
 hfds DEFAULT_PROVIDER
+
+CLSS abstract interface jakarta.json.bind.spi.package-info
 
 CLSS public abstract interface java.io.Serializable
 
@@ -237,6 +249,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
+hfds serialVersionUID
 
 CLSS public java.lang.Object
 cons public init()
@@ -260,6 +273,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Exception
+hfds serialVersionUID
 
 CLSS public java.lang.Throwable
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -282,6 +296,8 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,depth,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public abstract interface java.lang.annotation.Annotation
 meth public abstract boolean equals(java.lang.Object)

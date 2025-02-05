@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 3.0
+#Version 1.0.9
 
 CLSS public abstract interface jakarta.validation.BootstrapConfiguration
 meth public abstract boolean isExecutableValidationEnabled()
@@ -397,6 +397,8 @@ meth public abstract jakarta.validation.bootstrap.GenericBootstrap providerResol
 CLSS public abstract interface jakarta.validation.bootstrap.ProviderSpecificBootstrap<%0 extends jakarta.validation.Configuration<{jakarta.validation.bootstrap.ProviderSpecificBootstrap%0}>>
 meth public abstract jakarta.validation.bootstrap.ProviderSpecificBootstrap<{jakarta.validation.bootstrap.ProviderSpecificBootstrap%0}> providerResolver(jakarta.validation.ValidationProviderResolver)
 meth public abstract {jakarta.validation.bootstrap.ProviderSpecificBootstrap%0} configure()
+
+CLSS abstract interface jakarta.validation.bootstrap.package-info
 
 CLSS public abstract interface !annotation jakarta.validation.constraints.AssertFalse
  anno 0 jakarta.validation.Constraint(java.lang.Class<? extends jakarta.validation.ConstraintValidator<?,?>>[] validatedBy=[])
@@ -868,6 +870,8 @@ CLSS public abstract interface static !annotation jakarta.validation.constraints
 intf java.lang.annotation.Annotation
 meth public abstract jakarta.validation.constraints.Size[] value()
 
+CLSS abstract interface jakarta.validation.constraints.package-info
+
 CLSS public abstract interface !annotation jakarta.validation.constraintvalidation.SupportedValidationTarget
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -881,6 +885,8 @@ fld public final static jakarta.validation.constraintvalidation.ValidationTarget
 meth public static jakarta.validation.constraintvalidation.ValidationTarget valueOf(java.lang.String)
 meth public static jakarta.validation.constraintvalidation.ValidationTarget[] values()
 supr java.lang.Enum<jakarta.validation.constraintvalidation.ValidationTarget>
+
+CLSS abstract interface jakarta.validation.constraintvalidation.package-info
 
 CLSS public final !enum jakarta.validation.executable.ExecutableType
 fld public final static jakarta.validation.executable.ExecutableType ALL
@@ -906,6 +912,8 @@ CLSS public abstract interface !annotation jakarta.validation.executable.Validat
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault jakarta.validation.executable.ExecutableType[] type()
 
+CLSS abstract interface jakarta.validation.executable.package-info
+
 CLSS public abstract interface !annotation jakarta.validation.groups.ConvertGroup
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.validation.groups.ConvertGroup$List)
@@ -925,6 +933,8 @@ intf java.lang.annotation.Annotation
 meth public abstract jakarta.validation.groups.ConvertGroup[] value()
 
 CLSS public abstract interface jakarta.validation.groups.Default
+
+CLSS abstract interface jakarta.validation.groups.package-info
 
 CLSS public abstract interface jakarta.validation.metadata.BeanDescriptor
 intf jakarta.validation.metadata.ElementDescriptor
@@ -1044,6 +1054,10 @@ meth public static jakarta.validation.metadata.ValidateUnwrappedValue valueOf(ja
 meth public static jakarta.validation.metadata.ValidateUnwrappedValue[] values()
 supr java.lang.Enum<jakarta.validation.metadata.ValidateUnwrappedValue>
 
+CLSS abstract interface jakarta.validation.metadata.package-info
+
+CLSS abstract interface jakarta.validation.package-info
+
 CLSS public abstract interface jakarta.validation.spi.BootstrapState
 meth public abstract jakarta.validation.ValidationProviderResolver getDefaultValidationProviderResolver()
 meth public abstract jakarta.validation.ValidationProviderResolver getValidationProviderResolver()
@@ -1063,6 +1077,8 @@ CLSS public abstract interface jakarta.validation.spi.ValidationProvider<%0 exte
 meth public abstract jakarta.validation.Configuration<?> createGenericConfiguration(jakarta.validation.spi.BootstrapState)
 meth public abstract jakarta.validation.ValidatorFactory buildValidatorFactory(jakarta.validation.spi.ConfigurationState)
 meth public abstract {jakarta.validation.spi.ValidationProvider%0} createSpecializedConfiguration(jakarta.validation.spi.BootstrapState)
+
+CLSS abstract interface jakarta.validation.spi.package-info
 
 CLSS public abstract interface !annotation jakarta.validation.valueextraction.ExtractedValue
  anno 0 java.lang.annotation.Documented()
@@ -1114,6 +1130,8 @@ cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr jakarta.validation.ValidationException
 
+CLSS abstract interface jakarta.validation.valueextraction.package-info
+
 CLSS public abstract interface java.io.Serializable
 
 CLSS public abstract interface java.lang.AutoCloseable
@@ -1124,8 +1142,10 @@ meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
 cons protected init(java.lang.String,int)
+innr public final static EnumDesc
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
+intf java.lang.constant.Constable
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected final void finalize()
 meth public final boolean equals(java.lang.Object)
@@ -1134,9 +1154,11 @@ meth public final int hashCode()
 meth public final int ordinal()
 meth public final java.lang.Class<{java.lang.Enum%0}> getDeclaringClass()
 meth public final java.lang.String name()
+meth public final java.util.Optional<java.lang.Enum$EnumDesc<{java.lang.Enum%0}>> describeConstable()
 meth public java.lang.String toString()
 meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
 supr java.lang.Object
+hfds name,ordinal
 
 CLSS public java.lang.Exception
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -1145,6 +1167,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
+hfds serialVersionUID
 
 CLSS public abstract interface java.lang.Iterable<%0 extends java.lang.Object>
 meth public abstract java.util.Iterator<{java.lang.Iterable%0}> iterator()
@@ -1173,6 +1196,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Exception
+hfds serialVersionUID
 
 CLSS public java.lang.Throwable
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -1195,6 +1219,8 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,depth,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public abstract interface java.lang.annotation.Annotation
 meth public abstract boolean equals(java.lang.Object)
@@ -1228,4 +1254,7 @@ CLSS public abstract interface !annotation java.lang.annotation.Target
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.annotation.ElementType[] value()
+
+CLSS public abstract interface java.lang.constant.Constable
+meth public abstract java.util.Optional<? extends java.lang.constant.ConstantDesc> describeConstable()
 

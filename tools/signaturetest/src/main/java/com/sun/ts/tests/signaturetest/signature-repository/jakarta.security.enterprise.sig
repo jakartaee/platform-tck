@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 2.0
+#Version 1.0.9
 
 CLSS public abstract jakarta.enterprise.util.AnnotationLiteral<%0 extends java.lang.annotation.Annotation>
 cons protected init()
@@ -11,6 +11,12 @@ meth public java.lang.Class<? extends java.lang.annotation.Annotation> annotatio
 meth public java.lang.String toString()
 supr java.lang.Object
 hfds annotationType,cachedHashCode,members,serialVersionUID
+
+CLSS public abstract interface !annotation jakarta.inject.Qualifier
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
 
 CLSS public abstract interface !annotation jakarta.interceptor.InterceptorBinding
  anno 0 java.lang.annotation.Documented()
@@ -49,6 +55,7 @@ meth public abstract <%0 extends java.security.Principal> java.util.Set<{%%0}> g
 meth public abstract boolean isCallerInRole(java.lang.String)
 meth public abstract jakarta.security.enterprise.AuthenticationStatus authenticate(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse,jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters)
 meth public abstract java.security.Principal getCallerPrincipal()
+meth public abstract java.util.Set<java.lang.String> getAllDeclaredCallerRoles()
 
 CLSS public jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters
 cons public init()
@@ -82,24 +89,110 @@ supr jakarta.enterprise.util.AnnotationLiteral<jakarta.security.enterprise.authe
 hfds serialVersionUID
 
 CLSS public abstract interface !annotation jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition
+ anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition$List)
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+innr public abstract interface static !annotation BasicAuthenticationMechanism
+innr public abstract interface static !annotation List
 intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.Class<?>[] qualifiers()
 meth public abstract !hasdefault java.lang.String realmName()
 
-CLSS public abstract interface !annotation jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition
+CLSS public abstract interface static !annotation jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition$BasicAuthenticationMechanism
+ outer jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition
+ anno 0 jakarta.inject.Qualifier()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[FIELD, METHOD, TYPE, PARAMETER])
+innr public final static Literal
+intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition$BasicAuthenticationMechanism$Literal
+ outer jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition$BasicAuthenticationMechanism
+cons public init()
+fld public final static jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition$BasicAuthenticationMechanism$Literal INSTANCE
+intf jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition$BasicAuthenticationMechanism
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition$BasicAuthenticationMechanism>
+hfds serialVersionUID
+
+CLSS public abstract interface static !annotation jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition$List
+ outer jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
+meth public abstract jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition[] value()
+
+CLSS public abstract interface !annotation jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition
+ anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition$List)
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+innr public abstract interface static !annotation CustomFormAuthenticationMechanism
+innr public abstract interface static !annotation List
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.Class<?>[] qualifiers()
 meth public abstract jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue loginToContinue()
+
+CLSS public abstract interface static !annotation jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition$CustomFormAuthenticationMechanism
+ outer jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition
+ anno 0 jakarta.inject.Qualifier()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[FIELD, METHOD, TYPE, PARAMETER])
+innr public final static Literal
+intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition$CustomFormAuthenticationMechanism$Literal
+ outer jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition$CustomFormAuthenticationMechanism
+cons public init()
+fld public final static jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition$CustomFormAuthenticationMechanism$Literal INSTANCE
+intf jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition$CustomFormAuthenticationMechanism
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition$CustomFormAuthenticationMechanism>
+hfds serialVersionUID
+
+CLSS public abstract interface static !annotation jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition$List
+ outer jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition[] value()
 
 CLSS public abstract interface !annotation jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition
+ anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition$List)
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+innr public abstract interface static !annotation FormAuthenticationMechanism
+innr public abstract interface static !annotation List
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.Class<?>[] qualifiers()
+meth public abstract jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue loginToContinue()
+
+CLSS public abstract interface static !annotation jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition$FormAuthenticationMechanism
+ outer jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition
+ anno 0 jakarta.inject.Qualifier()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[FIELD, METHOD, TYPE, PARAMETER])
+innr public final static Literal
+intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition$FormAuthenticationMechanism$Literal
+ outer jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition$FormAuthenticationMechanism
+cons public init()
+fld public final static jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition$FormAuthenticationMechanism$Literal INSTANCE
+intf jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition$FormAuthenticationMechanism
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition$FormAuthenticationMechanism>
+hfds serialVersionUID
+
+CLSS public abstract interface static !annotation jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition$List
+ outer jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue loginToContinue()
+meth public abstract jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition[] value()
 
 CLSS public abstract interface jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism
+meth public abstract jakarta.security.enterprise.AuthenticationStatus validateRequest(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse,jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext) throws jakarta.security.enterprise.AuthenticationException
+meth public jakarta.security.enterprise.AuthenticationStatus secureResponse(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse,jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext) throws jakarta.security.enterprise.AuthenticationException
+meth public void cleanSubject(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse,jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext)
+
+CLSS public abstract interface jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanismHandler
 meth public abstract jakarta.security.enterprise.AuthenticationStatus validateRequest(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse,jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext) throws jakarta.security.enterprise.AuthenticationException
 meth public jakarta.security.enterprise.AuthenticationStatus secureResponse(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse,jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext) throws jakarta.security.enterprise.AuthenticationException
 meth public void cleanSubject(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse,jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext)
@@ -194,11 +287,14 @@ meth public java.lang.String loginPage()
 meth public java.lang.String useForwardToLoginExpression()
 meth public static jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue$Literal of(java.lang.String,boolean,java.lang.String,java.lang.String)
 supr jakarta.enterprise.util.AnnotationLiteral<jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue>
-hfds errorPage,loginPage,useForwardToLogin,useForwardToLoginExpression
+hfds errorPage,loginPage,serialVersionUID,useForwardToLogin,useForwardToLoginExpression
 
 CLSS public abstract interface !annotation jakarta.security.enterprise.authentication.mechanism.http.OpenIdAuthenticationMechanismDefinition
+ anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.security.enterprise.authentication.mechanism.http.OpenIdAuthenticationMechanismDefinition$List)
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD])
+innr public abstract interface static !annotation List
+innr public abstract interface static !annotation OpenIdAuthenticationMechanism
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean redirectToOriginalResource()
 meth public abstract !hasdefault boolean tokenAutoRefresh()
@@ -212,6 +308,7 @@ meth public abstract !hasdefault jakarta.security.enterprise.authentication.mech
 meth public abstract !hasdefault jakarta.security.enterprise.authentication.mechanism.http.openid.LogoutDefinition logout()
 meth public abstract !hasdefault jakarta.security.enterprise.authentication.mechanism.http.openid.OpenIdProviderMetadata providerMetadata()
 meth public abstract !hasdefault jakarta.security.enterprise.authentication.mechanism.http.openid.PromptType[] prompt()
+meth public abstract !hasdefault java.lang.Class<?>[] qualifiers()
 meth public abstract !hasdefault java.lang.String clientId()
 meth public abstract !hasdefault java.lang.String clientSecret()
 meth public abstract !hasdefault java.lang.String displayExpression()
@@ -231,6 +328,29 @@ meth public abstract !hasdefault java.lang.String useNonceExpression()
 meth public abstract !hasdefault java.lang.String useSessionExpression()
 meth public abstract !hasdefault java.lang.String[] extraParameters()
 meth public abstract !hasdefault java.lang.String[] scope()
+
+CLSS public abstract interface static !annotation jakarta.security.enterprise.authentication.mechanism.http.OpenIdAuthenticationMechanismDefinition$List
+ outer jakarta.security.enterprise.authentication.mechanism.http.OpenIdAuthenticationMechanismDefinition
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract jakarta.security.enterprise.authentication.mechanism.http.OpenIdAuthenticationMechanismDefinition[] value()
+
+CLSS public abstract interface static !annotation jakarta.security.enterprise.authentication.mechanism.http.OpenIdAuthenticationMechanismDefinition$OpenIdAuthenticationMechanism
+ outer jakarta.security.enterprise.authentication.mechanism.http.OpenIdAuthenticationMechanismDefinition
+ anno 0 jakarta.inject.Qualifier()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[FIELD, METHOD, TYPE, PARAMETER])
+innr public final static Literal
+intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.security.enterprise.authentication.mechanism.http.OpenIdAuthenticationMechanismDefinition$OpenIdAuthenticationMechanism$Literal
+ outer jakarta.security.enterprise.authentication.mechanism.http.OpenIdAuthenticationMechanismDefinition$OpenIdAuthenticationMechanism
+cons public init()
+fld public final static jakarta.security.enterprise.authentication.mechanism.http.OpenIdAuthenticationMechanismDefinition$OpenIdAuthenticationMechanism$Literal INSTANCE
+intf jakarta.security.enterprise.authentication.mechanism.http.OpenIdAuthenticationMechanismDefinition$OpenIdAuthenticationMechanism
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.security.enterprise.authentication.mechanism.http.OpenIdAuthenticationMechanismDefinition$OpenIdAuthenticationMechanism>
+hfds serialVersionUID
 
 CLSS public abstract interface !annotation jakarta.security.enterprise.authentication.mechanism.http.RememberMe
  anno 0 jakarta.interceptor.InterceptorBinding()
@@ -517,11 +637,25 @@ supr java.lang.Enum<jakarta.security.enterprise.identitystore.IdentityStore$Vali
 CLSS public abstract interface jakarta.security.enterprise.identitystore.IdentityStoreHandler
 meth public abstract jakarta.security.enterprise.identitystore.CredentialValidationResult validate(jakarta.security.enterprise.credential.Credential)
 
-CLSS public jakarta.security.enterprise.identitystore.IdentityStorePermission
-cons public init(java.lang.String)
-cons public init(java.lang.String,java.lang.String)
-supr java.security.BasicPermission
-hfds serialVersionUID
+CLSS public abstract interface !annotation jakarta.security.enterprise.identitystore.InMemoryIdentityStoreDefinition
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+innr public abstract interface static !annotation Credentials
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault int priority()
+meth public abstract !hasdefault jakarta.security.enterprise.identitystore.IdentityStore$ValidationType[] useFor()
+meth public abstract !hasdefault jakarta.security.enterprise.identitystore.InMemoryIdentityStoreDefinition$Credentials[] value()
+meth public abstract !hasdefault java.lang.String priorityExpression()
+meth public abstract !hasdefault java.lang.String useForExpression()
+
+CLSS public abstract interface static !annotation jakarta.security.enterprise.identitystore.InMemoryIdentityStoreDefinition$Credentials
+ outer jakarta.security.enterprise.identitystore.InMemoryIdentityStoreDefinition
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD, PARAMETER])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String[] groups()
+meth public abstract java.lang.String callerName()
+meth public abstract java.lang.String password()
 
 CLSS public abstract interface !annotation jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -683,8 +817,10 @@ meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
 cons protected init(java.lang.String,int)
+innr public final static EnumDesc
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
+intf java.lang.constant.Constable
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected final void finalize()
 meth public final boolean equals(java.lang.Object)
@@ -693,9 +829,11 @@ meth public final int hashCode()
 meth public final int ordinal()
 meth public final java.lang.Class<{java.lang.Enum%0}> getDeclaringClass()
 meth public final java.lang.String name()
+meth public final java.util.Optional<java.lang.Enum$EnumDesc<{java.lang.Enum%0}>> describeConstable()
 meth public java.lang.String toString()
 meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
 supr java.lang.Object
+hfds name,ordinal
 
 CLSS public java.lang.Exception
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -704,6 +842,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
+hfds serialVersionUID
 
 CLSS public abstract interface java.lang.Iterable<%0 extends java.lang.Object>
 meth public abstract java.util.Iterator<{java.lang.Iterable%0}> iterator()
@@ -746,6 +885,8 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,depth,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public abstract interface java.lang.annotation.Annotation
 meth public abstract boolean equals(java.lang.Object)
@@ -765,6 +906,13 @@ CLSS public abstract interface !annotation java.lang.annotation.Inherited
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
 intf java.lang.annotation.Annotation
 
+CLSS public abstract interface !annotation java.lang.annotation.Repeatable
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.Class<? extends java.lang.annotation.Annotation> value()
+
 CLSS public abstract interface !annotation java.lang.annotation.Retention
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -779,16 +927,8 @@ CLSS public abstract interface !annotation java.lang.annotation.Target
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.annotation.ElementType[] value()
 
-CLSS public abstract java.security.BasicPermission
-cons public init(java.lang.String)
-cons public init(java.lang.String,java.lang.String)
-intf java.io.Serializable
-meth public boolean equals(java.lang.Object)
-meth public boolean implies(java.security.Permission)
-meth public int hashCode()
-meth public java.lang.String getActions()
-meth public java.security.PermissionCollection newPermissionCollection()
-supr java.security.Permission
+CLSS public abstract interface java.lang.constant.Constable
+meth public abstract java.util.Optional<? extends java.lang.constant.ConstantDesc> describeConstable()
 
 CLSS public java.security.GeneralSecurityException
 cons public init()
@@ -796,23 +936,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Exception
-
-CLSS public abstract interface java.security.Guard
-meth public abstract void checkGuard(java.lang.Object)
-
-CLSS public abstract java.security.Permission
-cons public init(java.lang.String)
-intf java.io.Serializable
-intf java.security.Guard
-meth public abstract boolean equals(java.lang.Object)
-meth public abstract boolean implies(java.security.Permission)
-meth public abstract int hashCode()
-meth public abstract java.lang.String getActions()
-meth public final java.lang.String getName()
-meth public java.lang.String toString()
-meth public java.security.PermissionCollection newPermissionCollection()
-meth public void checkGuard(java.lang.Object)
-supr java.lang.Object
+hfds serialVersionUID
 
 CLSS public abstract interface java.security.Principal
 meth public abstract boolean equals(java.lang.Object)
@@ -879,16 +1003,19 @@ cons public init(java.util.Collection<? extends {java.util.HashSet%0}>)
 intf java.io.Serializable
 intf java.lang.Cloneable
 intf java.util.Set<{java.util.HashSet%0}>
+meth public <%0 extends java.lang.Object> {%%0}[] toArray({%%0}[])
 meth public boolean add({java.util.HashSet%0})
 meth public boolean contains(java.lang.Object)
 meth public boolean isEmpty()
 meth public boolean remove(java.lang.Object)
 meth public int size()
 meth public java.lang.Object clone()
+meth public java.lang.Object[] toArray()
 meth public java.util.Iterator<{java.util.HashSet%0}> iterator()
 meth public java.util.Spliterator<{java.util.HashSet%0}> spliterator()
 meth public void clear()
 supr java.util.AbstractSet<{java.util.HashSet%0}>
+hfds PRESENT,map,serialVersionUID
 
 CLSS public java.util.LinkedHashSet<%0 extends java.lang.Object>
 cons public init()
@@ -900,6 +1027,7 @@ intf java.lang.Cloneable
 intf java.util.Set<{java.util.LinkedHashSet%0}>
 meth public java.util.Spliterator<{java.util.LinkedHashSet%0}> spliterator()
 supr java.util.HashSet<{java.util.LinkedHashSet%0}>
+hfds serialVersionUID
 
 CLSS public abstract interface java.util.Set<%0 extends java.lang.Object>
 intf java.util.Collection<{java.util.Set%0}>

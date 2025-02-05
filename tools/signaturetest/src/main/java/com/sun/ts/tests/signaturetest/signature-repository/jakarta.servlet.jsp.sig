@@ -1,10 +1,8 @@
 #Signature file v4.1
-#Version 3.1
+#Version 1.0.9
 
 CLSS public abstract jakarta.el.ELResolver
 cons public init()
-fld public final static java.lang.String RESOLVABLE_AT_DESIGN_TIME = "resolvableAtDesignTime"
-fld public final static java.lang.String TYPE = "type"
 meth public <%0 extends java.lang.Object> {%%0} convertToType(jakarta.el.ELContext,java.lang.Object,java.lang.Class<{%%0}>)
 meth public abstract boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public abstract java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
@@ -12,8 +10,6 @@ meth public abstract java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.O
 meth public abstract java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public abstract void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 meth public java.lang.Object invoke(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Class<?>[],java.lang.Object[])
-meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
 supr java.lang.Object
 
 CLSS public abstract interface jakarta.servlet.Servlet
@@ -25,12 +21,16 @@ meth public abstract void service(jakarta.servlet.ServletRequest,jakarta.servlet
 
 CLSS public final jakarta.servlet.jsp.ErrorData
 cons public init(java.lang.Throwable,int,java.lang.String,java.lang.String)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
+cons public init(java.lang.Throwable,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 meth public int getStatusCode()
+meth public java.lang.String getMethod()
+meth public java.lang.String getQueryString()
 meth public java.lang.String getRequestURI()
 meth public java.lang.String getServletName()
 meth public java.lang.Throwable getThrowable()
 supr java.lang.Object
-hfds servletName,statusCode,throwable,uri
+hfds method,queryString,servletName,statusCode,throwable,uri
 
 CLSS public abstract interface jakarta.servlet.jsp.HttpJspPage
 intf jakarta.servlet.jsp.JspPage
@@ -46,10 +46,6 @@ cons public init()
 meth public abstract int getAttributesScope(java.lang.String)
 meth public abstract jakarta.el.ELContext getELContext()
 meth public abstract jakarta.servlet.jsp.JspWriter getOut()
-meth public abstract jakarta.servlet.jsp.el.ExpressionEvaluator getExpressionEvaluator()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public abstract jakarta.servlet.jsp.el.VariableResolver getVariableResolver()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract java.lang.Object findAttribute(java.lang.String)
 meth public abstract java.lang.Object getAttribute(java.lang.String)
 meth public abstract java.lang.Object getAttribute(java.lang.String,int)
@@ -72,8 +68,6 @@ cons public init()
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
-meth public java.lang.Throwable getRootCause()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 supr java.lang.Exception
 hfds serialVersionUID
 
@@ -178,48 +172,12 @@ cons public init(java.lang.Throwable)
 supr jakarta.servlet.jsp.JspException
 hfds serialVersionUID
 
-CLSS public jakarta.servlet.jsp.el.ELException
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-cons public init(java.lang.String)
-cons public init(java.lang.String,java.lang.Throwable)
-cons public init(java.lang.Throwable)
-meth public java.lang.Throwable getRootCause()
-supr java.lang.Exception
-hfds mRootCause,serialVersionUID
-
-CLSS public jakarta.servlet.jsp.el.ELParseException
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-cons public init(java.lang.String)
-supr jakarta.servlet.jsp.el.ELException
-hfds serialVersionUID
-
-CLSS public abstract jakarta.servlet.jsp.el.Expression
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-meth public abstract java.lang.Object evaluate(jakarta.servlet.jsp.el.VariableResolver) throws jakarta.servlet.jsp.el.ELException
-supr java.lang.Object
-
-CLSS public abstract jakarta.servlet.jsp.el.ExpressionEvaluator
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-meth public abstract jakarta.servlet.jsp.el.Expression parseExpression(java.lang.String,java.lang.Class<?>,jakarta.servlet.jsp.el.FunctionMapper) throws jakarta.servlet.jsp.el.ELException
-meth public abstract java.lang.Object evaluate(java.lang.String,java.lang.Class<?>,jakarta.servlet.jsp.el.VariableResolver,jakarta.servlet.jsp.el.FunctionMapper) throws jakarta.servlet.jsp.el.ELException
-supr java.lang.Object
-
-CLSS public abstract interface jakarta.servlet.jsp.el.FunctionMapper
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public abstract java.lang.reflect.Method resolveFunction(java.lang.String,java.lang.String)
-
 CLSS public jakarta.servlet.jsp.el.ImplicitObjectELResolver
 cons public init()
 meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Class<java.lang.String> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
-meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="JSP 3.1")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 hcls EnumeratedMap,ImplicitObjects
@@ -249,14 +207,8 @@ meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.O
 meth public java.lang.Class<java.lang.Object> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Class<java.lang.String> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
-meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="JSP 3.1")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
-
-CLSS public abstract interface jakarta.servlet.jsp.el.VariableResolver
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public abstract java.lang.Object resolveVariable(java.lang.String) throws jakarta.servlet.jsp.el.ELException
 
 CLSS public abstract jakarta.servlet.jsp.tagext.BodyContent
 cons protected init(jakarta.servlet.jsp.JspWriter)
@@ -271,8 +223,6 @@ hfds enclosingWriter
 
 CLSS public abstract interface jakarta.servlet.jsp.tagext.BodyTag
 fld public final static int EVAL_BODY_BUFFERED = 2
-fld public final static int EVAL_BODY_TAG = 2
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 intf jakarta.servlet.jsp.tagext.IterationTag
 meth public abstract void doInitBody() throws jakarta.servlet.jsp.JspException
 meth public abstract void setBodyContent(jakarta.servlet.jsp.tagext.BodyContent)
@@ -571,6 +521,7 @@ meth public void write(int) throws java.io.IOException
 meth public void write(java.lang.String) throws java.io.IOException
 meth public void write(java.lang.String,int,int) throws java.io.IOException
 supr java.lang.Object
+hfds WRITE_BUFFER_SIZE,writeBuffer
 
 CLSS public abstract interface java.lang.Appendable
 meth public abstract java.lang.Appendable append(char) throws java.io.IOException
@@ -582,14 +533,6 @@ meth public abstract void close() throws java.lang.Exception
 
 CLSS public abstract interface java.lang.Cloneable
 
-CLSS public abstract interface !annotation java.lang.Deprecated
- anno 0 java.lang.annotation.Documented()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, MODULE, PARAMETER, TYPE])
-intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean forRemoval()
-meth public abstract !hasdefault java.lang.String since()
-
 CLSS public java.lang.Exception
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
 cons public init()
@@ -597,6 +540,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
+hfds serialVersionUID
 
 CLSS public java.lang.Object
 cons public init()
@@ -634,30 +578,6 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
-
-CLSS public abstract interface java.lang.annotation.Annotation
-meth public abstract boolean equals(java.lang.Object)
-meth public abstract int hashCode()
-meth public abstract java.lang.Class<? extends java.lang.annotation.Annotation> annotationType()
-meth public abstract java.lang.String toString()
-
-CLSS public abstract interface !annotation java.lang.annotation.Documented
- anno 0 java.lang.annotation.Documented()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
-intf java.lang.annotation.Annotation
-
-CLSS public abstract interface !annotation java.lang.annotation.Retention
- anno 0 java.lang.annotation.Documented()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
-intf java.lang.annotation.Annotation
-meth public abstract java.lang.annotation.RetentionPolicy value()
-
-CLSS public abstract interface !annotation java.lang.annotation.Target
- anno 0 java.lang.annotation.Documented()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
-intf java.lang.annotation.Annotation
-meth public abstract java.lang.annotation.ElementType[] value()
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,depth,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 

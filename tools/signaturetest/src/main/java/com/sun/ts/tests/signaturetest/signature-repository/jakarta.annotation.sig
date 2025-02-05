@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 2.1
+#Version 1.0.9
 
 CLSS public abstract interface !annotation jakarta.annotation.Generated
  anno 0 java.lang.annotation.Documented()
@@ -9,13 +9,6 @@ intf java.lang.annotation.Annotation
 meth public abstract !hasdefault java.lang.String comments()
 meth public abstract !hasdefault java.lang.String date()
 meth public abstract java.lang.String[] value()
-
-CLSS public abstract interface !annotation jakarta.annotation.ManagedBean
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
-intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String value()
 
 CLSS public abstract interface !annotation jakarta.annotation.Nonnull
  anno 0 java.lang.annotation.Documented()
@@ -74,6 +67,8 @@ CLSS public abstract interface !annotation jakarta.annotation.Resources
 intf java.lang.annotation.Annotation
 meth public abstract jakarta.annotation.Resource[] value()
 
+CLSS abstract interface jakarta.annotation.package-info
+
 CLSS public abstract interface !annotation jakarta.annotation.security.DeclareRoles
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -106,6 +101,8 @@ CLSS public abstract interface !annotation jakarta.annotation.security.RunAs
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.String value()
+
+CLSS abstract interface jakarta.annotation.security.package-info
 
 CLSS public abstract interface !annotation jakarta.annotation.sql.DataSourceDefinition
  anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.annotation.sql.DataSourceDefinitions)
@@ -142,18 +139,12 @@ CLSS public abstract interface java.io.Serializable
 CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
-CLSS public abstract interface !annotation java.lang.Deprecated
- anno 0 java.lang.annotation.Documented()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, MODULE, PARAMETER, TYPE])
-intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean forRemoval()
-meth public abstract !hasdefault java.lang.String since()
-
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
 cons protected init(java.lang.String,int)
+innr public final static EnumDesc
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
+intf java.lang.constant.Constable
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected final void finalize()
 meth public final boolean equals(java.lang.Object)
@@ -162,9 +153,11 @@ meth public final int hashCode()
 meth public final int ordinal()
 meth public final java.lang.Class<{java.lang.Enum%0}> getDeclaringClass()
 meth public final java.lang.String name()
+meth public final java.util.Optional<java.lang.Enum$EnumDesc<{java.lang.Enum%0}>> describeConstable()
 meth public java.lang.String toString()
 meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
 supr java.lang.Object
+hfds name,ordinal
 
 CLSS public java.lang.Object
 cons public init()
@@ -213,4 +206,7 @@ CLSS public abstract interface !annotation java.lang.annotation.Target
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.annotation.ElementType[] value()
+
+CLSS public abstract interface java.lang.constant.Constable
+meth public abstract java.util.Optional<? extends java.lang.constant.ConstantDesc> describeConstable()
 

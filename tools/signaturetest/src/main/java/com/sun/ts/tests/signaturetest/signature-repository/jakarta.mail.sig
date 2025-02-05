@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 2.1
+#Version 1.0.9
 
 CLSS public abstract interface jakarta.activation.DataSource
 meth public abstract java.io.InputStream getInputStream() throws java.io.IOException
@@ -201,6 +201,8 @@ CLSS public jakarta.mail.Header
 cons public init(java.lang.String,java.lang.String)
 fld protected java.lang.String name
 fld protected java.lang.String value
+meth public boolean equals(java.lang.Object)
+meth public int hashCode()
 meth public java.lang.String getName()
 meth public java.lang.String getValue()
 supr java.lang.Object
@@ -739,8 +741,6 @@ meth public abstract void messageDelivered(jakarta.mail.event.TransportEvent)
 meth public abstract void messageNotDelivered(jakarta.mail.event.TransportEvent)
 meth public abstract void messagePartiallyDelivered(jakarta.mail.event.TransportEvent)
 
-CLSS abstract interface jakarta.mail.event.package-info
-
 CLSS public jakarta.mail.internet.AddressException
 cons public init()
 cons public init(java.lang.String)
@@ -1205,10 +1205,6 @@ CLSS public abstract interface jakarta.mail.internet.SharedInputStream
 meth public abstract java.io.InputStream newStream(long,long)
 meth public abstract long getPosition()
 
-CLSS abstract interface jakarta.mail.internet.package-info
-
-CLSS abstract interface jakarta.mail.package-info
-
 CLSS public abstract jakarta.mail.search.AddressStringTerm
 cons protected init(java.lang.String)
 meth protected boolean match(jakarta.mail.Address)
@@ -1417,8 +1413,6 @@ meth public boolean match(jakarta.mail.Message)
 supr jakarta.mail.search.StringTerm
 hfds serialVersionUID
 
-CLSS abstract interface jakarta.mail.search.package-info
-
 CLSS public jakarta.mail.util.ByteArrayDataSource
 cons public init(byte[],java.lang.String)
 cons public init(java.io.InputStream,java.lang.String) throws java.io.IOException
@@ -1473,7 +1467,7 @@ meth public void close() throws java.io.IOException
 meth public void mark(int)
 meth public void reset() throws java.io.IOException
 supr java.io.BufferedInputStream
-hfds defaultBufferSize,master,sf
+hfds defaultBufferSize,sf
 hcls SharedFile
 
 CLSS public abstract interface jakarta.mail.util.StreamProvider
@@ -1512,8 +1506,6 @@ meth public static jakarta.mail.util.StreamProvider$EncoderTypes[] values()
 supr java.lang.Enum<jakarta.mail.util.StreamProvider$EncoderTypes>
 hfds encoder
 
-CLSS abstract interface jakarta.mail.util.package-info
-
 CLSS public java.io.BufferedInputStream
 cons public init(java.io.InputStream)
 cons public init(java.io.InputStream,int)
@@ -1531,6 +1523,7 @@ meth public void close() throws java.io.IOException
 meth public void mark(int)
 meth public void reset() throws java.io.IOException
 supr java.io.FilterInputStream
+hfds BUF_OFFSET,DEFAULT_BUFFER_SIZE,U
 
 CLSS public java.io.ByteArrayInputStream
 cons public init(byte[])
@@ -1587,7 +1580,9 @@ meth public static java.io.InputStream nullInputStream()
 meth public void close() throws java.io.IOException
 meth public void mark(int)
 meth public void reset() throws java.io.IOException
+meth public void skipNBytes(long) throws java.io.IOException
 supr java.lang.Object
+hfds DEFAULT_BUFFER_SIZE,MAX_BUFFER_SIZE,MAX_SKIP_BUFFER_SIZE
 
 CLSS public abstract interface java.io.Serializable
 
@@ -1601,8 +1596,10 @@ meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
 cons protected init(java.lang.String,int)
+innr public final static EnumDesc
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
+intf java.lang.constant.Constable
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected final void finalize()
 meth public final boolean equals(java.lang.Object)
@@ -1611,9 +1608,11 @@ meth public final int hashCode()
 meth public final int ordinal()
 meth public final java.lang.Class<{java.lang.Enum%0}> getDeclaringClass()
 meth public final java.lang.String name()
+meth public final java.util.Optional<java.lang.Enum$EnumDesc<{java.lang.Enum%0}>> describeConstable()
 meth public java.lang.String toString()
 meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
 supr java.lang.Object
+hfds name,ordinal
 
 CLSS public java.lang.Exception
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -1622,6 +1621,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
+hfds serialVersionUID
 
 CLSS public java.lang.Object
 cons public init()
@@ -1659,6 +1659,8 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,depth,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public abstract interface java.lang.annotation.Annotation
 meth public abstract boolean equals(java.lang.Object)
@@ -1692,6 +1694,9 @@ CLSS public abstract interface !annotation java.lang.annotation.Target
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.annotation.ElementType[] value()
+
+CLSS public abstract interface java.lang.constant.Constable
+meth public abstract java.util.Optional<? extends java.lang.constant.ConstantDesc> describeConstable()
 
 CLSS public abstract java.text.DateFormat
 cons protected init()
@@ -1750,6 +1755,7 @@ meth public void setLenient(boolean)
 meth public void setNumberFormat(java.text.NumberFormat)
 meth public void setTimeZone(java.util.TimeZone)
 supr java.text.Format
+hfds serialVersionUID
 
 CLSS public abstract java.text.Format
 cons protected init()
@@ -1763,6 +1769,8 @@ meth public java.lang.Object clone()
 meth public java.lang.Object parseObject(java.lang.String) throws java.text.ParseException
 meth public java.text.AttributedCharacterIterator formatToCharacterIterator(java.lang.Object)
 supr java.lang.Object
+hfds serialVersionUID
+hcls FieldDelegate
 
 CLSS public java.text.SimpleDateFormat
 cons public init()
@@ -1784,6 +1792,7 @@ meth public void applyPattern(java.lang.String)
 meth public void set2DigitYearStart(java.util.Date)
 meth public void setDateFormatSymbols(java.text.DateFormatSymbols)
 supr java.text.DateFormat
+hfds GMT,MILLIS_PER_MINUTE,PATTERN_INDEX_TO_CALENDAR_FIELD,PATTERN_INDEX_TO_DATE_FORMAT_FIELD,PATTERN_INDEX_TO_DATE_FORMAT_FIELD_ID,REST_OF_STYLES,TAG_QUOTE_ASCII_CHAR,TAG_QUOTE_CHARS,cachedNumberFormatData,compiledPattern,currentSerialVersion,defaultCenturyStart,defaultCenturyStartYear,forceStandaloneForm,formatData,hasFollowingMinusSign,locale,minusSign,originalNumberFormat,originalNumberPattern,pattern,serialVersionOnStream,serialVersionUID,useDateFormatSymbols,zeroDigit
 
 CLSS public abstract interface java.util.EventListener
 
@@ -1794,4 +1803,5 @@ intf java.io.Serializable
 meth public java.lang.Object getSource()
 meth public java.lang.String toString()
 supr java.lang.Object
+hfds serialVersionUID
 

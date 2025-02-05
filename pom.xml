@@ -67,9 +67,11 @@
         <module>tcks/profiles/platform/javaee</module>
         <module>tcks/profiles/platform/jdbc</module>
         <module>tcks/profiles/platform/samples</module>
+        <module>tcks/profiles/platform/signaturevalidation</module>
         <module>tcks/profiles/platform/xa</module>
         <!--module>tools</module-->
         <module>user_guides</module>
+        <module>install/signaturefiles/generate</module>
     </modules>
 
     <properties>

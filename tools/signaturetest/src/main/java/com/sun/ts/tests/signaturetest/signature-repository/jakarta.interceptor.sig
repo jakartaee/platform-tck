@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 2.1
+#Version 1.0.9
 
 CLSS public abstract interface !annotation jakarta.interceptor.AroundConstruct
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -55,6 +55,8 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.Class[] value()
 
 CLSS public abstract interface jakarta.interceptor.InvocationContext
+meth public <%0 extends java.lang.annotation.Annotation> java.util.Set<{%%0}> getInterceptorBindings(java.lang.Class<{%%0}>)
+meth public <%0 extends java.lang.annotation.Annotation> {%%0} getInterceptorBinding(java.lang.Class<{%%0}>)
 meth public abstract java.lang.Object getTarget()
 meth public abstract java.lang.Object getTimer()
 meth public abstract java.lang.Object proceed() throws java.lang.Exception
@@ -63,6 +65,7 @@ meth public abstract java.lang.reflect.Constructor<?> getConstructor()
 meth public abstract java.lang.reflect.Method getMethod()
 meth public abstract java.util.Map<java.lang.String,java.lang.Object> getContextData()
 meth public abstract void setParameters(java.lang.Object[])
+meth public java.util.Set<java.lang.annotation.Annotation> getInterceptorBindings()
 
 CLSS public java.lang.Object
 cons public init()
