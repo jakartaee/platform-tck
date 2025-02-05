@@ -55,12 +55,13 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class prepStmtClient16JSP extends prepStmtClient16 implements Serializable {
-  private static final String testName = "jdbc.ee.prepStmt.prepStmt16";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+	private static final String testName = "jdbc.ee.prepStmt.prepStmt16";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
 	@Deployment(name = "jsp", testable = true)
-	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "prepStmt16_jsp_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
@@ -68,120 +69,117 @@ public class prepStmtClient16JSP extends prepStmtClient16 implements Serializabl
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(prepStmtClient16JSP.class, prepStmtClient16.class);
 		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
-        
-	       // The jsp descriptor
-  URL jspUrl = prepStmtClient16JSP.class.getResource("jsp_vehicle_web.xml");
-  if(jspUrl != null) {
-  	archive.addAsWebInfResource(jspUrl, "web.xml");
-  }
-  // The sun jsp descriptor
-  URL sunJSPUrl = prepStmtClient16JSP.class.getResource("prepStmt16_jsp_vehicle_web.war.sun-web.xml");
-  if(sunJSPUrl != null) {
-  	archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
-  }
-  // Call the archive processor
-  archiveProcessor.processWebArchive(archive, prepStmtClient16JSP.class, sunJSPUrl);
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+		archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
+		InputStream clientHtml = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+		archive.add(new ByteArrayAsset(clientHtml), "client.html");
+
+		// The jsp descriptor
+		URL jspUrl = prepStmtClient16JSP.class.getResource("jsp_vehicle_web.xml");
+		if (jspUrl != null) {
+			archive.addAsWebInfResource(jspUrl, "web.xml");
+		}
+		// The sun jsp descriptor
+		URL sunJSPUrl = prepStmtClient16JSP.class.getResource("prepStmt16_jsp_vehicle_web.war.sun-web.xml");
+		if (sunJSPUrl != null) {
+			archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
+		}
+		// Call the archive processor
+		archiveProcessor.processWebArchive(archive, prepStmtClient16JSP.class, sunJSPUrl);
 
 		archive.addAsWebInfResource(prepStmtClient16JSP.class.getPackage(), "jsp_vehicle_web.xml", "web.xml");
-		
+
 		return archive;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		prepStmtClient16JSP theTests = new prepStmtClient16JSP();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    prepStmtClient16JSP theTests = new prepStmtClient16JSP();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-
-  /*
-   * @testName: testGetParameterMetaData
-   * 
-   * @assertion_ids: JavaEE:SPEC:186.3; JDBC:JAVADOC:724; JDBC:JAVADOC:725;
-   * JDBC:SPEC:9; JDBC:SPEC:26;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Execute the method getParameterMetaData on the preparedStatement
-   * object. Get the information about the number of parameters by executing the
-   * method getParameterCount(). It should return the number of parameters.
-   * 
-   */
+	/*
+	 * @testName: testGetParameterMetaData
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:186.3; JDBC:JAVADOC:724; JDBC:JAVADOC:725;
+	 * JDBC:SPEC:9; JDBC:SPEC:26;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Execute the method getParameterMetaData on the preparedStatement
+	 * object. Get the information about the number of parameters by executing the
+	 * method getParameterCount(). It should return the number of parameters.
+	 * 
+	 */
 
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetParameterMetaData() throws Exception {
+	public void testGetParameterMetaData() throws Exception {
 		super.testGetParameterMetaData();
-  }
+	}
 
-  /*
-   * @testName: testSetAsciiStream
-   * 
-   * @assertion_ids: JavaEE:SPEC:186; JDBC:JAVADOC:684; JDBC:JAVADOC:685;
-   * JDBC:SPEC:9; JDBC:SPEC:26;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Get the InputStream object. Excecute the method
-   * preparedStatement.setAsciiStream to Update the Longvarchar_Tab_Name with
-   * the value extracted from the Char_Tab. Query the Longvarchar_Tab in the
-   * database to retrieve the value that is been set. Compare the value that is
-   * inserted with the value retrieved. These values should be equal.
-   * 
-   */
+	/*
+	 * @testName: testSetAsciiStream
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:186; JDBC:JAVADOC:684; JDBC:JAVADOC:685;
+	 * JDBC:SPEC:9; JDBC:SPEC:26;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Get the InputStream object. Excecute the method
+	 * preparedStatement.setAsciiStream to Update the Longvarchar_Tab_Name with the
+	 * value extracted from the Char_Tab. Query the Longvarchar_Tab in the database
+	 * to retrieve the value that is been set. Compare the value that is inserted
+	 * with the value retrieved. These values should be equal.
+	 * 
+	 */
 
 	@Test
 	@TargetVehicle("jsp")
-  public void testSetAsciiStream() throws Exception {
+	public void testSetAsciiStream() throws Exception {
 		super.testSetAsciiStream();
-  }
+	}
 
-  /*
-   * @testName: testSetBinaryStream
-   * 
-   * @assertion_ids: JavaEE:SPEC:186; JDBC:JAVADOC:688; JDBC:JAVADOC:689;
-   * JDBC:SPEC:9; JDBC:SPEC:26;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Get the InputStream object. Excecute the method
-   * preparedStatement.setBinaryStream to Update the Longvarbinary_Tab_Name with
-   * some byte array value. Query the Longvarbinary_Tab in the database to
-   * retrieve the value that is been set. Compare the byte array value that is
-   * inserted with the value retrieved. These cvalues should be equal.
-   * 
-   */
+	/*
+	 * @testName: testSetBinaryStream
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:186; JDBC:JAVADOC:688; JDBC:JAVADOC:689;
+	 * JDBC:SPEC:9; JDBC:SPEC:26;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Get the InputStream object. Excecute the method
+	 * preparedStatement.setBinaryStream to Update the Longvarbinary_Tab_Name with
+	 * some byte array value. Query the Longvarbinary_Tab in the database to
+	 * retrieve the value that is been set. Compare the byte array value that is
+	 * inserted with the value retrieved. These cvalues should be equal.
+	 * 
+	 */
 
 	@Test
 	@TargetVehicle("jsp")
-  public void testSetBinaryStream() throws Exception {
+	public void testSetBinaryStream() throws Exception {
 		super.testSetBinaryStream();
-  }
+	}
 
-  /*
-   * @testName: testSetCharacterStream
-   * 
-   * @assertion_ids: JavaEE:SPEC:186; JDBC:JAVADOC:702; JDBC:JAVADOC:703;
-   * JDBC:SPEC:9; JDBC:SPEC:26;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Get the InputStream object. Get a Reader object from this
-   * InputStream. Excecute the method preparedStatement.setCharacterStream to
-   * Update the Longvarchar_Tab_Name with the value extracted from Char_tab.
-   * Query the Longvarchar_Tab in the database to retrieve the value that is
-   * been set. Compare the byte array value that is inserted with the value
-   * retrieved. These values should be equal.
-   * 
-   */
+	/*
+	 * @testName: testSetCharacterStream
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:186; JDBC:JAVADOC:702; JDBC:JAVADOC:703;
+	 * JDBC:SPEC:9; JDBC:SPEC:26;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Get the InputStream object. Get a Reader object from this
+	 * InputStream. Excecute the method preparedStatement.setCharacterStream to
+	 * Update the Longvarchar_Tab_Name with the value extracted from Char_tab. Query
+	 * the Longvarchar_Tab in the database to retrieve the value that is been set.
+	 * Compare the byte array value that is inserted with the value retrieved. These
+	 * values should be equal.
+	 * 
+	 */
 
 	@Test
 	@TargetVehicle("jsp")
-  public void testSetCharacterStream() throws Exception {
+	public void testSetCharacterStream() throws Exception {
 		super.testSetCharacterStream();
-  }
+	}
 }

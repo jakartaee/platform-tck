@@ -49,247 +49,245 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class dbMetaClient12Servlet extends dbMetaClient12 implements Serializable {
-  private static final String testName = "jdbc.ee.dbMeta.dbMeta12";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+	private static final String testName = "jdbc.ee.dbMeta.dbMeta12";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
 	@Deployment(name = "servlet", testable = true)
-	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "dbMeta12_servlet_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(dbMetaClient12Servlet.class, dbMetaClient12.class);
-	       // The servlet descriptor
-URL servletUrl = dbMetaClient12Servlet.class.getResource("servlet_vehicle_web.xml");
-if(servletUrl != null) {
-	archive.addAsWebInfResource(servletUrl, "web.xml");
-}
+		// The servlet descriptor
+		URL servletUrl = dbMetaClient12Servlet.class.getResource("servlet_vehicle_web.xml");
+		if (servletUrl != null) {
+			archive.addAsWebInfResource(servletUrl, "web.xml");
+		}
 // The sun servlet descriptor
-URL sunServletUrl = dbMetaClient12Servlet.class.getResource("dbMeta12_servlet_vehicle_web.war.sun-web.xml");
-if(sunServletUrl != null) {
-	archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
-}
+		URL sunServletUrl = dbMetaClient12Servlet.class.getResource("dbMeta12_servlet_vehicle_web.war.sun-web.xml");
+		if (sunServletUrl != null) {
+			archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
+		}
 // Call the archive processor
-archiveProcessor.processWebArchive(archive, dbMetaClient12Servlet.class, sunServletUrl);
-		
+		archiveProcessor.processWebArchive(archive, dbMetaClient12Servlet.class, sunServletUrl);
+
 		return archive;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		dbMetaClient12Servlet theTests = new dbMetaClient12Servlet();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    dbMetaClient12Servlet theTests = new dbMetaClient12Servlet();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: testGetSQLStateType
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1130; JDBC:JAVADOC:1131;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getSQLStateType() method on that object. It should
-   * return an integer value.
-   * 
-   */
+	/*
+	 * @testName: testGetSQLStateType
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1130; JDBC:JAVADOC:1131;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getSQLStateType() method on that object. It should
+	 * return an integer value.
+	 * 
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetSQLStateType() throws Exception {
+	public void testGetSQLStateType() throws Exception {
 		super.testGetSQLStateType();
-  }
+	}
 
-  /*
-   * @testName: testGetDatabaseMinorVersion
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1124; JDBC:JAVADOC:1125;
-   * JavaEE:SPEC:193;
-   * 
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getDatabaseMinorVersion() method on that object. It
-   * should return an integer value.
-   * 
-   */
+	/*
+	 * @testName: testGetDatabaseMinorVersion
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1124; JDBC:JAVADOC:1125;
+	 * JavaEE:SPEC:193;
+	 * 
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getDatabaseMinorVersion() method on that object. It
+	 * should return an integer value.
+	 * 
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetDatabaseMinorVersion() throws Exception {
+	public void testGetDatabaseMinorVersion() throws Exception {
 		super.testGetDatabaseMinorVersion();
-  }
+	}
 
-  /*
-   * @testName: testGetDatabaseMajorVersion
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1122; JDBC:JAVADOC:1123;
-   * JavaEE:SPEC:193;
-   * 
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getDatabaseMajorVersion() method on that object. It
-   * should return an integer value.
-   * 
-   */
+	/*
+	 * @testName: testGetDatabaseMajorVersion
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1122; JDBC:JAVADOC:1123;
+	 * JavaEE:SPEC:193;
+	 * 
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getDatabaseMajorVersion() method on that object. It
+	 * should return an integer value.
+	 * 
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetDatabaseMajorVersion() throws Exception {
+	public void testGetDatabaseMajorVersion() throws Exception {
 		super.testGetDatabaseMajorVersion();
-  }
+	}
 
-  /*
-   * @testName: testGetJDBCMinorVersion
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1128; JDBC:JAVADOC:1129;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getJDBCMinorVersion() method on that object. It
-   * should return an integer value.
-   * 
-   */
+	/*
+	 * @testName: testGetJDBCMinorVersion
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1128; JDBC:JAVADOC:1129;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getJDBCMinorVersion() method on that object. It should
+	 * return an integer value.
+	 * 
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetJDBCMinorVersion() throws Exception {
+	public void testGetJDBCMinorVersion() throws Exception {
 		super.testGetJDBCMinorVersion();
-  }
+	}
 
-  /*
-   * @testName: testGetJDBCMajorVersion
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1126; JDBC:JAVADOC:1127;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getJDBCMajorVersion() method on that object. It
-   * should return an integer value.
-   * 
-   */
+	/*
+	 * @testName: testGetJDBCMajorVersion
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1126; JDBC:JAVADOC:1127;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getJDBCMajorVersion() method on that object. It should
+	 * return an integer value.
+	 * 
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetJDBCMajorVersion() throws Exception {
+	public void testGetJDBCMajorVersion() throws Exception {
 		super.testGetJDBCMajorVersion();
-  }
+	}
 
-  /*
-   * @testName: testSupportsSavepoints
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1104; JDBC:JAVADOC:1105;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsSavepoints() method. It should return a
-   * boolean value
-   *
-   */
+	/*
+	 * @testName: testSupportsSavepoints
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1104; JDBC:JAVADOC:1105;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsSavepoints() method. It should return a boolean
+	 * value
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsSavepoints() throws Exception {
+	public void testSupportsSavepoints() throws Exception {
 		super.testSupportsSavepoints();
-  }
-	
+	}
 
-  /*
-   * @testName: testSupportsNamedParameters
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1106; JDBC:JAVADOC:1107;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsSavepoints() method. It should return a
-   * boolean value
-   *
-   */
+	/*
+	 * @testName: testSupportsNamedParameters
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1106; JDBC:JAVADOC:1107;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsSavepoints() method. It should return a boolean
+	 * value
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsNamedParameters() throws Exception {
+	public void testSupportsNamedParameters() throws Exception {
 		super.testSupportsNamedParameters();
-  }
+	}
 
-  /*
-   * @testName: testSupportsMultipleOpenResults
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1108; JDBC:JAVADOC:1109;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsMultipleOpenResults() method. It should
-   * return a boolean value
-   *
-   */
+	/*
+	 * @testName: testSupportsMultipleOpenResults
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1108; JDBC:JAVADOC:1109;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsMultipleOpenResults() method. It should return
+	 * a boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsMultipleOpenResults() throws Exception {
+	public void testSupportsMultipleOpenResults() throws Exception {
 		super.testSupportsMultipleOpenResults();
-  }
+	}
 
-  /*
-   * @testName: testSupportsGetGeneratedKeys
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1110; JDBC:JAVADOC:1111;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsGetGeneratedKeys() method. It should return a
-   * boolean value
-   *
-   */
+	/*
+	 * @testName: testSupportsGetGeneratedKeys
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1110; JDBC:JAVADOC:1111;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsGetGeneratedKeys() method. It should return a
+	 * boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsGetGeneratedKeys() throws Exception {
+	public void testSupportsGetGeneratedKeys() throws Exception {
 		super.testSupportsGetGeneratedKeys();
-  }
+	}
 
-  /*
-   * @testName: testSupportsResultSetHoldability01
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1118; JDBC:JAVADOC:1119;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsResultSetHoldability(int holdability) method.
-   * It should return a boolean value
-   *
-   */
+	/*
+	 * @testName: testSupportsResultSetHoldability01
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1118; JDBC:JAVADOC:1119;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsResultSetHoldability(int holdability) method.
+	 * It should return a boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsResultSetHoldability01() throws Exception {
+	public void testSupportsResultSetHoldability01() throws Exception {
 		super.testSupportsResultSetHoldability01();
-  }
+	}
 
-  /*
-   * @testName: testSupportsResultSetHoldability02
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1118; JDBC:JAVADOC:1119;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsResultSetHoldability(int holdability) method.
-   * It should return a boolean value
-   *
-   */
+	/*
+	 * @testName: testSupportsResultSetHoldability02
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1118; JDBC:JAVADOC:1119;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsResultSetHoldability(int holdability) method.
+	 * It should return a boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsResultSetHoldability02() throws Exception {
+	public void testSupportsResultSetHoldability02() throws Exception {
 		super.testSupportsResultSetHoldability02();
-  }
+	}
 
-  /*
-   * @testName: testGetResultSetHoldability
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1120; JDBC:JAVADOC:1121;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsResultSetHoldability(int holdability) method.
-   * It should return a boolean value
-   *
-   */
+	/*
+	 * @testName: testGetResultSetHoldability
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1120; JDBC:JAVADOC:1121;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsResultSetHoldability(int holdability) method.
+	 * It should return a boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetResultSetHoldability() throws Exception {
+	public void testGetResultSetHoldability() throws Exception {
 		super.testGetResultSetHoldability();
-  }
+	}
 
 }

@@ -58,389 +58,386 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class dateTimeClient1JSP extends dateTimeClient1 implements Serializable {
-  private static final String testName = "jdbc.ee.dateTime.dateTime1";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+	private static final String testName = "jdbc.ee.dateTime.dateTime1";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
 	@Deployment(name = "jsp", testable = true)
-	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "dateTime1_jsp_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
-        
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+		archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
+		InputStream clientHtml = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+		archive.add(new ByteArrayAsset(clientHtml), "client.html");
+
 		archive.addClasses(dateTimeClient1JSP.class, dateTimeClient1.class);
-		
-	       // The jsp descriptor
-     URL jspUrl = dateTimeClient1JSP.class.getResource("jsp_vehicle_web.xml");
-     if(jspUrl != null) {
-     	archive.addAsWebInfResource(jspUrl, "web.xml");
-     }
-     // The sun jsp descriptor
-     URL sunJSPUrl = dateTimeClient1JSP.class.getResource("dateTime1_jsp_vehicle_web.war.sun-web.xml");
-     if(sunJSPUrl != null) {
-     	archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
-     }
-     // Call the archive processor
-     archiveProcessor.processWebArchive(archive, dateTimeClient1JSP.class, sunJSPUrl);
+
+		// The jsp descriptor
+		URL jspUrl = dateTimeClient1JSP.class.getResource("jsp_vehicle_web.xml");
+		if (jspUrl != null) {
+			archive.addAsWebInfResource(jspUrl, "web.xml");
+		}
+		// The sun jsp descriptor
+		URL sunJSPUrl = dateTimeClient1JSP.class.getResource("dateTime1_jsp_vehicle_web.war.sun-web.xml");
+		if (sunJSPUrl != null) {
+			archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
+		}
+		// Call the archive processor
+		archiveProcessor.processWebArchive(archive, dateTimeClient1JSP.class, sunJSPUrl);
 
 		archive.addAsWebInfResource(dateTimeClient1JSP.class.getPackage(), "jsp_vehicle_web.xml", "web.xml");
-		
+
 		return archive;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		dateTimeClient1JSP theTests = new dateTimeClient1JSP();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    dateTimeClient1JSP theTests = new dateTimeClient1JSP();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: testTimestamp01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:32;
-   * 
-   * @test_Strategy: Create a Timestamp Object with a long value as an argument.
-   * Then get the String representation of that Timestamp object. Check whether
-   * it is same as equivalent String Value in the property file.
-   */
+	/*
+	 * @testName: testTimestamp01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:32;
+	 * 
+	 * @test_Strategy: Create a Timestamp Object with a long value as an argument.
+	 * Then get the String representation of that Timestamp object. Check whether it
+	 * is same as equivalent String Value in the property file.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testTimestamp01() throws Exception {
+	public void testTimestamp01() throws Exception {
 		super.testTimestamp01();
-  }
+	}
 
-  /*
-   * @testName: testTimestamp02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:32;
-   * 
-   * @test_Strategy: Create a Timestamp Object with a long value as an argument.
-   * Then get the String representation of that Timestamp object. Check whether
-   * it is same as equivalent String Value in the property file.
-   */
+	/*
+	 * @testName: testTimestamp02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:32;
+	 * 
+	 * @test_Strategy: Create a Timestamp Object with a long value as an argument.
+	 * Then get the String representation of that Timestamp object. Check whether it
+	 * is same as equivalent String Value in the property file.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testTimestamp02() throws Exception {
+	public void testTimestamp02() throws Exception {
 		super.testTimestamp02();
-  }
+	}
 
-  /*
-   * @testName: testSetNanos01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:38;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method
-   * and call getNanos() to check and it should return an Integer value that is
-   * been set
-   */
+	/*
+	 * @testName: testSetNanos01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:38;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method
+	 * and call getNanos() to check and it should return an Integer value that is
+	 * been set
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSetNanos01() throws Exception {
+	public void testSetNanos01() throws Exception {
 		super.testSetNanos01();
-  }
+	}
 
-  /*
-   * @testName: testSetNanos02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:38; JDBC:JAVADOC:37;
-   * 
-   * 
-   * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method
-   * and call getNanos() to check and it should return an Integer value that is
-   * been set
-   */
+	/*
+	 * @testName: testSetNanos02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:38; JDBC:JAVADOC:37;
+	 * 
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method
+	 * and call getNanos() to check and it should return an Integer value that is
+	 * been set
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSetNanos02() throws Exception {
+	public void testSetNanos02() throws Exception {
 		super.testSetNanos02();
-  }
+	}
 
-  /*
-   * @testName: testSetNanos03
-   * 
-   * @assertion_ids: JDBC:JAVADOC:38;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method
-   * with the invalid value of argument and it should throw
-   * IllegalArgumentException
-   */
+	/*
+	 * @testName: testSetNanos03
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:38;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method
+	 * with the invalid value of argument and it should throw
+	 * IllegalArgumentException
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSetNanos03() throws Exception {
+	public void testSetNanos03() throws Exception {
 		super.testSetNanos03();
-  }
+	}
 
-  /*
-   * @testName: testSetNanos04
-   * 
-   * @assertion_ids: JDBC:JAVADOC:38;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method
-   * with an invalid value as argument and it should throw
-   * IllegalArgumentException
-   */
+	/*
+	 * @testName: testSetNanos04
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:38;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method
+	 * with an invalid value as argument and it should throw
+	 * IllegalArgumentException
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSetNanos04() throws Exception {
+	public void testSetNanos04() throws Exception {
 		super.testSetNanos04();
-  }
+	}
 
-  /*
-   * @testName: testGetNanos
-   * 
-   * @assertion_ids: JDBC:JAVADOC:37;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the getNanos() method. It
-   * should return an Integer value.
-   */
+	/*
+	 * @testName: testGetNanos
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:37;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the getNanos() method. It
+	 * should return an Integer value.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetNanos() throws Exception {
+	public void testGetNanos() throws Exception {
 		super.testGetNanos();
-  }
+	}
 
-  /*
-   * @testName: testToString01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:36;
-   * 
-   * @test_Strategy: Create a Timestamp Object with a long value as an argument.
-   * Then get the String representation of that Timestamp object. using the
-   * toString() method.Check whether it is same as equivalent String Value in
-   * property file.
-   */
+	/*
+	 * @testName: testToString01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:36;
+	 * 
+	 * @test_Strategy: Create a Timestamp Object with a long value as an argument.
+	 * Then get the String representation of that Timestamp object. using the
+	 * toString() method.Check whether it is same as equivalent String Value in
+	 * property file.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testToString01() throws Exception {
+	public void testToString01() throws Exception {
 		super.testToString01();
-  }
+	}
 
-  /*
-   * @testName: testToString02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:36;
-   * 
-   * @test_Strategy: Create a Timestamp Object with a long value as an argument.
-   * Then get the String representation of that Timestamp object. using the
-   * toString() method.Check whether it is same as equivalent String Value in
-   * property file.
-   * 
-   */
+	/*
+	 * @testName: testToString02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:36;
+	 * 
+	 * @test_Strategy: Create a Timestamp Object with a long value as an argument.
+	 * Then get the String representation of that Timestamp object. using the
+	 * toString() method.Check whether it is same as equivalent String Value in
+	 * property file.
+	 * 
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testToString02() throws Exception {
+	public void testToString02() throws Exception {
 		super.testToString02();
-  }
+	}
 
-  /*
-   * @testName: testAfter01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:42;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts)
-   * method with the value of ts is after than the Timestamp It should return a
-   * boolean value and the value should be equal to true
-   */
+	/*
+	 * @testName: testAfter01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:42;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts)
+	 * method with the value of ts is after than the Timestamp It should return a
+	 * boolean value and the value should be equal to true
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testAfter01() throws Exception {
+	public void testAfter01() throws Exception {
 		super.testAfter01();
-  }
+	}
 
-  /*
-   * @testName: testAfter02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:42;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts)
-   * method with the value of ts is not after than the Timestamp It should
-   * return a boolean value and the value should be equal to false
-   */
+	/*
+	 * @testName: testAfter02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:42;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts)
+	 * method with the value of ts is not after than the Timestamp It should return
+	 * a boolean value and the value should be equal to false
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testAfter02() throws Exception {
+	public void testAfter02() throws Exception {
 		super.testAfter02();
-  }
+	}
 
-  /*
-   * @testName: testAfter03
-   * 
-   * @assertion_ids: JDBC:JAVADOC:42;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts)
-   * method with the value of ts is after than the Timestamp in Nano second
-   * level It should return a boolean value and the value should be equal to
-   * true
-   */
+	/*
+	 * @testName: testAfter03
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:42;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts)
+	 * method with the value of ts is after than the Timestamp in Nano second level
+	 * It should return a boolean value and the value should be equal to true
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testAfter03() throws Exception {
+	public void testAfter03() throws Exception {
 		super.testAfter03();
-  }
+	}
 
-  /*
-   * @testName: testAfter04
-   * 
-   * @assertion_ids: JDBC:JAVADOC:42;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts)
-   * method with the value of ts is not after than the Timestamp with Nano
-   * seconds level It should return a boolean value and the value should be
-   * equal to false
-   */
+	/*
+	 * @testName: testAfter04
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:42;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts)
+	 * method with the value of ts is not after than the Timestamp with Nano seconds
+	 * level It should return a boolean value and the value should be equal to false
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testAfter04() throws Exception {
+	public void testAfter04() throws Exception {
 		super.testAfter04();
-  }
+	}
 
-  /*
-   * @testName: testBefore01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:41;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts)
-   * method with the value of ts is before than the Timestamp It should return a
-   * boolean value and the value should be equal to true
-   */
+	/*
+	 * @testName: testBefore01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:41;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts)
+	 * method with the value of ts is before than the Timestamp It should return a
+	 * boolean value and the value should be equal to true
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testBefore01() throws Exception {
+	public void testBefore01() throws Exception {
 		super.testBefore01();
-  }
+	}
 
-  /*
-   * @testName: testBefore02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:41;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts)
-   * method with the value of ts is not before than the Timestamp It should
-   * return a boolean value and the value should be equal to false
-   *
-   */
+	/*
+	 * @testName: testBefore02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:41;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts)
+	 * method with the value of ts is not before than the Timestamp It should return
+	 * a boolean value and the value should be equal to false
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testBefore02() throws Exception {
+	public void testBefore02() throws Exception {
 		super.testBefore02();
-  }
+	}
 
-  /*
-   * @testName: testBefore03
-   * 
-   * @assertion_ids: JDBC:JAVADOC:41;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts)
-   * method with the value of ts is before than the Timestamp in Nano second
-   * level It should return a boolean value and the value should be equal to
-   * true.
-   * 
-   */
+	/*
+	 * @testName: testBefore03
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:41;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts)
+	 * method with the value of ts is before than the Timestamp in Nano second level
+	 * It should return a boolean value and the value should be equal to true.
+	 * 
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testBefore03() throws Exception {
+	public void testBefore03() throws Exception {
 		super.testBefore03();
-  }
+	}
 
-  /*
-   * @testName: testBefore04
-   * 
-   * @assertion_ids: JDBC:JAVADOC:41;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts)
-   * method with the value of ts is not before than the Timestamp with Nano
-   * seconds level It should return a boolean value and the value should be
-   * equal to false
-   */
+	/*
+	 * @testName: testBefore04
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:41;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts)
+	 * method with the value of ts is not before than the Timestamp with Nano
+	 * seconds level It should return a boolean value and the value should be equal
+	 * to false
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testBefore04() throws Exception {
+	public void testBefore04() throws Exception {
 		super.testBefore04();
-  }
+	}
 
-  /*
-   * @testName: testEqualsTimestamp01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:39;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the equals(Timestamp ts)
-   * method with equal value of Timestamp It should return a boolean value and
-   * the value should be equal to true
-   */
+	/*
+	 * @testName: testEqualsTimestamp01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:39;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the equals(Timestamp ts)
+	 * method with equal value of Timestamp It should return a boolean value and the
+	 * value should be equal to true
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testEqualsTimestamp01() throws Exception {
+	public void testEqualsTimestamp01() throws Exception {
 		super.testEqualsTimestamp01();
-  }
+	}
 
-  /*
-   * @testName: testEqualsObject01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:40;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the equals(Object obj)
-   * method with equal value of Timestamp It should return a boolean value and
-   * the value should be equal to true
-   */
+	/*
+	 * @testName: testEqualsObject01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:40;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the equals(Object obj) method
+	 * with equal value of Timestamp It should return a boolean value and the value
+	 * should be equal to true
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testEqualsObject01() throws Exception {
+	public void testEqualsObject01() throws Exception {
 		super.testEqualsObject01();
-  }
+	}
 
-  /*
-   * @testName: testEqualsObject02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:40;
-   * 
-   * @test_Strategy: Get a Timestamp object and call the equals(Object obj)
-   * method with equal value of Timestamp in Nano seconds level It should return
-   * a boolean value and the value should be equal to true
-   */
+	/*
+	 * @testName: testEqualsObject02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:40;
+	 * 
+	 * @test_Strategy: Get a Timestamp object and call the equals(Object obj) method
+	 * with equal value of Timestamp in Nano seconds level It should return a
+	 * boolean value and the value should be equal to true
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testEqualsObject02() throws Exception {
+	public void testEqualsObject02() throws Exception {
 		super.testEqualsObject02();
-  }
+	}
 
-  /*
-   * @testName: testValueOf01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:35;
-   * 
-   * @test_Strategy: Call valueof(String ts) static method in java.sql.Timestamp
-   * class with a String argument to get a Timestamp object Check whether it is
-   * same as Timestamp object obtained from equivalent long value .
-   */
+	/*
+	 * @testName: testValueOf01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:35;
+	 * 
+	 * @test_Strategy: Call valueof(String ts) static method in java.sql.Timestamp
+	 * class with a String argument to get a Timestamp object Check whether it is
+	 * same as Timestamp object obtained from equivalent long value .
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testValueOf01() throws Exception {
+	public void testValueOf01() throws Exception {
 		super.testValueOf01();
-  }
+	}
 
-  /*
-   * @testName: testValueOf02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:35;
-   * 
-   * @test_Strategy: Call valueof(String ts) static method in java.sql.Timestamp
-   * class with a String argument to get a Timestamp object Check whether it is
-   * same as Timestamp object obtained from equivalent long value .
-   */
+	/*
+	 * @testName: testValueOf02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:35;
+	 * 
+	 * @test_Strategy: Call valueof(String ts) static method in java.sql.Timestamp
+	 * class with a String argument to get a Timestamp object Check whether it is
+	 * same as Timestamp object obtained from equivalent long value .
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testValueOf02() throws Exception {
+	public void testValueOf02() throws Exception {
 		super.testValueOf02();
-  }
+	}
 
 }

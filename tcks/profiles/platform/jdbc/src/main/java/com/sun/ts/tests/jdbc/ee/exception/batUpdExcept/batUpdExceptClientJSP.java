@@ -54,12 +54,13 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class batUpdExceptClientJSP extends batUpdExceptClient implements Serializable {
-  private static final String testName = "jdbc.ee.exception.batUpdExcept";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+	private static final String testName = "jdbc.ee.exception.batUpdExcept";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
 	@Deployment(name = "jsp", testable = true)
-	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "batUpdExcept_jsp_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
@@ -67,142 +68,137 @@ public class batUpdExceptClientJSP extends batUpdExceptClient implements Seriali
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(batUpdExceptClientJSP.class, batUpdExceptClient.class);
 		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
-        
-	       // The jsp descriptor
-     URL jspUrl = batUpdExceptClientJSP.class.getResource("jsp_vehicle_web.xml");
-     if(jspUrl != null) {
-     	archive.addAsWebInfResource(jspUrl, "web.xml");
-     }
-     // The sun jsp descriptor
-     URL sunJSPUrl = batUpdExceptClientJSP.class.getResource("batUpdExcept_jsp_vehicle_web.war.sun-web.xml");
-     if(sunJSPUrl != null) {
-     	archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
-     }
-     // Call the archive processor
-     archiveProcessor.processWebArchive(archive, batUpdExceptClientJSP.class, sunJSPUrl);
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+		archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
+		InputStream clientHtml = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+		archive.add(new ByteArrayAsset(clientHtml), "client.html");
 
-        
+		// The jsp descriptor
+		URL jspUrl = batUpdExceptClientJSP.class.getResource("jsp_vehicle_web.xml");
+		if (jspUrl != null) {
+			archive.addAsWebInfResource(jspUrl, "web.xml");
+		}
+		// The sun jsp descriptor
+		URL sunJSPUrl = batUpdExceptClientJSP.class.getResource("batUpdExcept_jsp_vehicle_web.war.sun-web.xml");
+		if (sunJSPUrl != null) {
+			archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
+		}
+		// Call the archive processor
+		archiveProcessor.processWebArchive(archive, batUpdExceptClientJSP.class, sunJSPUrl);
+
 		archive.addAsWebInfResource(batUpdExceptClientJSP.class.getPackage(), "jsp_vehicle_web.xml", "web.xml");
-		
+
 		return archive;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		batUpdExceptClientJSP theTests = new batUpdExceptClientJSP();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    batUpdExceptClientJSP theTests = new batUpdExceptClientJSP();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-
-  /*
-   * @testName: testGetUpdateCounts
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:121;
-   * 
-   * @test_Strategy: Get a Statement object and call the addBatch() method with
-   * 4 SQL statements ,out of which first 3 statements are insert,update and
-   * delete statements followed by a select statement and call the
-   * executeBatch() method. This causes a BatchUpdateException being thrown and
-   * getUpdateCounts() method on this BatchUpdateException object should return
-   * an integer array of length 3 with each value indicating the number of
-   * corressponding rows affected by execution of 3 SQL statements in the same
-   * order as added to the batch.
-   *
-   */
+	/*
+	 * @testName: testGetUpdateCounts
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:121;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the addBatch() method with 4
+	 * SQL statements ,out of which first 3 statements are insert,update and delete
+	 * statements followed by a select statement and call the executeBatch() method.
+	 * This causes a BatchUpdateException being thrown and getUpdateCounts() method
+	 * on this BatchUpdateException object should return an integer array of length
+	 * 3 with each value indicating the number of corressponding rows affected by
+	 * execution of 3 SQL statements in the same order as added to the batch.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetUpdateCounts() throws Exception {
+	public void testGetUpdateCounts() throws Exception {
 		super.testGetUpdateCounts();
-  }
+	}
 
- 
-  /*
-   * @testName: testBatchUpdateException01
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:120;
-   * 
-   * @test_Strategy: This method constructs a BatchUpdateException Object with
-   * no arguments and for that object the reason, SQLState,ErrorCode and
-   * updateCounts are checked for default values.
-   */
+	/*
+	 * @testName: testBatchUpdateException01
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:120;
+	 * 
+	 * @test_Strategy: This method constructs a BatchUpdateException Object with no
+	 * arguments and for that object the reason, SQLState,ErrorCode and updateCounts
+	 * are checked for default values.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testBatchUpdateException01() throws Exception {
+	public void testBatchUpdateException01() throws Exception {
 		super.testBatchUpdateException01();
-  }
+	}
 
-  /*
-   * @testName: testBatchUpdateException02
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:119;
-   * 
-   * @test_Strategy: This method constructs a BatchUpdateException Object with
-   * one argument and for that object the reason, SQLState,ErrorCode are checked
-   * for default values.The updateCount array is checked for whatever is been
-   * assigned while creating the new instance.
-   */
+	/*
+	 * @testName: testBatchUpdateException02
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:119;
+	 * 
+	 * @test_Strategy: This method constructs a BatchUpdateException Object with one
+	 * argument and for that object the reason, SQLState,ErrorCode are checked for
+	 * default values.The updateCount array is checked for whatever is been assigned
+	 * while creating the new instance.
+	 */
 
 	@Test
 	@TargetVehicle("jsp")
-  public void testBatchUpdateException02() throws Exception {
+	public void testBatchUpdateException02() throws Exception {
 		super.testBatchUpdateException02();
-  }
+	}
 
-  /*
-   * @testName: testBatchUpdateException03
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:118;
-   * 
-   * @test_Strategy: This method constructs a BatchUpdateException Object with
-   * two arguments and for that object. SQLState,ErrorCode are checked for
-   * default values.The reason and updateCount array is checked for whatever is
-   * been assigned while creating the new instance.
-   */
+	/*
+	 * @testName: testBatchUpdateException03
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:118;
+	 * 
+	 * @test_Strategy: This method constructs a BatchUpdateException Object with two
+	 * arguments and for that object. SQLState,ErrorCode are checked for default
+	 * values.The reason and updateCount array is checked for whatever is been
+	 * assigned while creating the new instance.
+	 */
 
 	@Test
 	@TargetVehicle("jsp")
-  public void testBatchUpdateException03() throws Exception {
+	public void testBatchUpdateException03() throws Exception {
 		super.testBatchUpdateException03();
-  }
+	}
 
-  /*
-   * @testName: testBatchUpdateException04
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:117;
-   * 
-   * @test_Strategy: This method constructs a BatchUpdateException Object with
-   * three arguments and for that object. ErrorCode is checked for default
-   * values.The reason,SQLState and updateCount array is checked for whatever is
-   * been assigned while creating the new instance.
-   */
+	/*
+	 * @testName: testBatchUpdateException04
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:117;
+	 * 
+	 * @test_Strategy: This method constructs a BatchUpdateException Object with
+	 * three arguments and for that object. ErrorCode is checked for default
+	 * values.The reason,SQLState and updateCount array is checked for whatever is
+	 * been assigned while creating the new instance.
+	 */
 
 	@Test
 	@TargetVehicle("jsp")
-  public void testBatchUpdateException04() throws Exception {
+	public void testBatchUpdateException04() throws Exception {
 		super.testBatchUpdateException04();
-  }
+	}
 
-  /*
-   * @testName: testBatchUpdateException05
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:116;
-   * 
-   * @test_Strategy: This method constructs a BatchUpdateException Object with
-   * four arguments The reason,SQLState ,ErrorCode and updateCount array is
-   * checked for whatever is been assigned while creating the new instance.
-   */
+	/*
+	 * @testName: testBatchUpdateException05
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:116;
+	 * 
+	 * @test_Strategy: This method constructs a BatchUpdateException Object with
+	 * four arguments The reason,SQLState ,ErrorCode and updateCount array is
+	 * checked for whatever is been assigned while creating the new instance.
+	 */
 
 	@Test
 	@TargetVehicle("jsp")
-  public void testBatchUpdateException05() throws Exception {
+	public void testBatchUpdateException05() throws Exception {
 		super.testBatchUpdateException05();
-  }
+	}
 
 }

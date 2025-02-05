@@ -62,271 +62,263 @@ import com.sun.ts.tests.jdbc.ee.common.rsSchema;
 @Tag("platform")
 
 public class resultSetClient41 extends ServiceEETest implements Serializable {
-  private static final String testName = "jdbc.ee.resultSet.resultSet41";
+	private static final String testName = "jdbc.ee.resultSet.resultSet41";
 
-  // Naming specific member variables
-  private TSNamingContextInterface jc = null;
+	// Naming specific member variables
+	private TSNamingContextInterface jc = null;
 
-  // Harness requirements
-  private transient Connection conn = null;
+	// Harness requirements
+	private transient Connection conn = null;
 
-  private transient DatabaseMetaData dbmd = null;
+	private transient DatabaseMetaData dbmd = null;
 
-  private Statement stmt = null;
+	private Statement stmt = null;
 
-  private PreparedStatement pstmt = null;
+	private PreparedStatement pstmt = null;
 
-  private DataSource ds1 = null;
+	private DataSource ds1 = null;
 
-  private String drManager = null;
+	private String drManager = null;
 
-  private String sqlStmt = null;
+	private String sqlStmt = null;
 
-  private dbSchema dbSch = null;
+	private dbSchema dbSch = null;
 
-  private rsSchema rsSch = null;
+	private rsSchema rsSch = null;
 
-  private csSchema csSch = null;
+	private csSchema csSch = null;
 
-  private Properties props = null;
+	private Properties props = null;
 
-  private Properties sqlp = null;
+	private Properties sqlp = null;
 
-  private JDBCTestMsg msg = null;
+	private JDBCTestMsg msg = null;
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    resultSetClient41 theTests = new resultSetClient41();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		resultSetClient41 theTests = new resultSetClient41();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /* Test setup: */
+	/* Test setup: */
 
-  /*
-   * @class.setup_props: Driver, the Driver name; db1, the database name with
-   * url; user1, the database user name; password1, the database password; db2,
-   * the database name with url; user2, the database user name; password2, the
-   * database password; DriverManager, flag for DriverManager; ptable, the
-   * primary table; ftable, the foreign table; cofSize, the initial size of the
-   * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-   * binary data type; varbinarySize, size of varbinary data type;
-   * longvarbinarySize, size of longvarbinary data type;
-   * 
-   * @class.testArgs: -ap tssql.stmt
-   */
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
-      try {
-        props = p;
-        drManager = p.getProperty("DriverManager", "");
-        if (drManager.length() == 0)
-          throw new Exception("Invalid DriverManager Name");
-        /*
-         * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery","");
-         * InputStream istr= new FileInputStream(sqlStmt); sqlp.load(istr);
-         */
-        sqlp = p;
-        if (drManager.equals("yes")) {
-          logTrace("Using DriverManager");
-          DriverManagerConnection dmCon = new DriverManagerConnection();
-          conn = dmCon.getConnection(p);
-        } else {
-          logTrace("Using DataSource");
-          DataSourceConnection dsCon = new DataSourceConnection();
-          conn = dsCon.getConnection(p);
-        }
-        dbSch = new dbSchema();
-        rsSch = new rsSchema();
-        csSch = new csSchema();
-        stmt = conn.createStatement(/*
-                                     * ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                     * ResultSet.CONCUR_READ_ONLY
-                                     */);
-        dbmd = conn.getMetaData();
-        msg = new JDBCTestMsg();
-      } catch (SQLException ex) {
-        logErr("SQL Exception : " + ex.getMessage(), ex);
-      }
-    } catch (Exception e) {
-      logErr("Setup Failed!");
-      TestUtil.printStackTrace(e);
-    }
-  }
+	/*
+	 * @class.setup_props: Driver, the Driver name; db1, the database name with url;
+	 * user1, the database user name; password1, the database password; db2, the
+	 * database name with url; user2, the database user name; password2, the
+	 * database password; DriverManager, flag for DriverManager; ptable, the primary
+	 * table; ftable, the foreign table; cofSize, the initial size of the ptable;
+	 * cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+	 * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of
+	 * longvarbinary data type;
+	 * 
+	 * @class.testArgs: -ap tssql.stmt
+	 */
+	public void setup(String[] args, Properties p) throws Exception {
+		try {
+			try {
+				props = p;
+				drManager = p.getProperty("DriverManager", "");
+				if (drManager.length() == 0)
+					throw new Exception("Invalid DriverManager Name");
+				/*
+				 * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery",""); InputStream
+				 * istr= new FileInputStream(sqlStmt); sqlp.load(istr);
+				 */
+				sqlp = p;
+				if (drManager.equals("yes")) {
+					logTrace("Using DriverManager");
+					DriverManagerConnection dmCon = new DriverManagerConnection();
+					conn = dmCon.getConnection(p);
+				} else {
+					logTrace("Using DataSource");
+					DataSourceConnection dsCon = new DataSourceConnection();
+					conn = dsCon.getConnection(p);
+				}
+				dbSch = new dbSchema();
+				rsSch = new rsSchema();
+				csSch = new csSchema();
+				stmt = conn.createStatement(/*
+											 * ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY
+											 */);
+				dbmd = conn.getMetaData();
+				msg = new JDBCTestMsg();
+			} catch (SQLException ex) {
+				logErr("SQL Exception : " + ex.getMessage(), ex);
+			}
+		} catch (Exception e) {
+			logErr("Setup Failed!");
+			TestUtil.printStackTrace(e);
+		}
+	}
 
-  /*
-   * @testName: testGetBoolean67
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
-   * JDBC:JAVADOC:407; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * maximum value of table Bit_Tab.Call the getBoolean(String columnName)
-   * method. Compare the returned result with the value extracted from
-   * tssql.stmt file.Both of them should be equal and the returned result must
-   * be equal to the Maximum Value of JDBC Bit datatype.
-   */
+	/*
+	 * @testName: testGetBoolean67
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
+	 * JDBC:JAVADOC:407; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * maximum value of table Bit_Tab.Call the getBoolean(String columnName) method.
+	 * Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the Maximum Value of JDBC Bit datatype.
+	 */
 
-  public void testGetBoolean67() throws Exception {
-    try {
-      // create the table
-      rsSch.createTab("Bit_Tab", sqlp, conn);
-      msg.setMsg("Execute the query and get the resultSet Object");
-      String sQuery = sqlp.getProperty("Bit_Query_Max", "");
-      ResultSet oRes = stmt.executeQuery(sQuery);
-      oRes.next();
-      msg.setMsg("Calling ResultSet.getBoolean(MaximumValue)");
-      msg.setMsg(
-          "get the Maximum value from the table using getBoolean Method");
-      ResultSetMetaData rsMetaData = oRes.getMetaData();
-      String sColName = rsMetaData.getColumnName(1);
-      boolean oRetVal = oRes.getBoolean(sColName);
+	public void testGetBoolean67() throws Exception {
+		try {
+			// create the table
+			rsSch.createTab("Bit_Tab", sqlp, conn);
+			msg.setMsg("Execute the query and get the resultSet Object");
+			String sQuery = sqlp.getProperty("Bit_Query_Max", "");
+			ResultSet oRes = stmt.executeQuery(sQuery);
+			oRes.next();
+			msg.setMsg("Calling ResultSet.getBoolean(MaximumValue)");
+			msg.setMsg("get the Maximum value from the table using getBoolean Method");
+			ResultSetMetaData rsMetaData = oRes.getMetaData();
+			String sColName = rsMetaData.getColumnName(1);
+			boolean oRetVal = oRes.getBoolean(sColName);
 
-      msg.setMsg("get the Maximum value from the Insert String ");
-      boolean oExtVal = rsSch.extractValAsBoolVal("Bit_Tab", 1, sqlp, conn);
+			msg.setMsg("get the Maximum value from the Insert String ");
+			boolean oExtVal = rsSch.extractValAsBoolVal("Bit_Tab", 1, sqlp, conn);
 
-      msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-      if (oRetVal == oExtVal)
-        msg.setMsg("getBoolean returns the Maximum Value " + oRetVal);
-      else {
-        msg.printTestError("getBoolean did not return the Maximum Value",
-            "test getBoolean Failed");
+			msg.addOutputMsg("" + oExtVal, "" + oRetVal);
+			if (oRetVal == oExtVal)
+				msg.setMsg("getBoolean returns the Maximum Value " + oRetVal);
+			else {
+				msg.printTestError("getBoolean did not return the Maximum Value", "test getBoolean Failed");
 
-      }
-      msg.printTestMsg();
-      msg.printOutputMsg();
-    } catch (SQLException sqle) {
-      msg.printSQLError(sqle, "Call to getBoolean is Failed!");
+			}
+			msg.printTestMsg();
+			msg.printOutputMsg();
+		} catch (SQLException sqle) {
+			msg.printSQLError(sqle, "Call to getBoolean is Failed!");
 
-    } catch (Exception e) {
-      msg.printError(e, "Call to getBoolean is Failed!");
+		} catch (Exception e) {
+			msg.printError(e, "Call to getBoolean is Failed!");
 
-    } finally {
-      try {
-        stmt.close();
-        // drop the table
-        rsSch.dropTab("Bit_Tab", conn);
-      } catch (Exception eclean) {
-      }
-    }
-  }
+		} finally {
+			try {
+				stmt.close();
+				// drop the table
+				rsSch.dropTab("Bit_Tab", conn);
+			} catch (Exception eclean) {
+			}
+		}
+	}
 
-  /*
-   * @testName: testGetBoolean68
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
-   * JDBC:JAVADOC:407; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * minimum value of table Bit_Tab.Call the getBoolean(String columnName)
-   * method. Compare the returned result with the value extracted from
-   * tssql.stmt file.Both of them should be equal and the returned result must
-   * be equal to the Minimum Value of JDBC Bit datatype.
-   */
-  public void testGetBoolean68() throws Exception {
-    try {
-      // create the table
-      rsSch.createTab("Bit_Tab", sqlp, conn);
-      msg.setMsg("Execute the query and get the resultSet Object");
-      String sQuery = sqlp.getProperty("Bit_Query_Min", "");
-      ResultSet oRes = stmt.executeQuery(sQuery);
-      oRes.next();
-      msg.setMsg("Calling ResultSet.getBoolean(MinimumValue)");
-      msg.setMsg(
-          "get the Minimum value from the table using getBoolean Method");
-      ResultSetMetaData rsMetaData = oRes.getMetaData();
-      String sColName = rsMetaData.getColumnName(1);
-      boolean oRetVal = oRes.getBoolean(sColName);
+	/*
+	 * @testName: testGetBoolean68
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
+	 * JDBC:JAVADOC:407; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * minimum value of table Bit_Tab.Call the getBoolean(String columnName) method.
+	 * Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the Minimum Value of JDBC Bit datatype.
+	 */
+	public void testGetBoolean68() throws Exception {
+		try {
+			// create the table
+			rsSch.createTab("Bit_Tab", sqlp, conn);
+			msg.setMsg("Execute the query and get the resultSet Object");
+			String sQuery = sqlp.getProperty("Bit_Query_Min", "");
+			ResultSet oRes = stmt.executeQuery(sQuery);
+			oRes.next();
+			msg.setMsg("Calling ResultSet.getBoolean(MinimumValue)");
+			msg.setMsg("get the Minimum value from the table using getBoolean Method");
+			ResultSetMetaData rsMetaData = oRes.getMetaData();
+			String sColName = rsMetaData.getColumnName(1);
+			boolean oRetVal = oRes.getBoolean(sColName);
 
-      msg.setMsg("get the Minimum value from the Insert String");
-      boolean oExtVal = rsSch.extractValAsBoolVal("Bit_Tab", 2, sqlp, conn);
+			msg.setMsg("get the Minimum value from the Insert String");
+			boolean oExtVal = rsSch.extractValAsBoolVal("Bit_Tab", 2, sqlp, conn);
 
-      msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-      if (oRetVal == oExtVal)
-        msg.setMsg("getBoolean returns the Minimum Value " + oRetVal);
-      else {
-        msg.printTestError("getBoolean did not return the Minimum Value",
-            "test getBoolean Failed");
+			msg.addOutputMsg("" + oExtVal, "" + oRetVal);
+			if (oRetVal == oExtVal)
+				msg.setMsg("getBoolean returns the Minimum Value " + oRetVal);
+			else {
+				msg.printTestError("getBoolean did not return the Minimum Value", "test getBoolean Failed");
 
-      }
-      msg.printTestMsg();
-      msg.printOutputMsg();
-    } catch (SQLException sqle) {
-      msg.printSQLError(sqle, "Call to getBoolean is Failed!");
+			}
+			msg.printTestMsg();
+			msg.printOutputMsg();
+		} catch (SQLException sqle) {
+			msg.printSQLError(sqle, "Call to getBoolean is Failed!");
 
-    } catch (Exception e) {
-      msg.printError(e, "Call to getBoolean is Failed!");
+		} catch (Exception e) {
+			msg.printError(e, "Call to getBoolean is Failed!");
 
-    } finally {
-      try {
-        stmt.close();
-        // drop the table
-        rsSch.dropTab("Bit_Tab", conn);
-      } catch (Exception eclean) {
-      }
-    }
-  }
+		} finally {
+			try {
+				stmt.close();
+				// drop the table
+				rsSch.dropTab("Bit_Tab", conn);
+			} catch (Exception eclean) {
+			}
+		}
+	}
 
-  /*
-   * @testName: testGetBoolean69
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
-   * JDBC:JAVADOC:407; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Bit_Tab.Call the getBoolean(String columnName)
-   * method.Check if the value returned is boolean value false.
-   */
-  public void testGetBoolean69() throws Exception {
-    try {
-      // create the table
-      rsSch.createTab("Bit_Tab", sqlp, conn);
-      msg.setMsg("Execute the query and get the resultSet Object");
-      String sQuery = sqlp.getProperty("Bit_Query_Null", "");
-      ResultSet oRes = stmt.executeQuery(sQuery);
-      oRes.next();
-      msg.setMsg("Calling ResultSet.getBoolean(NullValue)");
-      msg.setMsg("get the Null value from the table using getBoolean Method");
-      ResultSetMetaData rsMetaData = oRes.getMetaData();
-      String sColName = rsMetaData.getColumnName(1);
-      boolean oRetVal = oRes.getBoolean(sColName);
+	/*
+	 * @testName: testGetBoolean69
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
+	 * JDBC:JAVADOC:407; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Bit_Tab.Call the getBoolean(String columnName)
+	 * method.Check if the value returned is boolean value false.
+	 */
+	public void testGetBoolean69() throws Exception {
+		try {
+			// create the table
+			rsSch.createTab("Bit_Tab", sqlp, conn);
+			msg.setMsg("Execute the query and get the resultSet Object");
+			String sQuery = sqlp.getProperty("Bit_Query_Null", "");
+			ResultSet oRes = stmt.executeQuery(sQuery);
+			oRes.next();
+			msg.setMsg("Calling ResultSet.getBoolean(NullValue)");
+			msg.setMsg("get the Null value from the table using getBoolean Method");
+			ResultSetMetaData rsMetaData = oRes.getMetaData();
+			String sColName = rsMetaData.getColumnName(1);
+			boolean oRetVal = oRes.getBoolean(sColName);
 
-      // check whether the value is boolean false
-      if (oRetVal == false) {
-        msg.setMsg(
-            "Calling getBoolean method on a SQL Null column returns boolean "
-                + oRetVal);
-      } else {
-        msg.printTestError("getBoolean did not return the boolean value false",
-            "test getBoolean Failed");
+			// check whether the value is boolean false
+			if (oRetVal == false) {
+				msg.setMsg("Calling getBoolean method on a SQL Null column returns boolean " + oRetVal);
+			} else {
+				msg.printTestError("getBoolean did not return the boolean value false", "test getBoolean Failed");
 
-      }
-      msg.printTestMsg();
+			}
+			msg.printTestMsg();
 
-    } catch (SQLException sqle) {
-      msg.printSQLError(sqle, "Call to getBoolean is Failed!");
+		} catch (SQLException sqle) {
+			msg.printSQLError(sqle, "Call to getBoolean is Failed!");
 
-    } catch (Exception e) {
-      msg.printError(e, "Call to getBoolean is Failed!");
+		} catch (Exception e) {
+			msg.printError(e, "Call to getBoolean is Failed!");
 
-    } finally {
-      try {
-        stmt.close();
-        // drop the table
-        rsSch.dropTab("Bit_Tab", conn);
-      } catch (Exception eclean) {
-      }
-    }
-  }
+		} finally {
+			try {
+				stmt.close();
+				// drop the table
+				rsSch.dropTab("Bit_Tab", conn);
+			} catch (Exception eclean) {
+			}
+		}
+	}
 
-  /* cleanup */
-  public void cleanup() throws Exception {
-    try {
-      // Close the database
-      rsSch.dbUnConnect(conn);
-      logMsg("Cleanup ok;");
-    } catch (Exception e) {
-      logErr("An error occurred while closing the database connection", e);
-    }
-  }
+	/* cleanup */
+	public void cleanup() throws Exception {
+		try {
+			// Close the database
+			rsSch.dbUnConnect(conn);
+			logMsg("Cleanup ok;");
+		} catch (Exception e) {
+			logErr("An error occurred while closing the database connection", e);
+		}
+	}
 }

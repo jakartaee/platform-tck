@@ -40,7 +40,6 @@ import com.sun.ts.lib.harness.Status;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
-
 // Merant DataSource class
 //import com.merant.sequelink.jdbcx.datasource.*;
 
@@ -55,405 +54,405 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-appclient")
 
 public class dbMetaClient9AppClient extends dbMetaClient9 implements Serializable {
-  private static final String testName = "jdbc.ee.dbMeta.dbMeta9";
-  
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")
-	@Deployment(name = "appclient",  testable = true)
-	public static EnterpriseArchive createDeploymentAppclient(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	private static final String testName = "jdbc.ee.dbMeta.dbMeta9";
+
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
+	@Deployment(name = "appclient", testable = true)
+	public static EnterpriseArchive createDeploymentAppclient(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		JavaArchive archive = ShrinkWrap.create(JavaArchive.class, "dbMeta9_appclient_vehicle_client.jar");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(dbMetaClient9AppClient.class, dbMetaClient9.class);
-		  // The appclient-client descriptor
-	     URL appClientUrl = dbMetaClient9AppClient.class.getResource("/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta9/appclient_vehicle_client.xml");
-	     if(appClientUrl != null) {
-	     	archive.addAsManifestResource(appClientUrl, "application-client.xml");
-	     }
-	     // The sun appclient-client descriptor
-	     URL sunAppClientUrl = dbMetaClient9AppClient.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
-	     if(sunAppClientUrl != null) {
-	     	archive.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
-	     }
-		 	archive.addAsManifestResource(
-					new StringAsset("Main-Class: " + "com.sun.ts.tests.common.vehicle.VehicleClient" + "\n"),
-					"MANIFEST.MF");
+		// The appclient-client descriptor
+		URL appClientUrl = dbMetaClient9AppClient.class
+				.getResource("/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta9/appclient_vehicle_client.xml");
+		if (appClientUrl != null) {
+			archive.addAsManifestResource(appClientUrl, "application-client.xml");
+		}
+		// The sun appclient-client descriptor
+		URL sunAppClientUrl = dbMetaClient9AppClient.class.getResource(
+				"//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+		if (sunAppClientUrl != null) {
+			archive.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
+		}
+		archive.addAsManifestResource(
+				new StringAsset("Main-Class: " + "com.sun.ts.tests.common.vehicle.VehicleClient" + "\n"),
+				"MANIFEST.MF");
 
-	     // Call the archive processor
-	     archiveProcessor.processClientArchive(archive, dbMetaClient9AppClient.class, sunAppClientUrl);
-		  	EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "dbMeta9_appclient_vehicle.ear");
-		 		ear.addAsModule(archive);
+		// Call the archive processor
+		archiveProcessor.processClientArchive(archive, dbMetaClient9AppClient.class, sunAppClientUrl);
+		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "dbMeta9_appclient_vehicle.ear");
+		ear.addAsModule(archive);
 
-		 		return ear;
+		return ear;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		dbMetaClient9AppClient theTests = new dbMetaClient9AppClient();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    dbMetaClient9AppClient theTests = new dbMetaClient9AppClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-
-  /*
-   * @testName: testGetTypeInfo
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1072; JDBC:JAVADOC:1073;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getTypeInfo() method on that object. It should return
-   * a ResultSet object Validate the column names and column ordering.
-   */
+	/*
+	 * @testName: testGetTypeInfo
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1072; JDBC:JAVADOC:1073;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getTypeInfo() method on that object. It should return a
+	 * ResultSet object Validate the column names and column ordering.
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testGetTypeInfo() throws Exception {
+	public void testGetTypeInfo() throws Exception {
 		super.testGetTypeInfo();
-  }
+	}
 
-  /*
-   * @testName: testSupportsResultSetType1
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1076; JDBC:JAVADOC:1077;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsResultSetType(int resType) method with Type
-   * TYPE_FORWARD_ONLY on that object.It should return a boolean value; either
-   * true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsResultSetType1
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1076; JDBC:JAVADOC:1077;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsResultSetType(int resType) method with Type
+	 * TYPE_FORWARD_ONLY on that object.It should return a boolean value; either
+	 * true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testSupportsResultSetType1() throws Exception {
+	public void testSupportsResultSetType1() throws Exception {
 		super.testSupportsResultSetType1();
-  }
+	}
 
-  /*
-   * @testName: testSupportsResultSetType2
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1076; JDBC:JAVADOC:1077;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsResultSetType() method with Type
-   * TYPE_SCROLL_INSENSITIVE on that object.It should return a boolean value;
-   * either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsResultSetType2
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1076; JDBC:JAVADOC:1077;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsResultSetType() method with Type
+	 * TYPE_SCROLL_INSENSITIVE on that object.It should return a boolean value;
+	 * either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testSupportsResultSetType2() throws Exception {
+	public void testSupportsResultSetType2() throws Exception {
 		super.testSupportsResultSetType2();
-  }
+	}
 
-  /*
-   * @testName: testSupportsResultSetType3
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1076; JDBC:JAVADOC:1077;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsResultSetType() method with Type
-   * TYPE_SCROLL_SENSITIVE on that object.It should return a boolean value;
-   * either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsResultSetType3
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1076; JDBC:JAVADOC:1077;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsResultSetType() method with Type
+	 * TYPE_SCROLL_SENSITIVE on that object.It should return a boolean value; either
+	 * true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testSupportsResultSetType3() throws Exception {
+	public void testSupportsResultSetType3() throws Exception {
 		super.testSupportsResultSetType3();
-  }
+	}
 
-  /*
-   * @testName: testSupportsResultSetConcurrency1
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsResultSetConcurrency(int resType, int
-   * rsConcur) method on that object with TYPE_FORWARD_ONLY and
-   * CONCUR_READ_ONLY. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsResultSetConcurrency1
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsResultSetConcurrency(int resType, int rsConcur)
+	 * method on that object with TYPE_FORWARD_ONLY and CONCUR_READ_ONLY. It should
+	 * return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testSupportsResultSetConcurrency1() throws Exception {
+	public void testSupportsResultSetConcurrency1() throws Exception {
 		super.testSupportsResultSetConcurrency1();
-  }
+	}
 
-  /*
-   * @testName: testSupportsResultSetConcurrency2
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsResultSetConcurrency(int resType, int
-   * rsConcur) method on that object with TYPE_FORWARD_ONLY and
-   * CONCUR_UPDATABLE. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsResultSetConcurrency2
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsResultSetConcurrency(int resType, int rsConcur)
+	 * method on that object with TYPE_FORWARD_ONLY and CONCUR_UPDATABLE. It should
+	 * return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testSupportsResultSetConcurrency2() throws Exception {
+	public void testSupportsResultSetConcurrency2() throws Exception {
 		super.testSupportsResultSetConcurrency2();
-  }
+	}
 
-  /*
-   * @testName: testSupportsResultSetConcurrency3
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsResultSetConcurrency(int resType, int
-   * rsConcur) method on that object with TYPE_SCROLL_INSENSITIVE and
-   * CONCUR_READ_ONLY. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsResultSetConcurrency3
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsResultSetConcurrency(int resType, int rsConcur)
+	 * method on that object with TYPE_SCROLL_INSENSITIVE and CONCUR_READ_ONLY. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testSupportsResultSetConcurrency3() throws Exception {
+	public void testSupportsResultSetConcurrency3() throws Exception {
 		super.testSupportsResultSetConcurrency3();
-  }
+	}
 
-  /*
-   * @testName: testSupportsResultSetConcurrency4
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsResultSetConcurrency(int resType, int
-   * rsConcur) method on that object with TYPE_SCROLL_INSENSITIVE and
-   * CONCUR_UPDATABLE. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsResultSetConcurrency4
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsResultSetConcurrency(int resType, int rsConcur)
+	 * method on that object with TYPE_SCROLL_INSENSITIVE and CONCUR_UPDATABLE. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testSupportsResultSetConcurrency4() throws Exception {
+	public void testSupportsResultSetConcurrency4() throws Exception {
 		super.testSupportsResultSetConcurrency4();
-  }
+	}
 
-  /*
-   * @testName: testSupportsResultSetConcurrency5
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsResultSetConcurrency(int resType, int
-   * rsConcur) method on that object with TYPE_SCROLL_SENSITIVE and
-   * CONCUR_READ_ONLY. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsResultSetConcurrency5
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsResultSetConcurrency(int resType, int rsConcur)
+	 * method on that object with TYPE_SCROLL_SENSITIVE and CONCUR_READ_ONLY. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testSupportsResultSetConcurrency5() throws Exception {
+	public void testSupportsResultSetConcurrency5() throws Exception {
 		super.testSupportsResultSetConcurrency5();
-  }
+	}
 
-  /*
-   * @testName: testSupportsResultSetConcurrency6
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsResultSetConcurrency(int resType, int
-   * rsConcur) method on that object with TYPE_SCROLL_SENSITIVE and
-   * CONCUR_UPDATABLE. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsResultSetConcurrency6
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsResultSetConcurrency(int resType, int rsConcur)
+	 * method on that object with TYPE_SCROLL_SENSITIVE and CONCUR_UPDATABLE. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testSupportsResultSetConcurrency6() throws Exception {
+	public void testSupportsResultSetConcurrency6() throws Exception {
 		super.testSupportsResultSetConcurrency6();
-  }
+	}
 
-  /*
-   * @testName: testOwnUpdatesAreVisible1
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1080; JDBC:JAVADOC:1081;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the ownUpdatesAreVisible(int resType) method on that
-   * object with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean value;
-   * either true or false.
-   *
-   */
+	/*
+	 * @testName: testOwnUpdatesAreVisible1
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1080; JDBC:JAVADOC:1081;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the ownUpdatesAreVisible(int resType) method on that object
+	 * with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean value; either
+	 * true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testOwnUpdatesAreVisible1() throws Exception {
+	public void testOwnUpdatesAreVisible1() throws Exception {
 		super.testOwnUpdatesAreVisible1();
-  }
+	}
 
-  /*
-   * @testName: testOwnUpdatesAreVisible2
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1080; JDBC:JAVADOC:1081;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the ownUpdatesAreVisible(int resType) method on that
-   * object with ResultSet.TYPE_SCROLL_INSENSITIVE. It should return a boolean
-   * value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testOwnUpdatesAreVisible2
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1080; JDBC:JAVADOC:1081;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the ownUpdatesAreVisible(int resType) method on that object
+	 * with ResultSet.TYPE_SCROLL_INSENSITIVE. It should return a boolean value;
+	 * either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testOwnUpdatesAreVisible2() throws Exception {
+	public void testOwnUpdatesAreVisible2() throws Exception {
 		super.testOwnUpdatesAreVisible2();
-  }
+	}
 
-  /*
-   * @testName: testOwnUpdatesAreVisible3
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1080; JDBC:JAVADOC:1081;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the ownUpdatesAreVisible(int resType) method on that
-   * object with ResultSet.TYPE_SCROLL_SENSITIVE. It should return a boolean
-   * value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testOwnUpdatesAreVisible3
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1080; JDBC:JAVADOC:1081;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the ownUpdatesAreVisible(int resType) method on that object
+	 * with ResultSet.TYPE_SCROLL_SENSITIVE. It should return a boolean value;
+	 * either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testOwnUpdatesAreVisible3() throws Exception {
+	public void testOwnUpdatesAreVisible3() throws Exception {
 		super.testOwnUpdatesAreVisible3();
-  }
+	}
 
-  /*
-   * @testName: testOwnDeletesAreVisible1
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1082; JDBC:JAVADOC:1083;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the ownDeletesAreVisible(int resType) method on that
-   * object with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean value;
-   * either true or false.
-   *
-   */
+	/*
+	 * @testName: testOwnDeletesAreVisible1
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1082; JDBC:JAVADOC:1083;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the ownDeletesAreVisible(int resType) method on that object
+	 * with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean value; either
+	 * true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testOwnDeletesAreVisible1() throws Exception {
+	public void testOwnDeletesAreVisible1() throws Exception {
 		super.testOwnDeletesAreVisible1();
-  }
+	}
 
-  /*
-   * @testName: testOwnDeletesAreVisible2
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1082; JDBC:JAVADOC:1083;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the ownDeletesAreVisible(int resType) method on that
-   * object with ResultSet.TYPE_SCROLL_INSENSITIVE. It should return a boolean
-   * value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testOwnDeletesAreVisible2
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1082; JDBC:JAVADOC:1083;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the ownDeletesAreVisible(int resType) method on that object
+	 * with ResultSet.TYPE_SCROLL_INSENSITIVE. It should return a boolean value;
+	 * either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testOwnDeletesAreVisible2() throws Exception {
+	public void testOwnDeletesAreVisible2() throws Exception {
 		super.testOwnDeletesAreVisible2();
-  }
+	}
 
-  /*
-   * @testName: testOwnDeletesAreVisible3
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1082; JDBC:JAVADOC:1083;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the ownDeletesAreVisible(int resType) method on that
-   * object with ResultSet.TYPE_SCROLL_SENSITIVE. It should return a boolean
-   * value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testOwnDeletesAreVisible3
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1082; JDBC:JAVADOC:1083;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the ownDeletesAreVisible(int resType) method on that object
+	 * with ResultSet.TYPE_SCROLL_SENSITIVE. It should return a boolean value;
+	 * either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testOwnDeletesAreVisible3() throws Exception {
+	public void testOwnDeletesAreVisible3() throws Exception {
 		super.testOwnDeletesAreVisible3();
-  }
+	}
 
-  /*
-   * @testName: testOwnInsertsAreVisible1
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1084; JDBC:JAVADOC:1085;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the ownInsertsAreVisible(int resType) method on that
-   * object with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean value;
-   * either true or false.
-   *
-   */
+	/*
+	 * @testName: testOwnInsertsAreVisible1
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1084; JDBC:JAVADOC:1085;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the ownInsertsAreVisible(int resType) method on that object
+	 * with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean value; either
+	 * true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testOwnInsertsAreVisible1() throws Exception {
+	public void testOwnInsertsAreVisible1() throws Exception {
 		super.testOwnInsertsAreVisible1();
-  }
+	}
 
-  /*
-   * @testName: testOwnInsertsAreVisible2
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1084; JDBC:JAVADOC:1085;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the ownInsertsAreVisible(int resType) method on that
-   * object with ResultSet.TYPE_SCROLL_INSENSITIVE. It should return a boolean
-   * value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testOwnInsertsAreVisible2
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1084; JDBC:JAVADOC:1085;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the ownInsertsAreVisible(int resType) method on that object
+	 * with ResultSet.TYPE_SCROLL_INSENSITIVE. It should return a boolean value;
+	 * either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testOwnInsertsAreVisible2() throws Exception {
+	public void testOwnInsertsAreVisible2() throws Exception {
 		super.testOwnInsertsAreVisible2();
-  }
+	}
 
-  /*
-   * @testName: testOwnInsertsAreVisible3
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1084; JDBC:JAVADOC:1085;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the ownInsertsAreVisible(int resType) method on that
-   * object with ResultSet.TYPE_SCROLL_SENSITIVE. It should return a boolean
-   * value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testOwnInsertsAreVisible3
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1084; JDBC:JAVADOC:1085;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the ownInsertsAreVisible(int resType) method on that object
+	 * with ResultSet.TYPE_SCROLL_SENSITIVE. It should return a boolean value;
+	 * either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testOwnInsertsAreVisible3() throws Exception {
+	public void testOwnInsertsAreVisible3() throws Exception {
 		super.testOwnInsertsAreVisible3();
-  }
+	}
 
-  /*
-   * @testName: testOthersUpdatesAreVisible1
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1086; JDBC:JAVADOC:1087;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the otherUpdatesAreVisible(int resType) method on that
-   * object with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean value;
-   * either true or false.
-   *
-   */
+	/*
+	 * @testName: testOthersUpdatesAreVisible1
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1086; JDBC:JAVADOC:1087;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the otherUpdatesAreVisible(int resType) method on that
+	 * object with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean value;
+	 * either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testOthersUpdatesAreVisible1() throws Exception {
+	public void testOthersUpdatesAreVisible1() throws Exception {
 		super.testOthersUpdatesAreVisible1();
-  }
+	}
 
 }

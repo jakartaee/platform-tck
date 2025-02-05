@@ -52,124 +52,124 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class resultSetClient47Servlet extends resultSetClient47 implements Serializable {
-  private static final String testName = "jdbc.ee.resultSet.resultSet47";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
-  @Deployment(name = "servlet", testable = true)
-	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	private static final String testName = "jdbc.ee.resultSet.resultSet47";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
+	@Deployment(name = "servlet", testable = true)
+	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "resultSet47_servlet_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(resultSetClient47Servlet.class, resultSetClient47.class);
-	       // The servlet descriptor
-URL servletUrl = resultSetClient47Servlet.class.getResource("servlet_vehicle_web.xml");
-if(servletUrl != null) {
-	archive.addAsWebInfResource(servletUrl, "web.xml");
-}
+		// The servlet descriptor
+		URL servletUrl = resultSetClient47Servlet.class.getResource("servlet_vehicle_web.xml");
+		if (servletUrl != null) {
+			archive.addAsWebInfResource(servletUrl, "web.xml");
+		}
 // The sun servlet descriptor
-URL sunServletUrl = resultSetClient47Servlet.class.getResource("resultSet47_servlet_vehicle_web.war.sun-web.xml");
-if(sunServletUrl != null) {
-	archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
-}
+		URL sunServletUrl = resultSetClient47Servlet.class
+				.getResource("resultSet47_servlet_vehicle_web.war.sun-web.xml");
+		if (sunServletUrl != null) {
+			archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
+		}
 // Call the archive processor
-archiveProcessor.processWebArchive(archive, resultSetClient47Servlet.class, sunServletUrl);
-		
+		archiveProcessor.processWebArchive(archive, resultSetClient47Servlet.class, sunServletUrl);
+
 		return archive;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		resultSetClient47Servlet theTests = new resultSetClient47Servlet();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    resultSetClient47Servlet theTests = new resultSetClient47Servlet();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-
-  /*
-   * @testName: testGetString84
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-   * JDBC:JAVADOC:405; JDBC:JAVADOC:368; JDBC:JAVADOC:369; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the database.
-   * Call the getString(String columnName) method with the SQL null column of
-   * JDBC datatype TIMESTAMP.It should return null String object.
-   */
+	/*
+	 * @testName: testGetString84
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
+	 * JDBC:JAVADOC:405; JDBC:JAVADOC:368; JDBC:JAVADOC:369; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the database.
+	 * Call the getString(String columnName) method with the SQL null column of JDBC
+	 * datatype TIMESTAMP.It should return null String object.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetString84() throws Exception {
+	public void testGetString84() throws Exception {
 		super.testGetString84();
-  }
+	}
 
-  /*
-   * @testName: testGetBytes01
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390;
-   * JDBC:JAVADOC:391; JDBC:JAVADOC:368; JDBC:JAVADOC:369; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the
-   * database.Update the column value of Binary_Tab table with a byte array
-   * using the PreparedStatement.setBytes(int columnIndex) method.Call the
-   * getBytes(int columnIndex) method with the SQL column of JDBC datatype
-   * BINARY.It should return the byte array object that has been set.
-   */
+	/*
+	 * @testName: testGetBytes01
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390;
+	 * JDBC:JAVADOC:391; JDBC:JAVADOC:368; JDBC:JAVADOC:369; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the
+	 * database.Update the column value of Binary_Tab table with a byte array using
+	 * the PreparedStatement.setBytes(int columnIndex) method.Call the getBytes(int
+	 * columnIndex) method with the SQL column of JDBC datatype BINARY.It should
+	 * return the byte array object that has been set.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetBytes01() throws Exception {
+	public void testGetBytes01() throws Exception {
 		super.testGetBytes01();
-  }
+	}
 
-  /*
-   * @testName: testGetBytes02
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390;
-   * JDBC:JAVADOC:391; JDBC:JAVADOC:370; JDBC:JAVADOC:371; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the database.
-   * Call the getBytes(int columnIndex) method with the SQL null column of JDBC
-   * datatype BINARY.It should return null byte array object.
-   */
+	/*
+	 * @testName: testGetBytes02
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390;
+	 * JDBC:JAVADOC:391; JDBC:JAVADOC:370; JDBC:JAVADOC:371; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the database.
+	 * Call the getBytes(int columnIndex) method with the SQL null column of JDBC
+	 * datatype BINARY.It should return null byte array object.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetBytes02() throws Exception {
+	public void testGetBytes02() throws Exception {
 		super.testGetBytes02();
-  }
+	}
 
-  /*
-   * @testName: testGetBytes03
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390;
-   * JDBC:JAVADOC:391; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the
-   * database.Update the column value of Varbinary_Tab table with a byte array
-   * using the PreparedStatement.setBytes(int columnIndex).Call the getBytes(int
-   * columnIndex) method with the SQL column of JDBC datatype VARBINARY.It
-   * should return the byte array object that has been set.
-   */
+	/*
+	 * @testName: testGetBytes03
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390;
+	 * JDBC:JAVADOC:391; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the
+	 * database.Update the column value of Varbinary_Tab table with a byte array
+	 * using the PreparedStatement.setBytes(int columnIndex).Call the getBytes(int
+	 * columnIndex) method with the SQL column of JDBC datatype VARBINARY.It should
+	 * return the byte array object that has been set.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetBytes03() throws Exception {
+	public void testGetBytes03() throws Exception {
 		super.testGetBytes03();
-  }
+	}
 
-  /*
-   * @testName: testGetBytes04
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390;
-   * JDBC:JAVADOC:391; JDBC:JAVADOC:370; JDBC:JAVADOC:371; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the database.
-   * Call the getBytes(int columnIndex) method with the SQL null column of JDBC
-   * datatype VARBINARY.It should return null byte array object.
-   */
+	/*
+	 * @testName: testGetBytes04
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390;
+	 * JDBC:JAVADOC:391; JDBC:JAVADOC:370; JDBC:JAVADOC:371; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the database.
+	 * Call the getBytes(int columnIndex) method with the SQL null column of JDBC
+	 * datatype VARBINARY.It should return null byte array object.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetBytes04() throws Exception {
+	public void testGetBytes04() throws Exception {
 		super.testGetBytes04();
-  }
+	}
 }

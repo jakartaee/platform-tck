@@ -48,409 +48,408 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class callStmtClient3Servlet extends callStmtClient3 implements Serializable {
-  private static final String testName = "jdbc.ee.callStmt.callStmt3";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+	private static final String testName = "jdbc.ee.callStmt.callStmt3";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
 	@Deployment(name = "servlet", testable = true)
-	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "callStmt3_servlet_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(callStmtClient3Servlet.class, callStmtClient3.class);
-	       // The servlet descriptor
-URL servletUrl = callStmtClient3Servlet.class.getResource("servlet_vehicle_web.xml");
-if(servletUrl != null) {
-	archive.addAsWebInfResource(servletUrl, "web.xml");
-}
+		// The servlet descriptor
+		URL servletUrl = callStmtClient3Servlet.class.getResource("servlet_vehicle_web.xml");
+		if (servletUrl != null) {
+			archive.addAsWebInfResource(servletUrl, "web.xml");
+		}
 // The sun servlet descriptor
-URL sunServletUrl = callStmtClient3Servlet.class.getResource("callStmt3_servlet_vehicle_web.war.sun-web.xml");
-if(sunServletUrl != null) {
-	archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
-}
+		URL sunServletUrl = callStmtClient3Servlet.class.getResource("callStmt3_servlet_vehicle_web.war.sun-web.xml");
+		if (sunServletUrl != null) {
+			archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
+		}
 // Call the archive processor
-archiveProcessor.processWebArchive(archive, callStmtClient3Servlet.class, sunServletUrl);
-		
+		archiveProcessor.processWebArchive(archive, callStmtClient3Servlet.class, sunServletUrl);
+
 		return archive;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		callStmtClient3Servlet theTests = new callStmtClient3Servlet();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    callStmtClient3Servlet theTests = new callStmtClient3Servlet();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: testGetObject01
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType,int scale) method. Execute the stored procedure
-   * and call the getObject(int parameterIndex) method to retrieve the maximum
-   * value of the parameter from Numeric_Tab. Extract the maximum value from the
-   * tssql.stmt file.Compare this value with the value returned by the
-   * getObject(int parameterIndex) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetObject01
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType,int scale) method. Execute the stored procedure
+	 * and call the getObject(int parameterIndex) method to retrieve the maximum
+	 * value of the parameter from Numeric_Tab. Extract the maximum value from the
+	 * tssql.stmt file.Compare this value with the value returned by the
+	 * getObject(int parameterIndex) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject01() throws Exception {
+	public void testGetObject01() throws Exception {
 		super.testGetObject01();
-  }
+	}
 
-  /*
-   * @testName: testGetObject02
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType,int scale) method. Execute the stored procedure
-   * and call the getObject(int parameterIndex) method to retrieve the minimum
-   * value of the parameter from Numeric_Tab. Extract the minimum value from the
-   * tssql.stmt file.Compare this value with the value returned by the
-   * getObject(int parameterIndex) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetObject02
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType,int scale) method. Execute the stored procedure
+	 * and call the getObject(int parameterIndex) method to retrieve the minimum
+	 * value of the parameter from Numeric_Tab. Extract the minimum value from the
+	 * tssql.stmt file.Compare this value with the value returned by the
+	 * getObject(int parameterIndex) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject02() throws Exception {
+	public void testGetObject02() throws Exception {
 		super.testGetObject02();
-  }
+	}
 
-  /*
-   * @testName: testGetObject03
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType,int scale) method. Execute the stored procedure
-   * and call the getObject(int parameterIndex) method to retrieve the null
-   * value from Numeric_Tab. Check if it returns null
-   */
+	/*
+	 * @testName: testGetObject03
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType,int scale) method. Execute the stored procedure
+	 * and call the getObject(int parameterIndex) method to retrieve the null value
+	 * from Numeric_Tab. Check if it returns null
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject03() throws Exception {
+	public void testGetObject03() throws Exception {
 		super.testGetObject03();
-  }
+	}
 
-  /*
-   * @testName: testGetObject04
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method.to retrieve the maximum value of
-   * the parameter from Float_Tab. Extract the maximum value from the tssql.stmt
-   * file.Compare this value with the value returned by the getObject(int
-   * parameterIndex) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetObject04
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method.to retrieve the maximum value of the
+	 * parameter from Float_Tab. Extract the maximum value from the tssql.stmt
+	 * file.Compare this value with the value returned by the getObject(int
+	 * parameterIndex) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject04() throws Exception {
+	public void testGetObject04() throws Exception {
 		super.testGetObject04();
-  }
+	}
 
-  /*
-   * @testName: testGetObject05
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the minimum value of
-   * the parameter from Float_Tab. Extract the minimum value from the tssql.stmt
-   * file.Compare this value with the value returned by the getObject(int
-   * parameterIndex) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetObject05
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the minimum value of the
+	 * parameter from Float_Tab. Extract the minimum value from the tssql.stmt
+	 * file.Compare this value with the value returned by the getObject(int
+	 * parameterIndex) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject05() throws Exception {
+	public void testGetObject05() throws Exception {
 		super.testGetObject05();
-  }
+	}
 
-  /*
-   * @testName: testGetObject06
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the null value from
-   * Float_Tab.Check if it returns null
-   */
+	/*
+	 * @testName: testGetObject06
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the null value from
+	 * Float_Tab.Check if it returns null
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject06() throws Exception {
+	public void testGetObject06() throws Exception {
 		super.testGetObject06();
-  }
+	}
 
-  /*
-   * @testName: testGetObject07
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the maximum value of
-   * the parameter from Smallint_Tab. Extract the maximum value from the
-   * tssql.stmt file.Compare this value with the value returned by the
-   * getObject(int parameterIndex) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetObject07
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the maximum value of the
+	 * parameter from Smallint_Tab. Extract the maximum value from the tssql.stmt
+	 * file.Compare this value with the value returned by the getObject(int
+	 * parameterIndex) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject07() throws Exception {
+	public void testGetObject07() throws Exception {
 		super.testGetObject07();
-  }
+	}
 
-  /*
-   * @testName: testGetObject08
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the minimum value of
-   * the parameter from Smallint_Tab. Extract the minimum value from the
-   * tssql.stmt file.Compare this value with the value returned by the
-   * getObject(int parameterIndex) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetObject08
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the minimum value of the
+	 * parameter from Smallint_Tab. Extract the minimum value from the tssql.stmt
+	 * file.Compare this value with the value returned by the getObject(int
+	 * parameterIndex) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject08() throws Exception {
+	public void testGetObject08() throws Exception {
 		super.testGetObject08();
-  }
+	}
 
-  /*
-   * @testName: testGetObject09
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the null value from
-   * Smallint_Tab.Check if it returns null
-   */
+	/*
+	 * @testName: testGetObject09
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the null value from
+	 * Smallint_Tab.Check if it returns null
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject09() throws Exception {
+	public void testGetObject09() throws Exception {
 		super.testGetObject09();
-  }
+	}
 
-  /*
-   * @testName: testGetObject10
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve a char value from
-   * Char_Tab.Extract the same char value from the tssql.stmt file.Compare this
-   * value with the value returned by the getObject(int parameterIndex).Both the
-   * values should be equal.
-   */
+	/*
+	 * @testName: testGetObject10
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve a char value from
+	 * Char_Tab.Extract the same char value from the tssql.stmt file.Compare this
+	 * value with the value returned by the getObject(int parameterIndex).Both the
+	 * values should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject10() throws Exception {
+	public void testGetObject10() throws Exception {
 		super.testGetObject10();
-  }
+	}
 
-  /*
-   * @testName: testGetObject11
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the null value from
-   * Char_Tab.Check if it returns null
-   */
+	/*
+	 * @testName: testGetObject11
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the null value from
+	 * Char_Tab.Check if it returns null
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject11() throws Exception {
+	public void testGetObject11() throws Exception {
 		super.testGetObject11();
-  }
+	}
 
-  /*
-   * @testName: testGetObject12
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the maximum value of
-   * the parameter from Integer_Tab. Extract the maximum value from the
-   * tssql.stmt file.Compare this value with the value returned by the
-   * getObject(int parameterIndex) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetObject12
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the maximum value of the
+	 * parameter from Integer_Tab. Extract the maximum value from the tssql.stmt
+	 * file.Compare this value with the value returned by the getObject(int
+	 * parameterIndex) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject12() throws Exception {
+	public void testGetObject12() throws Exception {
 		super.testGetObject12();
-  }
+	}
 
-  /*
-   * @testName: testGetObject13
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the minimum value of
-   * the parameter from Integer_Tab. Extract the minimum value from the
-   * tssql.stmt file.Compare this value with the value returned by the
-   * getObject(int parameterIndex) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetObject13
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the minimum value of the
+	 * parameter from Integer_Tab. Extract the minimum value from the tssql.stmt
+	 * file.Compare this value with the value returned by the getObject(int
+	 * parameterIndex) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject13() throws Exception {
+	public void testGetObject13() throws Exception {
 		super.testGetObject13();
-  }
+	}
 
-  /*
-   * @testName: testGetObject14
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the null value from
-   * Integer_Tab.Check if it returns null
-   */
+	/*
+	 * @testName: testGetObject14
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the null value from
+	 * Integer_Tab.Check if it returns null
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject14() throws Exception {
+	public void testGetObject14() throws Exception {
 		super.testGetObject14();
-  }
+	}
 
-  /*
-   * @testName: testGetObject15
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the maximum value of
-   * the parameter from Bit_Tab. Extract the maximum value from the tssql.stmt
-   * file.Compare this value with the value returned by the getObject(int
-   * parameterIndex) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetObject15
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the maximum value of the
+	 * parameter from Bit_Tab. Extract the maximum value from the tssql.stmt
+	 * file.Compare this value with the value returned by the getObject(int
+	 * parameterIndex) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject15() throws Exception {
+	public void testGetObject15() throws Exception {
 		super.testGetObject15();
-  }
+	}
 
-  /*
-   * @testName: testGetObject16
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the minimum value of
-   * the parameter from Bit_Tab. Extract the minimum value from the tssql.stmt
-   * file.Compare this value with the value returned by the getObject(int
-   * parameterIndex) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetObject16
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the minimum value of the
+	 * parameter from Bit_Tab. Extract the minimum value from the tssql.stmt
+	 * file.Compare this value with the value returned by the getObject(int
+	 * parameterIndex) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject16() throws Exception {
+	public void testGetObject16() throws Exception {
 		super.testGetObject16();
-  }
+	}
 
-  /*
-   * @testName: testGetObject18
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the maximum value of
-   * the parameter from Bigint_Tab. Extract the maximum value from the
-   * tssql.stmt file.Compare this value with the value returned by the
-   * getObject(int parameterIndex) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetObject18
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the maximum value of the
+	 * parameter from Bigint_Tab. Extract the maximum value from the tssql.stmt
+	 * file.Compare this value with the value returned by the getObject(int
+	 * parameterIndex) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject18() throws Exception {
+	public void testGetObject18() throws Exception {
 		super.testGetObject18();
-  }
+	}
 
-  /*
-   * @testName: testGetObject19
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the minimum value of
-   * the parameter from Bigint_Tab. Extract the minimum value from the
-   * tssql.stmt file.Compare this value with the value returned by the
-   * getObject(int parameterIndex) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetObject19
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the minimum value of the
+	 * parameter from Bigint_Tab. Extract the minimum value from the tssql.stmt
+	 * file.Compare this value with the value returned by the getObject(int
+	 * parameterIndex) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject19() throws Exception {
+	public void testGetObject19() throws Exception {
 		super.testGetObject19();
-  }
+	}
 
-  /*
-   * @testName: testGetObject20
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-   * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Register the parameter using registerOutParameter(int
-   * parameterIndex,int sqlType) method. Execute the stored procedure and call
-   * the getObject(int parameterIndex) method to retrieve the null value from
-   * Bigint_Tab.Check if it returns null
-   */
+	/*
+	 * @testName: testGetObject20
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
+	 * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Register the parameter using registerOutParameter(int
+	 * parameterIndex,int sqlType) method. Execute the stored procedure and call the
+	 * getObject(int parameterIndex) method to retrieve the null value from
+	 * Bigint_Tab.Check if it returns null
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetObject20() throws Exception {
+	public void testGetObject20() throws Exception {
 		super.testGetObject20();
-  }
+	}
 
 }

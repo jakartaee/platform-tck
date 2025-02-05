@@ -52,14 +52,14 @@ import tck.arquillian.protocol.common.TargetVehicle;
  */
 @Tag("tck-appclient")
 
-
 public class dbMetaClient3EJB extends dbMetaClient3 implements Serializable {
-  private static final String testName = "jdbc.ee.dbMeta.dbMeta3";
-  
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")
-	@Deployment(name = "ejb",  testable = true)
-	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	private static final String testName = "jdbc.ee.dbMeta.dbMeta3";
+
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
+	@Deployment(name = "ejb", testable = true)
+	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "dbMeta3_ejb_vehicle_client.jar");
 		ejbClient.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
@@ -73,13 +73,12 @@ public class dbMetaClient3EJB extends dbMetaClient3 implements Serializable {
 		}
 		ejbClient.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"),
 				"MANIFEST.MF");
-		
-		resURL = dbMetaClient3EJB.class
-				.getResource("/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta3/dbMeta3_ejb_vehicle_client.jar.sun-application-client.xml");
+
+		resURL = dbMetaClient3EJB.class.getResource(
+				"/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta3/dbMeta3_ejb_vehicle_client.jar.sun-application-client.xml");
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
-
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "dbMeta3_ejb_vehicle_ejb.jar");
 		ejb.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
@@ -88,9 +87,8 @@ public class dbMetaClient3EJB extends dbMetaClient3 implements Serializable {
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
 		ejb.addClasses(dbMetaClient3EJB.class, dbMetaClient3.class);
 
-
-		resURL = dbMetaClient3EJB.class.getResource(
-				"/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta3/dbMeta3_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+		resURL = dbMetaClient3EJB.class
+				.getResource("/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta3/dbMeta3_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
 
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
@@ -108,353 +106,351 @@ public class dbMetaClient3EJB extends dbMetaClient3 implements Serializable {
 		return ear;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		dbMetaClient3EJB theTests = new dbMetaClient3EJB();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    dbMetaClient3EJB theTests = new dbMetaClient3EJB();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: testSupportsConvert03
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(BINARY, VARCHAR) method on that
-   * object. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert03
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(BINARY, VARCHAR) method on that object.
+	 * It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert03() throws Exception {
+	public void testSupportsConvert03() throws Exception {
 		super.testSupportsConvert03();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert04
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   * 
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(BIT, VARCHAR) method on that object.
-   * It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert04
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 * 
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(BIT, VARCHAR) method on that object. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert04() throws Exception {
+	public void testSupportsConvert04() throws Exception {
 		super.testSupportsConvert04();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert05
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(BLOB, VARCHAR) method on that object.
-   * It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert05
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(BLOB, VARCHAR) method on that object.
+	 * It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert05() throws Exception {
+	public void testSupportsConvert05() throws Exception {
 		super.testSupportsConvert05();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert06
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(CHAR, VARCHAR) method on that object.
-   * It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert06
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(CHAR, VARCHAR) method on that object.
+	 * It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert06() throws Exception {
+	public void testSupportsConvert06() throws Exception {
 		super.testSupportsConvert06();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert07
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(CLOB, VARCHAR) method on that object.
-   * It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert07
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(CLOB, VARCHAR) method on that object.
+	 * It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert07() throws Exception {
-	  super.testSupportsConvert07();
-  }
+	public void testSupportsConvert07() throws Exception {
+		super.testSupportsConvert07();
+	}
 
-  /*
-   * @testName: testSupportsConvert08
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(DATE, VARCHAR) method on that object.
-   * It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert08
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(DATE, VARCHAR) method on that object.
+	 * It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert08() throws Exception {
+	public void testSupportsConvert08() throws Exception {
 		super.testSupportsConvert08();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert09
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(DECIMAL, VARCHAR) method on that
-   * object. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert09
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(DECIMAL, VARCHAR) method on that
+	 * object. It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert09() throws Exception {
-	  super.testSupportsConvert09();
-  }
+	public void testSupportsConvert09() throws Exception {
+		super.testSupportsConvert09();
+	}
 
-  /*
-   * @testName: testSupportsConvert10
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(DISTINCT, VARCHAR) method on that
-   * object. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert10
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(DISTINCT, VARCHAR) method on that
+	 * object. It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert10() throws Exception {
+	public void testSupportsConvert10() throws Exception {
 		super.testSupportsConvert10();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert11
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(DOUBLE, VARCHAR) method on that
-   * object. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert11
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(DOUBLE, VARCHAR) method on that object.
+	 * It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert11() throws Exception {
+	public void testSupportsConvert11() throws Exception {
 		super.testSupportsConvert11();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert12
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(FLOAT, VARCHAR) method on that
-   * object. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert12
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(FLOAT, VARCHAR) method on that object.
+	 * It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert12() throws Exception {
+	public void testSupportsConvert12() throws Exception {
 		super.testSupportsConvert12();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert13
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(INTEGER, VARCHAR) method on that
-   * object. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert13
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(INTEGER, VARCHAR) method on that
+	 * object. It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert13() throws Exception {
+	public void testSupportsConvert13() throws Exception {
 		super.testSupportsConvert13();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert14
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(JAVA_OBJECT, VARCHAR) method on that
-   * object. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert14
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(JAVA_OBJECT, VARCHAR) method on that
+	 * object. It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert14() throws Exception {
+	public void testSupportsConvert14() throws Exception {
 		super.testSupportsConvert14();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert15
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(LONGVARBINARY, VARCHAR) method on
-   * that object. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert15
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(LONGVARBINARY, VARCHAR) method on that
+	 * object. It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert15() throws Exception {
+	public void testSupportsConvert15() throws Exception {
 		super.testSupportsConvert15();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert16
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(LONGVARCHAR, VARCHAR) method on that
-   * object. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert16
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(LONGVARCHAR, VARCHAR) method on that
+	 * object. It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert16() throws Exception {
+	public void testSupportsConvert16() throws Exception {
 		super.testSupportsConvert16();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert17
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(NULL, VARCHAR) on that object. It
-   * should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert17
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(NULL, VARCHAR) on that object. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert17() throws Exception {
+	public void testSupportsConvert17() throws Exception {
 		super.testSupportsConvert17();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert18
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(NUMERIC, VARCHAR) method on that
-   * object It should return a boolean value; either true or false
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert18
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(NUMERIC, VARCHAR) method on that object
+	 * It should return a boolean value; either true or false
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert18() throws Exception {
+	public void testSupportsConvert18() throws Exception {
 		super.testSupportsConvert18();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert19
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(OTHER, VARCHAR) method on that object
-   * It should return a boolean value; either true or false
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert19
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(OTHER, VARCHAR) method on that object
+	 * It should return a boolean value; either true or false
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert19() throws Exception {
+	public void testSupportsConvert19() throws Exception {
 		super.testSupportsConvert19();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert20
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(REAL, VARCHAR) method on that object.
-   * It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert20
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(REAL, VARCHAR) method on that object.
+	 * It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert20() throws Exception {
+	public void testSupportsConvert20() throws Exception {
 		super.testSupportsConvert20();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert21
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(REF, VARCHAR) method on that object.
-   * It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert21
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(REF, VARCHAR) method on that object. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert21() throws Exception {
+	public void testSupportsConvert21() throws Exception {
 		super.testSupportsConvert21();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert22
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(SMALLINT, VARCHAR) method on that
-   * object. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert22
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(SMALLINT, VARCHAR) method on that
+	 * object. It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert22() throws Exception {
+	public void testSupportsConvert22() throws Exception {
 		super.testSupportsConvert22();
-  }
+	}
 
 }

@@ -54,210 +54,213 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-appclient")
 
 public class resultSetClient7AppClient extends resultSetClient7 implements Serializable {
-  private static final String testName = "jdbc.ee.resultSet.resultSet7";
-  
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")
-  @Deployment(name = "appclient", testable = true)
-	public static EnterpriseArchive createDeploymentAppclient(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	private static final String testName = "jdbc.ee.resultSet.resultSet7";
+
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
+	@Deployment(name = "appclient", testable = true)
+	public static EnterpriseArchive createDeploymentAppclient(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		JavaArchive archive = ShrinkWrap.create(JavaArchive.class, "resultSet7_appclient_vehicle_client.jar");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(resultSetClient7AppClient.class, resultSetClient7.class);
-		  // The appclient-client descriptor
-	     URL appClientUrl = resultSetClient7AppClient.class.getResource("/com/sun/ts/tests/jdbc/ee/resultSet/resultSet7/appclient_vehicle_client.xml");
-	     if(appClientUrl != null) {
-	     	archive.addAsManifestResource(appClientUrl, "application-client.xml");
-	     }
-	     // The sun appclient-client descriptor
-	     URL sunAppClientUrl = resultSetClient7AppClient.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
-	     if(sunAppClientUrl != null) {
-	     	archive.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
-	     }
-	     
-		 	archive.addAsManifestResource(
-					new StringAsset("Main-Class: " + "com.sun.ts.tests.common.vehicle.VehicleClient" + "\n"),
-					"MANIFEST.MF");
+		// The appclient-client descriptor
+		URL appClientUrl = resultSetClient7AppClient.class
+				.getResource("/com/sun/ts/tests/jdbc/ee/resultSet/resultSet7/appclient_vehicle_client.xml");
+		if (appClientUrl != null) {
+			archive.addAsManifestResource(appClientUrl, "application-client.xml");
+		}
+		// The sun appclient-client descriptor
+		URL sunAppClientUrl = resultSetClient7AppClient.class.getResource(
+				"//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+		if (sunAppClientUrl != null) {
+			archive.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
+		}
 
-	     // Call the archive processor
-	     archiveProcessor.processClientArchive(archive, resultSetClient7AppClient.class, sunAppClientUrl);
-		  	EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "resultSet7_appclient_vehicle.ear");
-		 		ear.addAsModule(archive);
+		archive.addAsManifestResource(
+				new StringAsset("Main-Class: " + "com.sun.ts.tests.common.vehicle.VehicleClient" + "\n"),
+				"MANIFEST.MF");
 
-		 		return ear;
+		// Call the archive processor
+		archiveProcessor.processClientArchive(archive, resultSetClient7AppClient.class, sunAppClientUrl);
+		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "resultSet7_appclient_vehicle.ear");
+		ear.addAsModule(archive);
+
+		return ear;
 
 	};
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    resultSetClient7AppClient theTests = new resultSetClient7AppClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		resultSetClient7AppClient theTests = new resultSetClient7AppClient();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /*
-   * @testName: testGetObject61
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
-   * JDBC:JAVADOC:445; JDBC:JAVADOC:366; JDBC:JAVADOC:367; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the database.
-   * Call the getObject(int column index) method with the SQL null column of
-   * JDBC datatype SMALLINT. It should return null Integer object.
-   */
+	/*
+	 * @testName: testGetObject61
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
+	 * JDBC:JAVADOC:445; JDBC:JAVADOC:366; JDBC:JAVADOC:367; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the database.
+	 * Call the getObject(int column index) method with the SQL null column of JDBC
+	 * datatype SMALLINT. It should return null Integer object.
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testGetObject61() throws Exception {
+	public void testGetObject61() throws Exception {
 		super.testGetObject61();
-  }
+	}
 
-  /*
-   * @testName: testGetObject69
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
-   * JDBC:JAVADOC:445; JDBC:JAVADOC:366; JDBC:JAVADOC:367; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the database.
-   * Call the getObject(String column index) method with the column of JDBC
-   * datatype SMALLINT. It should return an Integer object that has been set as
-   * the maximum value of SMALLINT.
-   */
+	/*
+	 * @testName: testGetObject69
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
+	 * JDBC:JAVADOC:445; JDBC:JAVADOC:366; JDBC:JAVADOC:367; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the database.
+	 * Call the getObject(String column index) method with the column of JDBC
+	 * datatype SMALLINT. It should return an Integer object that has been set as
+	 * the maximum value of SMALLINT.
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testGetObject69() throws Exception {
+	public void testGetObject69() throws Exception {
 		super.testGetObject69();
-  }
+	}
 
-  /*
-   * @testName: testGetObject70
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
-   * JDBC:JAVADOC:445; JDBC:JAVADOC:366; JDBC:JAVADOC:367; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the database.
-   * Call the getObject(String column index) method with the SQL column of JDBC
-   * datatype SMALLINT. It should return an Integer object that has been set as
-   * the minimum value of SMALLINT.
-   */
+	/*
+	 * @testName: testGetObject70
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
+	 * JDBC:JAVADOC:445; JDBC:JAVADOC:366; JDBC:JAVADOC:367; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the database.
+	 * Call the getObject(String column index) method with the SQL column of JDBC
+	 * datatype SMALLINT. It should return an Integer object that has been set as
+	 * the minimum value of SMALLINT.
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testGetObject70() throws Exception {
+	public void testGetObject70() throws Exception {
 		super.testGetObject70();
-  }
+	}
 
-  /*
-   * @testName: testGetObject62
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
-   * JDBC:JAVADOC:447; JDBC:JAVADOC:366; JDBC:JAVADOC:367; JDBC:JAVADOC:442;
-   * JDBC:JAVADOC:443; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the database.
-   * Call the getObject(String columnName) method with the column of JDBC
-   * datatype SMALLINT. It should return an Integer object that has been set as
-   * the maximum value of SMALLINT.
-   */
+	/*
+	 * @testName: testGetObject62
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
+	 * JDBC:JAVADOC:447; JDBC:JAVADOC:366; JDBC:JAVADOC:367; JDBC:JAVADOC:442;
+	 * JDBC:JAVADOC:443; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the database.
+	 * Call the getObject(String columnName) method with the column of JDBC datatype
+	 * SMALLINT. It should return an Integer object that has been set as the maximum
+	 * value of SMALLINT.
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testGetObject62() throws Exception {
+	public void testGetObject62() throws Exception {
 		super.testGetObject62();
-  }
+	}
 
-  /*
-   * @testName: testGetObject63
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
-   * JDBC:JAVADOC:447; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the database.
-   * Call the getObject(String columnName) method with the SQL column of JDBC
-   * datatype SMALLINT. It should return an Integer object that has been set as
-   * the minimum value of SMALLINT.
-   */
+	/*
+	 * @testName: testGetObject63
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
+	 * JDBC:JAVADOC:447; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the database.
+	 * Call the getObject(String columnName) method with the SQL column of JDBC
+	 * datatype SMALLINT. It should return an Integer object that has been set as
+	 * the minimum value of SMALLINT.
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testGetObject63() throws Exception {
+	public void testGetObject63() throws Exception {
 		super.testGetObject63();
-  }
+	}
 
-  /*
-   * @testName: testGetObject64
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
-   * JDBC:JAVADOC:447; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the database.
-   * Call the getObject(String columnName) method with the SQL null column of
-   * JDBC datatype SMALLINT. It should return null Integer object.
-   */
+	/*
+	 * @testName: testGetObject64
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
+	 * JDBC:JAVADOC:447; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the database.
+	 * Call the getObject(String columnName) method with the SQL null column of JDBC
+	 * datatype SMALLINT. It should return null Integer object.
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testGetObject64() throws Exception {
+	public void testGetObject64() throws Exception {
 		super.testGetObject64();
-  }
+	}
 
-  /*
-   * @testName: testGetObject65
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
-   * JDBC:JAVADOC:445; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the database.
-   * Call the getObject(int columnIndex) method with the SQL column of JDBC
-   * datatype VARCHAR. It should return an String object that has been set.
-   */
+	/*
+	 * @testName: testGetObject65
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
+	 * JDBC:JAVADOC:445; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the database.
+	 * Call the getObject(int columnIndex) method with the SQL column of JDBC
+	 * datatype VARCHAR. It should return an String object that has been set.
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testGetObject65() throws Exception {
+	public void testGetObject65() throws Exception {
 		super.testGetObject65();
-  }
+	}
 
-  /*
-   * @testName: testGetObject66
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
-   * JDBC:JAVADOC:445; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the database.
-   * Call the getObject(int column index) method with the SQL null column of
-   * JDBC datatype VARCHAR. It should return null String object.
-   */
+	/*
+	 * @testName: testGetObject66
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
+	 * JDBC:JAVADOC:445; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the database.
+	 * Call the getObject(int column index) method with the SQL null column of JDBC
+	 * datatype VARCHAR. It should return null String object.
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testGetObject66() throws Exception {
+	public void testGetObject66() throws Exception {
 		super.testGetObject66();
-  }
+	}
 
-  /*
-   * @testName: testGetObject67
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
-   * JDBC:JAVADOC:447; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the database.
-   * Call the getObject(String columnName) method with the SQL column of JDBC
-   * datatype VARCHAR. It should return an String object that has been set.
-   */
+	/*
+	 * @testName: testGetObject67
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
+	 * JDBC:JAVADOC:447; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the database.
+	 * Call the getObject(String columnName) method with the SQL column of JDBC
+	 * datatype VARCHAR. It should return an String object that has been set.
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testGetObject67() throws Exception {
+	public void testGetObject67() throws Exception {
 		super.testGetObject67();
-  }
+	}
 
-  /*
-   * @testName: testGetObject68
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
-   * JDBC:JAVADOC:447; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object from the Connection to the database.
-   * Call the getObject(String columnName) method with the SQL null column of
-   * JDBC datatype VARCHAR. It should return null String object.
-   */
+	/*
+	 * @testName: testGetObject68
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
+	 * JDBC:JAVADOC:447; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object from the Connection to the database.
+	 * Call the getObject(String columnName) method with the SQL null column of JDBC
+	 * datatype VARCHAR. It should return null String object.
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testGetObject68() throws Exception {
+	public void testGetObject68() throws Exception {
 		super.testGetObject68();
-  }
+	}
 }
