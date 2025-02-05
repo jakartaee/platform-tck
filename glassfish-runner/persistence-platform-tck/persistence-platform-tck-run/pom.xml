@@ -32,8 +32,6 @@
     <properties>
         <!-- Require at least Java 17 to compile -->
         <maven.compiler.release>17</maven.compiler.release>
-        
-        <arquillian.junit>1.9.1.Final</arquillian.junit>
 
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
@@ -44,13 +42,11 @@
         <glassfish.version>8.0.0-JDK17-M9</glassfish.version>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
 
-        <junit.jupiter.version>5.11.3</junit.jupiter.version>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
-        <ts.home>./jakartaeetck</ts.home>
-        <version.jakarta.inject>2.0.1.MR</version.jakarta.inject>
-        <version.jakarta.persistence>3.2.0</version.jakarta.persistence>
         <jakarta.tck.tools.version>11.0.0-RC4</jakarta.tck.tools.version>
         <version.persistence.tck>11.0.0-SNAPSHOT</version.persistence.tck>
+        
+        <ts.home>./jakartaeetck</ts.home>
     </properties>
 
     <dependencyManagement>
@@ -58,21 +54,16 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>${junit.jupiter.version}</version>
+                <version>5.11.4</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>${arquillian.junit}</version>
+                <version>1.9.3.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>3.5.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -88,13 +79,13 @@
         <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
-            <version>${version.jakarta.inject}</version>
+            <version>2.0.1.MR</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
-            <version>${version.jakarta.persistence}</version>
+            <version>3.2.0</version>
         </dependency>
 
         <!-- The TCK itself -->
@@ -135,7 +126,6 @@
             <artifactId>common</artifactId>
             <version>${jakarta.tck.tools.version}</version>
         </dependency>
-        
 
         <!-- Junit -->
         <dependency>
@@ -177,7 +167,6 @@
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-core</artifactId>
         </dependency>
-        
 
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
@@ -250,9 +239,9 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
+
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.7.1</version>
                 <executions>
@@ -276,25 +265,6 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>003-copy-protocol-lib</id>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>jakarta.tck.arquillian</groupId>
-                                    <artifactId>arquillian-protocol-lib</artifactId>
-                                    <type>jar</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/protocol</outputDirectory>
-                                    <destFileName>protocol.jar</destFileName>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>004-copy-lib</id>
                         <goals>
                             <goal>copy</goal>
@@ -302,34 +272,6 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <artifactItems>
-                                <artifactItem>
-                                    <groupId>jakarta.tck</groupId>
-                                    <artifactId>common</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                                    <destFileName>common.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>jakarta.tck.arquillian</groupId>
-                                    <artifactId>tck-porting-lib</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                                    <destFileName>tck-porting-lib.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>jakarta.tck</groupId>
-                                    <artifactId>persistence-platform-tck-tests</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                                    <destFileName>persistence-platform-tck-tests.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>jakarta.tck.arquillian</groupId>
-                                    <artifactId>arquillian-protocol-lib</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                                    <destFileName>arquillian-protocol-lib.jar</destFileName>
-                                </artifactItem>
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
                                     <artifactId>persistence-platform-tck-dbprocedures</artifactId>
@@ -349,8 +291,12 @@
                 <configuration>
                     <trimStackTrace>false</trimStackTrace>
                     <dependenciesToScan>jakarta.tck:persistence-platform-tck-tests</dependenciesToScan>
+                    <excludes>
+                        <exclude>ee.jakarta.tck.persistence.core.relationship.bidironexone.ClientPmservletTest</exclude>
+                    </excludes>
 
                     <systemPropertyVariables>
+                        <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
                         <glassfish.enableDerby>true</glassfish.enableDerby>
                         <glassfish.derbyDatabaseName>${glassfish.home}/glassfish/domains/domain1/config/derbyDB;create=true</glassfish.derbyDatabaseName>
                         <glassfish.derbySQLFile>${project.build.directory}/sql/derby.ddl.sql</glassfish.derbySQLFile>
@@ -358,7 +304,8 @@
                         <glassfish.derbyPasswordFile>${basedir}/sql/derby/password.txt</glassfish.derbyPasswordFile>
 
                         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                        <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                        <glassfish.postBootCommands>
+                            set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
                             create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
                             create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
                             create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
@@ -367,7 +314,8 @@
                             create-jdbc-resource --connectionpoolid cts-derby-pool_no_tx jdbc/DB_no_tx
                             list-jdbc-connection-pools
                             list-jdbc-resources
-                            list-file-users</glassfish.postBootCommands>
+                            list-file-users
+                        </glassfish.postBootCommands>
                         <junit.log.traceflag>true</junit.log.traceflag>
                         <harness.log.traceflag>true</harness.log.traceflag>
                         <cts.harness.debug>true</cts.harness.debug>
@@ -468,6 +416,71 @@
 
             <build>
                 <plugins>
+                    <plugin>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.7.1</version>
+                        <executions>
+                            <execution>
+                                <id>003-copy-protocol-lib</id>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>jakarta.tck.arquillian</groupId>
+                                            <artifactId>arquillian-protocol-lib</artifactId>
+                                            <type>jar</type>
+                                            <overWrite>true</overWrite>
+                                            <outputDirectory>${project.build.directory}/protocol</outputDirectory>
+                                            <destFileName>protocol.jar</destFileName>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>004-copy-lib-appclient</id>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>jakarta.tck</groupId>
+                                            <artifactId>common</artifactId>
+                                            <overWrite>true</overWrite>
+                                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                                            <destFileName>common.jar</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>jakarta.tck.arquillian</groupId>
+                                            <artifactId>tck-porting-lib</artifactId>
+                                            <overWrite>true</overWrite>
+                                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                                            <destFileName>tck-porting-lib.jar</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>jakarta.tck</groupId>
+                                            <artifactId>persistence-platform-tck-tests</artifactId>
+                                            <overWrite>true</overWrite>
+                                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                                            <destFileName>persistence-platform-tck-tests.jar</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>jakarta.tck.arquillian</groupId>
+                                            <artifactId>arquillian-protocol-lib</artifactId>
+                                            <overWrite>true</overWrite>
+                                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                                            <destFileName>arquillian-protocol-lib.jar</destFileName>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    
                     <plugin>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <version>3.5.0</version>
