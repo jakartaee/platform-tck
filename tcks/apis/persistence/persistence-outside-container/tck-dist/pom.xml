@@ -17,81 +17,83 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>persistence-tck</artifactId>
-        <version>3.2.0</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>3.2.1-SNAPSHOT</version>
     </parent>
+
     <artifactId>persistence-tck-dist</artifactId>
-    <packaging>jar</packaging>
+
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>persistence-tck</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>persistence-tck-common</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>persistence-tck-spec-tests</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>dbprocedures</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>persistence-tck-common</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>persistence-tck-spec-tests</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>dbprocedures</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>persistence-tck-common</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <classifier>sources</classifier>
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>persistence-tck-spec-tests</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <classifier>sources</classifier>
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>dbprocedures</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <classifier>sources</classifier>
             <optional>true</optional>
         </dependency>
     </dependencies>
+
     <build>
         <finalName>${bundle-name}-${project.version}</finalName>
         <plugins>
@@ -119,6 +121,7 @@
             </plugin>
         </plugins>
     </build>
+
     <profiles>
         <profile>
             <id>EFTL</id>

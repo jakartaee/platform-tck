@@ -56,8 +56,8 @@
         <!-- Jakarta Expression Language TCK -->
         <dependency>
             <groupId>jakarta.tck</groupId>
-            <artifactId>expression-language-tck</artifactId>
-            <version>6.0.0</version>
+            <artifactId>jakarta-expression-language-tck</artifactId>
+            <version>6.0.2-SNAPSHOT</version>
             <!-- Specially exclude el-api. Otherwise the test will test that one instead of the GF provided one.  -->
             <exclusions>
                 <exclusion>
@@ -65,7 +65,7 @@
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-            <scope>test</scope>   
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -78,7 +78,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>sigtest-maven-plugin</artifactId>
-            <version>2.2</version>
+            <version>2.3</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -127,7 +127,7 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/expressly.jar</additionalClasspathElement>
                             </additionalClasspathElements>
 
-                            <dependenciesToScan>jakarta.tck:expression-language-tck</dependenciesToScan>
+                            <dependenciesToScan>jakarta.tck:jakarta-expression-language-tck</dependenciesToScan>
 
                             <systemPropertyVariables>
                                 <el.classes>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.el-api.jar:${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/expressly.jar</el.classes>
