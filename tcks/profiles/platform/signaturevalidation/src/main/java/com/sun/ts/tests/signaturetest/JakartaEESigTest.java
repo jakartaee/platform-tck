@@ -71,10 +71,10 @@ public class JakartaEESigTest extends SigTestEE {
   public static final String JAVAEE_WEB_KEYWORD = "javaee_web_profile";
 
   public static final String KEYWORD_JAVAEE = "ejb interceptors caj jms javamail"
-      + " cdi di beanval persistence connector"
+      + " cdi data beanval persistence connector"
       + " jacc jaspic jsonp jta el servlet jsf jaxrs websocket batch concurrency jsonb securityapi";
 
-  public static final String KEYWORD_WEB = "caj ejb persistence el jsf jsonp jsp servlet jta jaxrs cdi di beanval interceptors websocket concurrency jsonb securityapi";
+  public static final String KEYWORD_WEB = "caj ejb persistence el jsf jsonp jsp servlet jta jaxrs cdi data beanval interceptors websocket concurrency jsonb securityapi";
 
   public static final ArrayList<String> KEYWORD_JAVAEE_FULL_OPTIONAL_TECHS = new ArrayList<String>();
 
@@ -114,8 +114,6 @@ public class JakartaEESigTest extends SigTestEE {
     APPCLIENT_MAP.put("persistence",
         new String[] { "jakarta.persistence", "jakarta.persistence.spi",
             "jakarta.persistence.criteria", "jakarta.persistence.metamodel" });
-    // note: cdi API's actually utilize two different base packages and
-    // so will require two different sigfiles.
     APPCLIENT_MAP.put("cdi",
         new String[] { "jakarta.decorator", "jakarta.enterprise.context",
             "jakarta.enterprise.context.control",
@@ -123,7 +121,10 @@ public class JakartaEESigTest extends SigTestEE {
             "jakarta.enterprise.inject", "jakarta.enterprise.inject.spi",
             "jakarta.enterprise.inject.literal",
             "jakarta.enterprise.inject.spi.configurator",
-            "jakarta.enterprise.util" });
+            "jakarta.enterprise.util",
+            "jakarta.enterprise.inject.spi.el",
+            "jakarta.inject"
+        });
     APPCLIENT_MAP.put("beanval",
         new String[] { "jakarta.validation", "jakarta.validation.bootstrap",
             "jakarta.validation.constraints", "jakarta.validation.groups",
@@ -131,7 +132,6 @@ public class JakartaEESigTest extends SigTestEE {
             "jakarta.validation.constraintvalidation",
             "jakarta.validation.executable", "jakarta.validation.spi",
             "jakarta.validation.valueextraction" });
-    APPCLIENT_MAP.put("di", new String[] { "jakarta.inject" });
     APPCLIENT_MAP.put("jsonp",
         new String[] { "jakarta.json", "jakarta.json.spi", "jakarta.json.stream" });
     APPCLIENT_MAP.put("jsonb",
