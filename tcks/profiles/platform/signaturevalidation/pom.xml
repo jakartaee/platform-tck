@@ -38,7 +38,6 @@
     <properties>
         <arquillian.jakarta.tck.version>11.0.0-SNAPSHOT</arquillian.jakarta.tck.version>
         <arquillian.junit>1.9.3.Final</arquillian.junit>
-        <jakarta.ee.version>11.0.0-SNAPSHOT</jakarta.ee.version>
         <jakarta.tck.sigtest.version>2.4</jakarta.tck.sigtest.version>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <maven.compiler.release>17</maven.compiler.release>
@@ -48,7 +47,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.ee.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}.arquillian</groupId>
