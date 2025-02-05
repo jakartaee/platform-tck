@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 6.0
+#Version 1.0.9
 
 CLSS public abstract interface jakarta.servlet.AsyncContext
 fld public final static java.lang.String ASYNC_CONTEXT_PATH = "jakarta.servlet.async.context_path"
@@ -166,6 +166,8 @@ CLSS public abstract interface jakarta.servlet.RequestDispatcher
 fld public final static java.lang.String ERROR_EXCEPTION = "jakarta.servlet.error.exception"
 fld public final static java.lang.String ERROR_EXCEPTION_TYPE = "jakarta.servlet.error.exception_type"
 fld public final static java.lang.String ERROR_MESSAGE = "jakarta.servlet.error.message"
+fld public final static java.lang.String ERROR_METHOD = "jakarta.servlet.error.method"
+fld public final static java.lang.String ERROR_QUERY_STRING = "jakarta.servlet.error.query_string"
 fld public final static java.lang.String ERROR_REQUEST_URI = "jakarta.servlet.error.request_uri"
 fld public final static java.lang.String ERROR_SERVLET_NAME = "jakarta.servlet.error.servlet_name"
 fld public final static java.lang.String ERROR_STATUS_CODE = "jakarta.servlet.error.status_code"
@@ -264,6 +266,8 @@ meth public abstract void setRequestCharacterEncoding(java.lang.String)
 meth public abstract void setResponseCharacterEncoding(java.lang.String)
 meth public abstract void setSessionTimeout(int)
 meth public abstract void setSessionTrackingModes(java.util.Set<jakarta.servlet.SessionTrackingMode>)
+meth public void setRequestCharacterEncoding(java.nio.charset.Charset)
+meth public void setResponseCharacterEncoding(java.nio.charset.Charset)
 
 CLSS public jakarta.servlet.ServletContextAttributeEvent
 cons public init(jakarta.servlet.ServletContext,java.lang.String,java.lang.Object)
@@ -303,13 +307,18 @@ cons protected init()
 meth public abstract boolean isFinished()
 meth public abstract boolean isReady()
 meth public abstract void setReadListener(jakarta.servlet.ReadListener)
+meth public byte[] readAllBytes() throws java.io.IOException
+meth public byte[] readNBytes(int) throws java.io.IOException
+meth public int read(java.nio.ByteBuffer) throws java.io.IOException
 meth public int readLine(byte[],int,int) throws java.io.IOException
+meth public int readNBytes(byte[],int,int) throws java.io.IOException
 supr java.io.InputStream
 
 CLSS public abstract jakarta.servlet.ServletOutputStream
 cons protected init()
 meth public abstract boolean isReady()
 meth public abstract void setWriteListener(jakarta.servlet.WriteListener)
+meth public void close() throws java.io.IOException
 meth public void print(boolean) throws java.io.IOException
 meth public void print(char) throws java.io.IOException
 meth public void print(double) throws java.io.IOException
@@ -325,6 +334,7 @@ meth public void println(float) throws java.io.IOException
 meth public void println(int) throws java.io.IOException
 meth public void println(java.lang.String) throws java.io.IOException
 meth public void println(long) throws java.io.IOException
+meth public void write(java.nio.ByteBuffer) throws java.io.IOException
 supr java.io.OutputStream
 hfds LSTRING_FILE,lStrings
 
@@ -384,6 +394,7 @@ meth public abstract long getContentLengthLong()
 meth public abstract void removeAttribute(java.lang.String)
 meth public abstract void setAttribute(java.lang.String,java.lang.Object)
 meth public abstract void setCharacterEncoding(java.lang.String) throws java.io.UnsupportedEncodingException
+meth public void setCharacterEncoding(java.nio.charset.Charset)
 
 CLSS public jakarta.servlet.ServletRequestAttributeEvent
 cons public init(jakarta.servlet.ServletContext,jakarta.servlet.ServletRequest,java.lang.String,java.lang.Object)
@@ -455,6 +466,7 @@ meth public long getContentLengthLong()
 meth public void removeAttribute(java.lang.String)
 meth public void setAttribute(java.lang.String,java.lang.Object)
 meth public void setCharacterEncoding(java.lang.String) throws java.io.UnsupportedEncodingException
+meth public void setCharacterEncoding(java.nio.charset.Charset)
 meth public void setRequest(jakarta.servlet.ServletRequest)
 supr java.lang.Object
 hfds request
@@ -476,6 +488,7 @@ meth public abstract void setContentLength(int)
 meth public abstract void setContentLengthLong(long)
 meth public abstract void setContentType(java.lang.String)
 meth public abstract void setLocale(java.util.Locale)
+meth public void setCharacterEncoding(java.nio.charset.Charset)
 
 CLSS public jakarta.servlet.ServletResponseWrapper
 cons public init(jakarta.servlet.ServletResponse)
@@ -495,6 +508,7 @@ meth public void reset()
 meth public void resetBuffer()
 meth public void setBufferSize(int)
 meth public void setCharacterEncoding(java.lang.String)
+meth public void setCharacterEncoding(java.nio.charset.Charset)
 meth public void setContentLength(int)
 meth public void setContentLengthLong(long)
 meth public void setContentType(java.lang.String)
@@ -720,7 +734,7 @@ meth public void setValue(java.lang.String)
 meth public void setVersion(int)
  anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
 supr java.lang.Object
-hfds DOMAIN,HTTP_ONLY,LSTRING_FILE,MAX_AGE,PATH,SECURE,TSPECIALS,attributes,lStrings,name,serialVersionUID,value
+hfds DOMAIN,EMPTY_STRING,HTTP_ONLY,LSTRING_FILE,MAX_AGE,PATH,SECURE,TSPECIALS,attributes,lStrings,name,serialVersionUID,value
 
 CLSS public abstract jakarta.servlet.http.HttpFilter
 cons public init()
@@ -733,11 +747,13 @@ CLSS public abstract jakarta.servlet.http.HttpServlet
 cons public init()
 fld public final static java.lang.String LEGACY_DO_HEAD = "jakarta.servlet.http.legacyDoHead"
  anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
+meth protected boolean isSensitiveHeader(java.lang.String)
 meth protected long getLastModified(jakarta.servlet.http.HttpServletRequest)
 meth protected void doDelete(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth protected void doGet(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth protected void doHead(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth protected void doOptions(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
+meth protected void doPatch(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth protected void doPost(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth protected void doPut(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth protected void doTrace(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
@@ -745,7 +761,7 @@ meth protected void service(jakarta.servlet.http.HttpServletRequest,jakarta.serv
 meth public void init(jakarta.servlet.ServletConfig) throws jakarta.servlet.ServletException
 meth public void service(jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 supr jakarta.servlet.GenericServlet
-hfds HEADER_IFMODSINCE,HEADER_LASTMOD,LSTRING_FILE,METHOD_DELETE,METHOD_GET,METHOD_HEAD,METHOD_OPTIONS,METHOD_POST,METHOD_PUT,METHOD_TRACE,lStrings,legacyHeadHandling,serialVersionUID
+hfds HEADER_IFMODSINCE,HEADER_LASTMOD,LSTRING_FILE,METHOD_DELETE,METHOD_GET,METHOD_HEAD,METHOD_OPTIONS,METHOD_PATCH,METHOD_POST,METHOD_PUT,METHOD_TRACE,SENSITIVE_HTTP_HEADERS,lStrings,legacyHeadHandling,serialVersionUID
 
 CLSS public abstract interface jakarta.servlet.http.HttpServletMapping
 meth public abstract jakarta.servlet.http.MappingMatch getMappingMatch()
@@ -793,6 +809,7 @@ meth public abstract void logout() throws jakarta.servlet.ServletException
 meth public boolean isTrailerFieldsReady()
 meth public jakarta.servlet.http.HttpServletMapping getHttpServletMapping()
 meth public jakarta.servlet.http.PushBuilder newPushBuilder()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.util.Map<java.lang.String,java.lang.String> getTrailerFields()
 
 CLSS public jakarta.servlet.http.HttpServletRequestWrapper
@@ -812,6 +829,7 @@ meth public jakarta.servlet.http.HttpSession getSession()
 meth public jakarta.servlet.http.HttpSession getSession(boolean)
 meth public jakarta.servlet.http.Part getPart(java.lang.String) throws jakarta.servlet.ServletException,java.io.IOException
 meth public jakarta.servlet.http.PushBuilder newPushBuilder()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.String changeSessionId()
 meth public java.lang.String getAuthType()
 meth public java.lang.String getContextPath()
@@ -851,6 +869,7 @@ fld public final static int SC_HTTP_VERSION_NOT_SUPPORTED = 505
 fld public final static int SC_INTERNAL_SERVER_ERROR = 500
 fld public final static int SC_LENGTH_REQUIRED = 411
 fld public final static int SC_METHOD_NOT_ALLOWED = 405
+fld public final static int SC_MISDIRECTED_REQUEST = 421
 fld public final static int SC_MOVED_PERMANENTLY = 301
 fld public final static int SC_MOVED_TEMPORARILY = 302
 fld public final static int SC_MULTIPLE_CHOICES = 300
@@ -863,6 +882,7 @@ fld public final static int SC_NO_CONTENT = 204
 fld public final static int SC_OK = 200
 fld public final static int SC_PARTIAL_CONTENT = 206
 fld public final static int SC_PAYMENT_REQUIRED = 402
+fld public final static int SC_PERMANENT_REDIRECT = 308
 fld public final static int SC_PRECONDITION_FAILED = 412
 fld public final static int SC_PROXY_AUTHENTICATION_REQUIRED = 407
 fld public final static int SC_REQUESTED_RANGE_NOT_SATISFIABLE = 416
@@ -875,7 +895,9 @@ fld public final static int SC_SERVICE_UNAVAILABLE = 503
 fld public final static int SC_SWITCHING_PROTOCOLS = 101
 fld public final static int SC_TEMPORARY_REDIRECT = 307
 fld public final static int SC_UNAUTHORIZED = 401
+fld public final static int SC_UNPROCESSABLE_CONTENT = 422
 fld public final static int SC_UNSUPPORTED_MEDIA_TYPE = 415
+fld public final static int SC_UPGRADE_REQUIRED = 426
 fld public final static int SC_USE_PROXY = 305
 intf jakarta.servlet.ServletResponse
 meth public abstract boolean containsHeader(java.lang.String)
@@ -891,12 +913,15 @@ meth public abstract void addHeader(java.lang.String,java.lang.String)
 meth public abstract void addIntHeader(java.lang.String,int)
 meth public abstract void sendError(int) throws java.io.IOException
 meth public abstract void sendError(int,java.lang.String) throws java.io.IOException
-meth public abstract void sendRedirect(java.lang.String) throws java.io.IOException
+meth public abstract void sendRedirect(java.lang.String,int,boolean) throws java.io.IOException
 meth public abstract void setDateHeader(java.lang.String,long)
 meth public abstract void setHeader(java.lang.String,java.lang.String)
 meth public abstract void setIntHeader(java.lang.String,int)
 meth public abstract void setStatus(int)
 meth public java.util.function.Supplier<java.util.Map<java.lang.String,java.lang.String>> getTrailerFields()
+meth public void sendRedirect(java.lang.String) throws java.io.IOException
+meth public void sendRedirect(java.lang.String,boolean) throws java.io.IOException
+meth public void sendRedirect(java.lang.String,int) throws java.io.IOException
 meth public void setTrailerFields(java.util.function.Supplier<java.util.Map<java.lang.String,java.lang.String>>)
 
 CLSS public jakarta.servlet.http.HttpServletResponseWrapper
@@ -917,6 +942,9 @@ meth public void addIntHeader(java.lang.String,int)
 meth public void sendError(int) throws java.io.IOException
 meth public void sendError(int,java.lang.String) throws java.io.IOException
 meth public void sendRedirect(java.lang.String) throws java.io.IOException
+meth public void sendRedirect(java.lang.String,boolean) throws java.io.IOException
+meth public void sendRedirect(java.lang.String,int) throws java.io.IOException
+meth public void sendRedirect(java.lang.String,int,boolean) throws java.io.IOException
 meth public void setDateHeader(java.lang.String,long)
 meth public void setHeader(java.lang.String,java.lang.String)
 meth public void setIntHeader(java.lang.String,int)
@@ -925,6 +953,7 @@ meth public void setTrailerFields(java.util.function.Supplier<java.util.Map<java
 supr jakarta.servlet.ServletResponseWrapper
 
 CLSS public abstract interface jakarta.servlet.http.HttpSession
+innr public abstract interface static Accessor
 meth public abstract boolean isNew()
 meth public abstract int getMaxInactiveInterval()
 meth public abstract jakarta.servlet.ServletContext getServletContext()
@@ -937,6 +966,11 @@ meth public abstract void invalidate()
 meth public abstract void removeAttribute(java.lang.String)
 meth public abstract void setAttribute(java.lang.String,java.lang.Object)
 meth public abstract void setMaxInactiveInterval(int)
+meth public jakarta.servlet.http.HttpSession$Accessor getAccessor()
+
+CLSS public abstract interface static jakarta.servlet.http.HttpSession$Accessor
+ outer jakarta.servlet.http.HttpSession
+meth public abstract void access(java.util.function.Consumer<jakarta.servlet.http.HttpSession>)
 
 CLSS public abstract interface jakarta.servlet.http.HttpSessionActivationListener
 intf java.util.EventListener
@@ -1004,6 +1038,7 @@ meth public abstract void delete() throws java.io.IOException
 meth public abstract void write(java.lang.String) throws java.io.IOException
 
 CLSS public abstract interface jakarta.servlet.http.PushBuilder
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.servlet.http.PushBuilder addHeader(java.lang.String,java.lang.String)
 meth public abstract jakarta.servlet.http.PushBuilder method(java.lang.String)
 meth public abstract jakarta.servlet.http.PushBuilder path(java.lang.String)
@@ -1048,7 +1083,9 @@ meth public static java.io.InputStream nullInputStream()
 meth public void close() throws java.io.IOException
 meth public void mark(int)
 meth public void reset() throws java.io.IOException
+meth public void skipNBytes(long) throws java.io.IOException
 supr java.lang.Object
+hfds DEFAULT_BUFFER_SIZE,MAX_BUFFER_SIZE,MAX_SKIP_BUFFER_SIZE
 
 CLSS public abstract java.io.OutputStream
 cons public init()
@@ -1072,10 +1109,20 @@ CLSS public abstract interface java.lang.Cloneable
 CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
+CLSS public abstract interface !annotation java.lang.Deprecated
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, MODULE, PARAMETER, TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean forRemoval()
+meth public abstract !hasdefault java.lang.String since()
+
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
 cons protected init(java.lang.String,int)
+innr public final static EnumDesc
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
+intf java.lang.constant.Constable
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected final void finalize()
 meth public final boolean equals(java.lang.Object)
@@ -1084,9 +1131,11 @@ meth public final int hashCode()
 meth public final int ordinal()
 meth public final java.lang.Class<{java.lang.Enum%0}> getDeclaringClass()
 meth public final java.lang.String name()
+meth public final java.util.Optional<java.lang.Enum$EnumDesc<{java.lang.Enum%0}>> describeConstable()
 meth public java.lang.String toString()
 meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
 supr java.lang.Object
+hfds name,ordinal
 
 CLSS public java.lang.Exception
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -1095,6 +1144,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
+hfds serialVersionUID
 
 CLSS public java.lang.Object
 cons public init()
@@ -1132,6 +1182,8 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,depth,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public abstract interface java.lang.annotation.Annotation
 meth public abstract boolean equals(java.lang.Object)
@@ -1165,6 +1217,9 @@ CLSS public abstract interface !annotation java.lang.annotation.Target
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.annotation.ElementType[] value()
 
+CLSS public abstract interface java.lang.constant.Constable
+meth public abstract java.util.Optional<? extends java.lang.constant.ConstantDesc> describeConstable()
+
 CLSS public abstract interface java.util.EventListener
 
 CLSS public java.util.EventObject
@@ -1174,4 +1229,5 @@ intf java.io.Serializable
 meth public java.lang.Object getSource()
 meth public java.lang.String toString()
 supr java.lang.Object
+hfds serialVersionUID
 

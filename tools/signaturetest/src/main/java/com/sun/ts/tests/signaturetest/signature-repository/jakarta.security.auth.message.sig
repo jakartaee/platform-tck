@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 2.0
+#Version 1.0.9
 
 CLSS public jakarta.security.auth.message.AuthException
 cons public init()
@@ -197,15 +197,6 @@ meth public abstract void refresh()
 CLSS public abstract jakarta.security.auth.message.config.AuthConfigFactory
 cons public init()
 fld public final static java.lang.String DEFAULT_FACTORY_SECURITY_PROPERTY = "authconfigprovider.factory"
-fld public final static java.lang.String GET_FACTORY_PERMISSION_NAME = "getProperty.authconfigprovider.factory"
-fld public final static java.lang.String PROVIDER_REGISTRATION_PERMISSION_NAME = "setProperty.authconfigfactory.provider"
-fld public final static java.lang.String SET_FACTORY_PERMISSION_NAME = "setProperty.authconfigprovider.factory"
-fld public final static java.security.SecurityPermission getFactorySecurityPermission
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="")
-fld public final static java.security.SecurityPermission providerRegistrationSecurityPermission
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="")
-fld public final static java.security.SecurityPermission setFactorySecurityPermission
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="")
 innr public abstract interface static RegistrationContext
 meth public abstract boolean removeRegistration(java.lang.String)
 meth public abstract jakarta.security.auth.message.config.AuthConfigFactory$RegistrationContext getRegistrationContext(java.lang.String)
@@ -220,7 +211,7 @@ meth public abstract void removeServerAuthModule(java.lang.Object)
 meth public static jakarta.security.auth.message.config.AuthConfigFactory getFactory()
 meth public static void setFactory(jakarta.security.auth.message.config.AuthConfigFactory)
 supr java.lang.Object
-hfds PROVIDER_SECURITY_PROPERTY,factory
+hfds factory
 
 CLSS public abstract interface static jakarta.security.auth.message.config.AuthConfigFactory$RegistrationContext
  outer jakarta.security.auth.message.config.AuthConfigFactory
@@ -270,6 +261,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
+hfds serialVersionUID
 
 CLSS public java.lang.Object
 cons public init()
@@ -307,6 +299,8 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,depth,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public java.security.GeneralSecurityException
 cons public init()
@@ -314,6 +308,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Exception
+hfds serialVersionUID
 
 CLSS public abstract interface javax.security.auth.callback.Callback
 
@@ -321,4 +316,5 @@ CLSS public javax.security.auth.login.LoginException
 cons public init()
 cons public init(java.lang.String)
 supr java.security.GeneralSecurityException
+hfds serialVersionUID
 

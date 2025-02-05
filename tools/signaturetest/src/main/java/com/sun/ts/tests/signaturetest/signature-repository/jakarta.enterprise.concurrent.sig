@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 3.0
+#Version 1.0.9
 
 CLSS public jakarta.enterprise.concurrent.AbortedException
 cons public init()
@@ -18,6 +18,7 @@ CLSS public abstract interface !annotation jakarta.enterprise.concurrent.Asynchr
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, TYPE])
 innr public final static Result
 intf java.lang.annotation.Annotation
+meth public abstract !hasdefault jakarta.enterprise.concurrent.Schedule[] runAt()
 meth public abstract !hasdefault java.lang.String executor()
 
 CLSS public final static jakarta.enterprise.concurrent.Asynchronous$Result
@@ -32,11 +33,13 @@ CLSS public abstract interface jakarta.enterprise.concurrent.ContextService
 meth public abstract !varargs java.lang.Object createContextualProxy(java.lang.Object,java.lang.Class<?>[])
 meth public abstract !varargs java.lang.Object createContextualProxy(java.lang.Object,java.util.Map<java.lang.String,java.lang.String>,java.lang.Class<?>[])
 meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object, %2 extends java.lang.Object> java.util.function.BiFunction<{%%0},{%%1},{%%2}> contextualFunction(java.util.function.BiFunction<{%%0},{%%1},{%%2}>)
+meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.concurrent.Flow$Processor<{%%0},{%%1}> contextualProcessor(java.util.concurrent.Flow$Processor<{%%0},{%%1}>)
 meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.function.BiConsumer<{%%0},{%%1}> contextualConsumer(java.util.function.BiConsumer<{%%0},{%%1}>)
 meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.function.Function<{%%0},{%%1}> contextualFunction(java.util.function.Function<{%%0},{%%1}>)
 meth public abstract <%0 extends java.lang.Object> java.util.concurrent.Callable<{%%0}> contextualCallable(java.util.concurrent.Callable<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> java.util.concurrent.CompletableFuture<{%%0}> withContextCapture(java.util.concurrent.CompletableFuture<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> java.util.concurrent.CompletionStage<{%%0}> withContextCapture(java.util.concurrent.CompletionStage<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> java.util.concurrent.Flow$Subscriber<{%%0}> contextualSubscriber(java.util.concurrent.Flow$Subscriber<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> java.util.function.Consumer<{%%0}> contextualConsumer(java.util.function.Consumer<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> java.util.function.Supplier<{%%0}> contextualSupplier(java.util.function.Supplier<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> {%%0} createContextualProxy({%%0},java.lang.Class<{%%0}>)
@@ -55,6 +58,7 @@ fld public final static java.lang.String SECURITY = "Security"
 fld public final static java.lang.String TRANSACTION = "Transaction"
 innr public abstract interface static !annotation List
 intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.Class<?>[] qualifiers()
 meth public abstract !hasdefault java.lang.String[] cleared()
 meth public abstract !hasdefault java.lang.String[] propagated()
 meth public abstract !hasdefault java.lang.String[] unchanged()
@@ -109,7 +113,9 @@ CLSS public abstract interface !annotation jakarta.enterprise.concurrent.Managed
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 innr public abstract interface static !annotation List
 intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean virtual()
 meth public abstract !hasdefault int maxAsync()
+meth public abstract !hasdefault java.lang.Class<?>[] qualifiers()
 meth public abstract !hasdefault java.lang.String context()
 meth public abstract !hasdefault long hungTaskThreshold()
 meth public abstract java.lang.String name()
@@ -150,7 +156,9 @@ CLSS public abstract interface !annotation jakarta.enterprise.concurrent.Managed
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 innr public abstract interface static !annotation List
 intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean virtual()
 meth public abstract !hasdefault int maxAsync()
+meth public abstract !hasdefault java.lang.Class<?>[] qualifiers()
 meth public abstract !hasdefault java.lang.String context()
 meth public abstract !hasdefault long hungTaskThreshold()
 meth public abstract java.lang.String name()
@@ -193,7 +201,9 @@ CLSS public abstract interface !annotation jakarta.enterprise.concurrent.Managed
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 innr public abstract interface static !annotation List
 intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean virtual()
 meth public abstract !hasdefault int priority()
+meth public abstract !hasdefault java.lang.Class<?>[] qualifiers()
 meth public abstract !hasdefault java.lang.String context()
 meth public abstract java.lang.String name()
 
@@ -203,6 +213,21 @@ CLSS public abstract interface static !annotation jakarta.enterprise.concurrent.
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
 meth public abstract jakarta.enterprise.concurrent.ManagedThreadFactoryDefinition[] value()
+
+CLSS public abstract interface !annotation jakarta.enterprise.concurrent.Schedule
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault int[] daysOfMonth()
+meth public abstract !hasdefault int[] hours()
+meth public abstract !hasdefault int[] minutes()
+meth public abstract !hasdefault int[] seconds()
+meth public abstract !hasdefault java.lang.String cron()
+meth public abstract !hasdefault java.lang.String zone()
+meth public abstract !hasdefault java.time.DayOfWeek[] daysOfWeek()
+meth public abstract !hasdefault java.time.Month[] months()
+meth public abstract !hasdefault long skipIfLateBy()
 
 CLSS public jakarta.enterprise.concurrent.SkippedException
 cons public init()
@@ -225,6 +250,8 @@ meth public boolean skipRun(jakarta.enterprise.concurrent.LastExecution,java.uti
 meth public java.time.ZoneId getZoneId()
 meth public java.util.Date getNextRunTime(jakarta.enterprise.concurrent.LastExecution,java.util.Date)
 
+CLSS abstract interface jakarta.enterprise.concurrent.package-info
+
 CLSS public abstract interface jakarta.enterprise.concurrent.spi.ThreadContextProvider
 meth public abstract jakarta.enterprise.concurrent.spi.ThreadContextSnapshot clearedContext(java.util.Map<java.lang.String,java.lang.String>)
 meth public abstract jakarta.enterprise.concurrent.spi.ThreadContextSnapshot currentContext(java.util.Map<java.lang.String,java.lang.String>)
@@ -237,6 +264,8 @@ meth public abstract void endContext()
 CLSS public abstract interface jakarta.enterprise.concurrent.spi.ThreadContextSnapshot
  anno 0 java.lang.FunctionalInterface()
 meth public abstract jakarta.enterprise.concurrent.spi.ThreadContextRestorer begin()
+
+CLSS abstract interface jakarta.enterprise.concurrent.spi.package-info
 
 CLSS public abstract interface !annotation jakarta.interceptor.InterceptorBinding
  anno 0 java.lang.annotation.Documented()
@@ -253,6 +282,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
+hfds serialVersionUID
 
 CLSS public abstract interface !annotation java.lang.FunctionalInterface
  anno 0 java.lang.annotation.Documented()
@@ -296,6 +326,8 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,depth,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public abstract interface java.lang.annotation.Annotation
 meth public abstract boolean equals(java.lang.Object)
@@ -356,6 +388,7 @@ cons protected init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Exception
+hfds serialVersionUID
 
 CLSS public abstract interface java.util.concurrent.Executor
 meth public abstract void execute(java.lang.Runnable)
@@ -388,10 +421,13 @@ meth protected <%0 extends java.lang.Object> java.util.concurrent.RunnableFuture
 meth protected int drainTasksTo(java.util.Collection<? super java.util.concurrent.ForkJoinTask<?>>)
 meth protected java.util.concurrent.ForkJoinTask<?> pollSubmission()
 meth public <%0 extends java.lang.Object> java.util.List<java.util.concurrent.Future<{%%0}>> invokeAll(java.util.Collection<? extends java.util.concurrent.Callable<{%%0}>>)
+meth public <%0 extends java.lang.Object> java.util.List<java.util.concurrent.Future<{%%0}>> invokeAll(java.util.Collection<? extends java.util.concurrent.Callable<{%%0}>>,long,java.util.concurrent.TimeUnit) throws java.lang.InterruptedException
 meth public <%0 extends java.lang.Object> java.util.concurrent.ForkJoinTask<{%%0}> submit(java.lang.Runnable,{%%0})
 meth public <%0 extends java.lang.Object> java.util.concurrent.ForkJoinTask<{%%0}> submit(java.util.concurrent.Callable<{%%0}>)
 meth public <%0 extends java.lang.Object> java.util.concurrent.ForkJoinTask<{%%0}> submit(java.util.concurrent.ForkJoinTask<{%%0}>)
 meth public <%0 extends java.lang.Object> {%%0} invoke(java.util.concurrent.ForkJoinTask<{%%0}>)
+meth public <%0 extends java.lang.Object> {%%0} invokeAny(java.util.Collection<? extends java.util.concurrent.Callable<{%%0}>>) throws java.lang.InterruptedException,java.util.concurrent.ExecutionException
+meth public <%0 extends java.lang.Object> {%%0} invokeAny(java.util.Collection<? extends java.util.concurrent.Callable<{%%0}>>,long,java.util.concurrent.TimeUnit) throws java.lang.InterruptedException,java.util.concurrent.ExecutionException,java.util.concurrent.TimeoutException
 meth public boolean awaitQuiescence(long,java.util.concurrent.TimeUnit)
 meth public boolean awaitTermination(long,java.util.concurrent.TimeUnit) throws java.lang.InterruptedException
 meth public boolean getAsyncMode()
@@ -419,6 +455,8 @@ meth public void execute(java.lang.Runnable)
 meth public void execute(java.util.concurrent.ForkJoinTask<?>)
 meth public void shutdown()
 supr java.util.concurrent.AbstractExecutorService
+hfds ADD_WORKER,COMMON_MAX_SPARES,COMMON_PARALLELISM,CTL,DEFAULT_COMMON_MAX_SPARES,DEFAULT_KEEPALIVE,FIFO,INITIAL_QUEUE_CAPACITY,INNOCUOUS,MAX_CAP,MODE,POOLIDS,QUIET,RC_MASK,RC_SHIFT,RC_UNIT,SHUTDOWN,SMASK,SP_MASK,SRC,SS_SEQ,STOP,SWIDTH,TC_MASK,TC_SHIFT,TC_UNIT,TERMINATED,THREADIDS,TIMEOUT_SLOP,UC_MASK,UNCOMPENSATE,UNSIGNALLED,bounds,common,ctl,factory,keepAlive,mode,modifyThreadPermission,poolIds,queues,registrationLock,saturate,scanRover,stealCount,termination,threadIds,ueh,workerNamePrefix
+hcls DefaultCommonPoolForkJoinWorkerThreadFactory,DefaultForkJoinWorkerThreadFactory,InvokeAnyRoot,InvokeAnyTask,WorkQueue
 
 CLSS public abstract interface static java.util.concurrent.ForkJoinPool$ForkJoinWorkerThreadFactory
  outer java.util.concurrent.ForkJoinPool

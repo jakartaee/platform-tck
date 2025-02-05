@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 3.1
+#Version 1.0.9
 
 CLSS public abstract interface !annotation jakarta.persistence.Access
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -62,14 +62,15 @@ meth public abstract !hasdefault jakarta.persistence.FetchType fetch()
 
 CLSS public abstract interface jakarta.persistence.Cache
 meth public abstract <%0 extends java.lang.Object> {%%0} unwrap(java.lang.Class<{%%0}>)
-meth public abstract boolean contains(java.lang.Class,java.lang.Object)
-meth public abstract void evict(java.lang.Class)
-meth public abstract void evict(java.lang.Class,java.lang.Object)
+meth public abstract boolean contains(java.lang.Class<?>,java.lang.Object)
+meth public abstract void evict(java.lang.Class<?>)
+meth public abstract void evict(java.lang.Class<?>,java.lang.Object)
 meth public abstract void evictAll()
 
 CLSS public final !enum jakarta.persistence.CacheRetrieveMode
 fld public final static jakarta.persistence.CacheRetrieveMode BYPASS
 fld public final static jakarta.persistence.CacheRetrieveMode USE
+intf jakarta.persistence.FindOption
 meth public static jakarta.persistence.CacheRetrieveMode valueOf(java.lang.String)
 meth public static jakarta.persistence.CacheRetrieveMode[] values()
 supr java.lang.Enum<jakarta.persistence.CacheRetrieveMode>
@@ -78,6 +79,8 @@ CLSS public final !enum jakarta.persistence.CacheStoreMode
 fld public final static jakarta.persistence.CacheStoreMode BYPASS
 fld public final static jakarta.persistence.CacheStoreMode REFRESH
 fld public final static jakarta.persistence.CacheStoreMode USE
+intf jakarta.persistence.FindOption
+intf jakarta.persistence.RefreshOption
 meth public static jakarta.persistence.CacheStoreMode valueOf(java.lang.String)
 meth public static jakarta.persistence.CacheStoreMode[] values()
 supr java.lang.Enum<jakarta.persistence.CacheStoreMode>
@@ -99,6 +102,14 @@ meth public static jakarta.persistence.CascadeType valueOf(java.lang.String)
 meth public static jakarta.persistence.CascadeType[] values()
 supr java.lang.Enum<jakarta.persistence.CascadeType>
 
+CLSS public abstract interface !annotation jakarta.persistence.CheckConstraint
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
+meth public abstract java.lang.String constraint()
+
 CLSS public abstract interface !annotation jakarta.persistence.CollectionTable
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
@@ -109,6 +120,7 @@ meth public abstract !hasdefault jakarta.persistence.JoinColumn[] joinColumns()
 meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints()
 meth public abstract !hasdefault java.lang.String catalog()
 meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 meth public abstract !hasdefault java.lang.String schema()
 
 CLSS public abstract interface !annotation jakarta.persistence.Column
@@ -122,16 +134,28 @@ meth public abstract !hasdefault boolean updatable()
 meth public abstract !hasdefault int length()
 meth public abstract !hasdefault int precision()
 meth public abstract !hasdefault int scale()
+meth public abstract !hasdefault int secondPrecision()
+meth public abstract !hasdefault jakarta.persistence.CheckConstraint[] check()
 meth public abstract !hasdefault java.lang.String columnDefinition()
+meth public abstract !hasdefault java.lang.String comment()
 meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 meth public abstract !hasdefault java.lang.String table()
 
 CLSS public abstract interface !annotation jakarta.persistence.ColumnResult
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.Class type()
+meth public abstract !hasdefault java.lang.Class<?> type()
 meth public abstract java.lang.String name()
+
+CLSS public abstract interface jakarta.persistence.ConnectionConsumer<%0 extends java.lang.Object>
+ anno 0 java.lang.FunctionalInterface()
+meth public abstract void accept({jakarta.persistence.ConnectionConsumer%0}) throws java.lang.Exception
+
+CLSS public abstract interface jakarta.persistence.ConnectionFunction<%0 extends java.lang.Object, %1 extends java.lang.Object>
+ anno 0 java.lang.FunctionalInterface()
+meth public abstract {jakarta.persistence.ConnectionFunction%1} apply({jakarta.persistence.ConnectionFunction%0}) throws java.lang.Exception
 
 CLSS public final !enum jakarta.persistence.ConstraintMode
 fld public final static jakarta.persistence.ConstraintMode CONSTRAINT
@@ -146,7 +170,7 @@ CLSS public abstract interface !annotation jakarta.persistence.ConstructorResult
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
 meth public abstract jakarta.persistence.ColumnResult[] columns()
-meth public abstract java.lang.Class targetClass()
+meth public abstract java.lang.Class<?> targetClass()
 
 CLSS public abstract interface !annotation jakarta.persistence.Convert
  anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.persistence.Converts)
@@ -154,7 +178,7 @@ CLSS public abstract interface !annotation jakarta.persistence.Convert
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD, TYPE])
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean disableConversion()
-meth public abstract !hasdefault java.lang.Class converter()
+meth public abstract !hasdefault java.lang.Class<? extends jakarta.persistence.AttributeConverter> converter()
 meth public abstract !hasdefault java.lang.String attributeName()
 
 CLSS public abstract interface !annotation jakarta.persistence.Converter
@@ -177,6 +201,7 @@ meth public abstract !hasdefault int length()
 meth public abstract !hasdefault jakarta.persistence.DiscriminatorType discriminatorType()
 meth public abstract !hasdefault java.lang.String columnDefinition()
 meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 
 CLSS public final !enum jakarta.persistence.DiscriminatorType
 fld public final static jakarta.persistence.DiscriminatorType CHAR
@@ -197,7 +222,7 @@ CLSS public abstract interface !annotation jakarta.persistence.ElementCollection
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault jakarta.persistence.FetchType fetch()
-meth public abstract !hasdefault java.lang.Class targetClass()
+meth public abstract !hasdefault java.lang.Class<?> targetClass()
 
 CLSS public abstract interface !annotation jakarta.persistence.Embeddable
  anno 0 java.lang.annotation.Documented()
@@ -230,45 +255,49 @@ cons public init(java.lang.Throwable)
 supr jakarta.persistence.PersistenceException
 
 CLSS public abstract interface jakarta.persistence.EntityGraph<%0 extends java.lang.Object>
-meth public abstract !varargs void addAttributeNodes(jakarta.persistence.metamodel.Attribute<{jakarta.persistence.EntityGraph%0},?>[])
-meth public abstract !varargs void addAttributeNodes(java.lang.String[])
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<? extends {%%0}> addKeySubgraph(jakarta.persistence.metamodel.Attribute<{jakarta.persistence.EntityGraph%0},{%%0}>,java.lang.Class<? extends {%%0}>)
+intf jakarta.persistence.Graph<{jakarta.persistence.EntityGraph%0}>
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<? extends {%%0}> addSubclassSubgraph(java.lang.Class<? extends {%%0}>)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<? extends {%%0}> addSubgraph(jakarta.persistence.metamodel.Attribute<{jakarta.persistence.EntityGraph%0},{%%0}>,java.lang.Class<? extends {%%0}>)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addKeySubgraph(jakarta.persistence.metamodel.Attribute<{jakarta.persistence.EntityGraph%0},{%%0}>)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addKeySubgraph(java.lang.String)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addKeySubgraph(java.lang.String,java.lang.Class<{%%0}>)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addSubgraph(jakarta.persistence.metamodel.Attribute<{jakarta.persistence.EntityGraph%0},{%%0}>)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addSubgraph(java.lang.String)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addSubgraph(java.lang.String,java.lang.Class<{%%0}>)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="3.2")
+meth public abstract <%0 extends {jakarta.persistence.EntityGraph%0}> jakarta.persistence.Subgraph<{%%0}> addTreatedSubgraph(java.lang.Class<{%%0}>)
 meth public abstract java.lang.String getName()
-meth public abstract java.util.List<jakarta.persistence.AttributeNode<?>> getAttributeNodes()
 
 CLSS public abstract interface !annotation jakarta.persistence.EntityListeners
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract java.lang.Class[] value()
+meth public abstract java.lang.Class<?>[] value()
 
 CLSS public abstract interface jakarta.persistence.EntityManager
 intf java.lang.AutoCloseable
-meth public abstract !varargs jakarta.persistence.StoredProcedureQuery createStoredProcedureQuery(java.lang.String,java.lang.Class[])
+meth public abstract !varargs <%0 extends java.lang.Object> {%%0} find(jakarta.persistence.EntityGraph<{%%0}>,java.lang.Object,jakarta.persistence.FindOption[])
+meth public abstract !varargs <%0 extends java.lang.Object> {%%0} find(java.lang.Class<{%%0}>,java.lang.Object,jakarta.persistence.FindOption[])
+meth public abstract !varargs jakarta.persistence.StoredProcedureQuery createStoredProcedureQuery(java.lang.String,java.lang.Class<?>[])
 meth public abstract !varargs jakarta.persistence.StoredProcedureQuery createStoredProcedureQuery(java.lang.String,java.lang.String[])
+meth public abstract !varargs void lock(java.lang.Object,jakarta.persistence.LockModeType,jakarta.persistence.LockOption[])
+meth public abstract !varargs void refresh(java.lang.Object,jakarta.persistence.RefreshOption[])
+meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object> {%%1} callWithConnection(jakarta.persistence.ConnectionFunction<{%%0},{%%1}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.EntityGraph<{%%0}> createEntityGraph(java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Query createNativeQuery(java.lang.String,java.lang.Class<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.TypedQuery<{%%0}> createNamedQuery(java.lang.String,java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.TypedQuery<{%%0}> createQuery(jakarta.persistence.TypedQueryReference<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.TypedQuery<{%%0}> createQuery(jakarta.persistence.criteria.CriteriaQuery<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.TypedQuery<{%%0}> createQuery(jakarta.persistence.criteria.CriteriaSelect<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.TypedQuery<{%%0}> createQuery(java.lang.String,java.lang.Class<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> java.util.List<jakarta.persistence.EntityGraph<? super {%%0}>> getEntityGraphs(java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> void runWithConnection(jakarta.persistence.ConnectionConsumer<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> {%%0} find(java.lang.Class<{%%0}>,java.lang.Object)
 meth public abstract <%0 extends java.lang.Object> {%%0} find(java.lang.Class<{%%0}>,java.lang.Object,jakarta.persistence.LockModeType)
 meth public abstract <%0 extends java.lang.Object> {%%0} find(java.lang.Class<{%%0}>,java.lang.Object,jakarta.persistence.LockModeType,java.util.Map<java.lang.String,java.lang.Object>)
 meth public abstract <%0 extends java.lang.Object> {%%0} find(java.lang.Class<{%%0}>,java.lang.Object,java.util.Map<java.lang.String,java.lang.Object>)
 meth public abstract <%0 extends java.lang.Object> {%%0} getReference(java.lang.Class<{%%0}>,java.lang.Object)
+meth public abstract <%0 extends java.lang.Object> {%%0} getReference({%%0})
 meth public abstract <%0 extends java.lang.Object> {%%0} merge({%%0})
 meth public abstract <%0 extends java.lang.Object> {%%0} unwrap(java.lang.Class<{%%0}>)
 meth public abstract boolean contains(java.lang.Object)
 meth public abstract boolean isJoinedToTransaction()
 meth public abstract boolean isOpen()
+meth public abstract jakarta.persistence.CacheRetrieveMode getCacheRetrieveMode()
+meth public abstract jakarta.persistence.CacheStoreMode getCacheStoreMode()
 meth public abstract jakarta.persistence.EntityGraph<?> createEntityGraph(java.lang.String)
 meth public abstract jakarta.persistence.EntityGraph<?> getEntityGraph(java.lang.String)
 meth public abstract jakarta.persistence.EntityManagerFactory getEntityManagerFactory()
@@ -277,10 +306,9 @@ meth public abstract jakarta.persistence.FlushModeType getFlushMode()
 meth public abstract jakarta.persistence.LockModeType getLockMode(java.lang.Object)
 meth public abstract jakarta.persistence.Query createNamedQuery(java.lang.String)
 meth public abstract jakarta.persistence.Query createNativeQuery(java.lang.String)
-meth public abstract jakarta.persistence.Query createNativeQuery(java.lang.String,java.lang.Class)
 meth public abstract jakarta.persistence.Query createNativeQuery(java.lang.String,java.lang.String)
-meth public abstract jakarta.persistence.Query createQuery(jakarta.persistence.criteria.CriteriaDelete)
-meth public abstract jakarta.persistence.Query createQuery(jakarta.persistence.criteria.CriteriaUpdate)
+meth public abstract jakarta.persistence.Query createQuery(jakarta.persistence.criteria.CriteriaDelete<?>)
+meth public abstract jakarta.persistence.Query createQuery(jakarta.persistence.criteria.CriteriaUpdate<?>)
 meth public abstract jakarta.persistence.Query createQuery(java.lang.String)
 meth public abstract jakarta.persistence.StoredProcedureQuery createNamedStoredProcedureQuery(java.lang.String)
 meth public abstract jakarta.persistence.StoredProcedureQuery createStoredProcedureQuery(java.lang.String)
@@ -301,25 +329,34 @@ meth public abstract void refresh(java.lang.Object,jakarta.persistence.LockModeT
 meth public abstract void refresh(java.lang.Object,jakarta.persistence.LockModeType,java.util.Map<java.lang.String,java.lang.Object>)
 meth public abstract void refresh(java.lang.Object,java.util.Map<java.lang.String,java.lang.Object>)
 meth public abstract void remove(java.lang.Object)
+meth public abstract void setCacheRetrieveMode(jakarta.persistence.CacheRetrieveMode)
+meth public abstract void setCacheStoreMode(jakarta.persistence.CacheStoreMode)
 meth public abstract void setFlushMode(jakarta.persistence.FlushModeType)
 meth public abstract void setProperty(java.lang.String,java.lang.Object)
 
 CLSS public abstract interface jakarta.persistence.EntityManagerFactory
 intf java.lang.AutoCloseable
+meth public abstract <%0 extends java.lang.Object> java.util.Map<java.lang.String,jakarta.persistence.EntityGraph<? extends {%%0}>> getNamedEntityGraphs(java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> java.util.Map<java.lang.String,jakarta.persistence.TypedQueryReference<{%%0}>> getNamedQueries(java.lang.Class<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> void addNamedEntityGraph(java.lang.String,jakarta.persistence.EntityGraph<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> {%%0} callInTransaction(java.util.function.Function<jakarta.persistence.EntityManager,{%%0}>)
 meth public abstract <%0 extends java.lang.Object> {%%0} unwrap(java.lang.Class<{%%0}>)
 meth public abstract boolean isOpen()
 meth public abstract jakarta.persistence.Cache getCache()
 meth public abstract jakarta.persistence.EntityManager createEntityManager()
 meth public abstract jakarta.persistence.EntityManager createEntityManager(jakarta.persistence.SynchronizationType)
-meth public abstract jakarta.persistence.EntityManager createEntityManager(jakarta.persistence.SynchronizationType,java.util.Map)
-meth public abstract jakarta.persistence.EntityManager createEntityManager(java.util.Map)
+meth public abstract jakarta.persistence.EntityManager createEntityManager(jakarta.persistence.SynchronizationType,java.util.Map<?,?>)
+meth public abstract jakarta.persistence.EntityManager createEntityManager(java.util.Map<?,?>)
+meth public abstract jakarta.persistence.PersistenceUnitTransactionType getTransactionType()
 meth public abstract jakarta.persistence.PersistenceUnitUtil getPersistenceUnitUtil()
+meth public abstract jakarta.persistence.SchemaManager getSchemaManager()
 meth public abstract jakarta.persistence.criteria.CriteriaBuilder getCriteriaBuilder()
 meth public abstract jakarta.persistence.metamodel.Metamodel getMetamodel()
+meth public abstract java.lang.String getName()
 meth public abstract java.util.Map<java.lang.String,java.lang.Object> getProperties()
 meth public abstract void addNamedQuery(java.lang.String,jakarta.persistence.Query)
 meth public abstract void close()
+meth public abstract void runInTransaction(java.util.function.Consumer<jakarta.persistence.EntityManager>)
 
 CLSS public jakarta.persistence.EntityNotFoundException
 cons public init()
@@ -333,16 +370,19 @@ CLSS public abstract interface !annotation jakarta.persistence.EntityResult
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault jakarta.persistence.FieldResult[] fields()
+meth public abstract !hasdefault jakarta.persistence.LockModeType lockMode()
 meth public abstract !hasdefault java.lang.String discriminatorColumn()
-meth public abstract java.lang.Class entityClass()
+meth public abstract java.lang.Class<?> entityClass()
 
 CLSS public abstract interface jakarta.persistence.EntityTransaction
 meth public abstract boolean getRollbackOnly()
 meth public abstract boolean isActive()
+meth public abstract java.lang.Integer getTimeout()
 meth public abstract void begin()
 meth public abstract void commit()
 meth public abstract void rollback()
 meth public abstract void setRollbackOnly()
+meth public abstract void setTimeout(java.lang.Integer)
 
 CLSS public final !enum jakarta.persistence.EnumType
 fld public final static jakarta.persistence.EnumType ORDINAL
@@ -356,6 +396,11 @@ CLSS public abstract interface !annotation jakarta.persistence.Enumerated
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault jakarta.persistence.EnumType value()
+
+CLSS public abstract interface !annotation jakarta.persistence.EnumeratedValue
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[FIELD])
+intf java.lang.annotation.Annotation
 
 CLSS public abstract interface !annotation jakarta.persistence.ExcludeDefaultListeners
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -381,6 +426,8 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.String column()
 meth public abstract java.lang.String name()
 
+CLSS public abstract interface jakarta.persistence.FindOption
+
 CLSS public final !enum jakarta.persistence.FlushModeType
 fld public final static jakarta.persistence.FlushModeType AUTO
 fld public final static jakarta.persistence.FlushModeType COMMIT
@@ -395,6 +442,7 @@ intf java.lang.annotation.Annotation
 meth public abstract !hasdefault jakarta.persistence.ConstraintMode value()
 meth public abstract !hasdefault java.lang.String foreignKeyDefinition()
 meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 
 CLSS public abstract interface !annotation jakarta.persistence.GeneratedValue
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -413,6 +461,38 @@ meth public static jakarta.persistence.GenerationType valueOf(java.lang.String)
 meth public static jakarta.persistence.GenerationType[] values()
 supr java.lang.Enum<jakarta.persistence.GenerationType>
 
+CLSS public abstract interface jakarta.persistence.Graph<%0 extends java.lang.Object>
+meth public abstract !varargs void addAttributeNodes(jakarta.persistence.metamodel.Attribute<? super {jakarta.persistence.Graph%0},?>[])
+meth public abstract !varargs void addAttributeNodes(java.lang.String[])
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.AttributeNode<{%%0}> addAttributeNode(jakarta.persistence.metamodel.Attribute<? super {jakarta.persistence.Graph%0},{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.AttributeNode<{%%0}> addAttributeNode(java.lang.String)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.AttributeNode<{%%0}> getAttributeNode(jakarta.persistence.metamodel.Attribute<? super {jakarta.persistence.Graph%0},{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.AttributeNode<{%%0}> getAttributeNode(java.lang.String)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<? extends {%%0}> addKeySubgraph(jakarta.persistence.metamodel.Attribute<? super {jakarta.persistence.Graph%0},{%%0}>,java.lang.Class<? extends {%%0}>)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="3.2")
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<? extends {%%0}> addSubgraph(jakarta.persistence.metamodel.Attribute<? super {jakarta.persistence.Graph%0},{%%0}>,java.lang.Class<? extends {%%0}>)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="3.2")
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addElementSubgraph(jakarta.persistence.metamodel.PluralAttribute<? super {jakarta.persistence.Graph%0},?,{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addElementSubgraph(java.lang.String)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addElementSubgraph(java.lang.String,java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addKeySubgraph(jakarta.persistence.metamodel.Attribute<? super {jakarta.persistence.Graph%0},{%%0}>)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="3.2")
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addKeySubgraph(java.lang.String)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addKeySubgraph(java.lang.String,java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addMapKeySubgraph(jakarta.persistence.metamodel.MapAttribute<? super {jakarta.persistence.Graph%0},{%%0},?>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addSubgraph(jakarta.persistence.metamodel.Attribute<? super {jakarta.persistence.Graph%0},{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addSubgraph(java.lang.String)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addSubgraph(java.lang.String,java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addTreatedElementSubgraph(jakarta.persistence.metamodel.PluralAttribute<? super {jakarta.persistence.Graph%0},?,? super {%%0}>,java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addTreatedMapKeySubgraph(jakarta.persistence.metamodel.MapAttribute<? super {jakarta.persistence.Graph%0},? super {%%0},?>,java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addTreatedSubgraph(jakarta.persistence.metamodel.Attribute<? super {jakarta.persistence.Graph%0},? super {%%0}>,java.lang.Class<{%%0}>)
+meth public abstract boolean hasAttributeNode(jakarta.persistence.metamodel.Attribute<? super {jakarta.persistence.Graph%0},?>)
+meth public abstract boolean hasAttributeNode(java.lang.String)
+meth public abstract java.util.List<jakarta.persistence.AttributeNode<?>> getAttributeNodes()
+meth public abstract void removeAttributeNode(jakarta.persistence.metamodel.Attribute<? super {jakarta.persistence.Graph%0},?>)
+meth public abstract void removeAttributeNode(java.lang.String)
+meth public abstract void removeAttributeNodes(jakarta.persistence.metamodel.Attribute$PersistentAttributeType)
+
 CLSS public abstract interface !annotation jakarta.persistence.Id
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
@@ -422,7 +502,7 @@ CLSS public abstract interface !annotation jakarta.persistence.IdClass
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract java.lang.Class value()
+meth public abstract java.lang.Class<?> value()
 
 CLSS public abstract interface !annotation jakarta.persistence.Index
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -430,6 +510,7 @@ CLSS public abstract interface !annotation jakarta.persistence.Index
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean unique()
 meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 meth public abstract java.lang.String columnList()
 
 CLSS public abstract interface !annotation jakarta.persistence.Inheritance
@@ -455,9 +536,12 @@ meth public abstract !hasdefault boolean insertable()
 meth public abstract !hasdefault boolean nullable()
 meth public abstract !hasdefault boolean unique()
 meth public abstract !hasdefault boolean updatable()
+meth public abstract !hasdefault jakarta.persistence.CheckConstraint[] check()
 meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
 meth public abstract !hasdefault java.lang.String columnDefinition()
+meth public abstract !hasdefault java.lang.String comment()
 meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 meth public abstract !hasdefault java.lang.String referencedColumnName()
 meth public abstract !hasdefault java.lang.String table()
 
@@ -472,6 +556,7 @@ CLSS public abstract interface !annotation jakarta.persistence.JoinTable
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
+meth public abstract !hasdefault jakarta.persistence.CheckConstraint[] check()
 meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
 meth public abstract !hasdefault jakarta.persistence.ForeignKey inverseForeignKey()
 meth public abstract !hasdefault jakarta.persistence.Index[] indexes()
@@ -479,7 +564,9 @@ meth public abstract !hasdefault jakarta.persistence.JoinColumn[] inverseJoinCol
 meth public abstract !hasdefault jakarta.persistence.JoinColumn[] joinColumns()
 meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints()
 meth public abstract !hasdefault java.lang.String catalog()
+meth public abstract !hasdefault java.lang.String comment()
 meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 meth public abstract !hasdefault java.lang.String schema()
 
 CLSS public abstract interface !annotation jakarta.persistence.Lob
@@ -496,9 +583,13 @@ fld public final static jakarta.persistence.LockModeType PESSIMISTIC_READ
 fld public final static jakarta.persistence.LockModeType PESSIMISTIC_WRITE
 fld public final static jakarta.persistence.LockModeType READ
 fld public final static jakarta.persistence.LockModeType WRITE
+intf jakarta.persistence.FindOption
+intf jakarta.persistence.RefreshOption
 meth public static jakarta.persistence.LockModeType valueOf(java.lang.String)
 meth public static jakarta.persistence.LockModeType[] values()
 supr java.lang.Enum<jakarta.persistence.LockModeType>
+
+CLSS public abstract interface jakarta.persistence.LockOption
 
 CLSS public jakarta.persistence.LockTimeoutException
 cons public init()
@@ -517,7 +608,7 @@ CLSS public abstract interface !annotation jakarta.persistence.ManyToMany
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault jakarta.persistence.CascadeType[] cascade()
 meth public abstract !hasdefault jakarta.persistence.FetchType fetch()
-meth public abstract !hasdefault java.lang.Class targetEntity()
+meth public abstract !hasdefault java.lang.Class<?> targetEntity()
 meth public abstract !hasdefault java.lang.String mappedBy()
 
 CLSS public abstract interface !annotation jakarta.persistence.ManyToOne
@@ -527,7 +618,7 @@ intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean optional()
 meth public abstract !hasdefault jakarta.persistence.CascadeType[] cascade()
 meth public abstract !hasdefault jakarta.persistence.FetchType fetch()
-meth public abstract !hasdefault java.lang.Class targetEntity()
+meth public abstract !hasdefault java.lang.Class<?> targetEntity()
 
 CLSS public abstract interface !annotation jakarta.persistence.MapKey
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -539,7 +630,7 @@ CLSS public abstract interface !annotation jakarta.persistence.MapKeyClass
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract java.lang.Class value()
+meth public abstract java.lang.Class<?> value()
 
 CLSS public abstract interface !annotation jakarta.persistence.MapKeyColumn
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -554,6 +645,7 @@ meth public abstract !hasdefault int precision()
 meth public abstract !hasdefault int scale()
 meth public abstract !hasdefault java.lang.String columnDefinition()
 meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 meth public abstract !hasdefault java.lang.String table()
 
 CLSS public abstract interface !annotation jakarta.persistence.MapKeyEnumerated
@@ -574,6 +666,7 @@ meth public abstract !hasdefault boolean updatable()
 meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
 meth public abstract !hasdefault java.lang.String columnDefinition()
 meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 meth public abstract !hasdefault java.lang.String referencedColumnName()
 meth public abstract !hasdefault java.lang.String table()
 
@@ -585,6 +678,7 @@ meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
 meth public abstract jakarta.persistence.MapKeyJoinColumn[] value()
 
 CLSS public abstract interface !annotation jakarta.persistence.MapKeyTemporal
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
@@ -638,8 +732,11 @@ CLSS public abstract interface !annotation jakarta.persistence.NamedNativeQuery
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
+meth public abstract !hasdefault jakarta.persistence.ColumnResult[] columns()
+meth public abstract !hasdefault jakarta.persistence.ConstructorResult[] classes()
+meth public abstract !hasdefault jakarta.persistence.EntityResult[] entities()
 meth public abstract !hasdefault jakarta.persistence.QueryHint[] hints()
-meth public abstract !hasdefault java.lang.Class resultClass()
+meth public abstract !hasdefault java.lang.Class<?> resultClass()
 meth public abstract !hasdefault java.lang.String resultSetMapping()
 meth public abstract java.lang.String name()
 meth public abstract java.lang.String query()
@@ -657,6 +754,7 @@ CLSS public abstract interface !annotation jakarta.persistence.NamedQuery
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault jakarta.persistence.LockModeType lockMode()
 meth public abstract !hasdefault jakarta.persistence.QueryHint[] hints()
+meth public abstract !hasdefault java.lang.Class<?> resultClass()
 meth public abstract java.lang.String name()
 meth public abstract java.lang.String query()
 
@@ -682,7 +780,7 @@ CLSS public abstract interface !annotation jakarta.persistence.NamedSubgraph
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.Class type()
+meth public abstract !hasdefault java.lang.Class<?> type()
 meth public abstract jakarta.persistence.NamedAttributeNode[] attributeNodes()
 meth public abstract java.lang.String name()
 
@@ -705,7 +803,7 @@ intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean orphanRemoval()
 meth public abstract !hasdefault jakarta.persistence.CascadeType[] cascade()
 meth public abstract !hasdefault jakarta.persistence.FetchType fetch()
-meth public abstract !hasdefault java.lang.Class targetEntity()
+meth public abstract !hasdefault java.lang.Class<?> targetEntity()
 meth public abstract !hasdefault java.lang.String mappedBy()
 
 CLSS public abstract interface !annotation jakarta.persistence.OneToOne
@@ -716,7 +814,7 @@ meth public abstract !hasdefault boolean optional()
 meth public abstract !hasdefault boolean orphanRemoval()
 meth public abstract !hasdefault jakarta.persistence.CascadeType[] cascade()
 meth public abstract !hasdefault jakarta.persistence.FetchType fetch()
-meth public abstract !hasdefault java.lang.Class targetEntity()
+meth public abstract !hasdefault java.lang.Class<?> targetEntity()
 meth public abstract !hasdefault java.lang.String mappedBy()
 
 CLSS public jakarta.persistence.OptimisticLockException
@@ -745,6 +843,7 @@ meth public abstract !hasdefault boolean nullable()
 meth public abstract !hasdefault boolean updatable()
 meth public abstract !hasdefault java.lang.String columnDefinition()
 meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 
 CLSS public abstract interface jakarta.persistence.Parameter<%0 extends java.lang.Object>
 meth public abstract java.lang.Class<{jakarta.persistence.Parameter%0}> getParameterType()
@@ -762,16 +861,64 @@ supr java.lang.Enum<jakarta.persistence.ParameterMode>
 
 CLSS public jakarta.persistence.Persistence
 cons public init()
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="3.2")
 fld protected final static java.util.Set<jakarta.persistence.spi.PersistenceProvider> providers
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="3.2")
 fld public final static java.lang.String PERSISTENCE_PROVIDER = "jakarta.persistence.spi.PersistenceProvider"
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="3.2")
+meth public static jakarta.persistence.EntityManagerFactory createEntityManagerFactory(jakarta.persistence.PersistenceConfiguration)
 meth public static jakarta.persistence.EntityManagerFactory createEntityManagerFactory(java.lang.String)
-meth public static jakarta.persistence.EntityManagerFactory createEntityManagerFactory(java.lang.String,java.util.Map)
+meth public static jakarta.persistence.EntityManagerFactory createEntityManagerFactory(java.lang.String,java.util.Map<?,?>)
 meth public static jakarta.persistence.PersistenceUtil getPersistenceUtil()
-meth public static void generateSchema(java.lang.String,java.util.Map)
+meth public static void generateSchema(java.lang.String,java.util.Map<?,?>)
 supr java.lang.Object
 hcls PersistenceUtilImpl
+
+CLSS public jakarta.persistence.PersistenceConfiguration
+cons public init(java.lang.String)
+fld public final static java.lang.String CACHE_MODE = "jakarta.persistence.sharedCache.mode"
+fld public final static java.lang.String JDBC_DATASOURCE = "jakarta.persistence.dataSource"
+fld public final static java.lang.String JDBC_DRIVER = "jakarta.persistence.jdbc.driver"
+fld public final static java.lang.String JDBC_PASSWORD = "jakarta.persistence.jdbc.password"
+fld public final static java.lang.String JDBC_URL = "jakarta.persistence.jdbc.url"
+fld public final static java.lang.String JDBC_USER = "jakarta.persistence.jdbc.user"
+fld public final static java.lang.String LOCK_TIMEOUT = "jakarta.persistence.lock.timeout"
+fld public final static java.lang.String QUERY_TIMEOUT = "jakarta.persistence.query.timeout"
+fld public final static java.lang.String SCHEMAGEN_CREATE_SCRIPT_SOURCE = "jakarta.persistence.schema-generation.create-script-source"
+fld public final static java.lang.String SCHEMAGEN_CREATE_SOURCE = "jakarta.persistence.schema-generation.create-source"
+fld public final static java.lang.String SCHEMAGEN_CREATE_TARGET = "jakarta.persistence.schema-generation.create-target"
+fld public final static java.lang.String SCHEMAGEN_DATABASE_ACTION = "jakarta.persistence.schema-generation.database.action"
+fld public final static java.lang.String SCHEMAGEN_DROP_SCRIPT_SOURCE = "jakarta.persistence.schema-generation.drop-script-source"
+fld public final static java.lang.String SCHEMAGEN_DROP_SOURCE = "jakarta.persistence.schema-generation.drop-source"
+fld public final static java.lang.String SCHEMAGEN_DROP_TARGET = "jakarta.persistence.schema-generation.drop-target"
+fld public final static java.lang.String SCHEMAGEN_SCRIPTS_ACTION = "jakarta.persistence.schema-generation.scripts.action"
+fld public final static java.lang.String VALIDATION_FACTORY = "jakarta.persistence.validation.factory"
+fld public final static java.lang.String VALIDATION_GROUP_PRE_PERSIST = "jakarta.persistence.validation.group.pre-persist"
+fld public final static java.lang.String VALIDATION_GROUP_PRE_REMOVE = "jakarta.persistence.validation.group.pre-remove"
+fld public final static java.lang.String VALIDATION_GROUP_PRE_UPDATE = "jakarta.persistence.validation.group.pre-update"
+meth public jakarta.persistence.EntityManagerFactory createEntityManagerFactory()
+meth public jakarta.persistence.PersistenceConfiguration jtaDataSource(java.lang.String)
+meth public jakarta.persistence.PersistenceConfiguration managedClass(java.lang.Class<?>)
+meth public jakarta.persistence.PersistenceConfiguration mappingFile(java.lang.String)
+meth public jakarta.persistence.PersistenceConfiguration nonJtaDataSource(java.lang.String)
+meth public jakarta.persistence.PersistenceConfiguration properties(java.util.Map<java.lang.String,?>)
+meth public jakarta.persistence.PersistenceConfiguration property(java.lang.String,java.lang.Object)
+meth public jakarta.persistence.PersistenceConfiguration provider(java.lang.String)
+meth public jakarta.persistence.PersistenceConfiguration sharedCacheMode(jakarta.persistence.SharedCacheMode)
+meth public jakarta.persistence.PersistenceConfiguration transactionType(jakarta.persistence.PersistenceUnitTransactionType)
+meth public jakarta.persistence.PersistenceConfiguration validationMode(jakarta.persistence.ValidationMode)
+meth public jakarta.persistence.PersistenceUnitTransactionType transactionType()
+meth public jakarta.persistence.SharedCacheMode sharedCacheMode()
+meth public jakarta.persistence.ValidationMode validationMode()
+meth public java.lang.String jtaDataSource()
+meth public java.lang.String name()
+meth public java.lang.String nonJtaDataSource()
+meth public java.lang.String provider()
+meth public java.util.List<java.lang.Class<?>> managedClasses()
+meth public java.util.List<java.lang.String> mappingFiles()
+meth public java.util.Map<java.lang.String,java.lang.Object> properties()
+supr java.lang.Object
+hfds jtaDataSource,managedClasses,mappingFileNames,name,nonJtaDataSource,properties,provider,sharedCacheMode,transactionType,validationMode
 
 CLSS public abstract interface !annotation jakarta.persistence.PersistenceContext
  anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.persistence.PersistenceContexts)
@@ -819,11 +966,25 @@ intf java.lang.annotation.Annotation
 meth public abstract !hasdefault java.lang.String name()
 meth public abstract !hasdefault java.lang.String unitName()
 
+CLSS public final !enum jakarta.persistence.PersistenceUnitTransactionType
+fld public final static jakarta.persistence.PersistenceUnitTransactionType JTA
+fld public final static jakarta.persistence.PersistenceUnitTransactionType RESOURCE_LOCAL
+meth public static jakarta.persistence.PersistenceUnitTransactionType valueOf(java.lang.String)
+meth public static jakarta.persistence.PersistenceUnitTransactionType[] values()
+supr java.lang.Enum<jakarta.persistence.PersistenceUnitTransactionType>
+
 CLSS public abstract interface jakarta.persistence.PersistenceUnitUtil
 intf jakarta.persistence.PersistenceUtil
+meth public abstract <%0 extends java.lang.Object> boolean isLoaded({%%0},jakarta.persistence.metamodel.Attribute<? super {%%0},?>)
+meth public abstract <%0 extends java.lang.Object> java.lang.Class<? extends {%%0}> getClass({%%0})
+meth public abstract <%0 extends java.lang.Object> void load({%%0},jakarta.persistence.metamodel.Attribute<? super {%%0},?>)
+meth public abstract boolean isInstance(java.lang.Object,java.lang.Class<?>)
 meth public abstract boolean isLoaded(java.lang.Object)
 meth public abstract boolean isLoaded(java.lang.Object,java.lang.String)
 meth public abstract java.lang.Object getIdentifier(java.lang.Object)
+meth public abstract java.lang.Object getVersion(java.lang.Object)
+meth public abstract void load(java.lang.Object)
+meth public abstract void load(java.lang.Object,java.lang.String)
 
 CLSS public abstract interface !annotation jakarta.persistence.PersistenceUnits
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -849,6 +1010,9 @@ hfds entity
 CLSS public final !enum jakarta.persistence.PessimisticLockScope
 fld public final static jakarta.persistence.PessimisticLockScope EXTENDED
 fld public final static jakarta.persistence.PessimisticLockScope NORMAL
+intf jakarta.persistence.FindOption
+intf jakarta.persistence.LockOption
+intf jakarta.persistence.RefreshOption
 meth public static jakarta.persistence.PessimisticLockScope valueOf(java.lang.String)
 meth public static jakarta.persistence.PessimisticLockScope[] values()
 supr java.lang.Enum<jakarta.persistence.PessimisticLockScope>
@@ -896,6 +1060,7 @@ intf java.lang.annotation.Annotation
 meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
 meth public abstract !hasdefault java.lang.String columnDefinition()
 meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 meth public abstract !hasdefault java.lang.String referencedColumnName()
 
 CLSS public abstract interface !annotation jakarta.persistence.PrimaryKeyJoinColumns
@@ -915,10 +1080,14 @@ meth public abstract boolean isBound(jakarta.persistence.Parameter<?>)
 meth public abstract int executeUpdate()
 meth public abstract int getFirstResult()
 meth public abstract int getMaxResults()
+meth public abstract jakarta.persistence.CacheRetrieveMode getCacheRetrieveMode()
+meth public abstract jakarta.persistence.CacheStoreMode getCacheStoreMode()
 meth public abstract jakarta.persistence.FlushModeType getFlushMode()
 meth public abstract jakarta.persistence.LockModeType getLockMode()
 meth public abstract jakarta.persistence.Parameter<?> getParameter(int)
 meth public abstract jakarta.persistence.Parameter<?> getParameter(java.lang.String)
+meth public abstract jakarta.persistence.Query setCacheRetrieveMode(jakarta.persistence.CacheRetrieveMode)
+meth public abstract jakarta.persistence.Query setCacheStoreMode(jakarta.persistence.CacheStoreMode)
 meth public abstract jakarta.persistence.Query setFirstResult(int)
 meth public abstract jakarta.persistence.Query setFlushMode(jakarta.persistence.FlushModeType)
 meth public abstract jakarta.persistence.Query setHint(java.lang.String,java.lang.Object)
@@ -926,15 +1095,24 @@ meth public abstract jakarta.persistence.Query setLockMode(jakarta.persistence.L
 meth public abstract jakarta.persistence.Query setMaxResults(int)
 meth public abstract jakarta.persistence.Query setParameter(int,java.lang.Object)
 meth public abstract jakarta.persistence.Query setParameter(int,java.util.Calendar,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.Query setParameter(int,java.util.Date,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.Query setParameter(jakarta.persistence.Parameter<java.util.Calendar>,java.util.Calendar,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.Query setParameter(jakarta.persistence.Parameter<java.util.Date>,java.util.Date,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.Query setParameter(java.lang.String,java.lang.Object)
 meth public abstract jakarta.persistence.Query setParameter(java.lang.String,java.util.Calendar,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.Query setParameter(java.lang.String,java.util.Date,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
+meth public abstract jakarta.persistence.Query setTimeout(java.lang.Integer)
+meth public abstract java.lang.Integer getTimeout()
 meth public abstract java.lang.Object getParameterValue(int)
 meth public abstract java.lang.Object getParameterValue(java.lang.String)
 meth public abstract java.lang.Object getSingleResult()
+meth public abstract java.lang.Object getSingleResultOrNull()
 meth public abstract java.util.List getResultList()
 meth public abstract java.util.Map<java.lang.String,java.lang.Object> getHints()
 meth public abstract java.util.Set<jakarta.persistence.Parameter<?>> getParameters()
@@ -958,6 +1136,8 @@ meth public jakarta.persistence.Query getQuery()
 supr jakarta.persistence.PersistenceException
 hfds query
 
+CLSS public abstract interface jakarta.persistence.RefreshOption
+
 CLSS public jakarta.persistence.RollbackException
 cons public init()
 cons public init(java.lang.String)
@@ -965,16 +1145,31 @@ cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr jakarta.persistence.PersistenceException
 
+CLSS public abstract interface jakarta.persistence.SchemaManager
+meth public abstract void create(boolean)
+meth public abstract void drop(boolean)
+meth public abstract void truncate()
+meth public abstract void validate() throws jakarta.persistence.SchemaValidationException
+
+CLSS public jakarta.persistence.SchemaValidationException
+cons public !varargs init(java.lang.String,java.lang.Exception[])
+meth public java.lang.Exception[] getFailures()
+supr java.lang.Exception
+hfds failures
+
 CLSS public abstract interface !annotation jakarta.persistence.SecondaryTable
  anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.persistence.SecondaryTables)
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
+meth public abstract !hasdefault jakarta.persistence.CheckConstraint[] check()
 meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
 meth public abstract !hasdefault jakarta.persistence.Index[] indexes()
 meth public abstract !hasdefault jakarta.persistence.PrimaryKeyJoinColumn[] pkJoinColumns()
 meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints()
 meth public abstract !hasdefault java.lang.String catalog()
+meth public abstract !hasdefault java.lang.String comment()
+meth public abstract !hasdefault java.lang.String options()
 meth public abstract !hasdefault java.lang.String schema()
 meth public abstract java.lang.String name()
 
@@ -987,18 +1182,19 @@ meth public abstract jakarta.persistence.SecondaryTable[] value()
 CLSS public abstract interface !annotation jakarta.persistence.SequenceGenerator
  anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.persistence.SequenceGenerators)
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD, PACKAGE])
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault int allocationSize()
 meth public abstract !hasdefault int initialValue()
 meth public abstract !hasdefault java.lang.String catalog()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 meth public abstract !hasdefault java.lang.String schema()
 meth public abstract !hasdefault java.lang.String sequenceName()
-meth public abstract java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.persistence.SequenceGenerators
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD, PACKAGE])
 intf java.lang.annotation.Annotation
 meth public abstract jakarta.persistence.SequenceGenerator[] value()
 
@@ -1034,7 +1230,7 @@ CLSS public abstract interface !annotation jakarta.persistence.StoredProcedurePa
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault jakarta.persistence.ParameterMode mode()
 meth public abstract !hasdefault java.lang.String name()
-meth public abstract java.lang.Class type()
+meth public abstract java.lang.Class<?> type()
 
 CLSS public abstract interface jakarta.persistence.StoredProcedureQuery
 intf jakarta.persistence.Query
@@ -1043,36 +1239,36 @@ meth public abstract boolean execute()
 meth public abstract boolean hasMoreResults()
 meth public abstract int executeUpdate()
 meth public abstract int getUpdateCount()
-meth public abstract jakarta.persistence.StoredProcedureQuery registerStoredProcedureParameter(int,java.lang.Class,jakarta.persistence.ParameterMode)
-meth public abstract jakarta.persistence.StoredProcedureQuery registerStoredProcedureParameter(java.lang.String,java.lang.Class,jakarta.persistence.ParameterMode)
+meth public abstract jakarta.persistence.StoredProcedureQuery registerStoredProcedureParameter(int,java.lang.Class<?>,jakarta.persistence.ParameterMode)
+meth public abstract jakarta.persistence.StoredProcedureQuery registerStoredProcedureParameter(java.lang.String,java.lang.Class<?>,jakarta.persistence.ParameterMode)
+meth public abstract jakarta.persistence.StoredProcedureQuery setCacheRetrieveMode(jakarta.persistence.CacheRetrieveMode)
+meth public abstract jakarta.persistence.StoredProcedureQuery setCacheStoreMode(jakarta.persistence.CacheStoreMode)
 meth public abstract jakarta.persistence.StoredProcedureQuery setFlushMode(jakarta.persistence.FlushModeType)
 meth public abstract jakarta.persistence.StoredProcedureQuery setHint(java.lang.String,java.lang.Object)
 meth public abstract jakarta.persistence.StoredProcedureQuery setParameter(int,java.lang.Object)
 meth public abstract jakarta.persistence.StoredProcedureQuery setParameter(int,java.util.Calendar,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.StoredProcedureQuery setParameter(int,java.util.Date,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.StoredProcedureQuery setParameter(jakarta.persistence.Parameter<java.util.Calendar>,java.util.Calendar,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.StoredProcedureQuery setParameter(jakarta.persistence.Parameter<java.util.Date>,java.util.Date,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.StoredProcedureQuery setParameter(java.lang.String,java.lang.Object)
 meth public abstract jakarta.persistence.StoredProcedureQuery setParameter(java.lang.String,java.util.Calendar,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.StoredProcedureQuery setParameter(java.lang.String,java.util.Date,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
+meth public abstract jakarta.persistence.StoredProcedureQuery setTimeout(java.lang.Integer)
 meth public abstract java.lang.Object getOutputParameterValue(int)
 meth public abstract java.lang.Object getOutputParameterValue(java.lang.String)
 meth public abstract java.lang.Object getSingleResult()
+meth public abstract java.lang.Object getSingleResultOrNull()
 meth public abstract java.util.List getResultList()
 
 CLSS public abstract interface jakarta.persistence.Subgraph<%0 extends java.lang.Object>
-meth public abstract !varargs void addAttributeNodes(jakarta.persistence.metamodel.Attribute<{jakarta.persistence.Subgraph%0},?>[])
-meth public abstract !varargs void addAttributeNodes(java.lang.String[])
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<? extends {%%0}> addKeySubgraph(jakarta.persistence.metamodel.Attribute<{jakarta.persistence.Subgraph%0},{%%0}>,java.lang.Class<? extends {%%0}>)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<? extends {%%0}> addSubgraph(jakarta.persistence.metamodel.Attribute<{jakarta.persistence.Subgraph%0},{%%0}>,java.lang.Class<? extends {%%0}>)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addKeySubgraph(jakarta.persistence.metamodel.Attribute<{jakarta.persistence.Subgraph%0},{%%0}>)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addKeySubgraph(java.lang.String)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addKeySubgraph(java.lang.String,java.lang.Class<{%%0}>)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addSubgraph(jakarta.persistence.metamodel.Attribute<{jakarta.persistence.Subgraph%0},{%%0}>)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addSubgraph(java.lang.String)
-meth public abstract <%0 extends java.lang.Object> jakarta.persistence.Subgraph<{%%0}> addSubgraph(java.lang.String,java.lang.Class<{%%0}>)
+intf jakarta.persistence.Graph<{jakarta.persistence.Subgraph%0}>
 meth public abstract java.lang.Class<{jakarta.persistence.Subgraph%0}> getClassType()
-meth public abstract java.util.List<jakarta.persistence.AttributeNode<?>> getAttributeNodes()
 
 CLSS public final !enum jakarta.persistence.SynchronizationType
 fld public final static jakarta.persistence.SynchronizationType SYNCHRONIZED
@@ -1085,48 +1281,66 @@ CLSS public abstract interface !annotation jakarta.persistence.Table
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
+meth public abstract !hasdefault jakarta.persistence.CheckConstraint[] check()
 meth public abstract !hasdefault jakarta.persistence.Index[] indexes()
 meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints()
 meth public abstract !hasdefault java.lang.String catalog()
+meth public abstract !hasdefault java.lang.String comment()
 meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 meth public abstract !hasdefault java.lang.String schema()
 
 CLSS public abstract interface !annotation jakarta.persistence.TableGenerator
  anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.persistence.TableGenerators)
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD, PACKAGE])
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault int allocationSize()
 meth public abstract !hasdefault int initialValue()
 meth public abstract !hasdefault jakarta.persistence.Index[] indexes()
 meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints()
 meth public abstract !hasdefault java.lang.String catalog()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 meth public abstract !hasdefault java.lang.String pkColumnName()
 meth public abstract !hasdefault java.lang.String pkColumnValue()
 meth public abstract !hasdefault java.lang.String schema()
 meth public abstract !hasdefault java.lang.String table()
 meth public abstract !hasdefault java.lang.String valueColumnName()
-meth public abstract java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.persistence.TableGenerators
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD, PACKAGE])
 intf java.lang.annotation.Annotation
 meth public abstract jakarta.persistence.TableGenerator[] value()
 
 CLSS public abstract interface !annotation jakarta.persistence.Temporal
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
 meth public abstract jakarta.persistence.TemporalType value()
 
 CLSS public final !enum jakarta.persistence.TemporalType
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 fld public final static jakarta.persistence.TemporalType DATE
 fld public final static jakarta.persistence.TemporalType TIME
 fld public final static jakarta.persistence.TemporalType TIMESTAMP
 meth public static jakarta.persistence.TemporalType valueOf(java.lang.String)
 meth public static jakarta.persistence.TemporalType[] values()
 supr java.lang.Enum<jakarta.persistence.TemporalType>
+
+CLSS public jakarta.persistence.Timeout
+intf jakarta.persistence.FindOption
+intf jakarta.persistence.LockOption
+intf jakarta.persistence.RefreshOption
+meth public int milliseconds()
+meth public static jakarta.persistence.Timeout milliseconds(int)
+meth public static jakarta.persistence.Timeout ms(int)
+meth public static jakarta.persistence.Timeout s(int)
+meth public static jakarta.persistence.Timeout seconds(int)
+supr java.lang.Object
+hfds milliseconds
 
 CLSS public jakarta.persistence.TransactionRequiredException
 cons public init()
@@ -1156,6 +1370,8 @@ meth public abstract java.lang.String getAlias()
 CLSS public abstract interface jakarta.persistence.TypedQuery<%0 extends java.lang.Object>
 intf jakarta.persistence.Query
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setParameter(jakarta.persistence.Parameter<{%%0}>,{%%0})
+meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setCacheRetrieveMode(jakarta.persistence.CacheRetrieveMode)
+meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setCacheStoreMode(jakarta.persistence.CacheStoreMode)
 meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setFirstResult(int)
 meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setFlushMode(jakarta.persistence.FlushModeType)
 meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setHint(java.lang.String,java.lang.Object)
@@ -1163,21 +1379,35 @@ meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQu
 meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setMaxResults(int)
 meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setParameter(int,java.lang.Object)
 meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setParameter(int,java.util.Calendar,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setParameter(int,java.util.Date,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setParameter(jakarta.persistence.Parameter<java.util.Calendar>,java.util.Calendar,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setParameter(jakarta.persistence.Parameter<java.util.Date>,java.util.Date,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setParameter(java.lang.String,java.lang.Object)
 meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setParameter(java.lang.String,java.util.Calendar,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setParameter(java.lang.String,java.util.Date,jakarta.persistence.TemporalType)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
+meth public abstract jakarta.persistence.TypedQuery<{jakarta.persistence.TypedQuery%0}> setTimeout(java.lang.Integer)
 meth public abstract java.util.List<{jakarta.persistence.TypedQuery%0}> getResultList()
 meth public abstract {jakarta.persistence.TypedQuery%0} getSingleResult()
+meth public abstract {jakarta.persistence.TypedQuery%0} getSingleResultOrNull()
 meth public java.util.stream.Stream<{jakarta.persistence.TypedQuery%0}> getResultStream()
+
+CLSS public abstract interface jakarta.persistence.TypedQueryReference<%0 extends java.lang.Object>
+meth public abstract java.lang.Class<? extends {jakarta.persistence.TypedQueryReference%0}> getResultType()
+meth public abstract java.lang.String getName()
+meth public abstract java.util.Map<java.lang.String,java.lang.Object> getHints()
 
 CLSS public abstract interface !annotation jakarta.persistence.UniqueConstraint
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String options()
 meth public abstract java.lang.String[] columnNames()
 
 CLSS public final !enum jakarta.persistence.ValidationMode
@@ -1204,7 +1434,9 @@ meth public abstract boolean isDistinct()
 meth public abstract jakarta.persistence.criteria.AbstractQuery<{jakarta.persistence.criteria.AbstractQuery%0}> distinct(boolean)
 meth public abstract jakarta.persistence.criteria.AbstractQuery<{jakarta.persistence.criteria.AbstractQuery%0}> groupBy(java.util.List<jakarta.persistence.criteria.Expression<?>>)
 meth public abstract jakarta.persistence.criteria.AbstractQuery<{jakarta.persistence.criteria.AbstractQuery%0}> having(jakarta.persistence.criteria.Expression<java.lang.Boolean>)
+meth public abstract jakarta.persistence.criteria.AbstractQuery<{jakarta.persistence.criteria.AbstractQuery%0}> having(java.util.List<jakarta.persistence.criteria.Predicate>)
 meth public abstract jakarta.persistence.criteria.AbstractQuery<{jakarta.persistence.criteria.AbstractQuery%0}> where(jakarta.persistence.criteria.Expression<java.lang.Boolean>)
+meth public abstract jakarta.persistence.criteria.AbstractQuery<{jakarta.persistence.criteria.AbstractQuery%0}> where(java.util.List<jakarta.persistence.criteria.Predicate>)
 meth public abstract jakarta.persistence.criteria.Predicate getGroupRestriction()
 meth public abstract jakarta.persistence.criteria.Selection<{jakarta.persistence.criteria.AbstractQuery%0}> getSelection()
 meth public abstract java.lang.Class<{jakarta.persistence.criteria.AbstractQuery%0}> getResultType()
@@ -1218,8 +1450,10 @@ meth public abstract jakarta.persistence.criteria.CollectionJoin<{jakarta.persis
 meth public abstract jakarta.persistence.metamodel.CollectionAttribute<? super {jakarta.persistence.criteria.CollectionJoin%0},{jakarta.persistence.criteria.CollectionJoin%1}> getModel()
 
 CLSS public abstract interface jakarta.persistence.criteria.CommonAbstractCriteria
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Subquery<{%%0}> subquery(jakarta.persistence.metamodel.EntityType<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Subquery<{%%0}> subquery(java.lang.Class<{%%0}>)
 meth public abstract jakarta.persistence.criteria.Predicate getRestriction()
+meth public abstract java.util.Set<jakarta.persistence.criteria.ParameterExpression<?>> getParameters()
 
 CLSS public abstract interface jakarta.persistence.criteria.CompoundSelection<%0 extends java.lang.Object>
 intf jakarta.persistence.criteria.Selection<{jakarta.persistence.criteria.CompoundSelection%0}>
@@ -1272,6 +1506,7 @@ meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object, 
 meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object, %2 extends {%%1}> jakarta.persistence.criteria.ListJoin<{%%0},{%%2}> treat(jakarta.persistence.criteria.ListJoin<{%%0},{%%1}>,java.lang.Class<{%%2}>)
 meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object, %2 extends {%%1}> jakarta.persistence.criteria.SetJoin<{%%0},{%%2}> treat(jakarta.persistence.criteria.SetJoin<{%%0},{%%1}>,java.lang.Class<{%%2}>)
 meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object> jakarta.persistence.criteria.CriteriaBuilder$SimpleCase<{%%0},{%%1}> selectCase(jakarta.persistence.criteria.Expression<? extends {%%0}>)
+meth public abstract <%0 extends java.lang.Object, %1 extends java.time.temporal.Temporal> jakarta.persistence.criteria.Expression<{%%0}> extract(jakarta.persistence.criteria.TemporalField<{%%0},{%%1}>,jakarta.persistence.criteria.Expression<{%%1}>)
 meth public abstract <%0 extends java.lang.Object, %1 extends java.util.Collection<{%%0}>> jakarta.persistence.criteria.Predicate isMember(jakarta.persistence.criteria.Expression<{%%0}>,jakarta.persistence.criteria.Expression<{%%1}>)
 meth public abstract <%0 extends java.lang.Object, %1 extends java.util.Collection<{%%0}>> jakarta.persistence.criteria.Predicate isMember({%%0},jakarta.persistence.criteria.Expression<{%%1}>)
 meth public abstract <%0 extends java.lang.Object, %1 extends java.util.Collection<{%%0}>> jakarta.persistence.criteria.Predicate isNotMember(jakarta.persistence.criteria.Expression<{%%0}>,jakarta.persistence.criteria.Expression<{%%1}>)
@@ -1285,6 +1520,12 @@ meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.CriteriaBuilder$In<{%%0}> in(jakarta.persistence.criteria.Expression<? extends {%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.CriteriaDelete<{%%0}> createCriteriaDelete(java.lang.Class<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.CriteriaQuery<{%%0}> createQuery(java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.CriteriaSelect<{%%0}> except(jakarta.persistence.criteria.CriteriaSelect<{%%0}>,jakarta.persistence.criteria.CriteriaSelect<?>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.CriteriaSelect<{%%0}> exceptAll(jakarta.persistence.criteria.CriteriaSelect<{%%0}>,jakarta.persistence.criteria.CriteriaSelect<?>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.CriteriaSelect<{%%0}> intersect(jakarta.persistence.criteria.CriteriaSelect<? super {%%0}>,jakarta.persistence.criteria.CriteriaSelect<? super {%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.CriteriaSelect<{%%0}> intersectAll(jakarta.persistence.criteria.CriteriaSelect<? super {%%0}>,jakarta.persistence.criteria.CriteriaSelect<? super {%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.CriteriaSelect<{%%0}> union(jakarta.persistence.criteria.CriteriaSelect<? extends {%%0}>,jakarta.persistence.criteria.CriteriaSelect<? extends {%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.CriteriaSelect<{%%0}> unionAll(jakarta.persistence.criteria.CriteriaSelect<? extends {%%0}>,jakarta.persistence.criteria.CriteriaSelect<? extends {%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.CriteriaUpdate<{%%0}> createCriteriaUpdate(java.lang.Class<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Expression<{%%0}> all(jakarta.persistence.criteria.Subquery<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Expression<{%%0}> any(jakarta.persistence.criteria.Subquery<{%%0}>)
@@ -1301,6 +1542,8 @@ meth public abstract <%0 extends java.util.Collection<?>> jakarta.persistence.cr
 meth public abstract <%0 extends java.util.Collection<?>> jakarta.persistence.criteria.Expression<java.lang.Integer> size({%%0})
 meth public abstract <%0 extends java.util.Collection<?>> jakarta.persistence.criteria.Predicate isEmpty(jakarta.persistence.criteria.Expression<{%%0}>)
 meth public abstract <%0 extends java.util.Collection<?>> jakarta.persistence.criteria.Predicate isNotEmpty(jakarta.persistence.criteria.Expression<{%%0}>)
+meth public abstract jakarta.persistence.criteria.CompoundSelection<jakarta.persistence.Tuple> tuple(java.util.List<jakarta.persistence.criteria.Selection<?>>)
+meth public abstract jakarta.persistence.criteria.CompoundSelection<java.lang.Object[]> array(java.util.List<jakarta.persistence.criteria.Selection<?>>)
 meth public abstract jakarta.persistence.criteria.CriteriaQuery<jakarta.persistence.Tuple> createTupleQuery()
 meth public abstract jakarta.persistence.criteria.CriteriaQuery<java.lang.Object> createQuery()
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.Double> exp(jakarta.persistence.criteria.Expression<? extends java.lang.Number>)
@@ -1331,7 +1574,16 @@ meth public abstract jakarta.persistence.criteria.Expression<java.lang.Number> q
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> concat(jakarta.persistence.criteria.Expression<java.lang.String>,jakarta.persistence.criteria.Expression<java.lang.String>)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> concat(jakarta.persistence.criteria.Expression<java.lang.String>,java.lang.String)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> concat(java.lang.String,jakarta.persistence.criteria.Expression<java.lang.String>)
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> concat(java.util.List<jakarta.persistence.criteria.Expression<java.lang.String>>)
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> left(jakarta.persistence.criteria.Expression<java.lang.String>,int)
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> left(jakarta.persistence.criteria.Expression<java.lang.String>,jakarta.persistence.criteria.Expression<java.lang.Integer>)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> lower(jakarta.persistence.criteria.Expression<java.lang.String>)
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> replace(jakarta.persistence.criteria.Expression<java.lang.String>,jakarta.persistence.criteria.Expression<java.lang.String>,jakarta.persistence.criteria.Expression<java.lang.String>)
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> replace(jakarta.persistence.criteria.Expression<java.lang.String>,jakarta.persistence.criteria.Expression<java.lang.String>,java.lang.String)
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> replace(jakarta.persistence.criteria.Expression<java.lang.String>,java.lang.String,jakarta.persistence.criteria.Expression<java.lang.String>)
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> replace(jakarta.persistence.criteria.Expression<java.lang.String>,java.lang.String,java.lang.String)
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> right(jakarta.persistence.criteria.Expression<java.lang.String>,int)
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> right(jakarta.persistence.criteria.Expression<java.lang.String>,jakarta.persistence.criteria.Expression<java.lang.Integer>)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> substring(jakarta.persistence.criteria.Expression<java.lang.String>,int)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> substring(jakarta.persistence.criteria.Expression<java.lang.String>,int,int)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.String> substring(jakarta.persistence.criteria.Expression<java.lang.String>,jakarta.persistence.criteria.Expression<java.lang.Integer>)
@@ -1353,8 +1605,11 @@ meth public abstract jakarta.persistence.criteria.Expression<java.time.LocalDate
 meth public abstract jakarta.persistence.criteria.Expression<java.time.LocalDateTime> localDateTime()
 meth public abstract jakarta.persistence.criteria.Expression<java.time.LocalTime> localTime()
 meth public abstract jakarta.persistence.criteria.Order asc(jakarta.persistence.criteria.Expression<?>)
+meth public abstract jakarta.persistence.criteria.Order asc(jakarta.persistence.criteria.Expression<?>,jakarta.persistence.criteria.Nulls)
 meth public abstract jakarta.persistence.criteria.Order desc(jakarta.persistence.criteria.Expression<?>)
+meth public abstract jakarta.persistence.criteria.Order desc(jakarta.persistence.criteria.Expression<?>,jakarta.persistence.criteria.Nulls)
 meth public abstract jakarta.persistence.criteria.Predicate and(jakarta.persistence.criteria.Expression<java.lang.Boolean>,jakarta.persistence.criteria.Expression<java.lang.Boolean>)
+meth public abstract jakarta.persistence.criteria.Predicate and(java.util.List<jakarta.persistence.criteria.Predicate>)
 meth public abstract jakarta.persistence.criteria.Predicate conjunction()
 meth public abstract jakarta.persistence.criteria.Predicate disjunction()
 meth public abstract jakarta.persistence.criteria.Predicate equal(jakarta.persistence.criteria.Expression<?>,jakarta.persistence.criteria.Expression<?>)
@@ -1388,6 +1643,7 @@ meth public abstract jakarta.persistence.criteria.Predicate notLike(jakarta.pers
 meth public abstract jakarta.persistence.criteria.Predicate notLike(jakarta.persistence.criteria.Expression<java.lang.String>,java.lang.String,char)
 meth public abstract jakarta.persistence.criteria.Predicate notLike(jakarta.persistence.criteria.Expression<java.lang.String>,java.lang.String,jakarta.persistence.criteria.Expression<java.lang.Character>)
 meth public abstract jakarta.persistence.criteria.Predicate or(jakarta.persistence.criteria.Expression<java.lang.Boolean>,jakarta.persistence.criteria.Expression<java.lang.Boolean>)
+meth public abstract jakarta.persistence.criteria.Predicate or(java.util.List<jakarta.persistence.criteria.Predicate>)
 
 CLSS public abstract interface static jakarta.persistence.criteria.CriteriaBuilder$Case<%0 extends java.lang.Object>
  outer jakarta.persistence.criteria.CriteriaBuilder
@@ -1440,20 +1696,26 @@ meth public abstract jakarta.persistence.criteria.Root<{jakarta.persistence.crit
 
 CLSS public abstract interface jakarta.persistence.criteria.CriteriaQuery<%0 extends java.lang.Object>
 intf jakarta.persistence.criteria.AbstractQuery<{jakarta.persistence.criteria.CriteriaQuery%0}>
+intf jakarta.persistence.criteria.CriteriaSelect<{jakarta.persistence.criteria.CriteriaQuery%0}>
 meth public abstract !varargs jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> groupBy(jakarta.persistence.criteria.Expression<?>[])
 meth public abstract !varargs jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> having(jakarta.persistence.criteria.Predicate[])
 meth public abstract !varargs jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> multiselect(jakarta.persistence.criteria.Selection<?>[])
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract !varargs jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> orderBy(jakarta.persistence.criteria.Order[])
 meth public abstract !varargs jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> where(jakarta.persistence.criteria.Predicate[])
 meth public abstract jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> distinct(boolean)
 meth public abstract jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> groupBy(java.util.List<jakarta.persistence.criteria.Expression<?>>)
 meth public abstract jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> having(jakarta.persistence.criteria.Expression<java.lang.Boolean>)
+meth public abstract jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> having(java.util.List<jakarta.persistence.criteria.Predicate>)
 meth public abstract jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> multiselect(java.util.List<jakarta.persistence.criteria.Selection<?>>)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="3.2")
 meth public abstract jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> orderBy(java.util.List<jakarta.persistence.criteria.Order>)
 meth public abstract jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> select(jakarta.persistence.criteria.Selection<? extends {jakarta.persistence.criteria.CriteriaQuery%0}>)
 meth public abstract jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> where(jakarta.persistence.criteria.Expression<java.lang.Boolean>)
+meth public abstract jakarta.persistence.criteria.CriteriaQuery<{jakarta.persistence.criteria.CriteriaQuery%0}> where(java.util.List<jakarta.persistence.criteria.Predicate>)
 meth public abstract java.util.List<jakarta.persistence.criteria.Order> getOrderList()
-meth public abstract java.util.Set<jakarta.persistence.criteria.ParameterExpression<?>> getParameters()
+
+CLSS public abstract interface jakarta.persistence.criteria.CriteriaSelect<%0 extends java.lang.Object>
 
 CLSS public abstract interface jakarta.persistence.criteria.CriteriaUpdate<%0 extends java.lang.Object>
 intf jakarta.persistence.criteria.CommonAbstractCriteria
@@ -1473,10 +1735,15 @@ intf jakarta.persistence.criteria.Selection<{jakarta.persistence.criteria.Expres
 meth public abstract !varargs jakarta.persistence.criteria.Predicate in(jakarta.persistence.criteria.Expression<?>[])
 meth public abstract !varargs jakarta.persistence.criteria.Predicate in(java.lang.Object[])
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Expression<{%%0}> as(java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Expression<{%%0}> cast(java.lang.Class<{%%0}>)
+meth public abstract jakarta.persistence.criteria.Predicate equalTo(jakarta.persistence.criteria.Expression<?>)
+meth public abstract jakarta.persistence.criteria.Predicate equalTo(java.lang.Object)
 meth public abstract jakarta.persistence.criteria.Predicate in(jakarta.persistence.criteria.Expression<java.util.Collection<?>>)
 meth public abstract jakarta.persistence.criteria.Predicate in(java.util.Collection<?>)
 meth public abstract jakarta.persistence.criteria.Predicate isNotNull()
 meth public abstract jakarta.persistence.criteria.Predicate isNull()
+meth public abstract jakarta.persistence.criteria.Predicate notEqualTo(jakarta.persistence.criteria.Expression<?>)
+meth public abstract jakarta.persistence.criteria.Predicate notEqualTo(java.lang.Object)
 
 CLSS public abstract interface jakarta.persistence.criteria.Fetch<%0 extends java.lang.Object, %1 extends java.lang.Object>
 intf jakarta.persistence.criteria.FetchParent<{jakarta.persistence.criteria.Fetch%0},{jakarta.persistence.criteria.Fetch%1}>
@@ -1510,8 +1777,12 @@ meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object> 
 meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object> jakarta.persistence.criteria.SetJoin<{%%0},{%%1}> joinSet(java.lang.String,jakarta.persistence.criteria.JoinType)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.CollectionJoin<{jakarta.persistence.criteria.From%1},{%%0}> join(jakarta.persistence.metamodel.CollectionAttribute<? super {jakarta.persistence.criteria.From%1},{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.CollectionJoin<{jakarta.persistence.criteria.From%1},{%%0}> join(jakarta.persistence.metamodel.CollectionAttribute<? super {jakarta.persistence.criteria.From%1},{%%0}>,jakarta.persistence.criteria.JoinType)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Join<{jakarta.persistence.criteria.From%1},{%%0}> join(jakarta.persistence.metamodel.EntityType<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Join<{jakarta.persistence.criteria.From%1},{%%0}> join(jakarta.persistence.metamodel.EntityType<{%%0}>,jakarta.persistence.criteria.JoinType)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Join<{jakarta.persistence.criteria.From%1},{%%0}> join(jakarta.persistence.metamodel.SingularAttribute<? super {jakarta.persistence.criteria.From%1},{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Join<{jakarta.persistence.criteria.From%1},{%%0}> join(jakarta.persistence.metamodel.SingularAttribute<? super {jakarta.persistence.criteria.From%1},{%%0}>,jakarta.persistence.criteria.JoinType)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Join<{jakarta.persistence.criteria.From%1},{%%0}> join(java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Join<{jakarta.persistence.criteria.From%1},{%%0}> join(java.lang.Class<{%%0}>,jakarta.persistence.criteria.JoinType)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.ListJoin<{jakarta.persistence.criteria.From%1},{%%0}> join(jakarta.persistence.metamodel.ListAttribute<? super {jakarta.persistence.criteria.From%1},{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.ListJoin<{jakarta.persistence.criteria.From%1},{%%0}> join(jakarta.persistence.metamodel.ListAttribute<? super {jakarta.persistence.criteria.From%1},{%%0}>,jakarta.persistence.criteria.JoinType)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.SetJoin<{jakarta.persistence.criteria.From%1},{%%0}> join(jakarta.persistence.metamodel.SetAttribute<? super {jakarta.persistence.criteria.From%1},{%%0}>)
@@ -1544,6 +1815,42 @@ meth public abstract jakarta.persistence.criteria.Expression<java.lang.Integer> 
 meth public abstract jakarta.persistence.criteria.ListJoin<{jakarta.persistence.criteria.ListJoin%0},{jakarta.persistence.criteria.ListJoin%1}> on(jakarta.persistence.criteria.Expression<java.lang.Boolean>)
 meth public abstract jakarta.persistence.metamodel.ListAttribute<? super {jakarta.persistence.criteria.ListJoin%0},{jakarta.persistence.criteria.ListJoin%1}> getModel()
 
+CLSS public jakarta.persistence.criteria.LocalDateField<%0 extends java.lang.Object>
+fld public final static jakarta.persistence.criteria.LocalDateField<java.lang.Integer> DAY
+fld public final static jakarta.persistence.criteria.LocalDateField<java.lang.Integer> MONTH
+fld public final static jakarta.persistence.criteria.LocalDateField<java.lang.Integer> QUARTER
+fld public final static jakarta.persistence.criteria.LocalDateField<java.lang.Integer> WEEK
+fld public final static jakarta.persistence.criteria.LocalDateField<java.lang.Integer> YEAR
+intf jakarta.persistence.criteria.TemporalField<{jakarta.persistence.criteria.LocalDateField%0},java.time.LocalDate>
+meth public java.lang.String toString()
+supr java.lang.Object
+hfds name
+
+CLSS public jakarta.persistence.criteria.LocalDateTimeField<%0 extends java.lang.Object>
+fld public final static jakarta.persistence.criteria.LocalDateTimeField<java.lang.Double> SECOND
+fld public final static jakarta.persistence.criteria.LocalDateTimeField<java.lang.Integer> DAY
+fld public final static jakarta.persistence.criteria.LocalDateTimeField<java.lang.Integer> HOUR
+fld public final static jakarta.persistence.criteria.LocalDateTimeField<java.lang.Integer> MINUTE
+fld public final static jakarta.persistence.criteria.LocalDateTimeField<java.lang.Integer> MONTH
+fld public final static jakarta.persistence.criteria.LocalDateTimeField<java.lang.Integer> QUARTER
+fld public final static jakarta.persistence.criteria.LocalDateTimeField<java.lang.Integer> WEEK
+fld public final static jakarta.persistence.criteria.LocalDateTimeField<java.lang.Integer> YEAR
+fld public final static jakarta.persistence.criteria.LocalDateTimeField<java.time.LocalDate> DATE
+fld public final static jakarta.persistence.criteria.LocalDateTimeField<java.time.LocalTime> TIME
+intf jakarta.persistence.criteria.TemporalField<{jakarta.persistence.criteria.LocalDateTimeField%0},java.time.LocalDateTime>
+meth public java.lang.String toString()
+supr java.lang.Object
+hfds name
+
+CLSS public jakarta.persistence.criteria.LocalTimeField<%0 extends java.lang.Object>
+fld public final static jakarta.persistence.criteria.LocalTimeField<java.lang.Double> SECOND
+fld public final static jakarta.persistence.criteria.LocalTimeField<java.lang.Integer> HOUR
+fld public final static jakarta.persistence.criteria.LocalTimeField<java.lang.Integer> MINUTE
+intf jakarta.persistence.criteria.TemporalField<{jakarta.persistence.criteria.LocalTimeField%0},java.time.LocalTime>
+meth public java.lang.String toString()
+supr java.lang.Object
+hfds name
+
 CLSS public abstract interface jakarta.persistence.criteria.MapJoin<%0 extends java.lang.Object, %1 extends java.lang.Object, %2 extends java.lang.Object>
 intf jakarta.persistence.criteria.PluralJoin<{jakarta.persistence.criteria.MapJoin%0},java.util.Map<{jakarta.persistence.criteria.MapJoin%1},{jakarta.persistence.criteria.MapJoin%2}>,{jakarta.persistence.criteria.MapJoin%2}>
 meth public abstract !varargs jakarta.persistence.criteria.MapJoin<{jakarta.persistence.criteria.MapJoin%0},{jakarta.persistence.criteria.MapJoin%1},{jakarta.persistence.criteria.MapJoin%2}> on(jakarta.persistence.criteria.Predicate[])
@@ -1553,9 +1860,18 @@ meth public abstract jakarta.persistence.criteria.Path<{jakarta.persistence.crit
 meth public abstract jakarta.persistence.criteria.Path<{jakarta.persistence.criteria.MapJoin%2}> value()
 meth public abstract jakarta.persistence.metamodel.MapAttribute<? super {jakarta.persistence.criteria.MapJoin%0},{jakarta.persistence.criteria.MapJoin%1},{jakarta.persistence.criteria.MapJoin%2}> getModel()
 
+CLSS public final !enum jakarta.persistence.criteria.Nulls
+fld public final static jakarta.persistence.criteria.Nulls FIRST
+fld public final static jakarta.persistence.criteria.Nulls LAST
+fld public final static jakarta.persistence.criteria.Nulls NONE
+meth public static jakarta.persistence.criteria.Nulls valueOf(java.lang.String)
+meth public static jakarta.persistence.criteria.Nulls[] values()
+supr java.lang.Enum<jakarta.persistence.criteria.Nulls>
+
 CLSS public abstract interface jakarta.persistence.criteria.Order
 meth public abstract boolean isAscending()
 meth public abstract jakarta.persistence.criteria.Expression<?> getExpression()
+meth public abstract jakarta.persistence.criteria.Nulls getNullPrecedence()
 meth public abstract jakarta.persistence.criteria.Order reverse()
 
 CLSS public abstract interface jakarta.persistence.criteria.ParameterExpression<%0 extends java.lang.Object>
@@ -1564,8 +1880,8 @@ intf jakarta.persistence.criteria.Expression<{jakarta.persistence.criteria.Param
 
 CLSS public abstract interface jakarta.persistence.criteria.Path<%0 extends java.lang.Object>
 intf jakarta.persistence.criteria.Expression<{jakarta.persistence.criteria.Path%0}>
-meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object, %2 extends java.util.Map<{%%0},{%%1}>> jakarta.persistence.criteria.Expression<{%%2}> get(jakarta.persistence.metamodel.MapAttribute<{jakarta.persistence.criteria.Path%0},{%%0},{%%1}>)
-meth public abstract <%0 extends java.lang.Object, %1 extends java.util.Collection<{%%0}>> jakarta.persistence.criteria.Expression<{%%1}> get(jakarta.persistence.metamodel.PluralAttribute<{jakarta.persistence.criteria.Path%0},{%%1},{%%0}>)
+meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object, %2 extends java.util.Map<{%%0},{%%1}>> jakarta.persistence.criteria.Expression<{%%2}> get(jakarta.persistence.metamodel.MapAttribute<? super {jakarta.persistence.criteria.Path%0},{%%0},{%%1}>)
+meth public abstract <%0 extends java.lang.Object, %1 extends java.util.Collection<{%%0}>> jakarta.persistence.criteria.Expression<{%%1}> get(jakarta.persistence.metamodel.PluralAttribute<? super {jakarta.persistence.criteria.Path%0},{%%1},{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Path<{%%0}> get(jakarta.persistence.metamodel.SingularAttribute<? super {jakarta.persistence.criteria.Path%0},{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.criteria.Path<{%%0}> get(java.lang.String)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.Class<? extends {jakarta.persistence.criteria.Path%0}>> type()
@@ -1626,9 +1942,15 @@ meth public abstract jakarta.persistence.criteria.Expression<{jakarta.persistenc
 meth public abstract jakarta.persistence.criteria.Subquery<{jakarta.persistence.criteria.Subquery%0}> distinct(boolean)
 meth public abstract jakarta.persistence.criteria.Subquery<{jakarta.persistence.criteria.Subquery%0}> groupBy(java.util.List<jakarta.persistence.criteria.Expression<?>>)
 meth public abstract jakarta.persistence.criteria.Subquery<{jakarta.persistence.criteria.Subquery%0}> having(jakarta.persistence.criteria.Expression<java.lang.Boolean>)
+meth public abstract jakarta.persistence.criteria.Subquery<{jakarta.persistence.criteria.Subquery%0}> having(java.util.List<jakarta.persistence.criteria.Predicate>)
 meth public abstract jakarta.persistence.criteria.Subquery<{jakarta.persistence.criteria.Subquery%0}> select(jakarta.persistence.criteria.Expression<{jakarta.persistence.criteria.Subquery%0}>)
 meth public abstract jakarta.persistence.criteria.Subquery<{jakarta.persistence.criteria.Subquery%0}> where(jakarta.persistence.criteria.Expression<java.lang.Boolean>)
+meth public abstract jakarta.persistence.criteria.Subquery<{jakarta.persistence.criteria.Subquery%0}> where(java.util.List<jakarta.persistence.criteria.Predicate>)
 meth public abstract java.util.Set<jakarta.persistence.criteria.Join<?,?>> getCorrelatedJoins()
+
+CLSS public abstract interface jakarta.persistence.criteria.TemporalField<%0 extends java.lang.Object, %1 extends java.time.temporal.Temporal>
+
+CLSS abstract interface jakarta.persistence.criteria.package-info
 
 CLSS public abstract interface jakarta.persistence.metamodel.Attribute<%0 extends java.lang.Object, %1 extends java.lang.Object>
 innr public final static !enum PersistentAttributeType
@@ -1739,6 +2061,7 @@ CLSS public abstract interface jakarta.persistence.metamodel.Metamodel
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.metamodel.EmbeddableType<{%%0}> embeddable(java.lang.Class<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.metamodel.EntityType<{%%0}> entity(java.lang.Class<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> jakarta.persistence.metamodel.ManagedType<{%%0}> managedType(java.lang.Class<{%%0}>)
+meth public abstract jakarta.persistence.metamodel.EntityType<?> entity(java.lang.String)
 meth public abstract java.util.Set<jakarta.persistence.metamodel.EmbeddableType<?>> getEmbeddables()
 meth public abstract java.util.Set<jakarta.persistence.metamodel.EntityType<?>> getEntities()
 meth public abstract java.util.Set<jakarta.persistence.metamodel.ManagedType<?>> getManagedTypes()
@@ -1792,6 +2115,10 @@ meth public static jakarta.persistence.metamodel.Type$PersistenceType valueOf(ja
 meth public static jakarta.persistence.metamodel.Type$PersistenceType[] values()
 supr java.lang.Enum<jakarta.persistence.metamodel.Type$PersistenceType>
 
+CLSS abstract interface jakarta.persistence.metamodel.package-info
+
+CLSS abstract interface jakarta.persistence.package-info
+
 CLSS public abstract interface jakarta.persistence.spi.ClassTransformer
 meth public abstract byte[] transform(java.lang.ClassLoader,java.lang.String,java.lang.Class<?>,java.security.ProtectionDomain,byte[]) throws jakarta.persistence.spi.TransformerException
 
@@ -1804,11 +2131,12 @@ meth public static jakarta.persistence.spi.LoadState[] values()
 supr java.lang.Enum<jakarta.persistence.spi.LoadState>
 
 CLSS public abstract interface jakarta.persistence.spi.PersistenceProvider
-meth public abstract boolean generateSchema(java.lang.String,java.util.Map)
-meth public abstract jakarta.persistence.EntityManagerFactory createContainerEntityManagerFactory(jakarta.persistence.spi.PersistenceUnitInfo,java.util.Map)
-meth public abstract jakarta.persistence.EntityManagerFactory createEntityManagerFactory(java.lang.String,java.util.Map)
+meth public abstract boolean generateSchema(java.lang.String,java.util.Map<?,?>)
+meth public abstract jakarta.persistence.EntityManagerFactory createContainerEntityManagerFactory(jakarta.persistence.spi.PersistenceUnitInfo,java.util.Map<?,?>)
+meth public abstract jakarta.persistence.EntityManagerFactory createEntityManagerFactory(jakarta.persistence.PersistenceConfiguration)
+meth public abstract jakarta.persistence.EntityManagerFactory createEntityManagerFactory(java.lang.String,java.util.Map<?,?>)
 meth public abstract jakarta.persistence.spi.ProviderUtil getProviderUtil()
-meth public abstract void generateSchema(jakarta.persistence.spi.PersistenceUnitInfo,java.util.Map)
+meth public abstract void generateSchema(jakarta.persistence.spi.PersistenceUnitInfo,java.util.Map<?,?>)
 
 CLSS public abstract interface jakarta.persistence.spi.PersistenceProviderResolver
 meth public abstract java.util.List<jakarta.persistence.spi.PersistenceProvider> getPersistenceProviders()
@@ -1832,9 +2160,11 @@ meth public abstract java.lang.ClassLoader getNewTempClassLoader()
 meth public abstract java.lang.String getPersistenceProviderClassName()
 meth public abstract java.lang.String getPersistenceUnitName()
 meth public abstract java.lang.String getPersistenceXMLSchemaVersion()
+meth public abstract java.lang.String getScopeAnnotationName()
 meth public abstract java.net.URL getPersistenceUnitRootUrl()
 meth public abstract java.util.List<java.lang.String> getManagedClassNames()
 meth public abstract java.util.List<java.lang.String> getMappingFileNames()
+meth public abstract java.util.List<java.lang.String> getQualifierAnnotationNames()
 meth public abstract java.util.List<java.net.URL> getJarFileUrls()
 meth public abstract java.util.Properties getProperties()
 meth public abstract javax.sql.DataSource getJtaDataSource()
@@ -1842,6 +2172,7 @@ meth public abstract javax.sql.DataSource getNonJtaDataSource()
 meth public abstract void addTransformer(jakarta.persistence.spi.ClassTransformer)
 
 CLSS public final !enum jakarta.persistence.spi.PersistenceUnitTransactionType
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="3.2")
 fld public final static jakarta.persistence.spi.PersistenceUnitTransactionType JTA
 fld public final static jakarta.persistence.spi.PersistenceUnitTransactionType RESOURCE_LOCAL
 meth public static jakarta.persistence.spi.PersistenceUnitTransactionType valueOf(java.lang.String)
@@ -1861,6 +2192,8 @@ cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
+CLSS abstract interface jakarta.persistence.spi.package-info
+
 CLSS public abstract interface java.io.Serializable
 
 CLSS public abstract interface java.lang.AutoCloseable
@@ -1869,10 +2202,20 @@ meth public abstract void close() throws java.lang.Exception
 CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
+CLSS public abstract interface !annotation java.lang.Deprecated
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, MODULE, PARAMETER, TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean forRemoval()
+meth public abstract !hasdefault java.lang.String since()
+
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
 cons protected init(java.lang.String,int)
+innr public final static EnumDesc
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
+intf java.lang.constant.Constable
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected final void finalize()
 meth public final boolean equals(java.lang.Object)
@@ -1881,9 +2224,11 @@ meth public final int hashCode()
 meth public final int ordinal()
 meth public final java.lang.Class<{java.lang.Enum%0}> getDeclaringClass()
 meth public final java.lang.String name()
+meth public final java.util.Optional<java.lang.Enum$EnumDesc<{java.lang.Enum%0}>> describeConstable()
 meth public java.lang.String toString()
 meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
 supr java.lang.Object
+hfds name,ordinal
 
 CLSS public java.lang.Exception
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -1892,6 +2237,13 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
+hfds serialVersionUID
+
+CLSS public abstract interface !annotation java.lang.FunctionalInterface
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
 
 CLSS public java.lang.Object
 cons public init()
@@ -1915,6 +2267,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Exception
+hfds serialVersionUID
 
 CLSS public java.lang.Throwable
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -1937,6 +2290,8 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,depth,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public abstract interface java.lang.annotation.Annotation
 meth public abstract boolean equals(java.lang.Object)
@@ -1970,4 +2325,7 @@ CLSS public abstract interface !annotation java.lang.annotation.Target
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.annotation.ElementType[] value()
+
+CLSS public abstract interface java.lang.constant.Constable
+meth public abstract java.util.Optional<? extends java.lang.constant.ConstantDesc> describeConstable()
 
