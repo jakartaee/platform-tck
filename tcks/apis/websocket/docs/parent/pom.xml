@@ -20,8 +20,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>jakarta.tck</groupId>
-    <artifactId>jakarta.tck.user-guide</artifactId>
-    <version>2.2.0</version>
+    <artifactId>jakarta.tck.websocket.user-guide</artifactId>
+    <version>2.2.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Eclipse Foundation Technology Compatibility Kit User's Guide Parent for TCK Documentation</name>
@@ -46,7 +46,7 @@
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status>DRAFT</status>
 
-        <ug.resources.version>2.2.0</ug.resources.version>
+        <ug.resources.version>2.2.1-SNAPSHOT</ug.resources.version>
         <ug.staging.dir>${project.build.directory}/staging</ug.staging.dir>
     </properties>
 
@@ -155,7 +155,7 @@
                                 <artifactItems>
                                     <artifactItem>
                                         <groupId>jakarta.tck</groupId>
-                                        <artifactId>jakarta.tck.user-guide</artifactId>
+                                        <artifactId>jakarta.tck.websocket.user-guide</artifactId>
                                         <version>${ug.resources.version}</version>
                                         <classifier>resources</classifier>
                                         <type>zip</type>
@@ -319,7 +319,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
