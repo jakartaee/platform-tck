@@ -43,7 +43,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>ejb30</artifactId>
-            <version>${ejb30.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.ejb</groupId>
