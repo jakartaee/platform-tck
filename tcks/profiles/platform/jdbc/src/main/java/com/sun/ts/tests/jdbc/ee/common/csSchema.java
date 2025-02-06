@@ -41,81 +41,78 @@ import com.sun.ts.lib.util.TestUtil;
  */
 
 public class csSchema extends ServiceEETest {
-  private Properties props = null;
+	private Properties props = null;
 
-  public void dbUnConnect(Connection conn) throws RemoteException {
-    TestUtil.logTrace("dbUnConnect");
-    // Close the DB connections
-    try {
-      conn.close();
-      TestUtil.logMsg("Closed database connection");
-    } catch (Exception e) {
-      TestUtil.logErr(
-          "Exception occured while trying to close the DB connection", e);
-      throw new RemoteException(e.getMessage());
-    }
-  }
+	public void dbUnConnect(Connection conn) throws RemoteException {
+		TestUtil.logTrace("dbUnConnect");
+		// Close the DB connections
+		try {
+			conn.close();
+			TestUtil.logMsg("Closed database connection");
+		} catch (Exception e) {
+			TestUtil.logErr("Exception occured while trying to close the DB connection", e);
+			throw new RemoteException(e.getMessage());
+		}
+	}
 
-  public boolean supportsType(String dataTypeParam, Connection conn) {
+	public boolean supportsType(String dataTypeParam, Connection conn) {
 
-    boolean retValue = false;
+		boolean retValue = false;
 
-    try {
+		try {
 
-      logTrace("Creating DBMetaData Object");
-      DatabaseMetaData dbmeta = conn.getMetaData();
-      ResultSet rs = dbmeta.getTypeInfo();
+			logTrace("Creating DBMetaData Object");
+			DatabaseMetaData dbmeta = conn.getMetaData();
+			ResultSet rs = dbmeta.getTypeInfo();
 
-      while (rs.next() && retValue == false) {
-        String typeName = rs.getString(1);
-        if (typeName != null) {
-          if (typeName.equalsIgnoreCase(dataTypeParam)
-              || (dataTypeParam.equalsIgnoreCase("BOOLEAN")
-                  && typeName.equalsIgnoreCase("BOOL"))) {
-            // the typeName is usually "BOOLEAN" but for mysql, it
-            // sometimes comes in as "BOOL" so we need to check both
-            short dataType = rs.getShort(2);
-            if (matchesExpectedType(dataTypeParam, dataType))
-              retValue = true;
-          }
-        }
-      }
-      if (retValue == true)
-        logTrace("DataType: " + dataTypeParam + " is supported");
-      else
-        logTrace("DataType: " + dataTypeParam + " is not supported");
+			while (rs.next() && retValue == false) {
+				String typeName = rs.getString(1);
+				if (typeName != null) {
+					if (typeName.equalsIgnoreCase(dataTypeParam)
+							|| (dataTypeParam.equalsIgnoreCase("BOOLEAN") && typeName.equalsIgnoreCase("BOOL"))) {
+						// the typeName is usually "BOOLEAN" but for mysql, it
+						// sometimes comes in as "BOOL" so we need to check both
+						short dataType = rs.getShort(2);
+						if (matchesExpectedType(dataTypeParam, dataType))
+							retValue = true;
+					}
+				}
+			}
+			if (retValue == true)
+				logTrace("DataType: " + dataTypeParam + " is supported");
+			else
+				logTrace("DataType: " + dataTypeParam + " is not supported");
 
-    } catch (Exception ex2) {
+		} catch (Exception ex2) {
 
-      logErr("Exception in supportsType method ", ex2);
-    }
+			logErr("Exception in supportsType method ", ex2);
+		}
 
-    return retValue;
-  }
+		return retValue;
+	}
 
-  public static boolean matchesExpectedType(String dataTypeParam,
-      short dataType) {
-    boolean retValue = false;
-    switch (dataType) {
-    case java.sql.Types.BOOLEAN:
-    case java.sql.Types.BIT:
-      if (dataTypeParam.equalsIgnoreCase("BOOLEAN"))
-        retValue = true;
-      break;
-    case java.sql.Types.TINYINT:
-      if (dataTypeParam.equalsIgnoreCase("TINYINT"))
-        retValue = true;
-      break;
-    case java.sql.Types.SMALLINT:
-      if (dataTypeParam.equalsIgnoreCase("SMALLINT"))
-        retValue = true;
-      break;
-    // Other types have a direct mapping.
-    default:
-      retValue = true;
+	public static boolean matchesExpectedType(String dataTypeParam, short dataType) {
+		boolean retValue = false;
+		switch (dataType) {
+		case java.sql.Types.BOOLEAN:
+		case java.sql.Types.BIT:
+			if (dataTypeParam.equalsIgnoreCase("BOOLEAN"))
+				retValue = true;
+			break;
+		case java.sql.Types.TINYINT:
+			if (dataTypeParam.equalsIgnoreCase("TINYINT"))
+				retValue = true;
+			break;
+		case java.sql.Types.SMALLINT:
+			if (dataTypeParam.equalsIgnoreCase("SMALLINT"))
+				retValue = true;
+			break;
+		// Other types have a direct mapping.
+		default:
+			retValue = true;
 
-    }
-    return retValue;
-  }
+		}
+		return retValue;
+	}
 
 }

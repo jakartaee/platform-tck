@@ -54,101 +54,102 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class resultSetClient41JSP extends resultSetClient41 implements Serializable {
-  private static final String testName = "jdbc.ee.resultSet.resultSet41";
+	private static final String testName = "jdbc.ee.resultSet.resultSet41";
 
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
-  @Deployment(name = "jsp", testable = true)
-	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
+	@Deployment(name = "jsp", testable = true)
+	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "resultSet41_jsp_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
-        
-		archive.addClasses(resultSetClient41JSP.class, resultSetClient41.class);
-		
-	       // The jsp descriptor
-  URL jspUrl = resultSetClient41JSP.class.getResource("jsp_vehicle_web.xml");
-  if(jspUrl != null) {
-  	archive.addAsWebInfResource(jspUrl, "web.xml");
-  }
-  // The sun jsp descriptor
-  URL sunJSPUrl = resultSetClient41JSP.class.getResource("resultSet41_jsp_vehicle_web.war.sun-web.xml");
-  if(sunJSPUrl != null) {
-  	archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
-  }
-  // Call the archive processor
-  archiveProcessor.processWebArchive(archive, resultSetClient41JSP.class, sunJSPUrl);
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+		archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
+		InputStream clientHtml = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+		archive.add(new ByteArrayAsset(clientHtml), "client.html");
 
-		archive.addAsWebInfResource(resultSetClient41JSP.class.getPackage(), "jsp_vehicle_web.xml","web.xml");
-		
+		archive.addClasses(resultSetClient41JSP.class, resultSetClient41.class);
+
+		// The jsp descriptor
+		URL jspUrl = resultSetClient41JSP.class.getResource("jsp_vehicle_web.xml");
+		if (jspUrl != null) {
+			archive.addAsWebInfResource(jspUrl, "web.xml");
+		}
+		// The sun jsp descriptor
+		URL sunJSPUrl = resultSetClient41JSP.class.getResource("resultSet41_jsp_vehicle_web.war.sun-web.xml");
+		if (sunJSPUrl != null) {
+			archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
+		}
+		// Call the archive processor
+		archiveProcessor.processWebArchive(archive, resultSetClient41JSP.class, sunJSPUrl);
+
+		archive.addAsWebInfResource(resultSetClient41JSP.class.getPackage(), "jsp_vehicle_web.xml", "web.xml");
+
 		return archive;
 	};
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    resultSetClient41JSP theTests = new resultSetClient41JSP();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		resultSetClient41JSP theTests = new resultSetClient41JSP();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /*
-   * @testName: testGetBoolean67
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
-   * JDBC:JAVADOC:407; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * maximum value of table Bit_Tab.Call the getBoolean(String columnName)
-   * method. Compare the returned result with the value extracted from
-   * tssql.stmt file.Both of them should be equal and the returned result must
-   * be equal to the Maximum Value of JDBC Bit datatype.
-   */
+	/*
+	 * @testName: testGetBoolean67
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
+	 * JDBC:JAVADOC:407; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * maximum value of table Bit_Tab.Call the getBoolean(String columnName) method.
+	 * Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the Maximum Value of JDBC Bit datatype.
+	 */
 
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetBoolean67() throws Exception {
+	public void testGetBoolean67() throws Exception {
 		super.testGetBoolean67();
-  }
+	}
 
-  /*
-   * @testName: testGetBoolean68
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
-   * JDBC:JAVADOC:407; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * minimum value of table Bit_Tab.Call the getBoolean(String columnName)
-   * method. Compare the returned result with the value extracted from
-   * tssql.stmt file.Both of them should be equal and the returned result must
-   * be equal to the Minimum Value of JDBC Bit datatype.
-   */
+	/*
+	 * @testName: testGetBoolean68
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
+	 * JDBC:JAVADOC:407; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * minimum value of table Bit_Tab.Call the getBoolean(String columnName) method.
+	 * Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the Minimum Value of JDBC Bit datatype.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetBoolean68() throws Exception {
+	public void testGetBoolean68() throws Exception {
 		super.testGetBoolean68();
-  }
+	}
 
-  /*
-   * @testName: testGetBoolean69
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
-   * JDBC:JAVADOC:407; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Bit_Tab.Call the getBoolean(String columnName)
-   * method.Check if the value returned is boolean value false.
-   */
+	/*
+	 * @testName: testGetBoolean69
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
+	 * JDBC:JAVADOC:407; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Bit_Tab.Call the getBoolean(String columnName)
+	 * method.Check if the value returned is boolean value false.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetBoolean69() throws Exception {
+	public void testGetBoolean69() throws Exception {
 		super.testGetBoolean69();
-  }
+	}
 }

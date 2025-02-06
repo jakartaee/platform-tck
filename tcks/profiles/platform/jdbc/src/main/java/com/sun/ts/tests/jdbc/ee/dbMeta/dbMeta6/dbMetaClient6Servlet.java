@@ -52,383 +52,380 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class dbMetaClient6Servlet extends dbMetaClient6 implements Serializable {
-  private static final String testName = "jdbc.ee.dbMeta.dbMeta6";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+	private static final String testName = "jdbc.ee.dbMeta.dbMeta6";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
 	@Deployment(name = "servlet", testable = true)
-	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "dbMeta6_servlet_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(dbMetaClient6Servlet.class, dbMetaClient6.class);
-	       // The servlet descriptor
-URL servletUrl = dbMetaClient6Servlet.class.getResource("servlet_vehicle_web.xml");
-if(servletUrl != null) {
-	archive.addAsWebInfResource(servletUrl, "web.xml");
-}
+		// The servlet descriptor
+		URL servletUrl = dbMetaClient6Servlet.class.getResource("servlet_vehicle_web.xml");
+		if (servletUrl != null) {
+			archive.addAsWebInfResource(servletUrl, "web.xml");
+		}
 // The sun servlet descriptor
-URL sunServletUrl = dbMetaClient6Servlet.class.getResource("dbMeta6_servlet_vehicle_web.war.sun-web.xml");
-if(sunServletUrl != null) {
-	archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
-}
+		URL sunServletUrl = dbMetaClient6Servlet.class.getResource("dbMeta6_servlet_vehicle_web.war.sun-web.xml");
+		if (sunServletUrl != null) {
+			archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
+		}
 // Call the archive processor
-archiveProcessor.processWebArchive(archive, dbMetaClient6Servlet.class, sunServletUrl);
-		
+		archiveProcessor.processWebArchive(archive, dbMetaClient6Servlet.class, sunServletUrl);
+
 		return archive;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		dbMetaClient6Servlet theTests = new dbMetaClient6Servlet();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    dbMetaClient6Servlet theTests = new dbMetaClient6Servlet();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: testGetCatalogSeparator
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:934; JDBC:JAVADOC:935;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase. Make a call to DatabaseMetadata.getCatalogSeparator() on that
-   * object. It should return a String and NULL if it is not supported.
-   *
-   */
+	/*
+	 * @testName: testGetCatalogSeparator
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:934; JDBC:JAVADOC:935;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase. Make a call to DatabaseMetadata.getCatalogSeparator() on that
+	 * object. It should return a String and NULL if it is not supported.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetCatalogSeparator() throws Exception {
+	public void testGetCatalogSeparator() throws Exception {
 		super.testGetCatalogSeparator();
-  }
+	}
 
-  /*
-   * @testName: testSupportsSchemasInDataManipulation
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:936; JDBC:JAVADOC:937;
-   * JavaEE:SPEC:193;
-   * 
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase. Make a call to
-   * DatabaseMetadata.supportsSchemasInDataManipulation() on that object. It
-   * should return a boolean value either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsSchemasInDataManipulation
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:936; JDBC:JAVADOC:937;
+	 * JavaEE:SPEC:193;
+	 * 
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase. Make a call to DatabaseMetadata.supportsSchemasInDataManipulation()
+	 * on that object. It should return a boolean value either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsSchemasInDataManipulation() throws Exception {
+	public void testSupportsSchemasInDataManipulation() throws Exception {
 		super.testSupportsSchemasInDataManipulation();
-  }
+	}
 
-  /*
-   * @testName: testSupportsSchemasInProcedureCalls
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:938; JDBC:JAVADOC:939;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase. Make a call to DatabaseMetadata.supportsSchemasInProcedureCalls()
-   * on that object. It should return a boolean value; either true or false
-   *
-   */
+	/*
+	 * @testName: testSupportsSchemasInProcedureCalls
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:938; JDBC:JAVADOC:939;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase. Make a call to DatabaseMetadata.supportsSchemasInProcedureCalls()
+	 * on that object. It should return a boolean value; either true or false
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsSchemasInProcedureCalls() throws Exception {
+	public void testSupportsSchemasInProcedureCalls() throws Exception {
 		super.testSupportsSchemasInProcedureCalls();
-  }
+	}
 
-  /*
-   * @testName: testSupportsSchemasInTableDefinitions
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:940; JDBC:JAVADOC:941;
-   * JavaEE:SPEC:193;
-   * 
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase. Make a call to
-   * DatabaseMetadata.supportsSchemasInTableDefinitions() on that object.It
-   * should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsSchemasInTableDefinitions
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:940; JDBC:JAVADOC:941;
+	 * JavaEE:SPEC:193;
+	 * 
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase. Make a call to DatabaseMetadata.supportsSchemasInTableDefinitions()
+	 * on that object.It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsSchemasInTableDefinitions() throws Exception {
+	public void testSupportsSchemasInTableDefinitions() throws Exception {
 		super.testSupportsSchemasInTableDefinitions();
-  }
+	}
 
-  /*
-   * @testName: testSupportsSchemasInIndexDefinitions
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:942; JDBC:JAVADOC:943;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase. Call to supportsSchemasInIndexDefinitions() on that object. It
-   * should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsSchemasInIndexDefinitions
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:942; JDBC:JAVADOC:943;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase. Call to supportsSchemasInIndexDefinitions() on that object. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsSchemasInIndexDefinitions() throws Exception {
+	public void testSupportsSchemasInIndexDefinitions() throws Exception {
 		super.testSupportsSchemasInIndexDefinitions();
-  }
+	}
 
-  /*
-   * @testName: testSupportsSchemasInPrivilegeDefinitions
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:944; JDBC:JAVADOC:945;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase. Call to supportsSchemasInPrivilegeDefinitions() on that object.
-   * It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsSchemasInPrivilegeDefinitions
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:944; JDBC:JAVADOC:945;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase. Call to supportsSchemasInPrivilegeDefinitions() on that object. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsSchemasInPrivilegeDefinitions() throws Exception {
+	public void testSupportsSchemasInPrivilegeDefinitions() throws Exception {
 		super.testSupportsSchemasInPrivilegeDefinitions();
-  }
+	}
 
-  /*
-   * @testName: testSupportsCatalogsInDataManipulation
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:946; JDBC:JAVADOC:947;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase. Call to supportsCatalogsInDataManipulation()on that object. It
-   * should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsCatalogsInDataManipulation
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:946; JDBC:JAVADOC:947;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase. Call to supportsCatalogsInDataManipulation()on that object. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsCatalogsInDataManipulation() throws Exception {
+	public void testSupportsCatalogsInDataManipulation() throws Exception {
 		super.testSupportsCatalogsInDataManipulation();
-  }
+	}
 
-  /*
-   * @testName: testSupportsCatalogsInProcedureCalls
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:948; JDBC:JAVADOC:949;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase. Call to supportsCatalogsInProcedureCalls() on that object. It
-   * should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsCatalogsInProcedureCalls
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:948; JDBC:JAVADOC:949;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase. Call to supportsCatalogsInProcedureCalls() on that object. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsCatalogsInProcedureCalls() throws Exception {
+	public void testSupportsCatalogsInProcedureCalls() throws Exception {
 		super.testSupportsCatalogsInProcedureCalls();
-  }
+	}
 
-  /*
-   * @testName: testSupportsCatalogsInTableDefinitions
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:950; JDBC:JAVADOC:951;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database Call the supportsCatalogsInTableDefinitions() method on that
-   * object. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsCatalogsInTableDefinitions
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:950; JDBC:JAVADOC:951;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database Call the supportsCatalogsInTableDefinitions() method on that object.
+	 * It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsCatalogsInTableDefinitions() throws Exception {
+	public void testSupportsCatalogsInTableDefinitions() throws Exception {
 		super.testSupportsCatalogsInTableDefinitions();
-  }
+	}
 
-  /*
-   * @testName: testSupportsCatalogsInIndexDefinitions
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:952; JDBC:JAVADOC:953;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database Call the supportsCatalogsInIndexDefinitions() method on that
-   * object. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsCatalogsInIndexDefinitions
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:952; JDBC:JAVADOC:953;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database Call the supportsCatalogsInIndexDefinitions() method on that object.
+	 * It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsCatalogsInIndexDefinitions() throws Exception {
+	public void testSupportsCatalogsInIndexDefinitions() throws Exception {
 		super.testSupportsCatalogsInIndexDefinitions();
-  }
+	}
 
-  /*
-   * @testName: testSupportsCatalogsInPrivilegeDefinitions
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:954; JDBC:JAVADOC:955;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsCatalogsInPrivilegeDefinitions() method on
-   * that object. It should return a boolean value; either true or false
-   *
-   */
+	/*
+	 * @testName: testSupportsCatalogsInPrivilegeDefinitions
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:954; JDBC:JAVADOC:955;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsCatalogsInPrivilegeDefinitions() method on that
+	 * object. It should return a boolean value; either true or false
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsCatalogsInPrivilegeDefinitions() throws Exception {
+	public void testSupportsCatalogsInPrivilegeDefinitions() throws Exception {
 		super.testSupportsCatalogsInPrivilegeDefinitions();
-  }
+	}
 
-  /*
-   * @testName: testSupportsPositionedDelete
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:956; JDBC:JAVADOC:957;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsPositionedDelete() method on that object. It
-   * should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsPositionedDelete
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:956; JDBC:JAVADOC:957;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsPositionedDelete() method on that object. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsPositionedDelete() throws Exception {
+	public void testSupportsPositionedDelete() throws Exception {
 		super.testSupportsPositionedDelete();
-  }
+	}
 
-  /*
-   * @testName: testSupportsPositionedUpdate
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:958; JDBC:JAVADOC:959;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsPositionedUpdate() method on that object. It
-   * should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsPositionedUpdate
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:958; JDBC:JAVADOC:959;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsPositionedUpdate() method on that object. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsPositionedUpdate() throws Exception {
+	public void testSupportsPositionedUpdate() throws Exception {
 		super.testSupportsPositionedUpdate();
-  }
+	}
 
-  /*
-   * @testName: testSupportsSelectForUpdate
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:960; JDBC:JAVADOC:961;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsSelectForUpdate() method on that object. It
-   * should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsSelectForUpdate
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:960; JDBC:JAVADOC:961;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsSelectForUpdate() method on that object. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsSelectForUpdate() throws Exception {
+	public void testSupportsSelectForUpdate() throws Exception {
 		super.testSupportsSelectForUpdate();
-  }
+	}
 
-  /*
-   * @testName: testSupportsSubqueriesInComparisons
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:964; JDBC:JAVADOC:965;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsSubqueriesInComparisons() method on that
-   * object. It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsSubqueriesInComparisons
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:964; JDBC:JAVADOC:965;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsSubqueriesInComparisons() method on that
+	 * object. It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsSubqueriesInComparisons() throws Exception {
+	public void testSupportsSubqueriesInComparisons() throws Exception {
 		super.testSupportsSubqueriesInComparisons();
-  }
+	}
 
-  /*
-   * @testName: testSupportsSubqueriesInExists
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:966; JDBC:JAVADOC:967;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsSubqueriesInExists() method on that object.
-   * It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsSubqueriesInExists
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:966; JDBC:JAVADOC:967;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsSubqueriesInExists() method on that object. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsSubqueriesInExists() throws Exception {
+	public void testSupportsSubqueriesInExists() throws Exception {
 		super.testSupportsSubqueriesInExists();
-  }
+	}
 
-  /*
-   * @testName: testSupportsSubqueriesInIns
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:968; JDBC:JAVADOC:969;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsSubqueriesInIns() method on that object. It
-   * should return a boolean value either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsSubqueriesInIns
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:968; JDBC:JAVADOC:969;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsSubqueriesInIns() method on that object. It
+	 * should return a boolean value either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsSubqueriesInIns() throws Exception {
+	public void testSupportsSubqueriesInIns() throws Exception {
 		super.testSupportsSubqueriesInIns();
-  }
+	}
 
-  /*
-   * @testName: testSupportsSubqueriesInQuantifieds
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:970; JDBC:JAVADOC:971;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsSubqueriesInQuantifieds() method on that
-   * object. It should return a boolean value either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsSubqueriesInQuantifieds
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:970; JDBC:JAVADOC:971;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsSubqueriesInQuantifieds() method on that
+	 * object. It should return a boolean value either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsSubqueriesInQuantifieds() throws Exception {
+	public void testSupportsSubqueriesInQuantifieds() throws Exception {
 		super.testSupportsSubqueriesInQuantifieds();
-  }
+	}
 
-  /*
-   * @testName: testSupportsCorrelatedSubqueries
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:972; JDBC:JAVADOC:973;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsCorrelatedSubqueries() method on that object.
-   * It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsCorrelatedSubqueries
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:972; JDBC:JAVADOC:973;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsCorrelatedSubqueries() method on that object.
+	 * It should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsCorrelatedSubqueries() throws Exception {
+	public void testSupportsCorrelatedSubqueries() throws Exception {
 		super.testSupportsCorrelatedSubqueries();
-  }
+	}
 
-  /*
-   * @testName: testSupportsUnion
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:974; JDBC:JAVADOC:975;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsUnion() method on that object. It should
-   * return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsUnion
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:974; JDBC:JAVADOC:975;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsUnion() method on that object. It should return
+	 * a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testSupportsUnion() throws Exception {
+	public void testSupportsUnion() throws Exception {
 		super.testSupportsUnion();
-  }
+	}
 
 }

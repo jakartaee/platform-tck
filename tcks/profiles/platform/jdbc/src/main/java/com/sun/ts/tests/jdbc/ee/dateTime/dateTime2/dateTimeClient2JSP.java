@@ -54,176 +54,173 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class dateTimeClient2JSP extends dateTimeClient2 implements Serializable {
-  private static final String testName = "jdbc.ee.dateTime.dateTime2";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+	private static final String testName = "jdbc.ee.dateTime.dateTime2";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
 	@Deployment(name = "jsp", testable = true)
-	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "dateTime2_jsp_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
-        
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+		archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
+		InputStream clientHtml = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+		archive.add(new ByteArrayAsset(clientHtml), "client.html");
+
 		archive.addClasses(dateTimeClient2JSP.class, dateTimeClient2.class);
-		
-	       // The jsp descriptor
-     URL jspUrl = dateTimeClient2JSP.class.getResource("jsp_vehicle_web.xml");
-     if(jspUrl != null) {
-     	archive.addAsWebInfResource(jspUrl, "web.xml");
-     }
-     // The sun jsp descriptor
-     URL sunJSPUrl = dateTimeClient2JSP.class.getResource("dateTime2_jsp_vehicle_web.war.sun-web.xml");
-     if(sunJSPUrl != null) {
-     	archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
-     }
-     // Call the archive processor
-     archiveProcessor.processWebArchive(archive, dateTimeClient2JSP.class, sunJSPUrl);
+
+		// The jsp descriptor
+		URL jspUrl = dateTimeClient2JSP.class.getResource("jsp_vehicle_web.xml");
+		if (jspUrl != null) {
+			archive.addAsWebInfResource(jspUrl, "web.xml");
+		}
+		// The sun jsp descriptor
+		URL sunJSPUrl = dateTimeClient2JSP.class.getResource("dateTime2_jsp_vehicle_web.war.sun-web.xml");
+		if (sunJSPUrl != null) {
+			archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
+		}
+		// Call the archive processor
+		archiveProcessor.processWebArchive(archive, dateTimeClient2JSP.class, sunJSPUrl);
 
 		archive.addAsWebInfResource(dateTimeClient2JSP.class.getPackage(), "jsp_vehicle_web.xml", "web.xml");
-		
+
 		return archive;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		dateTimeClient2JSP theTests = new dateTimeClient2JSP();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    dateTimeClient2JSP theTests = new dateTimeClient2JSP();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: testTime01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:46;
-   * 
-   * @test_Strategy: Create a Time Object with a long value as an argument. Then
-   * get the String representation of that Time object. Check whether it is same
-   * as equivalent String Value in property file.
-   */
+	/*
+	 * @testName: testTime01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:46;
+	 * 
+	 * @test_Strategy: Create a Time Object with a long value as an argument. Then
+	 * get the String representation of that Time object. Check whether it is same
+	 * as equivalent String Value in property file.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testTime01() throws Exception {
+	public void testTime01() throws Exception {
 		super.testTime01();
-  }
+	}
 
-  /*
-   * @testName: testTime02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:46;
-   * 
-   * @test_Strategy: Create a Time Object with a long value as an argument. Then
-   * get the String representation of that Time object. Check whether it is same
-   * as equivalent String Value in property file.
-   */
+	/*
+	 * @testName: testTime02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:46;
+	 * 
+	 * @test_Strategy: Create a Time Object with a long value as an argument. Then
+	 * get the String representation of that Time object. Check whether it is same
+	 * as equivalent String Value in property file.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testTime02() throws Exception {
-	  super.testTime02();
-  }
+	public void testTime02() throws Exception {
+		super.testTime02();
+	}
 
-  /*
-   * @testName: testToString01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:49; JDBC:JAVADOC:46;
-   * 
-   * @test_Strategy: Create a Time Object with a long value as an argument. Then
-   * get the String representation of that Time object. using the toString()
-   * method.Check whether it is same as equivalent String Value in property
-   * file.
-   */
+	/*
+	 * @testName: testToString01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:49; JDBC:JAVADOC:46;
+	 * 
+	 * @test_Strategy: Create a Time Object with a long value as an argument. Then
+	 * get the String representation of that Time object. using the toString()
+	 * method.Check whether it is same as equivalent String Value in property file.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testToString01() throws Exception {
+	public void testToString01() throws Exception {
 		super.testToString01();
-  }
+	}
 
-  /*
-   * @testName: testToString02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:49; JDBC:JAVADOC:46;
-   * 
-   * @test_Strategy: Create a Time Object with a long value as an argument. Then
-   * get the String representation of that Time object. using the toString()
-   * method.Check whether it is same as equivalent String Value in property
-   * file.
-   */
+	/*
+	 * @testName: testToString02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:49; JDBC:JAVADOC:46;
+	 * 
+	 * @test_Strategy: Create a Time Object with a long value as an argument. Then
+	 * get the String representation of that Time object. using the toString()
+	 * method.Check whether it is same as equivalent String Value in property file.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testToString02() throws Exception {
+	public void testToString02() throws Exception {
 		super.testToString02();
-  }
+	}
 
-  /*
-   * @testName: testValueOf01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:48; JDBC:JAVADOC:46;
-   * 
-   * @test_Strategy: Call valueof(String ts) static method in java.sql.Time
-   * class with a String argument to get a Time object Check whether it is same
-   * as Time object obtained from equivalent long value .
-   * 
-   */
+	/*
+	 * @testName: testValueOf01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:48; JDBC:JAVADOC:46;
+	 * 
+	 * @test_Strategy: Call valueof(String ts) static method in java.sql.Time class
+	 * with a String argument to get a Time object Check whether it is same as Time
+	 * object obtained from equivalent long value .
+	 * 
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testValueOf01() throws Exception {
+	public void testValueOf01() throws Exception {
 		super.testValueOf01();
-  }
+	}
 
-  /*
-   * @testName: testValueOf02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:48; JDBC:JAVADOC:46;
-   * 
-   * @test_Strategy: Call valueof(String ts) static method in java.sql.Time
-   * class with a String argument to get a Time object Check whether it is same
-   * as Time object obtained from equivalent long value .
-   */
+	/*
+	 * @testName: testValueOf02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:48; JDBC:JAVADOC:46;
+	 * 
+	 * @test_Strategy: Call valueof(String ts) static method in java.sql.Time class
+	 * with a String argument to get a Time object Check whether it is same as Time
+	 * object obtained from equivalent long value .
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testValueOf02() throws Exception {
+	public void testValueOf02() throws Exception {
 		super.testValueOf02();
-  }
+	}
 
-  /*
-   * @testName: testSetTime01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:47; JDBC:JAVADOC:46;
-   * 
-   * @test_Strategy: Create two Time objects with two different long values. Set
-   * the same long value in the second object as used in the first object using
-   * setTime(long) method Check whether both the Time objects are equal using
-   * equals method
-   */
+	/*
+	 * @testName: testSetTime01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:47; JDBC:JAVADOC:46;
+	 * 
+	 * @test_Strategy: Create two Time objects with two different long values. Set
+	 * the same long value in the second object as used in the first object using
+	 * setTime(long) method Check whether both the Time objects are equal using
+	 * equals method
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSetTime01() throws Exception {
+	public void testSetTime01() throws Exception {
 		super.testSetTime01();
-  }
+	}
 
-  /*
-   * @testName: testSetTime02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:47; JDBC:JAVADOC:46;
-   * 
-   * @test_Strategy: Create two Time objects with two different long values. Set
-   * the same long value in the second object as used in the first object using
-   * setTime(long) method Check whether both the Time objects are equal using
-   * equals method
-   */
+	/*
+	 * @testName: testSetTime02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:47; JDBC:JAVADOC:46;
+	 * 
+	 * @test_Strategy: Create two Time objects with two different long values. Set
+	 * the same long value in the second object as used in the first object using
+	 * setTime(long) method Check whether both the Time objects are equal using
+	 * equals method
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSetTime02() throws Exception {
+	public void testSetTime02() throws Exception {
 		super.testSetTime02();
-  }
+	}
 
 }

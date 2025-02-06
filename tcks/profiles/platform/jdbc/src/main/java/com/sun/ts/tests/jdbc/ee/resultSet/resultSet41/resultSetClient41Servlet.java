@@ -52,91 +52,93 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class resultSetClient41Servlet extends resultSetClient41 implements Serializable {
-  private static final String testName = "jdbc.ee.resultSet.resultSet41";
+	private static final String testName = "jdbc.ee.resultSet.resultSet41";
 
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
-  @Deployment(name = "servlet", testable = true)
-	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
+	@Deployment(name = "servlet", testable = true)
+	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "resultSet41_servlet_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(resultSetClient41Servlet.class, resultSetClient41.class);
-	       // The servlet descriptor
-URL servletUrl = resultSetClient41Servlet.class.getResource("servlet_vehicle_web.xml");
-if(servletUrl != null) {
-	archive.addAsWebInfResource(servletUrl, "web.xml");
-}
+		// The servlet descriptor
+		URL servletUrl = resultSetClient41Servlet.class.getResource("servlet_vehicle_web.xml");
+		if (servletUrl != null) {
+			archive.addAsWebInfResource(servletUrl, "web.xml");
+		}
 // The sun servlet descriptor
-URL sunServletUrl = resultSetClient41Servlet.class.getResource("resultSet41_servlet_vehicle_web.war.sun-web.xml");
-if(sunServletUrl != null) {
-	archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
-}
+		URL sunServletUrl = resultSetClient41Servlet.class
+				.getResource("resultSet41_servlet_vehicle_web.war.sun-web.xml");
+		if (sunServletUrl != null) {
+			archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
+		}
 // Call the archive processor
-archiveProcessor.processWebArchive(archive, resultSetClient41Servlet.class, sunServletUrl);
-		
+		archiveProcessor.processWebArchive(archive, resultSetClient41Servlet.class, sunServletUrl);
+
 		return archive;
 	};
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    resultSetClient41Servlet theTests = new resultSetClient41Servlet();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		resultSetClient41Servlet theTests = new resultSetClient41Servlet();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /*
-   * @testName: testGetBoolean67
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
-   * JDBC:JAVADOC:407; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * maximum value of table Bit_Tab.Call the getBoolean(String columnName)
-   * method. Compare the returned result with the value extracted from
-   * tssql.stmt file.Both of them should be equal and the returned result must
-   * be equal to the Maximum Value of JDBC Bit datatype.
-   */
+	/*
+	 * @testName: testGetBoolean67
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
+	 * JDBC:JAVADOC:407; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * maximum value of table Bit_Tab.Call the getBoolean(String columnName) method.
+	 * Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the Maximum Value of JDBC Bit datatype.
+	 */
 
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetBoolean67() throws Exception {
+	public void testGetBoolean67() throws Exception {
 		super.testGetBoolean67();
-  }
+	}
 
-  /*
-   * @testName: testGetBoolean68
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
-   * JDBC:JAVADOC:407; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * minimum value of table Bit_Tab.Call the getBoolean(String columnName)
-   * method. Compare the returned result with the value extracted from
-   * tssql.stmt file.Both of them should be equal and the returned result must
-   * be equal to the Minimum Value of JDBC Bit datatype.
-   */
+	/*
+	 * @testName: testGetBoolean68
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
+	 * JDBC:JAVADOC:407; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * minimum value of table Bit_Tab.Call the getBoolean(String columnName) method.
+	 * Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the Minimum Value of JDBC Bit datatype.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetBoolean68() throws Exception {
+	public void testGetBoolean68() throws Exception {
 		super.testGetBoolean68();
-  }
+	}
 
-  /*
-   * @testName: testGetBoolean69
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
-   * JDBC:JAVADOC:407; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Bit_Tab.Call the getBoolean(String columnName)
-   * method.Check if the value returned is boolean value false.
-   */
+	/*
+	 * @testName: testGetBoolean69
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
+	 * JDBC:JAVADOC:407; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Bit_Tab.Call the getBoolean(String columnName)
+	 * method.Check if the value returned is boolean value false.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetBoolean69() throws Exception {
+	public void testGetBoolean69() throws Exception {
 		super.testGetBoolean69();
-  }
+	}
 }

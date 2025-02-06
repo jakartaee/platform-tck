@@ -40,7 +40,6 @@ import com.sun.ts.lib.harness.Status;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
-
 // Merant DataSource class
 //import com.merant.sequelink.jdbcx.datasource.*;
 
@@ -53,14 +52,14 @@ import tck.arquillian.protocol.common.TargetVehicle;
  */
 @Tag("tck-appclient")
 
-
 public class resultSetClient17EJB extends resultSetClient17 implements Serializable {
-  private static final String testName = "jdbc.ee.resultSet.resultSet17";
-  
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")
-  @Deployment(name = "ejb", testable = true)
-	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	private static final String testName = "jdbc.ee.resultSet.resultSet17";
+
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
+	@Deployment(name = "ejb", testable = true)
+	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "resultSet17_ejb_vehicle_client.jar");
 		ejbClient.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
@@ -68,13 +67,14 @@ public class resultSetClient17EJB extends resultSetClient17 implements Serializa
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
 		ejbClient.addClasses(resultSetClient17EJB.class, resultSetClient17.class);
 
-		URL resURL = resultSetClient17EJB.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
+		URL resURL = resultSetClient17EJB.class
+				.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "application-client.xml");
 		}
-		
-		resURL = resultSetClient17EJB.class
-				.getResource("/com/sun/ts/tests/jdbc/ee/resultSet/resultSet17/resultSet17_ejb_vehicle_client.jar.sun-application-client.xml");
+
+		resURL = resultSetClient17EJB.class.getResource(
+				"/com/sun/ts/tests/jdbc/ee/resultSet/resultSet17/resultSet17_ejb_vehicle_client.jar.sun-application-client.xml");
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
@@ -96,7 +96,8 @@ public class resultSetClient17EJB extends resultSetClient17 implements Serializa
 			ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
 		}
 
-		resURL = resultSetClient17EJB.class.getResource("/com/sun/ts/tests/jdbc/ee/resultSet/resultSet17/ejb_vehicle_ejb.xml");
+		resURL = resultSetClient17EJB.class
+				.getResource("/com/sun/ts/tests/jdbc/ee/resultSet/resultSet17/ejb_vehicle_ejb.xml");
 
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
@@ -108,194 +109,193 @@ public class resultSetClient17EJB extends resultSetClient17 implements Serializa
 		return ear;
 	};
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    resultSetClient17EJB theTests = new resultSetClient17EJB();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		resultSetClient17EJB theTests = new resultSetClient17EJB();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /*
-   * @testName: testGetShort61
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-   * JDBC:JAVADOC:411; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the maximum value of table Decimal_Tab with the
-   * maximum value of table Smallint_Tab.Now execute a query to get the maximum
-   * value of Decimal_Tab table and retrieve the result of the query using the
-   * getShort(String columnName) method.Compare the returned value, with the
-   * maximum value of table Smallint_Tab extracted from the tssql.stmt file.
-   * Both of them should be equal.
-   */
+	/*
+	 * @testName: testGetShort61
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
+	 * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the maximum value of table Decimal_Tab with the
+	 * maximum value of table Smallint_Tab.Now execute a query to get the maximum
+	 * value of Decimal_Tab table and retrieve the result of the query using the
+	 * getShort(String columnName) method.Compare the returned value, with the
+	 * maximum value of table Smallint_Tab extracted from the tssql.stmt file. Both
+	 * of them should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetShort61() throws Exception {
+	public void testGetShort61() throws Exception {
 		super.testGetShort61();
-  }
+	}
 
-  /*
-   * @testName: testGetShort63
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-   * JDBC:JAVADOC:411; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Decimal_Tab.Call the getShort(String columnName)
-   * method.Check if the value returned is zero.
-   */
+	/*
+	 * @testName: testGetShort63
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
+	 * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Decimal_Tab.Call the getShort(String columnName)
+	 * method.Check if the value returned is zero.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetShort63() throws Exception {
+	public void testGetShort63() throws Exception {
 		super.testGetShort63();
-  }
+	}
 
-  /*
-   * @testName: testGetShort64
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-   * JDBC:JAVADOC:411; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the maximum value of table Numeric_Tab with the
-   * maximum value of table Smallint_Tab.Now execute a query to get the maximum
-   * value of Numeric_Tab table and retrieve the result of the query using the
-   * getShort(String columnName) method.Compare the returned value, with the
-   * maximum value of table Smallint_Tab extracted from the tssql.stmt file.
-   * Both of them should be equal.
-   */
+	/*
+	 * @testName: testGetShort64
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
+	 * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the maximum value of table Numeric_Tab with the
+	 * maximum value of table Smallint_Tab.Now execute a query to get the maximum
+	 * value of Numeric_Tab table and retrieve the result of the query using the
+	 * getShort(String columnName) method.Compare the returned value, with the
+	 * maximum value of table Smallint_Tab extracted from the tssql.stmt file. Both
+	 * of them should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetShort64() throws Exception {
+	public void testGetShort64() throws Exception {
 		super.testGetShort64();
-  }
+	}
 
-  /*
-   * @testName: testGetShort66
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-   * JDBC:JAVADOC:411; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Numeric_Tab.Call the getShort(String columnName)
-   * method.Check if the value returned is zero.
-   */
+	/*
+	 * @testName: testGetShort66
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
+	 * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Numeric_Tab.Call the getShort(String columnName)
+	 * method.Check if the value returned is zero.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetShort66() throws Exception {
+	public void testGetShort66() throws Exception {
 		super.testGetShort66();
-  }
+	}
 
-  /*
-   * @testName: testGetShort70
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-   * JDBC:JAVADOC:411; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the table Char_Tab with the maximum value of
-   * table Smallint_Tab.Now execute a query to get the maximum value of Char_Tab
-   * table and retrieve the result of the query using the getShort(String
-   * columnName) method.Compare the returned value, with the maximum value of
-   * table Smallint_Tab extracted from the tssql.stmt file. Both of them should
-   * be equal.
-   */
+	/*
+	 * @testName: testGetShort70
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
+	 * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the table Char_Tab with the maximum value of
+	 * table Smallint_Tab.Now execute a query to get the maximum value of Char_Tab
+	 * table and retrieve the result of the query using the getShort(String
+	 * columnName) method.Compare the returned value, with the maximum value of
+	 * table Smallint_Tab extracted from the tssql.stmt file. Both of them should be
+	 * equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetShort70() throws Exception {
+	public void testGetShort70() throws Exception {
 		super.testGetShort70();
-  }
+	}
 
-  /*
-   * @testName: testGetShort71
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-   * JDBC:JAVADOC:411; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the Char_Tab with the minimum value of table
-   * Smallint_Tab.Now execute a query to get the minimum value of Char_Tab table
-   * and retrieve the result of the query using the getShort(String columnName)
-   * method.Compare the returned value, with the minimum value of table
-   * Smallint_Tab extracted from the tssql.stmt file. Both of them should be
-   * equal.
-   */
+	/*
+	 * @testName: testGetShort71
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
+	 * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the Char_Tab with the minimum value of table
+	 * Smallint_Tab.Now execute a query to get the minimum value of Char_Tab table
+	 * and retrieve the result of the query using the getShort(String columnName)
+	 * method.Compare the returned value, with the minimum value of table
+	 * Smallint_Tab extracted from the tssql.stmt file. Both of them should be
+	 * equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetShort71() throws Exception {
+	public void testGetShort71() throws Exception {
 		super.testGetShort71();
-  }
+	}
 
-  /*
-   * @testName: testGetShort72
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-   * JDBC:JAVADOC:411; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Char_Tab.Call the getShort(String columnName) method.
-   * Check if the value returned is zero.
-   */
+	/*
+	 * @testName: testGetShort72
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
+	 * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Char_Tab.Call the getShort(String columnName) method.
+	 * Check if the value returned is zero.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetShort72() throws Exception {
+	public void testGetShort72() throws Exception {
 		super.testGetShort72();
-  }
+	}
 
-  /*
-   * @testName: testGetShort73
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-   * JDBC:JAVADOC:411; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the Varchar_Tab with the maximum value of table
-   * Smallint_Tab.Now execute a query to value from Varchar_Tab table and
-   * retrieve the result of the query using the getShort(String columnName)
-   * method.Compare the returned value, with the maximum value of table
-   * Smallint_Tab extracted from the tssql.stmt file. Both of them should be
-   * equal.
-   */
+	/*
+	 * @testName: testGetShort73
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
+	 * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the Varchar_Tab with the maximum value of table
+	 * Smallint_Tab.Now execute a query to value from Varchar_Tab table and retrieve
+	 * the result of the query using the getShort(String columnName) method.Compare
+	 * the returned value, with the maximum value of table Smallint_Tab extracted
+	 * from the tssql.stmt file. Both of them should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetShort73() throws Exception {
+	public void testGetShort73() throws Exception {
 		super.testGetShort73();
-  }
+	}
 
-  /*
-   * @testName: testGetShort74
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-   * JDBC:JAVADOC:411; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the table Varchar_Tab with the minimum value of
-   * table Smallint_Tab.Now execute a query to value from Varchar_Tab table and
-   * retrieve the result of the query using the getShort(String columnName)
-   * method.Compare the returned value, with the minimum value of table
-   * Smallint_Tab extracted from the tssql.stmt file. Both of them should be
-   * equal.
-   */
+	/*
+	 * @testName: testGetShort74
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
+	 * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the table Varchar_Tab with the minimum value of
+	 * table Smallint_Tab.Now execute a query to value from Varchar_Tab table and
+	 * retrieve the result of the query using the getShort(String columnName)
+	 * method.Compare the returned value, with the minimum value of table
+	 * Smallint_Tab extracted from the tssql.stmt file. Both of them should be
+	 * equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetShort74() throws Exception {
+	public void testGetShort74() throws Exception {
 		super.testGetShort74();
-  }
+	}
 
-  /*
-   * @testName: testGetShort75
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-   * JDBC:JAVADOC:411; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Varchar_Tab.Call the getShort(String columnName)
-   * method.Check if the value returned is zero.
-   */
+	/*
+	 * @testName: testGetShort75
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
+	 * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Varchar_Tab.Call the getShort(String columnName)
+	 * method.Check if the value returned is zero.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetShort75() throws Exception {
+	public void testGetShort75() throws Exception {
 		super.testGetShort75();
-  }
+	}
 }

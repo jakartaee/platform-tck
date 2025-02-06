@@ -53,364 +53,356 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class scalarClient1JSP extends scalarClient1 {
-  private static final String testName = "jdbc.ee.escapeSyntax";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+	private static final String testName = "jdbc.ee.escapeSyntax";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
 	@Deployment(name = "jsp", testable = true)
-	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "scalar1_jsp_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
-        
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+		archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
+		InputStream clientHtml = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+		archive.add(new ByteArrayAsset(clientHtml), "client.html");
+
 		archive.addClasses(scalarClient1JSP.class, scalarClient1.class);
-		
-	       // The jsp descriptor
-     URL jspUrl = scalarClient1JSP.class.getResource("jsp_vehicle_web.xml");
-     if(jspUrl != null) {
-     	archive.addAsWebInfResource(jspUrl, "web.xml");
-     }
-     // The sun jsp descriptor
-     URL sunJSPUrl = scalarClient1JSP.class.getResource("scalar1_jsp_vehicle_web.war.sun-web.xml");
-     if(sunJSPUrl != null) {
-     	archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
-     }
-     // Call the archive processor
-     archiveProcessor.processWebArchive(archive, scalarClient1JSP.class, sunJSPUrl);
+
+		// The jsp descriptor
+		URL jspUrl = scalarClient1JSP.class.getResource("jsp_vehicle_web.xml");
+		if (jspUrl != null) {
+			archive.addAsWebInfResource(jspUrl, "web.xml");
+		}
+		// The sun jsp descriptor
+		URL sunJSPUrl = scalarClient1JSP.class.getResource("scalar1_jsp_vehicle_web.war.sun-web.xml");
+		if (sunJSPUrl != null) {
+			archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
+		}
+		// Call the archive processor
+		archiveProcessor.processWebArchive(archive, scalarClient1JSP.class, sunJSPUrl);
 
 		archive.addAsWebInfResource(scalarClient1JSP.class.getPackage(), "jsp_vehicle_web.xml", "web.xml");
-		
+
 		return archive;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		scalarClient1JSP theTests = new scalarClient1JSP();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    scalarClient1JSP theTests = new scalarClient1JSP();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: testConcat
-   * 
-   * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call executeQuery(String)
-   * method. The query contains the concat scalar function. It should return the
-   * concatenated string.
-   *
-   */
+	/*
+	 * @testName: testConcat
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call executeQuery(String) method.
+	 * The query contains the concat scalar function. It should return the
+	 * concatenated string.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testConcat() throws Exception {
+	public void testConcat() throws Exception {
 		super.testConcat();
-  }
+	}
 
-  /*
-   * @testName: testAscii
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a statement object and call executeQuery method. The
-   * query contains the ascii function call. It should return an integer.
-   *
-   *
-   */
+	/*
+	 * @testName: testAscii
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a statement object and call executeQuery method. The
+	 * query contains the ascii function call. It should return an integer.
+	 *
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testAscii() throws Exception {
+	public void testAscii() throws Exception {
 		super.testAscii();
-  }
+	}
 
-  /*
-   * @testName: testInsert
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function insert. It should return a
-   * string.
-   *
-   */
+	/*
+	 * @testName: testInsert
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function insert. It should return a string.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testInsert() throws Exception {
+	public void testInsert() throws Exception {
 		super.testInsert();
-  }
+	}
 
-  /*
-   * @testName: testLcase
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statment object and call the method executeQuery. The
-   * query contains a call to the function lcase. It should return a string.
-   *
-   *
-   */
+	/*
+	 * @testName: testLcase
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statment object and call the method executeQuery. The
+	 * query contains a call to the function lcase. It should return a string.
+	 *
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testLcase() throws Exception {
+	public void testLcase() throws Exception {
 		super.testLcase();
-  }
+	}
 
-  /*
-   * @testName: testLeft
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function left. It should return a string.
-   *
-   *
-   */
+	/*
+	 * @testName: testLeft
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function left. It should return a string.
+	 *
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testLeft() throws Exception {
+	public void testLeft() throws Exception {
 		super.testLeft();
-  }
+	}
 
-  /*
-   * @testName: testLength
-   *
-   * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function length. It should return a
-   * number.
-   *
-   *
-   */
+	/*
+	 * @testName: testLength
+	 *
+	 * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function length. It should return a number.
+	 *
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testLength() throws Exception {
+	public void testLength() throws Exception {
 		super.testLength();
-  }
+	}
 
-  /*
-   * @testName: testLocate01
-   * 
-   * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function locate. It should return an
-   * integer.
-   *
-   */
+	/*
+	 * @testName: testLocate01
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function locate. It should return an integer.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testLocate01() throws Exception {
+	public void testLocate01() throws Exception {
 		super.testLocate01();
-  }
+	}
 
-  /*
-   * @testName: testLtrim
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function ltrim. It should return a string.
-   *
-   */
+	/*
+	 * @testName: testLtrim
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function ltrim. It should return a string.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testLtrim() throws Exception {
+	public void testLtrim() throws Exception {
 		super.testLtrim();
-  }
+	}
 
-  /*
-   * @testName: testRepeat
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function repeat. It should return a
-   * string.
-   *
-   */
+	/*
+	 * @testName: testRepeat
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function repeat. It should return a string.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testRepeat() throws Exception {
+	public void testRepeat() throws Exception {
 		super.testRepeat();
-  }
+	}
 
-  /*
-   * @testName: testRight
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function right. It should return a string.
-   *
-   */
+	/*
+	 * @testName: testRight
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function right. It should return a string.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testRight() throws Exception {
+	public void testRight() throws Exception {
 		super.testRight();
-  }
+	}
 
-  /*
-   * @testName: testRtrim
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function rtrim. It should return a string.
-   *
-   *
-   */
+	/*
+	 * @testName: testRtrim
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function rtrim. It should return a string.
+	 *
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testRtrim() throws Exception {
+	public void testRtrim() throws Exception {
 		super.testRtrim();
-  }
+	}
 
-  /*
-   * @testName: testSoundex
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function soundex. It should return a
-   * string.
-   *
-   */
+	/*
+	 * @testName: testSoundex
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function soundex. It should return a string.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSoundex() throws Exception {
+	public void testSoundex() throws Exception {
 		super.testSoundex();
-  }
+	}
 
-  /*
-   * @testName: testSpace
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function space. It should return a string.
-   *
-   */
+	/*
+	 * @testName: testSpace
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function space. It should return a string.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSpace() throws Exception {
+	public void testSpace() throws Exception {
 		super.testSpace();
-  }
+	}
 
-  /*
-   * @testName: testSubstring
-   * 
-   * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function substring. It should return a
-   * string.
-   *
-   */
+	/*
+	 * @testName: testSubstring
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function substring. It should return a string.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSubstring() throws Exception {
+	public void testSubstring() throws Exception {
 		super.testSubstring();
-  }
+	}
 
-  /*
-   * @testName: testUcase
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function ucase. It should return a string.
-   *
-   */
+	/*
+	 * @testName: testUcase
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function ucase. It should return a string.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testUcase() throws Exception {
+	public void testUcase() throws Exception {
 		super.testUcase();
-  }
+	}
 
-  /*
-   * @testName: testChar
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function char. It should return a
-   * character.
-   *
-   */
+	/*
+	 * @testName: testChar
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function char. It should return a character.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testChar() throws Exception {
+	public void testChar() throws Exception {
 		super.testChar();
-  }
+	}
 
-  /*
-   * @testName: testReplace
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function replace. It should return a
-   * string.
-   *
-   */
+	/*
+	 * @testName: testReplace
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function replace. It should return a string.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testReplace() throws Exception {
+	public void testReplace() throws Exception {
 		super.testReplace();
-  }
+	}
 
-  /*
-   * @testName: testUser
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function user. It should return a string.
-   *
-   */
+	/*
+	 * @testName: testUser
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function user. It should return a string.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testUser() throws Exception {
+	public void testUser() throws Exception {
 		super.testUser();
-  }
+	}
 
-  /*
-   * @testName: testIfNull
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function ifnull.
-   *
-   */
+	/*
+	 * @testName: testIfNull
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function ifnull.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testIfNull() throws Exception {
+	public void testIfNull() throws Exception {
 		super.testIfNull();
-  }
+	}
 
-  /*
-   * @testName: testSin
-   * 
-   * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function sin. It should return a numerical
-   * value.
-   */
+	/*
+	 * @testName: testSin
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function sin. It should return a numerical
+	 * value.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSin() throws Exception {
+	public void testSin() throws Exception {
 		super.testSin();
-  }
+	}
 
 }

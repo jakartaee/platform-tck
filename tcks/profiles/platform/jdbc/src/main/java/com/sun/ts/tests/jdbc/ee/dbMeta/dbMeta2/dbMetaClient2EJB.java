@@ -54,12 +54,13 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-appclient")
 
 public class dbMetaClient2EJB extends dbMetaClient2 implements Serializable {
-  private static final String testName = "jdbc.ee.dbMeta.dbMeta2";
-  
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")
-	@Deployment(name = "ejb",  testable = true)
-	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	private static final String testName = "jdbc.ee.dbMeta.dbMeta2";
+
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
+	@Deployment(name = "ejb", testable = true)
+	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "dbMeta2_ejb_vehicle_client.jar");
 		ejbClient.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
@@ -73,13 +74,12 @@ public class dbMetaClient2EJB extends dbMetaClient2 implements Serializable {
 		}
 		ejbClient.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"),
 				"MANIFEST.MF");
-		
-		resURL = dbMetaClient2EJB.class
-				.getResource("/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta2/dbMeta2_ejb_vehicle_client.jar.sun-application-client.xml");
+
+		resURL = dbMetaClient2EJB.class.getResource(
+				"/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta2/dbMeta2_ejb_vehicle_client.jar.sun-application-client.xml");
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
-
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "dbMeta2_ejb_vehicle_ejb.jar");
 		ejb.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
@@ -88,9 +88,8 @@ public class dbMetaClient2EJB extends dbMetaClient2 implements Serializable {
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
 		ejb.addClasses(dbMetaClient2EJB.class, dbMetaClient2.class);
 
-
-		resURL = dbMetaClient2EJB.class.getResource(
-				"/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta2/dbMeta2_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+		resURL = dbMetaClient2EJB.class
+				.getResource("/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta2/dbMeta2_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
 
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
@@ -108,349 +107,346 @@ public class dbMetaClient2EJB extends dbMetaClient2 implements Serializable {
 		return ear;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		dbMetaClient2EJB theTests = new dbMetaClient2EJB();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    dbMetaClient2EJB theTests = new dbMetaClient2EJB();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: testStoresMixedCaseIdentifiers
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:846; JDBC:JAVADOC:847;
-   * JavaEE:SPEC:193;
-   * 
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the storesMixedCaseIdentifiers() method It should return
-   * a boolean value
-   *
-   */
+	/*
+	 * @testName: testStoresMixedCaseIdentifiers
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:846; JDBC:JAVADOC:847;
+	 * JavaEE:SPEC:193;
+	 * 
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the storesMixedCaseIdentifiers() method It should return a
+	 * boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testStoresMixedCaseIdentifiers() throws Exception {
+	public void testStoresMixedCaseIdentifiers() throws Exception {
 		super.testStoresMixedCaseIdentifiers();
-  }
+	}
 
-  /*
-   * @testName: testSupportsMixedCaseQuotedIdentifiers
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:848; JDBC:JAVADOC:849;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsMixedCaseQuotedIdentifiers() method It should
-   * return a boolean value
-   *
-   */
+	/*
+	 * @testName: testSupportsMixedCaseQuotedIdentifiers
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:848; JDBC:JAVADOC:849;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsMixedCaseQuotedIdentifiers() method It should
+	 * return a boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsMixedCaseQuotedIdentifiers() throws Exception {
+	public void testSupportsMixedCaseQuotedIdentifiers() throws Exception {
 		super.testStoresMixedCaseIdentifiers();
-  }
+	}
 
-  /*
-   * @testName: testStoresUpperCaseQuotedIdentifiers
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:850; JDBC:JAVADOC:851;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the storesUpperCaseQuotedIdentifiers() method It should
-   * return a boolean value
-   *
-   */
+	/*
+	 * @testName: testStoresUpperCaseQuotedIdentifiers
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:850; JDBC:JAVADOC:851;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the storesUpperCaseQuotedIdentifiers() method It should
+	 * return a boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testStoresUpperCaseQuotedIdentifiers() throws Exception {
+	public void testStoresUpperCaseQuotedIdentifiers() throws Exception {
 		super.testStoresUpperCaseQuotedIdentifiers();
-  }
+	}
 
-  /*
-   * @testName: testStoresLowerCaseQuotedIdentifiers
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:852; JDBC:JAVADOC:853;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the storesLowerCaseQuotedIdentifiers() method It should
-   * return a boolean value
-   *
-   */
+	/*
+	 * @testName: testStoresLowerCaseQuotedIdentifiers
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:852; JDBC:JAVADOC:853;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the storesLowerCaseQuotedIdentifiers() method It should
+	 * return a boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testStoresLowerCaseQuotedIdentifiers() throws Exception {
+	public void testStoresLowerCaseQuotedIdentifiers() throws Exception {
 		super.testStoresLowerCaseQuotedIdentifiers();
-  }
+	}
 
-  /*
-   * @testName: testStoresMixedCaseQuotedIdentifiers
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:854; JDBC:JAVADOC:855;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the storesMixedCaseQuotedIdentifiers() method It should
-   * return a boolean value
-   *
-   */
+	/*
+	 * @testName: testStoresMixedCaseQuotedIdentifiers
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:854; JDBC:JAVADOC:855;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the storesMixedCaseQuotedIdentifiers() method It should
+	 * return a boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testStoresMixedCaseQuotedIdentifiers() throws Exception {
+	public void testStoresMixedCaseQuotedIdentifiers() throws Exception {
 		super.testStoresMixedCaseQuotedIdentifiers();
-  }
+	}
 
-  /*
-   * @testName: testGetIdentifierQuoteString
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:856; JDBC:JAVADOC:857;
-   * JavaEE:SPEC:193;
-   * 
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the getIdentifierQuoteString() method It should return a
-   * String
-   *
-   */
+	/*
+	 * @testName: testGetIdentifierQuoteString
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:856; JDBC:JAVADOC:857;
+	 * JavaEE:SPEC:193;
+	 * 
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the getIdentifierQuoteString() method It should return a
+	 * String
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetIdentifierQuoteString() throws Exception {
+	public void testGetIdentifierQuoteString() throws Exception {
 		super.testGetIdentifierQuoteString();
-  }
+	}
 
-  /*
-   * @testName: testGetSQLKeywords
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:858; JDBC:JAVADOC:859;
-   * JavaEE:SPEC:193;
-   * 
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the getSQLKeywords() method It should return a String
-   *
-   */
+	/*
+	 * @testName: testGetSQLKeywords
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:858; JDBC:JAVADOC:859;
+	 * JavaEE:SPEC:193;
+	 * 
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the getSQLKeywords() method It should return a String
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetSQLKeywords() throws Exception {
+	public void testGetSQLKeywords() throws Exception {
 		super.testGetSQLKeywords();
-  }
+	}
 
-  /*
-   * @testName: testGetNumericFunctions
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:860; JDBC:JAVADOC:861;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the getNumericFunctions() method It should return a
-   * String
-   *
-   */
+	/*
+	 * @testName: testGetNumericFunctions
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:860; JDBC:JAVADOC:861;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the getNumericFunctions() method It should return a String
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetNumericFunctions() throws Exception {
+	public void testGetNumericFunctions() throws Exception {
 		super.testGetNumericFunctions();
-  }
+	}
 
-  /*
-   * @testName: testGetStringFunctions
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:862; JDBC:JAVADOC:863;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the getStringFunctions() method It should return a String
-   *
-   */
+	/*
+	 * @testName: testGetStringFunctions
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:862; JDBC:JAVADOC:863;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the getStringFunctions() method It should return a String
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetStringFunctions() throws Exception {
+	public void testGetStringFunctions() throws Exception {
 		super.testGetStringFunctions();
-  }
+	}
 
-  /*
-   * @testName: testGetSystemFunctions
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:864; JDBC:JAVADOC:865;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the getSystemFunctions() method It should return a String
-   *
-   */
+	/*
+	 * @testName: testGetSystemFunctions
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:864; JDBC:JAVADOC:865;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the getSystemFunctions() method It should return a String
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetSystemFunctions() throws Exception {
+	public void testGetSystemFunctions() throws Exception {
 		super.testGetSystemFunctions();
-  }
+	}
 
-  /*
-   * @testName: testGetTimeDateFunctions
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:866; JDBC:JAVADOC:867;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the getTimeDateFunctions() method It should return a
-   * String
-   *
-   */
+	/*
+	 * @testName: testGetTimeDateFunctions
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:866; JDBC:JAVADOC:867;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the getTimeDateFunctions() method It should return a String
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetTimeDateFunctions() throws Exception {
+	public void testGetTimeDateFunctions() throws Exception {
 		super.testGetTimeDateFunctions();
-  }
+	}
 
-  /*
-   * @testName: testGetSearchStringEscape
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:868; JDBC:JAVADOC:869;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the getSearchStringEscape() method It should return a
-   * String
-   *
-   */
+	/*
+	 * @testName: testGetSearchStringEscape
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:868; JDBC:JAVADOC:869;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the getSearchStringEscape() method It should return a
+	 * String
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetSearchStringEscape() throws Exception {
+	public void testGetSearchStringEscape() throws Exception {
 		super.testGetSearchStringEscape();
-  }
+	}
 
-  /*
-   * @testName: testGetExtraNameCharacters
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:870; JDBC:JAVADOC:871;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the getExtraNameCharacters() method It should return a
-   * String
-   *
-   */
+	/*
+	 * @testName: testGetExtraNameCharacters
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:870; JDBC:JAVADOC:871;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the getExtraNameCharacters() method It should return a
+	 * String
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetExtraNameCharacters() throws Exception {
+	public void testGetExtraNameCharacters() throws Exception {
 		super.testGetExtraNameCharacters();
-  }
+	}
 
-  /*
-   * @testName: testSupportsAlterTableWithAddColumn
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:872; JDBC:JAVADOC:873;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsAlterTableWithAddColumn() method It should
-   * return a boolean value
-   *
-   */
+	/*
+	 * @testName: testSupportsAlterTableWithAddColumn
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:872; JDBC:JAVADOC:873;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsAlterTableWithAddColumn() method It should
+	 * return a boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsAlterTableWithAddColumn() throws Exception {
+	public void testSupportsAlterTableWithAddColumn() throws Exception {
 		super.testSupportsAlterTableWithAddColumn();
-  }
+	}
 
-  /*
-   * @testName: testSupportsAlterTableWithDropColumn
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:874; JDBC:JAVADOC:875;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsAlterTableWithDropColumn() method It should
-   * return a boolean value
-   *
-   */
+	/*
+	 * @testName: testSupportsAlterTableWithDropColumn
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:874; JDBC:JAVADOC:875;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsAlterTableWithDropColumn() method It should
+	 * return a boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsAlterTableWithDropColumn() throws Exception {
+	public void testSupportsAlterTableWithDropColumn() throws Exception {
 		super.testSupportsAlterTableWithDropColumn();
-  }
+	}
 
-  /*
-   * @testName: testSupportsColumnAliasing
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:876; JDBC:JAVADOC:877;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsColumnAliasing() method It should return a
-   * true value
-   *
-   */
+	/*
+	 * @testName: testSupportsColumnAliasing
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:876; JDBC:JAVADOC:877;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsColumnAliasing() method It should return a true
+	 * value
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsColumnAliasing() throws Exception {
+	public void testSupportsColumnAliasing() throws Exception {
 		super.testSupportsColumnAliasing();
-  }
+	}
 
-  /*
-   * @testName: testNullPlusNonNullIsNull
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:878; JDBC:JAVADOC:879;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the nullPlusNonNullIsNull() method It should return a
-   * boolean value
-   *
-   */
+	/*
+	 * @testName: testNullPlusNonNullIsNull
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:878; JDBC:JAVADOC:879;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the nullPlusNonNullIsNull() method It should return a
+	 * boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testNullPlusNonNullIsNull() throws Exception {
+	public void testNullPlusNonNullIsNull() throws Exception {
 		super.testNullPlusNonNullIsNull();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:880; JDBC:JAVADOC:881;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert() method It should return a boolean
-   * value
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:880; JDBC:JAVADOC:881;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert() method It should return a boolean
+	 * value
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert() throws Exception {
+	public void testSupportsConvert() throws Exception {
 		super.testSupportsConvert();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert01
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(ARRAY, VARCHAR) method It should
-   * return a boolean value
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert01
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(ARRAY, VARCHAR) method It should return
+	 * a boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert01() throws Exception {
+	public void testSupportsConvert01() throws Exception {
 		super.testSupportsConvert01();
-  }
+	}
 
-  /*
-   * @testName: testSupportsConvert02
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-   * DataBase and call the supportsConvert(BIGINT, VARCHAR) method It should
-   * return a boolean value
-   *
-   */
+	/*
+	 * @testName: testSupportsConvert02
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
+	 * DataBase and call the supportsConvert(BIGINT, VARCHAR) method It should
+	 * return a boolean value
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsConvert02() throws Exception {
+	public void testSupportsConvert02() throws Exception {
 		super.testSupportsConvert02();
-  }
+	}
 
 }

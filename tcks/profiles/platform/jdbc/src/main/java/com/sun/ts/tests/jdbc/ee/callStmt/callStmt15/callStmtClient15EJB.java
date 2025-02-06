@@ -55,12 +55,13 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-appclient")
 
 public class callStmtClient15EJB extends callStmtClient15 implements Serializable {
-  private static final String testName = "jdbc.ee.callStmt.callStmt15";
-  
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")
+	private static final String testName = "jdbc.ee.callStmt.callStmt15";
+
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
 	@Deployment(name = "ejb", testable = true)
-	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "callStmt15_ejb_vehicle_client.jar");
 		ejbClient.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
@@ -68,13 +69,14 @@ public class callStmtClient15EJB extends callStmtClient15 implements Serializabl
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
 		ejbClient.addClasses(callStmtClient15EJB.class, callStmtClient15.class);
 
-		URL resURL = callStmtClient15EJB.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
+		URL resURL = callStmtClient15EJB.class
+				.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "application-client.xml");
 		}
-		
-		resURL = callStmtClient15EJB.class
-				.getResource("/com/sun/ts/tests/jdbc/ee/callStmt/callStmt15/callStmt15_ejb_vehicle_client.jar.sun-application-client.xml");
+
+		resURL = callStmtClient15EJB.class.getResource(
+				"/com/sun/ts/tests/jdbc/ee/callStmt/callStmt15/callStmt15_ejb_vehicle_client.jar.sun-application-client.xml");
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
@@ -88,7 +90,6 @@ public class callStmtClient15EJB extends callStmtClient15 implements Serializabl
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
 		ejb.addClasses(callStmtClient15EJB.class, callStmtClient15.class);
 
-
 		resURL = callStmtClient15EJB.class.getResource(
 				"/com/sun/ts/tests/jdbc/ee/callStmt/callStmt15/callStmt15_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
 
@@ -96,7 +97,8 @@ public class callStmtClient15EJB extends callStmtClient15 implements Serializabl
 			ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
 		}
 
-		resURL = callStmtClient15EJB.class.getResource("/com/sun/ts/tests/jdbc/ee/callStmt/callStmt15/ejb_vehicle_ejb.xml");
+		resURL = callStmtClient15EJB.class
+				.getResource("/com/sun/ts/tests/jdbc/ee/callStmt/callStmt15/ejb_vehicle_ejb.xml");
 
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
@@ -109,377 +111,374 @@ public class callStmtClient15EJB extends callStmtClient15 implements Serializabl
 
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		callStmtClient15EJB theTests = new callStmtClient15EJB();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
- 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    callStmtClient15EJB theTests = new callStmtClient15EJB();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
- 
-  /*
-   * @testName: testSetObject141
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x, int
-   * targetSqlType) method,update the column Min_Val of Integer_Tab with the
-   * maximum value of Integer_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the maximum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject141
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x, int
+	 * targetSqlType) method,update the column Min_Val of Integer_Tab with the
+	 * maximum value of Integer_Tab. Call the getObject(int columnno) method to
+	 * retrieve this value. Extract the maximum value from the tssql.stmt file.
+	 * Compare this value with the value returned by the getObject(int columnno)
+	 * method. Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject141() throws Exception {
+	public void testSetObject141() throws Exception {
 		super.testSetObject141();
-   }
+	}
 
-  /*
-   * @testName: testSetObject142
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x,int
-   * targetSqlType) method,update the column Null_Val of Integer_Tab with the
-   * minimum value of Integer_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the minimum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject142
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x,int targetSqlType)
+	 * method,update the column Null_Val of Integer_Tab with the minimum value of
+	 * Integer_Tab. Call the getObject(int columnno) method to retrieve this value.
+	 * Extract the minimum value from the tssql.stmt file. Compare this value with
+	 * the value returned by the getObject(int columnno) method. Both the values
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject142() throws Exception {
+	public void testSetObject142() throws Exception {
 		super.testSetObject142();
-   }
+	}
 
-  /*
-   * @testName: testSetObject143
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x, int
-   * targetSqlType) method,update the column Min_Val of Bigint_Tab with the
-   * maximum value of Bigint_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the maximum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject143
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x, int
+	 * targetSqlType) method,update the column Min_Val of Bigint_Tab with the
+	 * maximum value of Bigint_Tab. Call the getObject(int columnno) method to
+	 * retrieve this value. Extract the maximum value from the tssql.stmt file.
+	 * Compare this value with the value returned by the getObject(int columnno)
+	 * method. Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject143() throws Exception {
+	public void testSetObject143() throws Exception {
 		super.testSetObject143();
 
-  }
+	}
 
-  /*
-   * @testName: testSetObject144
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x,int
-   * targetSqlType) method,update the column Null_Val of Bigint_Tab with the
-   * minimum value of Bigint_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the minimum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject144
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x,int targetSqlType)
+	 * method,update the column Null_Val of Bigint_Tab with the minimum value of
+	 * Bigint_Tab. Call the getObject(int columnno) method to retrieve this value.
+	 * Extract the minimum value from the tssql.stmt file. Compare this value with
+	 * the value returned by the getObject(int columnno) method. Both the values
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject144() throws Exception {
+	public void testSetObject144() throws Exception {
 		super.testSetObject144();
-  }
+	}
 
-  /*
-   * @testName: testSetObject145
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x, int
-   * targetSqlType) method,update the column Min_Val of Real_Tab with the
-   * maximum value of Real_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the maximum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject145
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x, int
+	 * targetSqlType) method,update the column Min_Val of Real_Tab with the maximum
+	 * value of Real_Tab. Call the getObject(int columnno) method to retrieve this
+	 * value. Extract the maximum value from the tssql.stmt file. Compare this value
+	 * with the value returned by the getObject(int columnno) method. Both the
+	 * values should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject145() throws Exception {
+	public void testSetObject145() throws Exception {
 		super.testSetObject145();
-  }
+	}
 
-  /*
-   * @testName: testSetObject146
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x,int
-   * targetSqlType) method,update the column Null_Val of Real_Tab with the
-   * minimum value of Real_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the minimum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject146
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x,int targetSqlType)
+	 * method,update the column Null_Val of Real_Tab with the minimum value of
+	 * Real_Tab. Call the getObject(int columnno) method to retrieve this value.
+	 * Extract the minimum value from the tssql.stmt file. Compare this value with
+	 * the value returned by the getObject(int columnno) method. Both the values
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject146() throws Exception {
+	public void testSetObject146() throws Exception {
 		super.testSetObject146();
-  }
+	}
 
-  /*
-   * @testName: testSetObject147
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x, int
-   * targetSqlType) method,update the column Min_Val of Float_Tab with the
-   * maximum value of Float_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the maximum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject147
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x, int
+	 * targetSqlType) method,update the column Min_Val of Float_Tab with the maximum
+	 * value of Float_Tab. Call the getObject(int columnno) method to retrieve this
+	 * value. Extract the maximum value from the tssql.stmt file. Compare this value
+	 * with the value returned by the getObject(int columnno) method. Both the
+	 * values should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject147() throws Exception {
+	public void testSetObject147() throws Exception {
 		super.testSetObject147();
-  }
+	}
 
-  /*
-   * @testName: testSetObject148
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x,int
-   * targetSqlType) method,update the column Null_Val of Float_Tab with the
-   * minimum value of Float_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the minimum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject148
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x,int targetSqlType)
+	 * method,update the column Null_Val of Float_Tab with the minimum value of
+	 * Float_Tab. Call the getObject(int columnno) method to retrieve this value.
+	 * Extract the minimum value from the tssql.stmt file. Compare this value with
+	 * the value returned by the getObject(int columnno) method. Both the values
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject148() throws Exception {
+	public void testSetObject148() throws Exception {
 		super.testSetObject148();
-  }
+	}
 
-  /*
-   * @testName: testSetObject149
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x, int
-   * targetSqlType) method,update the column Min_Val of Double_Tab with the
-   * maximum value of Double_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the maximum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject149
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x, int
+	 * targetSqlType) method,update the column Min_Val of Double_Tab with the
+	 * maximum value of Double_Tab. Call the getObject(int columnno) method to
+	 * retrieve this value. Extract the maximum value from the tssql.stmt file.
+	 * Compare this value with the value returned by the getObject(int columnno)
+	 * method. Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject149() throws Exception {
+	public void testSetObject149() throws Exception {
 		super.testSetObject149();
-  }
+	}
 
-  /*
-   * @testName: testSetObject150
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x,int
-   * targetSqlType) method,update the column Null_Val of Double_Tab with the
-   * minimum value of Double_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the minimum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject150
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x,int targetSqlType)
+	 * method,update the column Null_Val of Double_Tab with the minimum value of
+	 * Double_Tab. Call the getObject(int columnno) method to retrieve this value.
+	 * Extract the minimum value from the tssql.stmt file. Compare this value with
+	 * the value returned by the getObject(int columnno) method. Both the values
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject150() throws Exception {
+	public void testSetObject150() throws Exception {
 		super.testSetObject150();
-  }
+	}
 
-  /*
-   * @testName: testSetObject151
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x, int
-   * targetSqlType) method,update the column Min_Val of Decimal_Tab with the
-   * maximum value of Decimal_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the maximum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject151
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x, int
+	 * targetSqlType) method,update the column Min_Val of Decimal_Tab with the
+	 * maximum value of Decimal_Tab. Call the getObject(int columnno) method to
+	 * retrieve this value. Extract the maximum value from the tssql.stmt file.
+	 * Compare this value with the value returned by the getObject(int columnno)
+	 * method. Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject151() throws Exception {
+	public void testSetObject151() throws Exception {
 		super.testSetObject151();
-  }
+	}
 
-  /*
-   * @testName: testSetObject152
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:692;
-   * JDBC:JAVADOC:693; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x,int
-   * targetSqlType) method,update the column Null_Val of Decimal_Tab with the
-   * minimum value of Decimal_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the minimum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject152
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:692;
+	 * JDBC:JAVADOC:693; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x,int targetSqlType)
+	 * method,update the column Null_Val of Decimal_Tab with the minimum value of
+	 * Decimal_Tab. Call the getObject(int columnno) method to retrieve this value.
+	 * Extract the minimum value from the tssql.stmt file. Compare this value with
+	 * the value returned by the getObject(int columnno) method. Both the values
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject152() throws Exception {
+	public void testSetObject152() throws Exception {
 		super.testSetObject152();
 
-  }
+	}
 
-  /*
-   * @testName: testSetObject153
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x, int
-   * targetSqlType) method,update the column Min_Val of Numeric_Tab with the
-   * maximum value of Numeric_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the maximum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject153
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x, int
+	 * targetSqlType) method,update the column Min_Val of Numeric_Tab with the
+	 * maximum value of Numeric_Tab. Call the getObject(int columnno) method to
+	 * retrieve this value. Extract the maximum value from the tssql.stmt file.
+	 * Compare this value with the value returned by the getObject(int columnno)
+	 * method. Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject153() throws Exception {
+	public void testSetObject153() throws Exception {
 		super.testSetObject153();
-  }
+	}
 
-  /*
-   * @testName: testSetObject154
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:692;
-   * JDBC:JAVADOC:693; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x,int
-   * targetSqlType) method,update the column Null_Val of Numeric_Tab with the
-   * minimum value of Numeric_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the minimum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject154
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:692;
+	 * JDBC:JAVADOC:693; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x,int targetSqlType)
+	 * method,update the column Null_Val of Numeric_Tab with the minimum value of
+	 * Numeric_Tab. Call the getObject(int columnno) method to retrieve this value.
+	 * Extract the minimum value from the tssql.stmt file. Compare this value with
+	 * the value returned by the getObject(int columnno) method. Both the values
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject154() throws Exception {
+	public void testSetObject154() throws Exception {
 		super.testSetObject154();
 
-  }
+	}
 
-  /*
-   * @testName: testSetObject157
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x, int
-   * targetSqlType) method,update the Name column of Char_Tab with the maximum
-   * value of Bigint_Tab. Call the getObject(int columnno) method to retrieve
-   * this value. Extract the maximum value from the tssql.stmt file. Compare
-   * this value with the value returned by the getObject(int columnno) method.
-   * Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject157
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x, int
+	 * targetSqlType) method,update the Name column of Char_Tab with the maximum
+	 * value of Bigint_Tab. Call the getObject(int columnno) method to retrieve this
+	 * value. Extract the maximum value from the tssql.stmt file. Compare this value
+	 * with the value returned by the getObject(int columnno) method. Both the
+	 * values should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject157() throws Exception {
+	public void testSetObject157() throws Exception {
 		super.testSetObject157();
-  }
+	}
 
-  /*
-   * @testName: testSetObject158
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x,int
-   * targetSqlType) method,update the column Null_Val of Char_Tab with the
-   * minimum value of Bigint_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the minimum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject158
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x,int targetSqlType)
+	 * method,update the column Null_Val of Char_Tab with the minimum value of
+	 * Bigint_Tab. Call the getObject(int columnno) method to retrieve this value.
+	 * Extract the minimum value from the tssql.stmt file. Compare this value with
+	 * the value returned by the getObject(int columnno) method. Both the values
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject158() throws Exception {
+	public void testSetObject158() throws Exception {
 		super.testSetObject158();
-  }
+	}
 
-  /*
-   * @testName: testSetObject159
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x, int
-   * targetSqlType) method,update the Name column of Varchar_Tab with the
-   * maximum value of Bigint_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the maximum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject159
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x, int
+	 * targetSqlType) method,update the Name column of Varchar_Tab with the maximum
+	 * value of Bigint_Tab. Call the getObject(int columnno) method to retrieve this
+	 * value. Extract the maximum value from the tssql.stmt file. Compare this value
+	 * with the value returned by the getObject(int columnno) method. Both the
+	 * values should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject159() throws Exception {
+	public void testSetObject159() throws Exception {
 		super.testSetObject159();
-  }
+	}
 
-  /*
-   * @testName: testSetObject160
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-   * JDBC:JAVADOC:695; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. Using the setObject(int parameterIndex, Object x,int
-   * targetSqlType) method,update the column Null_Val of Varchar_Tab with the
-   * minimum value of Bigint_Tab. Call the getObject(int columnno) method to
-   * retrieve this value. Extract the minimum value from the tssql.stmt file.
-   * Compare this value with the value returned by the getObject(int columnno)
-   * method. Both the values should be equal.
-   */
+	/*
+	 * @testName: testSetObject160
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
+	 * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. Using the setObject(int parameterIndex, Object x,int targetSqlType)
+	 * method,update the column Null_Val of Varchar_Tab with the minimum value of
+	 * Bigint_Tab. Call the getObject(int columnno) method to retrieve this value.
+	 * Extract the minimum value from the tssql.stmt file. Compare this value with
+	 * the value returned by the getObject(int columnno) method. Both the values
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSetObject160() throws Exception {
+	public void testSetObject160() throws Exception {
 		super.testSetObject160();
-  }
+	}
 
 }

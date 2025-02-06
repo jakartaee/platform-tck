@@ -53,164 +53,161 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class callStmtClient22Servlet extends callStmtClient22 implements Serializable {
-  private static final String testName = "jdbc.ee.callStmt.callStmt22";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+	private static final String testName = "jdbc.ee.callStmt.callStmt22";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
 	@Deployment(name = "servlet", testable = true)
-	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "callStmt22_servlet_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(callStmtClient22Servlet.class, callStmtClient22.class);
-	       // The servlet descriptor
-URL servletUrl = callStmtClient22Servlet.class.getResource("servlet_vehicle_web.xml");
-if(servletUrl != null) {
-	archive.addAsWebInfResource(servletUrl, "web.xml");
-}
+		// The servlet descriptor
+		URL servletUrl = callStmtClient22Servlet.class.getResource("servlet_vehicle_web.xml");
+		if (servletUrl != null) {
+			archive.addAsWebInfResource(servletUrl, "web.xml");
+		}
 // The sun servlet descriptor
-URL sunServletUrl = callStmtClient22Servlet.class.getResource("callStmt22_servlet_vehicle_web.war.sun-web.xml");
-if(sunServletUrl != null) {
-	archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
-}
+		URL sunServletUrl = callStmtClient22Servlet.class.getResource("callStmt22_servlet_vehicle_web.war.sun-web.xml");
+		if (sunServletUrl != null) {
+			archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
+		}
 // Call the archive processor
-archiveProcessor.processWebArchive(archive, callStmtClient22Servlet.class, sunServletUrl);
-		
+		archiveProcessor.processWebArchive(archive, callStmtClient22Servlet.class, sunServletUrl);
+
 		return archive;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		callStmtClient22Servlet theTests = new callStmtClient22Servlet();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    callStmtClient22Servlet theTests = new callStmtClient22Servlet();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: testRegisterOutParameter49
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-   * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. execute the stored procedure and call the setObject() method to
-   * set Date value in null column of Date table and call
-   * registerOutParameter(int parameterIndex, int jdbcType) method and call
-   * getDate method. It should return a Date object that is been set. (Note:
-   * This test case also checks the support for INOUT parameter in Stored
-   * Procedure)
-   *
-   */
+	/*
+	 * @testName: testRegisterOutParameter49
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
+	 * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. execute the stored procedure and call the setObject() method to set
+	 * Date value in null column of Date table and call registerOutParameter(int
+	 * parameterIndex, int jdbcType) method and call getDate method. It should
+	 * return a Date object that is been set. (Note: This test case also checks the
+	 * support for INOUT parameter in Stored Procedure)
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testRegisterOutParameter49() throws Exception {
+	public void testRegisterOutParameter49() throws Exception {
 		super.testRegisterOutParameter49();
-  }
+	}
 
-  /*
-   * @testName: testRegisterOutParameter50
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-   * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. execute the stored procedure and call the setObject() method to
-   * set Time Object in null column of Time table and call
-   * registerOutParameter(int parameterIndex, int jdbcType) method and call
-   * getTime method. It should return a Time object that is been set. (Note:
-   * This test case also checks the support for INOUT parameter in Stored
-   * Procedure)
-   *
-   */
+	/*
+	 * @testName: testRegisterOutParameter50
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
+	 * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. execute the stored procedure and call the setObject() method to set
+	 * Time Object in null column of Time table and call registerOutParameter(int
+	 * parameterIndex, int jdbcType) method and call getTime method. It should
+	 * return a Time object that is been set. (Note: This test case also checks the
+	 * support for INOUT parameter in Stored Procedure)
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testRegisterOutParameter50() throws Exception {
+	public void testRegisterOutParameter50() throws Exception {
 		super.testRegisterOutParameter50();
-  }
+	}
 
-  /*
-   * @testName: testRegisterOutParameter51
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-   * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. execute the stored procedure and call the setObject() method to
-   * set Timestamp value in null column of Timestamp table and call
-   * registerOutParameter(int parameterIndex, int jdbcType) method and call
-   * getObject method. It should return a Timestamp object that is been set.
-   * (Note: This test case also checks the support for INOUT parameter in Stored
-   * Procedure)
-   *
-   */
+	/*
+	 * @testName: testRegisterOutParameter51
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
+	 * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. execute the stored procedure and call the setObject() method to set
+	 * Timestamp value in null column of Timestamp table and call
+	 * registerOutParameter(int parameterIndex, int jdbcType) method and call
+	 * getObject method. It should return a Timestamp object that is been set.
+	 * (Note: This test case also checks the support for INOUT parameter in Stored
+	 * Procedure)
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testRegisterOutParameter51() throws Exception {
+	public void testRegisterOutParameter51() throws Exception {
 		super.testRegisterOutParameter51();
-  }
+	}
 
-  /*
-   * @testName: testRegisterOutParameter52
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-   * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. execute the stored procedure and call the setObject() method to
-   * set Byte Array object in Binary table and call registerOutParameter(int
-   * parameterIndex, int jdbcType) method and call getObject method. It should
-   * return a Byte Array object that is been set. (Note: This test case also
-   * checks the support for INOUT parameter in Stored Procedure)
-   *
-   */
+	/*
+	 * @testName: testRegisterOutParameter52
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
+	 * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. execute the stored procedure and call the setObject() method to set
+	 * Byte Array object in Binary table and call registerOutParameter(int
+	 * parameterIndex, int jdbcType) method and call getObject method. It should
+	 * return a Byte Array object that is been set. (Note: This test case also
+	 * checks the support for INOUT parameter in Stored Procedure)
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testRegisterOutParameter52() throws Exception {
+	public void testRegisterOutParameter52() throws Exception {
 		super.testRegisterOutParameter52();
-  }
+	}
 
-  /*
-   * @testName: testRegisterOutParameter53
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-   * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. execute the stored procedure and call the setObject() method to
-   * set Byte Array object in Varbinary table and call registerOutParameter(int
-   * parameterIndex, int jdbcType) method and call getObject method. It should
-   * return a Byte Array object that is been set. (Note: This test case also
-   * checks the support for INOUT parameter in Stored Procedure)
-   *
-   */
+	/*
+	 * @testName: testRegisterOutParameter53
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
+	 * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. execute the stored procedure and call the setObject() method to set
+	 * Byte Array object in Varbinary table and call registerOutParameter(int
+	 * parameterIndex, int jdbcType) method and call getObject method. It should
+	 * return a Byte Array object that is been set. (Note: This test case also
+	 * checks the support for INOUT parameter in Stored Procedure)
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testRegisterOutParameter53() throws Exception {
+	public void testRegisterOutParameter53() throws Exception {
 		super.testRegisterOutParameter53();
-  }
+	}
 
-  /*
-   * @testName: testRegisterOutParameter54
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-   * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database. execute the stored procedure and call the setObject() method to
-   * set Byte Array object in Longvarbinary table and call
-   * registerOutParameter(int parameterIndex, int jdbcType) method and call
-   * getObject method. It should return a Byte Array object that is been set.
-   * (Note: This test case also checks the support for INOUT parameter in Stored
-   * Procedure)
-   *
-   */
+	/*
+	 * @testName: testRegisterOutParameter54
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
+	 * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database. execute the stored procedure and call the setObject() method to set
+	 * Byte Array object in Longvarbinary table and call registerOutParameter(int
+	 * parameterIndex, int jdbcType) method and call getObject method. It should
+	 * return a Byte Array object that is been set. (Note: This test case also
+	 * checks the support for INOUT parameter in Stored Procedure)
+	 *
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testRegisterOutParameter54() throws Exception {
+	public void testRegisterOutParameter54() throws Exception {
 		super.testRegisterOutParameter54();
-   }
+	}
 
 }

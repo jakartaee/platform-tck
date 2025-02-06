@@ -39,7 +39,6 @@ import com.sun.ts.lib.harness.Status;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
-
 // Merant DataSource class
 //import com.merant.sequelink.jdbcx.datasource.*;
 
@@ -54,12 +53,13 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-appclient")
 
 public class scalarClient2EJB extends scalarClient2 {
-  private static final String testName = "jdbc.ee.escapeSyntax";
-  
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")
-	@Deployment(name = "ejb",  testable = true)
-	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	private static final String testName = "jdbc.ee.escapeSyntax";
+
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
+	@Deployment(name = "ejb", testable = true)
+	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "scalar2_ejb_vehicle_client.jar");
 		ejbClient.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
@@ -73,13 +73,12 @@ public class scalarClient2EJB extends scalarClient2 {
 		}
 		ejbClient.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"),
 				"MANIFEST.MF");
-		
-		resURL = scalarClient2EJB.class
-				.getResource("/com/sun/ts/tests/jdbc/ee/escapeSyntax/scalar2/scalar2_ejb_vehicle_client.jar.sun-application-client.xml");
+
+		resURL = scalarClient2EJB.class.getResource(
+				"/com/sun/ts/tests/jdbc/ee/escapeSyntax/scalar2/scalar2_ejb_vehicle_client.jar.sun-application-client.xml");
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
-
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "scalar2_ejb_vehicle_ejb.jar");
 		ejb.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
@@ -95,7 +94,8 @@ public class scalarClient2EJB extends scalarClient2 {
 			ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
 		}
 
-		resURL = scalarClient2EJB.class.getResource("/com/sun/ts/tests/jdbc/ee/escapeSyntax/scalar2/ejb_vehicle_ejb.xml");
+		resURL = scalarClient2EJB.class
+				.getResource("/com/sun/ts/tests/jdbc/ee/escapeSyntax/scalar2/ejb_vehicle_ejb.xml");
 
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
@@ -107,333 +107,318 @@ public class scalarClient2EJB extends scalarClient2 {
 		return ear;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		scalarClient2EJB theTests = new scalarClient2EJB();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    scalarClient2EJB theTests = new scalarClient2EJB();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: testAbs
-   * 
-   * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function abs. It should return a numeric
-   * value.
-   *
-   */
+	/*
+	 * @testName: testAbs
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function abs. It should return a numeric value.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testAbs() throws Exception {
+	public void testAbs() throws Exception {
 		super.testAbs();
-  }
+	}
 
-  /*
-   * @testName: testPower
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function power. It should return a numeric
-   * value.
-   *
-   */
+	/*
+	 * @testName: testPower
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function power. It should return a numeric
+	 * value.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testPower() throws Exception {
+	public void testPower() throws Exception {
 		super.testPower();
-  }
+	}
 
-  /*
-   * @testName: testRound
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function round. It should return a numeric
-   * value.
-   *
-   */
+	/*
+	 * @testName: testRound
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function round. It should return a numeric
+	 * value.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testRound() throws Exception {
+	public void testRound() throws Exception {
 		super.testRound();
-  }
+	}
 
-  /*
-   * @testName: testSign
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function sign. It should return an
-   * integer.
-   *
-   */
+	/*
+	 * @testName: testSign
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function sign. It should return an integer.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSign() throws Exception {
+	public void testSign() throws Exception {
 		super.testSign();
-  }
+	}
 
-  /*
-   * @testName: testSqrt
-   * 
-   * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function sqrt. It should return a numeric
-   * value.
-   *
-   */
+	/*
+	 * @testName: testSqrt
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function sqrt. It should return a numeric value.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSqrt() throws Exception {
+	public void testSqrt() throws Exception {
 		super.testSqrt();
-  }
+	}
 
-  /*
-   * @testName: testTruncate
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function truncate. It should return a
-   * numeric value.
-   *
-   */
+	/*
+	 * @testName: testTruncate
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function truncate. It should return a numeric
+	 * value.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testTruncate() throws Exception {
+	public void testTruncate() throws Exception {
 		super.testTruncate();
-  }
+	}
 
-  /*
-   * @testName: testMod
-   * 
-   * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function mod. It should return an integer.
-   *
-   */
+	/*
+	 * @testName: testMod
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function mod. It should return an integer.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testMod() throws Exception {
+	public void testMod() throws Exception {
 		super.testMod();
-  }
+	}
 
-  /*
-   * @testName: testFloor
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function floor. It should return an
-   * integer.
-   *
-   */
+	/*
+	 * @testName: testFloor
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function floor. It should return an integer.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testFloor() throws Exception {
+	public void testFloor() throws Exception {
 		super.testFloor();
-  }
+	}
 
-  /*
-   * @testName: testCeiling
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function ceiling. It should return an
-   * integer.
-   *
-   */
+	/*
+	 * @testName: testCeiling
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function ceiling. It should return an integer.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testCeiling() throws Exception {
+	public void testCeiling() throws Exception {
 		super.testCeiling();
-  }
+	}
 
-  /*
-   * @testName: testLog10
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function log10. It should return a numeric
-   * value.
-   *
-   */
+	/*
+	 * @testName: testLog10
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function log10. It should return a numeric
+	 * value.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testLog10() throws Exception {
+	public void testLog10() throws Exception {
 		super.testLog10();
-  }
+	}
 
-  /*
-   * @testName: testLog
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function log. It should return a numeric
-   * value.
-   *
-   */
+	/*
+	 * @testName: testLog
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function log. It should return a numeric value.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testLog() throws Exception {
+	public void testLog() throws Exception {
 		super.testLog();
-  }
+	}
 
-  /*
-   * @testName: testExp
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function exp. It should return a numeric
-   * value.
-   *
-   */
+	/*
+	 * @testName: testExp
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function exp. It should return a numeric value.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testExp() throws Exception {
+	public void testExp() throws Exception {
 		super.testExp();
-  }
+	}
 
-  /*
-   * @testName: testCos
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function cos. It should return a numeric
-   * value.
-   *
-   */
+	/*
+	 * @testName: testCos
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function cos. It should return a numeric value.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testCos() throws Exception {
+	public void testCos() throws Exception {
 		super.testCos();
-  }
+	}
 
-  /*
-   * @testName: testTan
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function tan. It should return a numeric
-   * value.
-   * 
-   */
+	/*
+	 * @testName: testTan
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function tan. It should return a numeric value.
+	 * 
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testTan() throws Exception {
+	public void testTan() throws Exception {
 		super.testTan();
-  }
+	}
 
-  /*
-   * @testName: testCot
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function cot. It should return a numeric
-   * value.
-   *
-   *
-   */
+	/*
+	 * @testName: testCot
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function cot. It should return a numeric value.
+	 *
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testCot() throws Exception {
+	public void testCot() throws Exception {
 		super.testCot();
-  }
+	}
 
-  /*
-   * @testName: testCurdate
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function curdate. It should return a date
-   * value.
-   *
-   */
+	/*
+	 * @testName: testCurdate
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function curdate. It should return a date value.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testCurdate() throws Exception {
+	public void testCurdate() throws Exception {
 		super.testCurdate();
-  }
+	}
 
-  /*
-   * @testName: testDayname
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function dayname. It should return a
-   * character string.
-   *
-   */
+	/*
+	 * @testName: testDayname
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function dayname. It should return a character
+	 * string.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testDayname() throws Exception {
+	public void testDayname() throws Exception {
 		super.testDayname();
-  }
+	}
 
-  /*
-   * @testName: testDayofmonth
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function dayofmonth. It should return an
-   * integer.
-   *
-   */
+	/*
+	 * @testName: testDayofmonth
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function dayofmonth. It should return an
+	 * integer.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testDayofmonth() throws Exception {
+	public void testDayofmonth() throws Exception {
 		super.testDayofmonth();
-  }
+	}
 
-  /*
-   * @testName: testDayofweek
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function dayofweek. It should return an
-   * integer.
-   *
-   */
+	/*
+	 * @testName: testDayofweek
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function dayofweek. It should return an integer.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testDayofweek() throws Exception {
+	public void testDayofweek() throws Exception {
 		super.testDayofweek();
-  }
+	}
 
-  /*
-   * @testName: testDayofyear
-   * 
-   * @assertion_ids: JDBC:SPEC:4;
-   * 
-   * @test_Strategy: Get a Statement object and call the method executeQuery.
-   * The query contains a call to the function dayofyear. It should return an
-   * integer.
-   *
-   */
+	/*
+	 * @testName: testDayofyear
+	 * 
+	 * @assertion_ids: JDBC:SPEC:4;
+	 * 
+	 * @test_Strategy: Get a Statement object and call the method executeQuery. The
+	 * query contains a call to the function dayofyear. It should return an integer.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testDayofyear() throws Exception {
+	public void testDayofyear() throws Exception {
 		super.testDayofyear();
-  }
+	}
 }

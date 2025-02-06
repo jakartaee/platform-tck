@@ -51,12 +51,13 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-appclient")
 
 public class callStmtClient2EJB extends callStmtClient2 implements Serializable {
-  private static final String testName = "jdbc.ee.callStmt.callStmt2";
-  
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")
-	@Deployment(name = "ejb",   testable = true)
-	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	private static final String testName = "jdbc.ee.callStmt.callStmt2";
+
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
+	@Deployment(name = "ejb", testable = true)
+	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "callStmt2_ejb_vehicle_client.jar");
 		ejbClient.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
@@ -64,13 +65,14 @@ public class callStmtClient2EJB extends callStmtClient2 implements Serializable 
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
 		ejbClient.addClasses(callStmtClient2EJB.class, callStmtClient2.class);
 
-		URL resURL = callStmtClient2EJB.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
+		URL resURL = callStmtClient2EJB.class
+				.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "application-client.xml");
 		}
-		
-		resURL = callStmtClient2EJB.class
-				.getResource("/com/sun/ts/tests/jdbc/ee/callStmt/callStmt2/callStmt2_ejb_vehicle_client.jar.sun-application-client.xml");
+
+		resURL = callStmtClient2EJB.class.getResource(
+				"/com/sun/ts/tests/jdbc/ee/callStmt/callStmt2/callStmt2_ejb_vehicle_client.jar.sun-application-client.xml");
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
@@ -92,7 +94,8 @@ public class callStmtClient2EJB extends callStmtClient2 implements Serializable 
 			ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
 		}
 
-		resURL = callStmtClient2EJB.class.getResource("/com/sun/ts/tests/jdbc/ee/callStmt/callStmt2/ejb_vehicle_ejb.xml");
+		resURL = callStmtClient2EJB.class
+				.getResource("/com/sun/ts/tests/jdbc/ee/callStmt/callStmt2/ejb_vehicle_ejb.xml");
 
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
@@ -105,354 +108,353 @@ public class callStmtClient2EJB extends callStmtClient2 implements Serializable 
 
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		callStmtClient2EJB theTests = new callStmtClient2EJB();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    callStmtClient2EJB theTests = new callStmtClient2EJB();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: testGetTime01
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1263;
-   * JDBC:JAVADOC:1264; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getTime(int
-   * parameterIndex) method to retrieve a Time value from Time_Tab. Extract the
-   * the same Time value from the tssql.stmt file.Compare this value with the
-   * value returned by the getTime(int parameterIndex).Both the values should be
-   * equal.
-   */
+	/*
+	 * @testName: testGetTime01
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1263;
+	 * JDBC:JAVADOC:1264; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getTime(int
+	 * parameterIndex) method to retrieve a Time value from Time_Tab. Extract the
+	 * the same Time value from the tssql.stmt file.Compare this value with the
+	 * value returned by the getTime(int parameterIndex).Both the values should be
+	 * equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetTime01() throws Exception {
+	public void testGetTime01() throws Exception {
 		super.testGetTime01();
-  }
+	}
 
-  /*
-   * @testName: testGetTime02
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1263;
-   * JDBC:JAVADOC:1264; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getTime(int
-   * parameterIndex) method to retrieve the null value from Time_Tab.Check if it
-   * returns null.
-   */
+	/*
+	 * @testName: testGetTime02
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1263;
+	 * JDBC:JAVADOC:1264; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getTime(int
+	 * parameterIndex) method to retrieve the null value from Time_Tab.Check if it
+	 * returns null.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetTime02() throws Exception {
+	public void testGetTime02() throws Exception {
 		super.testGetTime02();
-  }
+	}
 
-  /*
-   * @testName: testGetTime03
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1283;
-   * JDBC:JAVADOC:1284; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getTime(int
-   * parameterIndex,Calander cal) method to retrieve a Time value from Time_tab.
-   * Extract the same Time value from the tssql.stmt file.Compare this value
-   * with the value returned by the getTime(int parameterIndex,Calander cal).
-   * Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetTime03
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1283;
+	 * JDBC:JAVADOC:1284; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getTime(int
+	 * parameterIndex,Calander cal) method to retrieve a Time value from Time_tab.
+	 * Extract the same Time value from the tssql.stmt file.Compare this value with
+	 * the value returned by the getTime(int parameterIndex,Calander cal). Both the
+	 * values should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetTime03() throws Exception {
+	public void testGetTime03() throws Exception {
 		super.testGetTime03();
-  }
+	}
 
-  /*
-   * @testName: testGetTime04
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1283;
-   * JDBC:JAVADOC:1284; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getTime(int
-   * parameterIndex,Calender cal) method to retrieve the null value from
-   * Time_Tab. Check if it returns null.
-   */
+	/*
+	 * @testName: testGetTime04
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1283;
+	 * JDBC:JAVADOC:1284; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getTime(int
+	 * parameterIndex,Calender cal) method to retrieve the null value from Time_Tab.
+	 * Check if it returns null.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetTime04() throws Exception {
+	public void testGetTime04() throws Exception {
 		super.testGetTime04();
-  }
+	}
 
-  /*
-   * @testName: testGetTimestamp01
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1265;
-   * JDBC:JAVADOC:1266; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getTimestamp(int
-   * parameterIndex) method to retrieve a Timestamp value from Timestamp_Tab.
-   * Extract the the same Timestamp value from the tssql.stmt file.Compare this
-   * value with the value returned by the getTimestamp(int parameterIndex) Both
-   * the values should be equal.
-   */
+	/*
+	 * @testName: testGetTimestamp01
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1265;
+	 * JDBC:JAVADOC:1266; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getTimestamp(int
+	 * parameterIndex) method to retrieve a Timestamp value from Timestamp_Tab.
+	 * Extract the the same Timestamp value from the tssql.stmt file.Compare this
+	 * value with the value returned by the getTimestamp(int parameterIndex) Both
+	 * the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetTimestamp01() throws Exception {
+	public void testGetTimestamp01() throws Exception {
 		super.testGetTimestamp01();
-  }
+	}
 
-  /*
-   * @testName: testGetTimestamp02
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1265;
-   * JDBC:JAVADOC:1266; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getTimestamp(int
-   * parameterIndex) method to retrieve the null value from Timestamp_Tab. Check
-   * if it returns null.
-   */
+	/*
+	 * @testName: testGetTimestamp02
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1265;
+	 * JDBC:JAVADOC:1266; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getTimestamp(int
+	 * parameterIndex) method to retrieve the null value from Timestamp_Tab. Check
+	 * if it returns null.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetTimestamp02() throws Exception {
+	public void testGetTimestamp02() throws Exception {
 		super.testGetTimestamp02();
-  }
+	}
 
-  /*
-   * @testName: testGetTimestamp03
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1285;
-   * JDBC:JAVADOC:1286; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getTimestamp(int
-   * parameterIndex,Calender cal) method to retrieve a Timestamp value from
-   * Timestamp_Tab. Extract the the same Timestamp value from the tssql.stmt
-   * file.Compare this value with the value returned by the getTimestamp(int
-   * parameterIndex, Calender cal) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetTimestamp03
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1285;
+	 * JDBC:JAVADOC:1286; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getTimestamp(int
+	 * parameterIndex,Calender cal) method to retrieve a Timestamp value from
+	 * Timestamp_Tab. Extract the the same Timestamp value from the tssql.stmt
+	 * file.Compare this value with the value returned by the getTimestamp(int
+	 * parameterIndex, Calender cal) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetTimestamp03() throws Exception {
+	public void testGetTimestamp03() throws Exception {
 		super.testGetTimestamp03();
-  }
+	}
 
-  /*
-   * @testName: testGetTimestamp04
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1285;
-   * JDBC:JAVADOC:1286; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getTimestamp(int
-   * parameterIndex,Calender cal) method to retrieve the null value from
-   * Timestamp_Tab. Check if it returns null.
-   */
+	/*
+	 * @testName: testGetTimestamp04
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1285;
+	 * JDBC:JAVADOC:1286; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getTimestamp(int
+	 * parameterIndex,Calender cal) method to retrieve the null value from
+	 * Timestamp_Tab. Check if it returns null.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetTimestamp04() throws Exception {
+	public void testGetTimestamp04() throws Exception {
 		super.testGetTimestamp04();
-  }
+	}
 
-  /*
-   * @testName: testGetDate01
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1261;
-   * JDBC:JAVADOC:1262; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getDate(int
-   * parameterIndex) method to retrieve a Date value from Date_Tab. Extract the
-   * the same Date value from the tssql.stmt file.Compare this value with the
-   * value returned by the getDate(int parameterIndex).Both the values should be
-   * equal.
-   */
+	/*
+	 * @testName: testGetDate01
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1261;
+	 * JDBC:JAVADOC:1262; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getDate(int
+	 * parameterIndex) method to retrieve a Date value from Date_Tab. Extract the
+	 * the same Date value from the tssql.stmt file.Compare this value with the
+	 * value returned by the getDate(int parameterIndex).Both the values should be
+	 * equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetDate01() throws Exception {
+	public void testGetDate01() throws Exception {
 		super.testGetDate01();
-  }
+	}
 
-  /*
-   * @testName: testGetDate02
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1261;
-   * JDBC:JAVADOC:1262; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getDate(int
-   * parameterIndex) method to retrieve the null value from Date_Tab. Check if
-   * it returns null.
-   */
+	/*
+	 * @testName: testGetDate02
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1261;
+	 * JDBC:JAVADOC:1262; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getDate(int
+	 * parameterIndex) method to retrieve the null value from Date_Tab. Check if it
+	 * returns null.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetDate02() throws Exception {
+	public void testGetDate02() throws Exception {
 		super.testGetDate02();
-  }
+	}
 
-  /*
-   * @testName: testGetDate03
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1281;
-   * JDBC:JAVADOC:1282; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getDate(int
-   * parameterIndex,Calender cal) method to retrieve a Date value from
-   * Date_Tab.Extract the the same Date value from the tssql.stmt file.Compare
-   * this value with the value returned by the getDate(int parameterIndex,
-   * Calender cal) Both the values should be equal.
-   */
+	/*
+	 * @testName: testGetDate03
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1281;
+	 * JDBC:JAVADOC:1282; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getDate(int
+	 * parameterIndex,Calender cal) method to retrieve a Date value from
+	 * Date_Tab.Extract the the same Date value from the tssql.stmt file.Compare
+	 * this value with the value returned by the getDate(int parameterIndex,
+	 * Calender cal) Both the values should be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetDate03() throws Exception {
+	public void testGetDate03() throws Exception {
 		super.testGetDate03();
-  }
+	}
 
-  /*
-   * @testName: testGetDate04
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1281;
-   * JDBC:JAVADOC:1282; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getDate(int
-   * parameterIndex, Calender cal) method to retrieve the null value from
-   * Date_Tab. Check if it returns null.
-   */
+	/*
+	 * @testName: testGetDate04
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1281;
+	 * JDBC:JAVADOC:1282; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getDate(int
+	 * parameterIndex, Calender cal) method to retrieve the null value from
+	 * Date_Tab. Check if it returns null.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetDate04() throws Exception {
+	public void testGetDate04() throws Exception {
 		super.testGetDate04();
-  }
+	}
 
-  /*
-   * @testName: testGetByte01
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1245;
-   * JDBC:JAVADOC:1246; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getByte(int
-   * parameterIndex) method to retrieve the maximum value from Tinyint_Tab.
-   * Extract the maximum value from the tssql.stmt file.Compare this value with
-   * the value returned by the getByte(int parameterIndex).Both the values
-   * should be equal.
-   */
+	/*
+	 * @testName: testGetByte01
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1245;
+	 * JDBC:JAVADOC:1246; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getByte(int
+	 * parameterIndex) method to retrieve the maximum value from Tinyint_Tab.
+	 * Extract the maximum value from the tssql.stmt file.Compare this value with
+	 * the value returned by the getByte(int parameterIndex).Both the values should
+	 * be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetByte01() throws Exception {
+	public void testGetByte01() throws Exception {
 		super.testGetByte01();
-   }
+	}
 
-  /*
-   * @testName: testGetByte02
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1245;
-   * JDBC:JAVADOC:1246; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getByte(int
-   * parameterIndex) method to retrieve the minimum value from Tinyint_Tab.
-   * Extract the minimum value from the tssql.stmt file.Compare this value with
-   * the value returned by the getByte(int parameterIndex).Both the values
-   * should be equal.
-   */
+	/*
+	 * @testName: testGetByte02
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1245;
+	 * JDBC:JAVADOC:1246; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getByte(int
+	 * parameterIndex) method to retrieve the minimum value from Tinyint_Tab.
+	 * Extract the minimum value from the tssql.stmt file.Compare this value with
+	 * the value returned by the getByte(int parameterIndex).Both the values should
+	 * be equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetByte02() throws Exception {
+	public void testGetByte02() throws Exception {
 		super.testGetByte02();
-   }
+	}
 
-  /*
-   * @testName: testGetByte03
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1245;
-   * JDBC:JAVADOC:1246; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getByte(int
-   * parameterIndex) method to retrieve the null value from Tinyint_Tab.Check if
-   * it returns null
-   */
+	/*
+	 * @testName: testGetByte03
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1245;
+	 * JDBC:JAVADOC:1246; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getByte(int
+	 * parameterIndex) method to retrieve the null value from Tinyint_Tab.Check if
+	 * it returns null
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetByte03() throws Exception {
+	public void testGetByte03() throws Exception {
 		super.testGetByte03();
-   }
+	}
 
-  /*
-   * @testName: testGetDouble01
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255;
-   * JDBC:JAVADOC:1256; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getDouble(int
-   * parameterIndex) method to retrieve the maximum value of Double_Tab. Extract
-   * the maximum value from the tssql.stmt file.Compare this value with the
-   * value returned by the getDouble(int parameterIndex). Both the values should
-   * be equal.
-   */
+	/*
+	 * @testName: testGetDouble01
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255;
+	 * JDBC:JAVADOC:1256; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getDouble(int
+	 * parameterIndex) method to retrieve the maximum value of Double_Tab. Extract
+	 * the maximum value from the tssql.stmt file.Compare this value with the value
+	 * returned by the getDouble(int parameterIndex). Both the values should be
+	 * equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetDouble01() throws Exception {
+	public void testGetDouble01() throws Exception {
 		super.testGetDouble01();
-   }
+	}
 
-  /*
-   * @testName: testGetDouble02
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255;
-   * JDBC:JAVADOC:1256; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getDouble(int
-   * parameterIndex) method to retrieve the minimum value from Double_Tab.
-   * Extract the minimum value from the tssql.stmt file.Compare this value with
-   * the value returned by the getDouble(int parameterIndex). Both the values
-   * should be equal.
-   */
+	/*
+	 * @testName: testGetDouble02
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255;
+	 * JDBC:JAVADOC:1256; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getDouble(int
+	 * parameterIndex) method to retrieve the minimum value from Double_Tab. Extract
+	 * the minimum value from the tssql.stmt file.Compare this value with the value
+	 * returned by the getDouble(int parameterIndex). Both the values should be
+	 * equal.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetDouble02() throws Exception {
+	public void testGetDouble02() throws Exception {
 		super.testGetDouble02();
-   }
+	}
 
-  /*
-   * @testName: testGetDouble03
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255;
-   * JDBC:JAVADOC:1256; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getDouble(int
-   * parameterIndex) method to retrieve the null value from Double_Tab.Check if
-   * it returns null
-   */
+	/*
+	 * @testName: testGetDouble03
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255;
+	 * JDBC:JAVADOC:1256; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getDouble(int
+	 * parameterIndex) method to retrieve the null value from Double_Tab.Check if it
+	 * returns null
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetDouble03() throws Exception {
+	public void testGetDouble03() throws Exception {
 		super.testGetDouble03();
-   }
+	}
 
-  /*
-   * @testName: testWasNull
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1239;
-   * JDBC:JAVADOC:1240; JavaEE:SPEC:183; JavaEE:SPEC:185;
-   *
-   * @test_Strategy: Get a CallableStatement object from the connection to the
-   * database.Execute the stored procedure and call the getInt(int
-   * parameterIndex) method to retrieve the null value from Integer_Tab. Check
-   * if it returns null using the method wasNull().
-   */
+	/*
+	 * @testName: testWasNull
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1239;
+	 * JDBC:JAVADOC:1240; JavaEE:SPEC:183; JavaEE:SPEC:185;
+	 *
+	 * @test_Strategy: Get a CallableStatement object from the connection to the
+	 * database.Execute the stored procedure and call the getInt(int parameterIndex)
+	 * method to retrieve the null value from Integer_Tab. Check if it returns null
+	 * using the method wasNull().
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testWasNull() throws Exception {
+	public void testWasNull() throws Exception {
 		super.testWasNull();
-   }
+	}
 }

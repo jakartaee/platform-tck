@@ -37,132 +37,119 @@ import com.sun.ts.lib.util.TestUtil;
  */
 
 public class JDBCTestMsg extends ServiceEETest {
-  Collection msgList = new ArrayList();
+	Collection msgList = new ArrayList();
 
-  Collection outputMsgList = new ArrayList();
+	Collection outputMsgList = new ArrayList();
 
-  boolean trace = Boolean.valueOf(TestUtil.getProperty("harness.log.traceflag"))
-      .booleanValue();
+	boolean trace = Boolean.valueOf(TestUtil.getProperty("harness.log.traceflag")).booleanValue();
 
-  /**
-   * Adds the messages to be printed to a List. If trace is true logs the
-   * message directly.
-   *
-   * @param input
-   *          a string to be logged out after the tests execution
-   */
+	/**
+	 * Adds the messages to be printed to a List. If trace is true logs the message
+	 * directly.
+	 *
+	 * @param input a string to be logged out after the tests execution
+	 */
 
-  public void setMsg(String input) {
-    if (trace == true) {
-      TestUtil.logMsg(input);
-    } else {
-      msgList.add(input);
-    }
-  }
+	public void setMsg(String input) {
+		if (trace == true) {
+			TestUtil.logMsg(input);
+		} else {
+			msgList.add(input);
+		}
+	}
 
-  /**
-   * This method is called from the error handling methods and also from the
-   * tests to log all the messages contained in the List.
-   * 
-   */
+	/**
+	 * This method is called from the error handling methods and also from the tests
+	 * to log all the messages contained in the List.
+	 * 
+	 */
 
-  public void printTestMsg() {
-    if (trace != true) {
-      TestUtil.logMsg("***************************************");
+	public void printTestMsg() {
+		if (trace != true) {
+			TestUtil.logMsg("***************************************");
 
-      Iterator it = msgList.iterator();
-      while (it.hasNext()) {
-        TestUtil.logMsg(" " + it.next());
-      }
+			Iterator it = msgList.iterator();
+			while (it.hasNext()) {
+				TestUtil.logMsg(" " + it.next());
+			}
 
-      TestUtil.logMsg("***************************************");
-    }
+			TestUtil.logMsg("***************************************");
+		}
 
-  }
+	}
 
-  /**
-   * Adds the expected and obtained output string to a List. If trace is true
-   * logs the message directly.
-   * 
-   * @param expected
-   *          the expected output string passed from the tests
-   * @param obtained
-   *          the obtained output string passed from the tests
-   */
-  public void addOutputMsg(String expected, String obtained) {
-    if (trace == true) {
-      TestUtil.logMsg("Expected Output..... " + expected
-          + "  Obtained Output..... " + obtained);
-    } else {
-      outputMsgList.add(expected);
-      outputMsgList.add(obtained);
-    }
-  }
+	/**
+	 * Adds the expected and obtained output string to a List. If trace is true logs
+	 * the message directly.
+	 * 
+	 * @param expected the expected output string passed from the tests
+	 * @param obtained the obtained output string passed from the tests
+	 */
+	public void addOutputMsg(String expected, String obtained) {
+		if (trace == true) {
+			TestUtil.logMsg("Expected Output..... " + expected + "  Obtained Output..... " + obtained);
+		} else {
+			outputMsgList.add(expected);
+			outputMsgList.add(obtained);
+		}
+	}
 
-  /**
-   * This method is called from the error handling methods to print the expected
-   * and obtained output if the tests fails.
-   * 
-   */
+	/**
+	 * This method is called from the error handling methods to print the expected
+	 * and obtained output if the tests fails.
+	 * 
+	 */
 
-  public void printOutputMsg() {
-    Iterator it = outputMsgList.iterator();
-    while (it.hasNext()) {
-      TestUtil.logMsg("Expected Output..... " + it.next()
-          + "  Obtained Output..... " + it.next());
-    }
-    TestUtil.logMsg("***************************************");
-  }
+	public void printOutputMsg() {
+		Iterator it = outputMsgList.iterator();
+		while (it.hasNext()) {
+			TestUtil.logMsg("Expected Output..... " + it.next() + "  Obtained Output..... " + it.next());
+		}
+		TestUtil.logMsg("***************************************");
+	}
 
-  /**
-   * This method handles SQLException that is thrown by the tests in case of
-   * failure due to database access error.
-   *
-   * @param sqle
-   *          SQLException thrown from the tests
-   * @param error
-   *          error messages
-   */
-  public void printSQLError(SQLException sqle, String error) throws Exception {
-    if (trace != true) {
-      printTestMsg();
-      printOutputMsg();
-    }
-    throw new Exception(error, sqle);
+	/**
+	 * This method handles SQLException that is thrown by the tests in case of
+	 * failure due to database access error.
+	 *
+	 * @param sqle  SQLException thrown from the tests
+	 * @param error error messages
+	 */
+	public void printSQLError(SQLException sqle, String error) throws Exception {
+		if (trace != true) {
+			printTestMsg();
+			printOutputMsg();
+		}
+		throw new Exception(error, sqle);
 
-  }
+	}
 
-  /**
-   * This method handles Exception condition occurring due to some failures in
-   * the tests execution.
-   * 
-   * @param e
-   *          Exception thrown from the tests
-   * @param error
-   *          error message
-   */
-  public void printError(Exception e, String error) throws Exception {
-    if (trace != true) {
-      printTestMsg();
-      printOutputMsg();
-    }
-    throw new Exception(error, e);
-  }
+	/**
+	 * This method handles Exception condition occurring due to some failures in the
+	 * tests execution.
+	 * 
+	 * @param e     Exception thrown from the tests
+	 * @param error error message
+	 */
+	public void printError(Exception e, String error) throws Exception {
+		if (trace != true) {
+			printTestMsg();
+			printOutputMsg();
+		}
+		throw new Exception(error, e);
+	}
 
-  /**
-   * This method logs any general message and error if the tests does not
-   * passes.
-   * 
-   * @param message
-   *          String message passed from the tests when it fails
-   * @param error
-   *          error message
-   */
+	/**
+	 * This method logs any general message and error if the tests does not passes.
+	 * 
+	 * @param message String message passed from the tests when it fails
+	 * @param error   error message
+	 */
 
-  public void printTestError(String message, String error) throws Exception {
-    TestUtil.logErr(message);
-    throw new Exception(error);
+	public void printTestError(String message, String error) throws Exception {
+		TestUtil.logErr(message);
+		throw new Exception(error);
 
-  }
+	}
 
 }
