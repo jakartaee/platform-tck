@@ -46,6 +46,7 @@
         <glassfish.module.dir>${glassfish.home}/glassfish/modules</glassfish.module.dir>
         <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
 
+        <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
         <!-- mail connection properties -->
         <javamail.password>1234</javamail.password>
         <javamail.protocol>imap</javamail.protocol>
@@ -125,12 +126,12 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>${project.version}</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${project.version}</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>

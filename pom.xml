@@ -34,7 +34,6 @@
     <description>platform-tcks-parent</description>
 
     <modules>
-        <module>arquillian</module>
         <module>tcks/apis/cdi-ee-tck/tck</module>
         <module>tcks/apis/connector</module>
         <module>tcks/apis/enterprise-beans/ejb30</module>
@@ -74,7 +73,6 @@
         <!-- Arquillian -->
         <ant.version>1.10.15</ant.version>
         <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
-        <arquillian.jakarta.tck.version>${project.version}</arquillian.jakarta.tck.version>
         <arquillian.version>1.9.1.Final</arquillian.version>
 
         <!-- CDI -->
@@ -107,6 +105,7 @@
         <jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>
 
         <!-- Jakarta TCK Tools version from the independently released tools submodule -->
+        <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
         <jakarta.tck.tools.version>11.0.0-RC4</jakarta.tck.tools.version>
 
         <!-- Jakarta Transactions -->
@@ -513,7 +512,7 @@
             <dependency>
                 <groupId>jakarta.tck.arquillian</groupId>
                 <artifactId>tck-porting-lib</artifactId>
-                <version>${arquillian.jakarta.tck.version}</version>
+                <version>${jakarta.tck.arquillian.version}</version>
             </dependency>
             <dependency>
                 <groupId>jakarta.transaction</groupId>

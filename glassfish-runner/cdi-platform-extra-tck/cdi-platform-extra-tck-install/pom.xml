@@ -45,6 +45,7 @@
                 <artifactId>download-maven-plugin</artifactId>
                 <version>1.13.0</version>
                 <configuration>
+                    <skipCache>false</skipCache>
                     <url>${tck.test.cdi-extra.url}</url>
                     <unpack>true</unpack>
                     <outputDirectory>${project.build.directory}</outputDirectory>

@@ -45,7 +45,7 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${arquillian.jakarta.tck.version}</version>
+            <version>${jakarta.tck.arquillian.version}</version>
             <classifier>javadoc</classifier>
         </dependency>
         <dependency>

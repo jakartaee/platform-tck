@@ -154,7 +154,6 @@
                     <configuration>
                         <sourceDirectory>src/main/asciidoc</sourceDirectory>
                         <sourceDocumentName>book.adoc</sourceDocumentName>
-                        <!-- XXX - below depends on running jbake first -->
                         <backend>pdf</backend>
                         <outputFile>${doc.pdf}</outputFile>
                         <attributes>

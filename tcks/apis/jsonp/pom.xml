@@ -38,7 +38,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <jakarta.tck.tools.version>11.0.0-RC4</jakarta.tck.tools.version>
-        <jakarta.tck.arquillian.version>11.0.0-M1</jakarta.tck.arquillian.version>
+        <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
     </properties>
 
     <dependencyManagement>
