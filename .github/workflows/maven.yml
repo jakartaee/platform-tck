@@ -65,8 +65,10 @@ jobs:
       - name: Build TCK
         run: ./mvnw -e -B -U clean install -Dmaven.test.failure.ignore=true -Pstaging
 
-      - name: Run TCK
-        run: ./mvnw -e -B -U -Pstaging -pl release
+      - name: Build Release
+        run: |
+          cd release
+          ../mvnw -e -B -U -Pstaging
 
 #      - name: Run Glassfish Runner
 #        run: cd glassfish-runner; ../mvnw -e -B -U test -Pglassfish-runner -Pstaging
