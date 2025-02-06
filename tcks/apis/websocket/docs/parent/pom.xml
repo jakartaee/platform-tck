@@ -20,11 +20,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>jakarta.tck</groupId>
-    <artifactId>jakarta.tck.user-guide</artifactId>
+    <artifactId>jakarta.websocket-tck-user-guide-parent</artifactId>
     <version>2.2.0</version>
     <packaging>pom</packaging>
 
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide Parent for TCK Documentation</name>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide Parent for Jakarta WebSocket for Jakarta EE, Release 2.2</name>
 
     <properties>
         <asciidoctorj.diagram.version>2.3.1</asciidoctorj.diagram.version>
