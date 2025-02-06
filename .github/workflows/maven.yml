@@ -68,7 +68,7 @@ jobs:
       - name: Build Release
         run: |
           cd release
-          ../mvnw -e -B -U -Pstaging
+          ../mvnw -e -B -U -Pstaging package
 
 #      - name: Run Glassfish Runner
 #        run: cd glassfish-runner; ../mvnw -e -B -U test -Pglassfish-runner -Pstaging
