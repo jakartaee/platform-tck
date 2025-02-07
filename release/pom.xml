@@ -31,8 +31,8 @@
     <name>Jakarta TCK Release</name>
 
     <properties>
-        <tck.test.jsonb.version>11.0.0-SNAPSHOT</tck.test.jsonb.version>
-        <tck.test.jsonp.version>11.0.0-SNAPSHOT</tck.test.jsonp.version>
+        <tck.test.jsonb.version>${project.version}</tck.test.jsonb.version>
+        <tck.test.jsonp.version>${project.version}</tck.test.jsonp.version>
     </properties>
 
     <dependencies>
