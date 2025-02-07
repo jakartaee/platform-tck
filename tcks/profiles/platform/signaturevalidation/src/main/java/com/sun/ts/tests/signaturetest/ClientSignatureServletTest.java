@@ -19,7 +19,7 @@
  */
 
 /*
- * @(#)ClientServletTest.java
+ * @(#)ClientSignatureServletTest.java
  */
 
 package com.sun.ts.tests.signaturetest;
@@ -47,8 +47,8 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("signaturetest")
 @Tag("platform")
 @Tag("web")
-public class ClientServletTest extends JakartaEESigTest implements Serializable {
-    static final String VEHICLE_ARCHIVE = "jpa_jpa22_repeatable_attroverride_pmservlet_vehicle";
+public class ClientSignatureServletTest extends JakartaEESigTest implements Serializable {
+    static final String VEHICLE_ARCHIVE = "signaturetest_ClientSignatureServletTest_servlet_vehicle.war";
 
     /**
      * Servlet container test
@@ -90,7 +90,7 @@ public class ClientServletTest extends JakartaEESigTest implements Serializable 
     public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
         // the war with the correct archive name
-        WebArchive signaturetest_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "SigTest_servlet_vehicle_web.war");
+        WebArchive signaturetest_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, VEHICLE_ARCHIVE);
         // The class files
         signaturetest_servlet_vehicle_web.addClasses(
                 com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean.class,
@@ -100,7 +100,7 @@ public class ClientServletTest extends JakartaEESigTest implements Serializable 
                 com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareIF.class,
                 com.sun.ts.lib.harness.EETest.Fault.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
-                ClientServletTest.class,
+                ClientSignatureServletTest.class,
                 com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
@@ -113,7 +113,7 @@ public class ClientServletTest extends JakartaEESigTest implements Serializable 
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
         );
         // The web.xml descriptor
-        URL warResURL = ClientServletTest.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
+        URL warResURL = ClientSignatureServletTest.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
         if (warResURL != null) {
             signaturetest_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
         }
@@ -132,7 +132,7 @@ public class ClientServletTest extends JakartaEESigTest implements Serializable 
                     signaturetest_servlet_vehicle_web.addAsLibrary(file);
                 });
         // Call the archive processor
-        archiveProcessor.processWebArchive(signaturetest_servlet_vehicle_web, ClientServletTest.class, warResURL);
+        archiveProcessor.processWebArchive(signaturetest_servlet_vehicle_web, ClientSignatureServletTest.class, warResURL);
         return signaturetest_servlet_vehicle_web;
     }
 
