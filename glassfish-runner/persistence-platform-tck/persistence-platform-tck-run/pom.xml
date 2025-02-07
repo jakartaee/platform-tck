@@ -43,6 +43,7 @@
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
 
         <tck.version>11.0.0-SNAPSHOT</tck.version>
+        <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
         <jakarta.tck.tools.version>11.0.0-RC4</jakarta.tck.tools.version>
         <version.persistence.tck>11.0.0-SNAPSHOT</version.persistence.tck>
         
@@ -216,12 +217,12 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>11.0.0-M1</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>11.0.0-M1</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
     </dependencies>
 
