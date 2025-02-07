@@ -33,6 +33,13 @@
     <name>project</name>
     <description>platform-tcks-parent</description>
 
+    <scm>
+        <connection>scm:git:https://github.com/jakartaee/platform-tck</connection>
+        <developerConnection>scm:git:https://github.com/jakartaee/platform-tck</developerConnection>
+        <tag>main</tag>
+        <url>https://github.com/jakartaee/platform-tck</url>
+    </scm>
+
     <modules>
         <module>tcks/apis/cdi-ee-tck/tck</module>
         <module>tcks/apis/connector</module>
