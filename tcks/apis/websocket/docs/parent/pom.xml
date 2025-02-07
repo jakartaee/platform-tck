@@ -46,7 +46,7 @@
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status>DRAFT</status>
 
-        <ug.resources.version>2.2.1-SNAPSHOT</ug.resources.version>
+        <ug.resources.version>2.2.0</ug.resources.version>
         <ug.staging.dir>${project.build.directory}/staging</ug.staging.dir>
     </properties>
 
