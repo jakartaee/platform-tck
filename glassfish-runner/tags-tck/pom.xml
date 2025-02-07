@@ -27,7 +27,6 @@
     </parent>
 
     <artifactId>tags-tck</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>

@@ -329,6 +329,21 @@
                             <generatePom>false</generatePom>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>install-tags-tck</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>tags-tck</artifactId>
+                            <version>${project.version}</version>
+                            <packaging>jar</packaging>
+                            <file>tags-tck-${project.version}.jar</file>
+                            <generatePom>false</generatePom>
+                        </configuration>
+                    </execution>
 
                     <execution>
                         <id>install-signaturetest</id>

@@ -26,36 +26,19 @@
         <relativePath />
     </parent>
 
-    <artifactId>jakarta-tags-tck</artifactId>
+    <groupId>jakarta.tck</groupId>
+    <artifactId>tags-tck</artifactId>
     <version>11.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
 
     <name>Jakarta Tags TCK</name>
     <description>This module contains all the tests for the Jakarta Tags TCK</description>
     <url>https://github.com/jakartaee/platform-tck</url>
     
-    <licenses>
-        <license>
-            <name>EPL 2.0</name>
-            <url>http://www.eclipse.org/legal/epl-2.0</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
     
-    <developers>
-        <developer>
-            <id>jakarta-platform-tck-develeopers</id>
-            <name>Platform TCK Developers</name>
-            <organization>Eclipse Foundation</organization>
-            <email>jakartaee-platform-dev@eclipse.org</email>
-        </developer>
-    </developers>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        
-        <jakarta.tck.tools.version>11.0.0-SNAPSHOT</jakarta.tck.tools.version>
+        <jakarta.tck.tools.version>11.0.0-RC4</jakarta.tck.tools.version>
     </properties>
 
     <dependencies>
@@ -87,16 +70,6 @@
             <artifactId>common</artifactId>
             <version>${jakarta.tck.tools.version}</version>
         </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>runtime</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>libutil</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
-        </dependency>
         
         <dependency>
             <groupId>commons-httpclient</groupId>
@@ -116,16 +89,6 @@
     </dependencies>
 
     <build>
-        <finalName>${bundle-name}-${project.version}</finalName>
-        
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>com/</include>
-                </includes>
-            </resource>
-        </resources>
         <plugins>
             <!-- Sets minimal Maven version to 3.8.6 -->
             <plugin>
@@ -146,7 +109,7 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
@@ -154,7 +117,7 @@
                     <release>17</release>
                 </configuration>
             </plugin>
-            
+
             <!-- Configure the jar with the sources. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -168,15 +131,23 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <!-- Create Javadoc for API jar -->
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
                     <doclint>none</doclint>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-api-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
-            
+
             <!-- Generate a "consumer pom" for the generated jar -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -206,25 +177,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>EFTL</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <bundle-name>jakarta-tags-tck</bundle-name>
-                <license>EFTL</license>
-            </properties>
-        </profile>
-        <profile>
-            <id>EPL</id>
-            <properties>
-                <bundle-name>tags-tck</bundle-name>
-                <license>EPL</license>
-            </properties>
-        </profile>
-    </profiles>
 
 </project>
