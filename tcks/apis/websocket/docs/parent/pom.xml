@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>jakarta.tck</groupId>
-    <artifactId>jakarta.websocket-tck-user-guide-parent</artifactId>
+    <artifactId>jakarta.tck.websocket.user-guide-parent</artifactId>
     <version>2.2.0</version>
     <packaging>pom</packaging>
 
@@ -46,7 +46,7 @@
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status>DRAFT</status>
 
-        <ug.resources.version>2.2.1-SNAPSHOT</ug.resources.version>
+        <ug.resources.version>2.2.0</ug.resources.version>
         <ug.staging.dir>${project.build.directory}/staging</ug.staging.dir>
     </properties>
 
@@ -145,15 +145,14 @@
                     <artifactId>asciidoctor-maven-plugin</artifactId>
                     <version>${asciidoctorj.maven.plugin.version}</version>
                     <configuration>
-                        <sourceDirectory>${project.build.directory}/book</sourceDirectory>
+                        <sourceDirectory>src/main/asciidoc</sourceDirectory>
                         <sourceDocumentName>book.adoc</sourceDocumentName>
                         <!-- XXX - below depends on running jbake first -->
                         <backend>pdf</backend>
                         <outputFile>${doc.pdf}</outputFile>
                         <attributes>
-                            <imagesDir>${ug.staging.dir}</imagesDir>
-                            <pdf-theme>${project.build.commonResourcesDirectory}/theme/jakartaee-theme.yml</pdf-theme>
-                            <title-logo-image>image:${project.build.commonResourcesDirectory}/theme/jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]</title-logo-image>
+                            <pdf-theme>${project.build.directory}/generated-docs/theme/jakartaee-theme.yml</pdf-theme>
+                            <title-logo-image>image:img/jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]</title-logo-image>
                             <doctype>book</doctype>
                             <status>${status}</status>
                             <compat-mode></compat-mode>
