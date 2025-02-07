@@ -62,11 +62,13 @@ jobs:
           unzip jakarta-restful-ws-tck-3.1.3.zip jakarta-restful-ws-tck-3.1.3.jar
           ./mvnw -e -ntp install:install-file -DcreateChecksum=true -Dpackaging=jar -Dfile=jakarta-restful-ws-tck-3.1.3.jar -DgroupId=jakarta.ws.rs -DartifactId=jakarta-restful-ws-tck -Dversion=3.1.3
 
-      - name: Install legacy javatest jar
-        run: ./mvnw -e -ntp install:install-file -Dfile=./lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar
-
       - name: Build TCK
         run: ./mvnw -e -B -U clean install -Dmaven.test.failure.ignore=true -Pstaging
+
+      - name: Build Release
+        run: |
+          cd release
+          ../mvnw -e -B -U -Pstaging package
 
 #      - name: Run Glassfish Runner
 #        run: cd glassfish-runner; ../mvnw -e -B -U test -Pglassfish-runner -Pstaging

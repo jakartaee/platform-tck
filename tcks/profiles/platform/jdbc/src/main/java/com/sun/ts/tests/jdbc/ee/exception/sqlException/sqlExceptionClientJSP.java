@@ -54,12 +54,13 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class sqlExceptionClientJSP extends sqlExceptionClient implements Serializable {
-  private static final String testName = "jdbc.ee.exception.sqlException";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+	private static final String testName = "jdbc.ee.exception.sqlException";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
 	@Deployment(name = "jsp", testable = true)
-	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "sqlException_jsp_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
@@ -67,166 +68,163 @@ public class sqlExceptionClientJSP extends sqlExceptionClient implements Seriali
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(sqlExceptionClientJSP.class, sqlExceptionClient.class);
 		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
-        
-	       // The jsp descriptor
-     URL jspUrl = sqlExceptionClientJSP.class.getResource("jsp_vehicle_web.xml");
-     if(jspUrl != null) {
-     	archive.addAsWebInfResource(jspUrl, "web.xml");
-     }
-     // The sun jsp descriptor
-     URL sunJSPUrl = sqlExceptionClientJSP.class.getResource("sqlException_jsp_vehicle_web.war.sun-web.xml");
-     if(sunJSPUrl != null) {
-     	archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
-     }
-     // Call the archive processor
-     archiveProcessor.processWebArchive(archive, sqlExceptionClientJSP.class, sunJSPUrl);
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+		archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
+		InputStream clientHtml = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+		archive.add(new ByteArrayAsset(clientHtml), "client.html");
 
-        
+		// The jsp descriptor
+		URL jspUrl = sqlExceptionClientJSP.class.getResource("jsp_vehicle_web.xml");
+		if (jspUrl != null) {
+			archive.addAsWebInfResource(jspUrl, "web.xml");
+		}
+		// The sun jsp descriptor
+		URL sunJSPUrl = sqlExceptionClientJSP.class.getResource("sqlException_jsp_vehicle_web.war.sun-web.xml");
+		if (sunJSPUrl != null) {
+			archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
+		}
+		// Call the archive processor
+		archiveProcessor.processWebArchive(archive, sqlExceptionClientJSP.class, sunJSPUrl);
+
 		archive.addAsWebInfResource(sqlExceptionClientJSP.class.getPackage(), "jsp_vehicle_web.xml", "web.xml");
-		
+
 		return archive;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		sqlExceptionClientJSP theTests = new sqlExceptionClientJSP();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    sqlExceptionClientJSP theTests = new sqlExceptionClientJSP();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: testSQLException01
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:68;
-   * 
-   * @test_Strategy: This method constructs a SQLException Object with no
-   * arguments and for that object the reason,SQLState and ErrorCode are checked
-   * for default values.
-   *
-   */
+	/*
+	 * @testName: testSQLException01
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:68;
+	 * 
+	 * @test_Strategy: This method constructs a SQLException Object with no
+	 * arguments and for that object the reason,SQLState and ErrorCode are checked
+	 * for default values.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSQLException01() throws Exception {
+	public void testSQLException01() throws Exception {
 		super.testSQLException01();
-  }
+	}
 
-  /*
-   * @testName: testSQLException02
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:67;
-   * 
-   * @test_Strategy: This method constructs a SQLException Object with one
-   * argument and for that object the SQLState, ErrorCode are checked for
-   * default values.The reason is checked for whatever is been assigned while
-   * creating the new instance.
-   */
+	/*
+	 * @testName: testSQLException02
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:67;
+	 * 
+	 * @test_Strategy: This method constructs a SQLException Object with one
+	 * argument and for that object the SQLState, ErrorCode are checked for default
+	 * values.The reason is checked for whatever is been assigned while creating the
+	 * new instance.
+	 */
 
 	@Test
 	@TargetVehicle("jsp")
-  public void testSQLException02() throws Exception {
+	public void testSQLException02() throws Exception {
 		super.testSQLException02();
-  }
+	}
 
-  /*
-   * @testName: testSQLException03
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:66;
-   * 
-   * @test_Strategy: This method constructs a SQLException Object with two
-   * arguments and for that object ErrorCode is checked for default values.The
-   * reason and SQLState are checked for whatever is been assigned while
-   * creating the new instance.
-   */
+	/*
+	 * @testName: testSQLException03
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:66;
+	 * 
+	 * @test_Strategy: This method constructs a SQLException Object with two
+	 * arguments and for that object ErrorCode is checked for default values.The
+	 * reason and SQLState are checked for whatever is been assigned while creating
+	 * the new instance.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSQLException03() throws Exception {
+	public void testSQLException03() throws Exception {
 		super.testSQLException03();
-  }
+	}
 
-  /*
-   * @testName: testSQLException04
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:65;
-   * 
-   * @test_Strategy: This method constructs a SQLException Object with three
-   * arguments .The reason,SQLState and Errorcode is checked for whatever is
-   * been assigned while creating the new instance.
-   */
+	/*
+	 * @testName: testSQLException04
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:65;
+	 * 
+	 * @test_Strategy: This method constructs a SQLException Object with three
+	 * arguments .The reason,SQLState and Errorcode is checked for whatever is been
+	 * assigned while creating the new instance.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSQLException04() throws Exception {
+	public void testSQLException04() throws Exception {
 		super.testSQLException04();
-  }
-	
+	}
 
-  /*
-   * @testName: testGetErrorCode
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:70;
-   * 
-   * @testStartegy: The SQLException object is generated by executing an
-   * incomplete SQL Statement and the getErrorCode() method of that object is
-   * checked whether it returns an integer.
-   */
+	/*
+	 * @testName: testGetErrorCode
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:70;
+	 * 
+	 * @testStartegy: The SQLException object is generated by executing an
+	 * incomplete SQL Statement and the getErrorCode() method of that object is
+	 * checked whether it returns an integer.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetErrorCode() throws Exception {
+	public void testGetErrorCode() throws Exception {
 		super.testGetErrorCode();
-  }
+	}
 
-  /*
-   * @testName: testGetSQLState
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:69;
-   * 
-   * @testStartegy: The SQLException object is generated by executing an
-   * incomplete SQL Statement and the getSQLState() method of that object is
-   * checked whether it is an instance of java.lang.String.
-   */
+	/*
+	 * @testName: testGetSQLState
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:69;
+	 * 
+	 * @testStartegy: The SQLException object is generated by executing an
+	 * incomplete SQL Statement and the getSQLState() method of that object is
+	 * checked whether it is an instance of java.lang.String.
+	 */
 
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetSQLState() throws Exception {
+	public void testGetSQLState() throws Exception {
 		super.testGetSQLState();
-  }
+	}
 
-  /*
-   * @testName: testGetNextException
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:71;
-   * 
-   * @test_Strategy: SQLException object is generated by executing an incomplete
-   * SQL Statement and using setNextException method a SQLException object is
-   * chained. This is checked using the getNextException method which should
-   * return a instanceof SQLException object.
-   */
+	/*
+	 * @testName: testGetNextException
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:71;
+	 * 
+	 * @test_Strategy: SQLException object is generated by executing an incomplete
+	 * SQL Statement and using setNextException method a SQLException object is
+	 * chained. This is checked using the getNextException method which should
+	 * return a instanceof SQLException object.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetNextException() throws Exception {
+	public void testGetNextException() throws Exception {
 		super.testGetNextException();
-  }
+	}
 
-  /*
-   * @testName: testSetNextException
-   * 
-   * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:72;
-   * 
-   * @test_Strategy: SQLException object is obtained by executing a incomplete
-   * SQLStatement and setNextException() method on the object will set a chain
-   * of SQLException on that object which can be checked by using
-   * getNextException() method.
-   *
-   */
+	/*
+	 * @testName: testSetNextException
+	 * 
+	 * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:72;
+	 * 
+	 * @test_Strategy: SQLException object is obtained by executing a incomplete
+	 * SQLStatement and setNextException() method on the object will set a chain of
+	 * SQLException on that object which can be checked by using getNextException()
+	 * method.
+	 *
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSetNextException() throws Exception {
+	public void testSetNextException() throws Exception {
 		super.testSetNextException();
-  }
+	}
 
 }

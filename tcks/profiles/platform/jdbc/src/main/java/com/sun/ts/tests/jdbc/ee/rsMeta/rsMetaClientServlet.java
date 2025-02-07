@@ -38,7 +38,6 @@ import com.sun.ts.lib.harness.Status;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
-
 // Merant DataSource class
 //import com.merant.sequelink.jdbcx.datasource.*;
 
@@ -53,364 +52,364 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class rsMetaClientServlet extends rsMetaClient implements Serializable {
-  private static final String testName = "jdbc.ee.rsMeta";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
-  @Deployment(name = "servlet", testable = true)
-	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	private static final String testName = "jdbc.ee.rsMeta";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
+	@Deployment(name = "servlet", testable = true)
+	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "rsMeta_servlet_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(rsMetaClientServlet.class, rsMetaClient.class);
-	       // The servlet descriptor
-URL servletUrl = rsMetaClientServlet.class.getResource("servlet_vehicle_web.xml");
-if(servletUrl != null) {
-	archive.addAsWebInfResource(servletUrl, "web.xml");
-}
+		// The servlet descriptor
+		URL servletUrl = rsMetaClientServlet.class.getResource("servlet_vehicle_web.xml");
+		if (servletUrl != null) {
+			archive.addAsWebInfResource(servletUrl, "web.xml");
+		}
 // The sun servlet descriptor
-URL sunServletUrl = rsMetaClientServlet.class.getResource("rsMeta_servlet_vehicle_web.war.sun-web.xml");
-if(sunServletUrl != null) {
-	archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
-}
+		URL sunServletUrl = rsMetaClientServlet.class.getResource("rsMeta_servlet_vehicle_web.war.sun-web.xml");
+		if (sunServletUrl != null) {
+			archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
+		}
 // Call the archive processor
-archiveProcessor.processWebArchive(archive, rsMetaClientServlet.class, sunServletUrl);
-		
+		archiveProcessor.processWebArchive(archive, rsMetaClientServlet.class, sunServletUrl);
+
 		return archive;
 	};
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    rsMetaClientServlet theTests = new rsMetaClientServlet();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		rsMetaClientServlet theTests = new rsMetaClientServlet();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /*
-   * @testName: testGetColumnCount
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:314; JDBC:JAVADOC:315;
-   * 
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * getColumnCount() method on the ResultSetMetaData object.It should return an
-   * integer value greater than or equal to zero.
-   */
+	/*
+	 * @testName: testGetColumnCount
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:314; JDBC:JAVADOC:315;
+	 * 
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * getColumnCount() method on the ResultSetMetaData object.It should return an
+	 * integer value greater than or equal to zero.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetColumnCount() throws Exception {
+	public void testGetColumnCount() throws Exception {
 		super.testGetColumnCount();
-  }
+	}
 
-  /*
-   * @testName: testIsAutoIncrement
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:316; JDBC:JAVADOC:317;
-   *
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * isAutoIncrement(int column) method.It should return a boolean value.
-   */
+	/*
+	 * @testName: testIsAutoIncrement
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:316; JDBC:JAVADOC:317;
+	 *
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * isAutoIncrement(int column) method.It should return a boolean value.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testIsAutoIncrement() throws Exception {
+	public void testIsAutoIncrement() throws Exception {
 		super.testIsAutoIncrement();
-  }
+	}
 
-  /*
-   * /* @testName: testIsCaseSensitive
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:318; JDBC:JAVADOC:319;
-   * 
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * isCaseSensitive(int column) method.It should return a boolean value.
-   */
+	/*
+	 * /* @testName: testIsCaseSensitive
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:318; JDBC:JAVADOC:319;
+	 * 
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * isCaseSensitive(int column) method.It should return a boolean value.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testIsCaseSensitive() throws Exception {
+	public void testIsCaseSensitive() throws Exception {
 		super.testIsCaseSensitive();
-  }
+	}
 
-  /*
-   * @testName: testIsSearchable
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:320; JDBC:JAVADOC:321;
-   * 
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * isSearchable(int column) method.It should return a boolean value.
-   */
+	/*
+	 * @testName: testIsSearchable
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:320; JDBC:JAVADOC:321;
+	 * 
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * isSearchable(int column) method.It should return a boolean value.
+	 */
 
 	@Test
 	@TargetVehicle("servlet")
-  public void testIsSearchable() throws Exception {
+	public void testIsSearchable() throws Exception {
 		super.testIsSearchable();
-  }
+	}
 
-  /*
-   * @testName: testIsCurrency
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:322; JDBC:JAVADOC:323;
-   *
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * isCurrency(int column) method.It should return a boolean value.
-   */
+	/*
+	 * @testName: testIsCurrency
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:322; JDBC:JAVADOC:323;
+	 *
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the isCurrency(int
+	 * column) method.It should return a boolean value.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testIsCurrency() throws Exception {
+	public void testIsCurrency() throws Exception {
 		super.testIsCurrency();
-  }
+	}
 
-  /*
-   * @testName: testIsNullable
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:324; JDBC:JAVADOC:325;
-   * JDBC:JAVADOC:311; JDBC:JAVADOC:312; JDBC:JAVADOC:313;
-   * 
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * isNullable(int column) method.It should return an integer value which is
-   * one of the constants columnNoNulls(0),columnNullable(1) and
-   * columnNullableUnknown(2).
-   */
+	/*
+	 * @testName: testIsNullable
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:324; JDBC:JAVADOC:325;
+	 * JDBC:JAVADOC:311; JDBC:JAVADOC:312; JDBC:JAVADOC:313;
+	 * 
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the isNullable(int
+	 * column) method.It should return an integer value which is one of the
+	 * constants columnNoNulls(0),columnNullable(1) and columnNullableUnknown(2).
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testIsNullable() throws Exception {
+	public void testIsNullable() throws Exception {
 		super.testIsNullable();
-  }
+	}
 
-  /*
-   * @testName: testIsSigned
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:326; JDBC:JAVADOC:327;
-   * 
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the isSigned(int
-   * column) method.It should return a boolean value.
-   */
+	/*
+	 * @testName: testIsSigned
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:326; JDBC:JAVADOC:327;
+	 * 
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the isSigned(int
+	 * column) method.It should return a boolean value.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testIsSigned() throws Exception {
+	public void testIsSigned() throws Exception {
 		super.testIsSigned();
-  }
+	}
 
-  /*
-   * @testName: testGetColumnDisplaySize
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:328; JDBC:JAVADOC:329;
-   *
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * getColumnDisplaySize(int colindex) method.It should return an integer
-   * representing the normal maximum width in characters for column colindex.
-   */
+	/*
+	 * @testName: testGetColumnDisplaySize
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:328; JDBC:JAVADOC:329;
+	 *
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * getColumnDisplaySize(int colindex) method.It should return an integer
+	 * representing the normal maximum width in characters for column colindex.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetColumnDisplaySize() throws Exception {
+	public void testGetColumnDisplaySize() throws Exception {
 		super.testGetColumnDisplaySize();
-  }
+	}
 
-  /*
-   * @testName: testGetColumnLabel
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:330; JDBC:JAVADOC:331;
-   *
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * getColumnLabel(int colindex) method.It should return a String object.
-   */
+	/*
+	 * @testName: testGetColumnLabel
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:330; JDBC:JAVADOC:331;
+	 *
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * getColumnLabel(int colindex) method.It should return a String object.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetColumnLabel() throws Exception {
+	public void testGetColumnLabel() throws Exception {
 		super.testGetColumnLabel();
-  }
+	}
 
-  /*
-   * @testName: testGetColumnName
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:332; JDBC:JAVADOC:333;
-   *
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * getColumnName(int colindex) method.It should return a String object.
-   */
+	/*
+	 * @testName: testGetColumnName
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:332; JDBC:JAVADOC:333;
+	 *
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * getColumnName(int colindex) method.It should return a String object.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetColumnName() throws Exception {
+	public void testGetColumnName() throws Exception {
 		super.testGetColumnName();
-  }
+	}
 
-  /*
-   * @testName: testGetSchemaName
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:334; JDBC:JAVADOC:335;
-   *
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * getSchemaName(int colindex) method.It should return a String object.
-   */
+	/*
+	 * @testName: testGetSchemaName
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:334; JDBC:JAVADOC:335;
+	 *
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * getSchemaName(int colindex) method.It should return a String object.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetSchemaName() throws Exception {
+	public void testGetSchemaName() throws Exception {
 		super.testGetSchemaName();
-  }
+	}
 
-  /*
-   * @testName: testGetPrecision
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:336; JDBC:JAVADOC:337;
-   *
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * getPrecision(int colindex) method.It should return an integer greater than
-   * or equal to zero.
-   */
+	/*
+	 * @testName: testGetPrecision
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:336; JDBC:JAVADOC:337;
+	 *
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * getPrecision(int colindex) method.It should return an integer greater than or
+	 * equal to zero.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetPrecision() throws Exception {
+	public void testGetPrecision() throws Exception {
 		super.testGetPrecision();
-  }
+	}
 
-  /*
-   * @testName: testGetScale
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:338; JDBC:JAVADOC:339;
-   *
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the getScale(int
-   * colindex) method.It should return an integer greater than or equal to zero.
-   */
+	/*
+	 * @testName: testGetScale
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:338; JDBC:JAVADOC:339;
+	 *
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the getScale(int
+	 * colindex) method.It should return an integer greater than or equal to zero.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetScale() throws Exception {
+	public void testGetScale() throws Exception {
 		super.testGetScale();
-  }
+	}
 
-  /*
-   * @testName: testGetTableName
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:340; JDBC:JAVADOC:341;
-   * 
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * getTableName(int colindex) method.It should return a String object.
-   */
+	/*
+	 * @testName: testGetTableName
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:340; JDBC:JAVADOC:341;
+	 * 
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * getTableName(int colindex) method.It should return a String object.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetTableName() throws Exception {
+	public void testGetTableName() throws Exception {
 		super.testGetTableName();
-  }
+	}
 
-  /*
-   * @testName: testGetCatalogName
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:342; JDBC:JAVADOC:343;
-   * 
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * getCatalogName(int colindex) method.It should return a String object.
-   */
+	/*
+	 * @testName: testGetCatalogName
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:342; JDBC:JAVADOC:343;
+	 * 
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * getCatalogName(int colindex) method.It should return a String object.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetCatalogName() throws Exception {
+	public void testGetCatalogName() throws Exception {
 		super.testGetCatalogName();
-  }
+	}
 
-  /*
-   * @testName: testGetColumnType
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:344; JDBC:JAVADOC:345;
-   *
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * getColumnType(int colindex) method.Check if an integer value is returned.
-   */
+	/*
+	 * @testName: testGetColumnType
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:344; JDBC:JAVADOC:345;
+	 *
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * getColumnType(int colindex) method.Check if an integer value is returned.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetColumnType() throws Exception {
+	public void testGetColumnType() throws Exception {
 		super.testGetColumnType();
-  }
+	}
 
-  /*
-   * @testName: testGetColumnTypeName
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:346; JDBC:JAVADOC:347;
-   *
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * getColumnTypeName(int colindex) method.It should return a String object.
-   */
+	/*
+	 * @testName: testGetColumnTypeName
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:346; JDBC:JAVADOC:347;
+	 *
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * getColumnTypeName(int colindex) method.It should return a String object.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetColumnTypeName() throws Exception {
+	public void testGetColumnTypeName() throws Exception {
 		super.testGetColumnTypeName();
-  }
+	}
 
-  /*
-   * /*
-   * 
-   * @testName: testIsReadOnly
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:348; JDBC:JAVADOC:349;
-   * 
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * isReadOnly(int column) method.It should return a boolean value.
-   */
+	/*
+	 * /*
+	 * 
+	 * @testName: testIsReadOnly
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:348; JDBC:JAVADOC:349;
+	 * 
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the isReadOnly(int
+	 * column) method.It should return a boolean value.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testIsReadOnly() throws Exception {
+	public void testIsReadOnly() throws Exception {
 		super.testIsReadOnly();
-  }
+	}
 
-  /*
-   * @testName: testIsWritable
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:350; JDBC:JAVADOC:351;
-   * 
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * isWritable(int column) method.It should return a boolean value.
-   */
+	/*
+	 * @testName: testIsWritable
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:350; JDBC:JAVADOC:351;
+	 * 
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the isWritable(int
+	 * column) method.It should return a boolean value.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testIsWritable() throws Exception {
+	public void testIsWritable() throws Exception {
 		super.testIsWritable();
-  }
+	}
 
-  /*
-   * /*
-   * 
-   * @testName: testIsDefinitelyWritable
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:352; JDBC:JAVADOC:353;
-   * 
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * isDefinitelyWritable(int column) method.It should return a boolean value.
-   */
+	/*
+	 * /*
+	 * 
+	 * @testName: testIsDefinitelyWritable
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:352; JDBC:JAVADOC:353;
+	 * 
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * isDefinitelyWritable(int column) method.It should return a boolean value.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testIsDefinitelyWritable() throws Exception {
+	public void testIsDefinitelyWritable() throws Exception {
 		super.testIsDefinitelyWritable();
-  }
+	}
 
-  /*
-   * @testName: testGetColumnClassName
-   * 
-   * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:354; JDBC:JAVADOC:355;
-   *
-   * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-   * ResultSet by using the ResultSet's getMetaData method.Call the
-   * getColumnClassName(int colindex) method.It should return a String object.
-   */
+	/*
+	 * @testName: testGetColumnClassName
+	 * 
+	 * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:354; JDBC:JAVADOC:355;
+	 *
+	 * @test_Strategy: Get the ResultSetMetaData object from the corresponding
+	 * ResultSet by using the ResultSet's getMetaData method.Call the
+	 * getColumnClassName(int colindex) method.It should return a String object.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetColumnClassName() throws Exception {
+	public void testGetColumnClassName() throws Exception {
 		super.testGetColumnClassName();
-  }
+	}
 }

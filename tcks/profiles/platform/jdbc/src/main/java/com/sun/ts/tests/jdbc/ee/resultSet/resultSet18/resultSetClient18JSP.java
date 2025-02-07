@@ -54,242 +54,243 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class resultSetClient18JSP extends resultSetClient18 implements Serializable {
-  private static final String testName = "jdbc.ee.resultSet.resultSet18";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
-  @Deployment(name = "jsp", testable = true)
-	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	private static final String testName = "jdbc.ee.resultSet.resultSet18";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
+	@Deployment(name = "jsp", testable = true)
+	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "resultSet18_jsp_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
-        
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+		archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
+		InputStream clientHtml = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+		archive.add(new ByteArrayAsset(clientHtml), "client.html");
+
 		archive.addClasses(resultSetClient18JSP.class, resultSetClient18.class);
-		
-	       // The jsp descriptor
-  URL jspUrl = resultSetClient18JSP.class.getResource("jsp_vehicle_web.xml");
-  if(jspUrl != null) {
-  	archive.addAsWebInfResource(jspUrl, "web.xml");
-  }
-  // The sun jsp descriptor
-  URL sunJSPUrl = resultSetClient18JSP.class.getResource("resultSet18_jsp_vehicle_web.war.sun-web.xml");
-  if(sunJSPUrl != null) {
-  	archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
-  }
-  // Call the archive processor
-  archiveProcessor.processWebArchive(archive, resultSetClient18JSP.class, sunJSPUrl);
+
+		// The jsp descriptor
+		URL jspUrl = resultSetClient18JSP.class.getResource("jsp_vehicle_web.xml");
+		if (jspUrl != null) {
+			archive.addAsWebInfResource(jspUrl, "web.xml");
+		}
+		// The sun jsp descriptor
+		URL sunJSPUrl = resultSetClient18JSP.class.getResource("resultSet18_jsp_vehicle_web.war.sun-web.xml");
+		if (sunJSPUrl != null) {
+			archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
+		}
+		// Call the archive processor
+		archiveProcessor.processWebArchive(archive, resultSetClient18JSP.class, sunJSPUrl);
 
 		archive.addAsWebInfResource(resultSetClient18JSP.class.getPackage(), "jsp_vehicle_web.xml", "web.xml");
-		
+
 		return archive;
 	};
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    resultSetClient18JSP theTests = new resultSetClient18JSP();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		resultSetClient18JSP theTests = new resultSetClient18JSP();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /*
-   * @testName: testGetInt04
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-   * JDBC:JAVADOC:381; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * maximum value of table Smallint_Tab.Call the getInt(int columnIndex)
-   * method. Compare the returned result with the value extracted from
-   * tssql.stmt file.Both of them should be equal and the returned result must
-   * be equal to the Maximum Value of JDBC Smallint datatype.
-   */
+	/*
+	 * @testName: testGetInt04
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
+	 * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * maximum value of table Smallint_Tab.Call the getInt(int columnIndex) method.
+	 * Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the Maximum Value of JDBC Smallint datatype.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetInt04() throws Exception {
+	public void testGetInt04() throws Exception {
 		super.testGetInt04();
-  }
+	}
 
-  /*
-   * @testName: testGetInt05
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-   * JDBC:JAVADOC:381; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * minimum value of table Smallint_Tab.Call the getInt(int columnIndex)
-   * method. Compare the returned result with the value extracted from
-   * tssql.stmt file.Both of them should be equal and the returned result must
-   * be equal to the Minimum Value of JDBC Smallint datatype.
-   */
+	/*
+	 * @testName: testGetInt05
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
+	 * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * minimum value of table Smallint_Tab.Call the getInt(int columnIndex) method.
+	 * Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the Minimum Value of JDBC Smallint datatype.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetInt05() throws Exception {
+	public void testGetInt05() throws Exception {
 		super.testGetInt05();
-  }
+	}
 
-  /*
-   * @testName: testGetInt06
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-   * JDBC:JAVADOC:381; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Smallint_Tab.Call the getInt(int columnIndex)
-   * method.Check if the value returned is zero.
-   */
+	/*
+	 * @testName: testGetInt06
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
+	 * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Smallint_Tab.Call the getInt(int columnIndex)
+	 * method.Check if the value returned is zero.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetInt06() throws Exception {
+	public void testGetInt06() throws Exception {
 		super.testGetInt06();
-  }
+	}
 
-  /*
-   * @testName: testGetInt07
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-   * JDBC:JAVADOC:381; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * maximum value of table Integer_Tab.Call the getInt(int columnIndex) method.
-   * Compare the returned result with the value extracted from tssql.stmt
-   * file.Both of them should be equal and the returned result must be equal to
-   * the Maximum Value of JDBC Integer datatype.
-   */
+	/*
+	 * @testName: testGetInt07
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
+	 * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * maximum value of table Integer_Tab.Call the getInt(int columnIndex) method.
+	 * Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the Maximum Value of JDBC Integer datatype.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetInt07() throws Exception {
+	public void testGetInt07() throws Exception {
 		super.testGetInt07();
-  }
+	}
 
-  /*
-   * @testName: testGetInt08
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-   * JDBC:JAVADOC:381; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * minimum value of table Integer_Tab.Call the getInt(int columnIndex) method.
-   * Compare the returned result with the value extracted from tssql.stmt
-   * file.Both of them should be equal and the returned result must be equal to
-   * the Minimum Value of JDBC Integer datatype.
-   */
+	/*
+	 * @testName: testGetInt08
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
+	 * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * minimum value of table Integer_Tab.Call the getInt(int columnIndex) method.
+	 * Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the Minimum Value of JDBC Integer datatype.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetInt08() throws Exception {
+	public void testGetInt08() throws Exception {
 		super.testGetInt08();
-  }
+	}
 
-  /*
-   * @testName: testGetInt09
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-   * JDBC:JAVADOC:381; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Integer_Tab.Call the getInt(int columnIndex)
-   * method.Check if the value returned is zero.
-   */
+	/*
+	 * @testName: testGetInt09
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
+	 * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Integer_Tab.Call the getInt(int columnIndex)
+	 * method.Check if the value returned is zero.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetInt09() throws Exception {
+	public void testGetInt09() throws Exception {
 		super.testGetInt09();
-  }
+	}
 
-  /*
-   * @testName: testGetInt10
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-   * JDBC:JAVADOC:381; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the maximum value of table Real_Tab with an
-   * integer value. Retrieve the value updated in the table by executing a query
-   * in the Real_Tab. Compare the value inserted and the value retrieved. Both
-   * of them should be equal.
-   */
+	/*
+	 * @testName: testGetInt10
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
+	 * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the maximum value of table Real_Tab with an
+	 * integer value. Retrieve the value updated in the table by executing a query
+	 * in the Real_Tab. Compare the value inserted and the value retrieved. Both of
+	 * them should be equal.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetInt10() throws Exception {
+	public void testGetInt10() throws Exception {
 		super.testGetInt10();
-  }
+	}
 
-  /*
-   * @testName: testGetInt12
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-   * JDBC:JAVADOC:381; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Real_Tab.Call the getInt(int columnIndex)
-   * method.Check if the value returned is zero.
-   */
+	/*
+	 * @testName: testGetInt12
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
+	 * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Real_Tab.Call the getInt(int columnIndex) method.Check
+	 * if the value returned is zero.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetInt12() throws Exception {
+	public void testGetInt12() throws Exception {
 		super.testGetInt12();
-  }
+	}
 
-  /*
-   * @testName: testGetInt16
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-   * JDBC:JAVADOC:381; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the maximum value of table Float_Tab with the
-   * maximum value of table Integer_Tab.Now execute a query to get the maximum
-   * value of Float_Tab table and retrieve the result of the query using the
-   * getInt(int columnIndex) method.Compare the returned value, with the maximum
-   * value of table Integer_Tab extracted from the tssql.stmt file. Both of them
-   * should be equal.
-   */
+	/*
+	 * @testName: testGetInt16
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
+	 * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the maximum value of table Float_Tab with the
+	 * maximum value of table Integer_Tab.Now execute a query to get the maximum
+	 * value of Float_Tab table and retrieve the result of the query using the
+	 * getInt(int columnIndex) method.Compare the returned value, with the maximum
+	 * value of table Integer_Tab extracted from the tssql.stmt file. Both of them
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetInt16() throws Exception {
+	public void testGetInt16() throws Exception {
 		super.testGetInt16();
-  }
+	}
 
-  /*
-   * @testName: testGetInt17
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-   * JDBC:JAVADOC:381; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the minimum value of table Float_Tab with the
-   * minimum value of table Integer_Tab.Now execute a query to get the minimum
-   * value of Float_Tab table and retrieve the result of the query using the
-   * getInt(int columnIndex) method.Compare the returned value, with the minimum
-   * value of table Integer_Tab extracted from the tssql.stmt file. Both of them
-   * should be equal.
-   */
+	/*
+	 * @testName: testGetInt17
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
+	 * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the minimum value of table Float_Tab with the
+	 * minimum value of table Integer_Tab.Now execute a query to get the minimum
+	 * value of Float_Tab table and retrieve the result of the query using the
+	 * getInt(int columnIndex) method.Compare the returned value, with the minimum
+	 * value of table Integer_Tab extracted from the tssql.stmt file. Both of them
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetInt17() throws Exception {
+	public void testGetInt17() throws Exception {
 		super.testGetInt17();
-  }
+	}
 
-  /*
-   * @testName: testGetInt18
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-   * JDBC:JAVADOC:381; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Float_Tab.Call the getInt(int columnIndex)
-   * method.Check if the value returned is zero.
-   */
+	/*
+	 * @testName: testGetInt18
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
+	 * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Float_Tab.Call the getInt(int columnIndex) method.Check
+	 * if the value returned is zero.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testGetInt18() throws Exception {
+	public void testGetInt18() throws Exception {
 		super.testGetInt18();
-  }
+	}
 }

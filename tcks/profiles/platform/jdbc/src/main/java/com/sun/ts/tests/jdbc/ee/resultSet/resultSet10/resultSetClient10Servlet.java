@@ -52,370 +52,371 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class resultSetClient10Servlet extends resultSetClient10 implements Serializable {
-  private static final String testName = "jdbc.ee.resultSet.resultSet10";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
-  @Deployment(name = "servlet", testable = true)
-	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	private static final String testName = "jdbc.ee.resultSet.resultSet10";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
+	@Deployment(name = "servlet", testable = true)
+	public static WebArchive createDeploymentservlet(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "resultSet10_servlet_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(resultSetClient10Servlet.class, resultSetClient10.class);
-	       // The servlet descriptor
-URL servletUrl = resultSetClient10Servlet.class.getResource("servlet_vehicle_web.xml");
-if(servletUrl != null) {
-	archive.addAsWebInfResource(servletUrl, "web.xml");
-}
+		// The servlet descriptor
+		URL servletUrl = resultSetClient10Servlet.class.getResource("servlet_vehicle_web.xml");
+		if (servletUrl != null) {
+			archive.addAsWebInfResource(servletUrl, "web.xml");
+		}
 // The sun servlet descriptor
-URL sunServletUrl = resultSetClient10Servlet.class.getResource("resultSet10_servlet_vehicle_web.war.sun-web.xml");
-if(sunServletUrl != null) {
-	archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
-}
+		URL sunServletUrl = resultSetClient10Servlet.class
+				.getResource("resultSet10_servlet_vehicle_web.war.sun-web.xml");
+		if (sunServletUrl != null) {
+			archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
+		}
 // Call the archive processor
-archiveProcessor.processWebArchive(archive, resultSetClient10Servlet.class, sunServletUrl);
-		
+		archiveProcessor.processWebArchive(archive, resultSetClient10Servlet.class, sunServletUrl);
+
 		return archive;
 	};
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    resultSetClient10Servlet theTests = new resultSetClient10Servlet();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		resultSetClient10Servlet theTests = new resultSetClient10Servlet();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /*
-   * @testName: testGetByte01
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * maximum value of table Tinyint_Tab.Call the getByte(int columnIndex)
-   * method. Compare the returned result with the value extracted from
-   * tssql.stmt file.Both of them should be equal and the returned result must
-   * be equal to the Maximum Value of JDBC Tinyint datatype.
-   */
+	/*
+	 * @testName: testGetByte01
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * maximum value of table Tinyint_Tab.Call the getByte(int columnIndex) method.
+	 * Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the Maximum Value of JDBC Tinyint datatype.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte01() throws Exception {
+	public void testGetByte01() throws Exception {
 		super.testGetByte01();
-  }
+	}
 
-  /*
-   * @testName: testGetByte02
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * minimum value of table Tinyint_Tab.Call the getByte(int columnIndex)
-   * method. Compare the returned result with the value extracted from
-   * tssql.stmt file.Both of them should be equal and the returned result must
-   * be equal to the minimum Value of JDBC Tinyint datatype.
-   */
+	/*
+	 * @testName: testGetByte02
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * minimum value of table Tinyint_Tab.Call the getByte(int columnIndex) method.
+	 * Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the minimum Value of JDBC Tinyint datatype.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte02() throws Exception {
+	public void testGetByte02() throws Exception {
 		super.testGetByte02();
-  }
+	}
 
-  /*
-   * @testName: testGetByte03
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Tinyint_Tab.Call the getByte(int columnIndex)
-   * method.Check if it returns the value zero.
-   */
+	/*
+	 * @testName: testGetByte03
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Tinyint_Tab.Call the getByte(int columnIndex)
+	 * method.Check if it returns the value zero.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte03() throws Exception {
+	public void testGetByte03() throws Exception {
 		super.testGetByte03();
-  }
+	}
 
-  /*
-   * @testName: testGetByte76
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:408;
-   * JDBC:JAVADOC:409; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * maximum value of table Tinyint_Tab.Call the getByte(String columnName)
-   * method. Compare the returned result with the value extracted from
-   * tssql.stmt file.Both of them should be equal and the returned result must
-   * be equal to the Maximum Value of JDBC Tinyint datatype.
-   */
+	/*
+	 * @testName: testGetByte76
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:408;
+	 * JDBC:JAVADOC:409; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * maximum value of table Tinyint_Tab.Call the getByte(String columnName)
+	 * method. Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the Maximum Value of JDBC Tinyint datatype.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte76() throws Exception {
+	public void testGetByte76() throws Exception {
 		super.testGetByte76();
-  }
+	}
 
-  /*
-   * @testName: testGetByte77
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:408;
-   * JDBC:JAVADOC:409; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that gets the
-   * minimum value of table Tinyint_Tab.Call the getByte(String columnName)
-   * method. Compare the returned result with the value extracted from
-   * tssql.stmt file.Both of them should be equal and the returned result must
-   * be equal to the minimum Value of JDBC Tinyint datatype.
-   */
+	/*
+	 * @testName: testGetByte77
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:408;
+	 * JDBC:JAVADOC:409; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that gets the
+	 * minimum value of table Tinyint_Tab.Call the getByte(String columnName)
+	 * method. Compare the returned result with the value extracted from tssql.stmt
+	 * file.Both of them should be equal and the returned result must be equal to
+	 * the minimum Value of JDBC Tinyint datatype.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte77() throws Exception {
+	public void testGetByte77() throws Exception {
 		super.testGetByte77();
-  }
+	}
 
-  /*
-   * @testName: testGetByte78
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:408;
-   * JDBC:JAVADOC:409; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
-   * 
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Tinyint_Tab.Call the getByte(String columnName)
-   * method.Check if it returns the value zero.
-   */
+	/*
+	 * @testName: testGetByte78
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:408;
+	 * JDBC:JAVADOC:409; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
+	 * 
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Tinyint_Tab.Call the getByte(String columnName)
+	 * method.Check if it returns the value zero.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte78() throws Exception {
+	public void testGetByte78() throws Exception {
 		super.testGetByte78();
-  }
+	}
 
-  /*
-   * @testName: testGetByte04
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the maximum value of table Smallint_Tab with
-   * the maximum value of table Tinyint_Tab.Now execute a query to get the
-   * maximum value of Smallint_Tab table and retrieve the result of the query
-   * using the getByte(int columnIndex) method.Compare the returned value, with
-   * the maximum value of table Tinyint_Tab extracted from the tssql.stmt file.
-   * Both of them should be equal.
-   */
+	/*
+	 * @testName: testGetByte04
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the maximum value of table Smallint_Tab with the
+	 * maximum value of table Tinyint_Tab.Now execute a query to get the maximum
+	 * value of Smallint_Tab table and retrieve the result of the query using the
+	 * getByte(int columnIndex) method.Compare the returned value, with the maximum
+	 * value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte04() throws Exception {
+	public void testGetByte04() throws Exception {
 		super.testGetByte04();
-  }
+	}
 
-  /*
-   * @testName: testGetByte05
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the minimum value of table Smallint_Tab with
-   * the minimum value of table Tinyint_Tab.Now execute a query to get the
-   * minimum value of Smallint_Tab table and retrieve the result of the query
-   * using the getByte(int columnIndex) method.Compare the returned value, with
-   * the minimum value of table Tinyint_Tab extracted from the tssql.stmt file.
-   * Both of them should be equal.
-   */
+	/*
+	 * @testName: testGetByte05
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the minimum value of table Smallint_Tab with the
+	 * minimum value of table Tinyint_Tab.Now execute a query to get the minimum
+	 * value of Smallint_Tab table and retrieve the result of the query using the
+	 * getByte(int columnIndex) method.Compare the returned value, with the minimum
+	 * value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them
+	 * should be equal.
+	 */
 
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte05() throws Exception {
+	public void testGetByte05() throws Exception {
 		super.testGetByte05();
-  }
+	}
 
-  /*
-   * @testName: testGetByte06
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Smallint_Tab.Call the getByte(int columnIndex)
-   * method.Check if it returns the value zero.
-   */
+	/*
+	 * @testName: testGetByte06
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Smallint_Tab.Call the getByte(int columnIndex)
+	 * method.Check if it returns the value zero.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte06() throws Exception {
+	public void testGetByte06() throws Exception {
 		super.testGetByte06();
-  }
+	}
 
-  /*
-   * @testName: testGetByte07
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the maximum value of table Integer_Tab with the
-   * maximum value of table Tinyint_Tab.Now execute a query to get the maximum
-   * value of Integer_Tab table and retrieve the result of the query using the
-   * getByte(int columnIndex) method.Compare the returned value, with the
-   * maximum value of table Tinyint_Tab extracted from the tssql.stmt file. Both
-   * of them should be equal.
-   */
+	/*
+	 * @testName: testGetByte07
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the maximum value of table Integer_Tab with the
+	 * maximum value of table Tinyint_Tab.Now execute a query to get the maximum
+	 * value of Integer_Tab table and retrieve the result of the query using the
+	 * getByte(int columnIndex) method.Compare the returned value, with the maximum
+	 * value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them
+	 * should be equal.
+	 */
 
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte07() throws Exception {
+	public void testGetByte07() throws Exception {
 		super.testGetByte07();
-  }
+	}
 
-
-  /*
-   * @testName: testGetByte08
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the minimum value of table Integer_Tab with the
-   * minimum value of table Tinyint_Tab.Now execute a query to get the minimum
-   * value of Integer_Tab table and retrieve the result of the query using the
-   * getByte(int columnIndex) method.Compare the returned value, with the
-   * minimum value of table Tinyint_Tab extracted from the tssql.stmt file. Both
-   * of them should be equal.
-   */
+	/*
+	 * @testName: testGetByte08
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the minimum value of table Integer_Tab with the
+	 * minimum value of table Tinyint_Tab.Now execute a query to get the minimum
+	 * value of Integer_Tab table and retrieve the result of the query using the
+	 * getByte(int columnIndex) method.Compare the returned value, with the minimum
+	 * value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte08() throws Exception {
+	public void testGetByte08() throws Exception {
 		super.testGetByte08();
-  }
+	}
 
-  /*
-   * @testName: testGetByte09
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Integer_Tab.Call the getByte(int columnIndex)
-   * method.Check if it returns the value zero.
-   */
+	/*
+	 * @testName: testGetByte09
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Integer_Tab.Call the getByte(int columnIndex)
+	 * method.Check if it returns the value zero.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte09() throws Exception {
+	public void testGetByte09() throws Exception {
 		super.testGetByte09();
-  }
+	}
 
-  /*
-   * @testName: testGetByte13
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the maximum value of table Real_Tab with the
-   * maximum value of table Tinyint_Tab.Now execute a query to get the maximum
-   * value of Real_Tab table and retrieve the result of the query using the
-   * getByte(int columnIndex) method.Compare the returned value, with the
-   * maximum value of table Tinyint_Tab extracted from the tssql.stmt file. Both
-   * of them should be equal.
-   */
+	/*
+	 * @testName: testGetByte13
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the maximum value of table Real_Tab with the
+	 * maximum value of table Tinyint_Tab.Now execute a query to get the maximum
+	 * value of Real_Tab table and retrieve the result of the query using the
+	 * getByte(int columnIndex) method.Compare the returned value, with the maximum
+	 * value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them
+	 * should be equal.
+	 */
 
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte13() throws Exception {
+	public void testGetByte13() throws Exception {
 		super.testGetByte13();
-  }
+	}
 
-  /*
-   * @testName: testGetByte14
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the minimum value of table Real_Tab with the
-   * minimum value of table Tinyint_Tab.Now execute a query to get the minimum
-   * value of Real_Tab table and retrieve the result of the query using the
-   * getByte(int columnIndex) method.Compare the returned value, with the
-   * minimum value of table Tinyint_Tab extracted from the tssql.stmt file. Both
-   * of them should be equal.
-   */
+	/*
+	 * @testName: testGetByte14
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the minimum value of table Real_Tab with the
+	 * minimum value of table Tinyint_Tab.Now execute a query to get the minimum
+	 * value of Real_Tab table and retrieve the result of the query using the
+	 * getByte(int columnIndex) method.Compare the returned value, with the minimum
+	 * value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte14() throws Exception {
+	public void testGetByte14() throws Exception {
 		super.testGetByte14();
-  }
+	}
 
-  /*
-   * @testName: testGetByte15
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Real_Tab.Call the getByte(int columnIndex)
-   * method.Check if it returns the value zero.
-   */
+	/*
+	 * @testName: testGetByte15
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Real_Tab.Call the getByte(int columnIndex) method.Check
+	 * if it returns the value zero.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte15() throws Exception {
+	public void testGetByte15() throws Exception {
 		super.testGetByte15();
-  }
+	}
 
-  /*
-   * @testName: testGetByte16
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the maximum value of table Float_Tab with the
-   * maximum value of table Tinyint_Tab.Now execute a query to get the maximum
-   * value of Float_Tab table and retrieve the result of the query using the
-   * getByte(int columnIndex) method.Compare the returned value, with the
-   * maximum value of table Tinyint_Tab extracted from the tssql.stmt file. Both
-   * of them should be equal.
-   */
+	/*
+	 * @testName: testGetByte16
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the maximum value of table Float_Tab with the
+	 * maximum value of table Tinyint_Tab.Now execute a query to get the maximum
+	 * value of Float_Tab table and retrieve the result of the query using the
+	 * getByte(int columnIndex) method.Compare the returned value, with the maximum
+	 * value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte16() throws Exception {
+	public void testGetByte16() throws Exception {
 		super.testGetByte16();
-  }
+	}
 
-  /*
-   * @testName: testGetByte17
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a PreparedStatement object from the connection to the
-   * database. Using this,update the minimum value of table Float_Tab with the
-   * minimum value of table Tinyint_Tab.Now execute a query to get the minimum
-   * value of Float_Tab table and retrieve the result of the query using the
-   * getByte(int columnIndex) method.Compare the returned value, with the
-   * minimum value of table Tinyint_Tab extracted from the tssql.stmt file. Both
-   * of them should be equal.
-   */
+	/*
+	 * @testName: testGetByte17
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a PreparedStatement object from the connection to the
+	 * database. Using this,update the minimum value of table Float_Tab with the
+	 * minimum value of table Tinyint_Tab.Now execute a query to get the minimum
+	 * value of Float_Tab table and retrieve the result of the query using the
+	 * getByte(int columnIndex) method.Compare the returned value, with the minimum
+	 * value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them
+	 * should be equal.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte17() throws Exception {
+	public void testGetByte17() throws Exception {
 		super.testGetByte17();
-  }
+	}
 
-  /*
-   * @testName: testGetByte18
-   * 
-   * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-   * JDBC:JAVADOC:377; JavaEE:SPEC:191;
-   *
-   * @test_Strategy: Get a ResultSet object by executing the query that returns
-   * null value from table Float_Tab.Call the getByte(int columnIndex)
-   * method.Check if it returns the value zero.
-   */
+	/*
+	 * @testName: testGetByte18
+	 * 
+	 * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
+	 * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+	 *
+	 * @test_Strategy: Get a ResultSet object by executing the query that returns
+	 * null value from table Float_Tab.Call the getByte(int columnIndex)
+	 * method.Check if it returns the value zero.
+	 */
 	@Test
 	@TargetVehicle("servlet")
-  public void testGetByte18() throws Exception {
+	public void testGetByte18() throws Exception {
 		super.testGetByte18();
-  }
+	}
 }

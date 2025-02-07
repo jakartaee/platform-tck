@@ -40,7 +40,6 @@ import com.sun.ts.lib.harness.Status;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
-
 // Merant DataSource class
 //import com.merant.sequelink.jdbcx.datasource.*;
 
@@ -55,12 +54,13 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-appclient")
 
 public class dbMetaClient11EJB extends dbMetaClient11 implements Serializable {
-  private static final String testName = "jdbc.ee.dbMeta.dbMeta11";
-  
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")
-	@Deployment(name = "ejb",  testable = true)
-	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	private static final String testName = "jdbc.ee.dbMeta.dbMeta11";
+
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
+	@Deployment(name = "ejb", testable = true)
+	public static EnterpriseArchive createDeploymentejb(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "dbMeta11_ejb_vehicle_client.jar");
 		ejbClient.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
@@ -74,13 +74,12 @@ public class dbMetaClient11EJB extends dbMetaClient11 implements Serializable {
 		}
 		ejbClient.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"),
 				"MANIFEST.MF");
-		
-		resURL = dbMetaClient11EJB.class
-				.getResource("/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta11/dbMeta11_ejb_vehicle_client.jar.sun-application-client.xml");
+
+		resURL = dbMetaClient11EJB.class.getResource(
+				"/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta11/dbMeta11_ejb_vehicle_client.jar.sun-application-client.xml");
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
-
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "dbMeta11_ejb_vehicle_ejb.jar");
 		ejb.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
@@ -89,9 +88,8 @@ public class dbMetaClient11EJB extends dbMetaClient11 implements Serializable {
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
 		ejb.addClasses(dbMetaClient11EJB.class, dbMetaClient11.class);
 
-
-		resURL = dbMetaClient11EJB.class.getResource(
-				"/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta11/dbMeta11_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+		resURL = dbMetaClient11EJB.class
+				.getResource("/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta11/dbMeta11_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
 
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
@@ -109,405 +107,399 @@ public class dbMetaClient11EJB extends dbMetaClient11 implements Serializable {
 		return ear;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		dbMetaClient11EJB theTests = new dbMetaClient11EJB();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
- 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    dbMetaClient11EJB theTests = new dbMetaClient11EJB();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
- 
-  /*
-   * @testName: testSupportsTransactionIsolationLevel2
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsTransactionIsolationLevel(int isolevel)
-   * method on that object with the isolation level TRANSACTION_READ_COMMITTED.
-   * It should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsTransactionIsolationLevel2
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsTransactionIsolationLevel(int isolevel) method
+	 * on that object with the isolation level TRANSACTION_READ_COMMITTED. It should
+	 * return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsTransactionIsolationLevel2() throws Exception {
+	public void testSupportsTransactionIsolationLevel2() throws Exception {
 		super.testSupportsTransactionIsolationLevel2();
-   }
+	}
 
-  /*
-   * @testName: testSupportsTransactionIsolationLevel3
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsTransactionIsolationLevel(int isolevel)
-   * method on that object with the isolation level
-   * TRANSACTION_READ_UNCOMMITTED. It should return a boolean value; either true
-   * or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsTransactionIsolationLevel3
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsTransactionIsolationLevel(int isolevel) method
+	 * on that object with the isolation level TRANSACTION_READ_UNCOMMITTED. It
+	 * should return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsTransactionIsolationLevel3() throws Exception {
+	public void testSupportsTransactionIsolationLevel3() throws Exception {
 		super.testSupportsTransactionIsolationLevel3();
-   }
+	}
 
-  /*
-   * @testName: testSupportsTransactionIsolationLevel4
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsTransactionIsolationLevel(int isolevel)
-   * method on that object with isolation level TRANSACTION_REPEATABLE_READ. It
-   * should return a boolean value; either true or false.
-   *
-   */
+	/*
+	 * @testName: testSupportsTransactionIsolationLevel4
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsTransactionIsolationLevel(int isolevel) method
+	 * on that object with isolation level TRANSACTION_REPEATABLE_READ. It should
+	 * return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsTransactionIsolationLevel4() throws Exception {
+	public void testSupportsTransactionIsolationLevel4() throws Exception {
 		super.testSupportsTransactionIsolationLevel4();
-			
-   }
 
-  /*
-   * @testName: testSupportsTransactionIsolationLevel5
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the supportsTransactionIsolationLevel(int isolevel)
-   * method on that object with isolation level TRANSACTION_SERIALIZABLE. It
-   * should return a boolean value; either true or false.
-   *
-   */
+	}
+
+	/*
+	 * @testName: testSupportsTransactionIsolationLevel5
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the supportsTransactionIsolationLevel(int isolevel) method
+	 * on that object with isolation level TRANSACTION_SERIALIZABLE. It should
+	 * return a boolean value; either true or false.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testSupportsTransactionIsolationLevel5() throws Exception {
+	public void testSupportsTransactionIsolationLevel5() throws Exception {
 		super.testSupportsTransactionIsolationLevel5();
-  }
+	}
 
-  /*
-   * @testName: testGetColumnPrivileges
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1056; JDBC:JAVADOC:1057;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getColumnPrivileges() method on that object. It
-   * should return a ResultSet object. Validate the column names and column
-   * ordering.
-   */
+	/*
+	 * @testName: testGetColumnPrivileges
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1056; JDBC:JAVADOC:1057;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getColumnPrivileges() method on that object. It should
+	 * return a ResultSet object. Validate the column names and column ordering.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetColumnPrivileges() throws Exception {
+	public void testGetColumnPrivileges() throws Exception {
 		super.testGetColumnPrivileges();
-  }
+	}
 
-  /*
-   * @testName: testGetTablePrivileges
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1058; JDBC:JAVADOC:1059;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getTablePrivileges() method on that object. It should
-   * return a ResultSet object. Validate the column names and column ordering.
-   */
+	/*
+	 * @testName: testGetTablePrivileges
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1058; JDBC:JAVADOC:1059;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getTablePrivileges() method on that object. It should
+	 * return a ResultSet object. Validate the column names and column ordering.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetTablePrivileges() throws Exception {
+	public void testGetTablePrivileges() throws Exception {
 		super.testGetTablePrivileges();
-  }
+	}
 
-  /*
-   * @testName: testGetBestRowIdentifier1
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getBestRowIdentifier() method on that object. It
-   * should return a ResultSet object.
-   *
-   */
+	/*
+	 * @testName: testGetBestRowIdentifier1
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getBestRowIdentifier() method on that object. It should
+	 * return a ResultSet object.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetBestRowIdentifier1() throws Exception {
+	public void testGetBestRowIdentifier1() throws Exception {
 		super.testGetBestRowIdentifier1();
-  }
+	}
 
-  /*
-   * @testName: testGetBestRowIdentifier2
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getBestRowIdentifier() method on that object. It
-   * should return a ResultSet object.
-   *
-   */
+	/*
+	 * @testName: testGetBestRowIdentifier2
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getBestRowIdentifier() method on that object. It should
+	 * return a ResultSet object.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetBestRowIdentifier2() throws Exception {
+	public void testGetBestRowIdentifier2() throws Exception {
 		super.testGetBestRowIdentifier2();
-  }
+	}
 
-  /*
-   * @testName: testGetBestRowIdentifier3
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getBestRowIdentifier() method on that object. It
-   * should return a ResultSet object.
-   *
-   */
+	/*
+	 * @testName: testGetBestRowIdentifier3
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getBestRowIdentifier() method on that object. It should
+	 * return a ResultSet object.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetBestRowIdentifier3() throws Exception {
+	public void testGetBestRowIdentifier3() throws Exception {
 		super.testGetBestRowIdentifier3();
-  }
+	}
 
-  /*
-   * @testName: testGetBestRowIdentifier4
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getBestRowIdentifier() method on that object. It
-   * should return a ResultSet object.
-   *
-   */
+	/*
+	 * @testName: testGetBestRowIdentifier4
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getBestRowIdentifier() method on that object. It should
+	 * return a ResultSet object.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetBestRowIdentifier4() throws Exception {
+	public void testGetBestRowIdentifier4() throws Exception {
 		super.testGetBestRowIdentifier4();
-  }
+	}
 
-  /*
-   * @testName: testGetBestRowIdentifier5
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getBestRowIdentifier() method on that object. It
-   * should return a ResultSet object.
-   *
-   */
+	/*
+	 * @testName: testGetBestRowIdentifier5
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getBestRowIdentifier() method on that object. It should
+	 * return a ResultSet object.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetBestRowIdentifier5() throws Exception {
+	public void testGetBestRowIdentifier5() throws Exception {
 		super.testGetBestRowIdentifier5();
-  }
+	}
 
-  /*
-   * @testName: testGetBestRowIdentifier6
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getBestRowIdentifier() method on that object. It
-   * should return a ResultSet object
-   *
-   */
+	/*
+	 * @testName: testGetBestRowIdentifier6
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getBestRowIdentifier() method on that object. It should
+	 * return a ResultSet object
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetBestRowIdentifier6() throws Exception {
+	public void testGetBestRowIdentifier6() throws Exception {
 		super.testGetBestRowIdentifier6();
-  }
+	}
 
-  /*
-   * @testName: testGetBestRowIdentifier7
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getBestRowIdentifier() method on that object. It
-   * should return a ResultSet object. Validate the column names and column
-   * ordering.
-   */
+	/*
+	 * @testName: testGetBestRowIdentifier7
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getBestRowIdentifier() method on that object. It should
+	 * return a ResultSet object. Validate the column names and column ordering.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetBestRowIdentifier7() throws Exception {
+	public void testGetBestRowIdentifier7() throws Exception {
 		super.testGetBestRowIdentifier7();
-  }
+	}
 
-  /*
-   * @testName: testGetVersionColumns
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1062; JDBC:JAVADOC:1063;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getVersionColumns() method on that object. It should
-   * return a ResultSet object.Compare the column names Validate the column
-   * names and column ordering.
-   */
+	/*
+	 * @testName: testGetVersionColumns
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1062; JDBC:JAVADOC:1063;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getVersionColumns() method on that object. It should
+	 * return a ResultSet object.Compare the column names Validate the column names
+	 * and column ordering.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetVersionColumns() throws Exception {
+	public void testGetVersionColumns() throws Exception {
 		super.testGetVersionColumns();
-  }
+	}
 
-  /*
-   * @testName: testGetPrimaryKeys
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1064; JDBC:JAVADOC:1065;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getPrimaryKeys() method on that object. It should
-   * return a ResultSet object. Validate the column names and column ordering.
-   */
+	/*
+	 * @testName: testGetPrimaryKeys
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1064; JDBC:JAVADOC:1065;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getPrimaryKeys() method on that object. It should
+	 * return a ResultSet object. Validate the column names and column ordering.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetPrimaryKeys() throws Exception {
+	public void testGetPrimaryKeys() throws Exception {
 		super.testGetPrimaryKeys();
-  }
+	}
 
-  /*
-   * @testName: testGetImportedKeys
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1066; JDBC:JAVADOC:1067;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getImportedKeys() method on that object. It should
-   * return a ResultSet object. Validate the column names and column ordering.
-   */
+	/*
+	 * @testName: testGetImportedKeys
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1066; JDBC:JAVADOC:1067;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getImportedKeys() method on that object. It should
+	 * return a ResultSet object. Validate the column names and column ordering.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetImportedKeys() throws Exception {
+	public void testGetImportedKeys() throws Exception {
 		super.testGetImportedKeys();
-  }
+	}
 
-  /*
-   * @testName: testGetExportedKeys
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1068; JDBC:JAVADOC:1069;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getExportedKeys() method on that object. It should
-   * return a ResultSet object. Validate the column names and column ordering.
-   */
+	/*
+	 * @testName: testGetExportedKeys
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1068; JDBC:JAVADOC:1069;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getExportedKeys() method on that object. It should
+	 * return a ResultSet object. Validate the column names and column ordering.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetExportedKeys() throws Exception {
+	public void testGetExportedKeys() throws Exception {
 		super.testGetExportedKeys();
-  }
+	}
 
-  /*
-   * @testName: testGetCrossReference
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1070; JDBC:JAVADOC:1071;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getCrossReference() method on that object. It should
-   * return a ResultSet object. Validate the column names and column ordering.
-   */
+	/*
+	 * @testName: testGetCrossReference
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1070; JDBC:JAVADOC:1071;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getCrossReference() method on that object. It should
+	 * return a ResultSet object. Validate the column names and column ordering.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetCrossReference() throws Exception {
+	public void testGetCrossReference() throws Exception {
 		super.testGetCrossReference();
-  }
+	}
 
-  /*
-   * @testName: testGetIndexInfo1
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getIndexInfo() method on that object. It should
-   * return a ResultSet object.
-   *
-   */
+	/*
+	 * @testName: testGetIndexInfo1
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getIndexInfo() method on that object. It should return
+	 * a ResultSet object.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetIndexInfo1() throws Exception {
+	public void testGetIndexInfo1() throws Exception {
 		super.testGetIndexInfo1();
-  }
+	}
 
-  /*
-   * @testName: testGetIndexInfo2
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getIndexInfo() method on that object. It should
-   * return a ResultSet object.
-   *
-   */
+	/*
+	 * @testName: testGetIndexInfo2
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getIndexInfo() method on that object. It should return
+	 * a ResultSet object.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetIndexInfo2() throws Exception {
+	public void testGetIndexInfo2() throws Exception {
 		super.testGetIndexInfo2();
-  }
+	}
 
-  /*
-   * @testName: testGetIndexInfo3
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getIndexInfo() method on that object. It should
-   * return a ResultSet object.
-   *
-   */
+	/*
+	 * @testName: testGetIndexInfo3
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getIndexInfo() method on that object. It should return
+	 * a ResultSet object.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetIndexInfo3() throws Exception {
+	public void testGetIndexInfo3() throws Exception {
 		super.testGetIndexInfo3();
-  }
+	}
 
-  /*
-   * @testName: testGetIndexInfo4
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getIndexInfo() method on that object. It should
-   * return a ResultSet object.
-   *
-   */
+	/*
+	 * @testName: testGetIndexInfo4
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getIndexInfo() method on that object. It should return
+	 * a ResultSet object.
+	 *
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetIndexInfo4() throws Exception {
+	public void testGetIndexInfo4() throws Exception {
 		super.testGetIndexInfo4();
-  }
+	}
 
-  /*
-   * @testName: testGetIndexInfo5
-   * 
-   * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
-   * JavaEE:SPEC:193;
-   *
-   * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-   * database and call the getIndexInfo() method on that object. It should
-   * return a ResultSet object. Validate the column names and column ordering.
-   */
+	/*
+	 * @testName: testGetIndexInfo5
+	 * 
+	 * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
+	 * JavaEE:SPEC:193;
+	 *
+	 * @test_Strategy: Get a DatabaseMetadata object from the connection to the
+	 * database and call the getIndexInfo() method on that object. It should return
+	 * a ResultSet object. Validate the column names and column ordering.
+	 */
 	@Test
 	@TargetVehicle("ejb")
-  public void testGetIndexInfo5() throws Exception {
+	public void testGetIndexInfo5() throws Exception {
 		super.testGetIndexInfo5();
-  }
+	}
 
 }

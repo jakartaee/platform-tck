@@ -53,12 +53,13 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("tck-javatest")
 
 public class dateTimeClient3JSP extends dateTimeClient3 implements Serializable {
-  private static final String testName = "jdbc.ee.dateTime.dateTime3";
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+	private static final String testName = "jdbc.ee.dateTime.dateTime3";
+
+	@TargetsContainer("tck-javatest")
+	@OverProtocol("javatest")
 	@Deployment(name = "jsp", testable = true)
-	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+	public static WebArchive createDeploymentjsp(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "dateTime3_jsp_vehicle_web.war");
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
@@ -66,162 +67,157 @@ public class dateTimeClient3JSP extends dateTimeClient3 implements Serializable 
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(dateTimeClient3JSP.class, dateTimeClient3.class);
 		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
-        
-	       // The jsp descriptor
-     URL jspUrl = dateTimeClient3JSP.class.getResource("jsp_vehicle_web.xml");
-     if(jspUrl != null) {
-     	archive.addAsWebInfResource(jspUrl, "web.xml");
-     }
-     // The sun jsp descriptor
-     URL sunJSPUrl = dateTimeClient3JSP.class.getResource("dateTime3_jsp_vehicle_web.war.sun-web.xml");
-     if(sunJSPUrl != null) {
-     	archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
-     }
-     // Call the archive processor
-     archiveProcessor.processWebArchive(archive, dateTimeClient3JSP.class, sunJSPUrl);
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+		archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
+		InputStream clientHtml = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+		archive.add(new ByteArrayAsset(clientHtml), "client.html");
 
-        
+		// The jsp descriptor
+		URL jspUrl = dateTimeClient3JSP.class.getResource("jsp_vehicle_web.xml");
+		if (jspUrl != null) {
+			archive.addAsWebInfResource(jspUrl, "web.xml");
+		}
+		// The sun jsp descriptor
+		URL sunJSPUrl = dateTimeClient3JSP.class.getResource("dateTime3_jsp_vehicle_web.war.sun-web.xml");
+		if (sunJSPUrl != null) {
+			archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
+		}
+		// Call the archive processor
+		archiveProcessor.processWebArchive(archive, dateTimeClient3JSP.class, sunJSPUrl);
+
 		archive.addAsWebInfResource(dateTimeClient3JSP.class.getPackage(), "jsp_vehicle_web.xml", "web.xml");
-		
+
 		return archive;
 	};
 
+	/* Run test in standalone mode */
+	public static void main(String[] args) {
+		dateTimeClient3JSP theTests = new dateTimeClient3JSP();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    dateTimeClient3JSP theTests = new dateTimeClient3JSP();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: testDate01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:100
-   * 
-   * @test_Strategy: Create a Date Object with a long value as an argument. Then
-   * get the String representation of that Date object. Check whether it is same
-   * as equivalent String Value in property file.
-   */
+	/*
+	 * @testName: testDate01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:100
+	 * 
+	 * @test_Strategy: Create a Date Object with a long value as an argument. Then
+	 * get the String representation of that Date object. Check whether it is same
+	 * as equivalent String Value in property file.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testDate01() throws Exception {
+	public void testDate01() throws Exception {
 		super.testDate01();
-  }
+	}
 
-  /*
-   * @testName: testDate02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:100
-   * 
-   * @test_Strategy: Create a Date Object with a long value as an argument. Then
-   * get the String representation of that Date object. Check whether it is same
-   * as equivalent String Value in property file.
-   */
+	/*
+	 * @testName: testDate02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:100
+	 * 
+	 * @test_Strategy: Create a Date Object with a long value as an argument. Then
+	 * get the String representation of that Date object. Check whether it is same
+	 * as equivalent String Value in property file.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testDate02() throws Exception {
+	public void testDate02() throws Exception {
 		super.testDate02();
-  }
+	}
 
-  /*
-   * @testName: testToString01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:103
-   * 
-   * @test_Strategy: Create a Date Object with a long value as an argument. Then
-   * get the String representation of that Date object. using the toString()
-   * method.Check whether it is same as equivalent String Value in property
-   * file.
-   */
+	/*
+	 * @testName: testToString01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:103
+	 * 
+	 * @test_Strategy: Create a Date Object with a long value as an argument. Then
+	 * get the String representation of that Date object. using the toString()
+	 * method.Check whether it is same as equivalent String Value in property file.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testToString01() throws Exception {
+	public void testToString01() throws Exception {
 		super.testToString01();
-  }
+	}
 
-  /*
-   * @testName: testToString02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:103
-   * 
-   * @test_Strategy: Create a Date Object with a long value as an argument. Then
-   * get the String representation of that Date object. using the toString()
-   * method.Check whether it is same as equivalent String Value in property
-   * file.
-   */
+	/*
+	 * @testName: testToString02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:103
+	 * 
+	 * @test_Strategy: Create a Date Object with a long value as an argument. Then
+	 * get the String representation of that Date object. using the toString()
+	 * method.Check whether it is same as equivalent String Value in property file.
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testToString02() throws Exception {
+	public void testToString02() throws Exception {
 		super.testToString02();
-  }
+	}
 
-  /*
-   * @testName: testValueOf01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:102
-   * 
-   * @test_Strategy: Call valueof(String ts) static method in java.sql.Date
-   * class with a String argument to get a Date object Check whether it is same
-   * as Date object obtained from equivalent long value .
-   */
+	/*
+	 * @testName: testValueOf01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:102
+	 * 
+	 * @test_Strategy: Call valueof(String ts) static method in java.sql.Date class
+	 * with a String argument to get a Date object Check whether it is same as Date
+	 * object obtained from equivalent long value .
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testValueOf01() throws Exception {
+	public void testValueOf01() throws Exception {
 		super.testValueOf01();
-  }
+	}
 
-  /*
-   * @testName: testValueOf02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:102
-   * 
-   * @test_Strategy: Call valueof(String ts) static method in java.sql.Date
-   * class with a String argument to get a Date object Check whether it is same
-   * as Date object obtained from equivalent long value .
-   */
+	/*
+	 * @testName: testValueOf02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:102
+	 * 
+	 * @test_Strategy: Call valueof(String ts) static method in java.sql.Date class
+	 * with a String argument to get a Date object Check whether it is same as Date
+	 * object obtained from equivalent long value .
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testValueOf02() throws Exception {
+	public void testValueOf02() throws Exception {
 		super.testValueOf02();
-  }
+	}
 
-  /*
-   * @testName: testSetTime01
-   * 
-   * @assertion_ids: JDBC:JAVADOC:101
-   * 
-   * @test_Strategy: Create two Date objects with two different long values. Set
-   * the same long value in the second object as used in the first object using
-   * setTime(long) method Check whether both the Date objects are equal using
-   * equals method
-   */
+	/*
+	 * @testName: testSetTime01
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:101
+	 * 
+	 * @test_Strategy: Create two Date objects with two different long values. Set
+	 * the same long value in the second object as used in the first object using
+	 * setTime(long) method Check whether both the Date objects are equal using
+	 * equals method
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSetTime01() throws Exception {
+	public void testSetTime01() throws Exception {
 		super.testSetTime01();
-  }
+	}
 
-  /*
-   * @testName: testSetTime02
-   * 
-   * @assertion_ids: JDBC:JAVADOC:101
-   * 
-   * @test_Strategy: Create two Date objects with two different long values. Set
-   * the same long value in the second object as used in the first object using
-   * setTime(long) method Check whether both the Date objects are equal using
-   * equals method
-   */
+	/*
+	 * @testName: testSetTime02
+	 * 
+	 * @assertion_ids: JDBC:JAVADOC:101
+	 * 
+	 * @test_Strategy: Create two Date objects with two different long values. Set
+	 * the same long value in the second object as used in the first object using
+	 * setTime(long) method Check whether both the Date objects are equal using
+	 * equals method
+	 */
 	@Test
 	@TargetVehicle("jsp")
-  public void testSetTime02() throws Exception {
+	public void testSetTime02() throws Exception {
 		super.testSetTime02();
-  }
+	}
 
 }
