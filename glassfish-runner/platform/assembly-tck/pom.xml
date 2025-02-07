@@ -37,11 +37,11 @@
         <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
         <glassfish.version>8.0.0-JDK17-M7</glassfish.version>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
+        <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <tck.artifactId>assembly-tck</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
         <ts.home>./jakartaeetck</ts.home>
-        <version.jakarta.tck.arquillian>${project.version}</version.jakarta.tck.arquillian>
     </properties>
 
     <dependencyManagement>
@@ -99,12 +99,12 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>${project.version}</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${project.version}</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
@@ -161,7 +161,7 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${jakarta.tck.arquillian.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -188,17 +188,17 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.derby</groupId>

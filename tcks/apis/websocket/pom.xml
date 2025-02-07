@@ -47,6 +47,7 @@
         <junit.jupiter.version>5.11.4</junit.jupiter.version>
         <tck.version>${project.version}</tck.version>
         <jakarta.tck.tools.version>11.0.0-RC4</jakarta.tck.tools.version>
+        <jakarta.websocket.version>2.2.0</jakarta.websocket.version>
         <maven.compiler.release>17</maven.compiler.release>
     </properties>
 
@@ -73,12 +74,12 @@
         <dependency>
             <groupId>jakarta.websocket</groupId>
             <artifactId>jakarta.websocket-api</artifactId>
-            <version>2.2.0</version>
+            <version>${jakarta.websocket.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.websocket</groupId>
             <artifactId>jakarta.websocket-client-api</artifactId>
-            <version>2.2.0</version>
+            <version>${jakarta.websocket.version}</version>
         </dependency>
         
         <!-- Jakarta TCK tools dependencies -->
