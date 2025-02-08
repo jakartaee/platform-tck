@@ -67,6 +67,7 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- Jakarta EE dependencies -->
         <dependency>
             <groupId>jakarta.jms</groupId>
             <artifactId>jakarta.jms-api</artifactId>
@@ -91,13 +92,14 @@
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
         </dependency>
-
+        
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
             <version>11.0.0-RC4</version>
         </dependency>
-
+ 
+        <!-- JUnit dependencies-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -119,7 +121,7 @@
         </resources>
 
         <plugins>
-             <!-- Sets minimal Maven version to 3.8.6 -->
+            <!-- Sets minimal Maven version to 3.8.6 -->
             <plugin>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <executions>
@@ -167,6 +169,14 @@
                 <configuration>
                     <doclint>none</doclint>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-api-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- Generate a "consumer pom" for the generated jar -->
