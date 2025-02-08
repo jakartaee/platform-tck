@@ -27,13 +27,14 @@
     </parent>
 
     <artifactId>tags-tck-install</artifactId>
+    <version>11.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta tags TCK</name>
 
     <properties>
-        <tck.test.tags.file>jakarta-tags-tck-${tck.test.tags.version}.zip</tck.test.tags.file>
+        <tck.test.tags.file>jakartaeetck-${tck.test.tags.version}-dist.zip</tck.test.tags.file>
         <tck.test.tags.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.tags.file}</tck.test.tags.url>
-        <tck.test.tags.version>11.0.0-M2</tck.test.tags.version>
+        <tck.test.tags.version>${project.version}</tck.test.tags.version>
     </properties>
 
     <build>
@@ -69,10 +70,10 @@
                         </goals>
                         <phase>process-resources</phase>
                         <configuration>
-                            <file>${project.build.directory}/jakarta-tags-tck-${tck.test.tags.version}.jar</file>
-                            <sources>${project.build.directory}/jakarta-tags-tck-${tck.test.tags.version}-sources.jar</sources>
+                            <file>${project.build.directory}/jakartaeetck/artifacts/tags-tck-${tck.test.tags.version}.jar</file>
+                            <sources>${project.build.directory}/jakartaeetck/artifacts/tags-tck-${tck.test.tags.version}-sources.jar</sources>
                             <groupId>jakarta.tck</groupId>
-                            <artifactId>jakarta-tags-tck</artifactId>
+                            <artifactId>tags-tck</artifactId>
                             <version>${tck.test.tags.version}</version>
                             <packaging>jar</packaging>
                         </configuration>
