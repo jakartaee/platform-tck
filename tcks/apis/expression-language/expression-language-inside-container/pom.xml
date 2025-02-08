@@ -57,6 +57,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                 <groupId>jakarta.platform</groupId>
+                 <artifactId>jakarta.jakartaee-bom</artifactId>
+                 <version>11.0.0-M4</version>
+                 <type>pom</type>
+                 <scope>import</scope>
+             </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -64,7 +71,6 @@
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
-            <version>6.0.1</version>
         </dependency>
 
         <!-- Jakarta TCK tools dependencies -->
