@@ -32,12 +32,34 @@
 
     <name>Jakarta Messaging</name>
     <description>Jakarta Messaging Integration Tests</description>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.11.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.9.3.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                 <groupId>jakarta.platform</groupId>
+                 <artifactId>jakarta.jakartaee-bom</artifactId>
+                 <version>11.0.0-M4</version>
+                 <type>pom</type>
+                 <scope>import</scope>
+             </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>common</artifactId>
-        </dependency>
         <dependency>
             <groupId>jakarta.jms</groupId>
             <artifactId>jakarta.jms-api</artifactId>
@@ -56,8 +78,13 @@
         </dependency>
 
         <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
+            <artifactId>junit-jupiter-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
