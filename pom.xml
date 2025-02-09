@@ -71,10 +71,6 @@
         <module>tcks/profiles/platform/xa</module>
         <!--module>tools</module-->
         <module>user_guides</module>
-        <module>webartifacts/jsf</module>
-        <module>webartifacts/jsp</module>
-        <module>webartifacts/jstl</module>
-        <module>webartifacts/servlet</module>
     </modules>
 
     <properties>
@@ -334,11 +330,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>web-servlet</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>web-jsp</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
