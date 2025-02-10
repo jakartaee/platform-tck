@@ -100,6 +100,26 @@
                         </configuration>
                     </execution>
 
+                    <!-- Persistence Platform TCK dbprocedures -->
+
+                    <execution>
+                        <id>install-persistence-platform-tck-dbprocedures-jar</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <file>${project.build.directory}/jakartaeetck/artifacts/persistence-platform-tck-dbprocedures-${tck.test.persistence.version}.jar</file>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>persistence-platform-tck-dbprocedures</artifactId>
+                            <version>${tck.test.persistence.version}</version>
+                            <sources>${project.build.directory}/jakartaeetck/artifacts/persistence-platform-tck-dbprocedures-${tck.test.persistence.version}-sources.jar</sources>
+                            <packaging>jar</packaging>
+                        </configuration>
+                    </execution>
+
+
+
                     <!-- Persistence Platform TCK tests -->
 
                     <execution>

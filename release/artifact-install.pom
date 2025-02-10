@@ -254,6 +254,22 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>install-persistence-platform-tck-dbprocedures</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>persistence-platform-tck-dbprocedures</artifactId>
+                            <version>${project.version}</version>
+                            <packaging>jar</packaging>
+                            <file>persistence-platform-tck-dbprocedures-${project.version}.jar</file>
+                            <generatePom>false</generatePom>
+                        </configuration>
+                    </execution>
+
+                    <execution>
                         <id>install-persistence-platform-tck-spec-tests</id>
                         <phase>package</phase>
                         <goals>
