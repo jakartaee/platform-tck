@@ -79,53 +79,10 @@
         <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
         <arquillian.version>1.9.1.Final</arquillian.version>
 
-        <!-- CDI -->
-        <cdi-api.version>4.1.0</cdi-api.version>
-
-        <!-- Jakarta Concurrency -->
-        <concurrent-api.version>3.1.1</concurrent-api.version>
-
-        <!-- Jakarta Persistence -->
-        <jakarta-persistence-api.version>3.2.0</jakarta-persistence-api.version>
-        <jakarta.activation-api.version>2.1.3</jakarta.activation-api.version>
-
-        <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
-        <jakarta.authentication-api.version>3.1.0</jakarta.authentication-api.version>
-        <jakarta.authorization-api.version>3.0.0</jakarta.authorization-api.version>
-        <!-- Jakarta Batch -->
-        <jakarta.batch-api.version>2.1.1</jakarta.batch-api.version>
-        <!-- Jakarta Enterprise beans -->
-        <jakarta.ejb-api.version>4.0.1</jakarta.ejb-api.version>
-        <jakarta.el-api.version>6.0.1</jakarta.el-api.version>
-        <jakarta.faces-api.version>4.1.2</jakarta.faces-api.version>
-        <jakarta.inject-api.version>2.0.1.MR</jakarta.inject-api.version>
-        <!-- Jakarta Interceptors -->
-        <jakarta.interceptor-api.version>2.2.0</jakarta.interceptor-api.version>
-        <jakarta.mail-api.version>2.1.3</jakarta.mail-api.version>
-        <!-- Jakarta Connectors -->
-        <jakarta.resource-api.version>2.1.0</jakarta.resource-api.version>
-        <!-- Jakarta EE Security + Authentication/Authorization -->
-        <jakarta.security.enterprise-api.version>4.0.0</jakarta.security.enterprise-api.version>
-        <jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>
-
         <!-- Jakarta TCK Tools version from the independently released tools submodule -->
         <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
         <jakarta.tck.tools.version>11.0.0-RC4</jakarta.tck.tools.version>
 
-        <!-- Jakarta Transactions -->
-        <jakarta.transaction-api.version>2.0.1</jakarta.transaction-api.version>
-        <jakarta.validation-api.version>3.1.0</jakarta.validation-api.version>
-
-        <jakarta.ws.rs-api.version>4.0.0</jakarta.ws.rs-api.version>
-        <!-- Jakarta Messaging -->
-        <jms-api.version>3.1.0</jms-api.version>
-        <json.bind-api.version>3.0.1</json.bind-api.version>
-        <!-- Jakarta JSON -->
-        <jsonp-api.version>2.1.3</jsonp-api.version>
-        <!-- Jakarta Server Pages -->
-        <jsp-api.version>4.0.0</jsp-api.version>
-        <!-- Jakarta Standard Tag Library -->
-        <jstl-api.version>3.0.2</jstl-api.version>
         <maven.compiler.release>17</maven.compiler.release>
         <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -135,13 +92,20 @@
         <shrinkwrap.resolver.version>3.3.1</shrinkwrap.resolver.version>
         <slf4j.version>2.0.0</slf4j.version>
         <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
-        <!-- Jakarta WebSocket -->
-        <websocket-api.version>2.2.0</websocket-api.version>
-        <websocket-client-api.version>2.2.0</websocket-client-api.version>
+
+        <jakarta.jakartaee-bom.version>11.0.0-M4</jakarta.jakartaee-bom.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-bom</artifactId>
+                <version>${jakarta.jakartaee-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>appclient</artifactId>
@@ -384,16 +348,6 @@
             </dependency>
 
             <dependency>
-                <groupId>jakarta.activation</groupId>
-                <artifactId>jakarta.activation-api</artifactId>
-                <version>${jakarta.activation-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.annotation</groupId>
-                <artifactId>jakarta.annotation-api</artifactId>
-                <version>${jakarta.annotation-api.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.apache.ant</groupId>
                 <artifactId>ant</artifactId>
                 <version>${ant.version}</version>
@@ -409,134 +363,9 @@
                 <version>3.9</version>
             </dependency>
             <dependency>
-                <groupId>jakarta.authentication</groupId>
-                <artifactId>jakarta.authentication-api</artifactId>
-                <version>${jakarta.authentication-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.authorization</groupId>
-                <artifactId>jakarta.authorization-api</artifactId>
-                <version>${jakarta.authorization-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.batch</groupId>
-                <artifactId>jakarta.batch-api</artifactId>
-                <version>${jakarta.batch-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.ejb</groupId>
-                <artifactId>jakarta.ejb-api</artifactId>
-                <version>${jakarta.ejb-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.el</groupId>
-                <artifactId>jakarta.el-api</artifactId>
-                <version>${jakarta.el-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.enterprise</groupId>
-                <artifactId>jakarta.enterprise.cdi-api</artifactId>
-                <version>${cdi-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.enterprise.concurrent</groupId>
-                <artifactId>jakarta.enterprise.concurrent-api</artifactId>
-                <version>${concurrent-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.faces</groupId>
-                <artifactId>jakarta.faces-api</artifactId>
-                <version>${jakarta.faces-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.inject</groupId>
-                <artifactId>jakarta.inject-api</artifactId>
-                <version>${jakarta.inject-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.interceptor</groupId>
-                <artifactId>jakarta.interceptor-api</artifactId>
-                <version>${jakarta.interceptor-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.jms</groupId>
-                <artifactId>jakarta.jms-api</artifactId>
-                <version>${jms-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.json.bind</groupId>
-                <artifactId>jakarta.json.bind-api</artifactId>
-                <version>${json.bind-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.json</groupId>
-                <artifactId>jakarta.json-api</artifactId>
-                <version>${jsonp-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.mail</groupId>
-                <artifactId>jakarta.mail-api</artifactId>
-                <version>${jakarta.mail-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.persistence</groupId>
-                <artifactId>jakarta.persistence-api</artifactId>
-                <version>${jakarta-persistence-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.resource</groupId>
-                <artifactId>jakarta.resource-api</artifactId>
-                <version>${jakarta.resource-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.security.enterprise</groupId>
-                <artifactId>jakarta.security.enterprise-api</artifactId>
-                <version>${jakarta.security.enterprise-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.servlet</groupId>
-                <artifactId>jakarta.servlet-api</artifactId>
-                <version>${jakarta.servlet-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.servlet.jsp</groupId>
-                <artifactId>jakarta.servlet.jsp-api</artifactId>
-                <version>${jsp-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.servlet.jsp.jstl</groupId>
-                <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-                <version>${jstl-api.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>jakarta.tck.arquillian</groupId>
                 <artifactId>tck-porting-lib</artifactId>
                 <version>${jakarta.tck.arquillian.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.transaction</groupId>
-                <artifactId>jakarta.transaction-api</artifactId>
-                <version>${jakarta.transaction-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.validation</groupId>
-                <artifactId>jakarta.validation-api</artifactId>
-                <version>${jakarta.validation-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.websocket</groupId>
-                <artifactId>jakarta.websocket-client-api</artifactId>
-                <version>${websocket-client-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.websocket</groupId>
-                <artifactId>jakarta.websocket-api</artifactId>
-                <version>${websocket-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.ws.rs</groupId>
-                <artifactId>jakarta.ws.rs-api</artifactId>
-                <version>${jakarta.ws.rs-api.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.spec.javax.rmi</groupId>
