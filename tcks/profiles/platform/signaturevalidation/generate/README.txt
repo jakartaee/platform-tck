@@ -1,6 +1,6 @@
 Run the following to generate the Jakarta EE 11 SPEC API signature map files:
 
-export SIG_OUTPUT=../../../tcks/profiles/platform/signaturevalidation/src/main/java/com/sun/ts/tests/signaturetest
+export SIG_OUTPUT=../../../../../tcks/profiles/platform/signaturevalidation/src/main/java/com/sun/ts/tests/signaturetest
 
 mvn clean install -DSIG_OUTPUT=$SIG_OUTPUT -P jakarta.annotation
 mvn clean install -DSIG_OUTPUT=$SIG_OUTPUT -P jakarta.batch 

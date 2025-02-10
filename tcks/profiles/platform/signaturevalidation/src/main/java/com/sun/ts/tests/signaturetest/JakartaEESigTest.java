@@ -31,7 +31,6 @@ import java.util.StringTokenizer;
 
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.signaturetest.SigTestEE;
 
 /**
  * The JakartaEESigTest class provides signature tests for the Java EE TCK. This

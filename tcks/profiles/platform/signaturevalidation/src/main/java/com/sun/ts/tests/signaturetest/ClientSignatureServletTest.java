@@ -1,17 +1,14 @@
 /*
- * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2025 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
  *
  * This program and the accompanying materials are made available under the
- * terms of the Eclipse Public License v. 2.0, which is available at
- * http://www.eclipse.org/legal/epl-2.0.
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0
  *
- * This Source Code may also be made available under the following Secondary
- * Licenses when the conditions for such availability set forth in the
- * Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
- * version 2 with the GNU Classpath Exception, which is available at
- * https://www.gnu.org/software/classpath/license.html.
- *
- * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ * SPDX-License-Identifier: EPL-2.0
  */
 
 /*
@@ -93,24 +90,22 @@ public class ClientSignatureServletTest extends JakartaEESigTest implements Seri
         WebArchive signaturetest_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, VEHICLE_ARCHIVE);
         // The class files
         signaturetest_servlet_vehicle_web.addClasses(
-                com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean.class,
-
-                com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-                com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager.class,
-                com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareIF.class,
-                com.sun.ts.lib.harness.EETest.Fault.class,
-                com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
                 ClientSignatureServletTest.class,
-                com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
-                com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-                com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
-                com.sun.ts.lib.harness.EETest.class,
-                com.sun.ts.lib.harness.ServiceEETest.class,
-                com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
-                com.sun.ts.tests.common.vehicle.pmservlet.PMServletVehicle.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class,
+                JakartaEESigTest.class,
+                SigTestEE.class,
+
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
-                com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
+                com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+                com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+                com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
+
+                com.sun.ts.lib.harness.EETest.class,
+                com.sun.ts.lib.harness.EETest.Fault.class,
+                com.sun.ts.lib.harness.EETest.SetupException.class,
+                com.sun.ts.lib.harness.ServiceEETest.class,
+                com.sun.ts.lib.harness.Status.class,
+                com.sun.ts.lib.util.TestUtil.class
+
         );
         // The web.xml descriptor
         URL warResURL = ClientSignatureServletTest.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
