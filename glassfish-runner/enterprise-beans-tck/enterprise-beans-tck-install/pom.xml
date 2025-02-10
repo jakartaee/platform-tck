@@ -31,9 +31,9 @@
     <name>TCK: Install Jakarta enterprise-beans TCK</name>
 
     <properties>
-        <tck.test.enterprise-beans.file>jakarta-enterprise-beans-tck-${tck.test.enterprise-beans.version}.zip</tck.test.enterprise-beans.file>
+        <tck.test.enterprise-beans.file>jakartaeetck-${tck.test.enterprise-beans.version}-dist.zip</tck.test.enterprise-beans.file>
         <tck.test.enterprise-beans.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.enterprise-beans.file}</tck.test.enterprise-beans.url>
-        <tck.test.enterprise-beans.version>4.0.0-M1</tck.test.enterprise-beans.version>
+        <tck.test.enterprise-beans.version>11.0.0-SNAPSHOT</tck.test.enterprise-beans.version>
     </properties>
 
     <build>
@@ -41,7 +41,7 @@
             <plugin>
                 <groupId>com.googlecode.maven-download-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.9.0</version>
+                <version>1.13.0</version>
                 <configuration>
                     <url>${tck.test.enterprise-beans.url}</url>
                     <unpack>true</unpack>
@@ -69,10 +69,10 @@
                         </goals>
                         <phase>process-resources</phase>
                         <configuration>
-                            <file>${project.build.directory}/ejb30/target/ejb30-${tck.test.enterprise-beans.version}.jar</file>
+                            <file>${project.build.directory}/jakartaeetck/artifacts/ejb30-${tck.test.enterprise-beans.version}.jar</file>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>ejb30</artifactId>
-                            <version>${tck.test.enterprise-beans.version}</version>
+                            <version>4.0.0-M1</version>
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
@@ -83,10 +83,10 @@
                         </goals>
                         <phase>process-resources</phase>
                         <configuration>
-                            <file>${project.build.directory}/ejb32/target/ejb32-${tck.test.enterprise-beans.version}.jar</file>
+                            <file>${project.build.directory}/jakartaeetck/artifacts/ejb32-${tck.test.enterprise-beans.version}.jar</file>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>ejb32</artifactId>
-                            <version>${tck.test.enterprise-beans.version}</version>
+                            <version>4.0.0-M1</version>
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
