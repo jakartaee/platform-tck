@@ -108,7 +108,7 @@
             <version>${version.persistence.tck}</version>
             <scope>test</scope>
         </dependency>
-        <!-- <dependency>
+        <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-dbprocedures</artifactId>
             <version>${version.persistence.tck}</version>
@@ -119,7 +119,7 @@
                     <artifactId>jakarta.persistence-api</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency> -->
+        </dependency>
         
         <!-- TCK tools dependencies (the TCK above depends on these) -->
         <dependency>
@@ -265,7 +265,7 @@
                             </artifactItems>
                         </configuration>
                     </execution>
-                    <!-- <execution>
+                    <execution>
                         <id>004-copy-lib</id>
                         <goals>
                             <goal>copy</goal>
@@ -282,7 +282,7 @@
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
-                    </execution> -->
+                    </execution>
                 </executions>
             </plugin>
 

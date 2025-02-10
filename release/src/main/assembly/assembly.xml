@@ -127,6 +127,7 @@
                 <include>${project.groupId}:project</include>
                 <include>${project.groupId}:persistence-platform-tck-tests</include>
                 <include>${project.groupId}:persistence-platform-tck-common</include>
+                <include>${project.groupId}:persistence-platform-tck-dbprocedures</include>
                 <include>${project.groupId}:persistence-platform-tck-spec-tests</include>
                 <include>${project.groupId}:jsonb-platform-tck</include>
                 <include>${project.groupId}:jsonp-platform-tck</include>
