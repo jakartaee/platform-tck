@@ -123,7 +123,7 @@
                 <include>${project.groupId}:rest-platform-tck</include>
                 <include>${project.groupId}:javamail</include>
                 <include>${project.groupId}:jdbc</include>
-                <include>${project.groupId}:jms-tck</include>
+                <include>${project.groupId}:jms-platform-tck</include>
                 <include>${project.groupId}:project</include>
                 <include>${project.groupId}:persistence-platform-tck-tests</include>
                 <include>${project.groupId}:persistence-platform-tck-common</include>
