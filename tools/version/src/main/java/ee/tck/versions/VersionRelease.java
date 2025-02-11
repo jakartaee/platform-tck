@@ -31,11 +31,18 @@ public class VersionRelease {
 
     private void run(String version) throws Exception{
         SAXReader reader = new SAXReader();
-        Document document = reader.read(new File("pom.xml"));
+        File pomFile = new File("pom.xml");
+        Document document = reader.read(pomFile);
 
         Element project = document.getRootElement();
+        Element projectVersion = project.element("version");
         List<Node> list = document.selectNodes("/project/modules/module");
         System.out.println("Modules:" + list.size());
+        // Write the updated module file
+        projectVersion.setText(version);
+        try(FileWriter writer = new FileWriter(pomFile)) {
+            document.write(writer);
+        }
 
         List<Element> modules = project.elements("modules");
         modules.get(0).elements("module").forEach(module -> {
@@ -66,6 +73,16 @@ public class VersionRelease {
             }
         });
 
+        // Update the release module
+        File releaseModule = new File("release/pom.xml");
+        Document releaseDocument = reader.read(releaseModule);
+        Element releaseProject = releaseDocument.getRootElement();
+        Element releaseVersion = releaseProject.element("parent").element("version");
+        releaseVersion.setText(version);
+        try(FileWriter writer = new FileWriter(releaseModule)) {
+            releaseDocument.write(writer);
+        }
+
         // Write a release script for deploying the artifacts
         writeReleaseScript(version);
         // Write a bom for the artifacts
@@ -75,10 +92,13 @@ public class VersionRelease {
         System.out.println("Write release script");
         FileWriter writer = new FileWriter("release.sh");
         File root = new File(".");
+        // Write the parent pom
+        writer.write("mvn install gpg:sign nexus-staging:deploy -DskipTests\n");
+        // Write the test artifacts
         for (TestArtifact artifact : artifacts) {
             writer.write(String.format("# %s\n", artifact));
             writer.write(String.format("cd %s\n", artifact.getPomDir()));
-            writer.write("mvn install gpg:sign nexus-staging:deploy -DskipTests\n");
+            writer.write("mvn nexus-staging:deploy -DskipTests\n");
         }
         writer.write(String.format("cd %s\n", root.getAbsolutePath()));
         writer.close();
