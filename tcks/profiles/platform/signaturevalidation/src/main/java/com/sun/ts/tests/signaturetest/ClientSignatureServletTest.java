@@ -111,6 +111,8 @@ public class ClientSignatureServletTest extends JakartaEESigTest implements Seri
         URL warResURL = ClientSignatureServletTest.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
         if (warResURL != null) {
             signaturetest_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
+        } else {
+            throw new IllegalStateException("missing web.xml");
         }
 
         // add jakarta.tck:sigtest-maven-plugin jar to the war
@@ -122,10 +124,18 @@ public class ClientSignatureServletTest extends JakartaEESigTest implements Seri
                 .withTransitivity()
                 .asFile();
         // add signature test artifact
+        final int[] addedSigtestCount = {0};
         Arrays.stream(files).filter(file -> file.getName().contains("sigtest-maven-plugin"))
                 .forEach(file -> {
                     signaturetest_servlet_vehicle_web.addAsLibrary(file);
+                    if (addedSigtestCount[0] > 0) {
+                        throw new IllegalStateException("multiple sigtest-maven-plugin libraries found: " + file.getName());
+                    }
+                    addedSigtestCount[0]++;
                 });
+        if (addedSigtestCount[0] == 0) {
+            throw new IllegalStateException("Missing sigtest-maven-plugin library");
+        }
         // Call the archive processor
         archiveProcessor.processWebArchive(signaturetest_servlet_vehicle_web, ClientSignatureServletTest.class, warResURL);
         return signaturetest_servlet_vehicle_web;
