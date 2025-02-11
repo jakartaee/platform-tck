@@ -31,8 +31,13 @@
     <name>websocket tck</name>
     <description>Websocket docs</description>
 
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
     <modules>
         <module>parent</module>
         <module>userguide</module>
     </modules>
+
 </project>
