@@ -72,7 +72,6 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <executable>java</executable>
                     <mainClass>ee.tck.versions.VersionRelease</mainClass>
                     <commandlineArgs>${release}</commandlineArgs>
                 </configuration>
