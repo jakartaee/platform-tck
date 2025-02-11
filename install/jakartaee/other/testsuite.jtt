@@ -1,3 +1,0 @@
-name=Java EE Compatibility Test Suite version 8
-classpath=$TS_HOME/lib/tsharness.jar
-testsuite=com.sun.ts.lib.harness.TS
