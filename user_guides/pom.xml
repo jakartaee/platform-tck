@@ -15,19 +15,18 @@
 
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>project</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
+        <version>11.0.0-M2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>jakarta.tck-user-guide-parent</artifactId>
-    <version>11.0.0-SNAPSHOT</version>
+    <version>11.0.0-M2</version>
     <packaging>pom</packaging>
     <name>Eclipse Foundation Technology Compatibility Kit User's Guides for Jakarta EE ${project.version}</name>
 
@@ -117,14 +116,14 @@
                             <title-logo-image>image:img/jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]</title-logo-image>
                             <doctype>book</doctype>
                             <status>${status}</status>
-                            <compat-mode></compat-mode>
-                            <data-uri></data-uri>
+                            <compat-mode/>
+                            <data-uri/>
                             <icons>font</icons>
-                            <pagenums></pagenums>
-                            <toc></toc>
+                            <pagenums/>
+                            <toc/>
                             <icons>font</icons>
                             <sectanchors>true</sectanchors>
-                            <idprefix></idprefix>
+                            <idprefix/>
                             <idseparator>-</idseparator>
                             <docinfo1>true</docinfo1>
                             <embedAssets>true</embedAssets>

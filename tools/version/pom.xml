@@ -59,17 +59,23 @@
                 </configuration>
             </plugin>
             
+
             <plugin>
-                <artifactId>maven-source-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
                 <executions>
                     <execution>
-                        <id>attach-sources</id>
                         <goals>
-                            <goal>jar-no-fork</goal>
+                            <goal>java</goal>
                         </goals>
-                        <phase>verify</phase>
                     </execution>
                 </executions>
+                <configuration>
+                    <executable>java</executable>
+                    <mainClass>ee.tck.versions.VersionRelease</mainClass>
+                    <commandlineArgs>${release}</commandlineArgs>
+                </configuration>
             </plugin>
         </plugins>
     </build>
