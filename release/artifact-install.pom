@@ -209,17 +209,17 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-jms-tck</id>
+                        <id>install-jms-platform-tck</id>
                         <phase>package</phase>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <configuration>
                             <groupId>jakarta.tck</groupId>
-                            <artifactId>jms-tck</artifactId>
+                            <artifactId>jms-platform-tck</artifactId>
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
-                            <file>jms-tck-${project.version}.jar</file>
+                            <file>jms-platform-tck-${project.version}.jar</file>
                             <generatePom>false</generatePom>
                         </configuration>
                     </execution>
