@@ -9,7 +9,6 @@ import org.dom4j.io.SAXReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -79,7 +78,7 @@ public class VersionRelease {
         for (TestArtifact artifact : artifacts) {
             writer.write(String.format("# %s\n", artifact));
             writer.write(String.format("cd %s\n", artifact.getPomDir()));
-            writer.write("mvn install deploy -DskipTests\n");
+            writer.write("mvn install gpg:sign nexus-staging:deploy -DskipTests\n");
         }
         writer.write(String.format("cd %s\n", root.getAbsolutePath()));
         writer.close();
