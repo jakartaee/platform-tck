@@ -63,7 +63,7 @@
                 <artifactId>maven-install-plugin</artifactId>
                 <executions>
 
-                    <execution>
+                    <!-- <execution>
                         <id>install-javatest</id>
                         <goals>
                             <goal>install-file</goal>
@@ -77,7 +77,7 @@
                             <packaging>jar</packaging>
                             <generatePom>true</generatePom>
                         </configuration>
-                    </execution>
+                    </execution> -->
                     <execution>
                         <id>install-pages-tck-jar</id>
                         <goals>
