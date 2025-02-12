@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-export SIG_OUTPUT=../../../../../tools/signaturetest/src/main/java/com/sun/ts/tests/signaturetest/signature-repository
+export SIG_OUTPUT=../../../../../tcks/profiles/platform/signaturevalidation/src/main/resources/com/sun/ts/tests/signaturetest
 
 mvn clean install -DSIG_OUTPUT=$SIG_OUTPUT -P jakarta.annotation
 mvn clean install -DSIG_OUTPUT=$SIG_OUTPUT -P jakarta.batch 
