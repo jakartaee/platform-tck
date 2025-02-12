@@ -44,7 +44,7 @@ javax.rmi.sig (Corba classes for EJB)
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.sigtest-maven-plugin>2.5</version.sigtest-maven-plugin>
+        <version.sigtest-maven-plugin>2.6-SNAPSHOT</version.sigtest-maven-plugin>
     </properties>
 
     <dependencyManagement>
@@ -203,6 +203,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.annotation.sig</sigfile>
                             <release>17</release>
+                            <version>3.0</version>
                             <packages>jakarta.annotation.**</packages>
                         </configuration>
                         <executions>
@@ -228,6 +229,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.security.jacc.sig</sigfile>
                             <release>17</release>
+                            <version>3.0</version>
                             <packages>jakarta.security.jacc.**</packages>
                         </configuration>
                         <executions>
@@ -252,6 +254,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.batch.sig</sigfile>
                             <release>17</release>
+                            <version>2.1</version>
                             <packages>jakarta.batch.**</packages>
                         </configuration>
                         <executions>
@@ -276,6 +279,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.ejb.sig</sigfile>
                             <release>17</release>
+                            <version>2.1</version>
                             <packages>jakarta.ejb.**</packages>
                         </configuration>
                         <executions>
@@ -300,6 +304,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.data.sig</sigfile>
                             <release>17</release>
+                            <version>1.0</version>
                             <packages>jakarta.data.**</packages>
                         </configuration>
                         <executions>
@@ -324,6 +329,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.el.sig</sigfile>
                             <release>17</release>
+                            <version>6.0</version>
                             <packages>jakarta.el.**</packages>
                         </configuration>
                         <executions>
@@ -348,6 +354,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.enterprise.concurrent.sig</sigfile>
                             <release>17</release>
+                            <version>3.1</version>
                             <packages>jakarta.enterprise.concurrent.**</packages>
                         </configuration>
                         <executions>
@@ -376,6 +383,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.enterprise.sig</sigfile>
                             <release>17</release>
+                            <version>4.1</version>
                             <excludes>jakarta.enterprise.concurrent</excludes>
                             <packages>jakarta.enterprise.**,jakarta.decorator.**,jakarta.inject.**,jakarta.interceptor.**</packages>
                         </configuration>
@@ -401,6 +409,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.faces.sig</sigfile>
                             <release>17</release>
+                            <version>4.1</version>
                             <packages>jakarta.faces.**</packages>
                         </configuration>
                         <executions>
@@ -425,6 +434,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.interceptor.sig</sigfile>
                             <release>17</release>
+                            <version>2.2</version>
                             <packages>jakarta.interceptor.**</packages>
                         </configuration>
                         <executions>
@@ -449,6 +459,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.jms.sig</sigfile>
                             <release>17</release>
+                            <version>3.1</version>
                             <packages>jakarta.jms.**</packages>
                         </configuration>
                         <executions>
@@ -473,6 +484,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.json.sig</sigfile>
                             <release>17</release>
+                            <version>2.1</version>
                             <packages>jakarta.json.**</packages>
                             <excludes>jakarta.json.bind</excludes>
                         </configuration>
@@ -498,6 +510,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.json.bind.sig</sigfile>
                             <release>17</release>
+                            <version>3.0</version>
                             <packages>jakarta.json.bind.**</packages>
                         </configuration>
                         <executions>
@@ -522,6 +535,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.mail.sig</sigfile>
                             <release>17</release>
+                            <version>2.1</version>
                             <packages>jakarta.mail.**</packages>
                         </configuration>
                         <executions>
@@ -546,6 +560,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.persistence.sig</sigfile>
                             <release>17</release>
+                            <version>3.2</version>
                             <packages>jakarta.persistence.**</packages>
                         </configuration>
                         <executions>
@@ -570,6 +585,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.resource.sig</sigfile>
                             <release>17</release>
+                            <version>2.1</version>
                             <packages>jakarta.resource.**</packages>
                         </configuration>
                         <executions>
@@ -594,6 +610,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.security.enterprise.sig</sigfile>
                             <release>17</release>
+                            <version>4.0</version>
                             <packages>jakarta.security.enterprise.**</packages>
                         </configuration>
                         <executions>
@@ -618,6 +635,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.security.auth.message.sig</sigfile>
                             <release>17</release>
+                            <version>3.1</version>
                             <packages>jakarta.security.auth.message.**</packages>
                         </configuration>
                         <executions>
@@ -642,6 +660,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.servlet.sig</sigfile>
                             <release>17</release>
+                            <version>6.1</version>
                             <packages>jakarta.servlet.**</packages>
                             <excludes>jakarta.servlet.jsp</excludes>
                         </configuration>
@@ -692,6 +711,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.servlet.jsp.jstl.sig</sigfile>
                             <release>17</release>
+                            <version>4.0</version>
                             <packages>jakarta.servlet.jsp.jstl.**</packages>
                         </configuration>
                         <executions>
@@ -716,6 +736,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.transaction.sig</sigfile>
                             <release>17</release>
+                            <version>2.0</version>
                             <packages>jakarta.transaction.**</packages>
                         </configuration>
                         <executions>
@@ -740,6 +761,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.validation.sig</sigfile>
                             <release>17</release>
+                            <version>3.1</version>
                             <packages>jakarta.validation.**</packages>
                         </configuration>
                         <executions>
@@ -764,6 +786,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.websocket.sig</sigfile>
                             <release>17</release>
+                            <version>2.2</version>
                             <packages>jakarta.websocket.**</packages>
                         </configuration>
                         <executions>
@@ -788,6 +811,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${path.separator}jakarta.ws.rs.sig</sigfile>
                             <release>17</release>
+                            <version>4.0</version>
                             <packages>jakarta.ws.rs.**</packages>
                         </configuration>
                         <executions>
