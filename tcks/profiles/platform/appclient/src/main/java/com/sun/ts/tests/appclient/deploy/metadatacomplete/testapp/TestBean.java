@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.appclient.deploy.metadatacomplete.testapp;
 
-import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.inject.Named;
 
-@ManagedBean("mybean")
+@Named("mybean")
 public class TestBean {
 
   public TestBean() {
