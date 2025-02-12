@@ -20,6 +20,7 @@ public record TestArtifact(String groupId, String artifactId, String version, Fi
     }
 
     public String getPomDir() {
-        return pomXml.getParentFile().getAbsolutePath();
+        File parent = pomXml.getParentFile();
+        return parent == null ? "." : parent.getAbsolutePath();
     }
 }

@@ -105,39 +105,16 @@
                         </execution>
                     </executions>
                 </plugin>
-                
+
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>3.6.0</version>
-                    <executions>
-                        <execution>
-                            <id>build-dist</id>
-                            <goals>
-                                <goal>single</goal>
-                            </goals>
-                            <phase>none</phase>
-                            <configuration>
-                                <descriptors>
-                                    <descriptor>${project.build.commonResourcesDirectory}/assembly/dist.xml</descriptor>
-                                </descriptors>
-                                <appendAssemblyId>false</appendAssemblyId>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>build-resources</id>
-                            <goals>
-                                <goal>single</goal>
-                            </goals>
-                            <phase>none</phase>
-                            <inherited>false</inherited>
-                            <configuration>
-                                <descriptors>
-                                    <descriptor>src/main/assembly/resources.xml</descriptor>
-                                </descriptors>
-                            </configuration>
-                        </execution>
-                    </executions>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>1.6.13</version>
+                    <configuration>
+                        <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                        <!-- Skip based on the maven.deploy.skip property -->
+                        <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+                    </configuration>
                 </plugin>
                 
                 <plugin>
@@ -208,16 +185,7 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>clean-toc</id>
-                        <phase>clean</phase>
-                    </execution>
-                </executions>
-            </plugin>
+
             
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -253,28 +221,7 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources</id>
-                        <phase>generate-resources</phase>
-                    </execution>
-                </executions>
-            </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-scm-publish-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>deploy-site</id>
-                        <phase>deploy</phase>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 </project>

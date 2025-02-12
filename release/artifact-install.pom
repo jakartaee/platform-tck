@@ -28,6 +28,22 @@
                 <version>3.1.3</version>
                 <executions>
                     <execution>
+                        <id>install-tck-bom</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>artifacts-bom</artifactId>
+                            <version>${project.version}</version>
+                            <packaging>pom</packaging>
+                            <file>artifacts-bom-${project.version}.pom</file>
+                            <generatePom>false</generatePom>
+                        </configuration>
+                    </execution>
+
+                    <execution>
                         <id>install-tck-parent</id>
                         <phase>package</phase>
                         <goals>

@@ -4,11 +4,14 @@ package ee.tck.versions;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.Node;
+import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashSet;
 import java.util.List;
 
@@ -55,6 +58,7 @@ public class VersionRelease {
 
         // Update the submodule versions
         updateModules(null, project, version);
+        artifacts.add(new TestArtifact(getGroupId(project), project.element("artifactId").getText(), version, pomFile));
 
         // Update the release module
         File releaseModule = new File("release/pom.xml");
@@ -69,6 +73,7 @@ public class VersionRelease {
         // Write a release script for deploying the artifacts
         writeReleaseScript(version);
         // Write a bom for the artifacts
+        writeReleaseBom(version);
     }
 
     void updateModules(File projectDir, Element project, String version) throws Exception {
@@ -134,6 +139,31 @@ public class VersionRelease {
         }
         writer.write(String.format("cd %s\n", root.getAbsolutePath()));
         writer.close();
+    }
+    void writeReleaseBom(String version) throws Exception {
+        System.out.println("Write release bom");
+        Document bom = null;
+        try(InputStream is = VersionRelease.class.getResourceAsStream("/artifacts-bom.xml")) {
+            SAXReader reader = new SAXReader();
+            Document document = reader.read(is);
+            Element project = document.getRootElement();
+            setVersion(project, version);
+            Element dependencies = project.element("dependencyManagement").element("dependencies");
+            for(TestArtifact artifact : artifacts) {
+                Element dependency = dependencies.addElement("dependency");
+                dependency.addElement("groupId").setText(artifact.groupId());
+                dependency.addElement("artifactId").setText(artifact.artifactId());
+                dependency.addElement("version").setText(version);
+            }
+            bom = document;
+        }
+
+        OutputFormat format = OutputFormat.createPrettyPrint();
+        FileWriter writer = new FileWriter("artifacts-bom.xml");
+        XMLWriter xmlWriter = new XMLWriter( writer, format );
+        xmlWriter.write(bom);
+        xmlWriter.close();
+
     }
     String getVersion(Element root) {
         return getInfo(root, "version");
