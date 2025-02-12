@@ -20,9 +20,9 @@
             <destName>LICENSE.adoc</destName>
         </file>
         <file>
-            <source>artifacts-bom.xml</source>
+            <source>artifacts-bom.pom</source>
             <outputDirectory>artifacts</outputDirectory>
-            <destName>artifacts-bom-${project.version}.xml</destName>
+            <destName>artifacts-bom-${project.version}.pom</destName>
             <filtered>true</filtered>
         </file>
         <file>
