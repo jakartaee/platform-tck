@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0.9
+#Version 3.2
 
 CLSS public abstract interface !annotation jakarta.persistence.Access
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)

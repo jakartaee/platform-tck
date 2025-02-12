@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0.9
+#Version 1.0
 
 CLSS public abstract jakarta.el.ELResolver
 cons public init()

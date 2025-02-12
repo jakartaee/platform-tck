@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0.9
+#Version 4.0
 
 CLSS public abstract jakarta.enterprise.util.AnnotationLiteral<%0 extends java.lang.annotation.Annotation>
 cons protected init()

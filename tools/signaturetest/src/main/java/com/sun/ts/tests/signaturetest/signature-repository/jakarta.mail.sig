@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0.9
+#Version 2.1
 
 CLSS public abstract interface jakarta.activation.DataSource
 meth public abstract java.io.InputStream getInputStream() throws java.io.IOException

@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0.9
+#Version 3.0
 
 CLSS public final jakarta.security.jacc.EJBMethodPermission
 cons public init(java.lang.String,java.lang.String)

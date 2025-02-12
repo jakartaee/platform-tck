@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0.9
+#Version 2.0
 
 CLSS public abstract interface !annotation jakarta.enterprise.context.NormalScope
  anno 0 java.lang.annotation.Documented()

@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0.9
+#Version 2.2
 
 CLSS public abstract interface !annotation jakarta.websocket.ClientEndpoint
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)

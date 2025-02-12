@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0.9
+#Version 3.0
 
 CLSS public abstract interface jakarta.json.bind.Jsonb
 intf java.lang.AutoCloseable

@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0.9
+#Version 2.1
 
 CLSS public abstract interface !annotation jakarta.resource.AdministeredObjectDefinition
  anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.resource.AdministeredObjectDefinitions)

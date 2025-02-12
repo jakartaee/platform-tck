@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0.9
+#Version 1.0
 
 CLSS public final !enum jakarta.data.Direction
 fld public final static jakarta.data.Direction ASC
