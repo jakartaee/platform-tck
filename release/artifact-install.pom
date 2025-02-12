@@ -194,17 +194,17 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-jdbc</id>
+                        <id>install-jdbc-platform-tck</id>
                         <phase>package</phase>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <configuration>
                             <groupId>jakarta.tck</groupId>
-                            <artifactId>jdbc</artifactId>
+                            <artifactId>jdbc-platform-tck</artifactId>
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
-                            <file>jdbc-${project.version}.jar</file>
+                            <file>jdbc-platform-tck-${project.version}.jar</file>
                             <generatePom>false</generatePom>
                         </configuration>
                     </execution>
