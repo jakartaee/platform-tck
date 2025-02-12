@@ -87,9 +87,7 @@ and configure the Jakarta EE {tck_version} Platform TCK test suite.
 [[verifying-your-installation-optional]]
 == Verifying Your Installation (Full Platform, Optional)
 
-This procedure is optional and requires an implementation that supports the full Jakarta EE Platform. After installing the Jakarta EE {tck_version} CI and Jakarta
-EE {tck_version} TCK, you may want to verify your installation by running the TCK
-samples against the Jakarta EE {tck_version} CI. See <<setup-and-configuration>> for complete configuration instructions.
+This procedure is optional and requires an implementation that supports the full Jakarta EE Platform. See <<setup-and-configuration>> for complete configuration instructions.
 
 .  For the Jakarta EE {tck_version} CI, Eclipse {glassfish_version}, set the following properties in your `<TS_HOME>/bin/ts.jte` file:
 +
