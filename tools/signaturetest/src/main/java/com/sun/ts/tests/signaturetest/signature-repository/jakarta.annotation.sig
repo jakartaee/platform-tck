@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0.9
+#Version 3.0
 
 CLSS public abstract interface !annotation jakarta.annotation.Generated
  anno 0 java.lang.annotation.Documented()
