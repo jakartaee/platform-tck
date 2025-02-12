@@ -84,33 +84,3 @@ directory.
 After you complete the installation, follow the directions in <<setup-and-configuration>> to set up
 and configure the Jakarta EE {tck_version} Platform TCK test suite.
 
-[[verifying-your-installation-optional]]
-== Verifying Your Installation (Full Platform, Optional)
-
-This procedure is optional and requires an implementation that supports the full Jakarta EE Platform. See <<setup-and-configuration>> for complete configuration instructions.
-
-.  For the Jakarta EE {tck_version} CI, Eclipse {glassfish_version}, set the following properties in your `<TS_HOME>/bin/ts.jte` file:
-+
-[source,oac_no_warn]
-----
-javaee.home=<JAKARTAEE_HOME>
-javaee.home.ri=<JAKARTAEE_HOME>
-mailHost=<mail-server-host> // the name of an accessible SMTP server
-mailuser1=firstname.lastname@xyz.com // a valid email address
-javamail.password=password // password for mailuser1
-orb.host=localhost // the name of the machine running the Jakarta EE {tck_version} CI
-orb.host.ri=localhost // the name of the machine running the Jakarta EE {tck_version} CI
-----
-+
-.  Use these commands to run the Jakarta EE {tck_version} Platform TCK sample tests:
-+
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant start.javadb.asadmin
-ant config.vi
-cd <TS_HOME>/src/com/sun/ts/tests/samples
-ant runclient
-----
-
-
