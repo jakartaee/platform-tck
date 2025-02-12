@@ -27,6 +27,7 @@
 
     <artifactId>websocket-tck-dist</artifactId>
     <packaging>jar</packaging>
+    <name>Jakarta Websocket TCK dist</name>
 
     <dependencies>
         <dependency>

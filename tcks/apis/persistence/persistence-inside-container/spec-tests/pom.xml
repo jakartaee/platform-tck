@@ -26,6 +26,7 @@
     </parent>
 
     <artifactId>persistence-platform-tck-spec-tests</artifactId>
+    <name>Jakarta Persistence Platform TCK Spec Tests</name>
     <packaging>jar</packaging>
 
     <dependencies>

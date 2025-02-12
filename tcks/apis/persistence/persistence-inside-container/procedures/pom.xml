@@ -27,7 +27,7 @@
 
     <artifactId>persistence-platform-tck-dbprocedures</artifactId>
 
-    <name>Persistence</name>
+    <name>Persistence Platform TCK dbprocedures</name>
     <description>Persistence DB procedures</description>
 
     <properties>

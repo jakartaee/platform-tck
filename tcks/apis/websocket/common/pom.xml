@@ -26,5 +26,6 @@
     </parent>
 
     <artifactId>websocket-tck-common</artifactId>
+    <name>Jakarta Websocket TCK common</name>
 
 </project>

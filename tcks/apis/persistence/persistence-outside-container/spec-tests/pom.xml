@@ -26,6 +26,7 @@
     </parent>
 
     <artifactId>persistence-tck-spec-tests</artifactId>
+
     <packaging>jar</packaging>
 
     <dependencies>

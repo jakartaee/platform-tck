@@ -26,7 +26,8 @@
     </parent>
 
     <artifactId>persistence-platform-tck-tests</artifactId>
-    
+    <name>Jakarta Persistence Platform TCK Tests</name>
+
     <dependencies>
         <!-- Jakarta EE dependencies -->
         <dependency>
