@@ -109,10 +109,10 @@ public class VersionRelease {
                     if (parentVersion.getText().startsWith(TCK_BASE_VERSION)) {
                         parentVersion.setText(version);
                     }
-                }
-                // Write the updated module file
-                try(FileWriter writer = new FileWriter(moduleFile)) {
-                    moduleDocument.write(writer);
+                    // Write the updated module file
+                    try(FileWriter writer = new FileWriter(moduleFile)) {
+                        moduleDocument.write(writer);
+                    }
                 }
 
                 Element submodules = moduleProject.element("modules");
