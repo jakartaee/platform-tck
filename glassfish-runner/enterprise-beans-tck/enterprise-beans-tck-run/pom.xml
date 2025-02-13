@@ -53,6 +53,7 @@
         <glassfish.root>${project.build.directory}</glassfish.root>
         <glassfish.version>8.0.0-M9</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
+        <glassfish-artifact-id>glassfish</glassfish-artifact-id>
 
         <!-- Require at least Java 17 to compile -->
         <maven.compiler.release>17</maven.compiler.release>
@@ -277,7 +278,7 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
-                                    <artifactId>glassfish</artifactId>
+                                    <artifactId>${glassfish-artifact-id}</artifactId>
                                     <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
@@ -1013,6 +1014,25 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+
+
+        <profile>
+            <id>full</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <groups>platform</groups>
+            </properties>
+        </profile>
+        <profile>
+            <id>web</id>
+            <properties>
+                <glassfish-artifact-id>web</glassfish-artifact-id>
+                <groups>web</groups>
+            </properties>
         </profile>
 
     </profiles>
