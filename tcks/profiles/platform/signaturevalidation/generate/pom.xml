@@ -44,7 +44,7 @@ javax.rmi.sig (Corba classes for EJB)
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.sigtest-maven-plugin>2.6-SNAPSHOT</version.sigtest-maven-plugin>
+        <version.sigtest-maven-plugin>2.6</version.sigtest-maven-plugin>
     </properties>
 
     <dependencyManagement>
