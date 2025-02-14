@@ -279,7 +279,7 @@ javax.rmi.sig (Corba classes for EJB)
                         <configuration>
                             <sigfile>${SIG_OUTPUT}${file.separator}jakarta.ejb.sig</sigfile>
                             <release>17</release>
-                            <version>2.1</version>
+                            <version>4.0</version>
                             <packages>jakarta.ejb.**</packages>
                         </configuration>
                         <executions>

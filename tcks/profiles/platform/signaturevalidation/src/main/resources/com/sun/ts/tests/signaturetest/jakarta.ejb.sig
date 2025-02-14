@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 2.1
+#Version 4.0
 
 CLSS public jakarta.ejb.AccessLocalException
 cons public init()
