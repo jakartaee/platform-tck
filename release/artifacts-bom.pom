@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+    Copyright (c) 2021  Contributors to the Eclipse Foundation
+    All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">  
+  <!-- This can be generated from the  -->
+  <modelVersion>4.0.0</modelVersion>  
+  <groupId>jakarta.tck</groupId>  
+  <artifactId>artifacts-bom</artifactId>
+  <version>${project.version}</version>
+  <packaging>pom</packaging>
+  
+  
+  <dependencyManagement> 
+    <dependencies> 
+      <!-- Jakarta TCK Test Artifacts -->  
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>websocket-tck-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>cdi-tck-ee-impl</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>jsonb-platform-tck</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>websocket-docs</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>persistence-platform-tck-tests</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>assembly-tck</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>rest-platform-tck</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>tags-tck</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>websocket-tck-platform-tests</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>connector</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>el-platform-tck</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>ejb32</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>xa</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>samples</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>persistence-platform-tck-dbprocedures</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>project</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>transactions-tck</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>persistence-platform-tck</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>ejb30</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>pages-platform-tck</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>integration</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>jdbc</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>jsonp-platform-tck</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>appclient</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>javamail</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>persistence-platform-tck-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>jms-platform-tck</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>javaee-tck</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies> 
+  </dependencyManagement> 
+</project>

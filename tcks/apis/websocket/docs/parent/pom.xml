@@ -15,8 +15,7 @@
 
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>jakarta.tck</groupId>
@@ -105,7 +104,17 @@
                         </execution>
                     </executions>
                 </plugin>
-                
+
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>1.6.13</version>
+                    <configuration>
+                        <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                        <!-- Skip based on the maven.deploy.skip property -->
+                        <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
@@ -155,14 +164,14 @@
                             <title-logo-image>image:img/jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]</title-logo-image>
                             <doctype>book</doctype>
                             <status>${status}</status>
-                            <compat-mode></compat-mode>
-                            <data-uri></data-uri>
+                            <compat-mode/>
+                            <data-uri/>
                             <icons>font</icons>
-                            <pagenums></pagenums>
-                            <toc></toc>
+                            <pagenums/>
+                            <toc/>
                             <icons>font</icons>
                             <sectanchors>true</sectanchors>
-                            <idprefix></idprefix>
+                            <idprefix/>
                             <idseparator>-</idseparator>
                             <docinfo1>true</docinfo1>
                             <embedAssets>true</embedAssets>
@@ -208,16 +217,7 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>clean-toc</id>
-                        <phase>clean</phase>
-                    </execution>
-                </executions>
-            </plugin>
+
             
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -253,28 +253,7 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources</id>
-                        <phase>generate-resources</phase>
-                    </execution>
-                </executions>
-            </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-scm-publish-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>deploy-site</id>
-                        <phase>deploy</phase>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 </project>
