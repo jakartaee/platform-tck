@@ -211,7 +211,7 @@
             <id>web</id>
             <properties>
                 <glassfish-artifact-id>web</glassfish-artifact-id>
-                <jakarta.tck.platform.tck.platform>web</jakarta.tck.platform.tck.platform>
+                <jakarta.tck.platform>web</jakarta.tck.platform>
             </properties>
         </profile>
     </profiles>

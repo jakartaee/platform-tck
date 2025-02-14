@@ -299,12 +299,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>jdbc</artifactId>
+            <artifactId>jdbc-platform-tck</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>jdbc</artifactId>
+            <artifactId>jdbc-platform-tck</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>

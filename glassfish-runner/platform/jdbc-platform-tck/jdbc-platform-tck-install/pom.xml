@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2021, 2025 Contributors to the Eclipse Foundation.
+    Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,25 +16,25 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
+   <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
         <version>1.0.9</version>
         <relativePath />
     </parent>
 
-    <artifactId>pages-tck-install</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
+    <artifactId>jdbc-platform-tck-install</artifactId>
     <packaging>pom</packaging>
-    <name>TCK: Install Jakarta Pages TCK</name>
+
+    <name>TCK: Install Jakarta JDBC Platform Tests</name>
 
     <properties>
-        <tck.test.pages.file>jakarta-pages-tck-${tck.test.pages.version}.zip</tck.test.pages.file>
-        <tck.test.pages.url>https://download.eclipse.org/jakartaee/pages/4.0/${tck.test.pages.file}</tck.test.pages.url>
-        <tck.test.pages.version>4.0.0</tck.test.pages.version>
+        <tck.test.jdbc.file>jakartaeetck-${tck.test.jdbc.version}-dist.zip</tck.test.jdbc.file>
+        <tck.test.jdbc.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.jdbc.file}</tck.test.jdbc.url>
+        <tck.test.jdbc.version>11.0.0-SNAPSHOT</tck.test.jdbc.version>
     </properties>
 
     <build>
@@ -42,15 +42,15 @@
             <plugin>
                 <groupId>com.googlecode.maven-download-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
+                <version>1.9.0</version>
                 <configuration>
-                    <url>${tck.test.pages.url}</url>
+                    <url>${tck.test.jdbc.url}</url>
                     <unpack>true</unpack>
                     <outputDirectory>${project.build.directory}</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>download-pages-tck</id>
+                        <id>download-jdbc-tck</id>
                         <goals>
                             <goal>wget</goal>
                         </goals>
@@ -63,40 +63,27 @@
                 <artifactId>maven-install-plugin</artifactId>
                 <executions>
 
-                    <!-- <execution>
-                        <id>install-javatest</id>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <file>${project.build.directory}/../../../../lib/javatest.jar</file>
-                            <groupId>javatest</groupId>
-                            <artifactId>javatest</artifactId>
-                            <version>5.0</version>
-                            <packaging>jar</packaging>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                    </execution> -->
+                    <!-- JDBC Platform TCK -->
+
                     <execution>
-                        <id>install-pages-tck-jar</id>
+                        <id>install-jdbc-platform-tck-jar</id>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <phase>process-resources</phase>
                         <configuration>
-                            <file>${project.build.directory}/pages-tck/artifacts/jakarta-pages-tck-4.0.0.jar</file>
+                            <file>${project.build.directory}/jakartaeetck/artifacts/jdbc-platform-tck-${tck.test.jdbc.version}.jar</file>
                             <groupId>jakarta.tck</groupId>
-                            <artifactId>jakarta-pages-tck</artifactId>
-                            <version>${tck.test.pages.version}</version>
+                            <artifactId>jdbc-platform-tck</artifactId>
+                            <version>${tck.test.jdbc.version}</version>
+                            <sources>${project.build.directory}/jakartaeetck/artifacts/jdbc-platform-tck-${tck.test.jdbc.version}-sources.jar</sources>
                             <packaging>jar</packaging>
-                            <generatePom>true</generatePom>
                         </configuration>
                     </execution>
+
                 </executions>
             </plugin>
 
         </plugins>
     </build>
-
 </project>

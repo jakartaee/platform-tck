@@ -27,11 +27,11 @@
     </parent>
 
     <groupId>jakarta.tck</groupId>
-    <artifactId>jdbc</artifactId>
+    <artifactId>jdbc-platform-tck</artifactId>
     <version>11.0.0-SNAPSHOT</version>
 
-    <name>JDBC</name>
-    <description>JDBC</description>
+    <name>jdbc-platform-tck</name>
+    <description>JDBC Platform Tests</description>
 
     <properties>
         <arquillian.junit>1.9.3.Final</arquillian.junit>
