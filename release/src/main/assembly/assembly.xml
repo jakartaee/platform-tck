@@ -35,15 +35,15 @@
         <!-- User guides -->
         <file>
             <outputDirectory>guides</outputDirectory>
-            <source>../user_guides/jta/target/generated-docs/Jakarta-Transactions-TCK-Users-Guide.pdf</source>
-        </file>
-        <file>
-            <outputDirectory>guides</outputDirectory>
             <source>../user_guides/platform/target/generated-docs/Jakarta-Platform-TCK-Users-Guide.pdf</source>
         </file>
         <file>
             <outputDirectory>guides</outputDirectory>
-            <source>../user_guides/jstl/target/generated-docs/Jakarta-Standard-Tag-Library-TCK-Users-Guide.pdf</source>
+            <source>../user_guides/transactions/target/generated-docs/Jakarta-Transactions-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../user_guides/tags/target/generated-docs/Jakarta-Standard-Tag-Library-TCK-Users-Guide.pdf</source>
         </file>
         <file>
             <outputDirectory>guides</outputDirectory>
@@ -51,15 +51,7 @@
         </file>
         <file>
             <outputDirectory>guides</outputDirectory>
-            <source>../user_guides/jms/target/generated-docs/Jakarta-Messaging-TCK-Users-Guide.pdf</source>
-        </file>
-        <file>
-            <outputDirectory>guides</outputDirectory>
-            <source>../user_guides/jsp/target/generated-docs/Jakarta-Server-Pages-TCK-Users-Guide.pdf</source>
-        </file>
-        <file>
-            <outputDirectory>guides</outputDirectory>
-            <source>../tcks/apis/websocket/docs/userguide/target/generated-docs/Jakarta-WebSocket-TCK-Users-Guide.pdf</source>
+            <source>../user_guides/messaging/target/generated-docs/Jakarta-Messaging-TCK-Users-Guide.pdf</source>
         </file>
         <file>
             <outputDirectory>guides</outputDirectory>
