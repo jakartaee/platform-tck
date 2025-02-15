@@ -60,10 +60,9 @@
 
     <modules>
         <module>connector</module>
-        <module>jms</module>
-        <module>jsp</module>
-        <module>jstl</module>
-        <module>jta</module>
+        <module>messaging</module>
+        <module>tags</module>
+        <module>transactions</module>
         <module>platform</module>
     </modules>
     <build>
