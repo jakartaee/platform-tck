@@ -39,7 +39,6 @@
         <arquillian.jakarta.tck.version>11.0.0-M1</arquillian.jakarta.tck.version>
         <arquillian.junit>1.9.3.Final</arquillian.junit>
         <jakarta.tck.sigtest.version>2.6</jakarta.tck.sigtest.version>
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <maven.compiler.release>17</maven.compiler.release>
     </properties>
 
