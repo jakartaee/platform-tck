@@ -115,6 +115,45 @@ public class ClientSignatureServletTest extends JakartaEESigTest implements Seri
             throw new IllegalStateException("missing web.xml");
         }
 
+        // add signature map files to WAR deployment
+        String signatureMapFiles[] = {
+                "jakarta.annotation.sig",
+                "jakarta.batch.sig",
+                "jakarta.data.sig",
+                "jakarta.ejb.sig",
+                "jakarta.el.sig",
+                "jakarta.enterprise.concurrent.sig",
+                "jakarta.enterprise.sig",
+                "jakarta.faces.sig",
+                "jakarta.interceptor.sig",
+                "jakarta.jms.sig",
+                "jakarta.json.bind.sig",
+                "jakarta.json.sig",
+                "jakarta.mail.sig",
+                "jakarta.persistence.sig",
+                "jakarta.resource.sig",
+                "jakarta.security.auth.message.sig",
+                "jakarta.security.enterprise.sig",
+                "jakarta.security.jacc.sig",
+                "jakarta.servlet.jsp.jstl.sig",
+                "jakarta.servlet.jsp.sig",
+                "jakarta.servlet.sig",
+                "jakarta.transaction.sig",
+                "jakarta.validation.sig",
+                "jakarta.websocket.sig",
+                "jakarta.ws.rs.sig"
+        };
+        for ( String signatureMapFile : signatureMapFiles) {
+            URL signResURL = ClientSignatureServletTest.class.getResource(signatureMapFile);
+            if (signResURL != null) {
+                signaturetest_servlet_vehicle_web.addAsWebInfResource(signResURL, signatureMapFile);
+            } else {
+                throw new IllegalStateException("missing " + signatureMapFile);
+            }
+
+        }
+
+
         // add jakarta.tck:sigtest-maven-plugin jar to the war
         // Import Maven runtime dependencies
         File[] files = Maven.resolver()
