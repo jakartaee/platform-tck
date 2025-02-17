@@ -50,6 +50,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
  */
 
 @Tag("tck-javatest")
+@Tag("web")
 
 public class resultSetClient7Servlet extends resultSetClient7 implements Serializable {
 	private static final String testName = "jdbc.ee.resultSet.resultSet7";

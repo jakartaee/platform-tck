@@ -50,7 +50,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
  */
 
 @Tag("tck-javatest")
-
+@Tag("web")
 public class dateTimeClient2Servlet extends dateTimeClient2 implements Serializable {
 	private static final String testName = "jdbc.ee.dateTime.dateTime2";
 
