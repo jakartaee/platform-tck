@@ -401,9 +401,9 @@
                         <configuration>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>websocket-tck-platform-tests</artifactId>
-                            <version>2.2.0</version>
+                            <version>${project.version}</version>
                             <packaging>jar</packaging>
-                            <file>websocket-tck-platform-tests-2.2.0.jar</file>
+                            <file>websocket-tck-platform-tests-${project.version}.jar</file>
                             <generatePom>false</generatePom>
                         </configuration>
                     </execution>
