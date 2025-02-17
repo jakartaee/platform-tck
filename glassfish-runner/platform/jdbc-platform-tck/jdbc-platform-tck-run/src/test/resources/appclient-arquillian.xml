@@ -56,7 +56,7 @@
             <property name="clientDir">${project.basedir}</property>
             <property name="workDir">${ts.home}/tmp</property>
             <property name="tsJteFile">${ts.home}/bin/ts.jte</property>
-            <property name="tsSqlStmtFile">${ts.home}/bin/tssql.stmt</property>
+            <property name="tsSqlStmtFile">sql/derby/derby.dml.sql</property>
             <property name="trace">true</property>
             <property name="clientTimeout">20000</property>
         </protocol>
