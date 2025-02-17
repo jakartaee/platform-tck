@@ -12,38 +12,11 @@ Test Suite.
 
 This section lists common problems that you may encounter as you run the
 Jakarta Platform, Enterprise Edition Test Compatibility Kit software on
-the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.1. It also proposes resolutions
-for the problems, where applicable.
+the Jakarta Platform, Enterprise Edition CI, Eclipse {glassfish_version}, and other implementations. It also proposes resolutions for the problems, where applicable.
+
 
 * Problem: +
-The following exception may occur when a Jakarta EE {tck_version} Platform TCK test tries to
-write a very long tracelog: +
-[source,oac_no_warn]
-----
-java.lang.StringIndexOutOfBoundsException: String 
-index out of range:
--13493
-at java.lang.String.substring(String.java:1525)
-at java.lang.String.substring(String.java:1492)
-at javasoft.sqe.javatest.TestResult$Section
-$WritableOutputBuffer.write(TestResult.java:650)
-at java.io.Writer.write(Writer.java:153)
-at java.io.PrintWriter.write(PrintWriter.java: 213)
-at java.io.PrintWriter.write(PrintWriter.java: 229)
-at java.io.PrintWriter.print(PrintWriter.java: 360)
-at java.io.PrintWriter.println(PrintWriter.java:497)
-at javasoft.sqe.javatest.lib.ProcessCommand
-$StreamCopier.run(ProcessCommand.java:331)
-----
-The execution of the test will either fail or hang. +
-Resolution: +
-Set the `-Djavatest.maxOutputSize=`nnn system parameter in the
-`runclient` and/or `gui` targets in the `<TS_HOME>/bin/build.xml` file
-to a value that is higher than the default setting of `100,000` on the
-JavaTest VM.
-
-* Problem: +
-When you start the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.1 on 
+When you start the Jakarta Platform, Enterprise Edition CI, Eclipse {glassfish_version} on
 Windows by using the `javaee -verbose` command, the system may not find
 the specified path and could display one of the following errors: +
 [source,oac_no_warn]
@@ -53,8 +26,7 @@ the specified path and could display one of the following errors: +
 ----
 Resolution: +
 Set `JAVA_HOME` to the path where the version of Java being used was
-installed and set `JAKARTAEE_HOME` to the location of the Jakarta Platform,
-Enterprise Edition installation directory.
+installed and set `JAKARTAEE_HOME` to the location of the Jakarta Platform, Enterprise Edition installation directory.
 
 * Problem: +
 When running the Jakarta Persistence TCK tests you see an error log message containing:
