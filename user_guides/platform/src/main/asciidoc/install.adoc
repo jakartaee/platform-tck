@@ -84,3 +84,17 @@ directory.
 After you complete the installation, follow the directions in <<setup-and-configuration>> to set up
 and configure the Jakarta EE {tck_version} Platform TCK test suite.
 
+[[verifying-your-installation-optional]]
+== Verifying Your Installation (Optional)
+You can verify your installation by running the VerifyHashes.java file found in the artifacts directory. This file validates the MD5 hashes of the artifacts in the distribution. To run the file, execute the following command:
+[source,oac_no_warn]
+----
+cd jakartaeetck/artifacts
+java VerifyHashes.java
+----
+
+When run with no arguments this downloads the Jakarta EE staging repository artifacts and validates them against the hashes of the artifacts in the distribution. If you want o validate the artifacts in another repo, pass in the URL to the jakarta.tck groupId in the repository. For example:
+[source,oac_no_warn]
+----
+java VerifyHashes.java https://repo1.maven.org/maven2/jakarta/tck/
+----

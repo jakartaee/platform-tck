@@ -31,6 +31,13 @@
             <destName>pom.xml</destName>
             <filtered>true</filtered>
         </file>
+        <!-- The VerifyHashes.java program from the tools subproject -->
+        <file>
+            <source>../tools/version/src/main/java/ee/tck/versions/VerifyHashes.java</source>
+            <outputDirectory>artifacts</outputDirectory>
+            <destName>VerifyHashes.java</destName>
+            <filtered>false</filtered>
+        </file>
 
         <!-- User guides -->
         <file>
