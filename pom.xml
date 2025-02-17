@@ -67,9 +67,12 @@
         <module>tcks/profiles/platform/javaee</module>
         <module>tcks/profiles/platform/jdbc</module>
         <module>tcks/profiles/platform/samples</module>
+        <module>tcks/profiles/platform/signaturevalidation</module>
         <module>tcks/profiles/platform/xa</module>
+        <module>tools/signaturetest</module>
         <!--module>tools</module-->
         <module>user_guides</module>
+        <module>tcks/profiles/platform/signaturevalidation/generate</module>
     </modules>
 
     <properties>
@@ -251,7 +254,7 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>signaturetest</artifactId>
-                <version>${jakarta.tck.tools.version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
