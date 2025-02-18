@@ -67,17 +67,10 @@
     </files>
 
     <fileSets>
-        <!-- legacy config stuff, some probably obsolete -->
+        <!-- The bin directory for config, e.g., ts.jte -->
         <fileSet>
-            <directory>${project.basedir}/../install/jakartaee/bin</directory>
+            <directory>${project.basedir}/bin</directory>
             <outputDirectory>bin</outputDirectory>
-            <includes>
-                <include>certificates/**</include>
-                <include>*.config</include>
-                <include>*.dat</include>
-                <include>*.policy</include>
-                <include>ts.jte</include>
-            </includes>
         </fileSet>
         <!-- SQL scripts -->
         <fileSet>
