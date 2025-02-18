@@ -49,7 +49,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
  */
 
 @Tag("tck-javatest")
-
+@Tag("web")
 public class dbMetaClient12JSP extends dbMetaClient12 implements Serializable {
 	private static final String testName = "jdbc.ee.dbMeta.dbMeta12";
 

@@ -47,7 +47,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
  */
 
 @Tag("tck-javatest")
-
+@Tag("web")
 public class callStmtClient1JSP extends callStmtClient1 implements Serializable {
 
 	@TargetsContainer("tck-javatest")

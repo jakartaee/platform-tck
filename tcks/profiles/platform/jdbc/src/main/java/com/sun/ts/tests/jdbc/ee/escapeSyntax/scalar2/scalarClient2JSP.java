@@ -51,7 +51,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
  */
 
 @Tag("tck-javatest")
-
+@Tag("web")
 public class scalarClient2JSP extends scalarClient2 {
 	private static final String testName = "jdbc.ee.escapeSyntax";
 

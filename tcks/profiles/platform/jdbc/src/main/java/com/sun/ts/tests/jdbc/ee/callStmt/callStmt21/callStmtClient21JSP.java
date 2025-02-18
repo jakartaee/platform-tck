@@ -53,7 +53,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
  */
 
 @Tag("tck-javatest")
-
+@Tag("web")
 public class callStmtClient21JSP extends callStmtClient21 implements Serializable {
 	private static final String testName = "jdbc.ee.callStmt.callStmt21";
 

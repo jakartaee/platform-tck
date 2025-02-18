@@ -52,7 +52,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
  * @version 1.7, 06/16/99
  */
 @Tag("tck-javatest")
-
+@Tag("web")
 public class callStmtClient12JSP extends callStmtClient12 implements Serializable {
 
 	@TargetsContainer("tck-javatest")

@@ -49,7 +49,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
  */
 
 @Tag("tck-javatest")
-
+@Tag("web")
 public class prepStmtClient2JSP extends prepStmtClient2 implements Serializable {
 	private static final String testName = "jdbc.ee.prepStmt.prepStmt2";
 
