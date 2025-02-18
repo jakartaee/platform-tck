@@ -121,21 +121,21 @@ public abstract class SigTest {
    * user chooses NOT to list this optional technology for testing (via ts.jte
    * javaee.level prop) then this method will return the packages for JSR-88
    * technology with this method call.
-   * <p/>
+   *
    * This is useful for checking for a scenarios when a user may have forgotten
    * to identify a whole or partial technology implementation and in such cases,
    * Java EE platform still requires testing it.
-   * <p/>
+   *
    * Any partial or complete impl of an unlistedOptionalPackage sends up a red
    * flag indicating that the user must also pass tests for this optional
    * technology area.
-   * <p/>
+   *
    * Sub-classes are free to override this method if they use a different
    * signature repository directory. Most users should be able to use this
    * default implementation - which means that there was NO optional technology
    * packages that need to be tested.
    *
-   * @return ArrayList<String>
+   * @return ArrayList&lt;String&gt;
    */
   protected ArrayList<String> getUnlistedOptionalPackages() {
     return null;
@@ -179,10 +179,10 @@ public abstract class SigTest {
    *          Properties specified by the test user and passed to this test via
    *          the test framework.
    */
-  public void setup() {
+  public void setup(String[] args, Properties p) {
     try {
       logger.log(Logger.Level.TRACE, "$$$ SigTest.setup() called");
-      this.testInfo = new SigTestData();
+      this.testInfo = new SigTestData(p);
       TestUtil.logTrace("$$$ SigTest.setup() complete");
     } catch (Exception e) {
       logger.log(Logger.Level.ERROR, "Unexpected exception " + e.getMessage());

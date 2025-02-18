@@ -134,7 +134,7 @@ public abstract class SignatureTestDriver {
   /**
    * <p>
    * Execute the signature test. By default, this method passes the result of
-   * {@link #createTestArguments(String, String, String, String, String)} and
+   * createTestArguments(String, String, String, String, String) and
    * passes the result to {@link #runSignatureTest(String, String[])}.
    *
    * @param packageListFile
@@ -474,8 +474,8 @@ public abstract class SignatureTestDriver {
 
   /**
    * This method will attempt to build a fully-qualified filename in the format
-   * of <code>respositoryDir</code> + </code>baseName</code> +
-   * <code>.sig_</code> + </code>version</code>.
+   * of respositoryDir + baseName +
+   * .sig_ + version.
    *
    * @param baseName
    *          the base portion of the signature filename
