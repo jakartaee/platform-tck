@@ -42,24 +42,30 @@
     <modules>
         <module>tcks/apis/cdi-ee-tck/tck</module>
         <module>tcks/apis/connector</module>
+        <module>tcks/apis/connector/docs</module>
         <module>tcks/apis/enterprise-beans/ejb30</module>
         <!-- PENDING: Additional action necessary to expurgate WebServices content. -->
         <!-- https://github.com/jakartaee/platform-tck/issues/1387 -->
         <module>tcks/apis/enterprise-beans/ejb32</module>
         <module>tcks/apis/expression-language/expression-language-inside-container</module>
+        <module>tcks/apis/expression-language/expression-language-inside-container/docs/userguide</module>
         <module>tcks/apis/expression-language/expression-language-outside-container</module>
         <module>tcks/apis/javamail</module>
         <module>tcks/apis/jsonb</module>
         <module>tcks/apis/jsonp</module>
         <module>tcks/apis/messaging/messaging-inside-container</module>
+        <module>tcks/apis/messaging/messaging-inside-container/docs</module>
         <module>tcks/apis/messaging/messaging-outside-container</module>
         <module>tcks/apis/pages</module>
         <module>tcks/apis/persistence/persistence-inside-container</module>
         <module>tcks/apis/persistence/persistence-outside-container</module>
         <module>tcks/apis/rest</module>
         <module>tcks/apis/tags</module>
+        <module>tcks/apis/tags/docs</module>
         <module>tcks/apis/transactions</module>
+        <module>tcks/apis/transactions/docs</module>
         <module>tcks/apis/websocket</module>
+        
         <module>tcks/profiles/core-profile-tck</module>
         <module>tcks/profiles/platform/appclient</module>
         <module>tcks/profiles/platform/assembly</module>
@@ -70,7 +76,7 @@
         <module>tcks/profiles/platform/signaturevalidation</module>
         <module>tcks/profiles/platform/xa</module>
         <module>tools/signaturetest</module>
-        <!--module>tools</module-->
+        
         <module>user_guides</module>
         <module>tcks/profiles/platform/signaturevalidation/generate</module>
     </modules>

@@ -59,10 +59,6 @@
     </properties>
 
     <modules>
-        <module>connector</module>
-        <module>messaging</module>
-        <module>tags</module>
-        <module>transactions</module>
         <module>platform</module>
     </modules>
     <build>
