@@ -28,40 +28,25 @@ in the Jakarta EE {tck_version} Platform TCK test suite. The test suite provides
 whereby only those tests for the Jakarta EE {tck_version} Web Profile will be run. The
 following steps explain how to use this mechanism.
 
-1.  Set the `javaee.level` property to `web` in the
-`<TS_HOME>/bin/ts.jte` file. 
+1.  Configure your runner pom.xml  maven-surefire-plugin to specify a group of 'web' as shown below:
 +
 [source,oac_no_warn]
 ----
-javaee.level=web
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                    <dependenciesToScan>...</dependency>
+                    </dependenciesToScan>
+                    <groups>web></groups>
+...
+            </plugin>
 ----
 +
 This setting will only allow WAR files (that is, no EAR files) to be
 passed to the Deployment Porting Package. This is the minimal set of
-signature requirements that vendors must support for Web Profile.
-Specifying a javaee.level of "web" with nothing else implies there are
-NO additional technologies existing within the vendors implementation.
-Again, "web" only covers REQUIRED technologies for the Jakarta EE {tck_version} Web
-Profile.
-2.  Set the `javaee_web_profile` keyword in one of the following ways:
-* In batch mode, change to a test directory and execute the following
-command: 
-+
-[source,oac_no_warn]
-----
-ant -Dkeywords=javaee_web_profile runclient 
-----
-+
-Only tests that are required by the Jakarta EE {tck_version} Web Profile will be run. +
+requirements that vendors must support for Web Profile. Again, "web" only covers REQUIRED technologies for the Jakarta EE {tck_version} Web Profile.
 
-[NOTE]
-=======================================================================
 
-If you start a test run in a test directory that contains no Jakarta EE {tck_version}
-Web Profile tests, the test run will be aborted and the test harness
-will report that no tests were found.
-
-=======================================================================
-
-TODO: maven surefire/failsafe web group setting
 

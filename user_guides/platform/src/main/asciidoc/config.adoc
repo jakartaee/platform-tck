@@ -28,14 +28,8 @@ You can modify the following test suite components only:
 
 The instructions in this section and in <<configuring-your-application-server-as-the-vi>> step you through the configuration process for the Linux and Microsoft Windows.
 
-All TCK test configuration procedures are based on running the Ant
-scripts against a set of build targets. The primary location of any configuration settings you are likely to make is the `<TS_HOME>/bin/ts.jte` environment file. You may also want to modify the
-`javaee_vi.xml` and `initdb.xml` Ant configuration files and the
-vendor-specific SQL files. These two files contain predefined Ant
-targets that are implemented such that they automatically configure the
-Jakarta EE {tck_version} CI and its associated database in order to pass the TCK. An
-Implementer may choose to implement these targets to work with their server
-environment to perform the steps described in <<configuring-your-application-server-as-the-vi>>.
+The primary location of any configuration settings you are likely to make is the `<TS_HOME>/bin/ts.jte` environment file. You may also want to modify the
+ `initdb.xml` Ant configuration files and the vendor-specific SQL files. These two files contain configure the Jakarta EE {tck_version} CI and its associated database in order to pass the TCK. An Implementer may choose to implement these targets to work with their server environment to perform the steps described in <<configuring-your-application-server-as-the-vi>>.
 
 [NOTE]
 ====
@@ -102,7 +96,7 @@ RI should be replaced with CI for Compatible Implementation):
 image:img/serverpath-ri.png["CI as Server Under Test"]
 
 Use the Jakarta EE {tck_version} CI as the Jakarta EE {tck_version} VI; you may want to do this as a
-sanity check to make sure you are comfortable with using the Jakarta EE {tck_version}
+sanity check to make sure you are comfortable using the Jakarta EE {tck_version}
 TCK against a known standard CI with certified sample applications
 before proceeding with tests against your Jakarta EE {tck_version} VI. See
 <<configuring-the-java-ee-ci-as-the-vi>> for instructions.
@@ -117,11 +111,6 @@ need to configure the Jakarta EE {tck_version} implementation you want to certif
 * Configure two Jakarta EE {tck_version} servers for the purpose of interop testing +
 image:img/serverpath-interop.png["Two Servers for Interop Testing"]
 
-Rebuildable tests require that you configure two Jakarta
-EE {tck_version} servers on one or two machines. One server will be your Jakarta EE {tck_version}
-VI running a database of your choice with JDBC 4.1-compliant drivers.
-The second server must be the Jakarta EE {tck_version} CI using the bundled Java DB
-database. 
 
 In terms of the Jakarta EE {tck_version} Platform TCK, all TCK configuration settings are made
 in the `<TS_HOME>/bin/ts.jte` file. When configuring a Jakarta EE {tck_version} server,
@@ -141,68 +130,32 @@ may also want to refer to the Quick Start guides included with the Jakarta
 EE {tck_version} TCK for similar instructions.
 
 . Set server properties in your `<TS_HOME>/bin/ts.jte` file to suit
-your test environment. +
+your test environment.
 Be sure to set the following properties:
 ..  Set the `webServerHost` property to the name of the host on which
-your Web server is running that is configured with the CI. +
+your Web server is running that is configured with the CI.
 The default setting is `localhost`.
 ..  Set the `webServerPort` property to the port number of the host on
-which the Web server is running and configured with the CI. +
+which the Web server is running and configured with the CI.
 The default setting is `8001`.
 ..  Set the database-related properties in the `<TS_HOME>/bin/ts.jte`
-file. <<c.3-database-properties-in-ts.jte>>lists the names and descriptions for the database properties
-you need to set.
+file. <<c.3-database-properties-in-ts.jte>>lists the names and descriptions for the database properties you need to set.
 .  Install the Jakarta EE {tck_version} CI and configure basic settings, as described
 in <<installation>>
 .  Start the Jakarta EE {tck_version} CI application server.
 Refer to the application server documentation for complete instructions.
 .  Change to the `<TS_HOME>/bin` directory.
 .  Start your backend database.
-    If you are using Derby as your backend database, execute the
-    `start.javadb` Ant target:
-    [source,oac_no_warn]
-    ----
-    ant -f xml/impl/glassfish/s1as.xml start.javadb
-    ----
-    Otherwise, refer to your backend database administration documentation
-    for information about starting your database server.
-    .  Initialize your backend database.
-    If you are using Derby as your backend database, execute the
-    `init.derby` Ant target:
-    [source,oac_no_warn]
-    ----
-    ant -f xml/init.xml init.derby
-    ----
-    If you are not using Derby as your backend database, refer to
-   <<c-configuring-your-backend-database>>
-    [NOTE]
-    =======================================================================
-    If you are using MySQL or MS SQL Server as your backend database, see
-    <<backend-database-setup>> for additional
-    database setup instructions.
-    =======================================================================
-.  Run the configuration Ant target.
-    [source,oac_no_warn]
-    ----
-    ant config.vi
-    ----
-    [NOTE]
-    =======================================================================
-    By default, the `config.vi` Ant task configures the entire application
-    server. Sometimes you may not want or need to configure everything, such
-    as connector RAR files. If you are not performing connector-related
-    tests, you can avoid the deployment and configuration of RAR files by
-    using the Ant option `-Dskip.config.connector=true`. This will reduce
-    configuration times, the deployment of unneeded RAR files, and the
-    creation of unnecessary resources on the server under test. For example,
-    the following command will do this.
-    [source,oac_no_warn]
-    ----
-    ant -Dskip.config.connector=true config.vi
-    ----
-    =======================================================================
-
+.  Initialize your backend database.
+    Refer to <<c-configuring-your-backend-database>>
 . Continue on to <<executing-tests>> for instructions on running tests.
+
+[NOTE]
+=======================================================================
+If you are using MySQL or MS SQL Server as your backend database, see
+<<backend-database-setup>> for additional
+database setup instructions.
+=======================================================================
 
 [[configuring-your-application-server-as-the-vi]]
 == Configuring Your Application Server as the VI
@@ -212,7 +165,7 @@ To use a Jakarta EE {tck_version} server other than the Jakarta EE {tck_version}
 below.
 
 .  Set server properties in your `<TS_HOME>/bin/ts.jte` file to suit
-your test environment. +
+your test environment.
 Be sure to set the following properties:
 
 ..  Set the `webServerHost` property to the name of the host on which
@@ -230,55 +183,13 @@ implementation class that is used for obtaining URLs.
 file. <<c.3-database-properties-in-ts.jte>> lists the names and descriptions for the database properties you need to set.
 
 .  Install the Jakarta Platform, Enterprise Edition VI and configure basic
-settings. +
-If you want to configure your Jakarta Platform, Enterprise Edition server
-using Ant configuration target similar to the target for the Jakarta EE {tck_version} CI, as described in <<installation>>
-you will need to modify the `<TS_HOME>/bin/xml/javaee_vi.xml` file to
-implement the defined Ant targets for your application server. Then run:
-+
-[source,oac_no_warn]
-----
-ant config.vi
+settings.
 
-----
-+
-The Ant configuration targets you implement, if any, may vary. Whichever
-configuration method you choose, make sure that all configuration steps
+Whichever configuration method you choose, make sure that all configuration steps
 in this procedure are completed as shown.
 .  Install and configure a database for the server under test.
-
 .  Start your database.
-
 .  Initialize your database for TCK tests.
-
-..  If you choose to not implement the `javaee_vi.xml` targets, execute
-the following command to specify the appropriate DML file: +
-(Derby DB Example) 
-
-[source,oac_no_warn]
-----
-ant -Dtarget.dml.file=tssql.stmt 
--Ddml.file=javadb/javadb.dml.sql copy.dml.file
-----
-
-..  Execute the following command to initialize your particular
-database: 
-
-
-[source,oac_no_warn]
-----
-ant -f <TS_HOME>/bin/xml/initdb.xml init.Database
-----
-
-
-For example, to initialize a Derby DB database: 
-
-[source,oac_no_warn]
-----
-ant -f <TS_HOME>/bin/xml/initdb.xml init.javadb
-
-----
-
 
 Refer to <<c-configuring-your-backend-database>> for detailed database configuration and
 initialization instructions and a list of database-specific
@@ -286,7 +197,7 @@ initialization targets.
 
 .  Start your Jakarta EE {tck_version} server.
 
-.  [[BABDADHA]] Set up required users and passwords.
+.  Set up required users and passwords.
 
 ..  Set up database users and passwords that are used for JDBC
 connections. +
@@ -295,7 +206,7 @@ user-to-role mappings. These need to match those set in your `ts.jte`
 file. By default, `user1`, `user2`, `user3, password1`, `password2`, and
 `password3` are set to `cts1`.
 
-..  [[BABBHFAI]] Set up users and passwords for your Jakarta Platform, Enterprise Edition
+..  Set up users and passwords for your Jakarta Platform, Enterprise Edition
 server. +
 For the purpose of running the TCK test suite, these should be set as
 follows: 
@@ -327,21 +238,19 @@ server.
 
 . Provide access to a Jakarta Mail server that supports the SMTP protocol.
 
-. Execute the `add.interop.certs` Ant target. +
+. Install server certificates +
 +
 [NOTE]
 ======================================================================
-
-This step installs server side certificates for interoperability
+This step needs to install server side certificates for interoperability
 testing; that is, it installs the CI's server certificate to VI and VI's
 server certificate into the CI. This step is necessary for mutual
 authentication tests in which both the server and client authenticate to
 each other.
-
 ======================================================================
 +
 
-. [[BABEGCJH]] Install the client-side certificate in the `trustStore` on the Jakarta EE {tck_version}
+. Install the client-side certificate in the `trustStore` on the Jakarta EE {tck_version}
 server.  +
 Certificates are located `<TS_HOME>/bin/certificates`. Use the
 certificate that suits your environment.
@@ -349,15 +258,7 @@ certificate that suits your environment.
 ..  `cts_cert`: For importing the TCK client certificate into a
 `truststore`
 
-..  `clientcert.jks`: Used by the Java SE 8 runtime to identify the CTS
-client's identity
-
 ..  `clientcert.p12`: Contains TCK client certificate in `pkcs12` format
-
-.. Append the file `<TS_HOME>/bin/server_policy.append` to the Java
-policy file or files on your Jakarta EE {tck_version} server. +
-This file contains the grant statements used by the test harness,
-signature tests, and API tests.
 
 .. Make the appropriate transaction interoperability setting on the Jakarta EE {tck_version} server and the server that is running the Jakarta EE {tck_version} CI.
 
@@ -402,7 +303,6 @@ This section includes the following topics:
 
 * <<test-harness-setup>>
 * <<windows-specific-properties>>
-* <<test-execution-command-setup>>
 * <<jakarta-servlet-test-setup>>
 * <<jakarta-websocket-test-setup>>
 * <<jdbc-test-setup>>
@@ -410,7 +310,7 @@ This section includes the following topics:
 * <<jakarta-restful-web-services-test-setup>>
 * <<jakarta-connector-test-setup>>
 * <<xa-test-setup>>
-* <<jakarta-enterprise-beans-3.2-test-setup>>
+* <<jakarta-enterprise-beans-4-test-setup>>
 * <<ejb-timer-test-setup>>
 * <<jakarta-persistence-api-test-setup>>
 * <<jakarta-messaging-test-setup>>
@@ -428,8 +328,6 @@ Verify that the following properties, which are used by the test harness, have b
 harness.temp.directory=<TS_HOME>/tmp
 harness.log.port=2000
 harness.log.traceflag=[true | false]
-deployment_host.1=<hostname>
-deployment_host.2=<hostname>
 porting.ts.login.class.1=<vendor-login-class>
 porting.ts.url.class.1=<vendor-url-class>
 porting.ts.jms.class.1=<vendor-jms-class>
@@ -450,18 +348,11 @@ setting is `2000`.
 verbose debugging output for the tests. The value of the property is set
 to `false` by default. Set the property to `true` to turn debugging on.
 
-* The porting class `.1` and `.2` property sets specify the class names
-of porting class implementations. By default, both property sets point
-to the Jakarta Platform, Enterprise Edition CI-specific classes. To run the
-interoperability tests, do not modify the `.2` set. These properties
-should always point to the Jakarta Platform, Enterprise Edition CI classes.
-Modify the `.1` set to point to implementations that work in your
-specific Jakarta Platform, Enterprise Edition environment.
 
 [[full-list-tsjte-properties]]
 ==== Complete List of `ts.jte' Properties
 
-These are the properties that need to have a in the `ts.jte` file provied to the test runner:
+These are the properties that need to have a in the `ts.jte` file provided to the test runner:
 
 * s1as
 * s1as.modules
@@ -511,8 +402,6 @@ These are the properties that need to have a in the `ts.jte` file provied to the
 * porting.ts.url.class.2
 * porting.ts.jms.class.1
 * porting.ts.jms.class.2
-* porting.ts.deploy.class.1
-* porting.ts.deploy.class.2
 * ptable
 * rapassword1
 * rapassword2
@@ -549,8 +438,7 @@ Many of these properties can simply be left to their default values. Those that 
 [[windows-specific-properties]]
 === Windows-Specific Properties
 
-When configuring the Jakarta EE {tck_version} Platform TCK for the Windows environment, set the
-following properties in `<TS_HOME>/bin/ts.jte`:
+When configuring the Jakarta EE {tck_version} Platform TCK for the Windows environment, set the following properties in `<TS_HOME>/bin/ts.jte`:
 
 * `pathsep` to semicolon (pathsep=`;`)
 
@@ -572,55 +460,6 @@ ri.applicationRoot=C:
 
 When configuring the CI and TCK for the Windows environment, never
 specify drive letters in any path properties in `ts.jte`.
-
-======================================================================
-
-
-[[test-execution-command-setup]]
-=== Test Execution Command Setup
-
-The test execution command properties are used by the test harness. By
-default, the `ts.jte` file defines a single command line for each of the
-commands that is used for both UNIX and Windows environments.
-
-* `command.testExecute`
-
-* `command.testExecuteAppClient`
-
-* `command.testExecuteAppClient2`
-
-If these commands do not meet your needs, you can define separate
-entries for the UNIX and Windows environments. Edit either the `ts_unix`
-or `ts_win32` test execution properties in the `ts.jte` file. For UNIX,
-these properties are:
-
-* `env.ts_unix.command.testExecute`
-
-* `env.ts_unix.command.testExecuteAppClient`
-
-* `env.ts_unix.command.testExecuteAppClient2`
-
-For Windows, these properties are:
-
-
-* `env.ts_win32.command.testExecute`
-
-* `env.ts_win32.command.testExecuteAppClient`
-
-* `env.ts_win32.command.testExecuteAppClient2`
-
-The `testExecute` property specifies the Java command that is used to
-execute individual tests from a standalone URL client. Tests in which
-the client directly invokes a web component (Jakarta Servlet or Jakarta Server Pages), use this
-command line since there is no application client container involved.
-
-
-[NOTE]
-======================================================================
-
-The default settings are specific to the Jakarta Platform, Enterprise
-Edition CI. If you are not using the Jakarta Platform, Enterprise Edition
-CI, adjust these properties accordingly.
 
 ======================================================================
 
@@ -719,10 +558,8 @@ setting is in `/usr/share/lib/zoneinfo/US`.
 
 [NOTE]
 ======================================================================
-
 The `tz` property is only used for Linux configurations; it does not
-apply to Windows XP/2000.
-
+apply to Windows.
 ======================================================================
 
 
@@ -815,18 +652,13 @@ the Jakarta EE {tck_version} CI.
 ==== To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against a Vendor Implementation
 
 Complete the following steps to configure your test environment to run
-the Jakarta RESTful Web Services tests against your vendor implementation. Before you can run
-the tests, you need to repackage the WAR files that contain the Jakarta RESTful Web Services
-tests and the VI-specific Servlet class that will be deployed on the
+the Jakarta RESTful Web Services tests against your vendor implementation. Before you can run the tests, you need to repackage the WAR files that contain the Jakarta RESTful Web Services tests and the VI-specific Servlet class that will be deployed on the
 vendor's Jakarta EE {tck_version}-compliant application server.
-
-Copy <TS_HOME>/bin/ts.jte.jdk11 as <TS_HOME>/bin/ts.jte if JAVA_HOME is Java SE 11.
-Edit your `<TS_HOME>/bin/ts.jte` file and set the following properties:
 
 .  Set the `jaxrs_impl_lib` property to point to the JAR file that
 contains the vendor's Jakarta RESTful Web Services Servlet adapter implementation. +
 The default setting for this property is
-`${javaee.home}/modules/jersey-container-servlet-core.jar` .
+`${javaee.home}/modules/jakarta.ws.rs-api.jar` .
 
 .  Set the `servlet_adaptor` property to point to the Servlet adapter
 class for the vendor's Jakarta RESTful Web Services implementation. +
@@ -835,16 +667,12 @@ The class must be located in the JAR file defined by the
 `org/glassfish/jersey/servlet/ServletContainer.class`, the servlet
 adapter supplied in Jersey.
 
-.  Set the `jaxrs_impl_name` property to the name of the Jakarta RESTful Web Services vendor
-implementation to be tested. +
-The name of the property must be unique. An Ant file bearing this name,
-<jaxrs_impl_name>.xml, should be created under
-`<TS_HOME>/bin/xml/impl/${impl.vi}` with packaging and/or deployment
-instructions as described in <<repackage-war-files-for-deployment-on-the-vi>> +
+.  Set the `jaxrs_impl_name` property to the name of the Jakarta RESTful Web Services vendor implementation to be tested. +
+The name of the property must be unique.+
 The default setting for this property is `jersey`.
 
 [[repackage-war-files-for-deployment-on-the-vi]]
-==== To Repackage WAR files for Deployment on the Vendor Implementation
+==== To Repackage WAR files for Deployment on the Vendor Implementation (Obsolete ?)
 
 To run the Jakarta RESTful Web Services tests against a vendor's implementation in a Jakarta EE {tck_version} compliant application server, the tests need to be repackaged to
 include the VI-specific servlet, and the VI-specific servlet must be
@@ -925,54 +753,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 </web-app>
 ----
 
-The Jakarta EE {tck_version} Platform TCK test suite provides a tool,
-`${ts.home}/bin/xml/impl/glassfish/jersey.xml`, for the Jakarta EE {tck_version} CI
-that you can use as a model to help you create your own VI-specific Web
-test application.
-
 The following steps explain how to create a VI-specific deployment
 descriptor.
 
-.  Create a VI handler file. +
-Create a VI-specific handler file
-`<TS_HOME>/bin/xml/impl/${impl.vi}/${jaxrs_impl_name}.xml` if one does
-not already exist. +
-Ensure that the `jaxrs_impl_name` property is set in the `ts.jte` file
-and that its name is unique, to prevent another file with the same name
-from being overwritten.
-
-.  Set the `servlet_adaptor` property in the `ts.jte` file. +
-This property will be used to set the value of the `<servlet-class>`
-element in the deployment descriptor.
-
-.  Create VI Ant tasks. +
-Create a `update.jaxrs.wars` target in the VI handler file. Reference
-this `update.jaxrs.wars` target in the `jersey.xml` file. +
-This target will create a `web.xml.${jaxrs_impl_name}` for each test
-that has a deployment descriptor template. The
-`web.xml.${jaxrs_impl_name)` will contain the VI-specific Servlet class
-name. It will also create the test WAR files will be created under the
-`<TS_HOME>/dist` directory. For example: 
-+
-[source,oac_no_warn]
-----
-cd $TS_HOME/dist/com/sun/ts/tests/jaxrs/ee/rs/get/
-ls jaxrs_rs_get_web.war.jersey 
-jaxrs_rs_get_web.war.${jaxrs_impl_name}
-
-----
-+
-.  Change to the `<TS_HOME>/bin` directory and execute the
-`update.jaxrs.wars` Ant target. +
-This creates a `web.xml.${jaxrs_impl_name}` file for each test based on
-the VI's servlet class name and repackages the tests.
+TBD if needed.
 
 [[jakarta-connector-test-setup]]
 === Jakarta Connector Test Setup (Full Platform Only)
 
 The Jakarta Connector tests verify that a Jakarta EE {tck_version} server correctly implements the Jakarta Connector V1.7 specification. The Connector compatibility tests
-ensure that your Jakarta EE {tck_version} server still supports the Connector V1.0
-functionality.
+ensure that your Jakarta EE {tck_version} server still supports the Connector V1.0 functionality.
 
 The `config.vi` target is run to configure the Jakarta EE {tck_version} server for
 running Connector tests. The `config.vi` target calls the
@@ -1010,11 +800,8 @@ The following Connector files are deployed as part of the `config.vi` Ant target
 
 [NOTE]
 ======================================================================
-
 RAR files with an `old` prefix are used to test the support of RAs that
-are bundled with an older version of the `ra.xml` files.  TODO: These need to
-be built for the EE 11 dist.
-
+are bundled with an older version of the `ra.xml` files.  TODO: These need to be built for the EE 11 dist.
 ======================================================================
 
 
@@ -1096,9 +883,7 @@ RAR2) reference `whitebox.jar` as an installed library and the
 application server can use a single classloader to load this common
 dependency, there will be no type-related issues.
 
-In the CI Eclipse GlassFish 6.1, `domain-dir/lib/applibs` is used as the Installed Library
-directory and is the location to which the `whitebox.jar` file gets
-copied.
+In the CI Eclipse {glassfish_version}, `domain-dir/lib/applibs` is used as the Installed Library directory and is the location to which the `whitebox.jar` file gets copied.
 
 [[required-porting-package]]
 ==== Required Porting Package
@@ -1295,7 +1080,7 @@ get deployed when the `config.vi` Ant task is run. Note that there are
 currently no `JDBCwhitebox` source files and no `JDNCwhitebox` RAR
 files.
 
-[[jakarta-enterprise-beans-3.2-test-setup]]
+[[jakarta-enterprise-beans-4-test-setup]]
 === Jakarta Enterprise Beans 4.0 Test Setup
 
 This section explains special configuration that needs to be completed
@@ -1319,16 +1104,14 @@ support.
 [[configure-the-tests-ejb-datasource-tests]]
 ==== To Configure the Test Environment to Run the Jakarta Enterprise Beans 4.0 DataSource Tests
 
-The EJB 3.2 DataSource tests under the following `jakarta.tck:ejb30` artifact packages
-may require you to update the  `@DataSourceDefinition` used in the test class to match your database environment. You are allowed to recompile these tests with those changes before running them.
+The EJB 3.2 DataSource tests under the following `jakarta.tck:ejb30` artifact packages may require you to update the  `@DataSourceDefinition` used in the test class to match your database environment. You are allowed to recompile these tests with those changes before running them.
 
 * `com/sun/ts/tests/ejb30/lite/packaging/war/datasource`
 * `com/sun/ts/tests/ejb30/misc/datasource`
 * `com/sun/ts/tests/ejb30/assembly/appres`
 
 If your database vendor requires you to set any vendor-specific or less
-common DataSource properties, complete step <<jdbc.datasource.props>> and then
-complete step <<configure_datasource_tests>>, as explained below.
+common DataSource properties, complete step <<jdbc.datasource.props>> and then complete step <<configure_datasource_tests>>, as explained below.
 
 .  [[jdbc.datasource.props]] Set any vendor-specific or less common datasource properties with the
 `jdbc.datasource.props` property in the `ts.jte` file. +
@@ -1351,8 +1134,7 @@ testing.
 
 [[configure-tests-ejb-stateful-timeout-tests]]
 ==== To Configure the Test Environment to Run the Jakarta Enterprise Beans 4.0 Stateful Timeout Tests
-The Jakarta Enterprise Beans 4.0 Stateful Timeout Tests in the following test directories
-require special setup:
+The Jakarta Enterprise Beans 4.0 Stateful Timeout Tests in the following `jakarta.tck:ejb30` artifact test directories require special setup:
 
 * `com/sun/ts/tests/ejb30/lite/stateful/timeout`
 * `com/sun/ts/tests/ejb30/bb/session/stateful/timeout`
@@ -1374,8 +1156,7 @@ implementation strategy in the target server.
 [[ejb-timer-test-setup]]
 === Jakarta Enterprise Beans Timer Test Setup
 
-Set the following properties in the `ts.jte` file to configure the Jakarta Enterprise Beans
-timer tests:
+Set the following properties in the `ts.jte` file to configure the Jakarta Enterprise Beans timer tests:
 
 [source,oac_no_warn]
 ----
@@ -1390,8 +1171,7 @@ interval timers. The default setting and recommended minimum value is
 for results from the `ejbTimeout()` method. The default setting and
 recommended minimum value is `60000` milliseconds.
 
-Jakarta EE {tck_version} Platform TCK does not have a property that you can set to configure the
-date for date timers.
+Jakarta EE {tck_version} Platform TCK does not have a property that you can set to configure the date for date timers.
 
 The timer tests use the specific `jndi-name` jdbc`/DBTimer` for the
 datasource used for container-managed persistence to support the use of
@@ -1413,8 +1193,7 @@ ejb/ee/bb/entity/cmp20/allowedmethodstest
 ----
 
 When testing against the Jakarta Platform, Enterprise Edition CI, Eclipse {glassfish_version}, you must
-first start the Derby DB and initialize it in addition to any other database
-you may be using, as explained in <<configuring-the-java-ee-ci-as-the-vi>>
+first start the Derby DB and initialize it in addition to any other database you may be using, as explained in <<configuring-the-java-ee-ci-as-the-vi>>
 
 
 [[jakarta-persistence-api-test-setup]]
@@ -1431,8 +1210,7 @@ Within a Jakarta Platform, Enterprise Edition environment, support for both
 container-managed and application-managed entity managers is required.
 Application-managed entity managers can be Jakarta Transactions or resource-local. Refer
 to Chapter 7 of the Jakarta Persistence API Specification
-(`https://jakarta.ee/specifications/persistence/3.0`) for additional information
-regarding entity managers.
+(`https://jakarta.ee/specifications/persistence/3.2`) for additional information regarding entity managers.
 
 [NOTE]
 ===
@@ -1443,20 +1221,14 @@ There is a test of installing a custom Jakarta Persistence provider in the Jakar
 ==== To Configure the Test Environment to Run the Jakarta Persistence Pluggability Tests
 
 The Jakarta Persistence Pluggability tests under the
-`src/com/sun/ts/tests/jpa/ee/pluggability` directory ensure that a
-third-party persistence provider is pluggable, in nature.
+`src/tcks/apis/persistence/persistence-inside-container/platform-tests/src/main/java/ee/jakarta/tck/persistence/ee/pluggability` directory ensure that a third-party persistence provider is pluggable, in nature.
 
 After Java EE 7 TCK, the pluggability tests were rewritten to use a
 stubbed-out legacy JPA 2.1 implementation, which is located in the
-`src/com/sun/ts/jpa/common/pluggibility/altprovider` directory.
+`src/tcks/apis/persistence/persistence-inside-container/common/src/main/java/ee/jakarta/tck/persistence/common/pluggability/altprovider` directory.
 
 In Java EE 7 TCK, the Persistence API pluggability tests required
-special setup to run. This is no longer the case, since Jakarta EE {tck_version} Platform TCK
-now enables the pluggability tests to be executed automatically along
-with all the other Persistence tests. The Jakarta Persistence tests have a new
-directory structure. In Java EE 7 TCK, the tests were in the
-`src/com/sun/ts/tests/ejb30/persistence` directory. The Jakarta EE {tck_version} tests are now in
-the `src/com/sun/ts/tests/jpa` directory.
+special setup to run. This is no longer the case, since Jakarta EE {tck_version} Platform TCK now enables the pluggability tests to be executed automatically along with all the other Persistence tests.
 
 [[sthref19]][[enabling-second-level-caching-support]]
 
@@ -1479,8 +1251,7 @@ entity manager is obtained and the transaction type is defined for use.
 There are six vehicles used for these tests:
 
 * `stateless3`: Bean-managed stateless session bean using JNDI to lookup
-a Jakarta Transactions `EntityManager`; uses `UserTransaction` methods for transaction
-demarcation
+a Jakarta Transactions `EntityManager`; uses `UserTransaction` methods for transaction demarcation
 
 * `stateful3`: Container-managed stateful session bean using
 `@PersistenceContext` annotation to inject Jakarta Transactions `EntityManager;` uses
@@ -1489,14 +1260,13 @@ container-managed transaction demarcation with a transaction attribute
 
 * `appmanaged`: Container-managed stateful session bean using
 `@PersistenceUnit` annotation to inject an `EntityManagerFactory`; the
-`EntityManagerFactory` API is used to create an Application-Managed Jakarta Transactions
-`EntityManager`, and uses the container to demarcate transactions
+`EntityManagerFactory` API is used to create an Application-Managed Jakarta Transactions `EntityManager`, and uses the container to demarcate transactions (Full Platform Only)
 
 * `appmanagedNoTx`: Container-managed stateful session bean using
 `@PersistenceUnit` annotation to inject an `EntityManagerFactory`; the
 `EntityManagerFactory` API is used to create an Application-Managed
 Resource Local `EntityManager`, and uses the `EntityTransaction` APIs to
-control transactions
+control transactions (Full Platform Only)
 
 * `pmservlet`: Servlet that uses the `@PersistenceContext` annotation at
 the class level and then uses JNDI lookup to obtain the `EntityManager`;
@@ -1524,8 +1294,7 @@ configure a non-transactional resource with the logical name
 [[generatedvalue-annotation]]
 ==== GeneratedValue Annotation
 
-The Jakarta Persistence API Specification also defines the requirements for
-the `GeneratedValue` annotation. The default for this annotation is
+The Jakarta Persistence API Specification also defines the requirements for the `GeneratedValue` annotation. The default for this annotation is
 `GenerationType.AUTO`. Per the specification, `AUTO` indicates that the
 persistence provider should pick an appropriate strategy for the
 particular database. The `AUTO` generation strategy may expect a
@@ -1585,9 +1354,9 @@ jms_timeout=10000
 ----
 
 This property specifies the length of time, in milliseconds, that a
-synchronous receive operation will wait for a message. The default value
+synchronous receipt operation will wait for a message. The default value
 of the property should be sufficient for most environments. If, however,
-your system is running slowly and you are not receiving the messages
+your system is running slowly, and you are not receiving the messages
 that you should be, you need to increase the value of this parameter.
 
 [[sthref21]][[to-test-your-jakarta-messaging-resource-adapter]]
@@ -1616,11 +1385,7 @@ This rebuilds the tests under
 
 === To Create Jakarta Messaging Administered Objects
 
-If you do not have an API to create Jakarta Messaging Administered objects, and you
-cannot create an Ant target equivalent to `config.vi`, you can use the
-list that follows and manually create the objects. If you decide to
-create these objects manually, you need to provide a dummy
-implementation of the Jakarta Messaging porting interface, `TSJMSAdminInterface`.
+If you do not have an API to create Jakarta Messaging Administered objects, you can use the list that follows and manually create the objects. If you decide to create these objects manually, you need to provide a dummy implementation of the Jakarta Messaging porting interface, `TSJMSAdminInterface`.
 
 The list of objects you need to manually create includes the following
 factories, queues, and topics.
@@ -1783,9 +1548,7 @@ testT2
 ======================================================================
 
 Implementations of `TSJMSAdminInterface` are called inside the JavaTest
-VM. The `com.sun.ts.lib.deliverable.cts.CTSPropertyManager` class, which
-is available to these implementations, provides access to any property
-in the `ts.jte` file.
+VM. (Obsolete, need to define if this is used and how)
 
 ======================================================================
 
@@ -1849,9 +1612,7 @@ Complete the following steps before you run the Jakarta Security API tests:
 [NOTE]
 ======================================================================
 
-An LDAP server is required in Jakarta Security API testing. You could either use
-an already existing external LDAP server or use TCK script to install an
-internal LDAP server.
+An LDAP server is required in Jakarta Security API testing. You could either use an already existing external LDAP server or use TCK script to install an internal LDAP server. (Is this still true?)
 
 ======================================================================
 +
