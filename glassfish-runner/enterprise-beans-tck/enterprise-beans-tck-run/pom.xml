@@ -628,6 +628,7 @@
                                 <include>com.sun.ts.tests.ejb30.lite.nointerface.**.*Test</include>
                                 <include>com.sun.ts.tests.ejb30.lite.view.**.*Test</include>
                                 <include>com.sun.ts.tests.ejb30.lite.xmloverride.**.*Test</include>
+                                <include>com.sun.ts.tests.ejb30.lite.tx.**.*Test</include>
                             </includes>
                             <groups>${groups}</groups>
                         </configuration>
