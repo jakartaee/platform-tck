@@ -50,7 +50,7 @@ public class WSCClientIT extends NegativeDeploymentClient {
 	public static WebArchive createDeployment() throws IOException {
 
 		WebArchive archive = ShrinkWrap.create(WebArchive.class,
-				"wsc_negdep_onmessage_srv_binaryinputstreamboolean_web.war");
+				"wsc_negdep_onmessage_srv_binaryduplicate_web.war");
 		archive.addPackages(false, Filters.exclude(WSCClientIT.class),
 				"com.sun.ts.tests.websocket.negdep.onmessage.srv.binaryduplicate");
 		archive.addPackages(false, Filters.exclude(NegativeDeploymentClient.class),
