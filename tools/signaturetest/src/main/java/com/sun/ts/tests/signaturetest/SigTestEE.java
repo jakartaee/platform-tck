@@ -61,7 +61,7 @@ public abstract class SigTestEE extends ServiceEETest {
   /**
    * Returns the location of the package list file. This file denotes the valid
    * sub-packages of any package being verified in the signature tests.
-   * <p/>
+   *
    * Sub-classes are free to override this method if they use a different path
    * or filename for their package list file. Most users should be able to use
    * this default implementation.
@@ -78,7 +78,7 @@ public abstract class SigTestEE extends ServiceEETest {
    * framework which API versions of tested packages to use. To keep this code
    * platform independent, be sure to use the File.separator string (or the
    * File.separatorChar) to denote path separators.
-   * <p/>
+   *
    * Sub-classes are free to override this method if they use a different path
    * or filename for their signature map file. Most users should be able to use
    * this default implementation.
@@ -91,7 +91,7 @@ public abstract class SigTestEE extends ServiceEETest {
 
   /**
    * Returns the directory that contains the signature files.
-   * <p/>
+   *
    * Sub-classes are free to override this method if they use a different
    * signature repository directory. Most users should be able to use this
    * default implementation.
@@ -111,21 +111,21 @@ public abstract class SigTestEE extends ServiceEETest {
    * user chooses NOT to list this optional technology for testing (via ts.jte
    * javaee.level prop) then this method will return the packages for JSR-88
    * technology with this method call.
-   * <p/>
+   *
    * This is useful for checking for a scenarios when a user may have forgotten
    * to identify a whole or partial technology implementation and in such cases,
    * Java EE platform still requires testing it.
-   * <p/>
+   *
    * Any partial or complete impl of an unlistedOptionalPackage sends up a red
    * flag indicating that the user must also pass tests for this optional
    * technology area.
-   * <p/>
+   *
    * Sub-classes are free to override this method if they use a different
    * signature repository directory. Most users should be able to use this
    * default implementation - which means that there was NO optional technology
    * packages that need to be tested.
    *
-   * @return ArrayList<String>
+   * @return ArrayList&lt;String&gt;
    */
   protected ArrayList<String> getUnlistedOptionalPackages() {
     return null;

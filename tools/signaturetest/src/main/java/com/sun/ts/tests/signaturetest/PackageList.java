@@ -40,11 +40,11 @@ import java.util.TreeSet;
  * signature is verified independently. As such all valid sub-packages must be
  * excluded while a package's signature is being verified. This allows API check
  * to determine incompatible additional packages included in a distribution.
- * <p/>
+ *
  * This class builds a package list file when signatures are recorded and
  * provides an API to provide valid sub-package lists when signatures are played
  * back (verified).
- * <p/>
+ *
  * In record mode, this class reads the existing package list file, if one
  * exists, and removes the package (as well as sub-packages) that are currently
  * being recorded. All package names read from the existing package list file
@@ -54,7 +54,7 @@ import java.util.TreeSet;
  * recorded signature file and extracts each package names and adds it to the
  * tree set. After this step the previous package list file is saved as a backup
  * and the new package list file is written to disk.
- * <p/>
+ *
  * In playback mode, this class reads the contents of the package list file and
  * stores each package name in a tree set. Users can then invoke the
  * getSubPackages method to retrieve the valid sub-packages for any given

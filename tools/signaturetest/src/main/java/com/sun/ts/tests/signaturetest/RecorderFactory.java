@@ -26,7 +26,6 @@ package com.sun.ts.tests.signaturetest;
  * point from Ant to handle signature recording.
  * </p>
  *
- * <p>
  * The desired <code>type</code> is provided using a system property with a key
  * of <code>recorder.type</code>. Valid values for the
  * <code>recorder.type</code> property are:
@@ -34,8 +33,7 @@ package com.sun.ts.tests.signaturetest;
  * <li>apicheck</li>
  * <li>sigtest</li>
  * </ul>
- * </p>
- * 
+ *
  * <p>
  * If the <code>recorder.type</code> property is not set, this factory will
  * return a <code>SignatureTestRecorder</code> using the SigTest framework.
