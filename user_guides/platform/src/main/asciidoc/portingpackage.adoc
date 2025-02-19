@@ -60,7 +60,7 @@ To use specific implementations of these classes, you simply modify the
 following `porting.ts.*.class.1` entries of the `ts.jte`
 environment file to identify the fully-qualified class names:
 
-[source,oac_no_warn]
+[source,properties]
 ----
 porting.ts.login.class.1=[vendor-login-class]
 porting.ts.url.class.1=[vendor-url-class]

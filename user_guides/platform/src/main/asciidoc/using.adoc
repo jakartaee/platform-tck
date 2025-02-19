@@ -2,14 +2,12 @@
 = Executing Tests
 :doctype: book
 
-The Jakarta EE {tck_version} Platform TCK uses the JavaTest harness to execute the tests in the
-test suite. For detailed instructions that explain how to run and use
-JavaTest, see the JavaTest User's Guide and Reference.
+The Jakarta EE {tck_version} Platform TCK uses Arquillian and Junit5 as the test framework. The technology test artifacts have been split up into individual test artifacts based on the underlying component specification.
 
 This chapter includes the following topics:
 
 * <<jakarta-ee-platform-tck-operating-assumptions>>
-* <<starting-javatest>>
+* <<running-the-tests>>
 * <<validating-your-test-configuration>>
 * <<running-a-subset-of-the-tests>>
 * <<test-reports>>
@@ -29,54 +27,228 @@ The following are assumed in this chapter:
 
 * Jakarta EE {tck_version} CI is installed and configured as described in this guide.
 * Detailed configuration will vary from product to product. In this guide, we provide details
-for configuring the Jakarta EE CI, Eclipse GlassFish 6.1. If you are using another CI, refer to that
-product's setup and configuration documentation.
-* Java SE 8 software is correctly installed and configured on the host
+for configuring the Jakarta EE CI, Eclipse {glassfish_version}. If you are using another CI, refer to that product's setup and configuration documentation.
+* Java SE 17/21 software is correctly installed and configured on the host
 machine.
 * Jakarta EE {tck_version} Platform TCK is installed and configured as described in this guide.
 * Implementations of the technologies to be tested are properly
 installed and configured.
 
-[[starting-javatest]]
-== Starting JavaTest
+[[running-the-tests]]
+== Running the Tests
 
-There are two general ways to run Jakarta EE {tck_version} Platform TCK using the JavaTest
-harness software:
+There are two general ways to run Jakarta EE {tck_version} Platform TCK using the Arquillian/Junit5 test harness software:
 
-* Through the JavaTest GUI
-* From the command line in your shell environment
+* Through a Java IDE that supports Junit5
+* From a maven pom setup that configures the surefire plugin to run the tests
 
-Running the JavaTest harness from JavaTest GUI is recommended for
-initial configuration procedures, for validating your configuration, for
-selecting tests to run, and for general ease-of-use when running tests
-and viewing test reports.
+Running the tests in a Java IDE is useful for debugging and validating individual test setup.
 
-Running the JavaTest harness from the command line is useful in headless
-server configurations, and for running tests in batch mode.
-
-
-[NOTE]
-====
-The `build.xml` file in `<TS_HOME>/bin` contains the various Ant
-targets for the Jakarta EE {tck_version} Platform TCK test suite
-====
+Running the tests from a maven test runner pom is the standard way of automating the run of the complete set of tests and allows for producing test reports used to create a certification request.
 
 
 [[running-test-cli]]
-=== To Run Test in Command-Line Mode (Needs Rewrite)
+=== To Run Test in Command-Line Mode
 
-1.  Set the `TS_HOME` environment variable to the directory in which
+Any framework that allows one to configure the run of Junit5 tests could be used, but in this section we will highlight the use of maven and the maven-surefire-plugin. The platform-tck project includes a set of maven runner projects for {glassfish_version} in the https://github.com/jakartaee/platform-tck/tree/main/glassfish-runner subproject. There is one runner project for each of the technology test artifacts. You can use these runners as a template for your own test runners, or you can create one complete test runner that includes all the technology test artifacts.
+
+As a general rule, the test runner should include the following:
+
+. Dependencies on the Junit5 and Arquillian test frameworks as shown in <<runner-maven-dependencies>>.
+. Configure your Arquillian container as shown in <<arquillian-container-configuration>>.
+.  Set the `TS_HOME` environment variable to the directory in which
 Jakarta EE {tck_version} Platform TCK was installed.
-2.  Change to any subdirectory under `<TS_HOME>/src/com/sun/ts/tests`.
-3.  Ensure that the `ts.jte` file contains information relevant to your
+.  Ensure that the `ts.jte` file contains information relevant to your
 setup. +
-Refer to <<setup-and-configuration>> for detailed configuration instructions.
-4.  Execute the `runclient` Ant target to start the JavaTest: +
-[source,oac_no_warn]
+Refer to <<setup-and-configuration>> for detailed configuration instructions, or that your runner maven project surefire/failsafe plugin has defined the equivalent system properties.
+.  Execute the `test` Maven goal to start the testuite: +
+[source,bash]
 ----
-ant runclient
+mvn test
 ----
 This runs all tests in the current directory and any subdirectories.
+
+[[runner-maven-dependencies]]
+=== Maven Dependencies
+Your runner configuration should have a dependencyManagement section that imports the Junit5 and Arquillian and Jakarta EE API bom dependencies:
+
+[[maven-dependency-management]]
+[source,xml,subs="attributes+"]
+----
+    <!-- The Junit5 test frameworks -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>{junit_version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>{arquillian_version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-api</artifactId>
+                <version>{jakartaee_api_version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                <version>{jakartaee_tck_version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+----
+
+You then need to define the specific dependencies for the test runner without the version information:
+
+[[maven-dependencies]]
+[source,xml,subs="attributes+"]
+----
+    <dependencies>
+        <!-- Jakarta EE APIs -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- The TCK test artifacts for components of interest -->
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>ejb30</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>ejb32</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+      <!-- TCK common dependencies -->
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>common</artifactId>
+      </dependency>
+
+      <!-- TCK Arquillian artifacts -->
+      <dependency>
+        <groupId>jakarta.tck.arquillian</groupId>
+        <artifactId>arquillian-protocol-appclient</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck.arquillian</groupId>
+        <artifactId>arquillian-protocol-javatest</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck.arquillian</groupId>
+        <artifactId>tck-porting-lib</artifactId>
+      </dependency>
+
+        <!--
+            The Arquillian connector that starts the VI and deploys archives to it. This is the {glassfish_version} version.
+        -->
+        <dependency>
+            <groupId>org.omnifaces.arquillian</groupId>
+            <artifactId>arquillian-glassfish-server-managed</artifactId>
+            <version>1.7</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+----
+
+[[available-tck-test-artifacts]]
+==== Available TCK Test Artifacts
+The list of groupId:artifactId for the Jakarta EE {tck_version} TCK test artifacts is:
+
+* jakarta.tck:appclient
+* jakarta.tck:assembly-tck
+* jakarta.tck:common
+* jakarta.tck:cdi-tck-ee-impl
+* jakarta.tck:connector
+* jakarta.tck:ejb30
+* jakarta.tck:ejb32
+* jakarta.tck:el-platform-tck
+* jakarta.tck:integration
+* jakarta.tck:javaee-tck
+* jakarta.tck:rest-platform-tck
+* jakarta.tck:javamail
+* jakarta.tck:jdbc-platform-tck
+* jakarta.tck:jms-platform-tck
+* jakarta.tck:project
+* jakarta.tck:persistence-platform-tck-tests
+* jakarta.tck:persistence-platform-tck-common
+* jakarta.tck:persistence-platform-tck-dbprocedures
+* jakarta.tck:persistence-platform-tck-spec-tests
+* jakarta.tck:jsonb-platform-tck
+* jakarta.tck:jsonp-platform-tck
+* jakarta.tck:pages-platform-tck
+* jakarta.tck:transactions-tck
+* jakarta.tck:tags-tck
+* jakarta.tck:signaturetest
+* jakarta.tck:websocket-tck-platform-tests
+* jakarta.tck:xa
+
+The version of these artifacts is the same as the service release version of the TCK. You can find the latest version of these artifacts in the Jakarta staging repository or in the Maven Central repository. You can search for the jakarta.tck:artifacts-bom to find the latest version that has been released.
+
+[[arquillian-container-configuration]]
+=== Arquillian Container Configuration (JavaTest Protocol)
+In addition to specifying the test framework and TCK test artifact dependencies, you need to configure the Arquillian container. The
+Arquillian container manages the VI being tested and handles starting the container, deploying the test archives, and then stopping the container.
+
+The configuration will depend on the container you are using, but you will need to include a configuration of the Arquillian javatest protocol for platform tests.
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://jboss.org/schema/arquillian"
+            xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+  <engine>
+        <property name="deploymentExportPath">target/deployments</property>
+  </engine>
+  <extension qualifier="glassfish-descriptors">
+      <property name="descriptorDir">target/</property>
+  </extension>
+
+  <group qualifier="glassfish-servers" default="true">
+    <container qualifier="tck-javatest" default="true">
+        <configuration> <1>
+            <property name="glassFishHome">target/glassfish8</property>
+            <property name="debug">true</property>
+            <property name="suspend">false</property>
+        </configuration>
+        <protocol type="javatest"> <2>
+            <property name="trace">true</property>
+            <property name="workDir">/tmp</property>
+            <property name="tsJteFile">jakartaeetck/bin/ts.jte</property>
+            <property name="tsSqlStmtFile">sql/derby/derby.dml.sql</property>
+        </protocol>
+    </container>
+  </group>
+
+</arquillian>
+----
+<1> This is the managed container specific config, here for Glassfish 8.
+<2> This is the javatest protocol configuration.
+* `tsJteFile` property is the path to the ts.jte file that contains the configuration for the test run.
+* `tsSqlStmtFile` property is the path to the SQL file that contains the DML statements for the test run.
+* the `trace` property is used to enable additional logging for the test run.
+* the `workDir` property is the directory where the test TCK classes will put working files.
+
+=== Arquillian Container Configuration (Appclient Protocol) (Full Platform Only)
+TBD
 
 [[running-sigtest-example]]
 ==== Example 7-1 Running the Jakarta EE {tck_version} Platform TCK Signature Tests (Needs Rewrite)
@@ -108,7 +280,7 @@ mvn ...
 === To Validate Your Configuration in Command-Line Mode (Needs Rewrite)
 
 .  Go to the `<TS_HOME>/src/com/sun/ts/tests/samples` directory.
-.  Start the the test run by executing the following command: 
+.  Start the test run by executing the following command:
 +
 [source,oac_no_warn]
 ----
@@ -169,26 +341,6 @@ There are two mechanisms in place in the TCK which control whether or
 not a given set of tests is run - the `javaee.level` property in the
 `ts.jte` file (see <<setting-the-javaee.level-property>>) and keywords (see <<using-keywords-to-create-groups-and-subsets-of-tests>>).
 
-[[setting-the-javaee.level-property]]
-=== Setting the javaee.level Property
-
-The `ts.jte` file includes the `javaee.level` property. This property
-serves two purposes. First, it is used to determine whether the
-implementation under test is a Jakarta EE Full profile (full) or Jakarta EE
-Web profile (web). Either "full" or "web" must be specified in the list
-values. A setting of "full" instructs the test harness to deploy EAR
-files. A setting of "web" instructs the test harness to deploy WAR
-files. The `javaee.level` property is also used to help determine which
-APIs in the signature tests are to be tested. The comments that precede
-the property setting in the `ts.jte` file provide additional information
-about setting this property.
-
-The default setting is as follows:
-
-[source,oac_no_warn]
-----
-javaee.level=full
-----
 
 [[using-keywords-to-create-groups-and-subsets-of-tests]]
 === Using Keywords to Create Groups and Subsets of Tests (Needs Rewrite)

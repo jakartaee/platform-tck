@@ -14,7 +14,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>jakarta.tck</groupId>
-    <artifactId>cdi-tck-artifacts</artifactId>
+    <artifactId>platform-tck-artifacts</artifactId>
     <packaging>pom</packaging>
     <!-- This is set to project release version during assembly -->
     <version>${project.version}</version>
@@ -86,6 +86,21 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>assembly-tck-${project.version}.jar</file>
+                            <generatePom>false</generatePom>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-cdi-ee-tck</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>cdi-tck-ee-impl</artifactId>
+                            <version>${project.version}</version>
+                            <packaging>jar</packaging>
+                            <file>cdi-tck-ee-impl-${project.version}.jar</file>
                             <generatePom>false</generatePom>
                         </configuration>
                     </execution>

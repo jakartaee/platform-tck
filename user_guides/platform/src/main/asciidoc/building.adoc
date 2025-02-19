@@ -36,12 +36,12 @@ use the build infrastructure that comes with the TCK:
 installed.
 * `TS_HOME/bin` to your `PATH` in your command shell.
 * C Shell: +
-[source,oac_no_warn]
+[source,bash]
 ----
 setenv PATH ${TS_HOME}/bin:${PATH}
 ----
 Bourne Shell: +
-[source,oac_no_warn]
+[source,bash]
 ----
 PATH=${TS_HOME}/bin:${PATH}
 export PATH
@@ -81,7 +81,7 @@ To run the Jakarta EE {tck_version} Platform TCK tests using Maven, use one of t
 
 To run a single test directory, type the following:
 
-[source,oac_no_warn]
+[source,bash]
 ----
 cd <TS_HOME>/src/com/sun/ts/tests/test_dir
 ant runclient
@@ -94,7 +94,7 @@ This runs all tests in test_dir.
 
 To run a single test within a test directory, type the following:
 
-[source,oac_no_warn]
+[source,bash]
 ----
 cd <TS_HOME>/src/com/sun/ts/tests/test_dir
 ant runclient -Dtest=test_name
@@ -145,7 +145,7 @@ the rebuildable tests. The rebuildable tests are located under
 
 The following listing shows sample output for the Ant `lc` target.
 
-[source,oac_no_warn]
+[source,bash]
 ----
 cd $TS_HOME/src/com/sun/ts/tests/samples/ejb/ee/simpleHello
 ant lc
@@ -213,7 +213,7 @@ To restrict the JDBC test run to the servlet and Jakarta Server Pages vehicles o
 the following system property in the `<TS_HOME>/bin/build.xml` file for
 the Ant `gui` or `runclient` targets:
 
-[source,oac_no_warn]
+[source,xml]
 ----
 <sysproperty key="tests_jdbc_ee.service_eetest.vehicles" 
   value="servlet jsp"/>
@@ -232,7 +232,7 @@ When running the JavaTest harness in command-line mode, you can obtain
 additional debugging information by setting the `HARNESS_DEBUG`
 environment variable, as follows:
 
-[source,oac_no_warn]
+[source,bash]
 ----
 setenv HARNESS_DEBUG=true
 ----
@@ -243,7 +243,7 @@ debugging information.
 You can also generate additional test run information by seting the
 `<TS_HOME>/bin/ts.jte` `harness.log.traceflag` property as follows:
 
-[source,oac_no_warn]
+[source,properties]
 ----
 harness.log.traceflag=true
 ----

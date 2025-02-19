@@ -2,6 +2,10 @@
 = Jakarta EE Platform, Enterprise Edition {tck_version} Test Compatibility Kit User's Guide, Release 11 for Jakarta EE
 :tck_version: 11
 :glassfish_version: GlassFish 8.0
+:junit_version: 5.11.4
+:arquillian_version: 1.9.3.Final
+:jakartaee_api_version: 11.0.0-M5
+:jakartaee_tck_version: 11.0.0-M7
 :doctype: book
 :toc:
 

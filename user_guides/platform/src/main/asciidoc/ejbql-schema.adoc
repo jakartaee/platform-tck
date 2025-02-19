@@ -29,7 +29,7 @@ Note: EJB in the figure above is a  references to Jakarta Enterprise Beans.
 a|
 AliasEJB
 
-[source,oac_no_warn]
+[source,java]
 ----
 String id;(pk)(cmp)
 String alias;(cmp)
@@ -41,7 +41,7 @@ Collection customers;(cmr)
 
 Country: DVC
 
-[source,oac_no_warn]
+[source,java]
 ----
 String name;(cmp)
 String code;(cmp)
@@ -50,7 +50,7 @@ String code;(cmp)
 
 AddressEJB
 
-[source,oac_no_warn]
+[source,java]
 ----
 String id;(pk)(cmp)
 String street;(cmp)
@@ -63,7 +63,7 @@ Collection phones;(cmr)
 
 ProductEJB
 
-[source,oac_no_warn]
+[source,java]
 ----
 String id;(pk)(cmp)
 String name;(cmp)
@@ -76,7 +76,7 @@ long partNumber;(cmp)
 a|
 CustomerEJB
 
-[source,oac_no_warn]
+[source,java]
 ----
 String id;(pk)(cmp)
 String name;(cmp)
@@ -92,7 +92,7 @@ SpouseLocal spouse;(cmr)
 
 CreditCardEJB
 
-[source,oac_no_warn]
+[source,java]
 ----
 String id;(pk)(cmp)
 String type;(cmp)
@@ -107,7 +107,7 @@ double balance;(cmp)
 
 InfoEJB
 
-[source,oac_no_warn]
+[source,java]
 ----
 String id;(pk)(cmp)
 String street;(cmp)
@@ -120,7 +120,7 @@ SpouseLocal spouse;(cmr)
 a|
 OrderEJB
 
-[source,oac_no_warn]
+[source,java]
 ----
 String id;(pk)(cmp)
 float totalPrice;(cmp)
@@ -133,7 +133,7 @@ CreditCardLocal creditCard;(cmr)
 
 LineItemEJB
 
-[source,oac_no_warn]
+[source,java]
 ----
 String id;(pk)(cmp)
 int quantity;(cmp)
@@ -144,7 +144,7 @@ ProductLocal product;(cmr)
 
 PhoneEJB
 
-[source,oac_no_warn]
+[source,java]
 ----
 String id;(pk)(cmp)
 String area:(cmp)
@@ -154,7 +154,7 @@ AddressLocal  address;(cmr)
 
 SpouseEJB
 
-[source,oac_no_warn]
+[source,java]
 ----
 String id;(pk)(cmp)
 String firstName;(cmp)

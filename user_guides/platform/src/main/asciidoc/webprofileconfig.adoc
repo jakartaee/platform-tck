@@ -30,7 +30,7 @@ following steps explain how to use this mechanism.
 
 1.  Configure your runner pom.xml  maven-surefire-plugin to specify a group of 'web' as shown below:
 +
-[source,oac_no_warn]
+[source,xml]
 ----
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

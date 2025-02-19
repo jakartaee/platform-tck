@@ -19,13 +19,18 @@
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">  
-  <!-- This can be generated from the  -->
+  <!-- This can be generated from the VersionRelease program -->
+  <!-- This is the BOM for the Jakarta TCK Test Artifacts -->
   <modelVersion>4.0.0</modelVersion>  
   <groupId>jakarta.tck</groupId>  
   <artifactId>artifacts-bom</artifactId>
   <version>${project.version}</version>
   <packaging>pom</packaging>
-  
+
+  <properties>
+    <version.jakarta.tck.arquillian>11.0.0-RC1</version.jakarta.tck.arquillian>
+    <version.jakarta.tck.common>11.0.0-RC4</version.jakarta.tck.common>
+  </properties>
   
   <dependencyManagement> 
     <dependencies> 
@@ -169,6 +174,30 @@
         <groupId>jakarta.tck</groupId>
         <artifactId>javaee-tck</artifactId>
         <version>${project.version}</version>
+      </dependency>
+
+      <!-- TCK common dependencies -->
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>common</artifactId>
+        <version>${version.jakarta.tck.common}</version>
+      </dependency>
+
+      <!-- TCK Arquillian artifacts -->
+      <dependency>
+        <groupId>jakarta.tck.arquillian</groupId>
+        <artifactId>arquillian-protocol-appclient</artifactId>
+        <version>${version.jakarta.tck.arquillian}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck.arquillian</groupId>
+        <artifactId>arquillian-protocol-javatest</artifactId>
+        <version>${version.jakarta.tck.arquillian}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck.arquillian</groupId>
+        <artifactId>tck-porting-lib</artifactId>
+        <version>${version.jakarta.tck.arquillian}</version>
       </dependency>
     </dependencies> 
   </dependencyManagement> 

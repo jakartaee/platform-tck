@@ -307,7 +307,6 @@ This section includes the following topics:
 * <<jakarta-websocket-test-setup>>
 * <<jdbc-test-setup>>
 * <<jakarta-mail-test-setup>>
-* <<jakarta-restful-web-services-test-setup>>
 * <<jakarta-connector-test-setup>>
 * <<xa-test-setup>>
 * <<jakarta-enterprise-beans-4-test-setup>>
@@ -323,7 +322,7 @@ This section includes the following topics:
 
 Verify that the following properties, which are used by the test harness, have been set in the `<TS_HOME>/bin/ts.jte` file:
 
-[source,oac_no_warn]
+[source,properties]
 ----
 harness.temp.directory=<TS_HOME>/tmp
 harness.log.port=2000
@@ -449,7 +448,7 @@ Enterprise Edition CI, JDK, and TCK should all be installed on the same
 drive. If you must install these components on different drives, also
 change the `ri.applicationRoot` property in addition to the `pathsep`
 and `s1as.applicationRoot` properties; for example: +
-[source,oac_no_warn]
+[source,properties]
 ----
 ri.applicationRoot=C:
 ----
@@ -470,7 +469,7 @@ specify drive letters in any path properties in `ts.jte`.
 Make sure that the following servlet properties have been set in the
 `ts.jte` file:
 
-[source,oac_no_warn]
+[source,properties]
 ----
 ServletClientThreads=[2X size of default servlet instance pool] 
 servlet_waittime=[number_of_milliseconds]
@@ -516,7 +515,7 @@ default hostname (for example, `webServerHost`). The default is
 Make sure that the following WebSocket property has been set in the
 `ts.jte` file:
 
-[source,oac_no_warn]
+[source,properties]
 ----
 ws_wait=[number_of_seconds]
 ----
@@ -570,7 +569,7 @@ Complete the following tasks before you run the Jakarta Mail tests:
 
 .  Set the following properties in the `ts.jte` file: 
 +
-[source,oac_no_warn]
+[source,properties]
 ----
 mailuser1=[user@domain]
 mailFrom=[user@domain]
@@ -594,7 +593,7 @@ where the mail will be sent.
 Change to the `<TS_HOME>/bin` directory and execute the Ant target
 `populateMailbox` to create the sample messages in your IMAP server. 
 +
-[source,oac_no_warn]
+[source,bash]
 ----
 cd <TS_HOME>/bin
 ant populateMailbox
@@ -603,160 +602,17 @@ ant populateMailbox
 [[jakarta-restful-web-services-test-setup]]
 === Jakarta RESTful Web Services Test Setup
 
-This section explains how to set up the test environment to run the
-Jakarta RESTful Web Services tests using the Jakarta EE {tck_version} Compatible Implementation and/or a Vendor Implementation. This setup also includes steps for
-packaging/repackaging and publishing the packaged/repackaged WAR files
-as well.
-
-[[to-configure-your-environment-to-run-the-jakarta-restful-web-services-tests-against-the-jakarta-ee-8-ci]]
-==== To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against the Jakarta EE {tck_version} CI
-
 Edit your `<TS_HOME>/bin/ts.jte` file and set the following environment variables:
-
-.  Set the `jaxrs_impl_lib` property to point to the Jakarta RESTful Web Services CI. +
-The default setting for this property is
-`${javaee.home}/modules/jersey-container-servlet-core.jar` .
 
 .  Set the `servlet_adaptor` property to point to the Servlet adapter
 class for the Jakarta RESTful Web Services implementation. +
 The default setting for this property is
 `org/glassfish/jersey/servlet/ServletContainer.class`, the servlet
 adaptor supplied in Jersey.
-
-.  Set the `jaxrs_impl_name` property to the name of the Jakarta RESTful Web Services CI. +
-The default setting for this property is `jersey`. +
-An Ant script, jersey.xml, in the `<TS_HOME>/bin/xml/impl/glassfish`
-directory contains packaging instructions.
-
-[[package-war-files-for-deployment-jakarta-ee-ci]]
-==== To Package WAR files for Deployment on the Jakarta EE {tck_version} CI
-
-The Jakarta EE {tck_version} Platform TCK test suite does not come with prebuilt test WAR files
-for deployment on Jakarta EE {tck_version} CI. The test suite includes a command to
-generate the test WAR files that will be deployed on the Jakarta EE {tck_version} CI.
-The WAR files are Jersey-specific, with Jersey's servlet class and
-Eclipse Jersey's servlet defined in the `web.xml` deployment descriptor.
-
-To package the Jakarta RESTful Web Services WAR files for deployment on the Jakarta EE {tck_version} CI,
-complete the following steps:
-
-.  Change to the `<TS_HOME>/bin` directory.
-
-.  Execute the `update.jaxrs.wars` Ant target. +
-In a test WAR files that has the `servlet_adaptor` property defined,
-this target replaces the `servlet_adaptor` value of the servlet class
-name property in the `web.xml` file of the WAR files to be deployed on
-the Jakarta EE {tck_version} CI.
-
-[[configure-run-jaxrs-tests-against-vi]]
-==== To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against a Vendor Implementation
-
-Complete the following steps to configure your test environment to run
-the Jakarta RESTful Web Services tests against your vendor implementation. Before you can run the tests, you need to repackage the WAR files that contain the Jakarta RESTful Web Services tests and the VI-specific Servlet class that will be deployed on the
-vendor's Jakarta EE {tck_version}-compliant application server.
-
-.  Set the `jaxrs_impl_lib` property to point to the JAR file that
-contains the vendor's Jakarta RESTful Web Services Servlet adapter implementation. +
-The default setting for this property is
-`${javaee.home}/modules/jakarta.ws.rs-api.jar` .
-
-.  Set the `servlet_adaptor` property to point to the Servlet adapter
-class for the vendor's Jakarta RESTful Web Services implementation. +
-The class must be located in the JAR file defined by the
-`jaxrs_impl_lib` property. By default, this property is set to
-`org/glassfish/jersey/servlet/ServletContainer.class`, the servlet
-adapter supplied in Jersey.
-
-.  Set the `jaxrs_impl_name` property to the name of the Jakarta RESTful Web Services vendor implementation to be tested. +
-The name of the property must be unique.+
-The default setting for this property is `jersey`.
-
-[[repackage-war-files-for-deployment-on-the-vi]]
-==== To Repackage WAR files for Deployment on the Vendor Implementation (Obsolete ?)
-
-To run the Jakarta RESTful Web Services tests against a vendor's implementation in a Jakarta EE {tck_version} compliant application server, the tests need to be repackaged to
-include the VI-specific servlet, and the VI-specific servlet must be
-defined in the deployment descriptor.
-
-A vendor must create VI-specific Jakarta EE {tck_version}-compliant WAR files so the
-VI-specific Servlet class will be included instead of the Jakarta EE {tck_version}
-CI-specific Servlet class.
-
-All resource and application class files are already compiled. The
-Vendor needs to package these files. Jakarta EE {tck_version} Platform TCK makes this task
-easier by including template WAR files that contain all of the necessary
-files except for the VI-specific servlet adaptor class. The Jakarta EE {tck_version}
-TCK also provides a tool to help with the repackaging task.
-
-Each test that has a Jakarta RESTful Web Services resource class to publish comes with a
-template deployment descriptor file. For example, the file
-`<TS_HOME>/src/com/sun/ts/tests/jaxrs/ee/rs/get/web.xml.template`
-contains the following elements:
-
-[source,oac_no_warn]
-----
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" \
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee \
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-    <servlet>
-        <servlet-name>CTSJAX-RSGET</servlet-name>
-        <servlet-class>servlet_adaptor</servlet-class> 
-        <init-param>
-            <param-name>jakarta.ws.rs.Application</param-name>
-            <param-value>com.sun.ts.tests.jaxrs.ee.rs.get.TSAppConfig</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CTSJAX-RSGET</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
-    <session-config>
-        <session-timeout>30</session-timeout>
-    </session-config>
-</web-app>
-----
-
-In this example, the `<servlet-class>` element has a value of
-`servlet_adaptor`, which is a placeholder for the
-implementation-specific Servlet class. An Eclipse Jersey-specific deployment
-descriptor also comes with the Jakarta EE {tck_version} CI, Eclipse {glassfish_version}, and has the values for the
-`com.sun.jersey.spi.container.servlet.ServletContainer`:
-
-[source,oac_no_warn]
-----
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" \
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee \
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-   <servlet>
-        <servlet-name>CTSJAX-RSGET</servlet-name>
-        <servlet-class>
-        org.glassfish.jersey.servlet.ServletContainer 
-        </servlet-class>
-        <init-param>
-            <param-name>jakarta.ws.rs.Application</param-name>
-            <param-value>com.sun.ts.tests.jaxrs.ee.rs.get.TSAppConfig</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CTSJAX-RSGET</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
-    <session-config>
-        <session-timeout>30</session-timeout>
-        </session-config>
-</web-app>
-----
-
-The following steps explain how to create a VI-specific deployment
-descriptor.
-
-TBD if needed.
+.  Set the `webServerHost` property to the name of the host on which
+your Web server is running that is configured with the CI.
+.  Set the `webServerPort` property to the port number of the host on
+which the Web server is running and configured with the CI.
 
 [[jakarta-connector-test-setup]]
 === Jakarta Connector Test Setup (Full Platform Only)
@@ -920,7 +776,7 @@ Adapter user information to existing user information in the CI.
 
 For the Eclipse {glassfish_version} CI, these mappings add a line to the `domain.xml` file, similar to the one shown below, and should include 6 of these mappings:
 
-[source,oac_no_warn]
+[source,properties]
 ----
 <jvm-options>-Dwhitebox-tx-map=cts1=j2ee</jvm-options>
 <jvm-options>-Dwhitebox-tx-param-map=cts1=j2ee</jvm-options>
@@ -953,7 +809,7 @@ the `s1as.jvm.options` property in the `ts.jte` file. The connector
 tests require that the following subset of JVM options be set in the
 server under test:
 
-[source,oac_no_warn]
+[source,bash]
 ----
 -Dj2eelogin.name=j2ee
 -Dj2eelogin.password=j2ee
@@ -1006,7 +862,7 @@ run the XA tests:
 For example, you could use the `asadmin` command line utility in the
 Jakarta EE {tck_version} CI, Eclipse GlassFish 6.1 to create this connection pool:
 +
-[source,oac_no_warn]
+[source,bash]
 ----
 asadmin create-jdbc-connection-pool --restype javax.sql.XADataSource \
 --datasourceclassname org.apache.derby.jdbc.EmbeddedXADataSource  \
@@ -1031,7 +887,7 @@ JDBC connection pool elements) with the following JNDI names:
 For example, you could use the `asadmin` command line utility in the
 Jakarta EE {tck_version} CI to create the three connection pool elements:
 +
-[source,oac_no_warn]
+[source,bash]
 ----
 asadmin  asadmin  create-jdbc-resource --connectionpoolid cts-derby-XA-pool \
  eis/JDBCwhitebox-xa
@@ -1054,7 +910,7 @@ file that is contained in the `ejb_Tsr.ear` file. With the CI, these RAR
 files are deployed as part of the config.vi Ant task. The following RAR
 files are defined in the `ts.jte` file. 
 +
-[source,oac_no_warn]
+[source,properties]
 ----
 whitebox-tx=java:comp/env/eis/whitebox-tx
 whitebox-notx=java:comp/env/eis/whitebox-notx
@@ -1121,7 +977,7 @@ including the surrounding double quotes. +
 The value of the property must not contain any extra spaces. +
 For example: 
 +
-[source,oac_no_warn]
+[source,properties]
 ----
 jdbc.datasource.props="driverType=thin","name2=vale2"
 ----
@@ -1158,7 +1014,7 @@ implementation strategy in the target server.
 
 Set the following properties in the `ts.jte` file to configure the Jakarta Enterprise Beans timer tests:
 
-[source,oac_no_warn]
+[source,properties]
 ----
 ejb_timeout=[interval_in_milliseconds]
 ejb_wait=[interval_in_milliseconds]
@@ -1177,7 +1033,7 @@ The timer tests use the specific `jndi-name` jdbc`/DBTimer` for the
 datasource used for container-managed persistence to support the use of
 an XA datasource in the Jakarta EE {tck_version} timer implementation. For example:
 
-[source,oac_no_warn]
+[source,xml]
 ----
 <jdbc-resource enabled="true" jndi-name="jdbc/DBTimer" 
                object-type="user" pool-name="cts-javadb-XA-pool" />
@@ -1185,7 +1041,7 @@ an XA datasource in the Jakarta EE {tck_version} timer implementation. For examp
 
 The test directories that use this datasource are:
 
-[source,oac_no_warn]
+[source,bash]
 ----
 ejb/ee/timer
 ejb/ee/bb/entity/bmp/allowedmethostest
@@ -1310,7 +1166,7 @@ supported by TCK, the user will need to create an entry similar to the one liste
 [[genvalue-annotation-example]]
 ==== Example 5-1 GeneratedValue Annotation Test Table
 
-[source,oac_no_warn]
+[source,sql]
 ----
 DROP TABLE SEQUENCE;
 CREATE TABLE SEQUENCE (SEQ_NAME VARCHAR(10), SEQ_COUNT INT, CONSTRAINT SEQUENCE_PK /
@@ -1348,7 +1204,7 @@ The client-specified values for `JMSDeliveryMode`, `JMSExpiration`, and
 
 Make sure that the following property has been set in the `ts.jte` file:
 
-[source,oac_no_warn]
+[source,properties]
 ----
 jms_timeout=10000
 ----
@@ -1374,7 +1230,7 @@ that use this property. You rebuild the tests by doing the following:
 .  Change to the `TS_HOME/bin` directory.
 .  Invoke the following Ant task: 
 +
-[source,oac_no_warn]
+[source,bash]
 ----
 ant rebuild.jms.rebuildable.tests
 ----
@@ -1392,7 +1248,7 @@ factories, queues, and topics.
 
 * Factories: 
 +
-[source,oac_no_warn]
+[source,bash]
 ----
 jms/TopicConnectionFactory
 jms/DURABLE_SUB_CONNECTION_FACTORY, clientId=cts
@@ -1408,7 +1264,7 @@ jms/ConnectionFactory
 +
 * Queues: 
 +
-[source,oac_no_warn]
+[source,bash]
 ----
 MDB_QUEUE
 MDB_QUEUE_REPLY
@@ -1493,7 +1349,7 @@ fooQ
 +
 * Topics: 
 +
-[source,oac_no_warn]
+[source,bash]
 ----
 MY_TOPIC
 MY_TOPIC2
@@ -1556,7 +1412,7 @@ VM. (Obsolete, need to define if this is used and how)
 [[jakarta-ejb-endpoint-security]]
 ==== Jakarta Enterprise Beans Endpoint Security
 
-[source,oac_no_warn]
+[source,bash]
 ----
 element : login-config
 ----
@@ -1568,7 +1424,7 @@ set to `BASIC` or `CLIENT_CERT`. The equivalent security for servlet
 endpoints is set through the standard web-application security elements.
 For example:
 
-[source,oac_no_warn]
+[source,xml]
 ----
 <ejb>
       <ejb-name>GoogleEjb</ejb-name>
@@ -1586,7 +1442,7 @@ For example:
 [[transport-guarantee]]
 ==== Transport Guarantee
 
-[source,oac_no_warn]
+[source,bash]
 ----
 element : transport-guarantee
 ----
@@ -1695,7 +1551,7 @@ The signature test setup includes the following:
 Set the `sigTestClasspath` property in the `<TS_HOME>/bin/ts.jte` file
 to include a `CLASSPATH` containing the following:
 
-[source,oac_no_warn]
+[source,properties]
 ----
 sigTestClasspath=jar_to_test:jars_used_by_yours 
 ----
@@ -1824,7 +1680,7 @@ modify the `sql-mode` setting in the `my.cnf` file to set the
 ANSI_QUOTES option. After setting this option, reboot the MySQL server.
 Set the option as shown in this example:
 
-[source,oac_no_warn]
+[source,properties]
 ----
 sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,ANSI_QUOTES"
 ----
@@ -1836,7 +1692,7 @@ If your database already exists and if you use a case-sensitive
 collation on MS SQL Server, execute the following command to modify the
 database and avert errors caused by case-sensitive collation:
 
-[source,oac_no_warn]
+[source,sql]
 ----
 ALTER DATABASE ctsdb
 COLLATE Latin1_General_CS_AS ;
