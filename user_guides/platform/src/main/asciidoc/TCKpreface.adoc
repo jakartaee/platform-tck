@@ -81,7 +81,7 @@ From the File menu, select Open Project.
 
 A cache is a copy that is stored locally.
 
-[source,oac_no_warn]
+[source,bash]
 ----
 machine_name% su
 Password:

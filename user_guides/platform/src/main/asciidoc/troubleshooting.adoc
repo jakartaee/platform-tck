@@ -19,7 +19,7 @@ the Jakarta Platform, Enterprise Edition CI, Eclipse {glassfish_version}, and ot
 When you start the Jakarta Platform, Enterprise Edition CI, Eclipse {glassfish_version} on
 Windows by using the `javaee -verbose` command, the system may not find
 the specified path and could display one of the following errors: +
-[source,oac_no_warn]
+[source,bash]
 ----
 "Verify that JAVA_HOME is set correctly"
 "Verify that JAKARTAEE_HOME is set correctly"
@@ -30,7 +30,7 @@ installed and set `JAKARTAEE_HOME` to the location of the Jakarta Platform, Ente
 
 * Problem: +
 When running the Jakarta Persistence TCK tests you see an error log message containing:
-[source,oac_no_warn]
+[source,bash]
 ----
 LogFileProcessor setup failed
 Please verify that the property log.file.location exists in ts.jte

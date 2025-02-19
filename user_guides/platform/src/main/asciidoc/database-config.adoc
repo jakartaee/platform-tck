@@ -90,7 +90,7 @@ only. In such cases, the property value applies to the Jakarta Platform,
 Enterprise Edition VI server (the server you want to test) and the
 property`.ri` value applies to the Jakarta Platform, Enterprise Edition CI, Eclipse {glassfish_version} server. For example:
 
-[source,oac_no_warn]
+[source,properties]
 ----
 db.dml.file=VI_DML_filename
 db.dml.file.ri=RI_DML_filename
@@ -215,7 +215,7 @@ the database that you are using.
 An example of the syntax for a database target in `initdb.xml` is shown
 below:
 
-[source,oac_no_warn]
+[source,xml]
 ----
 <target name="init.sybase">
   <antcall target="configure.backend">
@@ -234,7 +234,7 @@ The database`.name` property should be added to your `ts.jte` file. The
 `db.name` property is the name of a subdirectory in `<TS_HOME>/sql`.
 After updating `initdb.xml`, you invoke the new target with:
 
-[source,oac_no_warn]
+[source,bash]
 ----
 ant -f <TS_HOME>/bin/xml/initdb.xml init.databasename
 ----
