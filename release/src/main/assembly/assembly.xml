@@ -16,8 +16,8 @@
         </file>
         <!-- This is the final EFTL license -->
         <file>
-            <source>../LICENSE_EFTL.adoc</source>
-            <destName>LICENSE.adoc</destName>
+            <source>../LICENSE.md</source>
+            <destName>LICENSE.md</destName>
         </file>
         <file>
             <source>artifacts-bom.pom</source>
