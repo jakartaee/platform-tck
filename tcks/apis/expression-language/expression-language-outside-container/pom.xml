@@ -71,9 +71,15 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>LICENSE_${license}.md</include>
                     <include>com/</include>
                 </includes>
+            </resource>
+            <resource>
+                <directory>../../../..</directory>
+                <includes>
+                    <include>LICENSE.md</include>
+                </includes>
+                <targetPath>META-INF</targetPath>
             </resource>
         </resources>
 
