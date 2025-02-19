@@ -76,5 +76,14 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>../../../../..</directory>
+                <includes>
+                    <include>LICENSE.md</include>
+                </includes>
+                <targetPath>META-INF</targetPath>
+            </resource>
+        </resources>
     </build>
 </project>

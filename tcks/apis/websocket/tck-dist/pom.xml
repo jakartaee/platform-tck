@@ -77,6 +77,15 @@
 
     <build>
         <finalName>${bundle-name}-${project.version}</finalName>
+        <resources>
+            <resource>
+                <directory>../../../..</directory>
+                <includes>
+                    <include>LICENSE.md</include>
+                </includes>
+                <targetPath>META-INF</targetPath>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

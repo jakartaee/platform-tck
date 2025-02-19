@@ -190,6 +190,15 @@ javax.rmi.sig (Corba classes for EJB)
                 <version>${version.sigtest-maven-plugin}</version>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>../../../../..</directory>
+                <includes>
+                    <include>LICENSE.md</include>
+                </includes>
+                <targetPath>META-INF</targetPath>
+            </resource>
+        </resources>
     </build>
     <profiles>
         <profile>
