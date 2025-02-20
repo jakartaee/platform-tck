@@ -41,6 +41,9 @@ public class JPASigTest extends SigTest {
 
   private static final Logger logger = System.getLogger(JPASigTest.class.getName());
 
+  public JPASigTest() {
+    setup(new String[]{}, System.getProperties());
+  }
   /***** Abstract Method Implementation *****/
 
   /**

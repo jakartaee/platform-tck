@@ -145,7 +145,7 @@ public class WebSocketSigTestIT extends SigTest {
 	}
 
 	public WebSocketSigTestIT() {
-		setup();
+		setup(new String[]{}, System.getProperties());
 	}
 
 	/**
