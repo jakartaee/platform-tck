@@ -51,12 +51,14 @@ public class VerifyHashes {
         if(!Files.exists(stagedJars)) {
             Files.createDirectory(stagedJars);
         }
+        System.out.println("Downloading jars to " + stagedJars);
         // Download the jars from the maven repository
         for (Path jarFile : jarFiles) {
             String jarFileName = jarFile.getFileName().toString();
             Matcher matcher = VERSION_PATTERN.matcher(jarFileName);
+            Path repoJar = stagedJars.resolve(jarFile);
             // Skip if a sources or javadoc jar, or already downloaded
-            if (matcher.matches() && !Files.exists(jarFile)) {
+            if (matcher.matches() && !Files.exists(repoJar)) {
                 String artifactId = matcher.group(1);
                 String version = matcher.group(2);
 
@@ -64,10 +66,10 @@ public class VerifyHashes {
                 System.out.println("Downloading " + url);
                 URL stagingUrl = new URL(url);
                 try (InputStream is = stagingUrl.openStream()) {
-                    is.transferTo(Files.newOutputStream(stagedJars.resolve(jarFileName)));
+                    is.transferTo(Files.newOutputStream(repoJar));
                 }
             } else {
-                //System.out.println("Skipping " + jarFileName);
+                System.out.printf("Skipping non-test artifact: '%s'\n", jarFileName);
             }
         }
     }
