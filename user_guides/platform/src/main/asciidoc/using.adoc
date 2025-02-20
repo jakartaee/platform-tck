@@ -15,8 +15,7 @@ This chapter includes the following topics:
 [NOTE]
 ============
 The instructions in this chapter assume that you have installed and configured your test environment as described
-<<installation>> and <<setup-and-configuration>>
-respectively.
+<<installation>> and <<setup-and-configuration>> respectively.
 ============
 
 
@@ -61,7 +60,7 @@ Jakarta EE {tck_version} Platform TCK was installed.
 .  Ensure that the `ts.jte` file contains information relevant to your
 setup. +
 Refer to <<setup-and-configuration>> for detailed configuration instructions, or that your runner maven project surefire/failsafe plugin has defined the equivalent system properties.
-.  Execute the `test` Maven goal to start the testuite: +
+.  Execute the `test` Maven goal to start the testsuite: +
 [source,bash]
 ----
 mvn test
@@ -69,9 +68,10 @@ mvn test
 This runs all tests in the current directory and any subdirectories.
 
 [[runner-maven-dependencies]]
-=== Maven Dependencies
-Your runner configuration should have a dependencyManagement section that imports the Junit5 and Arquillian and Jakarta EE API bom dependencies:
+==== Maven Dependencies
+Your runner configuration should have a dependencyManagement section that imports the Junit5 and Arquillian and Jakarta EE API and Jakarta TCK test artifact bom dependencies:
 
+.Maven `dependencyManagement` Section
 [[maven-dependency-management]]
 [source,xml,subs="attributes+"]
 ----
@@ -112,6 +112,7 @@ Your runner configuration should have a dependencyManagement section that import
 
 You then need to define the specific dependencies for the test runner without the version information:
 
+.Maven `dependencies` Section
 [[maven-dependencies]]
 [source,xml,subs="attributes+"]
 ----
@@ -202,12 +203,13 @@ The list of groupId:artifactId for the Jakarta EE {tck_version} TCK test artifac
 The version of these artifacts is the same as the service release version of the TCK. You can find the latest version of these artifacts in the Jakarta staging repository or in the Maven Central repository. You can search for the jakarta.tck:artifacts-bom to find the latest version that has been released.
 
 [[arquillian-container-configuration]]
-=== Arquillian Container Configuration (JavaTest Protocol)
+==== Arquillian Container Configuration (JavaTest Protocol)
 In addition to specifying the test framework and TCK test artifact dependencies, you need to configure the Arquillian container. The
 Arquillian container manages the VI being tested and handles starting the container, deploying the test archives, and then stopping the container.
 
 The configuration will depend on the container you are using, but you will need to include a configuration of the Arquillian javatest protocol for platform tests.
 
+.Maven `arquillian.xml` javatest Protocol Configuration
 [source,xml]
 ----
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -247,31 +249,59 @@ The configuration will depend on the container you are using, but you will need 
 * the `trace` property is used to enable additional logging for the test run.
 * the `workDir` property is the directory where the test TCK classes will put working files.
 
-=== Arquillian Container Configuration (Appclient Protocol) (Full Platform Only)
+==== Arquillian Container Configuration (Appclient Protocol) (Full Platform Only)
 TBD
 
 [[running-sigtest-example]]
-==== Example 7-1 Running the Jakarta EE {tck_version} Platform TCK Signature Tests (Needs Rewrite)
+==== Example - Running the Jakarta EE {tck_version} Platform TCK Signature Tests (Needs Rewrite)
 
 To run the Jakarta EE {tck_version} Platform TCK signature tests, enter the following commands:
 
 [source,oac_no_warn]
 ----
-cd <TS_HOME>/src/com/sun/ts/tests/signaturetest/javaee
-ant runclient
+TBD
 ----
 
 [[running-tests-package]]
-==== Example 7-2 Running a Single Test Directory (Needs Rewrite)
+==== Example - Running a Single Test Package
 
-To run a single test directory in the `forward` direction, enter the
-following commands:
+To run a single test package, you would configure your surefile/failsafe plugin to have an execution that only includes the tests in the package you are interested in. For example, to run the tests in the `ee.jakarta.tck.persistence.ee.cdi` package, you would configure your surefire/failsafe plugin as shown in the following example:
 
-[source,oac_no_warn]
+[source,xml]
 ----
-mvn ...
-----
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <trimStackTrace>false</trimStackTrace>
+                    <dependenciesToScan>jakarta.tck:persistence-platform-tck-tests</dependenciesToScan>
+                <executions>
+                    <execution>
+                        <id>jpa-tests-cdi</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>ee/jakarta/tck/persistence/ee/cdi/*Test.java</include><1>
+                            </includes>
 
+
+                            <systemPropertyVariables>
+                                <arquillian.xml>cdi-arquillian.xml</arquillian.xml>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
+...
+               </executions>
+            </plugin>
+----
+<1> Restrict the tests run to only those in the `ee.jakarta.tck.persistence.ee.cdi` package.
+
+You could further restrict the included test to a specific test class by changing the include to the specific test class name.
+
+[[running-tests-classes]]
 
 [[validating-your-test-configuration]]
 == Validating Your Test Configuration
@@ -308,221 +338,105 @@ Reports are written to the report directory you specified in
 written to the `/tmp/JTreport` directory (Solaris/Linux) or
 `C:\temp\JTreport` (Windows).
 
-[[running-a-subset-of-the-tests]]
-== Running a Subset of the Tests (Needs Rewrite)
-
-[[to-run-a-subset-of-tests-in-command-line-mode]]
-
-=== To Run a Subset of Tests in Command-Line Mode
-
-1.  Change to the directory containing the tests you want to run. +
-For example, `<TS_HOME>/src/com/sun/ts/tests/samples`.
-2.  Start the test run by executing the following command: 
-+
-[source,oac_no_warn]
-----
-ant runclient
-----
-+
-The tests in `<TS_HOME>/src/com/sun/ts/tests/samples` and its subdirectories are run.
-
-[[to-run-a-subset-of-tests-in-batch-mode-based-on-prior-result-status]]
-
-
 [[using-keywords-to-test]]
-== Using Keywords to Test Required Technologies (Needs Rewrite)
+== Using Keywords to Test Required Technologies
 
-The Jakarta EE TCK includes some tests that may be optional depending on
-your implementation. For example, certain technologies are now optional
-for implementations of the full Jakarta EE Platform. There are other
-technologies which are optional for Web Profile implementations, but may
-be implemented. If implemented, optional tests must be run and pass.
-There are two mechanisms in place in the TCK which control whether or
-not a given set of tests is run - the `javaee.level` property in the
-`ts.jte` file (see <<setting-the-javaee.level-property>>) and keywords (see <<using-keywords-to-create-groups-and-subsets-of-tests>>).
+The Jakarta EE TCK includes Junit5 `@Tag` annotations that allow you to select a subset of tests based on the tag name. Each test in TCK has keywords associated with it. The keywords are used to create groups and subsets of tests. At test execution time, a user can tell the test harness to only run tests with or without certain groups.
 
+The full list of available tags are:
 
-[[using-keywords-to-create-groups-and-subsets-of-tests]]
-=== Using Keywords to Create Groups and Subsets of Tests (Needs Rewrite)
+* @Tag("assembly")
+* @Tag("connector")
+* @Tag("connector_standalone")
+* @Tag("connector_web")
+* @Tag("ejb")
+* @Tag("ejb30")
+* @Tag("ejb32")
+* @Tag("ejb_web")
+* @Tag("ejb_web_profile")
+* @Tag("el")
+* @Tag("integration")
+* @Tag("jaxrs")
+* @Tag("jdbc")
+* @Tag("jms")
+* @Tag("jms_web")
+* @Tag("jsonb")
+* @Tag("jsonp")
+* @Tag("jsp")
+* @Tag("jsp_security")
+* @Tag("jstl")
+* @Tag("jta")
+* @Tag("mail")
+* @Tag("persistence")
+* @Tag("platform")
+* @Tag("security")
+* @Tag("signaturetest")
+* @Tag("tck-appclient")
+* @Tag("tck-javatest")
+* @Tag("web")
+* @Tag("websocket")
+* @Tag("xa")
 
-Each test in TCK has keywords associated with it. The keywords are used
-to create groups and subsets of tests. At test execution time, a user
-can tell the test harness to only run tests with or without certain
-keywords. This mechanism is used to select or omit testing on selected
-optional technologies. The "keywords" property can be set to a set of
-available keywords joined by "&" and/or "|".
-
-To set the keywords system property at runtime, you must either pass it
-on the command line via `-Dkeywords=""` or in the JavaTest GUI, by
-opening the test suite and performing the following steps:
-
-1.  Select *View*, then select *Filters*, then select *CurrentConfiguration*.
-2.  Select *Configure*, then select *ChangeConfiguration*, then select
-*Keywords*.
-3.  In the Keywords dialog, select the Select *Tests that Match* check
-box, specify the desired keyword in the field, then click *Done*. +
-Only tests that have been tagged with that keyword will be enabled in
-the test tree.
-
-The examples in the sections that follow show how to use keywords to run
-required technologies in both the Full and Web profile, run/omit running
-optional sets of tests in TCK, and run the Interoperability and
-Rebuildable tests in forward and reverse directions.
+The most useful of these are the "platform" and "web" tags. The "platform" tag is used to run tests that are required by the Full Platform. The "web" tag is used to run tests that are required by the Web Profile.
 
 [[to-use-keywords-to-run-required-technologies]]
-==== To Use Keywords to Run Required Technologies (Needs Rewrite)
+=== To Use Keywords to Run Required Technologies
 
-===== Example 7-4 Running Tests for Required Technologies in the Full Profile
+You use the `<groups>` element in the failsafe/surefire plugin configuration as described in the https://maven.apache.org/surefire/maven-failsafe-plugin/examples/junit-platform.html#filtering-by-tags[Failsafe Plugin documentation] to specify the tags you want to run.
 
-[source,oac_no_warn]
+==== Example - Running Tests for Required Technologies in the Full Platform
+
+To restrict the tests to the group of tests that are required by the Full Platform, use the `platform` keyword.
+[source,xml]
 ----
-cd <TS_HOME>/src/com/sun/ts/tests
-ant -Dkeywords=javaee runclient
+...
+    <plugins>
+        ...
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>3.5.2</version>
+            <configuration>
+                <groups>platform</groups>
+            </configuration>
+        </plugin>
+    </plugins>
 ----
 
-Only tests that are required by the Full Profile will be run.
+Only tests that are required by the Full Platform will be run.
 
 
-===== Example 7-5 Running Tests for All Required Technologies in the Web Profile
+=== Example - Running Tests for All Required Technologies in the Web Profile
 
-[source,oac_no_warn]
+To restrict the tests to the group of tests that are required by the Web Profile, use the `web` keyword.
+
+[source,xml]
 ----
-cd <TS_HOME>/src/com/sun/ts/tests
-ant -Dkeywords=javaee_web_profile runclient
+...
+    <plugins>
+        ...
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>3.5.2</version>
+            <configuration>
+                <groups>web</groups>
+            </configuration>
+        </plugin>
+    </plugins>
 ----
 
 Only tests that are required by the Web Profile will be run.
 
-===== Example 7-6 Running All Required Tests Except Connector Tests in the Full Profile
+== Rebuilding Test Directories for Different Databases
 
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests
-ant -Dkeywords="javaee & !connector" runclient
-----
-
-
-===== Example 7-7 Running All EJB Tests in the Full Profile
-
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests
-ant -Dkeywords=ejb runclient
-----
-
-
-===== Example 7-8 Running All EJB 3.2 Tests in the Full Profile
-
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests
-ant -Dkeywords=ejb32 runclient
-----
-
-
-===== Example 7-9 Running All EJB Tests in the Web Profile
-
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests
-ant -Dkeywords=ejb_web_profile runclient
-----
-
-[[to-use-keywords-to-run-optional-subsets-of-tests-with-the-web-profile]]
-==== To Use Keywords to Run Optional Subsets of Tests With the Web Profile (Needs Rewrite)
-
-Keywords can be used to run subsets of tests from additional areas that
-are not required by the Jakarta EE {tck_version} Web Profile specification. For
-example, if your server implements the Jakarta EE {tck_version} Web Profile and the
-Jakarta Connector Architecture 2.0 technology, set the keywords to
-`javaee_web_profile|connector_web_profile` to enable running tests for
-both areas. The command below shows how to specify these keywords to run
-the tests in both areas.
-
-[source,oac_no_warn]
-----
-ant -Dkeywords="(javaee_web_profile|connector_web_profile) runclient
-----
-
-<<keyword-web-profile-optional-table>> lists optional subsets of tests that can be run
-for the Web Profile and provides the technology-to-keyword mappings for
-each of the optional areas.
-
-[[keyword-web-profile-optional-table]]
-.Keyword to Technology Mappings for Web Profile Optional Subsets
-[width="100%",cols="50%,50%",options="header",]
-|==================================
-|Technology |Keyword
-|Jakarta Connectors |`connector_web_profile`
-|Jakarta Mail (formerly JavaMail) |`javamail_web_profile`
-|Jakarta Registries (formerly JAXR) |`jaxr_web_profile`
-|Jakarta Messaging(formerly JMS) |`jms_web_profile`
-|XA |`xa_web_profile`
-|==================================
-
-
-To add tests for other technologies, select the appropriate keyword from
-<<keyword-web-profile-optional-table>>. This table provides a mapping of keywords to
-optional technologies (test directories) in the test suite and indicates
-optional test areas for the Jakarta EE {tck_version} Web Profile.
-
-===== Example 7-12 Running Tests for All Optional Technologies in the Web Profile
-
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests
-ant -Dkeywords=javaee_web_profile_optional runclient
-----
-
-===== Example 7-13 Running the Optional Jakarta Authorization and Authentication Tests With All Required Web Profile Tests
-
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests
-ant -Dkeywords="javaee_web_profile | jacc_web_profile | jaspic_web_profile" runclient
-----
-
-[[to-use-keywords-to-run-optional-subsets-for-jakarta-enterprise-beans-lite]]
-==== To Use Keywords to Run Optional Subsets for Jakarta Enterprise Beans Lite
-
-<<keyword-optional-jakarta-enterprise-beans-lite-table>> shows the TCK keywords you can use to test optional Jakarta Enterprise Beans (formerly EJB) Lite
-components. Components denoted with an asterisk (*) are pruned
-components; components without an asterisk are not required by EJB Lite.
-
-[[keyword-optional-jakarta-enterprise-beans-lite-table]]
-.TCK Keywords for Optional Jakarta Enterprise Beans Lite Components
-[width="100%",cols="50%,50%",options="header",]
-|=======================================================================
-|Component |TCK Keyword
-|Message-Driven Beans |`ejb_mdb_optional`
-
-|1x CMP/BMP Entity Beans * |ejb_1x_optional
-
-|2x CMP/BMP Entity Beans, Remote/Home Component, Local/Home Component *
-|`ejb_2x_optional`
-
-|3x Remote |`ejb_3x_remote_optional`
-
-|EJB QL * |`ejb_ql_optional`
-
-|Persistent Timer Service |`ejb_persistent_timer_optional`
-
-|Remote asyncrhonous session bean |`ejb_remote_async_optional`
-
-|EJB Embeddable Container |`ejb_embeddable_optional`
-|=======================================================================
-
-== Rebuilding Test Directories (Needs Rewrite)
-
-The following directories require rebuilding, which is done by running the `configure.datasource.tests` Ant target:
+The following packages in the `jakarta.tck:ejb30` test artifact require rebuilding if you are using a database other than Derby:
 
 * `com/sun/ts/tests/ejb30/lite/packaging/war/datasource`
 * `com/sun/ts/tests/ejb30/assembly/appres`
 * `com/sun/ts/tests/ejb30/misc/datasource`
 
-When the `configure.datasource.tests` Ant target is run from any
-directory, it rebuilds these directories and any required
-subdirectories.
+
 
 === JMS (Full Platform Only)
 The `com/sun/ts/tests/jms/ee20/resourcedefs` tests may need to be updated and rebuilt for resource definitions...
@@ -532,73 +446,32 @@ The database properties in the TCK bundle are set to Derby database. If any othe
 The following directories require rebuilding:
 `src\com\sun\ts\tests\appclient\deploy\metadatacomplete\testapp.`
 
-This can be done by running the `update.metadata.token.values` Ant
-target.
 
 [[test-reports]]
-== Test Reports (Needs Rewrite)
+== Test Reports
 
-A set of report files is created for every test run. These report files
-can be found in the report directory you specify. After a test run is
-completed, the JavaTest harness writes HTML reports for the test run.
-You can view these files in the JavaTest ReportBrowser when running in
-GUI mode, or in the web browser of your choice outside the JavaTest
-interface.
-
-To see all of the HTML report files, enter the URL of the `report.html`
-file. This file is the root file that links to all of the other HTML
-reports.
-
-The JavaTest harness also creates a `summary.txt` file in the report
-directory that you can open in any text editor. The `summary.txt` file
-contains a list of all tests that were run, their test results, and
-their status messages.
-
-Although you can run the Ant report target from any test directory, its
-support is not guaranteed in the lower level directories. It is
-recommended that you always run the report target from `<TS_HOME>/bin`,
-from which reports are generated containing information about which
-tests were or were not run.
+The Maven failsafe/surefire plugins generate test class reports in the `target/failsafe-reports` and `target/surefire-reports` directory respectively. The reports are in XML format and can be viewed in any XML viewer. They follow a naming convention of `TEST-<test-class-name>.xml`.
 
 [[creating-test-reports]]
-=== Creating Test Reports
+=== Creating Summary Test Reports
 
-Specify where you want to create the test report.
+To create a summary report in html format, use the `surefire-report`  Maven plugin with:
 
-1.  To specify the report directory from the command line at runtime,
-use: 
-+
-[source,oac_no_warn]
+* surefire-report:report-only - for reports on tests run with surefire
+* surefire-report:failsafe-report-only - for reports on tests run with failsafe
+
+For example, to create a summary report for tests run with failsafe, use the following command:
+[source,bash]
 ----
-ant report -Dreport.dir="report_dir"
-----
-+
-Reports are written for the last test run to the directory you specify.
-2.  To specify the default report directory, set the `report.dir`
-property in `<TS_HOME>/bin/ts.jte`. +
-For example, `report.dir="/home/josephine/reports"`.
-3.  To disable reporting, set the `report.dir` property to `"none"`,
-either on the command line or in `ts.jte`. +
-For example: 
-+
-[source,oac_no_warn]
-----
-ant -Dreport.dir="none"
+mvn mvn surefire-report:failsafe-report-only
 ----
 
-==== Troubleshooting
+This will produce a target/reports/failsafe.html file that provides an overview summary as well as the individual test details.
 
-Although you can run the `report` Ant target from any test directory,
-its support is not guaranteed in the lower level directories. It is
-recommended that you always run the `report` target from
-`<TS_HOME)/bin`, from which reports are generated containing information
-about which tests were or were not run.cc
+For example, to create a summary report for tests run with surefire, use the following command:
+[source,bash]
+----
+mvn mvn surefire-report:report-only
+----
 
-[[viewing-an-existing-test-report]]
-=== Viewing an Existing Test Report
-
-Use the Web browser of your choice to view the `report.html` file in the
-report directory you specified from the command line or in `ts.jte`.
-
-The current report directory is displayed when you run the `report`
-target.
+This will produce a target/reports/surefire.html file that provides an overview summary as well as the individual test details.

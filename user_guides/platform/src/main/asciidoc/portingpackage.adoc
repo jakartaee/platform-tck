@@ -71,16 +71,6 @@ porting.ts.HttpsURLConnection.class.1=[vendor-httpsURLConnection-class]
 The `https://github.com/jakartaee/platform-tck/tree/main/tools/common/src/main/java/com/sun/ts/lib/porting` directory contains the interfaces and `Factory` classes for the porting package.
 
 
-[NOTE]
-=======================================================================
-
-You must not modify any of the Release 11 TCK source code. Create your
-own implementations of these interfaces and point to them in the
-appropriate section of the `ts.jte` file.
-
-=======================================================================
-
-
 Make sure your porting class implementations meet the following
 requirements:
 
@@ -101,7 +91,7 @@ Note that because the JavaTest VM calls certain classes in the CTS
 porting package directly, porting class implementations are not
 permitted to exit the VM (for example, by using the `System.exit` call).
 
-[porting-package-apis]
+[[porting-package-apis]]
 == Porting Package APIs
 
 The following sections describe the API in the Jakarta EE {tck_version} Platform TCK porting
@@ -193,7 +183,7 @@ public interface TestArchiveProcessor {
 }
 ----
 
-For each type of Jakarta EE component archive that is included in a test deployment, one or more of these methods will be called with the component archive, the CTS test class, and a possibly null URL for the GlassFish/Sun version of the vendor descriptor. Not all test deployments include a GlassFish/Sun version of the vendor descriptor. Those that don't will pass in a `null` descriptor URL. Vendors could choose to transform the GlassFish version of the descriptor, or use some other scheme such as the test package/class name to locate their equivalent vendor specfic descriptor.
+For each type of Jakarta EE component archive that is included in a test deployment, one or more of these methods will be called with the component archive, the CTS test class, and a possibly null URL for the GlassFish/Sun version of the vendor descriptor. Not all test deployments include a GlassFish/Sun version of the vendor descriptor. Those that do not will pass in a `null` descriptor URL. Vendors could choose to transform the GlassFish version of the descriptor, or use some other scheme such as the test package/class name to locate their equivalent vendor specific descriptor.
 
 [[tsjmsadmininterface]]
 === TSJMSAdminInterface (Full Platform Only)

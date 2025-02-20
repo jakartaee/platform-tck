@@ -215,9 +215,7 @@ performance, then that Product must satisfy all applicable compatibility
 requirements for a Product in each Product Configuration, and
 combination of Product Configurations, of those Operating Modes.
 
-EE-WP1.1 Each implementation must have at least one configuration that can be used to pass
-all required TCK Tests, although such configuration may need adjustment (e.g. whether statically
-or via administrative tooling).
+EE-WP1.1 Each implementation must have at least one configuration that can be used to pass all required TCK Tests, although such configuration may need adjustment (e.g. whether statically or via administrative tooling).
 
 EE-WP1.2 An implementation may have mode(s) that provide compatibility with previous Jakarta EE versions.
 
@@ -227,7 +225,7 @@ requirements defined here, except the signature tests.
 EE-WP2 Some Conformance Tests may have properties that may be changed.
 Properties that can be changed are identified in the configuration
 interview. Properties that can be changed are identified in the JavaTest
-Environment (.jte) files in the lib directory of the Test Suite
+Environment (ts.jte) files in the bin directory of the Test Suite
 installation. Apart from changing such properties and other allowed
 modifications described in this User's Guide (if any), no source or
 binary code for a Conformance Test may be altered in any way without
@@ -310,25 +308,18 @@ EE-WP10.1 Containers may impose security constraints, as defined by the
 Specifications.
 
 EE-WP11 A web Container must report an error, as defined by the
-Specifications, when processing a Jakarta Server Page that does not conform to the
-Specifications.
+Specifications, when processing a Jakarta Server Page that does not conform to the Specifications.
 
 EE-WP12 The presence of a Java language comment or Java language
-directive in a Jakarta Server Page that specifies ”java” as the scripting language,
-when processed by a web Container, must not cause the functional
-programmatic behavior of that Jakarta Server Page to vary from the functional
-programmatic behavior of that Jakarta Server Page in the absence of that Java
-language comment or Java language directive.
+directive in a Jakarta Server Page that specifies ”java” as the scripting language, when processed by a web Container, must not cause the functional
+programmatic behavior of that Jakarta Server Page to vary from the functional programmatic behavior of that Jakarta Server Page in the absence of that Java language comment or Java language directive.
 
 EE-WP13 The contents of any fixed template data (defined by the
-Specifications) in a Jakarta Server Page, when processed by a web Container, must
-not affect the functional programmatic behavior of that Jakarta Server Page, except
-as defined by the Specifications.
+Specifications) in a Jakarta Server Page, when processed by a web Container, mustnot affect the functional programmatic behavior of that Jakarta Server Page, except as defined by the Specifications.
 
 EE-WP14 The functional programmatic behavior of a Jakarta Server Page that
 specifies ”java” as the scripting language must be equivalent to the
-functional programmatic behavior of the Jakarta Server Page Implementation Class
-constructed from that Jakarta Server Page.
+functional programmatic behavior of the Jakarta Server Page Implementation Class constructed from that Jakarta Server Page.
 
 EE-WP15 A Deployment Tool must report an error when processing a
 Configuration Descriptor that does not conform to the Specifications.
@@ -339,9 +330,7 @@ programmatic behavior of the Deployment Tool to vary from the functional
 programmatic behavior of the Deployment Tool in the absence of that
 comment.
 
-EE-WP17 A Deployment Tool must report an error when processing an Jakarta Enterprise Beans
-deployment descriptor that includes an Jakarta Enterprise Beans QL expression that does not
-conform to the Specifications.
+EE-WP17 A Deployment Tool must report an error when processing a Jakarta Enterprise Beans deployment descriptor that includes an Jakarta Enterprise Beans QL expression that does not conform to the Specifications.
 
 EE-WP18 The Runtime must report an error when processing a Configuration
 Descriptor that does not conform to the Specifications.
@@ -351,17 +340,17 @@ when processed by the Runtime, must not cause the functional
 programmatic behavior of the Runtime to vary from the functional
 programmatic behavior of the Runtime in the absence of that comment.
 
-EE-WP20 Compatibility testing for the Jakarta EE {tck_version} Web Profile consists ofrunning the tests for the technologies defined in
-<<jakarta-ee-technologies-tested-with-jakarta-ee-platform-tck>> If optional technologies defined in the Jakarta EE {tck_version} Web Profile platform are implemented in addition to the required Jakarta EE {tck_version} Web Profile technologies, corresponding tests within this TCK for those additional technologies must also be run.
+EE-WP20 Compatibility testing for the Jakarta EE {tck_version} Web Profile consists of running the tests for the technologies defined in
+<<jakarta-ee-technologies-tested-with-jakarta-ee-platform-tck>> .
 
-EE-WP21 Compliance testing for Jakarta EE {tck_version} Web Profile consists of running
-the Jakarta EE {tck_version} Web Profile TCK tests and the following Technology
-Compatibility Kits (TCKs). Version details are defined in the Platform EE Specification document (https://jakarta.ee/specifications/webprofile/11/), see heading 'Web Profile Definition', sub-heading 'Required Components':
+EE-WP21 Compliance testing for Jakarta EE {tck_version} Web Profile consists of running the Jakarta EE {tck_version} Web Profile TCK tests and the following component Technology Compatibility Kits (TCKs). Version details are defined in the Platform EE Specification document (https://jakarta.ee/specifications/webprofile/11/), see heading 'Web Profile Definition', sub-heading 'Required Components':
 
+[[standalone-tcks-wp]]
 * Jakarta Authentication
 * Jakarta Bean Validation
 * Jakarta Concurrency
 * Jakarta Contexts and Dependency Injection
+* Jakarta Data
 * Jakarta Debugging Support for Other Languages
 * Jakarta Dependency Injection
 * Jakarta Faces
@@ -373,27 +362,11 @@ Compatibility Kits (TCKs). Version details are defined in the Platform EE Specif
 
 
 In addition to the compatibility rules outlined in this TCK User's
-Guide, Jakarta EE {tck_version} implementations must also adhere to all of the
-compatibility rules defined in the User's Guides of the aforementioned
+Guide, Jakarta EE {tck_version} implementations must also adhere to all the compatibility rules defined in the User's Guides of the aforementioned
 TCKs.
 
-EE-WP21.1 If the Jakarta EE {tck_version} Web Profile implementation uses a runtime which has
-already been validated by the Technology Compatibility Kit,
-the Jakarta EE {tck_version} Web Profile implementation may use result of such validation
-to claim its compliance with the Technology Compatibility Kit.
+EE-WP21.1 If the Jakarta EE {tck_version} Web Profile implementation uses a runtime which has already been validated by the Technology Compatibility Kit, the Jakarta EE {tck_version} Web Profile implementation may use result of such validation to claim its compliance with the Technology Compatibility Kit.
 
-EE-WP22 Source Code in WSDL-to-Java Output when compiled by a Reference
-Compiler must execute properly when run on a Reference Runtime.
-
-EE-WP23 Source Code in WSDL-to-Java Output must be in source file format
-defined by the Java Language Specification (JLS).
-
-EE-WP24 Java-to-WSDL Output must fully meet W3C requirements for the Web
-Services Description Language (WSDL) 1.1.
-
-EE-WP25 A Java-to-WSDL Tool must not produce Java-to-WSDL Output from
-source code that does not conform to the Java Language Specification
-(JLS).
 
 [[appeals-process-wp]]
 == Jakarta Platform, Enterprise Edition Version {tck_version} Web Progile Test Appeals Process

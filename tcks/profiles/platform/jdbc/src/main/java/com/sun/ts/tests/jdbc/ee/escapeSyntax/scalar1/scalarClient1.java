@@ -52,7 +52,7 @@ import com.sun.ts.tests.jdbc.ee.common.fnSchema;
 @ExtendWith(ArquillianExtension.class)
 @Tag("jdbc")
 @Tag("platform")
-@Tag("web_profile")
+@Tag("web")
 @Tag("tck-javatest")
 
 public class scalarClient1 extends ServiceEETest {
