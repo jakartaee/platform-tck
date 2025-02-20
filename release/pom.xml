@@ -37,6 +37,12 @@
     <dependencies>
         <dependency>
             <groupId>jakarta.tck</groupId>
+            <artifactId>artifacts-bom</artifactId>
+            <version>${project.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
             <artifactId>project</artifactId>
             <version>${project.version}</version>
             <type>pom</type>

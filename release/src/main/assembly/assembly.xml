@@ -20,12 +20,6 @@
             <destName>LICENSE.md</destName>
         </file>
         <file>
-            <source>artifacts-bom.pom</source>
-            <outputDirectory>artifacts</outputDirectory>
-            <destName>artifacts-bom-${project.version}.pom</destName>
-            <filtered>true</filtered>
-        </file>
-        <file>
             <source>artifact-install.pom</source>
             <outputDirectory>artifacts</outputDirectory>
             <destName>pom.xml</destName>
@@ -109,6 +103,7 @@
         <dependencySet>
             <includes>
                 <include>${project.groupId}:appclient</include>
+                <include>${project.groupId}:artifacts-bom</include>
                 <include>${project.groupId}:assembly-tck</include>
                 <include>${project.groupId}:common</include>
                 <include>${project.groupId}:cdi-tck-ee-impl</include>
