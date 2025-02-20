@@ -323,29 +323,18 @@ Verify that the following properties, which are used by the test harness, have b
 
 [source,properties]
 ----
-harness.temp.directory=<TS_HOME>/tmp
-harness.log.port=2000
-harness.log.traceflag=[true | false]
-porting.ts.login.class.1=<vendor-login-class>
+harness.temp.directory=<TS_HOME>/tmp<1>
+harness.log.port=2000<2>
+harness.log.traceflag=[true | false]<3>
+porting.ts.login.class.1=<vendor-login-class><4>
 porting.ts.url.class.1=<vendor-url-class>
 porting.ts.jms.class.1=<vendor-jms-class>
 porting.ts.tsHttpsURLConnection.class.1=<vendor-HttpsURLConnection-class>
 ----
-
-* The `harness.temp.directory` property specifies a temporary directory
-that the harness creates and to which the TCK harness and tests write
-temporary files. The default setting should not need to be changed.
-
-* The `harness.log.port` property specifies the port that server
-components of the tests use to send logging output back to JavaTest. If
-the default port is not available on the machine running JavaTest, you
-must edit this property and set it to an available port. The default
-setting is `2000`.
-
-* The `harness.log.traceflag` property is used to turn on or turn off
-verbose debugging output for the tests. The value of the property is set
-to `false` by default. Set the property to `true` to turn debugging on.
-
+<1> The `harness.temp.directory` property specifies a temporary directory that the harness creates and to which the TCK harness and tests write temporary files. The default setting should not need to be changed.
+<2> The `harness.log.port` property specifies the port that server components of the tests use to send logging output back to the test harness. If the default port is not available on the machine running the test harness, you must edit this property and set it to an available port. The default setting is `2000`.
+<3> The `harness.log.traceflag` property is used to turn on or turn off verbose debugging output for the tests. The value of the property is set to `false` by default. Set the property to `true` to turn debugging on.
+<4> See <<tsjte-porting-classes>> for more information about these classes.
 
 [[full-list-tsjte-properties]]
 ==== Complete List of `ts.jte' Properties

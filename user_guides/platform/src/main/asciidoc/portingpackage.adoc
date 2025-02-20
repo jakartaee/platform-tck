@@ -11,7 +11,7 @@ In addition, there is a set of interfaces in the `com.sun.cts.porting` package.
 TODO: which of these interfaces is still in use:
 com.sun.ts.lib.porting.TSLoginContextInterface
 com.sun.ts.lib.porting.TSURLInterface
-com.sun.ts.lib.porting.TSJMSAdminInterface (Platform JMS)
+com.sun.ts.lib.porting.TSJMSAdminInterface (Full Platform Only)
 com.sun.ts.lib.porting.TSHttpsURLConnectionInterface
 
 
@@ -49,24 +49,28 @@ public class JBossTckExtension implements LoadableExtension {
 
 You need to call the `builder.service` and `builder.observer` methods passing in your subclass of `tck.arquillian.porting.lib.spi.AbstractTestArchiveProcessor`. In the above listing it is the `JBossXmlProcessor.class`.
 
-The following `com.sun.cts.porting` porting interfaces need to be implemented:
+The following `com.sun.cts.porting` porting interfaces may need to be implemented if the defaults are not sufficient:
 
 * `TSLoginContextInterface`
 * `TSURLInterface`
 * `TSJMSAdminInterface` (Full Platform Only)
 * `TSHttpsURLConnectionInterface`
 
-To use specific implementations of these classes, you simply modify the
-following `porting.ts.*.class.1` entries of the `ts.jte`
-environment file to identify the fully-qualified class names:
+To use specific implementations of these classes, you simply modify the following `porting.ts.*.class.1` entries of the `ts.jte` environment file to identify the fully-qualified class names:
 
+[[tsjte-porting-classes]]
 [source,properties]
 ----
-porting.ts.login.class.1=[vendor-login-class]
-porting.ts.url.class.1=[vendor-url-class]
-porting.ts.jms.class.1=[vendor-jms-class]
-porting.ts.HttpsURLConnection.class.1=[vendor-httpsURLConnection-class] 
+porting.ts.login.class.1=[vendor-login-class]<1>
+porting.ts.url.class.1=[vendor-url-class]<2>
+porting.ts.jms.class.1=[vendor-jms-class]<3>
+porting.ts.HttpsURLConnection.class
+.1=[vendor-httpsURLConnection-class]<4> 
 ----
+<1> <<tslogincontextinterface>>
+<2> <<tsurlinterface>>
+<3> <<tsjmsadmininterface>>
+<4> <<tshttpsurlconnectioninterface>>
 
 The `https://github.com/jakartaee/platform-tck/tree/main/tools/common/src/main/java/com/sun/ts/lib/porting` directory contains the interfaces and `Factory` classes for the porting package.
 
@@ -87,9 +91,7 @@ components:
 
 ** In the classpath of your Jakarta Platform, Enterprise Edition server
 
-Note that because the JavaTest VM calls certain classes in the CTS
-porting package directly, porting class implementations are not
-permitted to exit the VM (for example, by using the `System.exit` call).
+Note that because the test harness VM calls certain classes in the TCK porting package directly, porting class implementations are not permitted to exit the VM (for example, by using the `System.exit` call).
 
 [[porting-package-apis]]
 == Porting Package APIs
@@ -110,7 +112,7 @@ Detailed API documentation for the porting package interfaces is available in th
 [[abstracttestarchiveprocessor]]
 === AbstractTestArchiveProcessor
 
-The CTS test classes use Arquillian to deploy test artifacts to the containers of the Jakarta EE server being tested. The deployment methods include a `TestArchiveProcessor` interface as showin in the following code fragment:
+The test harness test classes use Arquillian to deploy test artifacts to the containers of the Jakarta EE server being tested. The deployment methods include a `TestArchiveProcessor` interface as showin in the following code fragment:
 
 [source,java]
 ----
@@ -183,7 +185,7 @@ public interface TestArchiveProcessor {
 }
 ----
 
-For each type of Jakarta EE component archive that is included in a test deployment, one or more of these methods will be called with the component archive, the CTS test class, and a possibly null URL for the GlassFish/Sun version of the vendor descriptor. Not all test deployments include a GlassFish/Sun version of the vendor descriptor. Those that do not will pass in a `null` descriptor URL. Vendors could choose to transform the GlassFish version of the descriptor, or use some other scheme such as the test package/class name to locate their equivalent vendor specific descriptor.
+For each type of Jakarta EE component archive that is included in a test deployment, one or more of these methods will be called with the component archive, the test harness test class, and a possibly null URL for the GlassFish/Sun version of the vendor descriptor. Not all test deployments include a GlassFish/Sun version of the vendor descriptor. Those that do not will pass in a `null` descriptor URL. Vendors could choose to transform the GlassFish version of the descriptor, or use some other scheme such as the test package/class name to locate their equivalent vendor specific descriptor.
 
 [[tsjmsadmininterface]]
 === TSJMSAdminInterface (Full Platform Only)
@@ -217,41 +219,23 @@ messages it sends and the source of messages it receives
 [[tslogincontextinterface]]
 === TSLoginContextInterface
 
-The `TSLoginContext` class acts as a `Factory` object for creating
-concrete implementations of `TSLoginContextInterface`. The concrete
-implementations are specified by the `porting.ts.login.class.1` property
-in the `ts.jte` file. This class is used to enable a program to login as
-a specific user, using the semantics of the Jakarta Platform, Enterprise
-Edition CI. The certificate necessary for certificate-based login is
-retrieved. The keystore file and keystore password from the properties
+The `TSLoginContext` class acts as a `Factory` object for creating concrete implementations of `TSLoginContextInterface`. The concrete implementations are specified by the `porting.ts.login.class.1` property
+in the `ts.jte` file. This class is used to enable a program to login as a specific user, using the semantics of the Jakarta Platform, Enterprise Edition CI. The certificate necessary for certificate-based login is retrieved. The keystore file and keystore password from the properties
 that are specified in the `ts.jte` file are used.
 
 [[tsurlinterface]]
 === TSURLInterface
 
-The `TSURL` class acts as a `Factory` object for creating concrete
-implementations of `TSURLInterface`. The concrete implementations are
-specified by the `porting.ts.url.class.1` property in the `ts.jte` file.
-Each Jakarta Platform, Enterprise Edition implementation must provide an
-implementation of the `TSURLInterface` to support obtaining URL strings
-that are used to access a selected Web component. This implementation
-can be replaced if a Jakarta Platform, Enterprise Edition server
-implementation requires URLs to be created in a different manner. In
-most Jakarta Platform, Enterprise Edition environments, the default
-implementation of this class can be used.
+The `TSURL` class acts as a `Factory` object for creating concrete implementations of `TSURLInterface`. The concrete implementations are specified by the `porting.ts.url.class.1` property in the `ts.jte` file.
+
+Each Jakarta Platform, Enterprise Edition implementation must provide an implementation of the `TSURLInterface` to support obtaining URL strings that are used to access a selected Web component. This implementation can be replaced if a Jakarta Platform, Enterprise Edition server implementation requires URLs to be created in a different manner. In most Jakarta Platform, Enterprise Edition environments, the default `com.sun.ts.lib.porting.implementation.SunRIURL` implementation of this class from the jakarta.tck:common artifact can be used.
 
 [[tshttpsurlconnectioninterface]]
-=== TSHttpsURLConnectionInterface
+=== TSHttpsURLConnectionInterface (Full Platform Only)
 
-The `TSHttpsURLConnection` class acts as a `Factory` object for creating
-concrete implementations of `TSHttpsURLConnectionInterface`. The
-concrete implementations are specified by the
-`porting.ts.HttpsURLConnection.class.1` and `.2` properties in the
-`ts.jte` file.
+The `TSHttpsURLConnection` class acts as a `Factory` object for creating concrete implementations of `TSHttpsURLConnectionInterface`. The concrete implementations are specified by the `porting.ts.HttpsURLConnection.class.1` and `.2` properties in the `ts.jte` file.
 
-You must provide an implementation of `TSHttpsURLConnectionInterface` to
-support the class `HttpsURLConnection`.
-
+You must provide an implementation of `TSHttpsURLConnectionInterface` to support the class `HttpsURLConnection`.
 
 [NOTE]
 =======================================================================
