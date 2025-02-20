@@ -58,8 +58,7 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
 
     /**
      * Class Constructor.
-     *
-/
+     */
     public BytesMessageTestImpl() {
         super();
         init();
@@ -68,8 +67,7 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Method Declaration.
      *
-     *
-/
+     */
     private void init() {
         buf = new byte[0];
         baos = new ByteArrayOutputStream();
@@ -82,8 +80,7 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
      * @param oos
      *
      * @exception IOException
-     *
-/
+     */
     private void writeObject(ObjectOutputStream oos) throws IOException {
         dos.flush();
         buf = baos.toByteArray();
@@ -97,8 +94,7 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
      *
      * @exception ClassNotFoundException
      * @exception IOException
-     *
-/
+     */
     private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
         ois.defaultReadObject();
         baos = new ByteArrayOutputStream();
@@ -113,8 +109,7 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
      * Method Declaration.
      *
      * @exception JMSException
-     *
-/
+     */
     public void clearBody() throws JMSException {
         buf = null;
         bais = null;
