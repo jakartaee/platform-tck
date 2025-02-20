@@ -19,7 +19,7 @@
     <version>1.0.9</version>
   </parent>
 
-  <groupId>jakarta.ee.tck.coreprofile</groupId>
+  <groupId>jakarta.tck.coreprofile</groupId>
   <artifactId>core-tck-parent</artifactId>
   <packaging>pom</packaging>
   <version>10.0.4</version>

@@ -3,7 +3,7 @@
 == Version 10.0.4
 * Release the individual test artifacts for the Core Profile TCK to Maven Central
 * Include a LICENSE file in each test artifact
-
+* groupId changed from jakarta.ee.tck.coreprofile to jakarta.tck.coreprofile
 
 == Version 10.0.3
 
