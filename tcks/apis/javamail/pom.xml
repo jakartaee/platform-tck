@@ -34,7 +34,7 @@
 
     <properties>
         <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
-        <jakarta.tck.tools.version>11.0.0-RC4</jakarta.tck.tools.version>
+        <jakarta.tck.tools.version>11.0.0-RC5</jakarta.tck.tools.version>
     </properties>
 
     <dependencyManagement>

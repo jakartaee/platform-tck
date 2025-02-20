@@ -42,7 +42,7 @@
         <glassfish.version>8.0.0-JDK17-M9</glassfish.version>
         
         <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
-        <jakarta.tck.tools.version>11.0.0-RC4</jakarta.tck.tools.version>
+        <jakarta.tck.tools.version>11.0.0-RC5</jakarta.tck.tools.version>
         <tck.version>3.0.0-M1</tck.version>
         <ts.home>/jakartaeetck</ts.home>
     </properties>
