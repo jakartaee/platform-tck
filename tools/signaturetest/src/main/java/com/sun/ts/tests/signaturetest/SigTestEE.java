@@ -186,7 +186,7 @@ public abstract class SigTestEE extends ServiceEETest {
 
   } // END getClasses
 
-  protected SigTestData testInfo; // holds the bin.dir and vehicle properties
+  protected SigTestData testInfo =  new SigTestData();; // holds the bin.dir and vehicle properties
 
   /**
    * Called by the test framework to initialize this test. The method simply
