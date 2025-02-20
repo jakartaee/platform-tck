@@ -1,5 +1,10 @@
 = Jakarta Core Profile TCK Release notes
 
+== Version 10.0.4
+* Release the individual test artifacts for the Core Profile TCK to Maven Central
+* Include a LICENSE file in each test artifact
+
+
 == Version 10.0.3
 
 Adds bug fix for Core Profile TCK challenge:

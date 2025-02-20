@@ -21,11 +21,14 @@
    <files>
       <!-- This is the final EFTL license -->
       <file>
-         <source>EFTL.txt</source>
-         <destName>LICENSE</destName>
+         <source>../LICENSE.md</source>
+         <destName>LICENSE.md</destName>
       </file>
       <file>
          <source>README.adoc</source>
+      </file>
+      <file>
+         <source>RELEASE-NOTES.adoc</source>
       </file>
 
       <!-- A maven pom.xml to install the TCK artifacts into a local maven repo -->
