@@ -1,104 +1,36 @@
 
 [[debugging-test-problems]]
-= Debugging Test Problems (Needs Rewrite)
-
-When tests fail to execute properly, there are a number of reasons that
+= Debugging Test Problems
 
 There are a number of reasons that tests can fail to execute properly.
 This chapter provides some approaches for dealing with these failures.
-Note that most of these suggestions are only relevant when running the
-test harness in GUI mode. This is a dummy change and will be reverted.
+
 
 This chapter includes the following topics:
 
 * <<debug-overview>>
-* <<test-tree>>
 * <<report-files>>
-* <<configuration-failures>>
+* <<debugging-details>>
 
 [[debug-overview]]
 == Overview
 
-The goal of a test run is for all tests in the test suite that are not
-filtered out to have passing results. If the root test suite folder
-contains tests with errors or failing results, you must troubleshoot and
-correct the cause to satisfactorily complete the test run.
-
-* Errors: Tests with errors could not be executed by the JavaTest
-harness. These errors usually occur because the test environment is not
-properly configured.
-* Failures: Tests that fail were executed but had failing results.
-
-The Test Manager GUI provides you with a number of tools for effectively
-troubleshooting a test run. See the JavaTest User's Guide and JavaTest
-online help for detailed descriptions of the tools described in this
-chapter.
-
-[[test-tree]]
-== Test Tree
-
-Use the test tree in the JavaTest GUI to identify specific folders and
-tests that had errors or failing results. Color codes are used to
-indicate status as follows:
-
-* Green: Passed
-* Blue: Test Error
-* Red: Failed to pass test
-* White: Test not run
-* Gray: Test filtered out (not run)
-
-
-
-[NOTE]
-=======================================================================
-
-You can set `harness.log.traceflag=true` in `<TS_HOME>/bin/ts.jte` to
-get more debugging information. In a terminal window, you can also set
-an environment variable `HARNESS_DEBUG=true` to display more debugging
-information.
-
-=======================================================================
+When a test fails, the first thing to do is to look at the test output which can be found in either the target/surefire-reports directory or the target/failsafe-reports directory. The test output provides a wealth of information about the test run, including the test results, the test output, and the stack trace of any exceptions that occurred during the test run. The CI server log may also provide information if the test fails during deployment or execution within the CI server.
 
 
 [[report-files]]
 == Report Files
 
-Report files are another good source of troubleshooting information. You
-may view the individual test results of a batch run in the JavaTest
-Summary window, but there are also a wide range of HTML report files
-that you can view in the JavaTest ReportBrowser or in the external
-browser or your choice following a test run. See
-<<test-reports>> for more information.
+You can generate test summary reports in HTML format by running the Maven surefire-reports plugin. See <<test-reports>> for the details on how to generate test reports. The resulting html summary allows you to browse which tests are failing and decide if more detail debugging is needed.
 
-[[configuration-failures]]
-== Configuration Failures
+[[debugging-details]]
+== Debugging Details
 
-Configuration failures are easily recognized because many tests fail the
-same way. When all your tests begin to fail, you may want to stop the
-run immediately and start viewing individual test output. However, in
-the case of full-scale launching problems where no tests are actually
-processed, report files are usually not created (though sometimes a
-small `harness.trace` file in the report directory is written).
+Jakarta EE TCK platform tests generally execute in two different JVMs. The first JVM is the client JVM, which is the JVM that runs the test client. The second JVM is the server JVM, which is the JVM that runs the test server. The client JVM is responsible for running the test client, which is the code that interacts with the test server. The server JVM is responsible for running the test server, which is the code that is being tested. The client JVM and the server JVM communicate with each other using the Arquillian protocol. The client JVM sends commands to the server JVM to start and stop the test server, and the server JVM sends test results back to the client JVM.
 
-When aborting a test run, consider the following:
+=== Debugging the Client JVM
 
-* If you abort a test run when running the JavaTest harness in GUI mode,
-the GUI tools automatically cleans up your environment for the next test
-run. This cleanup includes undeploying any components or applications
-that may deployed or registered with the Application Server.
+To debug a test that is failing in the client JVM, use the `mvDebug` command rather than `mvn` to start the client JVM in debug mode. By default, the client JVM listens for debugger connections on port 5005. You can setup a remote debugger in your IDE to connect to the client JVM on port 5005. You would typically want to have the platform-tck repository loaded into your IDE so that you can set breakpoints in the test client code.
 
-* If you abort a test run in command-line mode (by pressing Ctrl+C),
-your environment might not be left in a clean state, causing potential
-failures in subsequent test runs. In such cases, you may need to perform
-the following procedure to restore your environment to a clean state.
-
-To restore your environment after aborting a test run in command-line
-mode, perform these steps.
-
-.  Log in to the Eclipse GlassFish 6.1 Application Server with the `asadmin` command.
-.  List all registered components with the `asadmin list-components`
-command.
-.  Undeploy any listed components related to your test run with the
-`asadmin undeploy` listed_component command.
-
-
+=== Debugging the Server JVM
+If tests are failing in the server JVM, you need to start the server JVM in debug mode. To do this, you need to consult the documentation for the Arquillian connector you are using to start the server being tested. You would then setup a remote debugger in your IDE to connect to the server JVM on the port specified in the Arquillian configuration. You would also want to have the platform-tck repository loaded into your IDE so that you can set breakpoints in the server side components the test is calling.

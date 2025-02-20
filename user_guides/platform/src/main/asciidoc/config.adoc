@@ -313,7 +313,6 @@ This section includes the following topics:
 * <<ejb-timer-test-setup>>
 * <<jakarta-persistence-api-test-setup>>
 * <<jakarta-messaging-test-setup>>
-* <<jakarta-security-api-test-setup>>
 * <<signature-test-setup>>
 * <<backend-database-setup>>
 
@@ -1456,89 +1455,6 @@ scheme and port used to generate the final endpoint address for a web
 service endpoint. For `NONE`, the scheme will be `HTTP` and port will be
 the default HTTP port. For `INTEGRAL/CONFIDENTIAL`, the scheme will be
 `HTTPS` and the port will be the default HTTPS port.
-
-
-[[jakarta-security-api-test-setup]]
-=== Jakarta Security API Test Setup
-
-Complete the following steps before you run the Jakarta Security API tests:
-
-.  Set the following properties in the ts.jte file: 
-+
-[NOTE]
-======================================================================
-
-An LDAP server is required in Jakarta Security API testing. You could either use an already existing external LDAP server or use TCK script to install an internal LDAP server. (Is this still true?)
-
-======================================================================
-+
-Choose one of these two options to make an LDAP server ready for
-testing:
-
-.  Use internal LDAP server - Unbounded (Recommended, and would be
-installed by default.) 
-+
-[NOTE]
-======================================================================
-
-.  Ensure the ldap.server property is unbounded.
-.  Ensure the path of ldap.ldif.file is correct.
-.  Ensure the port 11389 is not occupied. Kill any related process
-using port 11389.
-
-======================================================================
-+
-[NOTE]
-========================================
-
-Parts of ts.jte:
-
-* `ldap.server=unboundid`
-* `ldap.install.server=true`
-* `ldap.ldif.file=$\{ts.home}/bin/ldap.ldif`
-
-========================================
-+
-.  Use external LDAP server. 
-+
-[NOTE]
-======================================================================
-
-.  Ensure the port of LDAP server is 11389.
-.  Update ldap.install.server property as false since TCK script need
-not install LDAP server.
-.  Import ldap.ldif file into Ldap server. You can get ldap.ldif from
-`<TS_HOME>/install/jakartaee/bin/ldap.ldif`.
-
-======================================================================
-+
-[NOTE]
-========================================
-
-Part of ts.jte - ldap.install.server=false
-
-========================================
-+
-.  Configure the VI environment using these commands to run the
-Jakarta Security API test (including Derby, internal Ldap server which are
-required by Jakarta Security 1.0):
-
-..  cd <TS_HOME>/bin
-
-..  ant config.vi
-
-..  Start your database.
-
-..  ant init.ldap 
-+
-[NOTE]
-======================================================================
-
-If you use the external LDAP server, do not run the command ant
-init.ldap.
-
-======================================================================
-
 
 [[signature-test-setup]]
 === Signature Test Setup
