@@ -189,6 +189,13 @@ javax.rmi.sig (Corba classes for EJB)
                 <artifactId>sigtest-maven-plugin</artifactId>
                 <version>${version.sigtest-maven-plugin}</version>
             </plugin>
+            <!-- do not publish this artifact to Maven repositories -->
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
         </plugins>
         <resources>
             <resource>
