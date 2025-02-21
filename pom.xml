@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2022, 2024  Contributors to the Eclipse Foundation
-    All rights reserved.
+    Copyright (c) 2022, 2025 Contributors to the Eclipse Foundation.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -41,6 +40,7 @@
 
     <modules>
         <module>bom</module>
+        
         <module>tcks/apis/cdi-ee-tck/tck</module>
         <module>tcks/apis/connector</module>
         <module>tcks/apis/connector/docs</module>
@@ -76,9 +76,9 @@
         <module>tcks/profiles/platform/samples</module>
         <module>tcks/profiles/platform/signaturevalidation</module>
         <module>tcks/profiles/platform/xa</module>
-        <module>tools/signaturetest</module>
+        <module>tcks/profiles/platform/docs/userguide</module>
         
-        <module>user_guides</module>
+        <module>tools/signaturetest</module>
         <module>tcks/profiles/platform/signaturevalidation/generate</module>
     </modules>
 

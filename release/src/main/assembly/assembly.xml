@@ -36,7 +36,7 @@
         <!-- User guides -->
         <file>
             <outputDirectory>guides</outputDirectory>
-            <source>../user_guides/platform/target/generated-docs/Jakarta-Platform-TCK-Users-Guide.pdf</source>
+            <source>../tcks/profiles/platform/docs/userguide/platform/target/generated-docs/Jakarta-Platform-TCK-Users-Guide.pdf</source>
         </file>
         <file>
             <outputDirectory>guides</outputDirectory>
