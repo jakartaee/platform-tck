@@ -24,8 +24,7 @@ Edition server environment.
 == Overview
 
 The Jakarta Platform, Enterprise Edition CI uses a set of
-module-name-with-extension`.sun-`standard-deployment-desc-component-prefix`.xml`
-files that are associated with each deployable component. GlassFish supports several runtime XML files: `sun-application_1_4-0.xml`, `sun-application-client_1_4-0.xml`,
+component specific deployment descriptors to configure the runtime files that are associated with each deployable component. GlassFish supports several runtime XML files: `sun-application_1_4-0.xml`, `sun-application-client_1_4-0.xml`,
 `sun-ejb-jar_2_1-0.xml`, and `sun-web-app_2_4-0.xml`, for vendor specific information.
 
 To specify your implementation of the `tck.arquillian.porting.lib.spi.AbstractTestArchiveProcessor` class, you need to create an Arquillian `org.jboss.arquillian.core.spi.LoadableExtension` service implementation that registers your subclass of the `tck.arquillian.porting.lib.spi.AbstractTestArchiveProcessor` class. An example is shown in the following listing:
@@ -41,20 +40,22 @@ import org.jboss.arquillian.test.spi.enricher.resource.ResourceProvider;
 public class JBossTckExtension implements LoadableExtension {
     @Override
     public void register(ExtensionBuilder builder) {
-        builder.service(ResourceProvider.class, JBossXmlProcessor.class);
-        builder.observer(JBossXmlProcessor.class);
+        builder.service(ResourceProvider.class, JBossXmlProcessor.class);<1>
+        builder.observer(JBossXmlProcessor.class);<2>
     }
 }
 ----
+<1> Call the `builder.service` method passing in your subclass of `tck.arquillian.porting.lib.spi.AbstractTestArchiveProcessor`.
+<2> Call the `builder.observer` method passing in your subclass of `tck.arquillian.porting.lib.spi.AbstractTestArchiveProcessor`.
 
-You need to call the `builder.service` and `builder.observer` methods passing in your subclass of `tck.arquillian.porting.lib.spi.AbstractTestArchiveProcessor`. In the above listing it is the `JBossXmlProcessor.class`.
+In the above listing, the `tck.arquillian.porting.lib.spi.AbstractTestArchiveProcessor` subclass is the `JBossXmlProcessor.class`.
 
 The following `com.sun.cts.porting` porting interfaces may need to be implemented if the defaults are not sufficient:
 
 * `TSLoginContextInterface`
 * `TSURLInterface`
 * `TSJMSAdminInterface` (Full Platform Only)
-* `TSHttpsURLConnectionInterface`
+* `TSHttpsURLConnectionInterface` (Full Platform Only)
 
 To use specific implementations of these classes, you simply modify the following `porting.ts.*.class.1` entries of the `ts.jte` environment file to identify the fully-qualified class names:
 
@@ -72,26 +73,15 @@ porting.ts.HttpsURLConnection.class
 <3> <<tsjmsadmininterface>>
 <4> <<tshttpsurlconnectioninterface>>
 
-The `https://github.com/jakartaee/platform-tck/tree/main/tools/common/src/main/java/com/sun/ts/lib/porting` directory contains the interfaces and `Factory` classes for the porting package.
+You can find these interfaces in the `jakarta.tck:common` artifact and the `src/tools/common/src/main/java/com/sun/ts/lib/porting` directory of the TCK distribution.
 
-
-Make sure your porting class implementations meet the following
-requirements:
-
-* Implement the following porting interfaces:
-
-** `TSLoginContextInterface`
-** `TSURLInterface`
-** `TSJMSAdminInterface`
-** `TSHttpsURLConnectionInterface`
-
-* Include the implementation of the previous interfaces in the
+Include the implementation of the previous interfaces in the
 classpaths of the test clients, and the test server
-components:
-
-** In the classpath of your Jakarta Platform, Enterprise Edition server
+components in the classpath of your Jakarta Platform, Enterprise Edition server
 
 Note that because the test harness VM calls certain classes in the TCK porting package directly, porting class implementations are not permitted to exit the VM (for example, by using the `System.exit` call).
+
+Additional implementation details for the porting package are provided in the following sections.
 
 [[porting-package-apis]]
 == Porting Package APIs

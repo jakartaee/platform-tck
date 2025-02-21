@@ -139,7 +139,7 @@ The default setting is `localhost`.
 which the Web server is running and configured with the CI.
 The default setting is `8001`.
 ..  Set the database-related properties in the `<TS_HOME>/bin/ts.jte`
-file. <<c.3-database-properties-in-ts.jte>>lists the names and descriptions for the database properties you need to set.
+file. <<c.3-database-properties-in-ts.jte>> lists the names and descriptions for the database properties you need to set.
 .  Install the Jakarta EE {tck_version} CI and configure basic settings, as described
 in <<installation>>
 .  Start the Jakarta EE {tck_version} CI application server.
@@ -177,7 +177,7 @@ which the Web server is running and configured with the CI. +
 The default setting is `8001`.
 
 ..  Set the `porting.ts.url.class` property to your porting
-implementation class that is used for obtaining URLs.
+implementation class that is used for obtaining URLs. See <<porting-package-apis>> for more information.
 
 ..  Set the database-related properties in the `<TS_HOME>/bin/ts.jte`
 file. <<c.3-database-properties-in-ts.jte>> lists the names and descriptions for the database properties you need to set.
@@ -236,7 +236,7 @@ server.
 
 . Provide access to a Web server.
 
-. Provide access to a Jakarta Mail server that supports the SMTP protocol.
+. Provide access to a Jakarta Mail server that supports the SMTP protocol. (Full Platform only)
 
 . Install server certificates +
 +
@@ -260,18 +260,16 @@ certificate that suits your environment.
 
 ..  `clientcert.p12`: Contains TCK client certificate in `pkcs12` format
 
-.. Make the appropriate transaction interoperability setting on the Jakarta EE {tck_version} server and the server that is running the Jakarta EE {tck_version} CI.
+. Make the appropriate transaction interoperability setting on the Jakarta EE {tck_version} server and the server that is running the Jakarta EE {tck_version} CI.
 
+. If necessary, refer to the sections later in this chapter for
+additional configuration information you may require for your particular test goals. +
 
-.. If necessary, refer to the sections later in this chapter for
-additional configuration information you may require for your particular
-test goals. +
+. Restart your Jakarta EE {tck_version} server.
 
-.. Restart your Jakarta EE {tck_version} server.
+. Install the Jakarta EE {tck_version} CI.
 
-.. Install the Jakarta EE {tck_version} CI.
-
-.. Set the following properties in your `<TS_HOME>/bin/ts.jte` file. +
+. Set the following properties in your `<TS_HOME>/bin/ts.jte` file. +
 The current values should be saved since they will be needed later in this step.
 
 * Set the `javaee.home.ri` property to the location where the Jakarta EE {tck_version}
@@ -303,7 +301,6 @@ This section includes the following topics:
 
 * <<test-harness-setup>>
 * <<windows-specific-properties>>
-* <<jakarta-servlet-test-setup>>
 * <<jakarta-websocket-test-setup>>
 * <<jdbc-test-setup>>
 * <<jakarta-mail-test-setup>>
@@ -339,7 +336,7 @@ porting.ts.tsHttpsURLConnection.class.1=<vendor-HttpsURLConnection-class>
 [[full-list-tsjte-properties]]
 ==== Complete List of `ts.jte' Properties
 
-These are the properties that need to have a in the `ts.jte` file provided to the test runner:
+These are the properties that need to have a value in the `ts.jte` file provided to the test runner:
 
 * s1as
 * s1as.modules
@@ -449,53 +446,6 @@ When configuring the CI and TCK for the Windows environment, never
 specify drive letters in any path properties in `ts.jte`.
 
 ======================================================================
-
-
-[[jakarta-servlet-test-setup]]
-=== Jakarta Servlet Test Setup
-
-Make sure that the following servlet properties have been set in the
-`ts.jte` file:
-
-[source,properties]
-----
-ServletClientThreads=[2X size of default servlet instance pool] 
-servlet_waittime=[number_of_milliseconds]
-servlet_async_wait=[number_of_seconds]
-logical.hostname.servlet=server
-s1as.java.endorsed.dirs=${endorsed.dirs}${pathsep}${ts.home}/endorsedlib
-----
-
-The `servlet_waittime` property specifies the amount of time, in
-milliseconds, to wait between the time when the `HttpSession` is set to
-expire on the server and when the `HttpSession` actually expires on the
-client. This time is configurable to allow the servlet container enough
-time to completely invalidate the `HttpSession`. The default value is 10
-milliseconds.
-
-The test `serverpush` in Jakarta Servlet 6.0, uses `httpclient`, a new library
-in JDK9 that depends on `java.util.concurrent.flow` (also new class in JDK9).
-
-The `servlet_async_wait` property sets the duration of time in seconds
-to wait between sending asynchronous messages. This property is used in
-place to test non-interrupted IO, where two messages are sent in two
-different batches and the receiving end will be read in a different read
-cycle. This property sets the time to wait in seconds on the sending
-side. The default is 4 seconds.
-
-The `logical.hostname.servlet` property identifies the configuration
-name of the logical host on which the `ServletContext` is deployed. This
-used to identify the name of a logical host that processes Jakarta EE {tck_version}
-requests. Jakarta EE {tck_version} requests may be directed to a logical host using
-various physical or virtual host names or addresses, and a message
-processing runtime may be composed of multiple logical hosts. The
-`logical.hostname.servlet` property is required to properly identify the
-Jakarta EE {tck_version} profile's `AppContextId` hostname. This property is used by
-the Jakarta EE {tck_version} security tests as well as by the
-`ServletContext.getVirtualServerName()` method. If a
-`logical.hostname.servlet` does not exist, set this property to the
-default hostname (for example, `webServerHost`). The default is
-"server".
 
 [[jakarta-websocket-test-setup]]
 === Jakarta WebSocket Test Setup
@@ -1057,9 +1007,9 @@ to Chapter 7 of the Jakarta Persistence API Specification
 (`https://jakarta.ee/specifications/persistence/3.2`) for additional information regarding entity managers.
 
 [NOTE]
-===
+====
 There is a test of installing a custom Jakarta Persistence provider in the Jakarta Persistence API tests. The tests expect that the log.file.location from the ts.jte file has been propagated to a system property in the server environment. Normally this is automatically done by the TCK harness, but if  your Jakarta Persistence integration causes the custom `jakarta.persistence.spi.PersistenceProvider` or `jakarta.persistence.spi.ProviderUtil` to initialize before the TCK harness, you may need to set the system property manually.
-===
+====
 
 [[configure-jpa-pluggability-tests]]
 ==== To Configure the Test Environment to Run the Jakarta Persistence Pluggability Tests

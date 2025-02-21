@@ -93,7 +93,7 @@ cd jakartaeetck/artifacts
 java VerifyHashes.java
 ----
 
-When run with no arguments this downloads the Jakarta EE staging repository artifacts and validates them against the hashes of the artifacts in the distribution. If you want o validate the artifacts in another repo, pass in the URL to the jakarta.tck groupId in the repository. For example:
+When run with no arguments this downloads the Jakarta EE staging repository artifacts and validates them against the hashes of the artifacts in the distribution. If you want to validate the artifacts in another repo, pass in the URL to the jakarta.tck groupId in the repository. For example:
 [source,bash]
 ----
 java VerifyHashes.java https://repo1.maven.org/maven2/jakarta/tck/

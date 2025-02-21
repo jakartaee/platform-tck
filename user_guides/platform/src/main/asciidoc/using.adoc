@@ -9,7 +9,8 @@ This chapter includes the following topics:
 * <<jakarta-ee-platform-tck-operating-assumptions>>
 * <<running-the-tests>>
 * <<validating-your-test-configuration>>
-* <<running-a-subset-of-the-tests>>
+* <<using-keywords-to-test>>
+* <<rebuilding-test-for-different-databases>>
 * <<test-reports>>
 
 [NOTE]
@@ -428,7 +429,8 @@ To restrict the tests to the group of tests that are required by the Web Profile
 
 Only tests that are required by the Web Profile will be run.
 
-== Rebuilding Test Directories for Different Databases
+[[rebuilding-test-for-different-databases]]
+== Rebuilding Tests for Different Databases
 
 The following packages in the `jakarta.tck:ejb30` test artifact require rebuilding if you are using a database other than Derby:
 

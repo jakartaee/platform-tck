@@ -53,8 +53,7 @@ intended only as a means for formally specifying the application
 programming interfaces defined by the Specifications.
 
 |Application |A collection of components contained in a single
-application package (such as an EAR file or JAR file) and deployed at
-the same time using a Deployment Tool.
+application package (such as an EAR file or WAR file) and deployed at the same time.
 
 |Computational Resource a|
 A piece of hardware or software that may vary in quantity, existence, or
@@ -84,8 +83,7 @@ Edition Runtime Product, as specified in the Specifications, or a later
 version of a Java Platform, Standard Edition Runtime Product that also
 meets these compatibility requirements.
 
-|Deployment Tool |A tool used to deploy applications or components in a
-Product, as described in the Specifications.
+|Deployment Tool |A tool used to deploy applications or components in a Product, as described in the Specifications.
 
 |Documented |Made technically accessible and made known to users,
 typically by means such as marketing materials, product documentation,
@@ -358,8 +356,10 @@ EE-WP21 Compliance testing for Jakarta EE {tck_version} Web Profile consists of 
 * Jakarta JSON Processing 
 * Jakarta RESTful Web Services
 * Jakarta Security
+* Jakarta Servlet
 * Jakarta XML Binding (If XML Binding is supported)
 
+See <<additional-jakarta-ee-platform-tck-requirements>> for additional information on the component specification TCKs.
 
 In addition to the compatibility rules outlined in this TCK User's
 Guide, Jakarta EE {tck_version} implementations must also adhere to all the compatibility rules defined in the User's Guides of the aforementioned
