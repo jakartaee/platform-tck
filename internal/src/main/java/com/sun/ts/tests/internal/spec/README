@@ -1,3 +1,0 @@
-4/21/04
-
-     This directory should contain CTS style tests for functionality that is currently optional in the J2EE specifications.  The idea is that these tests may eventually be used in a future version of the CTS if and when the optional functionality become required.  When adding tests to this directory, please follow all current CTS rules for writing tests.  Directly under this directory, there should be subdirectories similar to those under com/sun/ts/tests.  Then place your tests under the appropriate technology area.
