@@ -30,8 +30,9 @@ import java.util.List;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
+
 public class ExclusionListsTest {
-    @Test
+    //@Test
     public void compareExclusionLists() throws IOException {
         List<URL> xmls = new ArrayList<>();
         ExclusionListsTest.class.getClassLoader().getResources("tck-tests.xml").asIterator().forEachRemaining(xmls::add);

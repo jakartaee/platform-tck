@@ -176,12 +176,6 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>internal</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>javaee</artifactId>
                 <version>${project.version}</version>
             </dependency>
