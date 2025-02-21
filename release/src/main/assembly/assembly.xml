@@ -66,9 +66,18 @@
             <directory>${project.basedir}/bin</directory>
             <outputDirectory>bin</outputDirectory>
         </fileSet>
+        
         <!-- SQL scripts -->
         <fileSet>
-            <directory>${project.basedir}/../sql</directory>
+            <directory>${project.basedir}/../tcks/apis/tags/sql</directory>
+            <outputDirectory>sql</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/../tcks/apis/persistence/persistence-inside-container/sql</directory>
+            <outputDirectory>sql</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/../tcks/profiles/platform/sql</directory>
             <outputDirectory>sql</outputDirectory>
         </fileSet>
 
