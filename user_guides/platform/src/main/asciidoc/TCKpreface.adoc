@@ -54,16 +54,12 @@ implementation of the Jakarta EE {tck_version} Specification.
 Before reading this guide, you should familiarize yourself with the Java
 programming language, the Jakarta Platform, Enterprise Edition {tck_version} Specification, and the JavaTest documentation.
 
-The Jakarta Platform, Enterprise Edition {tck_version} Specification can be
-downloaded from `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
+The Jakarta Platform, Enterprise Edition {tck_version} Specification can be downloaded from https://jakarta.ee/specifications/{tck_version}.
 
-For documentation on the test harness used for running the Jakarta EE {tck_version} Platform TCK
-test suite, see:
+For documentation on the test harness used for running the Jakarta EE {tck_version} Platform TCK test suite, see:
 
 * https://github.com/arquillian/arquillian-core[Arquillian]
 * https://junit.org/junit5/[Junit5]
-
-`https://wiki.openjdk.java.net/display/CodeTools/Documentation`.
 
 [[typographic-conventions]]
 = Typographic Conventions

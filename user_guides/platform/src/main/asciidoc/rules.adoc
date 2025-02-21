@@ -56,8 +56,7 @@ intended only as a means for formally specifying the application
 programming interfaces defined by the Specifications.
 
 |Application |A collection of components contained in a single
-application package (such as an EAR file or JAR file) and deployed at
-the same time using a Deployment Tool.
+application package (such as an EAR file or WAR file) and deployed at the same time.
 
 |Computational Resource a|
 A piece of hardware or software that may vary in quantity, existence, or
@@ -90,9 +89,7 @@ meets these compatibility requirements.
 |Deployment Tool |A tool used to deploy applications or components in a
 Product, as described in the Specifications.
 
-|Development Kit |A software product that implements or incorporates a
-Compiler, a Schema Compiler, a Schema Generator, a Java-to-WSDL Tool, a
-WSDL-to-Java Tool, and an RMI Compiler.
+|Development Kit |A software product that implements or incorporates a Compiler, a Schema Compiler, a Schema Generator.
 
 |Documented |Made technically accessible and made known to users,
 typically by means such as marketing materials, product documentation,
@@ -205,13 +202,6 @@ the Maintenance Lead as applicable to a given Version of the Technology.
 |Version |A release of the Technology, as produced through the
 Jakarta EE Specification Process (JESP).
 
-|WSDL-to-Java Output |Output of a WSDL-to-Java tool that is required for
-Web service deployment and invocation.
-
-|WSDL-to-Java Tool |A software development tool that implements or
-incorporates a function that generates web service interfaces for
-clients and endpoints from a WSDL description as specified by the JAXWS
-Specification.
 |=======================================================================
 
 [[rules-for-jakarta-platform-enterprise-edition-version-products]]
@@ -399,19 +389,6 @@ EE21.1 If the Jakarta EE {tck_version} implementation uses a runtime which has
 already been validated by the Technology Compatibility Kit,
 the Jakarta EE {tck_version} implementation may use result of such validation
 to claim its compliance with the Technology Compatibility Kit.
-
-EE22 Source Code in WSDL-to-Java Output when compiled by a Reference
-Compiler must execute properly when run on a Reference Runtime.
-
-EE23 Source Code in WSDL-to-Java Output must be in source file format
-defined by the Java Language Specification (JLS).
-
-EE24 Java-to-WSDL Output must fully meet W3C requirements for the Web
-Services Description Language (WSDL) 1.1.
-
-EE25 A Java-to-WSDL Tool must not produce Java-to-WSDL Output from
-source code that does not conform to the Java Language Specification
-(JLS).
 
 [[appeals-process-ee]]
 == Jakarta Platform, Enterprise Edition Version 11 Test Appeals Process
