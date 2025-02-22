@@ -28,7 +28,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>jsonb-platform-extra-tck</artifactId>
-    <version>11.0.0-SNAPSHOT</version>
+    <version>11.0.0-M7</version>
     <packaging>pom</packaging>
 
     <modules>
