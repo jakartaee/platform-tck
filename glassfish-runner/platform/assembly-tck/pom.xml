@@ -19,12 +19,12 @@
     <parent>
         <groupId>org.glassfish</groupId>
         <artifactId>standalone-tck</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
+        <version>11.0.0-M7</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>jakarta</groupId>
     <artifactId>glassfish.assembly-tck</artifactId>
-    <version>11.0.0-SNAPSHOT</version>
+    <version>11.0.0-M7</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -40,7 +40,7 @@
         <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <tck.artifactId>assembly-tck</tck.artifactId>
-        <tck.version>11.0.0-SNAPSHOT</tck.version>
+        <tck.version>11.0.0-M7</tck.version>
         <ts.home>./jakartaeetck</ts.home>
     </properties>
 
