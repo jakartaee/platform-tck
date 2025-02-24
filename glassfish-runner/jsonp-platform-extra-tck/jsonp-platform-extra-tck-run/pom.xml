@@ -27,7 +27,7 @@
     
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jsonp-platform-tck</artifactId>
-    <version>11.0.0-M7</version>
+    <version>11.0.0-M8</version>
     <packaging>jar</packaging>
 
     <properties>

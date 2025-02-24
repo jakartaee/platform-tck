@@ -27,7 +27,7 @@
 
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jpa-platform-tck</artifactId>
-    <version>11.0.0-M7</version>
+    <version>11.0.0-M8</version>
 
     <properties>
         <!-- Require at least Java 17 to compile -->
@@ -42,10 +42,10 @@
         <glassfish.version>8.0.0-JDK17-M9</glassfish.version>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
 
-        <tck.version>11.0.0-M7</tck.version>
+        <tck.version>11.0.0-M8</tck.version>
         <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
         <jakarta.tck.tools.version>11.0.0-RC5</jakarta.tck.tools.version>
-        <version.persistence.tck>11.0.0-M7</version.persistence.tck>
+        <version.persistence.tck>11.0.0-M8</version.persistence.tck>
         
         <ts.home>./jakartaeetck</ts.home>
     </properties>
