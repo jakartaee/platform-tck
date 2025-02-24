@@ -28,7 +28,7 @@
 
     <groupId>org.glassfish</groupId>
     <artifactId>glassfish-runner</artifactId>
-    <version>11.0.0-M7</version>
+    <version>11.0.0-M8</version>
     <packaging>pom</packaging>
 
     <modules>

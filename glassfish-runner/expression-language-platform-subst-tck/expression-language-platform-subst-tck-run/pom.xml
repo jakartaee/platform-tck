@@ -25,7 +25,7 @@
     
     <groupId>jakarta</groupId>
     <artifactId>glassfish.el-platform-tck</artifactId>
-    <version>11.0.0-M7</version>
+    <version>11.0.0-M8</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -35,7 +35,7 @@
         <glassfish.version>8.0.0-M9</glassfish.version>
         
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
-        <tck.version>11.0.0-M7</tck.version>
+        <tck.version>11.0.0-M8</tck.version>
         <ts.home>./jakartaeetck</ts.home>
     </properties>
 

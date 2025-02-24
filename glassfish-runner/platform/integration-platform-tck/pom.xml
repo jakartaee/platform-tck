@@ -19,12 +19,12 @@
     <parent>
         <groupId>org.glassfish</groupId>
         <artifactId>standalone-tck</artifactId>
-        <version>11.0.0-M7</version>
+        <version>11.0.0-M8</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>jakarta</groupId>
     <artifactId>glassfish.integration-platform-tck</artifactId>
-    <version>11.0.0-M7</version>
+    <version>11.0.0-M8</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -83,11 +83,11 @@
         <restype>javax.sql.DataSource</restype>
         <sql.directory>./sql</sql.directory>
         <tck.artifactId>integration</tck.artifactId>
-        <tck.version>11.0.0-M7</tck.version>
+        <tck.version>11.0.0-M8</tck.version>
         <ts.home>./jakartaeetck/</ts.home>
         <user1>cts1</user1>
         <user2>cts1</user2>
-        <version.jakarta.tck>11.0.0-M7</version.jakarta.tck>
+        <version.jakarta.tck>11.0.0-M8</version.jakarta.tck>
     </properties>
 
     <dependencyManagement>
