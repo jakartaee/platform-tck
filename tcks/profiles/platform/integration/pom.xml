@@ -90,7 +90,7 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>11.0.0-M1</version>
+            <version>11.0.0-RC1</version>
         </dependency>
 
         <dependency>
