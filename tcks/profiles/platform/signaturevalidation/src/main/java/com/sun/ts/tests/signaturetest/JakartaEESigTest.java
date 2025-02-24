@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -524,6 +525,24 @@ public class JakartaEESigTest extends SigTestEE {
    * certain packages that may exist in Optional technologies;
    * jtaJarClasspath, The Location of the JTA API jar file;
    */
+  /**
+ * Called by the test framework to initialize this test. The method simply
+ * retrieves some state information that is necessary to run the test when
+ * when the test framework invokes the run method (actually the test1 method).
+ *
+ * @param args
+ *          List of arguments passed to this test.
+ * @param p
+ *          Properties specified by the test user and passed to this test via
+ *          the test framework.
+ *
+ * @throws Exception
+ *           When an error occurs reading or saving the state information
+ *           processed by this method.
+ */
+public void setup(String[] args, Properties p) throws Exception {
+  super.setup(args, p);
+}
 
   // XXX current.keywords does not seem to be in the props instance
   /*
@@ -536,7 +555,18 @@ public class JakartaEESigTest extends SigTestEE {
    * classes and APIs. Compare these results with the expected (required)
    * classes and APIs.
    */
-
+  /**
+ * Called by the test framework to run this test. This method utilizes the
+ * state information set in the setup method to run the signature tests. All
+ * signature test code resides in the utility class so it can be reused by the
+ * signature test framework base classes.
+ *
+ * @throws Exception
+ *           When an error occurs executing the signature tests.
+ */
+public void signatureTest() throws Exception {
+  super.signatureTest();
+}
   /*
    * Call the parent class's cleanup method.
    */

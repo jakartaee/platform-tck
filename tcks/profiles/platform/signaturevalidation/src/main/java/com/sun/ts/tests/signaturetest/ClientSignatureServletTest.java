@@ -180,25 +180,6 @@ public class ClientSignatureServletTest extends JakartaEESigTest implements Seri
         return signaturetest_servlet_vehicle_web;
     }
 
-
-    /* Test setup: */
-
-    /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     *
-     * @class.testArgs: -ap tssql.stmt
-     */
-    public void setup(String args[], Properties p) throws Exception {
-        super.setup(args, p);
-        TestUtil.logMsg("Setup signature tests");
-    }
-
-    /* Test cleanup */
-
-    public void cleanup() throws Exception {
-        TestUtil.logMsg("Cleanup ok");
-    }
-
     @Test
     @Override
     @TargetVehicle("servlet")
