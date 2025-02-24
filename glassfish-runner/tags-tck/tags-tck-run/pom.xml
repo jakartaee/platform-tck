@@ -33,7 +33,8 @@
         <glassfish.version>8.0.0-JDK17-M9</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
         <jakarta.platform.version>11.0.0-M4</jakarta.platform.version>
-        <jakarta.tck.tags.version>${project.version}</jakarta.tck.tags.version>
+        <tck.version>${project.version}</tck.version>
+        <jakarta.tck.tags.version>${tck.version}</jakarta.tck.tags.version>
     </properties>
 
     <dependencies>
