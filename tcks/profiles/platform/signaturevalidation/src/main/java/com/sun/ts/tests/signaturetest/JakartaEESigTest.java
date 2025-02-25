@@ -526,21 +526,6 @@ public class JakartaEESigTest extends SigTestEE {
    * certain packages that may exist in Optional technologies;
    * jtaJarClasspath, The Location of the JTA API jar file;
    */
-  /**
- * Called by the test framework to initialize this test. The method simply
- * retrieves some state information that is necessary to run the test when
- * when the test framework invokes the run method (actually the test1 method).
- *
- * @param args
- *          List of arguments passed to this test.
- * @param p
- *          Properties specified by the test user and passed to this test via
- *          the test framework.
- *
- * @throws Exception
- *           When an error occurs reading or saving the state information
- *           processed by this method.
- */
 public void setup(String[] args, Properties p) throws Exception {
   Thread.dumpStack(); // this is for debugging why signature tests aren't initialized correctly, remove this change
   super.setup(args, p);
