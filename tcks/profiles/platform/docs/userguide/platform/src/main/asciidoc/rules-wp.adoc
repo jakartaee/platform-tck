@@ -393,6 +393,12 @@ required for the Jakarta EE {tck_version} Web Profile:
 * jakarta.annotation.security
 * jakarta.annotation.sql
 * jakarta.decorator
+* jakarta.data
+* jakarta.data.exceptions
+* jakarta.data.metamodel
+* jakarta.data.page
+* jakarta.data.repository
+* jakarta.data.spi
 * jakarta.ejb
 * jakarta.ejb.embeddable (removed from Jakarta EE {tck_version} Platform but still part of Jakarta Enterprise Beans 4.0)
 * jakarta.ejb.spi

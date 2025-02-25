@@ -192,13 +192,6 @@ implementations of `TSJMSAdminInterface`. The concrete implementations
 are specified by the `porting.ts.jms.class.1` and
 `porting.ts.jms.class.2` properties in the `ts.jte` file.
 
-If you wish to create the Jakarta Messaging-administered objects prior to executing
-any tests, you may use the default implementation of
-`TSJMSAdminInterface`, `SunRIJMSAdmin.java`, which provides a null
-implementation. In the case of the Jakarta Platform, Enterprise Edition CI Eclipse GlassFish 6.1,
-the Jakarta Messaging administered objects are created during the execution of the
-`config.vi` Ant target.
-
 There are two types of Jakarta Messaging-administered objects:
 
 . A `ConnectionFactory`, which a client uses to create a connection with
