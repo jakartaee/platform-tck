@@ -8,7 +8,6 @@ This chapter includes the following topics:
 
 * <<jakarta-ee-platform-tck-operating-assumptions>>
 * <<running-the-tests>>
-* <<validating-your-test-configuration>>
 * <<using-keywords-to-test>>
 * <<rebuilding-test-for-different-databases>>
 * <<test-reports>>
@@ -302,43 +301,6 @@ To run a single test package, you would configure your surefile/failsafe plugin 
 
 You could further restrict the included test to a specific test class by changing the include to the specific test class name.
 
-[[running-tests-classes]]
-
-[[validating-your-test-configuration]]
-== Validating Your Test Configuration
-
-[[to-validate-your-configuration-in-command-line-mode]]
-=== To Validate Your Configuration in Command-Line Mode (Needs Rewrite)
-
-.  Go to the `<TS_HOME>/src/com/sun/ts/tests/samples` directory.
-.  Start the test run by executing the following command:
-+
-[source,oac_no_warn]
-----
-ant runclient
-----
-+
-All sample tests will be run, and should pass.
-.  Generate test reports by executing the following commands:
-..  Change to the `<TS_HOME>/bin` directory: 
-+
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-----
-+
-..  Run the `report` Ant target: 
-+
-[source,oac_no_warn]
-----
-ant report
-----
-+
-Reports are written to the report directory you specified in
-`<TS_HOME>/bin/ts.jte`. If no report directory is specified, reports are
-written to the `/tmp/JTreport` directory (Solaris/Linux) or
-`C:\temp\JTreport` (Windows).
-
 [[using-keywords-to-test]]
 == Using Keywords to Test Required Technologies
 
@@ -435,10 +397,10 @@ Only tests that are required by the Web Profile will be run.
 The following packages in the `jakarta.tck:ejb30` test artifact require rebuilding if you are using a database other than Derby:
 
 * `com/sun/ts/tests/ejb30/lite/packaging/war/datasource`
-* `com/sun/ts/tests/ejb30/assembly/appres`
-* `com/sun/ts/tests/ejb30/misc/datasource`
+* `com/sun/ts/tests/ejb30/misc/datasource/twojars`
+* `com/sun/ts/tests/ejb30/misc/datasource/twowars`
 
-
+The tests under these packages use classes with `@DataSourceDefinition` annotations with settings appropriate for the Derby database. If you are using a different database, you will need to update the `@DataSourceDefinition` annotations in these classes to match the settings for your database.
 
 === JMS (Full Platform Only)
 The `com/sun/ts/tests/jms/ee20/resourcedefs` tests may need to be updated and rebuilt for resource definitions...

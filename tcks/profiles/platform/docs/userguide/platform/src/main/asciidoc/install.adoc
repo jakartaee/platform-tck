@@ -77,12 +77,10 @@ unzip jakartaeetck-nnn-dist.zip
 ----
 +
 This creates the `jakartaeetck` directory. The
-install_directory`/jakartaeetck` directory will be `TS_HOME`.
-.  Set the `TS_HOME` environment variable to point to the `javaeetck`
-directory.
+path to the `/jakartaeetck` directory will be referenced as `TS_HOME`.
+.  Set the `TS_HOME` environment variable to point to the `jakartaeetck` directory.
 
-After you complete the installation, follow the directions in <<setup-and-configuration>> to set up
-and configure the Jakarta EE {tck_version} Platform TCK test suite.
+After you complete the installation, follow the directions in <<setup-and-configuration>> to set up and configure the Jakarta EE {tck_version} Platform TCK test suite.
 
 [[verifying-your-installation-optional]]
 == Verifying Your Installation (Optional)

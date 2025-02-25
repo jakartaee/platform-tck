@@ -2,9 +2,7 @@
 = Setup and Configuration
 
 This chapter describes how to set up the Jakarta EE {tck_version} Platform TCK test suite and
-configure it to work with your test environment. It is recommended that
-you first set up the testing environment using the Jakarta EE {tck_version} CI and then
-with your Jakarta EE {tck_version} server.
+configure it to work with your test environment. It is recommended that you first set up the testing environment using the Jakarta EE {tck_version} CI and then with your Jakarta EE {tck_version} server.
 
 This chapter includes the following topics:
 
@@ -20,7 +18,7 @@ You can modify the following test suite components only:
 
 * Your implementation of the porting package
 * `ts.jte` environment file
-* The vendor-specific SQL files in `<TS_HOME>/sql`
+* The vendor-specific SQL files in `<TS_HOME>/bin/sql`
 * Any files in `<TS_HOME>/bin` and `<TS_HOME>/bin/xml`
 
 [[configuring-the-test-environment]]
@@ -164,16 +162,12 @@ database setup instructions.
 To use a Jakarta EE {tck_version} server other than the Jakarta EE {tck_version} CI, follow the steps
 below.
 
-.  Set server properties in your `<TS_HOME>/bin/ts.jte` file to suit
-your test environment.
-Be sure to set the following properties:
+.  Set server properties in your `<TS_HOME>/bin/ts.jte` file to suit your test environment. Be sure to set the following properties:
 
-..  Set the `webServerHost` property to the name of the host on which
-your Web server is running that is configured with the CI. +
+..  Set the `webServerHost` property to the name of the host on which your Web server is running that is configured with the CI. +
 The default setting is `localhost`.
 
-..  Set the `webServerPort` property to the port number of the host on
-which the Web server is running and configured with the CI. +
+..  Set the `webServerPort` property to the port number of the host on which the Web server is running and configured with the CI. +
 The default setting is `8001`.
 
 ..  Set the `porting.ts.url.class` property to your porting
@@ -185,31 +179,21 @@ file. <<c.3-database-properties-in-ts.jte>> lists the names and descriptions for
 .  Install the Jakarta Platform, Enterprise Edition VI and configure basic
 settings.
 
-Whichever configuration method you choose, make sure that all configuration steps
-in this procedure are completed as shown.
+Whichever configuration method you choose, make sure that all configuration steps in this procedure are completed as shown.
 .  Install and configure a database for the server under test.
 .  Start your database.
 .  Initialize your database for TCK tests.
 
-Refer to <<c-configuring-your-backend-database>> for detailed database configuration and
-initialization instructions and a list of database-specific
-initialization targets.
+Refer to <<c-configuring-your-backend-database>> for detailed database configuration and initialization instructions and a list of database-specific initialization targets.
 
 .  Start your Jakarta EE {tck_version} server.
-
 .  Set up required users and passwords.
-
 ..  Set up database users and passwords that are used for JDBC
 connections. +
-The Jakarta EE {tck_version} Platform TCK requires several user names, passwords, and
-user-to-role mappings. These need to match those set in your `ts.jte`
-file. By default, `user1`, `user2`, `user3, password1`, `password2`, and
-`password3` are set to `cts1`.
+The Jakarta EE {tck_version} Platform TCK requires several user names, passwords, and user-to-role mappings. These need to match those set in your `ts.jte` file. By default, `user1`, `user2`, `user3, password1`, `password2`, and `password3` are set to `cts1`.
 
-..  Set up users and passwords for your Jakarta Platform, Enterprise Edition
-server. +
-For the purpose of running the TCK test suite, these should be set as
-follows: 
+..  Set up users and passwords for your Jakarta Platform, Enterprise Edition server. +
+For the purpose of running the TCK test suite, these should be set as follows:
 
 .User Password Groups
 [width="100%",cols="33%,33%,34%",options="header",]
@@ -221,16 +205,11 @@ follows:
 |`j2ee_ri` |`j2ee_ri` |`staff`
 |====================
 
-. Make sure that the appropriate JDBC 4.1-compliant database driver
-class, any associated database driver native libraries, and the correct
-database driver URL are available.
+. Make sure that the appropriate JDBC 4.1-compliant database driver class, any associated database driver native libraries, and the correct database driver URL are available.
 
-. Configure your Jakarta Platform, Enterprise Edition server to use the
-appropriate JDBC logical name (`jdbc/DB1`) when accessing your database
-server.
+. Configure your Jakarta Platform, Enterprise Edition server to use the appropriate JDBC logical name (`jdbc/DB1`) when accessing your database server.
 
-. Configure your Jakarta EE {tck_version} server to use the appropriate logical name
-(`jdbc/DBTimer`) when accessing your Jakarta Enterprise Beans timer.
+. Configure your Jakarta EE {tck_version} server to use the appropriate logical name (`jdbc/DBTimer`) when accessing your Jakarta Enterprise Beans timer.
 
 . Provide access to a JNDI lookup service.
 
@@ -483,7 +462,7 @@ handshake has failed.
 
 
 [[jdbc-test-setup]]
-=== JDBC Test Setup
+=== JDBC Test Setup (Full Platform Only)
 
 The JDBC tests require you to set the timezone by modifying the `tz`
 property in the `ts.jte` file. On Solaris systems, you can check the
@@ -528,13 +507,43 @@ where the mail will be sent.
 * Set the `javamail.password` property to the password for `mailuser1`.
 
 .  Populate your IMAP server with sample messages. +
-Change to the `<TS_HOME>/bin` directory and execute the Ant target
-`populateMailbox` to create the sample messages in your IMAP server. 
+The `com.sun.ts.tests.javamail.ee.util.fpopulate` class included in the javamail test artifact can be run with a configuration like the following to accomplish this:
 +
-[source,bash]
+[source,xml]
 ----
-cd <TS_HOME>/bin
-ant populateMailbox
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>com.sun.ts.tests.javamail.ee.util.fpopulate</mainClass>
+                    <arguments>
+                        <argument>-s</argument>
+                        <argument>${mailboxFolder1}</argument>
+                        <argument>-d</argument>
+                        <argument>${destinationURL}</argument>
+                        <argument>-user</argument>
+                        <argument>${javamail.username}</argument>
+                        <argument>-password</argument>
+                        <argument>${javamail.password}</argument>
+                        <argument>-host</argument>
+                        <argument>${javamail.server}</argument>
+                        <argument>-port</argument>
+                        <argument>${imap.port}</argument>
+                        <argument>-protocol</argument>
+                        <argument>${javamail.protocol}</argument>
+                    </arguments>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>1-populate-mailbox</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                    </execution>
+                </executions>
+            </plugin>
 ----
 
 [[jakarta-restful-web-services-test-setup]]
@@ -808,8 +817,6 @@ asadmin create-jdbc-connection-pool --restype javax.sql.XADataSource \
 cts-derby-XA-pool
 ----
 +
-See the `add.jdbc.pools` Ant target in the `s1as.xml` file for
-additional information.
 
 .  Create three JDBC connection pool elements (more specifically, the
 JDBC connection pool elements) with the following JNDI names:

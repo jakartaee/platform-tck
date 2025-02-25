@@ -8,10 +8,7 @@ target/
 .classpath
 .factorypath
 .settings/
-classes/
-dist/
 .m2/
-release/
 el/bundle
 jakartaeetck-bundles/
 /tck-env.cfg

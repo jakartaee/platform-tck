@@ -315,7 +315,7 @@ Implementers are not permitted to alter or modify which tests are Excluded Tests
 
 
 [[apache-ant]]
-=== Apache Ant
+=== Apache Ant (Optional)
 
 There are example setup scripts for the TCK test databases that use of Apache Ant 1.9.7 from the Apache Ant Project (`http://ant.apache.org/`). Apache Ant is a free, open-source,
 Java-based build tool, similar in some ways to the make tool, but more
@@ -323,8 +323,7 @@ flexible, cross-platform compatible, and centered around XML-based
 configuration files. You do not need to use these scripts, but the SQL statements in the scripts will have to be loaded into your testing database in order for the TCK tests to pass.
 
 
-Apache Ant is protected under the Apache Software, License 2.0, which is
-is available on the Apache Ant Project license page at 
+Apache Ant is protected under the Apache Software, License 2.0, which is is available on the Apache Ant Project license page at
 `http://ant.apache.org/license.html`.
 
 ==== Installing Apache Ant

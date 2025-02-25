@@ -370,6 +370,7 @@ TCK and the following Technology Compatibility Kits (TCKs). Version details are 
 * Jakarta Bean Validation
 * Jakarta Concurrency
 * Jakarta Contexts and Dependency Injection
+* Jakarta Data
 * Jakarta Debugging Support for Other Languages
 * Jakarta Dependency Injection
 * Jakarta Faces 
@@ -418,6 +419,12 @@ required for Jakarta EE {tck_version}.0:
 * jakarta.batch.runtime
 * jakarta.batch.runtime.context
 * jakarta.decorator
+* jakarta.data
+* jakarta.data.exceptions
+* jakarta.data.metamodel
+* jakarta.data.page
+* jakarta.data.repository
+* jakarta.data.spi
 * jakarta.ejb
 * jakarta.ejb.embeddable (removed from Jakarta EE {tck_version} Platform but still part of Jakarta Enterprise Beans 4.0)
 * jakarta.ejb.spi
