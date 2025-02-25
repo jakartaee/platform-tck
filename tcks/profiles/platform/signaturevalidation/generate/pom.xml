@@ -39,7 +39,7 @@ javax.rmi.sig (Corba classes for EJB)
 
     <groupId>jakarta.tck</groupId>
     <artifactId>generate</artifactId>
-    <version>11.0.0-M10</version>
+    <version>11.0.0-SNAPSHOT</version>
     
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
