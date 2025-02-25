@@ -27,6 +27,9 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Properties;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -83,7 +86,9 @@ public class ClientSignatureServletTest extends JakartaEESigTest implements Seri
      * WEB-INF/lib/sigtest.jar
      * WEB-INF/web.xml
      */
-
+    @TargetsContainer("tck-javatest")
+    @OverProtocol("javatest")
+    @Deployment(name = "servlet", testable = true)
     public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
         // the war with the correct archive name
