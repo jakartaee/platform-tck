@@ -513,6 +513,7 @@ public class JakartaEESigTest extends SigTestEE {
    * Initial entry point for JavaTest.
    */
   public static void main(String[] args) {
+    Thread.dumpStack(); // this is for debugging why signature tests aren't initialized correctly, remove this change
     JakartaEESigTest theTests = new JakartaEESigTest();
     Status s = theTests.run(args, System.out, System.err);
     s.exit();
@@ -541,6 +542,7 @@ public class JakartaEESigTest extends SigTestEE {
  *           processed by this method.
  */
 public void setup(String[] args, Properties p) throws Exception {
+  Thread.dumpStack(); // this is for debugging why signature tests aren't initialized correctly, remove this change
   super.setup(args, p);
 }
 
@@ -565,6 +567,7 @@ public void setup(String[] args, Properties p) throws Exception {
  *           When an error occurs executing the signature tests.
  */
 public void signatureTest() throws Exception {
+  Thread.dumpStack(); // this is for debugging why signature tests aren't initialized correctly, remove this change
   super.signatureTest();
 }
   /*

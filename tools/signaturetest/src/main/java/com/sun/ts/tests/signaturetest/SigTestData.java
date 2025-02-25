@@ -39,7 +39,7 @@ public class SigTestData {
   }
 
   public String getVehicle() {
-    return props.getProperty("vehicle", "");
+    return props.getProperty("vehicle", "servlet"); // default to "servlet" which we should remove with calls to dumpStack
   }
 
   public String getBinDir() {
