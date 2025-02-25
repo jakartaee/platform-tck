@@ -205,6 +205,7 @@ public abstract class SigTestEE extends ServiceEETest {
    */
   public void setup(String[] args, Properties p) throws Exception {
     try {
+      Thread.dumpStack(); // this is for debugging why signature tests aren't initialized correctly, remove this change
       TestUtil.logMsg("$$$ SigTestEE.setup() called");
       this.testInfo = new SigTestData(p);
       TestUtil.logMsg("$$$ SigTestEE.setup() complete");
@@ -219,6 +220,7 @@ public abstract class SigTestEE extends ServiceEETest {
    * @throws Exception
    */
   public void setup() throws Exception {
+    Thread.dumpStack(); // this is for debugging why signature tests aren't initialized correctly, remove this change
     setup(null, System.getProperties());
   }
 
@@ -232,6 +234,7 @@ public abstract class SigTestEE extends ServiceEETest {
    *           When an error occurs executing the signature tests.
    */
   public void signatureTest() throws Exception {
+    Thread.dumpStack(); // this is for debugging why signature tests aren't initialized correctly, remove this change
     TestUtil.logMsg("$$$ SigTestEE.signatureTest() called");
     SigTestResult results = null;
     String mapFile = getMapFile();
