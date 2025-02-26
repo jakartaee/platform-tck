@@ -79,7 +79,6 @@
         <module>tcks/profiles/platform/docs/userguide</module>
         
         <module>tools/signaturetest</module>
-        <module>tcks/profiles/platform/signaturevalidation/generate</module>
     </modules>
 
     <properties>
