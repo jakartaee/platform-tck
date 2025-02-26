@@ -248,6 +248,11 @@
             <version>${jakarta.tck.tools.version}</version>
         </dependency>
         <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>signaturevalidation</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>websocket-tck-platform-tests</artifactId>
             <version>${project.version}</version>

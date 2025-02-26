@@ -137,6 +137,7 @@
                 <include>${project.groupId}:transactions-tck</include>
                 <include>${project.groupId}:tags-tck</include>
                 <include>${project.groupId}:signaturetest</include>
+                <include>${project.groupId}:signaturevalidation</include>
                 <include>${project.groupId}:websocket-tck-platform-tests</include>
                 <include>${project.groupId}:xa</include>
             </includes>

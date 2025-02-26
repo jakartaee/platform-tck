@@ -34,7 +34,7 @@
 
   <properties>
     <version.jakarta.tck.arquillian>11.0.0-RC1</version.jakarta.tck.arquillian>
-    <version.jakarta.tck.common>11.0.0-RC4</version.jakarta.tck.common>
+    <version.jakarta.tck.common>11.0.0-RC5</version.jakarta.tck.common>
   </properties>
   
   <dependencyManagement> 
@@ -180,11 +180,21 @@
         <artifactId>javaee-tck</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>signaturevalidation</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
       <!-- TCK common dependencies -->
       <dependency>
         <groupId>jakarta.tck</groupId>
         <artifactId>common</artifactId>
+        <version>${version.jakarta.tck.common}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>signaturetest</artifactId>
         <version>${version.jakarta.tck.common}</version>
       </dependency>
 
