@@ -323,6 +323,7 @@ These are the properties that need to have a value in the `ts.jte` file provided
 * authpassword
 * authuser
 * binarySize
+* bin.dir
 * cofSize
 * cofTypeSize
 * db.dml.file
@@ -346,6 +347,7 @@ These are the properties that need to have a value in the `ts.jte` file provided
 * javamail.server
 * javamail.username
 * jdbc.db
+* jimage.dir
 * jms_timeout
 * jstl.db.user
 * jstl.db.password
@@ -1407,6 +1409,13 @@ the default HTTP port. For `INTEGRAL/CONFIDENTIAL`, the scheme will be
 
 The signature test setup includes the following:
 
+[[signature-test-vm-properties]]
+==== Signature Test JVM Arguments
+
+The following JVM arguments are required for the signature tests:
+
+* `--add-exports=java.base/jdk.internal.vm.annotation=ALL-UNNAMED`
+
 [[sigtestclasspath-property]]
 ==== sigTestClasspath Property
 
@@ -1428,6 +1437,20 @@ Edition CI, Eclipse GlassFish 6.1, set to `javaee.jar`
 by your JAR file; must include any classes that might be extended or
 implemented by the classes in your jar_to_test; include `rt.jar` when
 running against the Jakarta Platform, Enterprise Edition CI
+
+[[jimagedir-property]]
+==== jimage.dir Property
+
+Set the `jimage.dir` property in the `<TS_HOME>/bin/ts.jte` file to set the
+path where signatures for the Java Runtime will be extracted. This property can
+later be used to setup the `sigTestClasspath` for things like the `java.base` module.
+
+[[bindir-property]]
+==== bin.dir Property
+
+Set the `bin.dir` property in the `<TS_HOME>/bin/ts.jte` file to set the path where
+the signature mapping and package list files are located. Typically you'd extract the files from the test
+archive.
 
 [[additional-signature-test-information]]
 ==== Additional Signature Test Information
@@ -1452,8 +1475,10 @@ When running on Windows, be sure to use semicolons (`;`) for `CLASSPATH` separat
 Check the report output from the test to determine which tests failed
 and why.
 
-For example, some failures from an actual `JavaEESigTest_signatureTest_from_servlet.jtr` failure:
-`
+For example, some failures from an actual failure:
+
+[source,text]
+----
 SVR: ********** Status Report 'jakarta.servlet.jsp.jstl.core' **********
 
 SVR: SignatureTest report
@@ -1481,7 +1506,7 @@ jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.Stri
 jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.String jakarta.servlet.jsp.jstl.core.Config.SQL_MAX_ROWS = "javax.servlet.jsp.jstl.sql.maxRows"
 
 SVR: ********** Package 'jakarta.servlet.jsp.jstl.core' - FAILED (STATIC MODE) **********
-`
+----
 
 The failure above is a little strange, isn't it?  Why are there missing fields?  Why are there added fields?
 The failure means that the `jakarta.servlet.jsp.jstl.core.Config` class needs to be updated to assign the correct values to the indicated constant fields.  
@@ -1490,7 +1515,8 @@ The same correction is needed for the other identified fields as well.
 
 Another example only with methods is:
 
-`
+[source,text]
+----
 SVR: ********** Status Report 'jakarta.el' **********
 
 SVR: SignatureTest report
@@ -1512,7 +1538,7 @@ jakarta.el.ELContext:                   method public java.lang.Object jakarta.e
 jakarta.el.ELContext:                   method public void jakarta.el.ELContext.putContext(java.lang.Class,java.lang.Object)
 jakarta.el.StandardELContext:           method public java.lang.Object jakarta.el.StandardELContext.getContext(java.lang.Class)
 jakarta.el.StandardELContext:           method public void jakarta.el.StandardELContext.putContext(java.lang.Class,java.lang.Object)
-`
+----
 
 The failure above is a little strange, isn't it?  Why are there missing  methods?  Why are there added methods?
 The failure means that the `java.lang.Object jakarta.el.ELContext.getContext(java.lang.Class)` method needs a signature change 
@@ -1522,6 +1548,105 @@ from `getContext(Class key)` to `getContext(Class<?> key)`.  The same correction
 =====
 Refer to <<debugging-test-problems>> for additional debugging information.
 =====
+
+[[signature-test-configuration-examples]]
+==== Signature Test Configuration Examples
+
+An example `ts.jte` file will look something like:
+
+[source,text]
+----
+webServerHost=localhost
+webServerPort=8080
+ts_home=./target/jakartaee
+
+bin.dir=./target/jakartaee/com/sun/ts/tests/signaturetest/signature-repository
+jimage.dir=./target/jdk-bundle
+sigTestClasspath=./target/wildfly/modules/system/layers/base/jakarta/activation/api/main/jakarta.activation-api-2.1.3.jar:./target/wildfly/modules/system/layers/base/jakarta/annotation/api/main/jakarta.annotation-api-3.0.0.jar:./target/wildfly/modules/system/layers/base/jakarta/batch/api/main/jakarta.batch-api-2.1.1.jar:./target/wildfly/modules/system/layers/base/jakarta/data/api/main/jakarta.data-api-1.0.1.jar:./target/wildfly/modules/system/layers/base/jakarta/ejb/api/main/jakarta.ejb-api-4.0.1.jar:./target/wildfly/modules/system/layers/base/jakarta/el/api/main/jakarta.el-api-6.0.1.jar:./target/wildfly/modules/system/layers/base/jakarta/enterprise/api/main/jakarta.enterprise.cdi-api-4.1.0.jar:./target/wildfly/modules/system/layers/base/jakarta/enterprise/api/main/jakarta.enterprise.cdi-el-api-4.1.0.jar:./target/wildfly/modules/system/layers/base/jakarta/enterprise/api/main/jakarta.enterprise.lang-model-4.1.0.jar:./target/wildfly/modules/system/layers/base/jakarta/enterprise/concurrent/api/main/jakarta.enterprise.concurrent-api-3.1.0.jar:./target/wildfly/modules/system/layers/base/jakarta/faces/impl/main/jakarta.faces-4.1.0.jar:./target/wildfly/modules/system/layers/base/jakarta/inject/api/main/jakarta.inject-api-2.0.1.jar:./target/wildfly/modules/system/layers/base/jakarta/interceptor/api/main/jakarta.interceptor-api-2.2.0.jar:./target/wildfly/modules/system/layers/base/jakarta/jms/api/main/jakarta.jms-api-3.1.0.jar:./target/wildfly/modules/system/layers/base/jakarta/json/api/main/jakarta.json-api-2.1.3.jar:./target/wildfly/modules/system/layers/base/jakarta/json/bind/api/main/jakarta.json.bind-api-3.0.1.jar:./target/wildfly/modules/system/layers/base/jakarta/mail/api/main/jakarta.mail-api-2.1.3.jar:./target/wildfly/modules/system/layers/base/jakarta/persistence/api/main/jakarta.persistence-api-3.2.0.jar:./target/wildfly/modules/system/layers/base/jakarta/resource/api/main/jakarta.resource-api-2.1.0.jar:./target/wildfly/modules/system/layers/base/jakarta/security/auth/message/api/main/jakarta.authentication-api-3.1.0.jar:./target/wildfly/modules/system/layers/base/jakarta/security/enterprise/api/main/jakarta.security.enterprise-api-4.0.0.jar:./target/wildfly/modules/system/layers/base/jakarta/security/jacc/api/main/jakarta.authorization-api-3.0.0.jar:./target/wildfly/modules/system/layers/base/jakarta/servlet/api/main/jakarta.servlet-api-6.1.0.jar:./target/wildfly/modules/system/layers/base/jakarta/servlet/jsp/api/main/jakarta.servlet.jsp-api-3.1.1.jar:./target/wildfly/modules/system/layers/base/jakarta/servlet/jstl/api/main/jakarta.servlet.jsp.jstl-3.0.1-jbossorg-1.jar:./target/wildfly/modules/system/layers/base/jakarta/servlet/jstl/api/main/jakarta.servlet.jsp.jstl-api-3.0.2.jar:./target/wildfly/modules/system/layers/base/jakarta/transaction/api/main/jakarta.transaction-api-2.0.1.jar:./target/wildfly/modules/system/layers/base/jakarta/validation/api/main/jakarta.validation-api-3.1.0.jar:./target/wildfly/modules/system/layers/base/jakarta/websocket/api/main/jakarta.websocket-api-2.2.0.jar:./target/wildfly/modules/system/layers/base/jakarta/websocket/api/main/jakarta.websocket-client-api-2.2.0.jar:./target/wildfly/modules/system/layers/base/jakarta/ws/rs/api/main/jakarta.ws.rs-api-4.0.0.jar:./target/jdk-bundle/java.base:./target/jdk-bundle/java.rmi:./target/jdk-bundle/java.sql:./target/jdk-bundle/java.naming
+----
+
+===== Example POM Snippets
+
+[source,xml]
+----
+<properties>
+    <base.tck.dir>${project.build.directory}/jakartaee</base.tck.dir>
+    <bin.dir>${base.tck.dir}/com/sun/ts/tests/signaturetest/signature-repository</bin.dir>
+    <signature.file.dir>${base.tck.dir}/src</signature.file.dir>
+</properties>
+----
+
+[source,xml]
+----
+<plugins>
+    <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+            <execution>
+                <id>extract-mapping-file</id>
+                <phase>process-test-resources</phase>
+                <goals>
+                    <goal>unpack</goal>
+                </goals>
+                <configuration>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>signaturevalidation</artifactId>
+                            <version>${version.jakarta.ee.platform.tck}</version>
+                            <overWrite>true</overWrite>
+                            <outputDirectory>${base.tck.dir}</outputDirectory>
+                            <includes>**/sig-test.map,**/sig-test-pkg-list.txt</includes>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>signaturevalidation</artifactId>
+                            <version>${version.jakarta.ee.platform.tck}</version>
+                            <overWrite>true</overWrite>
+                            <outputDirectory>${signature.file.dir}</outputDirectory>
+                            <includes>**/*.sig</includes>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+
+    <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+            <dependenciesToScan>
+                <dependency>jakarta.tck:signaturevalidation</dependency>
+            </dependenciesToScan>
+        </configuration>
+        <executions>
+            <execution>
+                <id>signaturevalidation</id>
+                <goals>
+                    <goal>integration-test</goal>
+                    <goal>verify</goal>
+                </goals>
+                <configuration>
+                    <includes>
+                        <include>**/*Test</include>
+                    </includes>
+
+                    <groups>${tck.profile}</groups>
+                    <additionalClasspathElements>
+                        <!-- Include the libraries from the server on the test class path -->
+                        <!--suppress MavenModelInspection -->
+                        <additionalClasspathElement>${jakarta.api.jars}</additionalClasspathElement>
+                    </additionalClasspathElements>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+</plugins>
+----
+
+IMPORTANT: In the above example the `signature.file.dir` has a `src` directory prefix which is important. Currently
+the path for the signature test files is `src/com/sun/ts/tests/signaturetest/tests/signaturetest/` and is hard-coded.
+This may change in a future release to not require such a property be set.
 
 
 [[backend-database-setup]]
