@@ -24,8 +24,6 @@ package com.sun.ts.tests.signaturetest;
 import java.io.File;
 import java.io.Serializable;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Properties;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
@@ -39,7 +37,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.util.TestUtil;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
@@ -48,7 +45,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("platform")
 @Tag("web")
 public class ClientSignatureServletTest extends JakartaEESigTest implements Serializable {
-    static final String VEHICLE_ARCHIVE = "signaturetest_ClientSignatureServletTest_servlet_vehicle.war";
+    static final String VEHICLE_ARCHIVE = "signaturetest_ClientSignatureServletTest_servlet_vehicle_web.war";
 
     /**
      * Servlet container test
@@ -113,7 +110,7 @@ public class ClientSignatureServletTest extends JakartaEESigTest implements Seri
 
         );
         // The web.xml descriptor
-        URL warResURL = ClientSignatureServletTest.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
+        URL warResURL = ClientSignatureServletTest.class.getResource("/com/sun/ts/tests/signaturetest/servlet_vehicle_web.xml");
         if (warResURL != null) {
             signaturetest_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
         } else {
@@ -121,7 +118,7 @@ public class ClientSignatureServletTest extends JakartaEESigTest implements Seri
         }
 
         // add signature map files to WAR deployment
-        String signatureMapFiles[] = {
+        String[] signatureMapFiles = {
                 "jakarta.annotation.sig",
                 "jakarta.batch.sig",
                 "jakarta.data.sig",
@@ -149,7 +146,7 @@ public class ClientSignatureServletTest extends JakartaEESigTest implements Seri
                 "jakarta.ws.rs.sig"
         };
         for ( String signatureMapFile : signatureMapFiles) {
-            URL signResURL = ClientSignatureServletTest.class.getResource(signatureMapFile);
+            URL signResURL = ClientSignatureServletTest.class.getResource("signature-repository/" + signatureMapFile);
             if (signResURL != null) {
                 signaturetest_servlet_vehicle_web.addAsWebInfResource(signResURL, signatureMapFile);
             } else {
@@ -163,23 +160,12 @@ public class ClientSignatureServletTest extends JakartaEESigTest implements Seri
         // Import Maven runtime dependencies
         File[] files = Maven.resolver()
                 .loadPomFromFile("pom.xml")
-                .importRuntimeDependencies()
-                .resolve()
-                .withTransitivity()
+                .resolve("jakarta.tck:sigtest-maven-plugin", "jakarta.tck:signaturetest")
+                .withoutTransitivity()
                 .asFile();
-        // add signature test artifact
-        final int[] addedSigtestCount = {0};
-        Arrays.stream(files).filter(file -> file.getName().contains("sigtest-maven-plugin"))
-                .forEach(file -> {
-                    signaturetest_servlet_vehicle_web.addAsLibrary(file);
-                    if (addedSigtestCount[0] > 0) {
-                        throw new IllegalStateException("multiple sigtest-maven-plugin libraries found: " + file.getName());
-                    }
-                    addedSigtestCount[0]++;
-                });
-        if (addedSigtestCount[0] == 0) {
-            throw new IllegalStateException("Missing sigtest-maven-plugin library");
-        }
+        // add signature test artifacts
+        signaturetest_servlet_vehicle_web.addAsLibraries(files);
+
         // Call the archive processor
         archiveProcessor.processWebArchive(signaturetest_servlet_vehicle_web, ClientSignatureServletTest.class, warResURL);
         return signaturetest_servlet_vehicle_web;

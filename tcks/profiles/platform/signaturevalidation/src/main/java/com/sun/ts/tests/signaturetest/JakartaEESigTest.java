@@ -103,7 +103,7 @@ public class JakartaEESigTest extends SigTestEE {
     // then do EJB then add it to JSP then set JSP to SERVLET.
 
     APPCLIENT_MAP.put("ejb", new String[] { "jakarta.ejb", "jakarta.ejb.spi",
-        "jakarta.ejb.embeddable", "jakarta.interceptor", "javax.rmi" });
+        "jakarta.ejb.embeddable", "jakarta.interceptor"});
     APPCLIENT_MAP.put("interceptors", new String[] { "jakarta.interceptor" });
     APPCLIENT_MAP.put("caj", new String[] { "jakarta.annotation",
         "jakarta.annotation.security", "jakarta.annotation.sql" });
