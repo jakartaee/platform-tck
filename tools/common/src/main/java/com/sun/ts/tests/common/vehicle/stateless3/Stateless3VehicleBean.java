@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.common.vehicle.stateless3;
 
+import com.sun.ts.tests.common.vehicle.VehicleType;
 import com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper;
 
 import jakarta.annotation.PostConstruct;
@@ -48,8 +49,8 @@ public class Stateless3VehicleBean extends com.sun.ts.tests.common.vehicle.ejb3s
         super();
     }
 
-    protected String getVehicleType() {
-        return STATELESS3;
+    protected VehicleType getVehicleType() {
+        return VehicleType.stateless3;
     }
 
     @Resource
