@@ -35,9 +35,11 @@
 
     <properties>
         <arquillian.junit>1.9.1.Final</arquillian.junit>
-        <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
         <junit.jupiter.version>5.11.4</junit.jupiter.version>
-        <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
+        <jakarta.jakartaee-bom.version>11.0.0-M5</jakarta.jakartaee-bom.version>
+        <jakarta.tck.arquillian.version>11.0.0-RC2</jakarta.tck.arquillian.version>
+        <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
+        <jakarta.tck.sigtest.version>11.0.0-RC5</jakarta.tck.sigtest.version>
     </properties>
 
     <dependencyManagement>
@@ -59,7 +61,7 @@
             <dependency>
                  <groupId>jakarta.platform</groupId>
                  <artifactId>jakarta.jakartaee-bom</artifactId>
-                 <version>11.0.0-M5</version>
+                 <version>${jakarta.jakartaee-bom.version}</version>
                  <type>pom</type>
                  <scope>import</scope>
              </dependency>
@@ -86,27 +88,27 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>11.0.0-RC4</version>
+            <version>${jakarta.tck.common.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>11.0.0-RC1</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>11.0.0-RC1</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>11.0.0-M1</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>11.0.0-RC1</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
            
         <dependency>

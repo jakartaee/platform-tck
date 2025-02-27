@@ -44,7 +44,7 @@
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <!-- Use JDK17 to run with GF-8.0.0-JDK17-M7 -->
         <glassfish.version>8.0.0-JDK17-M9</glassfish.version>
-        <jakarta.tck.tools.version>11.0.0-RC5</jakarta.tck.tools.version>
+        <jakarta.tck.common.version>11.0.0-RC5</jakarta.tck.common.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -66,7 +66,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
+            <version>${jakarta.tck.common.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>

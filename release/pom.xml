@@ -53,27 +53,23 @@
             <version>${jakarta.tck.arquillian.version}</version>
             <classifier>javadoc</classifier>
         </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>samples</artifactId>
-        </dependency>
 
         <!-- Web Profile TCK Dependencies -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
+            <version>${jakarta.tck.common.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
+            <version>${jakarta.tck.common.version}</version>
             <classifier>javadoc</classifier>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
+            <version>${jakarta.tck.common.version}</version>
             <classifier>sources</classifier>
         </dependency>
         <dependency>
@@ -245,7 +241,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>signaturetest</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
+            <version>${jakarta.tck.sigtest.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>

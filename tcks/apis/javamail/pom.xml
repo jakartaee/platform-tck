@@ -33,8 +33,9 @@
     <description>Jakarta Mail 2.1 TCK</description>
 
     <properties>
-        <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
-        <jakarta.tck.tools.version>11.0.0-RC5</jakarta.tck.tools.version>
+        <jakarta.jakartaee-bom.version>11.0.0-M5</jakarta.jakartaee-bom.version>
+        <jakarta.tck.arquillian.version>11.0.0-RC2</jakarta.tck.arquillian.version>
+        <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
     </properties>
 
     <dependencyManagement>
@@ -56,7 +57,7 @@
             <dependency>
                  <groupId>jakarta.platform</groupId>
                  <artifactId>jakarta.jakartaee-bom</artifactId>
-                 <version>11.0.0-M5</version>
+                 <version>${jakarta.jakartaee-bom.version}</version>
                  <type>pom</type>
                  <scope>import</scope>
              </dependency>
@@ -78,7 +79,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
+            <version>${jakarta.tck.common.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>

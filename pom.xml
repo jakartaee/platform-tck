@@ -73,7 +73,6 @@
         <module>tcks/profiles/platform/integration</module>
         <module>tcks/profiles/platform/javaee</module>
         <module>tcks/profiles/platform/jdbc</module>
-        <module>tcks/profiles/platform/samples</module>
         <module>tcks/profiles/platform/signaturevalidation</module>
         <module>tcks/profiles/platform/xa</module>
         <module>tcks/profiles/platform/docs/userguide</module>
@@ -82,14 +81,19 @@
     </modules>
 
     <properties>
-        <!-- Arquillian -->
         <ant.version>1.10.15</ant.version>
+        <!-- Arquillian -->
         <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
         <arquillian.version>1.9.3.Final</arquillian.version>
-
+        <!-- The version of the jakarta platform api bom -->
+        <jakarta.jakartaee-bom.version>11.0.0-M5</jakarta.jakartaee-bom.version>
         <!-- Jakarta TCK Tools version from the independently released tools submodule -->
-        <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
-        <jakarta.tck.tools.version>11.0.0-RC5</jakarta.tck.tools.version>
+        <!-- The Arquillian protocol artifacts -->
+        <jakarta.tck.arquillian.version>11.0.0-RC2</jakarta.tck.arquillian.version>
+        <!-- The released version of tools/common -->
+        <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
+        <!-- The released version of tools/signaturetest -->
+        <jakarta.tck.sigtest.version>11.0.0-RC5</jakarta.tck.sigtest.version>
 
         <maven.compiler.release>17</maven.compiler.release>
         <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
@@ -101,7 +105,6 @@
         <slf4j.version>2.0.16</slf4j.version>
         <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
 
-        <jakarta.jakartaee-bom.version>11.0.0-M5</jakarta.jakartaee-bom.version>
     </properties>
 
     <dependencyManagement>
@@ -129,7 +132,7 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>common</artifactId>
-                <version>${jakarta.tck.tools.version}</version>
+                <version>${jakarta.tck.common.version}</version>
             </dependency>
 
             <dependency>
@@ -242,12 +245,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>jta</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>samples</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
