@@ -33,7 +33,7 @@
 
    <groupId>jakarta.tck</groupId>
    <artifactId>glassfish.connector-platform-tck</artifactId>
-   <version>11.0.0-M8</version>
+   <version>11.0.0-M10</version>
    <packaging>jar</packaging>
 
    <properties>
@@ -68,7 +68,7 @@
         <rapassword1>rapassword1</rapassword1>
         <rauser1>rauser1</rauser1>
         <sql.directory>./sql</sql.directory>
-        <tck.version>11.0.0-M8</tck.version>
+        <tck.version>11.0.0-M10</tck.version>
 
        <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
 

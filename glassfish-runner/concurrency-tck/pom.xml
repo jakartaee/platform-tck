@@ -93,7 +93,7 @@
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.5</version>
+            <version>1.7</version>
             <scope>test</scope>
         </dependency>
 
@@ -181,8 +181,10 @@
 
                         <glassfish.systemProperties>jimage.dir=${project.build.directory}/jimage</glassfish.systemProperties>
 
-                        <glassfish.postBootCommands>create-file-user --groups staff:mgr --passwordfile ${project.build.directory}/test-classes/j2ee.pass j2ee
-                            create-file-user --groups Manager --passwordfile ${project.build.directory}/test-classes/javajoe.pass javajoe</glassfish.postBootCommands>
+                        <glassfish.postBootCommands>
+                            create-file-user --groups staff:mgr --passwordfile ${project.build.directory}/test-classes/j2ee.pass j2ee
+                            create-file-user --groups Manager --passwordfile ${project.build.directory}/test-classes/javajoe.pass javajoe
+                        </glassfish.postBootCommands>
 
                         <jimage.dir>${project.build.directory}/jimage</jimage.dir>
                     </systemPropertyVariables>

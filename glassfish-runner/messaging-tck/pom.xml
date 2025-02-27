@@ -32,7 +32,7 @@
 
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jms-tck</artifactId>
-    <version>11.0.0-M8</version>
+    <version>11.0.0-M10</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -85,7 +85,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>jms-tck</artifactId>
-            <version>11.0.0-M8</version>
+            <version>11.0.0-M10</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>

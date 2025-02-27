@@ -32,7 +32,7 @@
 
     <groupId>jakarta</groupId>
     <artifactId>glassfish.mail-platform-tck</artifactId>
-    <version>11.0.0-M8</version>
+    <version>11.0.0-M10</version>
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
@@ -63,7 +63,7 @@
         <mail.user>user01</mail.user>
         <mailboxFolder1>${project.build.directory}/../mailboxes</mailboxFolder1>
         <smtp.port>1025</smtp.port>
-        <tck.version>11.0.0-M8</tck.version>
+        <tck.version>11.0.0-M10</tck.version>
     </properties>
 
     <dependencyManagement>
@@ -97,7 +97,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>javamail</artifactId>
-            <version>11.0.0-M8</version>
+            <version>11.0.0-M10</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.angus</groupId>
