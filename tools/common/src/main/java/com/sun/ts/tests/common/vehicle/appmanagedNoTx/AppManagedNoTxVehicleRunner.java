@@ -23,20 +23,23 @@ package com.sun.ts.tests.common.vehicle.appmanagedNoTx;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.vehicle.VehicleRunnable;
+import com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner;
 
-public class AppManagedNoTxVehicleRunner implements VehicleRunnable {
+/**
+ * The {@link com.sun.ts.tests.common.vehicle.VehicleRunnable} implementation for the
+ * {@link com.sun.ts.tests.common.vehicle.VehicleType#appmanagedNoTx} vehicle.
+ * This uses the {@link com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner} to run the tests in the
+ * server using the {@link AppManagedNoTxServletVehicle}.
+ */
+public class AppManagedNoTxVehicleRunner extends AltWebVehicleRunner {
     public static final String APPMANAGEDNOTX_REF_NAME = "java:comp/env/ejb/AppManagedNoTxVehicleBean";
 
     public Status run(String[] args, Properties props) {
         Status sTestStatus = null;
         try {
-            TSNamingContext jc = new TSNamingContext();
-            AppManagedNoTxVehicleIF bean = (AppManagedNoTxVehicleIF) jc.lookup(APPMANAGEDNOTX_REF_NAME);
-            TestUtil.logTrace("application-managed resource-local runner looked up vehicle: " + bean);
-            sTestStatus = (bean.runTest(args, props)).toStatus();
+            TestUtil.logTrace("application-managed resource-local runner using AltWebVehicleRunner");
+            sTestStatus = super.run(args, props);
         } catch (Exception e) {
             TestUtil.logErr("Test failed.", e);
             sTestStatus = Status.failed("Test run in application-managed resource-local vehicle failed.");

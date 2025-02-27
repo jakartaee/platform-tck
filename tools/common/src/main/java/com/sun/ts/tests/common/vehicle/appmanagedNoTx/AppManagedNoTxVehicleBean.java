@@ -23,22 +23,20 @@ package com.sun.ts.tests.common.vehicle.appmanagedNoTx;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.RemoteStatus;
+import com.sun.ts.tests.common.vehicle.VehicleType;
 import com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper;
 
 import jakarta.annotation.Resource;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
-import jakarta.ejb.Stateful;
+import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceUnit;
 
-@Stateful(name = "AppManagedNoTxVehicleBean")
-@Remote({ AppManagedNoTxVehicleIF.class })
+@Stateless(name = "AppManagedNoTxVehicleBean")
 public class AppManagedNoTxVehicleBean extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
-        implements AppManagedNoTxVehicleIF, java.io.Serializable {
+        implements AppManagedNoTxVehicleIF {
 
     /**
      * Default constructor for AppManagedNoTxVehicleBean.
@@ -53,8 +51,8 @@ public class AppManagedNoTxVehicleBean extends com.sun.ts.tests.common.vehicle.e
      *
      * @return the vehicle type as a String
      */
-    protected String getVehicleType() {
-        return APPMANAGEDNOTX;
+    protected VehicleType getVehicleType() {
+        return VehicleType.appmanagedNoTx;
     }
 
     private EntityManagerFactory emf;
@@ -67,7 +65,6 @@ public class AppManagedNoTxVehicleBean extends com.sun.ts.tests.common.vehicle.e
      * @param props the properties for the test
      * @return the RemoteStatus of the test run
      */
-    @Remove
     public RemoteStatus runTest(String[] args, Properties props) {
         props.put("persistence.unit.name", "CTS-EM-NOTX");
         try {

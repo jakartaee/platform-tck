@@ -28,26 +28,23 @@ import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.vehicle.VehicleRunnable;
+import com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner;
 
-public class AppManagedVehicleRunner implements VehicleRunnable {
+/**
+ * The {@link com.sun.ts.tests.common.vehicle.VehicleRunnable} implementation for the
+ * {@link com.sun.ts.tests.common.vehicle.VehicleType#appmanaged} vehicle.
+ * This uses the {@link com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner} to run the tests in the
+ * server using the {@link AppManagedServletVehicle}.
+ */
+public class AppManagedVehicleRunner extends AltWebVehicleRunner {
     public static final String APPMANAGED_REF_NAME = "java:comp/env/ejb/AppManagedVehicleBean";
 
     public Status run(String[] args, Properties props) {
         Status sTestStatus = null;
         try {
-            AppManagedVehicleIF bean = null;
-            TSNamingContext jc = new TSNamingContext(props);
-            try {
-                bean = (AppManagedVehicleIF) jc.lookup(APPMANAGED_REF_NAME);
-            } catch (Exception e) {
-                e.printStackTrace();
-                dumpJndi("", new InitialContext());
-            }
-            TestUtil.logTrace("application-managed JTA runner looked up vehicle: " + bean);
-            sTestStatus = (bean.runTest(args, props)).toStatus();
+            TestUtil.logTrace("application-managed JTA runner using AltWebVehicleRunner");
+            sTestStatus = super.run(args, props);
         } catch (Exception e) {
             TestUtil.logErr("Test failed.", e);
             sTestStatus = Status.failed("Test run in application-managed JTA vehicle failed.");

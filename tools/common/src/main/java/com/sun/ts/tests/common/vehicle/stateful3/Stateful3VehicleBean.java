@@ -23,6 +23,7 @@ package com.sun.ts.tests.common.vehicle.stateful3;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.RemoteStatus;
+import com.sun.ts.tests.common.vehicle.VehicleType;
 import com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper;
 
 import jakarta.annotation.PostConstruct;
@@ -49,8 +50,8 @@ public class Stateful3VehicleBean extends com.sun.ts.tests.common.vehicle.ejb3sh
         super();
     }
 
-    protected String getVehicleType() {
-        return STATEFUL3;
+    protected VehicleType getVehicleType() {
+        return VehicleType.stateful3;
     }
 
     @PostConstruct

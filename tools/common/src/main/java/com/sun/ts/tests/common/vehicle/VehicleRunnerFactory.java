@@ -20,6 +20,23 @@
 
 package com.sun.ts.tests.common.vehicle;
 
+import com.sun.ts.tests.common.vehicle.appmanaged.AppManagedVehicleRunner;
+import com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleRunner;
+import com.sun.ts.tests.common.vehicle.connectorservlet.ConnectorServletVehicleRunner;
+import com.sun.ts.tests.common.vehicle.customvehicle.CustomVehicleRunner;
+import com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner;
+import com.sun.ts.tests.common.vehicle.ejblitejsf.EJBLiteJSFVehicleRunner;
+import com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteSecuredWebVehicleRunner;
+import com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteWebVehicleRunner;
+import com.sun.ts.tests.common.vehicle.jsp.JSPVehicleRunner;
+import com.sun.ts.tests.common.vehicle.pmservlet.PMServletVehicleRunner;
+import com.sun.ts.tests.common.vehicle.puservlet.PUServletVehicleRunner;
+import com.sun.ts.tests.common.vehicle.servlet.ServletVehicleRunner;
+import com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleRunner;
+import com.sun.ts.tests.common.vehicle.stateless3.Stateless3VehicleRunner;
+import com.sun.ts.tests.common.vehicle.wsejb.WSEJBVehicleRunner;
+import com.sun.ts.tests.common.vehicle.wsservlet.WSServletVehicleRunner;
+
 import java.lang.System.Logger;
 
 public final class VehicleRunnerFactory {
@@ -68,8 +85,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getEJBRunner() {
         if (ejbRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner");
-                ejbRunner = (VehicleRunnable) c.newInstance();
+                ejbRunner = EJBVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -80,8 +96,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getServletRunner() {
         if (servletRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.servlet.ServletVehicleRunner");
-                servletRunner = (VehicleRunnable) c.newInstance();
+                servletRunner = ServletVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -92,8 +107,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getJSPRunner() {
         if (jspRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.jsp.JSPVehicleRunner");
-                jspRunner = (VehicleRunnable) c.newInstance();
+                jspRunner = JSPVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -104,8 +118,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getEJBLiteJSFRunner() {
         if (ejbLiteJsfRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.ejblitejsf.EJBLiteJSFVehicleRunner");
-                ejbLiteJsfRunner = (VehicleRunnable) c.newInstance();
+                ejbLiteJsfRunner = EJBLiteJSFVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -116,8 +129,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getEJBLiteWebRunner() {
         if (ejbLiteJspRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteWebVehicleRunner");
-                ejbLiteJspRunner = (VehicleRunnable) c.newInstance();
+                ejbLiteJspRunner = EJBLiteWebVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -128,8 +140,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getEJBLiteSecuredWebRunner() {
         if (ejbLiteSecuredJspRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteSecuredWebVehicleRunner");
-                ejbLiteSecuredJspRunner = (VehicleRunnable) c.newInstance();
+                ejbLiteSecuredJspRunner = EJBLiteSecuredWebVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -140,8 +151,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getWebRunner() {
         if (webRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.web.WebVehicleRunner");
-                webRunner = (VehicleRunnable) c.newInstance();
+                webRunner = EJBLiteSecuredWebVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -152,8 +162,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getEmptyRunner() {
         if (emptyRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.EmptyVehicleRunner");
-                emptyRunner = (VehicleRunnable) c.newInstance();
+                emptyRunner = EmptyVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -164,8 +173,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getStateless3Runner() {
         if (stateless3Runner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.stateless3.Stateless3VehicleRunner");
-                stateless3Runner = (VehicleRunnable) c.newInstance();
+                stateless3Runner = Stateless3VehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -176,8 +184,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getStateful3Runner() {
         if (stateful3Runner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleRunner");
-                stateful3Runner = (VehicleRunnable) c.newInstance();
+                stateful3Runner = Stateful3VehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -188,8 +195,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getAppManagedRunner() {
         if (appmanagedRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.appmanaged.AppManagedVehicleRunner");
-                appmanagedRunner = (VehicleRunnable) c.newInstance();
+                appmanagedRunner = AppManagedVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -200,8 +206,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getAppManagedNoTxRunner() {
         if (appmanagedNoTxRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleRunner");
-                appmanagedNoTxRunner = (VehicleRunnable) c.newInstance();
+                appmanagedNoTxRunner = AppManagedNoTxVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -212,8 +217,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getWSEJBRunner() {
         if (wsejbRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.wsejb.WSEJBVehicleRunner");
-                wsejbRunner = (VehicleRunnable) c.newInstance();
+                wsejbRunner = WSEJBVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -224,8 +228,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getWSServletRunner() {
         if (wsservletRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.wsservlet.WSServletVehicleRunner");
-                wsservletRunner = (VehicleRunnable) c.newInstance();
+                wsservletRunner = WSServletVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -236,8 +239,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getPMServletRunner() {
         if (pmservletRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.pmservlet.PMServletVehicleRunner");
-                pmservletRunner = (VehicleRunnable) c.newInstance();
+                pmservletRunner = PMServletVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -248,8 +250,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getPUServletRunner() {
         if (puservletRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.puservlet.PUServletVehicleRunner");
-                puservletRunner = (VehicleRunnable) c.newInstance();
+                puservletRunner = PUServletVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -260,8 +261,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getConnectorServletRunner() {
         if (connectorServletRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.connectorservlet.ConnectorServletVehicleRunner");
-                connectorServletRunner = (VehicleRunnable) c.newInstance();
+                connectorServletRunner = ConnectorServletVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -273,8 +273,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getCustomVehicleRunner() {
         if (customVehicleRunner == null) {
             try {
-                Class c = Class.forName("com.sun.ts.tests.common.vehicle.customvehicle.CustomVehicleRunner");
-                customVehicleRunner = (VehicleRunnable) c.newInstance();
+                customVehicleRunner = CustomVehicleRunner.class.getDeclaredConstructor().newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

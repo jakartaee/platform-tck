@@ -23,20 +23,18 @@ package com.sun.ts.tests.common.vehicle.appmanaged;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.RemoteStatus;
+import com.sun.ts.tests.common.vehicle.VehicleType;
 import com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper;
 
 import jakarta.annotation.Resource;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
-import jakarta.ejb.Stateful;
+import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceUnit;
 
-@Stateful(name = "AppManagedVehicleBean")
-@Remote({ AppManagedVehicleIF.class })
+@Stateless(name = "AppManagedVehicleBean")
 public class AppManagedVehicleBean extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
         implements AppManagedVehicleIF, java.io.Serializable {
 
@@ -44,14 +42,13 @@ public class AppManagedVehicleBean extends com.sun.ts.tests.common.vehicle.ejb3s
         super();
     }
 
-    protected String getVehicleType() {
-        return APPMANAGED;
+    protected VehicleType getVehicleType() {
+        return VehicleType.appmanaged;
     }
 
     private EntityManagerFactory emf;
 
     // ================== business methods ====================================
-    @Remove
     public RemoteStatus runTest(String[] args, Properties props) {
         props.put("persistence.unit.name", "CTS-EM");
         try {
