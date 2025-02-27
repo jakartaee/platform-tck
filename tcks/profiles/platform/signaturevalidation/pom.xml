@@ -35,11 +35,7 @@
     <description>Verify SPEC API signatures are correct</description>
 
     <properties>
-        <arquillian.jakarta.tck.version>11.0.0-M1</arquillian.jakarta.tck.version>
-        <arquillian.junit>1.9.3.Final</arquillian.junit>
-        <jakarta.tck.sigtest-plugin.version>2.6</jakarta.tck.sigtest-plugin.version>
         <maven.compiler.release>17</maven.compiler.release>
-
         <signature.file.dir>${project.build.outputDirectory}/com/sun/ts/tests/signaturetest/signature-repository</signature.file.dir>
     </properties>
 
@@ -51,28 +47,23 @@
         <dependency>
             <groupId>${project.groupId}.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>${arquillian.jakarta.tck.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap</groupId>
             <artifactId>shrinkwrap-api</artifactId>
-            <version>1.2.6</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
             <artifactId>shrinkwrap-resolver-depchain</artifactId>
-            <version>3.1.4</version>
             <type>pom</type>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${arquillian.jakarta.tck.version}</version>
         </dependency>
 
         <!-- Junit5 -->
@@ -83,7 +74,6 @@
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite-api</artifactId>
-            <version>1.11.3</version>
         </dependency>
 
         <dependency>
@@ -94,7 +84,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>sigtest-maven-plugin</artifactId>
-            <version>${jakarta.tck.sigtest-plugin.version}</version>
         </dependency>
 
         <!-- SPEC API dependencies -->
@@ -137,6 +126,10 @@
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.enterprise</groupId>
@@ -279,7 +272,6 @@
             <plugin>
                 <groupId>jakarta.tck</groupId>
                 <artifactId>sigtest-maven-plugin</artifactId>
-                <version>${jakarta.tck.sigtest-plugin.version}</version>
                 <configuration>
                     <release>17</release>
                 </configuration>

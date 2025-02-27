@@ -34,12 +34,14 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>websocket-tck-common</artifactId>
-            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
-            <version>4.1.0</version>
         </dependency>
     </dependencies>
 
@@ -49,17 +51,6 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.4.2</version>
                 <configuration>
-                    <resources>
-                        <resource>
-                            <directory>src/main/java</directory>
-                            <includes>
-                                <include>**/*.xml</include>
-                                <include>**/*.map</include>
-                                <include>**/*.txt</include>
-                                <include>**/*.sig*</include>
-                            </includes>
-                        </resource>
-                    </resources>
                 </configuration>
             </plugin>
         </plugins>

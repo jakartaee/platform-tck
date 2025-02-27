@@ -21,6 +21,7 @@
     <groupId>org.eclipse.ee4j</groupId>
     <artifactId>project</artifactId>
     <version>1.0.9</version>
+    <relativePath />
   </parent>
 
   <!-- This can be generated from the VersionRelease program -->
@@ -33,17 +34,73 @@
   <name>Jakarta EE TCK Artifacts BOM</name>
 
   <properties>
+    <!-- Arquillian -->
+    <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
+    <arquillian.version>1.9.3.Final</arquillian.version>
+    <!-- The version of the jakarta platform api bom -->
+    <jakarta.jakartaee-bom.version>11.0.0-M5</jakarta.jakartaee-bom.version>
+    <!-- Jakarta TCK Tools version from the independently released tools submodule -->
+    <!-- The Arquillian protocol artifacts -->
     <jakarta.tck.arquillian.version>11.0.0-RC2</jakarta.tck.arquillian.version>
-    <jakarta.tck.common.version>11.0.0-RC5</jakarta.tck.common.version>
+    <!-- The released version of tools/common -->
+    <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
+    <!-- The released version of tools/signaturetest -->
+    <jakarta.tck.sigtest.version>11.0.0-RC5</jakarta.tck.sigtest.version>
+
+    <shrinkwrap.api.version>2.0.0-beta-2</shrinkwrap.api.version>
+    <shrinkwrap.descriptors.version>2.0.0</shrinkwrap.descriptors.version>
+    <shrinkwrap.resolver.version>3.3.1</shrinkwrap.resolver.version>
   </properties>
   
-  <dependencyManagement> 
-    <dependencies> 
-      <!-- Jakarta TCK Test Artifacts -->  
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>5.11.4</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.arquillian</groupId>
+        <artifactId>arquillian-bom</artifactId>
+        <version>1.9.3.Final</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.platform</groupId>
+        <artifactId>jakarta.jakartaee-bom</artifactId>
+        <version>${jakarta.jakartaee-bom.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap</groupId>
+        <artifactId>shrinkwrap-bom</artifactId>
+        <version>${shrinkwrap.api.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+        <artifactId>shrinkwrap-descriptors-bom</artifactId>
+        <version>${shrinkwrap.descriptors.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.resolver</groupId>
+        <artifactId>shrinkwrap-resolver-depchain</artifactId>
+        <version>${shrinkwrap.resolver.version}</version>
+        <type>pom</type>
+      </dependency>
+
+      <!-- Jakarta TCK Test Artifacts -->
       <dependency>
         <groupId>jakarta.tck</groupId>
         <artifactId>websocket-tck-common</artifactId>
-        <version>${project.version}</version>
+        <version>2.2.0</version>
       </dependency>
       <dependency>
         <groupId>jakarta.tck</groupId>
@@ -201,6 +258,11 @@
       <!-- TCK Arquillian artifacts -->
       <dependency>
         <groupId>jakarta.tck.arquillian</groupId>
+        <artifactId>arquillian-protocol-common</artifactId>
+        <version>${jakarta.tck.arquillian.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck.arquillian</groupId>
         <artifactId>arquillian-protocol-appclient</artifactId>
         <version>${jakarta.tck.arquillian.version}</version>
       </dependency>
@@ -214,6 +276,12 @@
         <artifactId>tck-porting-lib</artifactId>
         <version>${jakarta.tck.arquillian.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap</groupId>
+        <artifactId>shrinkwrap-api</artifactId>
+        <version>1.2.6</version>
+      </dependency>
+
     </dependencies> 
   </dependencyManagement> 
 </project>
