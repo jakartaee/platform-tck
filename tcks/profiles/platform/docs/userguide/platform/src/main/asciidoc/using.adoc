@@ -55,10 +55,8 @@ As a general rule, the test runner should include the following:
 
 . Dependencies on the Junit5 and Arquillian test frameworks as shown in <<runner-maven-dependencies>>.
 . Configure your Arquillian container as shown in <<arquillian-container-configuration>>.
-.  Set the `TS_HOME` environment variable to the directory in which
-Jakarta EE {tck_version} Platform TCK was installed.
-.  Ensure that the `ts.jte` file contains information relevant to your
-setup. +
+.  Set the `TS_HOME` environment variable to the directory in which Jakarta EE {tck_version} Platform TCK was installed.
+.  Ensure that the `ts.jte` file contains information relevant to your setup. +
 Refer to <<setup-and-configuration>> for detailed configuration instructions, or that your runner maven project surefire/failsafe plugin has defined the equivalent system properties.
 .  Execute the `test` Maven goal to start the testsuite: +
 [source,bash]
@@ -167,6 +165,11 @@ You then need to define the specific dependencies for the test runner without th
         </dependency>
     </dependencies>
 ----
+
+[NOTE]
+====
+The Arquillian protocol implementations used in the TCK add the jakarta.tck.arquillian:tck-porting-lib artifact automatically to the test deployment if the dependency exists in your runner pom. The code expects that the runner pom is named pom.xml. If you are using a different name or path, you will need specify a `tck.arquillian.protocol.runnerPom` system property in your surefire/failsafe plugin configuration to point to the correct pom file.
+====
 
 [[available-tck-test-artifacts]]
 ==== Available TCK Test Artifacts

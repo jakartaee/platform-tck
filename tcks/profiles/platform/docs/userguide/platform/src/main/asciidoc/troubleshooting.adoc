@@ -37,6 +37,16 @@ Please verify that the property log.file.location exists in ts.jte
 Resolution: +
 You may have the `log.file.location` set in the ts.jte file, but if your Jakarta Persistence integration eagerly loads the testcase custom persistence provider, it may do so before the `log.file.location` property is set by the TCK harness code. To resolve this issue, you can set the `log.file.location` system property in your server configuration.
 
+* Problem: +
+When running the Jakarta Persistence TCK tests you see an error log message containing:
+
+[source,bash]
+----
+Failed to resolve protocol.jar. You either need a jakarta.tck.arquillian:arquillian-protocol-lib dependency in the runner pom.xml or a downloaded target/protocol/protocol.jar file.
+----
+
+The Arquillian protocol implementations used in the TCK add the jakarta.tck.arquillian:tck-porting-lib artifact automatically to the test deployment if the dependency exists in your runner pom. The code expects that the runner pom is named pom.xml. If you are using a different name or path, you will need specify a `tck.arquillian.protocol.runnerPom` system property in your surefire/failsafe plugin configuration to point to the correct pom file.
+
 [[support]]
 == Support
 
