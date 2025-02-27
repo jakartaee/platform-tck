@@ -82,9 +82,15 @@
 
     <properties>
         <ant.version>1.10.15</ant.version>
-        <!-- Arquillian -->
-        <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
-        <arquillian.version>1.9.3.Final</arquillian.version>
+
+        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <slf4j.version>2.0.16</slf4j.version>
+        <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
+
+        <!-- These are duplicated from the BOM for use by the release/pom.xml -->
         <!-- The version of the jakarta platform api bom -->
         <jakarta.jakartaee-bom.version>11.0.0-M5</jakarta.jakartaee-bom.version>
         <!-- Jakarta TCK Tools version from the independently released tools submodule -->
@@ -94,177 +100,18 @@
         <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
         <!-- The released version of tools/signaturetest -->
         <jakarta.tck.sigtest.version>11.0.0-RC5</jakarta.tck.sigtest.version>
-
-        <maven.compiler.release>17</maven.compiler.release>
-        <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <shrinkwrap.api.version>2.0.0-beta-2</shrinkwrap.api.version>
-        <shrinkwrap.descriptors.version>2.0.0</shrinkwrap.descriptors.version>
-        <shrinkwrap.resolver.version>3.3.1</shrinkwrap.resolver.version>
-        <slf4j.version>2.0.16</slf4j.version>
-        <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
-
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>jakarta.platform</groupId>
-                <artifactId>jakarta.jakartaee-bom</artifactId>
-                <version>${jakarta.jakartaee-bom.version}</version>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                <version>${project.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>appclient</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>assembly-tck</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>common</artifactId>
-                <version>${jakarta.tck.common.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>ejb30</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>ejb32</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>ejb</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>concurrency</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>connector</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>el</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>integration</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>javaee</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>javamail</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jaxrs-platform-tck</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jdbc</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jms</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jpa</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jsf</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jsonb</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jsonp</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jsp</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jstl</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jta</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>signaturetest</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>websocket</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>xa</artifactId>
-                <version>${project.version}</version>
-            </dependency>
             <dependency>
                 <groupId>commons-httpclient</groupId>
                 <artifactId>commons-httpclient</artifactId>
@@ -290,61 +137,7 @@
                 <artifactId>jul-to-slf4j</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>web-servlet</artifactId>
-                <version>${project.version}</version>
-            </dependency>
 
-            <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>5.11.3</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>${arquillian.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.jboss.arquillian.container</groupId>
-                <artifactId>container-se-api</artifactId>
-                <version>${arquillian.container.se.api.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.jboss.shrinkwrap</groupId>
-                <artifactId>shrinkwrap-bom</artifactId>
-                <version>${shrinkwrap.api.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-                <artifactId>shrinkwrap-descriptors-bom</artifactId>
-                <version>${shrinkwrap.descriptors.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                <artifactId>shrinkwrap-resolver-depchain</artifactId>
-                <version>${shrinkwrap.resolver.version}</version>
-                <type>pom</type>
-            </dependency>
-
-            <dependency>
-                <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-                <version>${shrinkwrap.resolver.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>org.apache.ant</groupId>
@@ -362,11 +155,6 @@
                 <version>3.17.0</version>
             </dependency>
             <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>tck-porting-lib</artifactId>
-                <version>${jakarta.tck.arquillian.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.jboss.spec.javax.rmi</groupId>
                 <artifactId>jboss-rmi-api_1.0_spec</artifactId>
                 <version>1.0.6.Final</version>
@@ -380,18 +168,6 @@
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-suite-api</artifactId>
-        </dependency>
-
-    </dependencies>
 
     <pluginRepositories>
         <pluginRepository>

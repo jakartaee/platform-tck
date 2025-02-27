@@ -35,31 +35,14 @@
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
-        <jakarta.jakartaee-bom.version>11.0.0-M5</jakarta.jakartaee-bom.version>
-        <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
-        <jakarta.tck.arquillian.version>11.0.0-M2</jakarta.tck.arquillian.version>
     </properties>
     
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>5.11.4</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.9.3.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                 <groupId>jakarta.platform</groupId>
-                 <artifactId>jakarta.jakartaee-bom</artifactId>
-                 <version>${jakarta.jakartaee-bom.version}</version>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                 <version>${project.version}</version>
                  <type>pom</type>
                  <scope>import</scope>
              </dependency>
@@ -70,7 +53,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.common.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -145,13 +127,11 @@
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-common</artifactId>
-            <version>11.0.0-M1</version>
+            <artifactId>tck-porting-lib</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>tck-porting-lib</artifactId>
-            <version>11.0.0-RC1</version>
+            <artifactId>arquillian-protocol-common</artifactId>
         </dependency>
     </dependencies>
 

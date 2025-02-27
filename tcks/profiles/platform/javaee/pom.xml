@@ -33,39 +33,22 @@
     <description>javaee</description>
 
     <properties>
-        <junit.jupiter.version>5.11.4</junit.jupiter.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <jakarta.jakartaee-bom.version>11.0.0-M5</jakarta.jakartaee-bom.version>
-        <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
-        <jakarta.tck.arquillian.version>11.0.0-RC2</jakarta.tck.arquillian.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>5.11.4</version>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                <version>${project.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.9.3.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                 <groupId>jakarta.platform</groupId>
-                 <artifactId>jakarta.jakartaee-bom</artifactId>
-                 <version>${jakarta.jakartaee-bom.version}</version>
-                 <type>pom</type>
-                 <scope>import</scope>
-             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>jakarta.inject</groupId>
@@ -91,7 +74,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.common.version}</version>
         </dependency>
         
         <dependency>

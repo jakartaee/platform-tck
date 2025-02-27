@@ -42,28 +42,16 @@
     </modules>
 
     <properties>
-        <arquillian.junit>1.9.3.Final</arquillian.junit>
-        <junit.jupiter.version>5.11.4</junit.jupiter.version>
-        <tck.version>${project.version}</tck.version>
-        <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
-        <jakarta.tck.sigtest.version>11.0.0-RC5</jakarta.tck.sigtest.version>
-        <jakarta.websocket.version>2.2.0</jakarta.websocket.version>
         <maven.compiler.release>17</maven.compiler.release>
+        <jakarta.tck.version>11.0.0-SNAPSHOT</jakarta.tck.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>5.11.4</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.9.3.Final</version>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                <version>${jakarta.tck.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -74,24 +62,20 @@
         <dependency>
             <groupId>jakarta.websocket</groupId>
             <artifactId>jakarta.websocket-api</artifactId>
-            <version>${jakarta.websocket.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.websocket</groupId>
             <artifactId>jakarta.websocket-client-api</artifactId>
-            <version>${jakarta.websocket.version}</version>
         </dependency>
         
         <!-- Jakarta TCK tools dependencies -->
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.common.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>signaturetest</artifactId>
-            <version>${jakarta.tck.sigtest.version}</version>
         </dependency>
         
          
