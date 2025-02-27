@@ -53,10 +53,6 @@
             <version>${jakarta.tck.arquillian.version}</version>
             <classifier>javadoc</classifier>
         </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>samples</artifactId>
-        </dependency>
 
         <!-- Web Profile TCK Dependencies -->
         <dependency>
