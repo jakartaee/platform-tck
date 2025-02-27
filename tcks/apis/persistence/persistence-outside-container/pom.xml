@@ -45,7 +45,8 @@
 
     <properties>
         <tck.version>${project.version}</tck.version>
-        <jakarta.tck.tools.version>11.0.0-RC5</jakarta.tck.tools.version>
+        <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
+        <jakarta.tck.sigtest.version>11.0.0-RC5</jakarta.tck.sigtest.version>
         <maven.compiler.release>17</maven.compiler.release>
     </properties>
     
@@ -81,12 +82,12 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
+            <version>${jakarta.tck.common.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>signaturetest</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
+            <version>${jakarta.tck.sigtest.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>

@@ -401,9 +401,9 @@
                         <configuration>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>signaturetest</artifactId>
-                            <version>${jakarta.tck.tools.version}</version>
+                            <version>${jakarta.tck.sigtest.version}</version>
                             <packaging>jar</packaging>
-                            <file>signaturetest-${jakarta.tck.tools.version}.jar</file>
+                            <file>signaturetest-${jakarta.tck.sigtest.version}.jar</file>
                             <generatePom>false</generatePom>
                         </configuration>
                     </execution>

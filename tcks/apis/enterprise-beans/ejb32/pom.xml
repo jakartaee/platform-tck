@@ -36,6 +36,9 @@
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
         <ejb30.version>${project.version}</ejb30.version>
+        <jakarta.tck.common.version>11.0.0-RC5</jakarta.tck.common.version>
+        <jakarta.jakartaee-bom.version>11.0.0-M5</jakarta.jakartaee-bom.version>
+        <jakarta.tck.arquillian.version>11.0.0-RC2</jakarta.tck.arquillian.version>
     </properties>
     
     <dependencyManagement>
@@ -57,7 +60,7 @@
             <dependency>
                  <groupId>jakarta.platform</groupId>
                  <artifactId>jakarta.jakartaee-bom</artifactId>
-                 <version>11.0.0-M5</version>
+                 <version>${jakarta.jakartaee-bom.version}</version>
                  <type>pom</type>
                  <scope>import</scope>
              </dependency>
@@ -99,12 +102,12 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>11.0.0-M1</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>11.0.0-RC1</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         
         <dependency>
