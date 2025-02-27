@@ -40,6 +40,8 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
+        <jakarta.tck.sigtest.version>11.0.0-RC5</jakarta.tck.sigtest.version>
     </properties>
 
     <dependencyManagement>
@@ -85,13 +87,13 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>11.0.0-M2</version>
+            <version>${jakarta.tck.common.version}</version>
         </dependency>
         
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>signaturetest</artifactId>
-            <version>11.0.0-M2</version>
+            <version>${jakarta.tck.sigtest.version}</version>
         </dependency>
 
         <!-- Junit 5 -->

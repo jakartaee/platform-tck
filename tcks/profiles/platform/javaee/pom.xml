@@ -36,6 +36,9 @@
         <junit.jupiter.version>5.11.4</junit.jupiter.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <jakarta.jakartaee-bom.version>11.0.0-M5</jakarta.jakartaee-bom.version>
+        <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
+        <jakarta.tck.arquillian.version>11.0.0-RC2</jakarta.tck.arquillian.version>
     </properties>
 
     <dependencyManagement>
@@ -57,7 +60,7 @@
             <dependency>
                  <groupId>jakarta.platform</groupId>
                  <artifactId>jakarta.jakartaee-bom</artifactId>
-                 <version>11.0.0-M5</version>
+                 <version>${jakarta.jakartaee-bom.version}</version>
                  <type>pom</type>
                  <scope>import</scope>
              </dependency>
@@ -88,7 +91,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>11.0.0-RC4</version>
+            <version>${jakarta.tck.common.version}</version>
         </dependency>
         
         <dependency>
