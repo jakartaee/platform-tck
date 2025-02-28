@@ -255,7 +255,7 @@ public class ScheduleBean extends TimerBeanBaseWithoutTimeOutMethod {
     int nextDayOfMonth = TimerUtil.getForSchedule(Calendar.DAY_OF_MONTH, cal);
 
     Calendar cal2 = Calendar.getInstance();
-    cal2.add(Calendar.SECOND, 1); // times out after 1 second
+    cal2.add(Calendar.SECOND, 2); // times out after 2 seconds
 
     ScheduleExpression exp = new ScheduleExpression().year("*").month("*")
         .dayOfWeek(currentDayOfWeek).dayOfMonth(nextDayOfMonth)
