@@ -168,6 +168,21 @@ public abstract class SigTest {
 
   protected SigTestData testInfo; // holds the bin.dir property
 
+    /**
+     * Called by the test framework to initialize this test. The method simply
+     * retrieves some state information that is necessary to run the test when
+     * the test framework invokes the run method (actually the test1 method).
+     */
+    public void setup() {
+        try {
+            logger.log(Logger.Level.TRACE, "$$$ SigTest.setup() called");
+            this.testInfo = new SigTestData();
+            TestUtil.logTrace("$$$ SigTest.setup() complete");
+        } catch (Exception e) {
+            logger.log(Logger.Level.ERROR, "Unexpected exception " + e.getMessage());
+        }
+    }
+
   /**
    * Called by the test framework to initialize this test. The method simply
    * retrieves some state information that is necessary to run the test when
