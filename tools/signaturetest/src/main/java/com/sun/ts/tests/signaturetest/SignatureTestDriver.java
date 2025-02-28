@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Properties;
@@ -491,18 +493,18 @@ public abstract class SignatureTestDriver {
   protected String getSigFileName(String baseName, String repositoryDir,
       String version) throws FileNotFoundException {
 
-    String sigFile;
-    if (repositoryDir.endsWith(File.separator)) {
-      sigFile = repositoryDir + baseName + SIG_FILE_EXT;
-    } else {
-      sigFile = repositoryDir + File.separator + baseName + SIG_FILE_EXT;
+    final Path baseDir = Path.of(repositoryDir);
+
+    Path sigFile = baseDir.resolve(baseName + SIG_FILE_EXT);
+    if (Files.notExists(sigFile)) {
+      sigFile = baseDir.resolve(baseName + SIG_FILE_EXT + SIG_FILE_VER_SEP + version);
     }
 
-    File testFile = new File(sigFile);
-
-    if (!testFile.exists() && !testFile.isFile()) {
+    if (Files.notExists(sigFile) && !Files.isRegularFile(sigFile)) {
+      final Path unversioned = baseDir.resolve(baseName + SIG_FILE_EXT);
+      // Append the version
       throw new FileNotFoundException(
-          "Signature file \"" + sigFile + "\" does not exist.");
+          "Signature file \"" + unversioned + " or " + sigFile + "\" does not exist.");
     }
 
     // we are actually requiring this normalizeFileName call to get
@@ -514,7 +516,7 @@ public abstract class SignatureTestDriver {
     // "file://com/sun/ts/tests/signaturetest/foo.sig"
     // so now use file path and name only.
     // return normalizeFileName(testFile);
-    return testFile.toString();
+    return sigFile.toString();
 
   } // END getSigFileName
 
