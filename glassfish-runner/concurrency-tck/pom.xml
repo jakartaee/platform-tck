@@ -175,6 +175,8 @@
                     </dependenciesToScan>
 
                     <systemPropertyVariables>
+                        <arquillian.xml>${project.basedir}/arquillian.xml</arquillian.xml>
+                    
                         <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
                         <glassfish.enableDerby>true</glassfish.enableDerby>
                         <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
