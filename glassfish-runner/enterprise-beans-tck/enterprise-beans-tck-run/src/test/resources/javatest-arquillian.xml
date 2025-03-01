@@ -28,6 +28,8 @@
     <container qualifier="tck-javatest" default="true">
         <configuration>
             <property name="allowConnectingToRunningServer">true</property>
+            <property name="debug">false</property>
+            <property name="suspend">false</property>
         </configuration>
         <protocol type="javatest">
             <property name="workDir">${ts.home}/tmp</property>
