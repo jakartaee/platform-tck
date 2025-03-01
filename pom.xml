@@ -15,7 +15,8 @@
 
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -78,6 +79,7 @@
         <module>tcks/profiles/platform/docs/userguide</module>
         
         <module>tools/signaturetest</module>
+        <module>tools/smoke</module>
     </modules>
 
     <properties>
@@ -92,7 +94,7 @@
 
         <!-- These are duplicated from the BOM for use by the release/pom.xml -->
         <!-- The version of the jakarta platform api bom -->
-        <jakarta.jakartaee-bom.version>11.0.0-M5</jakarta.jakartaee-bom.version>
+        <jakarta.jakartaee-bom.version>11.0.0-RC1</jakarta.jakartaee-bom.version>
         <!-- Jakarta TCK Tools version from the independently released tools submodule -->
         <!-- The Arquillian protocol artifacts -->
         <jakarta.tck.arquillian.version>11.0.0-RC2</jakarta.tck.arquillian.version>
@@ -194,7 +196,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.13.0</version>
+                    <version>3.14.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
