@@ -50,7 +50,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>tags-tck</artifactId>
-            <version>11.0.0-M11</version>
+            <version>${jakarta.tck.tags.version}</version>
         </dependency>
 
         <!-- Junit -->
