@@ -1041,6 +1041,24 @@
             </build>
         </profile>
 
+        <profile>
+            <id>datasource</id>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <configuration>
+                            <groups>${groups}</groups>
+                            <includes>
+                                <include>com.sun.ts.tests.ejb30.lite.packaging.war.datasource.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
         <profile>
             <id>full</id>
