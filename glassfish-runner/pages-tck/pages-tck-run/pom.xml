@@ -36,12 +36,12 @@
     <properties>
         <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>8.0.0-M9</glassfish.version>
+        <glassfish.version>8.0.0-M10</glassfish.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
-        <jakarta.tck.sigtest.version>11.0.0-RC5</jakarta.tck.sigtest.version>
+        <jakarta.tck.sigtest.version>11.0.0-RC7</jakarta.tck.sigtest.version>
     </properties>
 
     <dependencyManagement>
@@ -49,7 +49,7 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>5.11.4</version>
+                <version>5.12.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

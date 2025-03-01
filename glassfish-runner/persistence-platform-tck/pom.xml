@@ -27,7 +27,7 @@
     </parent>
 
     <artifactId>persistence-platform-tck</artifactId>
-    <version>11.0.0-M10</version>
+    <version>11.0.0-M11</version>
     <packaging>pom</packaging>
 
     <modules>
