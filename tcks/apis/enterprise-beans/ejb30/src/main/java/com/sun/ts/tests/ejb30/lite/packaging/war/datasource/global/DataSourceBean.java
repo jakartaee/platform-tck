@@ -45,7 +45,7 @@ import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.ComponentBase
         className="org.apache.derby.jdbc.ClientDataSource",
         portNumber=1527,
         serverName="localhost",
-        databaseName="derbyDB",
+        databaseName="derbyDB;create=true",
         user="cts1",
         transactional=false,
         password="cts1",
