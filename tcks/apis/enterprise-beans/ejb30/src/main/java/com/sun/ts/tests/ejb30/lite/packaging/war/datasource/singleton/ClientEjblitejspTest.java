@@ -25,8 +25,8 @@ import java.net.URL;
 @Tag("tck-javatest")
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
-public class ClientEjbliteservletTest extends Client {
-    static final String VEHICLE_ARCHIVE = "ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle";
+public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.packaging.war.datasource.singleton.Client {
+    static final String VEHICLE_ARCHIVE = "ejblite_packaging_war_datasource_singleton_ejblitejsp_vehicle";
 
         /**
         EE10 Deployment Descriptors:
@@ -38,7 +38,6 @@ public class ClientEjbliteservletTest extends Client {
         Found Descriptors:
         War:
 
-        /com/sun/ts/tests/common/vehicle/ejbliteservlet/ejbliteservlet_vehicle_web.xml
         */
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
@@ -47,9 +46,9 @@ public class ClientEjbliteservletTest extends Client {
 
         // War
             // the war with the correct archive name
-            WebArchive ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle_web.war");
+            WebArchive ejblite_packaging_war_datasource_singleton_ejblitejsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "ejblite_packaging_war_datasource_singleton_ejblitejsp_vehicle_web.war");
             // The class files
-            ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle_web.addClasses(
+            ejblite_packaging_war_datasource_singleton_ejblitejsp_vehicle_web.addClasses(
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             Fault.class,
@@ -58,9 +57,9 @@ public class ClientEjbliteservletTest extends Client {
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.ComponentBase.class,
             com.sun.ts.tests.ejb30.lite.packaging.war.datasource.singleton.Client.class,
-            EJBLiteServletVehicle.class,
             com.sun.ts.tests.ejb30.common.lite.NumberEnum.class,
             com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest.class,
+            EJBLiteJSPTag.class,
             com.sun.ts.tests.ejb30.common.helper.Helper.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
@@ -73,34 +72,42 @@ public class ClientEjbliteservletTest extends Client {
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class
             );
-            // The web.xml descriptor
-            URL warResURL = Client.class.getResource("ejbliteservlet_vehicle_web.xml");
-            ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
+
+            // Web content
+            URL warResURL = Client.class.getResource("ejblitejsp.tld");
+            if(warResURL != null) {
+              ejblite_packaging_war_datasource_singleton_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/tlds/ejblitejsp.tld");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsp/ejblitejsp_vehicle.jsp");
+            if(warResURL != null) {
+              ejblite_packaging_war_datasource_singleton_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/ejblitejsp_vehicle.jsp");
+            }
 
            // Call the archive processor
-           archiveProcessor.processWebArchive(ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle_web, Client.class, null);
+           archiveProcessor.processWebArchive(ejblite_packaging_war_datasource_singleton_ejblitejsp_vehicle_web, Client.class, null);
 
-        return ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle_web;
+        return ejblite_packaging_war_datasource_singleton_ejblitejsp_vehicle_web;
         }
 
-    @Test
-    @TargetVehicle("ejbliteservlet")
-    @Override
-    public void postConstructRecords() {
+        @Test
+        @Override
+        @TargetVehicle("ejblitejsp")
+        public void postConstructRecords() {
         super.postConstructRecords();
     }
 
-    @Test
-    @TargetVehicle("ejbliteservlet")
-    @Override
-    public void postConstructRecordsEJB() {
-        super.postConstructRecordsEJB();
-    }
+        @Test
+        @Override
+        @TargetVehicle("ejblitejsp")
+        public void postConstructRecordsEJB() {
+            super.postConstructRecordsEJB();
+        }
 
-    @Test
-    @TargetVehicle("ejbliteservlet")
-    @Override
-    public void getConnectionEJB() {
-        super.getConnectionEJB();
-    }
+        @Test
+        @Override
+        @TargetVehicle("ejblitejsp")
+        public void getConnectionEJB() {
+            super.getConnectionEJB();
+        }
+
 }
