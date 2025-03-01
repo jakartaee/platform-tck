@@ -25,8 +25,8 @@ import java.net.URL;
 @Tag("tck-javatest")
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
-public class ClientEjbliteservletTest extends Client {
-    static final String VEHICLE_ARCHIVE = "ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle";
+public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb30.lite.packaging.war.datasource.singleton.JsfClient {
+    static final String VEHICLE_ARCHIVE = "ejblite_packaging_war_datasource_singleton_ejblitejsf_vehicle";
 
         /**
         EE10 Deployment Descriptors:
@@ -38,7 +38,7 @@ public class ClientEjbliteservletTest extends Client {
         Found Descriptors:
         War:
 
-        /com/sun/ts/tests/common/vehicle/ejbliteservlet/ejbliteservlet_vehicle_web.xml
+        /com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle_web.xml
         */
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
@@ -47,18 +47,18 @@ public class ClientEjbliteservletTest extends Client {
 
         // War
             // the war with the correct archive name
-            WebArchive ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle_web.war");
+            WebArchive ejblite_packaging_war_datasource_singleton_ejblitejsf_vehicle_web = ShrinkWrap.create(WebArchive.class, "ejblite_packaging_war_datasource_singleton_ejblitejsf_vehicle_web.war");
             // The class files
-            ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle_web.addClasses(
+            ejblite_packaging_war_datasource_singleton_ejblitejsf_vehicle_web.addClasses(
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
+            com.sun.ts.tests.ejb30.lite.packaging.war.datasource.singleton.JsfClient.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             Fault.class,
             DataSourceBean.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.ReasonableStatus.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.ComponentBase.class,
-            com.sun.ts.tests.ejb30.lite.packaging.war.datasource.singleton.Client.class,
-            EJBLiteServletVehicle.class,
+            Client.class,
             com.sun.ts.tests.ejb30.common.lite.NumberEnum.class,
             com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest.class,
             com.sun.ts.tests.ejb30.common.helper.Helper.class,
@@ -74,33 +74,56 @@ public class ClientEjbliteservletTest extends Client {
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("ejbliteservlet_vehicle_web.xml");
-            ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
+            URL warResURL = com.sun.ts.tests.ejb30.lite.packaging.war.datasource.singleton.JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle_web.xml");
+            if(warResURL != null) {
+              ejblite_packaging_war_datasource_singleton_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
+            }
+
+            // Any libraries added to the war
+
+            // Web content
+            warResURL = com.sun.ts.tests.ejb30.lite.packaging.war.datasource.singleton.JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/beans.xml");
+            if(warResURL != null) {
+              ejblite_packaging_war_datasource_singleton_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/beans.xml");
+            }
+            warResURL = com.sun.ts.tests.ejb30.lite.packaging.war.datasource.singleton.JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle_web.xml");
+            if(warResURL != null) {
+              ejblite_packaging_war_datasource_singleton_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejblitejsf_vehicle_web.xml");
+            }
+            warResURL = com.sun.ts.tests.ejb30.lite.packaging.war.datasource.singleton.JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/faces-config.xml");
+            if(warResURL != null) {
+              ejblite_packaging_war_datasource_singleton_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/faces-config.xml");
+            }
+            warResURL = com.sun.ts.tests.ejb30.lite.packaging.war.datasource.singleton.JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle.xhtml");
+            if(warResURL != null) {
+              ejblite_packaging_war_datasource_singleton_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/ejblitejsf_vehicle.xhtml");
+            }
 
            // Call the archive processor
-           archiveProcessor.processWebArchive(ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle_web, Client.class, null);
+           archiveProcessor.processWebArchive(ejblite_packaging_war_datasource_singleton_ejblitejsf_vehicle_web, JsfClient.class, warResURL);
 
-        return ejblite_packaging_war_datasource_singleton_ejbliteservlet_vehicle_web;
+        return ejblite_packaging_war_datasource_singleton_ejblitejsf_vehicle_web;
         }
 
     @Test
-    @TargetVehicle("ejbliteservlet")
     @Override
+    @TargetVehicle("ejblitejsf")
     public void postConstructRecords() {
         super.postConstructRecords();
     }
 
     @Test
-    @TargetVehicle("ejbliteservlet")
     @Override
+    @TargetVehicle("ejblitejsf")
     public void postConstructRecordsEJB() {
         super.postConstructRecordsEJB();
     }
 
     @Test
-    @TargetVehicle("ejbliteservlet")
     @Override
+    @TargetVehicle("ejblitejsf")
     public void getConnectionEJB() {
         super.getConnectionEJB();
     }
+
 }

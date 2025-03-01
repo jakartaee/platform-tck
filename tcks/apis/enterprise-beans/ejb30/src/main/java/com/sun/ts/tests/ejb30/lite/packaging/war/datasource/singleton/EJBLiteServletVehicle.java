@@ -26,12 +26,14 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebServlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.logging.Logger;
 
+//@WebServlet(name = "EJBLiteServletVehicle", urlPatterns = {"/", "/ejbliteservlet_vehicle.jsp"})
 public class EJBLiteServletVehicle extends Client
     implements Servlet, ServletConfig {
     
