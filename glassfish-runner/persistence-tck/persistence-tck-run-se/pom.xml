@@ -540,7 +540,7 @@
             </activation>
             
             <properties>
-                <derby.jdbc.version>10.15.2.0</derby.jdbc.version>
+                <derby.jdbc.version>10.17.1.0</derby.jdbc.version>
                 <jdbc.db>derby</jdbc.db>
                 <jakarta.persistence.jdbc.driver>org.apache.derby.jdbc.ClientDriver</jakarta.persistence.jdbc.driver>
             </properties>
