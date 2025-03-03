@@ -325,9 +325,9 @@
                         <configuration>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>jsonb-platform-tck</artifactId>
-                            <version>${tck.test.jsonb.version}</version>
+                            <version>${project.version}</version>
                             <packaging>jar</packaging>
-                            <file>jsonb-platform-tck-${tck.test.jsonb.version}.jar</file>
+                            <file>jsonb-platform-tck-${project.version}.jar</file>
                             <generatePom>false</generatePom>
                         </configuration>
                     </execution>
@@ -340,9 +340,9 @@
                         <configuration>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>jsonp-platform-tck</artifactId>
-                            <version>${tck.test.jsonp.version}</version>
+                            <version>${project.version}</version>
                             <packaging>jar</packaging>
-                            <file>jsonp-platform-tck-${tck.test.jsonp.version}.jar</file>
+                            <file>jsonp-platform-tck-${project.version}.jar</file>
                             <generatePom>false</generatePom>
                         </configuration>
                     </execution>
@@ -418,7 +418,7 @@
                             <artifactId>signaturevalidation</artifactId>
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
-                            <file>signaturetest-${project.version}.jar</file>
+                            <file>signaturevalidation-${project.version}.jar</file>
                             <generatePom>false</generatePom>
                         </configuration>
                     </execution>
