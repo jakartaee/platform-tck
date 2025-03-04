@@ -25,110 +25,92 @@ import java.util.List;
 
 public class SigTestResult implements Serializable {
 
-  private static final String NL = System.getProperty("line.separator", "\n");
+    private static final String NL = System.getProperty("line.separator", "\n");
 
-  private List failedPkgs = new ArrayList();
+    private List failedPkgs = new ArrayList();
+    private List passedPkgs = new ArrayList();
+    private List failedClasses = new ArrayList();
+    private List passedClasses = new ArrayList();
 
-  private List passedPkgs = new ArrayList();
+    // ---------------------------------------------------------- Public Methods
 
-  private List failedClasses = new ArrayList();
+    public synchronized boolean passed() {
+        return (failedPkgs.size() == 0 && failedClasses.size() == 0);
+    } // end passed
 
-  private List passedClasses = new ArrayList();
+    public synchronized void addFailedPkg(String pkg) {
+        failedPkgs.add(pkg);
+    } // END addFailedPkg
 
-  // ---------------------------------------------------------- Public Methods
+    public synchronized void addPassedPkg(String pkg) {
+        passedPkgs.add(pkg);
+    } // END addPassedPkg
 
-  public synchronized boolean passed() {
+    public synchronized void addFailedClass(String className) {
+        failedClasses.add(className);
+    } // END addFailedClass
 
-    return (failedPkgs.size() == 0 && failedClasses.size() == 0);
+    public synchronized void addPassedClass(String className) {
+        passedClasses.add(className);
+    } // END addPassedClass
 
-  } // end passed
+    @Override
+    public String toString() {
+        String delim = "******************************************************" + NL;
+        if (!pkgsTested() && !classesTested()) {
+            return (delim + "******** No packages or classes were tested **********" + NL + delim);
+        }
 
-  public synchronized void addFailedPkg(String pkg) {
+        StringBuffer buf = new StringBuffer();
+        buf.append(delim);
+        buf.append(delim);
+        if (passed()) {
+            buf.append("All package signatures passed.").append(NL);
+        } else {
+            buf.append("Some signatures failed.").append(NL);
+            if (failedPkgs.size() > 0) {
+                buf.append("\tFailed packages listed below: ").append(NL);
+                formatList(failedPkgs, buf);
+            }
+            if (failedClasses.size() > 0) {
+                buf.append("\tFailed classes listed below: ").append(NL);
+                formatList(failedClasses, buf);
+            }
+        }
+        if (passedPkgs.size() > 0) {
+            buf.append("\tPassed packages listed below: ").append(NL);
+            formatList(passedPkgs, buf);
+        }
+        if (passedClasses.size() > 0) {
+            buf.append("\tPassed classes listed below: ").append(NL);
+            formatList(passedClasses, buf);
+        }
+        buf.append("\t");
+        buf.append(delim);
+        buf.append(delim);
+        return buf.toString();
 
-    failedPkgs.add(pkg);
+    } // END toString
 
-  } // END addFailedPkg
+    // --------------------------------------------------------- Private Methods
 
-  public synchronized void addPassedPkg(String pkg) {
+    private synchronized void formatList(List list, StringBuffer buf) {
+        synchronized (this) {
+            for (int i = 0; i < list.size(); i++) {
+                String pkg = (String) (list.get(i));
+                buf.append("\t\t").append(pkg).append(NL);
+            }
+        }
 
-    passedPkgs.add(pkg);
+    } // END formatList
 
-  } // END addPassedPkg
+    private synchronized boolean pkgsTested() {
+        return (failedPkgs.size() != 0 || passedPkgs.size() != 0);
 
-  public synchronized void addFailedClass(String className) {
+    } // END pkgsTested
 
-    failedClasses.add(className);
-
-  } // END addFailedClass
-
-  public synchronized void addPassedClass(String className) {
-
-    passedClasses.add(className);
-
-  } // END addPassedClass
-
-  public String toString() {
-
-    String delim = "******************************************************"
-        + NL;
-    if (!pkgsTested() && !classesTested()) {
-      return (delim + "******** No packages or classes were tested **********"
-          + NL + delim);
-    }
-    StringBuffer buf = new StringBuffer();
-    buf.append(delim);
-    buf.append(delim);
-    if (passed()) {
-      buf.append("All package signatures passed.").append(NL);
-    } else {
-      buf.append("Some signatures failed.").append(NL);
-      if (failedPkgs.size() > 0) {
-        buf.append("\tFailed packages listed below: ").append(NL);
-        formatList(failedPkgs, buf);
-      }
-      if (failedClasses.size() > 0) {
-        buf.append("\tFailed classes listed below: ").append(NL);
-        formatList(failedClasses, buf);
-      }
-    }
-    if (passedPkgs.size() > 0) {
-      buf.append("\tPassed packages listed below: ").append(NL);
-      formatList(passedPkgs, buf);
-    }
-    if (passedClasses.size() > 0) {
-      buf.append("\tPassed classes listed below: ").append(NL);
-      formatList(passedClasses, buf);
-    }
-    buf.append("\t");
-    buf.append(delim);
-    buf.append(delim);
-    return buf.toString();
-
-  } // END toString
-
-  // --------------------------------------------------------- Private Methods
-
-  private synchronized void formatList(List list, StringBuffer buf) {
-
-    synchronized (this) {
-      for (int i = 0; i < list.size(); i++) {
-        String pkg = (String) (list.get(i));
-        buf.append("\t\t").append(pkg).append(NL);
-      }
-    }
-
-  } // END formatList
-
-  private synchronized boolean pkgsTested() {
-
-    return (failedPkgs.size() != 0 || passedPkgs.size() != 0);
-
-  } // END pkgsTested
-
-  private synchronized boolean classesTested() {
-
-    return (failedClasses.size() != 0 || passedClasses.size() != 0);
-
-  } // END classesTested
+    private synchronized boolean classesTested() {
+        return (failedClasses.size() != 0 || passedClasses.size() != 0);
+    } // END classesTested
 
 } // end class SigTestResult

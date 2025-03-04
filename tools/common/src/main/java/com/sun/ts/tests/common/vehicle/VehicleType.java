@@ -7,28 +7,8 @@ import java.util.List;
  * Enums for the vehicles found in the vehicle.properties file
  */
 public enum VehicleType {
-    appclient,
-    appmanaged,
-    appmanagedNoTx,
-    ejb,
-    ejbembed,
-    ejblitejsf,
-    ejblitejsp,
-    ejblitesecuredjsp,
-    ejbliteservlet,
-    ejbliteservlet2,
-    jsp,
-    pmservlet,
-    puservlet,
-    servlet,
-    standalone,
-    stateful3,
-    stateless3,
-    web,
-    wsappclient,
-    wsejb,
-    wsservlet,
-    none;
+    appclient, appmanaged, appmanagedNoTx, ejb, ejbembed, ejblitejsf, ejblitejsp, ejblitesecuredjsp, ejbliteservlet, ejbliteservlet2, jsp,
+    pmservlet, puservlet, servlet, standalone, stateful3, stateless3, web, wsappclient, wsejb, wsservlet, none;
 
     public static List<VehicleType> toEnumList(String[] types) {
         List<VehicleType> result = new ArrayList<>(types.length);

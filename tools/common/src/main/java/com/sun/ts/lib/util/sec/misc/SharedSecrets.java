@@ -22,7 +22,6 @@ import java.io.File;
 import java.io.FileDescriptor;
 import java.security.ProtectionDomain;
 
-
 /**
  * A repository of "shared secrets", which are a mechanism for calling implementation-private methods in another package
  * without using reflection. A package-private class implements a public interface and provides the ability to call

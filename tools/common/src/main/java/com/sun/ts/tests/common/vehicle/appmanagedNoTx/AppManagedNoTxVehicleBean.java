@@ -39,8 +39,7 @@ public class AppManagedNoTxVehicleBean extends com.sun.ts.tests.common.vehicle.e
         implements AppManagedNoTxVehicleIF {
 
     /**
-     * Default constructor for AppManagedNoTxVehicleBean.
-     * Calls the superclass constructor.
+     * Default constructor for AppManagedNoTxVehicleBean. Calls the superclass constructor.
      */
     public AppManagedNoTxVehicleBean() {
         super();

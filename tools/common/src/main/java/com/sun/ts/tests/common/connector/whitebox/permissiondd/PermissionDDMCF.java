@@ -47,18 +47,14 @@ import jakarta.resource.spi.ResourceAdapterAssociation;
 import jakarta.resource.spi.security.PasswordCredential;
 
 /**
- * ManagedConnectionFactory implementation for PermissionDDMCF.
- * This class provides methods to create and manage connections to the underlying EIS.
- * It also implements ResourceAdapterAssociation and Referenceable interfaces.
+ * ManagedConnectionFactory implementation for PermissionDDMCF. This class provides methods to create and manage
+ * connections to the underlying EIS. It also implements ResourceAdapterAssociation and Referenceable interfaces.
  *
- * @ConnectionDefinitions({
- *     @ConnectionDefinition(
- *         connectionFactory = com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory.class,
- *         connectionFactoryImpl = com.sun.ts.tests.common.connector.whitebox.TSEISDataSource.class,
- *         connection = com.sun.ts.tests.common.connector.whitebox.TSConnection.class,
- *         connectionImpl = com.sun.ts.tests.common.connector.whitebox.TSEISConnection.class
- *     )
- * })
+ * @ConnectionDefinitions({ @ConnectionDefinition( connectionFactory =
+ * com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory.class, connectionFactoryImpl =
+ * com.sun.ts.tests.common.connector.whitebox.TSEISDataSource.class, connection =
+ * com.sun.ts.tests.common.connector.whitebox.TSConnection.class, connectionImpl =
+ * com.sun.ts.tests.common.connector.whitebox.TSEISConnection.class ) })
  */
 public class PermissionDDMCF implements ManagedConnectionFactory, ResourceAdapterAssociation, jakarta.resource.Referenceable, Serializable {
     private javax.naming.Reference reference;
@@ -77,8 +73,7 @@ public class PermissionDDMCF implements ManagedConnectionFactory, ResourceAdapte
     private String factoryName = "PermissionDDMCF";
 
     /**
-     * Default constructor.
-     * Initializes the factory name and logs the state.
+     * Default constructor. Initializes the factory name and logs the state.
      */
     public PermissionDDMCF() {
         String str = "PermissionDDMCF factoryName=" + factoryName;
@@ -374,7 +369,8 @@ public class PermissionDDMCF implements ManagedConnectionFactory, ResourceAdapte
      * @return the matched managed connection, or null if no match is found
      * @throws ResourceException if an error occurs
      */
-    public ManagedConnection matchManagedConnections(Set connectionSet, Subject subject, ConnectionRequestInfo info) throws ResourceException {
+    public ManagedConnection matchManagedConnections(Set connectionSet, Subject subject, ConnectionRequestInfo info)
+            throws ResourceException {
         PasswordCredential pc = Util.getPasswordCredential(this, subject, info);
         Iterator it = connectionSet.iterator();
         while (it.hasNext()) {

@@ -39,27 +39,23 @@ import com.sun.ts.tests.signaturetest.SigTest;
  */
 public class JSTLClient extends SigTest {
 
-  /***** Abstract Method Implementation *****/
+    /***** Abstract Method Implementation *****/
 
-  /**
-   * Returns a list of strings where each string represents a package name. Each
-   * package name will have it's signature tested by the signature test
-   * framework.
-   * 
-   * @return String[] The names of the packages whose signatures should be
-   *         verified.
-   */
-  protected String[] getPackages() {
-    return new String[] { "jakarta.servlet.jsp.jstl.core",
-        "jakarta.servlet.jsp.jstl.fmt", "jakarta.servlet.jsp.jstl.sql",
-        "jakarta.servlet.jsp.jstl.tlv" };
-  }
+    /**
+     * Returns a list of strings where each string represents a package name. Each package name will have it's signature
+     * tested by the signature test framework.
+     * 
+     * @return String[] The names of the packages whose signatures should be verified.
+     */
+    protected String[] getPackages() {
+        return new String[] { "jakarta.servlet.jsp.jstl.core", "jakarta.servlet.jsp.jstl.fmt", "jakarta.servlet.jsp.jstl.sql",
+                "jakarta.servlet.jsp.jstl.tlv" };
+    }
 
-  /***** Boilerplate Code *****/
+    /***** Boilerplate Code *****/
 
- /*
-  *   @class.setup_props: ts_home, The base path of this TCK;
-  *                       sigTestClasspath;
-  */
+    /*
+     * @class.setup_props: ts_home, The base path of this TCK; sigTestClasspath;
+     */
 
 } // end class JSTLClient

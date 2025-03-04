@@ -110,7 +110,7 @@ public final class TestUtil {
 
     /**
      * used by harness to log debug output to the standard output stream
-     * 
+     *
      * @param s the output string
      */
     public static void logHarnessDebug(String s) {
@@ -144,10 +144,12 @@ public final class TestUtil {
     }
 
     private static void logToAdditionalWriter(String s, Throwable t) {
-        if (additionalWriter != null)
+        if (additionalWriter != null) {
             additionalWriter.println(s);
-        if (t != null) {
-            t.printStackTrace(additionalWriter);
+
+            if (t != null) {
+                t.printStackTrace(additionalWriter);
+            }
         }
     }
 
@@ -176,7 +178,7 @@ public final class TestUtil {
 
     /**
      * This method returns the property value for the appropriate property key
-     * 
+     *
      * @param s the property name
      * @return the property value
      */
@@ -187,7 +189,7 @@ public final class TestUtil {
 
     /**
      * Reads a property from the properties object and logs a message if the value is not set
-     * 
+     *
      * @param props the properties object
      * @param key the property key
      * @return the property value, null if not set
@@ -202,7 +204,7 @@ public final class TestUtil {
 
     /**
      * Reads a property from the properties object and logs a message if the value is not set
-     * 
+     *
      * @param props the properties object
      * @param key the property key
      * @param defaultValue the default value
@@ -219,7 +221,7 @@ public final class TestUtil {
 
     /**
      * Wrapper for System.getProperty(String) that logs missing properties
-     * 
+     *
      * @param key the property key
      * @return the property value
      */
@@ -902,7 +904,7 @@ public final class TestUtil {
 
     /**
      * Parse a the table name from the ddl string such as: "create table foo" or "delete from foo"
-     * 
+     *
      * @param value buffer to parse
      * @return The name of the table
      */
@@ -1015,6 +1017,7 @@ class Acceptor extends Thread {
         this.start();
     }
 
+    @Override
     public void run() {
         while (true) {
             try {
@@ -1036,6 +1039,7 @@ class SocketReader extends Thread {
         this.start();
     }
 
+    @Override
     public void run() {
         ObjectInputStream objIn;
         TestReportInfo tri = null;
@@ -1071,7 +1075,7 @@ class SocketReader extends Thread {
         // cleanup socket no matter what happens
         /*
          * try { outputSocket.close(); outputSocket = null; } catch(IOException e) {
-         * 
+         *
          * }
          */
     }

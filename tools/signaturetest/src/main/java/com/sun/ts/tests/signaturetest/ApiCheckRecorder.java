@@ -24,55 +24,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>
- * This implementation of {@link Recorder} will record signatures using the
- * <code>ApiCheck</code> framework.
- * </p>
+ * This implementation of {@link Recorder} will record signatures using the <code>ApiCheck</code> framework.
  */
 public class ApiCheckRecorder extends Recorder {
 
-  // ------------------------------------------------------------ Constructors
+    // ------------------------------------------------------------ Constructors
 
-  public ApiCheckRecorder(String[] args) {
+    public ApiCheckRecorder(String[] args) {
+        super(args);
 
-    super(args);
-    System.setProperty("pkg.list.file.path", packageListFile);
-    System.setProperty("map.file.path", signatureMapFile);
-    System.setProperty("signature.repository.dir", signatureRepositoryDir);
+        System.setProperty("pkg.list.file.path", packageListFile);
+        System.setProperty("map.file.path", signatureMapFile);
+        System.setProperty("signature.repository.dir", signatureRepositoryDir);
 
-  } // END ApiCheckRecorder
+    } // END ApiCheckRecorder
 
-  // ------------------------------------------------------- Protected Methods
+    // ------------------------------------------------------- Protected Methods
 
-  protected String[] createCommandLine(String version, String classpath,
-      String outputFileName, String packageName) {
+    @Override
+    protected String[] createCommandLine(String version, String classpath, String outputFileName, String packageName) {
 
-    List command = new ArrayList();
+        List command = new ArrayList();
 
-    command.add("-constvalues");
-    command.add("-xpriv");
+        command.add("-constvalues");
+        command.add("-xpriv");
 
-    command.add("-in");
-    command.add(classpath);
+        command.add("-in");
+        command.add(classpath);
 
-    return ((String[]) command.toArray(new String[command.size()]));
+        return ((String[]) command.toArray(new String[command.size()]));
 
-  } // END getCommandLine
+    } // END getCommandLine
 
-  protected void writePackageListFile(String basePackageName,
-      String signatureFile, String packageListFile) throws Exception {
+    @Override
+    protected void writePackageListFile(String basePackageName, String signatureFile, String packageListFile) throws Exception {
 
-    // no-op as this is done internally by our version of ApiCheck
+        // no-op as this is done internally by our version of ApiCheck
 
-  } // END writePackageListFile
+    } // END writePackageListFile
 
-  protected void doRecord(String[] commandLine) throws Exception {
+    @Override
+    protected void doRecord(String[] commandLine) throws Exception {
 
-    Class batchSetup = Class.forName("javasoft.sqe.apiCheck.BatchSetup");
-    Method mainMethod = batchSetup.getDeclaredMethod("main",
-        new Class[] { String[].class });
-    mainMethod.invoke(null, new Object[] { commandLine });
+        Class batchSetup = Class.forName("javasoft.sqe.apiCheck.BatchSetup");
+        Method mainMethod = batchSetup.getDeclaredMethod("main", new Class[] { String[].class });
+        mainMethod.invoke(null, new Object[] { commandLine });
 
-  } // END doRecord
+    } // END doRecord
 
 } // END SigTestRecorder

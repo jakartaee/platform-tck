@@ -58,9 +58,9 @@ public class AltWebVehicleRunner implements VehicleRunnable {
     Properties p;
 
     /**
-     * Run the test in a servlet using a URL of the form "/{vehicle_archive_name}/{vehicle}_vehicle".
-     * For example, a test with vehicle_archive_name="appmanagedNoTx_vehicle_web" and vehicle="appmanagedNoTx" would
-     * be run by accessing the URL "http://{webServerHost}:{webServerPort}/appmanagedNoTx_vehicle_web/appmanagedNoTx_vehicle".
+     * Run the test in a servlet using a URL of the form "/{vehicle_archive_name}/{vehicle}_vehicle". For example, a test
+     * with vehicle_archive_name="appmanagedNoTx_vehicle_web" and vehicle="appmanagedNoTx" would be run by accessing the URL
+     * "http://{webServerHost}:{webServerPort}/appmanagedNoTx_vehicle_web/appmanagedNoTx_vehicle".
      *
      * The
      *

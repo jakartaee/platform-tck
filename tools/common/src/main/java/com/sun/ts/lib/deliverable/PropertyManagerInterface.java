@@ -27,6 +27,7 @@ public interface PropertyManagerInterface {
 
     /**
      * This method swaps all of the following interop values in TSPropertyManager...
+     * 
      * @param sDirection - "interop" or "default"
      */
     public void swapInteropPropertyValues(String sDirection);
@@ -34,6 +35,7 @@ public interface PropertyManagerInterface {
     /**
      * gets a new properties containing all entries in the property manager. Any operation on the returned properties will
      * have no effect on property manager
+     * 
      * @return Properties - property/value pairs
      */
     public Properties getJteProperties();

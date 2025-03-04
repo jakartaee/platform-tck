@@ -60,6 +60,7 @@ public class AnnotationType {
 
     /**
      * Returns an AnnotationType instance for the specified annotation type.
+     * 
      * @param annotationClass the class object for the annotation type
      * @return an AnnotationType instance for the specified annotation type
      */
@@ -110,6 +111,7 @@ public class AnnotationType {
     /**
      * Returns the type that must be returned by the invocation handler of a dynamic proxy in order to have the dynamic
      * proxy return the specified type (which is assumed to be a legal member type for an annotation).
+     * 
      * @param type the type to be returned by the invocation handler
      * @return the type that must be returned by the invocation handler of a dynamic proxy in order to have the dynamic
      */
@@ -165,7 +167,7 @@ public class AnnotationType {
     }
 
     /**
-     * @return  true if this this annotation type is inherited.
+     * @return true if this this annotation type is inherited.
      */
     public boolean isInherited() {
         return inherited;
@@ -173,6 +175,7 @@ public class AnnotationType {
 
     /**
      * For debugging.
+     * 
      * @return a string representation of this annotation type.
      */
     public String toString() {

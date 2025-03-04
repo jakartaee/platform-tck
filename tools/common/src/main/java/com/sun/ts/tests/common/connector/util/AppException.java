@@ -26,8 +26,7 @@ package com.sun.ts.tests.common.connector.util;
 public class AppException extends Exception {
 
     /**
-     * Default constructor for AppException.
-     * Calls the superclass constructor with no arguments.
+     * Default constructor for AppException. Calls the superclass constructor with no arguments.
      */
     public AppException() {
         super();

@@ -28,9 +28,9 @@ import com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner;
 
 /**
  * The {@link com.sun.ts.tests.common.vehicle.VehicleRunnable} implementation for the
- * {@link com.sun.ts.tests.common.vehicle.VehicleType#appmanagedNoTx} vehicle.
- * This uses the {@link com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner} to run the tests in the
- * server using the {@link AppManagedNoTxServletVehicle}.
+ * {@link com.sun.ts.tests.common.vehicle.VehicleType#appmanagedNoTx} vehicle. This uses the
+ * {@link com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner} to run the tests in the server using the
+ * {@link AppManagedNoTxServletVehicle}.
  */
 public class AppManagedNoTxVehicleRunner extends AltWebVehicleRunner {
     public static final String APPMANAGEDNOTX_REF_NAME = "java:comp/env/ejb/AppManagedNoTxVehicleBean";

@@ -757,8 +757,8 @@ public final class Unsafe {
 
     /**
      * Unblock the given thread blocked on <code>park</code>, or, if it is not blocked, cause the subsequent call to
-     * <code>park</code> not to block. Note: this operation is "unsafe" solely because the caller must somehow ensure that the
-     * thread has not been destroyed. Nothing special is usually required to ensure this when called from Java (in which
+     * <code>park</code> not to block. Note: this operation is "unsafe" solely because the caller must somehow ensure that
+     * the thread has not been destroyed. Nothing special is usually required to ensure this when called from Java (in which
      * there will ordinarily be a live reference to the thread) but this is not nearly-automatically so when calling from
      * native code.
      * 
@@ -768,19 +768,19 @@ public final class Unsafe {
     public native void unpark(Object thread);
 
     /**
-     * Block current thread, returning when a balancing <code>unpark</code> occurs, or a balancing <code>unpark</code> has already
-     * occurred, or the thread is interrupted, or, if not absolute and time is not zero, the given time nanoseconds have
-     * elapsed, or if absolute, the given deadline in milliseconds since Epoch has passed, or spuriously (i.e., returning
-     * for no "reason"). Note: This operation is in the Unsafe class only because <code>unpark</code> is, so it would be strange
-     * to place it elsewhere.
+     * Block current thread, returning when a balancing <code>unpark</code> occurs, or a balancing <code>unpark</code> has
+     * already occurred, or the thread is interrupted, or, if not absolute and time is not zero, the given time nanoseconds
+     * have elapsed, or if absolute, the given deadline in milliseconds since Epoch has passed, or spuriously (i.e.,
+     * returning for no "reason"). Note: This operation is in the Unsafe class only because <code>unpark</code> is, so it
+     * would be strange to place it elsewhere.
      */
     public native void park(boolean isAbsolute, long time);
 
     /**
      * Gets the load average in the system run queue assigned to the available processors averaged over various periods of
      * time. This method retrieves the given <code>nelem</code> samples and assigns to the elements of the given
-     * <code>loadavg</code> array. The system imposes a maximum of 3 samples, representing averages over the last 1, 5, and 15
-     * minutes, respectively.
+     * <code>loadavg</code> array. The system imposes a maximum of 3 samples, representing averages over the last 1, 5, and
+     * 15 minutes, respectively.
      *
      * @params loadavg an array of double of size nelems
      * @params nelems the number of samples to be retrieved and must be 1 to 3.
