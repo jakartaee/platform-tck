@@ -33,8 +33,8 @@ import jakarta.resource.spi.work.WorkException;
 import jakarta.resource.spi.work.WorkManager;
 
 /**
- * AnnoWorkManager is a class that manages work submissions and transactions
- * using the Jakarta Resource SPI WorkManager and XATerminator.
+ * AnnoWorkManager is a class that manages work submissions and transactions using the Jakarta Resource SPI WorkManager
+ * and XATerminator.
  */
 public class AnnoWorkManager {
     private BootstrapContext bsc = null;

@@ -20,15 +20,14 @@ import java.nio.ByteBuffer;
 import java.io.IOException;
 
 /**
- * This is an interface to adapt existing APIs to use {@link java.nio.ByteBuffer ByteBuffers} as the underlying
- * data format. Only the initial producer and final consumer have to be changed.
+ * This is an interface to adapt existing APIs to use {@link java.nio.ByteBuffer ByteBuffers} as the underlying data
+ * format. Only the initial producer and final consumer have to be changed.
  *
  *
  * For example, the Zip/Jar code supports {@link java.io.InputStream InputStreams}. To make the Zip code use
- * {@link java.nio.MappedByteBuffer MappedByteBuffers} as the underlying data structure, it can create a class
- * of InputStream that wraps the ByteBuffer, and implements the ByteBuffered interface. A co-operating class several
- * layers away can ask the InputStream if it is an instance of ByteBuffered, then call the {@link #getByteBuffer()}
- * method.
+ * {@link java.nio.MappedByteBuffer MappedByteBuffers} as the underlying data structure, it can create a class of
+ * InputStream that wraps the ByteBuffer, and implements the ByteBuffered interface. A co-operating class several layers
+ * away can ask the InputStream if it is an instance of ByteBuffered, then call the {@link #getByteBuffer()} method.
  */
 public interface ByteBuffered {
 

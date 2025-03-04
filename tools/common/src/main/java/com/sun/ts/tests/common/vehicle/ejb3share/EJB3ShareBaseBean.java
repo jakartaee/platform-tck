@@ -30,8 +30,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
 /**
- * Abstract base class for EJB3 share beans.
- * Provides common functionality for EJB3 share beans.
+ * Abstract base class for EJB3 share beans. Provides common functionality for EJB3 share beans.
  */
 abstract public class EJB3ShareBaseBean implements EJB3ShareIF {
 
@@ -54,8 +53,7 @@ abstract public class EJB3ShareBaseBean implements EJB3ShareIF {
     protected abstract VehicleType getVehicleType();
 
     /**
-     * Default constructor for EJB3ShareBaseBean.
-     * Calls the superclass constructor.
+     * Default constructor for EJB3ShareBaseBean. Calls the superclass constructor.
      */
     protected EJB3ShareBaseBean() {
         super();

@@ -245,6 +245,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
 
     /**
      * Builds a url string.
+     * 
      * @param protocol - the protocol
      * @param hostname - the hostname
      * @param portnum - the port number
@@ -254,8 +255,10 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     protected String getURLString(String protocol, String hostname, int portnum, String sContext) {
         return protocol + "://" + hostname + ":" + portnum + "/" + sContext;
     }
+
     /**
      * Builds a URL.
+     * 
      * @param protocol - the protocol
      * @param hostname - the hostname
      * @param portnum - the port number
@@ -269,6 +272,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
 
     /**
      * Opens a URLConnection.
+     * 
      * @param newURL - the URL
      * @return the URLConnection
      * @throws IOException - if an error occurs

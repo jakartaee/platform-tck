@@ -34,69 +34,63 @@ import com.sun.ts.tests.signaturetest.SigTestEE;
 
 public class JTASigTest extends SigTestEE {
 
-  /***** Abstract Method Implementation *****/
+    /***** Abstract Method Implementation *****/
 
-  /**
-   * Returns a list of strings where each string represents a package name. Each
-   * package name will have it's signature tested by the signature test
-   * framework.
-   *
-   * @return String[] The names of the packages whose signatures should be
-   *         verified.
-   */
-  protected String[] getPackages(String vehicleName) {
-    return new String[] { "jakarta.transaction" };
-  }
+    /**
+     * Returns a list of strings where each string represents a package name. Each package name will have it's signature
+     * tested by the signature test framework.
+     *
+     * @return String[] The names of the packages whose signatures should be verified.
+     */
+    protected String[] getPackages(String vehicleName) {
+        return new String[] { "jakarta.transaction" };
+    }
 
-  /**
-   * ** Boilerplate Code ****
-   */
+    /**
+     * ** Boilerplate Code ****
+     */
 
-  /*
-   * Initial entry point for JavaTest.
-   */
-  public static void main(String[] args) {
-    JTASigTest theTests = new JTASigTest();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    /*
+     * Initial entry point for JavaTest.
+     */
+    public static void main(String[] args) {
+        JTASigTest theTests = new JTASigTest();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * The following comments are specified in the base class that defines the
-   * signature tests. This is done so the test finders will find the right class
-   * to run. The implementation of these methods is inherited from the super
-   * class which is part of the signature test framework.
-   */
+    /*
+     * The following comments are specified in the base class that defines the signature tests. This is done so the test
+     * finders will find the right class to run. The implementation of these methods is inherited from the super class which
+     * is part of the signature test framework.
+     */
 
-  // NOTE: If the API under test is not part of your testing runtime
-  // environment,
-  // you may use the property sigTestClasspath to specify where the API
-  // under test lives. This should almost never be used. Normally the API
-  // under test should be specified in the classpath of the VM running the
-  // signature tests. Use either the first comment or the one below it depending
-  // on which properties your signature tests need. Please do not use both
-  // comments.
+    // NOTE: If the API under test is not part of your testing runtime
+    // environment,
+    // you may use the property sigTestClasspath to specify where the API
+    // under test lives. This should almost never be used. Normally the API
+    // under test should be specified in the classpath of the VM running the
+    // signature tests. Use either the first comment or the one below it depending
+    // on which properties your signature tests need. Please do not use both
+    // comments.
 
-  /*
-   * @class.setup_props: sigTestClasspath, Location of JTA api jar files;
-   * ts_home, The base path of this TCK;
-   * jtaJarClasspath, The Location of the JTA API jar file;
-   */
+    /*
+     * @class.setup_props: sigTestClasspath, Location of JTA api jar files; ts_home, The base path of this TCK;
+     * jtaJarClasspath, The Location of the JTA API jar file;
+     */
 
-  /*
-   * @testName: signatureTest
-   * 
-   * @assertion: A JTA platform must implement the required classes and and APIs
-   * specified in the JTA Specification.
-   * 
-   * @test_Strategy: Using reflection, gather the implementation specific
-   * classes and APIs. Compare these results with the expected (required)
-   * classes and APIs.
-   *
-   */
+    /*
+     * @testName: signatureTest
+     * 
+     * @assertion: A JTA platform must implement the required classes and and APIs specified in the JTA Specification.
+     * 
+     * @test_Strategy: Using reflection, gather the implementation specific classes and APIs. Compare these results with the
+     * expected (required) classes and APIs.
+     *
+     */
 
-  /*
-   * Call the parent class's cleanup method.
-   */
+    /*
+     * Call the parent class's cleanup method.
+     */
 
 } // end class JTASigTest

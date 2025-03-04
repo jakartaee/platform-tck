@@ -33,9 +33,9 @@ import com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner;
 
 /**
  * The {@link com.sun.ts.tests.common.vehicle.VehicleRunnable} implementation for the
- * {@link com.sun.ts.tests.common.vehicle.VehicleType#appmanaged} vehicle.
- * This uses the {@link com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner} to run the tests in the
- * server using the {@link AppManagedServletVehicle}.
+ * {@link com.sun.ts.tests.common.vehicle.VehicleType#appmanaged} vehicle. This uses the
+ * {@link com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner} to run the tests in the server using the
+ * {@link AppManagedServletVehicle}.
  */
 public class AppManagedVehicleRunner extends AltWebVehicleRunner {
     public static final String APPMANAGED_REF_NAME = "java:comp/env/ejb/AppManagedVehicleBean";

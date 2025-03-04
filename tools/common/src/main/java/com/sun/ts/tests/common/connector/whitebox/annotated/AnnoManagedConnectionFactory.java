@@ -47,9 +47,8 @@ import jakarta.resource.spi.ResourceAdapterAssociation;
 import jakarta.resource.spi.security.PasswordCredential;
 
 /**
- * AnnoManagedConnectionFactory is a managed connection factory that provides
- * connection management for the underlying EIS (Enterprise Information System).
- * It implements the ManagedConnectionFactory, ResourceAdapterAssociation, and
+ * AnnoManagedConnectionFactory is a managed connection factory that provides connection management for the underlying
+ * EIS (Enterprise Information System). It implements the ManagedConnectionFactory, ResourceAdapterAssociation, and
  * Referenceable interfaces, and is Serializable.
  */
 @ConnectionDefinitions({

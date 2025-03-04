@@ -51,12 +51,10 @@ import jakarta.resource.spi.work.WorkRejectedException;
 public class APIAssertionTest {
 
     /**
-     * Default constructor for the APIAssertionTest class.
-     * This constructor does not perform any initialization.
+     * Default constructor for the APIAssertionTest class. This constructor does not perform any initialization.
      */
     public APIAssertionTest() {
     }
-
 
     /**
      * Checks the ManagedConnection API.
@@ -67,10 +65,11 @@ public class APIAssertionTest {
         if (mcon == null) {
             // should not get here
             Debug.trace("Error - null MetaData passed into APIAssertionTest.checkMetaData()");
-        }        if (mcon == null) {
-                // should not get here
-                Debug.trace("Error - null MetaData passed into APIAssertionTest.checkMetaData()");
-            }
+        }
+        if (mcon == null) {
+            // should not get here
+            Debug.trace("Error - null MetaData passed into APIAssertionTest.checkMetaData()");
+        }
 
         try {
             PrintWriter p = mcon.getLogWriter();

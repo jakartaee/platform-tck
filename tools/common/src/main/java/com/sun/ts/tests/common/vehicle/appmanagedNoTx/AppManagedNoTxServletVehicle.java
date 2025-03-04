@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 /**
  * Replaces the remote ejb call used by AppManagedNoTxVehicleRunner with a servlet call.
  */
-@WebServlet(name = "AppManagedNoTxServletVehicle", urlPatterns = {"/appmanagedNoTx_vehicle"})
+@WebServlet(name = "AppManagedNoTxServletVehicle", urlPatterns = { "/appmanagedNoTx_vehicle" })
 public class AppManagedNoTxServletVehicle extends ServletVehicle {
     private static final Logger log = Logger.getLogger(AppManagedNoTxServletVehicle.class.getName());
     @EJB(name = "AppManagedNoTxVehicleBean")

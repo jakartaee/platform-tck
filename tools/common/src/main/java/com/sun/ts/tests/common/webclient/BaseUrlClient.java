@@ -412,6 +412,7 @@ public abstract class BaseUrlClient extends EETest {
 
     /**
      * <code>cleanup</code> is called by the test harness to cleanup after text execution
+     * 
      * @exception Exception if an error occurs
      */
     public void cleanup() throws Exception {
@@ -466,8 +467,8 @@ public abstract class BaseUrlClient extends EETest {
     }
 
     /**
-     * Sets the appropriate test properties based
-      * on the values stored in TEST_PROPS
+     * Sets the appropriate test properties based on the values stored in TEST_PROPS
+     * 
      * @param testCase a <code>WebTestCase</code> value
      */
     protected void setTestProperties(WebTestCase testCase) {
