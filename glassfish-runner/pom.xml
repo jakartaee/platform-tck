@@ -65,5 +65,7 @@
         <module>validation-tck</module>
         <module>websocket-platform-extra-tck</module>
         <module>websocket-tck</module>
+        
+        <module>signature</module>
     </modules>
 </project>
