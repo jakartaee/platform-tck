@@ -100,7 +100,7 @@
         <!-- The released version of tools/common -->
         <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
         <!-- The released version of tools/signaturetest -->
-        <jakarta.tck.sigtest.version>11.0.0-RC5</jakarta.tck.sigtest.version>
+        <jakarta.tck.sigtest.version>11.0.0-RC8</jakarta.tck.sigtest.version>
     </properties>
 
     <dependencyManagement>
