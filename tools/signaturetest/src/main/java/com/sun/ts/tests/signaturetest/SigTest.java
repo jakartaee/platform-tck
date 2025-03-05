@@ -21,12 +21,10 @@
 
 package com.sun.ts.tests.signaturetest;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import java.util.ArrayList;
 import java.util.Properties;
@@ -199,37 +197,6 @@ public abstract class SigTest {
         // ensure there are no full or partial implementations of an
         // optional technology which were not declared.
         ArrayList<String> unlistedTechnologyPkgs = getUnlistedOptionalPackages();
-
-        // If testing with Java 9+, extract the JDK's modules so they can be used
-        // on the testcase's classpath.
-
-        String version = System.getProperty("java.version");
-
-        String jimageDir = testInfo.getJImageDir();
-        File f = new File(jimageDir);
-        f.mkdirs();
-
-        String javaHome = System.getProperty("java.home");
-        logger.log(Logger.Level.INFO, "Executing JImage");
-
-        try {
-            ProcessBuilder pb = new ProcessBuilder(javaHome + "/bin/jimage", "extract", "--dir=" + jimageDir, javaHome + "/lib/modules");
-            logger.log(Logger.Level.INFO, javaHome + "/bin/jimage extract --dir=" + jimageDir + " " + javaHome + "/lib/modules");
-            pb.redirectErrorStream(true);
-            Process proc = pb.start();
-            BufferedReader out = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-            String line = null;
-            while ((line = out.readLine()) != null) {
-                TestUtil.logMsg(line);
-            }
-
-            int rc = proc.waitFor();
-            TestUtil.logMsg("JImage RC = " + rc);
-            out.close();
-        } catch (Exception e) {
-            TestUtil.logMsg("Exception while executing JImage!  Some tests may fail.");
-            e.printStackTrace();
-        }
 
         try {
             results = getSigTestDriver().executeSigTest(packageFile, mapFile, repositoryDir, packages, classes, testClasspath,
