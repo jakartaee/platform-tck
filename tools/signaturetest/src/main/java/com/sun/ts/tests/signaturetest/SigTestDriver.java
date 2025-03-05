@@ -61,14 +61,6 @@ public class SigTestDriver extends SignatureTestDriver {
 
     private static final String FORMATPLAIN_FLAG = "-FormatPlain";
 
-    private static final String EXCLUDE_JDK_CLASS_FLAG = "-IgnoreJDKClass";
-
-    private static String[] excludeJdkClasses = { "java.util.Map", "java.lang.Object", "java.io.ByteArrayInputStream",
-            "java.io.InputStream", "java.lang.Deprecated", "java.io.Writer", "java.io.OutputStream", "java.util.List",
-            "java.util.Collection", "java.lang.instrument.IllegalClassFormatException", "javax.transaction.xa.XAException",
-            "java.lang.annotation.Repeatable", "java.lang.InterruptedException", "java.lang.CloneNotSupportedException",
-            "java.lang.Throwable", "java.lang.Thread", "java.lang.Enum" };
-
     // ---------------------------------------- Methods from SignatureTestDriver
 
     @Override
@@ -129,10 +121,9 @@ public class SigTestDriver extends SignatureTestDriver {
             command.add(subPackages[i]);
         }
 
-        for (String jdkClassName : excludeJdkClasses) {
-            command.add(EXCLUDE_JDK_CLASS_FLAG);
-            command.add(jdkClassName);
-        }
+        command.add("-BootCp");
+        command.add(javaReleaseVersion());
+        command.add("-IgnoreJDKClasses");
 
         command.add(API_VERSION_FLAG);
         command.add(info.getVersion());
@@ -257,5 +248,15 @@ public class SigTestDriver extends SignatureTestDriver {
         logger.log(Logger.Level.INFO, rawMessages);
 
         return sigTestInstance.toString().substring(7).startsWith("Passed.");
+    }
+
+    /**
+     * Returns the Java version the signature tests should be using. The version should be the minimum version the
+     * Jakarta EE TCK requires.
+     *
+     * @return the Java version the TCK requires, defaults to 17
+     */
+    protected String javaReleaseVersion() {
+        return System.getProperty("jakarta.tck.java.release.version", "17");
     }
 }
