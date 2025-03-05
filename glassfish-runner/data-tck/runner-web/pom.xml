@@ -35,7 +35,7 @@
         <hibernate.data.version>6.6.0.Alpha1</hibernate.data.version>
         <weld.version>5.1.2.Final</weld.version>
         <weld-junit.version>4.0.2.Final</weld-junit.version>
-        <h2.version>2.1.214</h2.version>
+        <h2.version>2.2.220</h2.version>
         <glassfish.web.bundle>${project.build.directory}/glassfish-8.0.0-JDK17-M6.zip</glassfish.web.bundle>
         <glassfish.arquillian.version>1.4</glassfish.arquillian.version>
         <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
