@@ -199,8 +199,7 @@
                         <porting.ts.url.class.1>ee.jakarta.tck.pages.lib.implementation.sun.common.SunRIURL</porting.ts.url.class.1>
 
                         <!-- Set the properties for the API signature test -->
-                        <jimage.dir>${project.build.directory}/jdk-bundle</jimage.dir>
-                        <sigTestClasspath>${glassfish.root}/glassfish8/glassfish/modules/jakarta.servlet.jsp-api.jar:${glassfish.root}/glassfish8/glassfish/modules/jakarta.servlet-api.jar:${glassfish.root}/glassfish8/glassfish/modules/jakarta.el-api.jar:${project.build.directory}/jdk-bundle/java.base:${project.build.directory}/jdk-bundle/java.rmi:${project.build.directory}/jdk-bundle/java.sql:${project.build.directory}/jdk-bundle/java.naming</sigTestClasspath>
+                        <sigTestClasspath>${glassfish.root}/glassfish8/glassfish/modules/jakarta.servlet.jsp-api.jar:${glassfish.root}/glassfish8/glassfish/modules/jakarta.servlet-api.jar:${glassfish.root}/glassfish8/glassfish/modules/jakarta.el-api.jar</sigTestClasspath>
                     </systemProperties>
                 </configuration>
                 <executions>

@@ -23,7 +23,6 @@
         <!-- Properties set in the JTE file -->
         <base.tck.dir>${project.build.directory}/jakartaee</base.tck.dir>
         <bin.dir>${base.tck.dir}/com/sun/ts/tests/signaturetest/signature-repository</bin.dir>
-        <jimage.dir>${project.build.directory}/jimage</jimage.dir>
         
         <!-- Note that currently, this must have src as the first directory as it is hard-coded in the test -->
         <signature.file.dir>${base.tck.dir}/src</signature.file.dir>
@@ -304,6 +303,7 @@
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
                 <testGroups>platform</testGroups>
                 <tck.profile>${testGroups}</tck.profile>
+                <javaee.level>platform</javaee.level>
             </properties>
         </profile>
         <profile>
@@ -312,6 +312,8 @@
                 <glassfish-artifact-id>web</glassfish-artifact-id>
                 <testGroups>web</testGroups>
                 <tck.profile>${testGroups}</tck.profile>
+                <javaee.level>web</javaee.level>
+                <optional.tech.packages.to.ignore>jakarta.resource,jakarta.resource.cci,jakarta.resource.spi,jakarta.resource.spi.work,jakarta.resource.spi.endpoint,jakarta.resource.spi.security,jakarta.mail,jakarta.mail.event,jakarta.mail,jakarta.mail.event,jakarta.mail.internet,jakarta.mail.search,jakarta.mail.util,jakarta.security.jacc,jakarta.security.auth.message,jakarta.security.auth.message.callback,jakarta.security.auth.message.config,jakarta.security.auth.message.module</optional.tech.packages.to.ignore>
             </properties>
         </profile>
     </profiles>
