@@ -62,7 +62,7 @@ import com.sun.ts.lib.util.TestUtil;
  */
 public class JakartaEESigTest extends SigTestEE {
 
-  public static final String JAVAEE_FULL = "full";
+  public static final String JAVAEE_FULL = "platform";
 
   public static final String JAVAEE_KEYWORD = "javaee";
 

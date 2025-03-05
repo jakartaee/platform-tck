@@ -340,6 +340,7 @@ These are the properties that need to have a value in the `ts.jte` file provided
 * imap.port
 * iofile
 * java.naming.factory.initial
+* javaee.level
 * javamail.mailbox
 * javamail.password
 * javamail.protocol
@@ -354,6 +355,7 @@ These are the properties that need to have a value in the `ts.jte` file provided
 * logical.hostname.servlet
 * longvarbinarySize
 * mailuser1
+* optional.tech.packages.to.ignore
 * org.omg.CORBA.ORBClass
 * password
 * password1
@@ -1436,6 +1438,20 @@ Edition CI, Eclipse GlassFish 6.1, set to `javaee.jar`
 by your JAR file; must include any classes that might be extended or
 implemented by the classes in your jar_to_test; include `rt.jar` when
 running against the Jakarta Platform, Enterprise Edition CI
+
+[[javaee-level-property]]
+==== javaee.level Property
+
+Set the `javaee.level` property in the `<TS_HOME/bin/ts.jte` file to set the
+profile to run. For example `platform` for the full platform or `web` for the
+web profile.
+
+[[optional-tech-packages-to-ignore-property]]
+==== optional.tech.packages.to.ignore Property
+
+Set the `optional.tech.packages.to.ignore` property in the `<TS_HOME/bin/ts.jte` file to set the
+a comma delimited list of packages to ignore that are optionally available in the distribution.
+For example, for the web profile, you may need to exclude the `jakarta.mail` packages.
 
 [[bindir-property]]
 ==== bin.dir Property
