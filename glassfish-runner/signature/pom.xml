@@ -179,15 +179,8 @@
                 <filtering>true</filtering>
                 <includes>
                     <include>arquillian.xml</include>
-                    <include>*.jte</include>
+                    <include>ts.jte</include>
                 </includes>
-            </testResource>
-            <testResource>
-                <directory>src/test/resources</directory>
-                <excludes>
-                    <exclude>arquillian.xml</exclude>
-                    <exclude>*.jte</exclude>
-                </excludes>
             </testResource>
         </testResources>
         
@@ -256,6 +249,7 @@
         
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
                         <id>configure-client-classpath</id>
