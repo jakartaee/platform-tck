@@ -29,7 +29,7 @@ The tools/commonn and tools/signaturetest artifacts are released independently o
 
 The platform-tck depends on the Arquillian protocol artifacts found in the jakartaee-tck-tools repo. The release job for these artifacts is:
 
-[arquillian-tck-tools](https://ci.eclipse.org/jakartaee-tck/job/11/job/stage-artifacts/job/arquillian_build_and_stage)
+[arquillian-tck-tools](https://ci.eclipse.org/jakartaee-tck/job/TckToolsArquillianRelease/))
 
 ## Releasing the platform-tck distributions
 
