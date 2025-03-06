@@ -65,31 +65,12 @@
 
     <build>
         <plugins>
-            <!-- Restricts the Java version to 17 -->
+            <!-- Skip the deploy phase -->
             <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
                 <configuration>
-                    <release>17</release>
-                    <compilerArgument>-Xlint:all</compilerArgument>
-                </configuration>
-            </plugin>
-            
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.5.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>ee.tck.versions.VersionRelease</mainClass>
-                    <commandlineArgs>${release}</commandlineArgs>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>
