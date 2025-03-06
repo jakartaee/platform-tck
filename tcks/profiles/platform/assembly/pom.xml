@@ -59,6 +59,10 @@
             <artifactId>jakarta.mail-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>jakarta.jms</groupId>
+            <artifactId>jakarta.jms-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
         </dependency>

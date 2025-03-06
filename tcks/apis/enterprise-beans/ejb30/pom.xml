@@ -50,6 +50,13 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- For javax.rmi.PortableRemoteObject -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.rmi</groupId>
+            <artifactId>jboss-rmi-api_1.0_spec</artifactId>
+            <version>1.0.6.Final</version>
+        </dependency>
+
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>

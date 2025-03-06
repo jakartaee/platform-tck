@@ -33,7 +33,6 @@ import com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner;
  * {@link AppManagedNoTxServletVehicle}.
  */
 public class AppManagedNoTxVehicleRunner extends AltWebVehicleRunner {
-    public static final String APPMANAGEDNOTX_REF_NAME = "java:comp/env/ejb/AppManagedNoTxVehicleBean";
 
     public Status run(String[] args, Properties props) {
         Status sTestStatus = null;

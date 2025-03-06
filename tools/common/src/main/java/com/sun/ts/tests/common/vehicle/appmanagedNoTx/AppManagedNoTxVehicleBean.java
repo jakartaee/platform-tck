@@ -23,7 +23,7 @@ package com.sun.ts.tests.common.vehicle.appmanagedNoTx;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.RemoteStatus;
-import com.sun.ts.tests.common.vehicle.VehicleType;
+import com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean;
 import com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper;
 
 import jakarta.annotation.Resource;
@@ -35,7 +35,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceUnit;
 
 @Stateless(name = "AppManagedNoTxVehicleBean")
-public class AppManagedNoTxVehicleBean extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
+public class AppManagedNoTxVehicleBean extends EJB3ShareBaseBean
         implements AppManagedNoTxVehicleIF {
 
     /**
@@ -50,8 +50,8 @@ public class AppManagedNoTxVehicleBean extends com.sun.ts.tests.common.vehicle.e
      *
      * @return the vehicle type as a String
      */
-    protected VehicleType getVehicleType() {
-        return VehicleType.appmanagedNoTx;
+    protected String getVehicleType() {
+        return EJB3ShareBaseBean.APPMANAGEDNOTX;
     }
 
     private EntityManagerFactory emf;

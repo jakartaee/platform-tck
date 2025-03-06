@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.common.vehicle.stateless3;
 
-import com.sun.ts.tests.common.vehicle.VehicleType;
+import com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean;
 import com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper;
 
 import jakarta.annotation.PostConstruct;
@@ -40,7 +40,7 @@ import jakarta.persistence.PersistenceUnit;
 @PersistenceContext(name = "STATELESS3EM", unitName = "CTS-EM")
 @Remote({ Stateless3VehicleIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
-public class Stateless3VehicleBean extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean implements Stateless3VehicleIF {
+public class Stateless3VehicleBean extends EJB3ShareBaseBean implements Stateless3VehicleIF {
 
     @PersistenceUnit(name = "STATELESS3EMF", unitName = "CTS-EM")
     EntityManagerFactory emf;
@@ -49,8 +49,8 @@ public class Stateless3VehicleBean extends com.sun.ts.tests.common.vehicle.ejb3s
         super();
     }
 
-    protected VehicleType getVehicleType() {
-        return VehicleType.stateless3;
+    protected String getVehicleType() {
+        return EJB3ShareBaseBean.STATELESS3;
     }
 
     @Resource

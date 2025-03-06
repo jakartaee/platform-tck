@@ -23,7 +23,7 @@ package com.sun.ts.tests.common.vehicle.stateful3;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.RemoteStatus;
-import com.sun.ts.tests.common.vehicle.VehicleType;
+import com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean;
 import com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper;
 
 import jakarta.annotation.PostConstruct;
@@ -39,8 +39,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceUnit;
 
 @Stateful(name = "Stateful3VehicleBean")
-@Remote({ Stateful3VehicleIF.class })
-public class Stateful3VehicleBean extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
+public class Stateful3VehicleBean extends EJB3ShareBaseBean
         implements Stateful3VehicleIF, java.io.Serializable {
 
     @PersistenceUnit(name = "STATEFUL3EMF", unitName = "CTS-EM")
@@ -50,8 +49,8 @@ public class Stateful3VehicleBean extends com.sun.ts.tests.common.vehicle.ejb3sh
         super();
     }
 
-    protected VehicleType getVehicleType() {
-        return VehicleType.stateful3;
+    protected String getVehicleType() {
+        return EJB3ShareBaseBean.STATEFUL3;
     }
 
     @PostConstruct

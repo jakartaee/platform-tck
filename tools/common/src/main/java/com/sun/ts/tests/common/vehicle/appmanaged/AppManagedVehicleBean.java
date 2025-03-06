@@ -23,27 +23,27 @@ package com.sun.ts.tests.common.vehicle.appmanaged;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.RemoteStatus;
-import com.sun.ts.tests.common.vehicle.VehicleType;
+import com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean;
 import com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper;
 
 import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
-import jakarta.ejb.Stateless;
+import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceUnit;
 
-@Stateless(name = "AppManagedVehicleBean")
-public class AppManagedVehicleBean extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
+@Stateful(name = "AppManagedVehicleBean")
+public class AppManagedVehicleBean extends EJB3ShareBaseBean
         implements AppManagedVehicleIF, java.io.Serializable {
 
     public AppManagedVehicleBean() {
         super();
     }
 
-    protected VehicleType getVehicleType() {
-        return VehicleType.appmanaged;
+    protected String getVehicleType() {
+        return EJB3ShareBaseBean.APPMANAGED;
     }
 
     private EntityManagerFactory emf;
