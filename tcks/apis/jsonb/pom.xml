@@ -37,9 +37,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <jakarta.jakartaee-bom.version>11.0.0-M5</jakarta.jakartaee-bom.version>
-        <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
-        <jakarta.tck.arquillian.version>11.0.0-RC2</jakarta.tck.arquillian.version>
+        <jakarta.jakartaee-bom.version>11.0.0-RC1</jakarta.jakartaee-bom.version>
     </properties>
     
     <dependencyManagement>

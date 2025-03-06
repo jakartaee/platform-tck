@@ -47,7 +47,7 @@
         <glassfish.version>8.0.0-M9</glassfish.version>
         
         <imap.port>1143</imap.port>
-        <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
+        <jakarta.tck.arquillian.version>11.0.0-RC3</jakarta.tck.arquillian.version>
         <javamail.mailbox>test1</javamail.mailbox>
         <!-- mail connection properties -->
         <javamail.password>1234</javamail.password>
