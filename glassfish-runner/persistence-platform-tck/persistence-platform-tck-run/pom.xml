@@ -43,7 +43,7 @@
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
 
         <tck.version>11.0.0-M11</tck.version>
-        <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
+        <jakarta.tck.arquillian.version>11.0.0-RC3</jakarta.tck.arquillian.version>
         <jakarta.tck.common.version>11.0.0-RC5</jakarta.tck.common.version>
         <version.persistence.tck>11.0.0-M11</version.persistence.tck>
         
