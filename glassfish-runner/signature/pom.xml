@@ -47,7 +47,7 @@
         <!-- Note that currently, this must have src as the first directory as it is hard-coded in the test -->
         <signature.file.dir>${base.tck.dir}/src</signature.file.dir>
         
-        <version.jakarta.ee.platform.tck>11.0.0-M13</version.jakarta.ee.platform.tck>
+        <version.jakarta.ee.platform.tck.signaturevalidation>11.0.0-M14</version.jakarta.ee.platform.tck.signaturevalidation>
         <version.jakarta.tck.arquillian>11.0.0-RC2</version.jakarta.tck.arquillian>
         <version.jakarta.ee.platform.tck.common>11.0.0-RC6</version.jakarta.ee.platform.tck.common>
         <version.jakarta.ee.platform.tck.signaturetest>11.0.0-RC8</version.jakarta.ee.platform.tck.signaturetest>
@@ -85,7 +85,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>signaturevalidation</artifactId>
-            <version>${version.jakarta.ee.platform.tck}</version>
+            <version>${version.jakarta.ee.platform.tck.signaturevalidation}</version>
         </dependency>
 
         <dependency>
@@ -235,7 +235,7 @@
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
                                     <artifactId>signaturevalidation</artifactId>
-                                    <version>${version.jakarta.ee.platform.tck}</version>
+                                    <version>${version.jakarta.ee.platform.tck.signaturevalidation}</version>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${base.tck.dir}</outputDirectory>
                                     <includes>**/sig-test.map,**/sig-test-pkg-list.txt</includes>
@@ -243,7 +243,7 @@
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
                                     <artifactId>signaturevalidation</artifactId>
-                                    <version>${version.jakarta.ee.platform.tck}</version>
+                                    <version>${version.jakarta.ee.platform.tck.signaturevalidation}</version>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${signature.file.dir}</outputDirectory>
                                     <includes>**/*.sig</includes>
