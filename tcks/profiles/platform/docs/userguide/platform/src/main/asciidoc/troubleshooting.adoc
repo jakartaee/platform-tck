@@ -38,6 +38,14 @@ Please verify that the property log.file.location exists in ts.jte
 Resolution: +
 You may have the `log.file.location` set in the ts.jte file, but if your Jakarta Persistence integration eagerly loads the testcase custom persistence provider, it may do so before the `log.file.location` property is set by the TCK harness code. To resolve this issue, you can set the `log.file.location` system property in your server configuration.
 
+* Problem: +
+When running signature tests you see the test has failed, but there is no indication as to why.
++
+Resolution: +
+The signature test driver uses a `java.lang.System.Logger`. Since the tests runs in a deployment, the failure messages
+are logged via the servers log configuration. If you prefer to see the failure reason with the assertion failure,
+simply add a console handler/appender to your logging configuration.
+
 [[support]]
 == Support
 
