@@ -157,8 +157,7 @@ public class TxBeanEJB {
         TestUtil.logTrace("Inserted a row into the table " + tName);
       } else {
         // Prepare the new data entry in EIS
-        con2.insert((new Integer(key)).toString(),
-            (new Integer(key)).toString());
+        con2.insert(Integer.toString(key), Integer.toString(key));
         TestUtil.logTrace("Inserted a row into the EIS ");
       }
       return true;
@@ -188,7 +187,7 @@ public class TxBeanEJB {
       } else {
         // Delete rows from EIS
         for (int i = fromKey; i <= toKey; i++) {
-          con2.delete((new Integer(i)).toString());
+          con2.delete(Integer.toString(i));
         }
         TestUtil
             .logTrace("Deleted row(s) from EIS " + fromKey + " thru " + toKey);
@@ -257,7 +256,7 @@ public class TxBeanEJB {
             i = rs.getInt(1);
             s = rs.getString(2);
             s1 = rs.getString(3);
-            queryResults.addElement(new Integer(i));
+            queryResults.addElement(i);
             queryResults.addElement(s);
             queryResults.addElement(s1);
           }
@@ -395,7 +394,7 @@ public class TxBeanEJB {
     try {
       TestUtil.logMsg("Adding the EIS rows");
       for (int i = 1; i <= dbSize1.intValue(); i++) {
-        con2.insert((new Integer(i)).toString(), (new Integer(i)).toString());
+        con2.insert(Integer.toString(i), Integer.toString(i));
       }
     } catch (Exception e) {
     	e.printStackTrace();
