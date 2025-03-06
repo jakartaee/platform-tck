@@ -75,7 +75,7 @@
         <glassfish.version>8.0.0-JDK17-M7</glassfish.version>
         <imqbin.loc>${s1as.imqbin.loc}</imqbin.loc>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
-        <jakarta.tck.arquillian.version>11.0.0-RC1</jakarta.tck.arquillian.version>
+        <jakarta.tck.arquillian.version>11.0.0-RC2</jakarta.tck.arquillian.version>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
         <javaee.home>${project.build.directory}/${glassfish.toplevel.dir}/glassfish</javaee.home>
         <jdbc.classpath>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyshared.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</jdbc.classpath>
@@ -105,8 +105,8 @@
         <s1as.imqbin.loc>${javaee.home}/../mq/bin</s1as.imqbin.loc>
         <s1as.lib>${javaee.home}/lib</s1as.lib>
         <sql.directory>./sql</sql.directory>
-        <tck.artifactId>jms</tck.artifactId>
-        <tck.version>11.0.0-M11</tck.version>
+        <tck.artifactId>jms-platform-tck</tck.artifactId>
+        <tck.version>11.0.0-M14</tck.version>
         <ts.home>./jakartaeetck</ts.home>
         <user1>cts1</user1>
         <user2>cts1</user2>
@@ -128,6 +128,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                <version>${tck.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -143,8 +150,7 @@
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
-            <artifactId>${tck.artifactId}</artifactId>
-            <version>${tck.version}</version>
+            <artifactId>jms-platform-tck</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
@@ -183,7 +189,6 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -209,7 +214,6 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -232,7 +236,6 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
@@ -242,12 +245,10 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>11.0.0-RC4</version>
         </dependency>
         <!-- Needed, if so, should be 11.0.0 version from tck
         <dependency>
@@ -339,7 +340,7 @@
                                 <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
                                     <artifactId>arquillian-protocol-lib</artifactId>
-                                    <version>${project.version}</version>
+                                    <version>${jakarta.tck.arquillian.version}</version>
                                     <type>jar</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}/protocol</outputDirectory>

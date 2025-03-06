@@ -63,7 +63,7 @@
         <mail.user>user01</mail.user>
         <mailboxFolder1>${project.build.directory}/../mailboxes</mailboxFolder1>
         <smtp.port>1025</smtp.port>
-        <tck.version>11.0.0-M11</tck.version>
+        <tck.version>11.0.0-M14</tck.version>
     </properties>
 
     <dependencyManagement>
@@ -72,6 +72,13 @@
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
                 <version>5.11.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                <version>${tck.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -91,13 +98,11 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>11.0.0-RC4</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>javamail</artifactId>
-            <version>11.0.0-M11</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.angus</groupId>
@@ -108,12 +113,10 @@
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-test-spi</artifactId>
-            <version>${arquillian.core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>${arquillian.core.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -124,17 +127,14 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
@@ -144,7 +144,6 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
@@ -155,22 +154,18 @@
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-spi</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.core</groupId>
             <artifactId>arquillian-core-spi</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.test</groupId>
             <artifactId>arquillian-test-impl-base</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap</groupId>
             <artifactId>shrinkwrap-api</artifactId>
-            <version>1.2.6</version>
         </dependency>
     </dependencies>
 

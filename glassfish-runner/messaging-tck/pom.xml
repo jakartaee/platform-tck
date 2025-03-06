@@ -42,7 +42,7 @@
         <glassfish.version.main>8</glassfish.version.main>
         
         <tck.artifactId>jakarta.jms-tck</tck.artifactId>
-        <tck.version>3.1.0</tck.version>
+        <tck.version>11.0.0-M14</tck.version>
         <admin.user>admin</admin.user>
         <admin.pass>admin</admin.pass>
         <admin.pass.file>/tmp/ripassword</admin.pass.file>
@@ -78,6 +78,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                <version>${tck.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -85,12 +92,11 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>jms-tck</artifactId>
-            <version>11.0.0-M11</version>
+            <version>11.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>11.0.0-RC4</version>
         </dependency>
     
         <dependency>
