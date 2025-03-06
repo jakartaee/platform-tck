@@ -152,20 +152,6 @@ The complete list of Jakarta EE {tck_version} technologies for the Platform can 
 * Jakarta Transactions
 * Jakarta WebSocket
 
-The following (removed from Jakarta EE {tck_version} Platform) technologies may be tested via the Jakarta EE Platform TCK:
-
-* Jakarta Enterprise Beans entity beans and associated Jakarta Enterprise Beans QL
-* Jakarta Enterprise Beans embeddable container 
-
-The following optional technologies may also be tested via the Jakarta EE Platform TCK:
-
-* Jakarta Enterprise Beans 2.x API group 
-* Jakarta Enterprise Beans Container Managed Persistence, Bean Managed Persistence
-* Jakarta Enterprise Web Services 
-* Jakarta SOAP with Attachments 
-* Jakarta XML Binding 
-* Jakarta XML Web Services
-
 Jakarta EE {tck_version} Platform TCK provides compatibility certification verification for implementations contained in the Platform for the following component specifications:
 
 * Jakarta Annotations
