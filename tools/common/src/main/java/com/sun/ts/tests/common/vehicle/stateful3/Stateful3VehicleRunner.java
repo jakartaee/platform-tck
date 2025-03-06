@@ -26,17 +26,15 @@ import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
+import com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner;
 
-public class Stateful3VehicleRunner implements VehicleRunnable {
-    public static final String STATEFUL3_REF_NAME = "java:comp/env/ejb/Stateful3VehicleBean";
+public class Stateful3VehicleRunner extends AltWebVehicleRunner {
 
     public Status run(String[] args, Properties props) {
         Status sTestStatus = null;
         try {
-            TSNamingContext jc = new TSNamingContext();
-            Stateful3VehicleIF bean = (Stateful3VehicleIF) jc.lookup(STATEFUL3_REF_NAME);
-            TestUtil.logTrace("stateful3 runner looked up vehicle: " + bean);
-            sTestStatus = (bean.runTest(args, props)).toStatus();
+            TestUtil.logTrace("stateful3 runner using AltWebVehicleRunner");
+            sTestStatus = super.run(args, props);
         } catch (Exception e) {
             TestUtil.logErr("Test failed.", e);
             sTestStatus = Status.failed("Test run in stateful3 vehicle failed.");

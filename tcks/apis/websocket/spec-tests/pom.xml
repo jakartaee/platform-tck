@@ -49,19 +49,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.4.2</version>
-                <configuration>
-                    <resources>
-                        <resource>
-                            <directory>src/main/java</directory>
-                            <includes>
-                                <include>**/*.xml</include>
-                                <include>**/*.map</include>
-                                <include>**/*.txt</include>
-                                <include>**/*.sig*</include>
-                            </includes>
-                        </resource>
-                    </resources>
-                </configuration>
             </plugin>
         </plugins>
         <resources>

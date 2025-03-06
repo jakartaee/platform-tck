@@ -6,10 +6,11 @@ import jakarta.ejb.EJB;
 import jakarta.servlet.annotation.WebServlet;
 
 import java.rmi.RemoteException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Replaces the remote ejb call used by AppManagedNoTxVehicleRunner with a servlet call.
+ * The target servlet used by AppManagedNoTxVehicleRunner.
  */
 @WebServlet(name = "AppManagedNoTxServletVehicle", urlPatterns = { "/appmanagedNoTx_vehicle" })
 public class AppManagedNoTxServletVehicle extends ServletVehicle {
@@ -27,6 +28,7 @@ public class AppManagedNoTxServletVehicle extends ServletVehicle {
             log.info("AppManagedNoTxServletVehicle @EJB: " + injectedBean);
             return injectedBean.runTest(arguments, properties);
         } catch (Exception e) {
+            log.log(Level.SEVERE, "runTest failed", e);
             throw new RemoteException("AppManagedNoTxServletVehicle.runTest() failed", e);
         }
     }

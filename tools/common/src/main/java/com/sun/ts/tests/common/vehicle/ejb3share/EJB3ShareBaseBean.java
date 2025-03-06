@@ -23,7 +23,6 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.lib.util.TestUtil;
 
-import com.sun.ts.tests.common.vehicle.VehicleType;
 import jakarta.ejb.SessionContext;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -39,6 +38,14 @@ abstract public class EJB3ShareBaseBean implements EJB3ShareIF {
      */
     public static final String FINDER_TEST_NAME_KEY = "testName";
 
+    public static final String STATELESS3 = "stateless3";
+
+    public static final String STATEFUL3 = "stateful3";
+
+    public static final String APPMANAGED = "appmanaged";
+
+    public static final String APPMANAGEDNOTX = "appmanagedNoTx";
+
     protected EntityManager entityManager;
 
     protected EntityManagerFactory entityManagerFactory;
@@ -50,7 +57,7 @@ abstract public class EJB3ShareBaseBean implements EJB3ShareIF {
      *
      * @return the vehicle type as a String
      */
-    protected abstract VehicleType getVehicleType();
+    protected abstract String getVehicleType();
 
     /**
      * Default constructor for EJB3ShareBaseBean. Calls the superclass constructor.
