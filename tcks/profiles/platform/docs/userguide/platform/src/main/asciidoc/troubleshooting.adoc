@@ -16,7 +16,8 @@ This section lists common problems that you may encounter as you run the Jakarta
 * Problem: +
 When you start the Jakarta Platform, Enterprise Edition CI, Eclipse {glassfish_version} on
 Windows by using the `javaee -verbose` command, the system may not find
-the specified path and could display one of the following errors: +
+the specified path and could display one of the following errors:
++
 [source,bash]
 ----
 "Verify that JAVA_HOME is set correctly"
@@ -28,12 +29,12 @@ installed and set `JAKARTAEE_HOME` to the location of the Jakarta Platform, Ente
 
 * Problem: +
 When running the Jakarta Persistence TCK tests you see an error log message containing:
++
 [source,bash]
 ----
 LogFileProcessor setup failed
 Please verify that the property log.file.location exists in ts.jte
 ----
-
 Resolution: +
 You may have the `log.file.location` set in the ts.jte file, but if your Jakarta Persistence integration eagerly loads the testcase custom persistence provider, it may do so before the `log.file.location` property is set by the TCK harness code. To resolve this issue, you can set the `log.file.location` system property in your server configuration.
 
@@ -43,5 +44,3 @@ You may have the `log.file.location` set in the ts.jte file, but if your Jakarta
 Jakarta EE is a community sponsored and community supported project. If you need additional assistance, you can reach out to the specific developer community. You will find the list of all Eclipse EE4J projects at `https://projects.eclipse.org/projects/ee4j`. All the sub-projects are listed. Each project page has details regarding how to contact their developer community.
 
 For Jakarta EE TCK specific issues, you can reach out to the Jakarta EE TCK project team via the resources listed at `https://projects.eclipse.org/projects/ee4j.jakartaee-tck`.
-
-I
