@@ -64,6 +64,30 @@ See <<configuring-your-application-server-as-the-vi>> for a list of the modifica
 configuration is valid. See <<[validating-your-test-configuration>> for information about using Maven/Arquillian to run the sample tests.
 6.  Run the TCK tests. See <<executing-tests>> for information
 about using Maven to start running tests.
+7. Generate
+
+## Generate a Client Certificate
+
+Some tests require a client certificate to be installed on the Jakarta EE {tck_version} server. The following steps describe how to generate a client certificate:
+[source,bash]
+----
+keytool -genkeypair -alias cts -keyalg RSA -keysize 2048 -validity 365 -keystore clientcert.p12 -dname "CN=CTS, OU=Eclipse Foundation, O=Jakarta EE" -keypass changeit -storepass changeit
+
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 365 days
+for: CN=CTS, OU=Eclipse Foundation, O=Jakarta EE
+
+keytool -exportcert  -keystore clientcert.p12 -alias cts -keypass changeit -storepass changeit -file cts_cert.cer
+----
+
+The values used here match defaults used in the `ts.jte` file and example {glassfish_version} runners. Examples and default configurations expect that the keystore and certificate are located in your `<TS_HOME>/bin/certificates` directory.
+
+[source,bash]
+----
+  -Djava.protocol.handler.pkgs=javax.net.ssl
+  -Djavax.net.ssl.keyStore=${ts.home}/certificates/clientcert.p12
+  -Djavax.net.ssl.keyStorePassword=changeit
+  -Djavax.net.ssl.trustStore=<path_to_server_trustStore>
+----
 
 [[configuring-a-jakarta-ee-11-server]]
 == Configuring a Jakarta EE {tck_version} Server
@@ -234,7 +258,7 @@ server.  +
 Certificates are located `<TS_HOME>/bin/certificates`. Use the
 certificate that suits your environment.
 
-..  `cts_cert`: For importing the TCK client certificate into a
+..  `cts_cert.cer`: For importing the TCK client certificate into a
 `truststore`
 
 ..  `clientcert.p12`: Contains TCK client certificate in `pkcs12` format
