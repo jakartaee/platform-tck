@@ -83,6 +83,7 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,
             com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleRunner.class,
+            com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.class,
@@ -91,6 +92,7 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            ee.jakarta.tck.persistence.core.annotations.basic.A.class,
             ee.jakarta.tck.persistence.core.annotations.basic.Client.class,
             Client1.class,
             Client1AppmanagednotxTest.class
@@ -101,7 +103,7 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
               jpa_core_annotations_basic_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client1.class.getResource("//com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.jar.sun-application-client.xml");
+            resURL = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
               jpa_core_annotations_basic_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
@@ -135,12 +137,8 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
                 ee.jakarta.tck.persistence.core.annotations.basic.Client.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client1.class.getResource("//com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
-            if(ejbResURL1 != null) {
-//              jpa_core_annotations_basic_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
-            }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client1.class.getResource("//com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.jar.sun-ejb-jar.xml");
+            URL ejbResURL1 = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               jpa_core_annotations_basic_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
@@ -195,11 +193,6 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
 
             // The application.xml descriptor
             URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client1.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_core_annotations_basic_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
             // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_annotations_basic_vehicles_ear, Client1.class, earResURL);
         return jpa_core_annotations_basic_vehicles_ear;
@@ -239,5 +232,4 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
         public void persistBasicTest5() throws java.lang.Exception {
             super.persistBasicTest5();
         }
-
 }
