@@ -357,7 +357,6 @@ EE-WP21 Compliance testing for Jakarta EE {tck_version} Web Profile consists of 
 * Jakarta RESTful Web Services
 * Jakarta Security
 * Jakarta Servlet
-* Jakarta XML Binding (If XML Binding is supported)
 
 See <<additional-jakarta-ee-platform-tck-requirements>> for additional information on the component specification TCKs.
 
