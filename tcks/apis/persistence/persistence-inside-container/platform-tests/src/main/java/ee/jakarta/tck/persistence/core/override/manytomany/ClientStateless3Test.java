@@ -82,6 +82,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.overri
             com.sun.ts.tests.common.vehicle.stateless3.Stateless3VehicleIF.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.tests.common.vehicle.stateless3.Stateless3VehicleRunner.class,
+            com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,

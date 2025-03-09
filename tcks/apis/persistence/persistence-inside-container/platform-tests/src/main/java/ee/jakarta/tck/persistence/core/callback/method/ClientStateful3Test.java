@@ -83,6 +83,7 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.callbac
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,
             com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleRunner.class,
+            com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleIF.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,

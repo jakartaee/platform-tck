@@ -82,6 +82,7 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annota
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,
             com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleRunner.class,
+            com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleIF.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
@@ -103,7 +104,7 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annota
               jpa_core_annotations_access_field_stateful3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.jar.sun-application-client.xml");
+            resURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
               jpa_core_annotations_access_field_stateful3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
@@ -137,12 +138,12 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annota
                 ee.jakarta.tck.persistence.core.annotations.access.field.Client.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");
+            URL ejbResURL1 = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");
             if(ejbResURL1 != null) {
 //              jpa_core_annotations_access_field_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL1 = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               jpa_core_annotations_access_field_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
