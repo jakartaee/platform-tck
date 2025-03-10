@@ -19,10 +19,5 @@
 -->
 
 <sun-ejb-jar>
-    <enterprise-beans>
-    <ejb>
-      <ejb-name>Stateless3VehicleBean</ejb-name>
-      <jndi-name>com_sun_ts_tests_common_vehicle_Stateless3VehicleBean</jndi-name>
-    </ejb>
-    </enterprise-beans>
+
 </sun-ejb-jar>
