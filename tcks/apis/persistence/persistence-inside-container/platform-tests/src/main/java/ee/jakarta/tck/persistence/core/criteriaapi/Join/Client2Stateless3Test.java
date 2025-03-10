@@ -113,9 +113,9 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
 
         // Ejb 1
             // the jar with the correct archive name
-            JavaArchive jpa_core_criteriaapi_Join_stateless3_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_Join_stateless3_vehicle_ejb.jar");
+            JavaArchive jpa_core_criteriaapi_Join_stateless3_vehicle_ejb2 = ShrinkWrap.create(JavaArchive.class, "c2jpa_core_criteriaapi_Join_stateless3_vehicle_ejb2.jar");
             // The class files
-            jpa_core_criteriaapi_Join_stateless3_vehicle_ejb.addClasses(
+            jpa_core_criteriaapi_Join_stateless3_vehicle_ejb2.addClasses(
                 com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager.class,
@@ -144,10 +144,10 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
             // The sun-ejb-jar.xml file
             ejbResURL1 = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
-              jpa_core_criteriaapi_Join_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
+              jpa_core_criteriaapi_Join_stateless3_vehicle_ejb2.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
-            archiveProcessor.processEjbArchive(jpa_core_criteriaapi_Join_stateless3_vehicle_ejb, Client2.class, ejbResURL1);
+            archiveProcessor.processEjbArchive(jpa_core_criteriaapi_Join_stateless3_vehicle_ejb2, Client2.class, ejbResURL1);
 
 
         // Par
@@ -222,7 +222,7 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
             // Any libraries added to the ear
 
             // The component jars built by the package target
-            jpa_core_criteriaapi_Join_vehicles_ear.addAsModule(jpa_core_criteriaapi_Join_stateless3_vehicle_ejb);
+            jpa_core_criteriaapi_Join_vehicles_ear.addAsModule(jpa_core_criteriaapi_Join_stateless3_vehicle_ejb2);
             jpa_core_criteriaapi_Join_vehicles_ear.addAsModule(jpa_core_criteriaapi_Join_stateless3_vehicle_client);
 
             jpa_core_criteriaapi_Join_vehicles_ear.addAsLibrary(jpa_core_criteriaapi_Join);
