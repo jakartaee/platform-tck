@@ -110,7 +110,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.En
               System.out.println("xxx /com/sun/ts/tests/common/sunxml/sun-application-client.xml added as sun-application-client.xml" );
               jpa_core_EntityGraph_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_EntityGraph_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_EntityGraph_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_EntityGraph_appmanagedNoTx_vehicle_client, Client.class, resURL);
 

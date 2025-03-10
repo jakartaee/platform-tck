@@ -102,7 +102,7 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.query
             if(resURL != null) {
               jpa_core_query_flushmode_stateless3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_query_flushmode_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client2.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_query_flushmode_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_query_flushmode_stateless3_vehicle_client, Client2.class, resURL);
 

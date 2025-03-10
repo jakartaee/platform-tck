@@ -95,7 +95,7 @@ public class Client3Stateless3Test extends ee.jakarta.tck.persistence.core.annot
             if(resURL != null) {
               jpa_core_annotations_tableGenerator_stateless3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_annotations_tableGenerator_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client3.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_annotations_tableGenerator_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_annotations_tableGenerator_stateless3_vehicle_client, Client3.class, resURL);
 

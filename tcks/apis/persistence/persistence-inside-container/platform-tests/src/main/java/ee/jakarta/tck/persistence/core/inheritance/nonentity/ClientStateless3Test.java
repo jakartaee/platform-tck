@@ -1,6 +1,7 @@
 package ee.jakarta.tck.persistence.core.inheritance.nonentity;
 
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.tests.common.vehicle.VehicleClient;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -101,7 +102,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.inheri
             if(resURL != null) {
               jpa_core_inherit_nonentity_stateless3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_inherit_nonentity_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_inherit_nonentity_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_inherit_nonentity_stateless3_vehicle_client, Client.class, resURL);
 

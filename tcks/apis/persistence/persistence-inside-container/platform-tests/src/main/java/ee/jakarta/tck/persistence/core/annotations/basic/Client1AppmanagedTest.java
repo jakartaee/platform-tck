@@ -1,6 +1,7 @@
 package ee.jakarta.tck.persistence.core.annotations.basic;
 
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.tests.common.vehicle.VehicleClient;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -102,7 +103,7 @@ public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.annot
             if(resURL != null) {
               jpa_core_annotations_basic_appmanaged_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_annotations_basic_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client1.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_annotations_basic_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_annotations_basic_appmanaged_vehicle_client, Client1.class, resURL);
 

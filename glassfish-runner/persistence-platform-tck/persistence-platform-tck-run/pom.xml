@@ -353,8 +353,9 @@
                             <includes>
                                 <!--
                                 <include>ee/jakarta/tck/persistence/**/*Test.java</include>
-                                -->
                                 <include>ee/jakarta/tck/persistence/core/annotations/basic/*Test.java</include>
+                                -->
+                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                             </includes>
                             <groups>tck-javatest</groups>
 
@@ -501,7 +502,7 @@
                                         <include>ee/jakarta/tck/persistence/core/annotations/basic/*Test.java</include>
                                         <include>ee/jakarta/tck/persistence/core/annotations/basic/Client1AppmanagednotxTest.java</include>
                                         -->
-                                        <include>ee/jakarta/tck/persistence/core/annotations/basic/*Test.java</include>
+                                        <include>ee/jakarta/tck/persistence/core/inheritance/abstractentity/Client*Test.java</include>
 
                                     </includes>
                                     <groups>tck-appclient</groups>

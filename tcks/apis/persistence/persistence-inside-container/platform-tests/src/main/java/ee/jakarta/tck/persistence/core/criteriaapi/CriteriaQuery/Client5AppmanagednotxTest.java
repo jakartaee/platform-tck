@@ -95,7 +95,7 @@ public class Client5AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
             if(resURL != null) {
               jpa_core_criteriaapi_CriteriaQuery_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_criteriaapi_CriteriaQuery_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client5.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_criteriaapi_CriteriaQuery_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_criteriaapi_CriteriaQuery_appmanagedNoTx_vehicle_client, Client5.class, resURL);
 

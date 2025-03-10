@@ -89,7 +89,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.ee.plug
             if(resURL != null) {
               pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client, Client.class, resURL);
 

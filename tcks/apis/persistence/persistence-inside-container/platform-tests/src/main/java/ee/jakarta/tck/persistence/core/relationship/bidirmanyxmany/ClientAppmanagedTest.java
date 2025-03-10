@@ -94,7 +94,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.relati
             if(resURL != null) {
               jpa_core_relationship_bidirmanyxmany_appmanaged_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_relationship_bidirmanyxmany_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_relationship_bidirmanyxmany_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_relationship_bidirmanyxmany_appmanaged_vehicle_client, Client.class, resURL);
 

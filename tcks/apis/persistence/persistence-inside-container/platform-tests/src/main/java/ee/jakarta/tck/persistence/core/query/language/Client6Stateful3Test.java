@@ -94,7 +94,7 @@ public class Client6Stateful3Test extends ee.jakarta.tck.persistence.core.query.
             if(resURL != null) {
               jpa_core_query_language_stateful3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_query_language_stateful3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client6.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_query_language_stateful3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_query_language_stateful3_vehicle_client, Client6.class, resURL);
 
