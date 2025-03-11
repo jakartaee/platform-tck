@@ -46,7 +46,7 @@
     <properties>
         <tck.version>${project.version}</tck.version>
         <jakarta.tck.common.version>11.0.0-RC6</jakarta.tck.common.version>
-        <jakarta.tck.sigtest.version>11.0.0-RC5</jakarta.tck.sigtest.version>
+        <jakarta.tck.sigtest.version>11.0.0.Final</jakarta.tck.sigtest.version>
         <maven.compiler.release>17</maven.compiler.release>
     </properties>
     
