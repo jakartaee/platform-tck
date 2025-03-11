@@ -43,7 +43,7 @@
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
-        <jakarta.tck.version>11.0.0-SNAPSHOT</jakarta.tck.version>
+        <jakarta.tck.version>11.0.0</jakarta.tck.version>
     </properties>
 
     <dependencyManagement>
