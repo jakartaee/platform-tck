@@ -376,6 +376,7 @@ document, all Jakarta EE {tck_version} Platform implementations must also pass t
 * Jakarta RESTFul Web Services -- see https://jakarta.ee/specifications/restful-ws/4.0/ for additional details
 * Jakarta Security -- see https://jakarta.ee/specifications/security/4.0/ for additional details
 * Jakarta Servlet -- see https://jakarta.ee/specifications/servlet/6.1/ for additional details
+* Jakarta WebSocket -- see https://jakarta.ee/specifications/websocket/2.2/ for additional details
 
 All Jakarta EE {tck_version} Web Profile implementations must also pass the standalone TCKs for the following technologies:
 
@@ -393,6 +394,7 @@ All Jakarta EE {tck_version} Web Profile implementations must also pass the stan
 * Jakarta RESTFul Web Services -- see https://jakarta.ee/specifications/restful-ws/4.0/ for additional details
 * Jakarta Security -- see https://jakarta.ee/specifications/security/4.0/ for additional details
 * Jakarta Servlet -- see https://jakarta.ee/specifications/servlet/6.1/ for additional details
+* Jakarta WebSocket -- see https://jakarta.ee/specifications/websocket/2.2/ for additional details
 
 
 [[getting-started-with-the-jakarta-ee-platform-tck-test-suite]]
