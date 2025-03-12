@@ -344,7 +344,6 @@ EE-WP21 Compliance testing for Jakarta EE {tck_version} Web Profile consists of 
 
 [[standalone-tcks-wp]]
 * Jakarta Authentication
-* Jakarta Bean Validation
 * Jakarta Concurrency
 * Jakarta Contexts and Dependency Injection
 * Jakarta Data
@@ -356,6 +355,7 @@ EE-WP21 Compliance testing for Jakarta EE {tck_version} Web Profile consists of 
 * Jakarta RESTful Web Services
 * Jakarta Security
 * Jakarta Servlet
+* Jakarta Validation
 
 See <<additional-jakarta-ee-platform-tck-requirements>> for additional information on the component specification TCKs.
 
