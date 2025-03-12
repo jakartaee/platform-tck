@@ -56,7 +56,7 @@ system running the Solaris, Linux, or Windows operating system.
 [NOTE]
 ======================================================================
 
-When installing in the Windows environment, the Jakarta EE {tck_version} CI, Java SE 8
+When installing in the Windows environment, the Jakarta EE {tck_version} CI, Java SE
 JDK, and TCK should be installed on the same drive. If you must install
 these components on different drives, be sure to change the
 `ri.applicationRoot` and `s1as.applicationRoot` properties as needed in
