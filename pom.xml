@@ -92,12 +92,12 @@
 
         <!-- These are duplicated from the BOM for use by the release/pom.xml -->
         <!-- The version of the jakarta platform api bom -->
-        <jakarta.jakartaee-bom.version>11.0.0-RC1</jakarta.jakartaee-bom.version>
+        <jakarta.jakartaee-bom.version>11.0.0</jakarta.jakartaee-bom.version>
         <!-- Jakarta TCK Tools version from the independently released tools submodule -->
         <!-- The Arquillian protocol artifacts -->
-        <jakarta.tck.arquillian.version>11.0.0-RC3</jakarta.tck.arquillian.version>
+        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
         <!-- The released version of tools/common -->
-        <jakarta.tck.common.version>11.0.0-RC7</jakarta.tck.common.version>
+        <jakarta.tck.common.version>11.0.0</jakarta.tck.common.version>
         <!-- The released version of tools/signaturetest -->
         <jakarta.tck.sigtest.version>11.0.0-RC8</jakarta.tck.sigtest.version>
     </properties>
