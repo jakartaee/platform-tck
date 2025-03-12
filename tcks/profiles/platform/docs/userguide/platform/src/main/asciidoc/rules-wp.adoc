@@ -475,8 +475,3 @@ required for the Jakarta EE {tck_version} Web Profile:
 * jakarta.security.enterprise.authentication.mechanism.http
 * jakarta.security.enterprise.credential
 * jakarta.security.enterprise.identitystore
-* jakarta.xml.bind (optional)
-* jakarta.xml.bind.annotation (optional)
-* jakarta.xml.bind.annotation.adapters (optional)
-* jakarta.xml.bind.attachment (optional)
-* jakarta.xml.bind.util (optional)

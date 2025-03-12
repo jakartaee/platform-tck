@@ -528,9 +528,4 @@ required for Jakarta EE {tck_version}.0:
 * jakarta.ws.rs.core
 * jakarta.ws.rs.ext
 * jakarta.ws.rs.sse
-* jakarta.xml.bind (optional)
-* jakarta.xml.bind.annotation (optionsl)
-* jakarta.xml.bind.annotation.adapters (optional)
-* jakarta.xml.bind.attachment (optional)
-* jakarta.xml.bind.util (optional)
 
