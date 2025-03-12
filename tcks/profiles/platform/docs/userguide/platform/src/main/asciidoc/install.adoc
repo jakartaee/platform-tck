@@ -5,7 +5,7 @@
 This chapter explains how to install the Jakarta EE {tck_version} Platform TCK software and
 perform a sample test run to verify your installation and familiarize
 yourself with the TCK. Installation instructions are provided for Eclipse
-<glassfish_version>, a Compatible Implementation (CI) of Jakarta EE. If you are using
+{glassfish_version}, a Ratifying Compatible Implementation (CI) of Jakarta EE. If you are using
 another compatible implementation, refer to instructions provided with that
 implementation.
 
@@ -50,7 +50,7 @@ EE {tck_version} CI.
 == Installing the Jakarta EE {tck_version} Platform TCK
 
 Complete the following procedure to install the Jakarta EE {tck_version} Platform TCK on a
-system running the Solaris, Linux, or Windows operating system.
+system running the Solaris, GNU/Linux, or Windows operating system.
 
 
 [NOTE]
