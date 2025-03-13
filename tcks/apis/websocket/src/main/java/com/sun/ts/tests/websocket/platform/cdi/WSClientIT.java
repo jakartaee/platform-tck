@@ -23,6 +23,7 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -35,6 +36,8 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
  *                     ws_wait;
  */
 @ExtendWith(ArquillianExtension.class)
+@Tag("platform")
+@Tag("web")
 public class WSClientIT extends WebSocketCommonClient {
 
 	private static final long serialVersionUID = 5295841512141568599L;
