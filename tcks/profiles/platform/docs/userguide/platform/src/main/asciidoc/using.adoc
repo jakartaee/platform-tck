@@ -75,7 +75,6 @@ Your runner configuration should have a dependencyManagement section that import
 [[maven-dependency-management]]
 [source,xml,subs="attributes+"]
 ----
-    <!-- The Junit5 test frameworks -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -103,6 +102,13 @@ Your runner configuration should have a dependencyManagement section that import
                 <groupId>jakarta.tck</groupId>
                 <artifactId>artifacts-bom</artifactId>
                 <version>{jakartaee_tck_version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+               <groupId>org.jboss.arquillian.jakarta</groupId>
+               <artifactId>arquillian-jakarta-bom</artifactId>
+                <version>10.0.0.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -203,7 +209,10 @@ The list of groupId:artifactId for the Jakarta EE {tck_version} TCK test artifac
 The version of these artifacts is the same as the service release version of the TCK. You can find the latest version of these artifacts in the Jakarta staging repository or in the Maven Central repository. You can search for the jakarta.tck:artifacts-bom to find the latest version that has been released.
 
 [[arquillian-container-configuration]]
-==== Arquillian Container Configuration (JavaTest Protocol)
+==== Arquillian Container Configurations
+
+[[arquillian-container-javatest]]
+===== Arquillian Container Configuration (JavaTest Protocol)
 In addition to specifying the test framework and TCK test artifact dependencies, you need to configure the Arquillian container. The
 Arquillian container manages the VI being tested and handles starting the container, deploying the test archives, and then stopping the container.
 
@@ -242,15 +251,100 @@ The configuration will depend on the container you are using, but you will need 
 
 </arquillian>
 ----
-<1> This is the managed container specific config, here for Glassfish 8.
+<1> This is the managed container specific config, here for {glassfish_version}.
 <2> This is the javatest protocol configuration.
 * `tsJteFile` property is the path to the ts.jte file that contains the configuration for the test run.
 * `tsSqlStmtFile` property is the path to the SQL file that contains the DML statements for the test run.
 * the `trace` property is used to enable additional logging for the test run.
 * the `workDir` property is the directory where the test TCK classes will put working files.
 
-==== Arquillian Container Configuration (Appclient Protocol) (Full Platform Only)
-TBD
+===== Arquillian Container Configuration (Servlet Protocol)
+The new CDI/Persistence integration tests in the jakarta.tck:persistence-platform-tck-tests artifact ee.jakarta.tck.persistence.ee.cdi package require an Arquillian container with the Servlet protocol. The bom for the common Jakarta EE based protocols was included in the <<runner-maven-dependencies>> section example above.
+
+In your runner dependencies, you need to include the following dependency to enable the Servlet protocol:
+.Additional Maven dependency Servlet Protocol
+[[maven-dependency-management-servlet-protocol]]
+[source,xml,subs="attributes+"]
+----
+    <dependencies>
+...
+        <dependency>
+          <groupId>org.jboss.arquillian.jakarta</groupId>
+          <artifactId>arquillian-parent-jakarta</artifactId>
+        </dependency>
+    </dependencies>
+----
+
+You will also need a container configuration for the Servlet protocol. The following is an example of the `arquillian.xml` file for the Servlet protocol for the {glassfish_version} container:
+
+.Example `servlet-arquillian.xml` Container Configuration
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://jboss.org/schema/arquillian"
+            xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+  <defaultProtocol type="Servlet 5.0" /> <1>
+  <engine>
+        <property name="deploymentExportPath">target/deployments</property>
+  </engine>
+  <extension qualifier="glassfish-descriptors">
+      <property name="descriptorDir">target/</property>
+  </extension>
+
+  <group qualifier="glassfish-servers" default="true">
+    <container qualifier="tck-rest" default="true">
+        <configuration>
+            <property name="glassFishHome">target/glassfish8</property>
+        </configuration>
+    </container>
+  </group>
+
+</arquillian>
+----
+<1> This sets the default protocol to Servlet 5.0.
+
+And finally, you need to configure a surefire/failsafe plugin execution to use this container configuration. The following is an example of the surefire/failsafe plugin configuration for the Servlet protocol:
+
+[source,xml]
+----
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <trimStackTrace>false</trimStackTrace>
+                    <dependenciesToScan>jakarta.tck:persistence-platform-tck-tests</dependenciesToScan>
+
+                    <systemPropertyVariables>
+                        ...
+                    </systemPropertyVariables>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>jpa-tests-cdi</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <includes> <1>
+                                <include>ee/jakarta/tck/persistence/ee/cdi/*Test.java</include>
+                            </includes>
+
+                            <systemPropertyVariables>
+                                <arquillian.xml>servlet-arquillian.xml</arquillian.xml><2>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
+----
+<1> Restrict the tests run to only those in the `ee.jakarta.tck.persistence.ee.cdi` package.
+<2> Set the `arquillian.xml` property to the `servlet-arquillian.xml` file example above.
+
+[[arquillian-container-appclient]]
+===== Arquillian Container Configuration (Appclient Protocol) (Full Platform Only)
+To be completed for the full platform TCK release.
 
 [[running-sigtest-example]]
 ==== Example - Running the Jakarta EE {tck_version} Platform TCK Signature Tests (Needs Rewrite)
