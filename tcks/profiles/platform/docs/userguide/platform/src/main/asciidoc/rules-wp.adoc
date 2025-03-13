@@ -350,12 +350,16 @@ EE-WP21 Compliance testing for Jakarta EE {tck_version} Web Profile consists of 
 * Jakarta Debugging Support for Other Languages
 * Jakarta Dependency Injection
 * Jakarta Faces
+* Jakarta Pages
 * Jakarta JSON Binding
 * Jakarta JSON Processing 
 * Jakarta RESTful Web Services
 * Jakarta Security
 * Jakarta Servlet
+* Jakarta Tags (contained within the platform TCK)
+* Jakarta Transactions
 * Jakarta Validation
+* Jakarta WebSocket 
 
 See <<additional-jakarta-ee-platform-tck-requirements>> for additional information on the component specification TCKs.
 
