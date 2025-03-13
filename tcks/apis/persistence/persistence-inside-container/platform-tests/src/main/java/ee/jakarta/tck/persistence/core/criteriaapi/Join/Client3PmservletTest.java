@@ -87,7 +87,7 @@ public class Client3PmservletTest extends ee.jakarta.tck.persistence.core.criter
               jpa_core_criteriaapi_Join_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client3.class.getResource("//com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.war.sun-web.xml");
+            warResURL = Client3.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               jpa_core_criteriaapi_Join_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }

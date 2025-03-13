@@ -66,6 +66,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.ee.pluggabi
             ee.jakarta.tck.persistence.common.PMClientBase.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.appmanaged.AppManagedVehicleRunner.class,
+            com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
@@ -86,7 +87,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.ee.pluggabi
             if(resURL != null) {
               jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_client, Client.class, resURL);
 

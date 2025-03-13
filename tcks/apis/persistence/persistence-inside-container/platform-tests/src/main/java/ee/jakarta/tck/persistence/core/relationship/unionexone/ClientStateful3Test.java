@@ -71,6 +71,7 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.relatio
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,
             com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleRunner.class,
+            com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleIF.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
@@ -93,7 +94,7 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.relatio
             if(resURL != null) {
               jpa_core_relationship_unionexone_stateful3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_relationship_unionexone_stateful3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_relationship_unionexone_stateful3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_relationship_unionexone_stateful3_vehicle_client, Client.class, resURL);
 
