@@ -9,6 +9,7 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
@@ -22,6 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Test for EntityManager lookup via CDI
  */
 @ExtendWith(ArquillianExtension.class)
+@Tag("platform")
+@Tag("web")
 public class ServletEMLookupTest {
 
     @ArquillianResource
