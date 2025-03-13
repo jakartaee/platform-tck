@@ -356,45 +356,43 @@ Linux software that meet the following software requirements:
 [[additional-jakarta-ee-platform-tck-requirements]]
 == Additional Jakarta EE {tck_version} Platform TCK Requirements
 
-// edburns check these versions and links please
 In addition to the instructions and requirements described in this
-document, all Jakarta EE {tck_version} Platform implementations must also pass the standalone TCKs for the following technologies:
+document, all Jakarta EE {tck_version} Platform implementations must also pass the standalone TCKs for the following technologies. See the links for additional details.
 
-* Jakarta Activation -- see https://jakarta.ee/specifications/activation/ for additional details
-* Jakarta Authentication -- see https://jakarta.ee/specifications/authentication/3.1/ for additional details
-* Jakarta Batch -- see https://jakarta.ee/specifications/batch/2.1/ for additional details
-* Jakarta Bean Validation -- see https://jakarta.ee/specifications/bean-validation/3.1/ for additional details
-* Jakarta Concurrency -- see https://jakarta.ee/specifications/concurrency/3.1/ for additional details
-* Jakarta Contexts and Dependency Injection (including Language Model TCK) -- see https://jakarta.ee/specifications/cdi/4.1/ for additional details
-* Jakarta Data -- see https://jakarta.ee/specifications/data/1.0/
-* Jakarta Debugging Support for Other Languages -- see https://jakarta.ee/specifications/debugging/ for additional details
-* Jakarta Dependency Injection -- see https://jakarta.ee/specifications/dependency-injection/2.0/ , for additional details
-* Jakarta Faces -- see https://jakarta.ee/specifications/faces/4.0/ for additional details
-* Jakarta JSON Binding -- see https://jakarta.ee/specifications/jsonb/3.0/ for additional details
-* Jakarta JSON Processing -- see https://jakarta.ee/specifications/jsonp/2.1/ for additional details
-* Jakarta Mail -- see https://jakarta.ee/specifications/mail/2.1/ for additional details
-* Jakarta RESTFul Web Services -- see https://jakarta.ee/specifications/restful-ws/4.0/ for additional details
-* Jakarta Security -- see https://jakarta.ee/specifications/security/4.0/ for additional details
-* Jakarta Servlet -- see https://jakarta.ee/specifications/servlet/6.1/ for additional details
-* Jakarta WebSocket -- see https://jakarta.ee/specifications/websocket/2.2/ for additional details
+* Jakarta Activation -- https://jakarta.ee/specifications/activation/2.1/
+* Jakarta Authentication -- https://jakarta.ee/specifications/authentication/3.1/
+* Jakarta Batch -- https://jakarta.ee/specifications/batch/2.1/
+* Jakarta Bean Validation -- https://jakarta.ee/specifications/bean-validation/3.1/
+* Jakarta Concurrency -- https://jakarta.ee/specifications/concurrency/3.1/
+* Jakarta Contexts and Dependency Injection (including Language Model TCK) -- https://jakarta.ee/specifications/cdi/4.1/
+* Jakarta Data -- https://jakarta.ee/specifications/data/1.0/
+* Jakarta Debugging Support for Other Languages -- https://jakarta.ee/specifications/debugging/2.0/
+* Jakarta Dependency Injection -- https://jakarta.ee/specifications/dependency-injection/2.0/
+* Jakarta Faces -- https://jakarta.ee/specifications/faces/4.1/
+* Jakarta JSON Binding -- https://jakarta.ee/specifications/jsonb/3.0/
+* Jakarta JSON Processing -- https://jakarta.ee/specifications/jsonp/2.1/
+* Jakarta Mail -- https://jakarta.ee/specifications/mail/2.1/
+* Jakarta RESTFul Web Services -- https://jakarta.ee/specifications/restful-ws/4.0/
+* Jakarta Security -- https://jakarta.ee/specifications/security/4.0/
+* Jakarta Servlet -- https://jakarta.ee/specifications/servlet/6.1/
+* Jakarta WebSocket -- https://jakarta.ee/specifications/websocket/2.2/
 
 All Jakarta EE {tck_version} Web Profile implementations must also pass the standalone TCKs for the following technologies:
 
-// edburns check these versions and links please
-* Jakarta Authentication -- see https://jakarta.ee/specifications/authentication/3.1/ for additional details
-* Jakarta Bean Validation -- see https://jakarta.ee/specifications/bean-validation/3.1/ for additional details
-* Jakarta Concurrency -- see https://jakarta.ee/specifications/concurrency/3.1/ for additional details
-* Jakarta Contexts and Dependency Injection (including Language Model TCK) -- see https://jakarta.ee/specifications/cdi/4.1/ for additional details
-* Jakarta Data -- see https://jakarta.ee/specifications/data/1.0/
-* Jakarta Debugging Support for Other Languages -- see https://jakarta.ee/specifications/debugging/ for additional details
-* Jakarta Dependency Injection -- see https://jakarta.ee/specifications/dependency-injection/2.0/ for additional details
-* Jakarta Faces -- see https://jakarta.ee/specifications/faces/4.0/ for additional details
-* Jakarta JSON Binding -- see https://jakarta.ee/specifications/jsonb/3.0/ for additional details
-* Jakarta JSON Processing -- see https://jakarta.ee/specifications/jsonp/2.1/ for additional details
-* Jakarta RESTFul Web Services -- see https://jakarta.ee/specifications/restful-ws/4.0/ for additional details
-* Jakarta Security -- see https://jakarta.ee/specifications/security/4.0/ for additional details
-* Jakarta Servlet -- see https://jakarta.ee/specifications/servlet/6.1/ for additional details
-* Jakarta WebSocket -- see https://jakarta.ee/specifications/websocket/2.2/ for additional details
+* Jakarta Authentication -- https://jakarta.ee/specifications/authentication/3.1/
+* Jakarta Bean Validation -- https://jakarta.ee/specifications/bean-validation/3.1/
+* Jakarta Concurrency -- https://jakarta.ee/specifications/concurrency/3.1/
+* Jakarta Contexts and Dependency Injection (including Language Model TCK) -- https://jakarta.ee/specifications/cdi/4.1/
+* Jakarta Data -- https://jakarta.ee/specifications/data/1.0/
+* Jakarta Debugging Support for Other Languages -- https://jakarta.ee/specifications/debugging/
+* Jakarta Dependency Injection -- https://jakarta.ee/specifications/dependency-injection/2.0/
+* Jakarta Faces -- https://jakarta.ee/specifications/faces/4.0/
+* Jakarta JSON Binding -- https://jakarta.ee/specifications/jsonb/3.0/
+* Jakarta JSON Processing -- https://jakarta.ee/specifications/jsonp/2.1/
+* Jakarta RESTFul Web Services -- https://jakarta.ee/specifications/restful-ws/4.0/
+* Jakarta Security -- https://jakarta.ee/specifications/security/4.0/
+* Jakarta Servlet -- https://jakarta.ee/specifications/servlet/6.1/
+* Jakarta WebSocket -- https://jakarta.ee/specifications/websocket/2.2/
 
 
 [[getting-started-with-the-jakarta-ee-platform-tck-test-suite]]

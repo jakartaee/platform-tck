@@ -28,7 +28,7 @@ components:
 Complete the following steps to set up Eclipse {glassfish_version} in your environment:
 
 1.  Set the following environment variables in your shell environment:
-* JAVA_HOME to the directory where the Java SE 8 software has been
+* JAVA_HOME to the directory where the Java SE software has been
 installed
 * JAKARTAEE_HOME to the directory where the Jakarta EE {tck_version} CI (Eclipse {glassfish_version}) software has been
 installed
