@@ -394,6 +394,10 @@ All Jakarta EE {tck_version} Web Profile implementations must also pass the stan
 * Jakarta Servlet -- https://jakarta.ee/specifications/servlet/6.1/
 * Jakarta WebSocket -- https://jakarta.ee/specifications/websocket/2.2/
 
+[NOTE]
+====
+Web Profile implementations may ignore sections in this labelled as (Full Platform Only).
+====
 
 [[getting-started-with-the-jakarta-ee-platform-tck-test-suite]]
 == Getting Started With the Jakarta EE {tck_version} Platform TCK Test Suite
