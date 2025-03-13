@@ -23,6 +23,7 @@ package com.sun.ts.tests.appclient.deploy.compat9_10;
 import java.util.Properties;
 
 import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -32,6 +33,7 @@ import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
 @ExtendWith(ArquillianExtension.class)
+@Tag("platform")
 public class Client extends EETest {
 
   private static final String prefix = "java:comp/env/ejb/";
