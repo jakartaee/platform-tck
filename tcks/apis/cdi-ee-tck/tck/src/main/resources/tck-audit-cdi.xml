@@ -11670,4 +11670,28 @@
         </assertion>
     </section>
 
+    <section id="el_integration_api" title="Unified EL integration API" level="3">
+        <assertion id="a">
+            <text>The |BeanManager| implementation in Jakarta EE must also implement |ELAwareBeanManager|</text>
+        </assertion>
+
+        <group>
+            <text>The container provides a built-in bean with bean type |ELAwareBeanManager|, scope |@Dependent| and qualifier |@Default|</text>
+
+            <assertion id="ba">
+                <text>Test the type</text>
+            </assertion>
+            <assertion id="bb">
+                <text>Test the scope</text>
+            </assertion>
+            <assertion id="bc">
+                <text>Test the qualifier</text>
+            </assertion>
+        </group>
+
+        <assertion id="c">
+            <text>An |ELAwareBeanManager| may be obtained by using |CDI.current().getBeanManager()| and casting</text>
+        </assertion>
+    </section>
+
 </specification>
