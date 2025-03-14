@@ -63,7 +63,7 @@
     </dependencyManagement>
 
     <dependencies>
-         <!-- Jakarta EE APIs -->
+        <!-- Jakarta EE APIs -->
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
