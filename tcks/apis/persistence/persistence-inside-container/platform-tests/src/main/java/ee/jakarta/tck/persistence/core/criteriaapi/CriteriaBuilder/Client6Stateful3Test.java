@@ -71,6 +71,7 @@ public class Client6Stateful3Test extends ee.jakarta.tck.persistence.core.criter
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,
             com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleRunner.class,
+            com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner.class,
             ee.jakarta.tck.persistence.common.schema30.Util.class,
             com.sun.ts.lib.harness.Status.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,

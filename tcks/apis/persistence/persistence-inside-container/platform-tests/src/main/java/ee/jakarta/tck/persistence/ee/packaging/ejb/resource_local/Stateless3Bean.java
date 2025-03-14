@@ -28,7 +28,6 @@ import ee.jakarta.tck.persistence.ee.common.A;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
-import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -42,7 +41,6 @@ import java.util.Map;
 import java.util.Properties;
 
 @Stateless(name = "Stateless3Bean")
-@Remote({ Stateless3IF.class })
 public class Stateless3Bean implements Stateless3IF {
 
 
