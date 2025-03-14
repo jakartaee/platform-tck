@@ -32,7 +32,7 @@
 
     <groupId>jakarta</groupId>
     <artifactId>glassfish.mail-platform-tck</artifactId>
-    <version>11.0.0-M11</version>
+    <version>11.0.0</version>
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
