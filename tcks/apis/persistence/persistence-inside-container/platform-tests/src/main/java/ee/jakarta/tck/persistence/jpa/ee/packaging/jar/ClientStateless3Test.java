@@ -141,6 +141,34 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.jpa.ee.pack
             // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_ee_packaging_jar_stateless3_vehicle_ejb, Client.class, ejbResURL1);
 
+            URL libURL;
+            JavaArchive jpa_ee_packaging_jar2_lib = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_jar2.jar");
+
+            // The class files
+            jpa_ee_packaging_jar2_lib.addClasses(C.class);
+
+            JavaArchive jpa_ee_packaging_jar1_lib = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_jar1.jar");
+
+            // The class files
+            jpa_ee_packaging_jar1_lib.addClasses(B.class);
+
+            JavaArchive jpa_ee_packaging_jar_lib = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_jar.jar");
+
+            // The class files
+            jpa_ee_packaging_jar_lib.addClasses(A.class);
+
+            // The resources
+            libURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/jar/persistence.xml");
+            jpa_ee_packaging_jar_lib.addAsManifestResource(libURL, "persistence.xml");
+
+            libURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/jar/orm.xml");
+            jpa_ee_packaging_jar_lib.addAsManifestResource(libURL, "orm.xml");
+
+            libURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/jar/myMappingFile.xml");
+            jpa_ee_packaging_jar_lib.addAsResource(libURL, "myMappingFile.xml");
+
+            libURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/jar/myMappingFile2.xml");
+            jpa_ee_packaging_jar_lib.addAsResource(libURL, "myMappingFile2.xml");
 
         // Ear
             EnterpriseArchive jpa_ee_packaging_jar_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_packaging_jar_vehicles.ear");
@@ -151,15 +179,12 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.jpa.ee.pack
             jpa_ee_packaging_jar_vehicles_ear.addAsModule(jpa_ee_packaging_jar_stateless3_vehicle_ejb);
             jpa_ee_packaging_jar_vehicles_ear.addAsModule(jpa_ee_packaging_jar_stateless3_vehicle_client);
 
-
+            jpa_ee_packaging_jar_vehicles_ear.addAsLibrary(jpa_ee_packaging_jar2_lib);
+            jpa_ee_packaging_jar_vehicles_ear.addAsLibrary(jpa_ee_packaging_jar1_lib);
+            jpa_ee_packaging_jar_vehicles_ear.addAsLibrary(jpa_ee_packaging_jar_lib);
 
             // The application.xml descriptor
             URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_ee_packaging_jar_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
             // Call the archive processor
             archiveProcessor.processEarArchive(jpa_ee_packaging_jar_vehicles_ear, Client.class, earResURL);
         return jpa_ee_packaging_jar_vehicles_ear;
