@@ -19,11 +19,15 @@ import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import java.net.URL;
 
 
-
+/**
+ * In EE10 this was an appclient that uses a remote stateless EJB as the test container. It did not use the
+ * persistence test vehicles.
+ *
+ * TBD for EE11
+ */
 @ExtendWith(ArquillianExtension.class)
 @Tag("platform")
 @Tag("tck-appclient")
-
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local.Client {
     /**
@@ -67,11 +71,11 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.reso
             if(resURL != null) {
               jpa_ee_packaging_ejb_resource_local_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            jpa_ee_packaging_ejb_resource_local_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_ee_packaging_ejb_resource_local_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_packaging_ejb_resource_local_client, Client.class, resURL);
 
-        // Ejb 1
+            // Ejb 1
             // the jar with the correct archive name
             JavaArchive jpa_ee_packaging_ejb_resource_local_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_ejb_resource_local_ejb.jar");
             // The class files

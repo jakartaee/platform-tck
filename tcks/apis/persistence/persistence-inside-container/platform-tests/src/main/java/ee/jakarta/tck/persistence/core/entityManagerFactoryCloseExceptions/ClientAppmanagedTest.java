@@ -73,6 +73,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.entity
             ee.jakarta.tck.persistence.common.PMClientBase.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.appmanaged.AppManagedVehicleRunner.class,
+            com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
@@ -93,7 +94,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.entity
             if(resURL != null) {
               jpa_core_entityManagerFactoryCloseException_appmanaged_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_entityManagerFactoryCloseException_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_entityManagerFactoryCloseException_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_entityManagerFactoryCloseException_appmanaged_vehicle_client, Client.class, resURL);
 
@@ -122,18 +123,18 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.entity
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
-            if(ejbResURL1 != null) {
-//              jpa_core_entityManagerFactoryCloseException_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
-            }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
+            URL ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               jpa_core_entityManagerFactoryCloseException_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_core_entityManagerFactoryCloseException_appmanaged_vehicle_ejb, Client.class, ejbResURL1);
 
+            // Par
+            JavaArchive jpa_core_entityManagerFactoryCloseException_lib = ShrinkWrap.create(JavaArchive.class, "jpa_core_entityManagerFactoryCloseException.jar");
+            URL parURL = Client.class.getResource("/ee/jakarta/tck/persistence/common/template/persistence.xml");
+            jpa_core_entityManagerFactoryCloseException_lib.addAsManifestResource(parURL, "persistence.xml");
 
         // Ear
             EnterpriseArchive jpa_core_entityManagerFactoryCloseException_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_entityManagerFactoryCloseException_vehicles.ear");
@@ -144,15 +145,10 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.entity
             jpa_core_entityManagerFactoryCloseException_vehicles_ear.addAsModule(jpa_core_entityManagerFactoryCloseException_appmanaged_vehicle_ejb);
             jpa_core_entityManagerFactoryCloseException_vehicles_ear.addAsModule(jpa_core_entityManagerFactoryCloseException_appmanaged_vehicle_client);
 
-
+            jpa_core_entityManagerFactoryCloseException_vehicles_ear.addAsLibrary(jpa_core_entityManagerFactoryCloseException_lib);
 
             // The application.xml descriptor
             URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_core_entityManagerFactoryCloseException_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
             // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_entityManagerFactoryCloseException_vehicles_ear, Client.class, earResURL);
         return jpa_core_entityManagerFactoryCloseException_vehicles_ear;

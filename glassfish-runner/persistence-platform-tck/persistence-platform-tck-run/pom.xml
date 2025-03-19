@@ -207,12 +207,12 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>11.0.0</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>11.0.0</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
@@ -352,6 +352,10 @@
                         </goals>
                         <configuration>
                             <includes>
+                                <!--
+                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
+                                <include>ee/jakarta/tck/persistence/core/annotations/basic/*Test.java</include>
+                                -->
                                 <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                             </includes>
                             <groups>tck-javatest</groups>
@@ -411,7 +415,7 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    <version>11.0.0</version>
+                    <version>${jakarta.tck.arquillian.version}</version>
                 </dependency>
             </dependencies>
 
@@ -494,12 +498,20 @@
                                 </goals>
                                 <configuration>
                                     <includes>
+                                        <!--
                                         <include>ee/jakarta/tck/persistence/**/*Test.java</include>
+                                        <include>ee/jakarta/tck/persistence/core/annotations/basic/*Test.java</include>
+                                        <include>ee/jakarta/tck/persistence/core/annotations/basic/Client1AppmanagednotxTest.java</include>
+                                        <include>ee/jakarta/tck/persistence/core/inheritance/abstractentity/Client*Test.java</include>
+                                        -->
+                                        <include>ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local.ClientTest</include>
+
                                     </includes>
                                     <groups>tck-appclient</groups>
 
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                        <ts.home>${ts.home}</ts.home>
                                     </systemPropertyVariables>
                                 </configuration>
                             </execution>

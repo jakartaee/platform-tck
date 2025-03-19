@@ -1,6 +1,7 @@
 package ee.jakarta.tck.persistence.core.inheritance.nonentity;
 
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.tests.common.vehicle.VehicleClient;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -78,6 +79,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.in
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,
             com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleRunner.class,
+            com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.class,
@@ -99,7 +101,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.in
             if(resURL != null) {
               jpa_core_inherit_nonentity_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_inherit_nonentity_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_inherit_nonentity_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_inherit_nonentity_appmanagedNoTx_vehicle_client, Client.class, resURL);
 

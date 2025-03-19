@@ -88,6 +88,7 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
             com.sun.ts.tests.common.vehicle.stateless3.Stateless3VehicleIF.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.tests.common.vehicle.stateless3.Stateless3VehicleRunner.class,
+            com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
@@ -102,19 +103,19 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
               jpa_core_criteriaapi_Join_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.jar.sun-application-client.xml");
+            resURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
               jpa_core_criteriaapi_Join_stateless3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_criteriaapi_Join_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client2.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_criteriaapi_Join_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_criteriaapi_Join_stateless3_vehicle_client, Client2.class, resURL);
 
         // Ejb 1
             // the jar with the correct archive name
-            JavaArchive jpa_core_criteriaapi_Join_stateless3_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_Join_stateless3_vehicle_ejb.jar");
+            JavaArchive jpa_core_criteriaapi_Join_stateless3_vehicle_ejb2 = ShrinkWrap.create(JavaArchive.class, "c2jpa_core_criteriaapi_Join_stateless3_vehicle_ejb2.jar");
             // The class files
-            jpa_core_criteriaapi_Join_stateless3_vehicle_ejb.addClasses(
+            jpa_core_criteriaapi_Join_stateless3_vehicle_ejb2.addClasses(
                 com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager.class,
@@ -136,17 +137,17 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.xml");
+            URL ejbResURL1 = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.xml");
             if(ejbResURL1 != null) {
 //              jpa_core_criteriaapi_Join_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL1 = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
-              jpa_core_criteriaapi_Join_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
+              jpa_core_criteriaapi_Join_stateless3_vehicle_ejb2.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
-            archiveProcessor.processEjbArchive(jpa_core_criteriaapi_Join_stateless3_vehicle_ejb, Client2.class, ejbResURL1);
+            archiveProcessor.processEjbArchive(jpa_core_criteriaapi_Join_stateless3_vehicle_ejb2, Client2.class, ejbResURL1);
 
 
         // Par
@@ -221,7 +222,7 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
             // Any libraries added to the ear
 
             // The component jars built by the package target
-            jpa_core_criteriaapi_Join_vehicles_ear.addAsModule(jpa_core_criteriaapi_Join_stateless3_vehicle_ejb);
+            jpa_core_criteriaapi_Join_vehicles_ear.addAsModule(jpa_core_criteriaapi_Join_stateless3_vehicle_ejb2);
             jpa_core_criteriaapi_Join_vehicles_ear.addAsModule(jpa_core_criteriaapi_Join_stateless3_vehicle_client);
 
             jpa_core_criteriaapi_Join_vehicles_ear.addAsLibrary(jpa_core_criteriaapi_Join);

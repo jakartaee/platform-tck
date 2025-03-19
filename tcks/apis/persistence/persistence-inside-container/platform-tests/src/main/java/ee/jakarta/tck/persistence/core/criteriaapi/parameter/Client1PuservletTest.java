@@ -87,7 +87,7 @@ public class Client1PuservletTest extends ee.jakarta.tck.persistence.core.criter
               jpa_core_criteriaapi_parameter_puservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client1.class.getResource("//com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.war.sun-web.xml");
+            warResURL = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               jpa_core_criteriaapi_parameter_puservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }

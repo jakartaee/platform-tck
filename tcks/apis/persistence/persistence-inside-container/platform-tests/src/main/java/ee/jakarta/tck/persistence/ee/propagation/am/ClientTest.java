@@ -58,16 +58,8 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.am.Cli
             ee.jakarta.tck.persistence.ee.propagation.am.Client.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("");
-            if(resURL != null) {
-              jpa_ee_propagation_am_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/.jar.sun-application-client.xml");
-            if(resURL != null) {
-              jpa_ee_propagation_am_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            jpa_ee_propagation_am_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            URL resURL = null;
+            jpa_ee_propagation_am_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_propagation_am_client, Client.class, resURL);
 
