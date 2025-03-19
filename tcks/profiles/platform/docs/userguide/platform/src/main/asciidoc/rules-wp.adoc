@@ -1,6 +1,5 @@
 [[procedure-for-jakarta-platform-enterprise-edition-web-profile-certification]]
 = Procedure for Jakarta Platform, Enterprise Edition 11 Web Profile Certification
-(Needs Refectoring with the rules.adoc)
 
 This chapter describes the compatibility testing procedure and
 compatibility requirements for Jakarta Platform, Enterprise Edition Version {tck_version} Web Profile.
@@ -90,7 +89,7 @@ typically by means such as marketing materials, product documentation,
 usage messages, or developer support programs.
 
 |Edition |A Version of the Java Platform. Editions include Java Platform
-Standard Edition and Java Platform Enterprise Edition.
+Standard Edition and Jakarta Platform Enterprise Edition.
 
 |Endorsed Standard |A Java API defined through a standards process other
 than the Jakarta Enterprise Specification Process. The Endorsed Standard packages are
@@ -99,7 +98,7 @@ listed later in this chapter.
 |Excluded Tests |Each release of a TCK may include tests that are annotated as excluded. These tests are not required to be run by the TCK user.
 
 
-|Jakarta Server Page |A text-based document that uses Jakarta Server Pages technology.
+|Jakarta Server Page |A text-based document that uses Jakarta Pages technology.
 
 |Jakarta Server Page Implementation Class |A program constructed by transforming
 the Jakarta Server Page text into a Java language program using the transformation
@@ -213,7 +212,7 @@ performance, then that Product must satisfy all applicable compatibility
 requirements for a Product in each Product Configuration, and
 combination of Product Configurations, of those Operating Modes.
 
-EE-WP1.1 Each implementation must have at least one configuration that can be used to pass all required TCK Tests, although such configuration may need adjustment (e.g. whether statically or via administrative tooling).
+EE-WP1.1 Each implementation must have at least one Product Configuration that can be used to pass all required TCK Tests, although such configuration may need adjustment (e.g. whether statically or via administrative tooling).
 
 EE-WP1.2 An implementation may have mode(s) that provide compatibility with previous Jakarta EE versions.
 
@@ -345,19 +344,22 @@ EE-WP21 Compliance testing for Jakarta EE {tck_version} Web Profile consists of 
 
 [[standalone-tcks-wp]]
 * Jakarta Authentication
-* Jakarta Bean Validation
 * Jakarta Concurrency
 * Jakarta Contexts and Dependency Injection
 * Jakarta Data
 * Jakarta Debugging Support for Other Languages
 * Jakarta Dependency Injection
 * Jakarta Faces
+* Jakarta Pages
 * Jakarta JSON Binding
 * Jakarta JSON Processing 
 * Jakarta RESTful Web Services
 * Jakarta Security
 * Jakarta Servlet
-* Jakarta XML Binding (If XML Binding is supported)
+* Jakarta Tags (contained within the platform TCK)
+* Jakarta Transactions
+* Jakarta Validation
+* Jakarta WebSocket 
 
 See <<additional-jakarta-ee-platform-tck-requirements>> for additional information on the component specification TCKs.
 
@@ -384,7 +386,7 @@ site at `https://jakarta.ee/specifications/webprofile/11/`. You may also find in
 The following location provides a list of packages that constitute the
 required class libraries for the full Java EE {tck_version} platform:
 
-``https://projects.eclipse.org/projects/ee4j.jakartaee-platform`
+`https://projects.eclipse.org/projects/ee4j.jakartaee-platform`
 
 The following list constitutes the subset of Jakarta EE {tck_version} packages that are
 required for the Jakarta EE {tck_version} Web Profile:
@@ -476,8 +478,3 @@ required for the Jakarta EE {tck_version} Web Profile:
 * jakarta.security.enterprise.authentication.mechanism.http
 * jakarta.security.enterprise.credential
 * jakarta.security.enterprise.identitystore
-* jakarta.xml.bind (optional)
-* jakarta.xml.bind.annotation (optional)
-* jakarta.xml.bind.annotation.adapters (optional)
-* jakarta.xml.bind.attachment (optional)
-* jakarta.xml.bind.util (optional)

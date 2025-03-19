@@ -64,6 +64,30 @@ See <<configuring-your-application-server-as-the-vi>> for a list of the modifica
 configuration is valid. See <<[validating-your-test-configuration>> for information about using Maven/Arquillian to run the sample tests.
 6.  Run the TCK tests. See <<executing-tests>> for information
 about using Maven to start running tests.
+7. Generate
+
+## Generate a Client Certificate
+
+Some tests require a client certificate to be installed on the Jakarta EE {tck_version} server. The following steps describe how to generate a client certificate:
+[source,bash]
+----
+keytool -genkeypair -alias cts -keyalg RSA -keysize 2048 -validity 365 -keystore clientcert.p12 -dname "CN=CTS, OU=Eclipse Foundation, O=Jakarta EE" -keypass changeit -storepass changeit
+
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 365 days
+for: CN=CTS, OU=Eclipse Foundation, O=Jakarta EE
+
+keytool -exportcert  -keystore clientcert.p12 -alias cts -keypass changeit -storepass changeit -file cts_cert.cer
+----
+
+The values used here match defaults used in the `ts.jte` file and example {glassfish_version} runners. Examples and default configurations expect that the keystore and certificate are located in your `<TS_HOME>/bin/certificates` directory.
+
+[source,bash]
+----
+  -Djava.protocol.handler.pkgs=javax.net.ssl
+  -Djavax.net.ssl.keyStore=${ts.home}/certificates/clientcert.p12
+  -Djavax.net.ssl.keyStorePassword=changeit
+  -Djavax.net.ssl.trustStore=<path_to_server_trustStore>
+----
 
 [[configuring-a-jakarta-ee-11-server]]
 == Configuring a Jakarta EE {tck_version} Server
@@ -234,7 +258,7 @@ server.  +
 Certificates are located `<TS_HOME>/bin/certificates`. Use the
 certificate that suits your environment.
 
-..  `cts_cert`: For importing the TCK client certificate into a
+..  `cts_cert.cer`: For importing the TCK client certificate into a
 `truststore`
 
 ..  `clientcert.p12`: Contains TCK client certificate in `pkcs12` format
@@ -1050,49 +1074,30 @@ support second level caching, set the value to false.
 [[persistence-test-vehicles]]
 ==== Persistence Test Vehicles
 
-The persistence tests are run in a variety of "vehicles" from which the
-entity manager is obtained and the transaction type is defined for use.
-There are six vehicles used for these tests:
+The persistence tests are run in a variety of "vehicles" from which the entity manager is obtained and the transaction type is defined for use. There are six vehicles used for these tests:
 
-* `stateless3`: Bean-managed stateless session bean using JNDI to lookup
-a Jakarta Transactions `EntityManager`; uses `UserTransaction` methods for transaction demarcation
+* `stateless3`: Bean-managed stateless session bean using
+a Jakarta Transactions `EntityManager`; uses UserTransaction` methods for transaction demarcation  (Full Platform Only)
 
 * `stateful3`: Container-managed stateful session bean using
-`@PersistenceContext` annotation to inject Jakarta Transactions `EntityManager;` uses
-container-managed transaction demarcation with a transaction attribute
-(required)
+`@PersistenceContext` annotation to inject Jakarta Transactions `EntityManager;` uses container-managed transaction demarcation with a transaction attribute (required)  (Full Platform Only)
 
-* `appmanaged`: Container-managed stateful session bean using
-`@PersistenceUnit` annotation to inject an `EntityManagerFactory`; the
-`EntityManagerFactory` API is used to create an Application-Managed Jakarta Transactions `EntityManager`, and uses the container to demarcate transactions (Full Platform Only)
+* `appmanaged`: Container-managed stateful session bean using `@PersistenceUnit` annotation to inject an `EntityManagerFactory`; the `EntityManagerFactory` API is used to create an Application-Managed Jakarta Transactions `EntityManager`, and uses the container to demarcate transactions (Full Platform Only)
 
-* `appmanagedNoTx`: Container-managed stateful session bean using
-`@PersistenceUnit` annotation to inject an `EntityManagerFactory`; the
-`EntityManagerFactory` API is used to create an Application-Managed
-Resource Local `EntityManager`, and uses the `EntityTransaction` APIs to
-control transactions (Full Platform Only)
+* `appmanagedNoTx`: Container-managed stateful session bean using `@PersistenceUnit` annotation to inject an `EntityManagerFactory`; the `EntityManagerFactory` API is used to create an Application-Managed Resource Local `EntityManager`, and uses the `EntityTransaction` APIs to control transactions (Full Platform Only)
 
-* `pmservlet`: Servlet that uses the `@PersistenceContext` annotation at
-the class level and then uses JNDI lookup to obtain the `EntityManager`;
-alternative to declaring the persistence context dependency via a
-`persistence-context-ref` in `web.xml` and uses `UserTransaction`
-methods for transaction demarcation
+* `pmservlet`: Servlet that uses the `@PersistenceContext` annotation at the class level and then uses JNDI lookup to obtain the `EntityManager`; alternative to declaring the persistence context dependency via a `persistence-context-ref` in `web.xml` and uses `UserTransaction` methods for transaction demarcation
 
-* `puservlet`: Servlet that injects an `EntityManagerFactory` using the
-`@PersistenceUnit` annotation to create a to Resource Local
-`EntityManager`, and uses `EntityTransaction` APIs for transaction
-demarcation
+* `puservlet`: Servlet that injects an `EntityManagerFactory` using the `@PersistenceUnit` annotation to create a to Resource Local `EntityManager`, and uses `EntityTransaction` APIs for transaction demarcation
 
+* none: There are a new tests that do not use the EE10 vehicle concept. Rather they make use of existing Arquillian protocols based on servlets or rest endpoints.
 
 [NOTE]
-======================================================================
+======
 
-For vehicles using a `RESOURCE_LOCAL` transaction type, be sure to
-configure a non-transactional resource with the logical name
-`jdbc/DB_no_tx`. Refer to the `ts.jte` file for information about the
-`jdbc.db` property.
+For vehicles using a `RESOURCE_LOCAL` transaction type, be sure to configure a non-transactional resource with the logical name `jdbc/DB_no_tx`. Refer to the `ts.jte` file for information about the `jdbc.db` property.
 
-======================================================================
+======
 
 
 [[generatedvalue-annotation]]

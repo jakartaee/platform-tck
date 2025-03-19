@@ -96,7 +96,7 @@ typically by means such as marketing materials, product documentation,
 usage messages, or developer support programs.
 
 |Edition |A Version of the Java Platform. Editions include Java Platform
-Standard Edition and Java Platform Enterprise Edition.
+Standard Edition and Jakarta Platform Enterprise Edition.
 
 |Endorsed Standard |A Java API defined through a standards process other
 than the Jakarta Enterprise Specification Process. The Endorsed Standard packages are
@@ -104,7 +104,7 @@ listed later in this chapter.
 
 |Excluded Tests |Each release of a TCK may include tests that are annotated as excluded. These tests are not required to be run by the TCK user.
 
-|Jakarta Server Page |A text-based document that uses Jakarta Server Pages technology.
+|Jakarta Server Page |A text-based document that uses Jakarta Pages technology.
 
 |Jakarta Server Page Implementation Class |A program constructed by transforming
 the Jakarta Server Page text into a Java language program using the transformation
@@ -164,7 +164,7 @@ specification defined artifacts. Rebuilding and running these tests
 against a known compatible implementation verifies that the
 mechanism generates compatible artifacts.
 
-|Compatible Implementation (CI) |A verified compatible implementation 
+|Compatible Implementation (CI) |A ratified compatible implementation 
 of a Specification.
 
 |Resource |A Computational Resource, a Location Resource, or a Security
@@ -217,7 +217,7 @@ performance, then that Product must satisfy all applicable compatibility
 requirements for a Product in each Product Configuration, and
 combination of Product Configurations, of those Operating Modes.
 
-EE1.1 Each implementation must have at least one configuration that can be used to pass
+EE1.1 Each implementation must have at least one Product Configuration that can be used to pass
 all required TCK Tests, although such configuration may need adjustment (e.g. whether statically
 or via administrative tooling).
 
@@ -379,7 +379,6 @@ TCK and the following Technology Compatibility Kits (TCKs). Version details are 
 * Jakarta Mail
 * Jakarta RESTful Web Services
 * Jakarta Security
-* Jakarta XML Binding (If XML Binding is supported)
 
 In addition to the compatibility rules outlined in this TCK User's
 Guide, Jakarta EE {tck_version}.0 implementations must also adhere to all of the
@@ -529,9 +528,4 @@ required for Jakarta EE {tck_version}.0:
 * jakarta.ws.rs.core
 * jakarta.ws.rs.ext
 * jakarta.ws.rs.sse
-* jakarta.xml.bind (optional)
-* jakarta.xml.bind.annotation (optionsl)
-* jakarta.xml.bind.annotation.adapters (optional)
-* jakarta.xml.bind.attachment (optional)
-* jakarta.xml.bind.util (optional)
 
