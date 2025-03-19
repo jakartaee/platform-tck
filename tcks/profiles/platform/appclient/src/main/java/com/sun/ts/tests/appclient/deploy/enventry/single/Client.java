@@ -42,6 +42,7 @@ import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.assembly.util.shared.enventry.single.TestCode;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
@@ -57,9 +58,8 @@ public class Client extends EETest {
   }
   
   
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")	
-
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")	
 	@Deployment(testable = false)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
@@ -112,6 +112,7 @@ public class Client extends EETest {
    *
    */
   @Test
+	@TargetVehicle("appclient")
   public void testString() throws Exception {
     boolean pass;
 
@@ -136,6 +137,7 @@ public class Client extends EETest {
    *
    */
   @Test
+	@TargetVehicle("appclient")
   public void testBoolean() throws Exception {
     boolean pass;
 
@@ -160,6 +162,7 @@ public class Client extends EETest {
    *
    */
   @Test
+	@TargetVehicle("appclient")
   public void testByte() throws Exception {
     boolean pass;
 
@@ -184,6 +187,7 @@ public class Client extends EETest {
    *
    */
   @Test
+	@TargetVehicle("appclient")
   public void testShort() throws Exception {
     boolean pass;
 
@@ -208,6 +212,7 @@ public class Client extends EETest {
    *
    */
   @Test
+	@TargetVehicle("appclient")
   public void testInteger() throws Exception {
     boolean pass;
 
@@ -232,6 +237,7 @@ public class Client extends EETest {
    *
    */
   @Test
+	@TargetVehicle("appclient")
   public void testLong() throws Exception {
     boolean pass;
 
@@ -256,6 +262,7 @@ public class Client extends EETest {
    *
    */
   @Test
+	@TargetVehicle("appclient")
   public void testFloat() throws Exception {
     boolean pass;
 
@@ -280,6 +287,7 @@ public class Client extends EETest {
    *
    */
   @Test
+	@TargetVehicle("appclient")
   public void testDouble() throws Exception {
     boolean pass;
     Double value;
@@ -305,6 +313,7 @@ public class Client extends EETest {
    *
    */
   @Test
+	@TargetVehicle("appclient")
   public void testAll() throws Exception {
     try {
       logTrace("[Client] testAll() : starting...");

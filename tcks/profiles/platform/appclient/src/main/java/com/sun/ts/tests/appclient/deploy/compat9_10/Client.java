@@ -31,6 +31,39 @@ import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
+
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Properties;
+
+import javax.naming.Context;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.Status;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
+
+
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
@@ -81,6 +114,7 @@ public class Client extends EETest {
    *                 the referenced bean at runtime.
    */
   @Test
+	@TargetVehicle("appclient")
   public void test910DD() throws Exception {
     TestBean bean = null;
     String beanName;

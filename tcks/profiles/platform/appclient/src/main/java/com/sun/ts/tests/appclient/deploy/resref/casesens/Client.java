@@ -43,6 +43,7 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.assembly.util.shared.resref.casesens.TestCode;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -58,8 +59,8 @@ public class Client extends EETest {
     s.exit();
   }
   
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")	
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")	
  
 	@Deployment(testable = false)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
@@ -124,6 +125,7 @@ public class Client extends EETest {
    *                 correctly.
    */
   @Test
+	@TargetVehicle("appclient")
   public void testCaseSensitivity() throws Exception {
     boolean pass;
 
@@ -133,6 +135,7 @@ public class Client extends EETest {
         throw new Exception("casesens res-ref test failed!");
       }
     } catch (Exception e) {
+      e.printStackTrace();
       TestUtil.logErr("[Client] Caught exception: " + e);
       throw new Exception("casesens res-ref test failed!", e);
     }

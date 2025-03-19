@@ -42,6 +42,7 @@ import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -66,10 +67,10 @@ public class Client extends EETest {
   }
   
   
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")	
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")	
  
-	@Deployment(testable = true)
+  @Deployment(name="appclient", testable = false)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
 		JavaArchive ejbClient1 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_scope_client.jar");
@@ -189,6 +190,7 @@ public class Client extends EETest {
    *                 reference is resolved correctly).
    */
   @Test
+	@TargetVehicle("appclient")
   public void testScope() throws Exception {
     ReferencedBean bean = null;
     String beanName;

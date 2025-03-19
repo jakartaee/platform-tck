@@ -76,8 +76,9 @@ public class Client extends EETest {
   }
   
   
-  @TargetsContainer("javatest")
-	@Deployment(testable = false)
+  @TargetsContainer("appclient")
+  @OverProtocol("appclient")	
+	@Deployment(name = "appclient", testable = true)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_casesens_client.jar");
@@ -130,8 +131,8 @@ public class Client extends EETest {
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_ejblink_casesens.ear");
 		ear.addAsModule(ejbClient);
 		ear.addAsModule(ejb);
-		ear.as(ZipExporter.class).exportTo(
-			    new File("/tmp/ejb.ear"), true);
+		//ear.as(ZipExporter.class).exportTo(
+			//    new File("/tmp/ejb.ear"), true);
 
 		return ear;
 	};
@@ -170,6 +171,7 @@ public class Client extends EETest {
    *                 the EJB references were resolved correctly).
    */
 	@Test
+	@TargetVehicle("appclient")
   public void testCaseSensitivity() throws Exception {
     CaseBean bean1 = null;
     CaseBean bean2 = null;

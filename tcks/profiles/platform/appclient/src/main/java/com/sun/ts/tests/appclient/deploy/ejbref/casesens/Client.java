@@ -42,6 +42,7 @@ import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
@@ -68,8 +69,8 @@ public class Client extends EETest {
     s.exit();
   }
   
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")	
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")	
  
 	@Deployment(testable = true)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
@@ -157,6 +158,7 @@ public class Client extends EETest {
    *                 (validates that the EJB reference are resolved correctly).
    */
   @Test
+	@TargetVehicle("appclient")
   public void testCaseSensitivity() throws Exception {
     ReferencedBean bean1 = null;
     ReferencedBean bean2 = null;

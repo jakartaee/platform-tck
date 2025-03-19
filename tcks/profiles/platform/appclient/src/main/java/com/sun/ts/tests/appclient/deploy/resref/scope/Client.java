@@ -43,6 +43,7 @@ import com.sun.ts.tests.assembly.util.shared.resref.scope.QueueCode;
 import com.sun.ts.tests.assembly.util.shared.resref.scope.TopicCode;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
@@ -57,10 +58,9 @@ public class Client extends EETest {
     s.exit();
   }
   
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")	
- 
-	@Deployment(testable = false)
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")	
+@Deployment(name="appclient", testable = false)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
 		JavaArchive ejbClient1 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_scope_another_client.jar");
@@ -156,6 +156,7 @@ public class Client extends EETest {
    *
    */
   @Test
+	@TargetVehicle("appclient")
   public void testScope() throws Exception {
     boolean pass;
 
@@ -165,6 +166,7 @@ public class Client extends EETest {
         throw new Exception("res-ref scope test failed!");
       }
     } catch (Exception e) {
+      e.printStackTrace();
       throw new Exception("res-ref scope test failed: " + e, e);
     }
   }

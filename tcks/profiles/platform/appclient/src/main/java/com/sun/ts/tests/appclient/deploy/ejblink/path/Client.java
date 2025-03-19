@@ -42,6 +42,7 @@ import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
 
 
 
@@ -70,10 +71,10 @@ public class Client extends EETest {
     s.exit();
   }
   
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")	
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")	
  
-	@Deployment(testable = false)
+	@Deployment(name = "appclient", testable = true)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
 	  
@@ -187,6 +188,7 @@ public class Client extends EETest {
    *                 ones specified in the DD.
    */
   @Test
+	@TargetVehicle("appclient")
   public void testScope() throws Exception {
     ReferencedBean bean1 = null;
     ReferencedBean2 bean2 = null;

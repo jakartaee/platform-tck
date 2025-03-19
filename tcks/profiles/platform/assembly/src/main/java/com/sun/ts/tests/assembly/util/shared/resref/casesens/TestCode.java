@@ -62,6 +62,7 @@ public class TestCode {
 
       pass = true;
     } catch (Exception e) {
+      e.printStackTrace();
       TestUtil.logErr("Caught exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;

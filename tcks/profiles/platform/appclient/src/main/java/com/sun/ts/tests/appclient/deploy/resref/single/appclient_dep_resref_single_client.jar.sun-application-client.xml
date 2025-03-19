@@ -28,7 +28,7 @@
     </default-resource-principal>
   </resource-ref>
   <resource-ref>
-    <res-ref-name>mail/MailSession</res-ref-name>
+    <res-ref-name>mail/Session</res-ref-name>
     <jndi-name>mail/Session</jndi-name>
   </resource-ref>
   <resource-ref>
@@ -36,7 +36,7 @@
     <jndi-name>http://localhost:8080/appclient_dep_resref_single_jsp_web/test.jsp</jndi-name>
   </resource-ref>
   <resource-ref>
-    <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
+    <res-ref-name>jms/QueueConnectionFactory</res-ref-name>
     <jndi-name>jms/QueueConnectionFactory</jndi-name>
     <default-resource-principal>
       <name>j2ee</name>
@@ -44,7 +44,7 @@
     </default-resource-principal>
   </resource-ref>
   <resource-ref>
-    <res-ref-name>jms/myTopicConnectionFactory</res-ref-name>
+    <res-ref-name>jms/TopicConnectionFactory</res-ref-name>
     <jndi-name>jms/TopicConnectionFactory</jndi-name>
     <default-resource-principal>
       <name>j2ee</name>

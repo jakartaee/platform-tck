@@ -45,6 +45,7 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.assembly.util.shared.resref.single.appclient.TestCode;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
@@ -60,9 +61,9 @@ public class Client extends EETest {
 	}
 
 	
-	 @TargetsContainer("tck-javatest")
-	  @OverProtocol("javatest")	
-	@Deployment(testable = false)
+	 @TargetsContainer("tck-appclient")
+	  @OverProtocol("appclient")	
+	@Deployment(name="appclient", testable = false)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
 		 
@@ -137,6 +138,7 @@ public class Client extends EETest {
 	 *                 the datasource. - We can use it to open a DB connection.
 	 */
 	@Test
+	@TargetVehicle("appclient")
 	public void testDatasource() throws Exception {
 		boolean pass;
 
@@ -165,6 +167,7 @@ public class Client extends EETest {
 	 *                 to a HTML page bundled in the application.
 	 */
 	@Test
+	@TargetVehicle("appclient")
 	public void testURL() throws Exception {
 		boolean pass;
 
@@ -192,6 +195,7 @@ public class Client extends EETest {
 	 *                 the JMS Queue Connection Factory.
 	 */
 	@Test
+	@TargetVehicle("appclient")
 	public void testQueue() throws Exception {
 		boolean pass;
 
@@ -219,6 +223,7 @@ public class Client extends EETest {
 	 *                 the JMS Topic Connection Factory.
 	 */
 	@Test
+	@TargetVehicle("appclient")
 	public void testTopic() throws Exception {
 		boolean pass;
 
@@ -247,6 +252,7 @@ public class Client extends EETest {
 	 *                 all the declared resource factories.
 	 */
 	@Test
+	@TargetVehicle("appclient")
 	public void testAll() throws Exception {
 		try {
 			testDatasource();

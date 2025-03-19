@@ -42,10 +42,10 @@ public class TestCode {
   protected static final String urlLookup = prefix + "url/URL";
 
   protected static final String queueLookup = prefix
-      + "jms/myQueueConnectionFactory";
+      + "jms/QueueConnectionFactory";
 
   protected static final String topicLookup = prefix
-      + "jms/myTopicConnectionFactory";
+      + "jms/TopicConnectionFactory";
 
   public static boolean testDatasource(TSNamingContext nctx) {
     DataSource ds;
