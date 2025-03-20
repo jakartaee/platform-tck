@@ -356,11 +356,12 @@
                                 <additionalClasspathElement>${glassfish.module.dir}/glassfish-naming.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <systemPropertyVariables>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
                                 <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
-                                <ts.home>${env.TS_HOME}</ts.home>
+                                <ts.home>${project.basedir}${file.separator}jakartaeetck</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                <ts.work.dir>${project.build.directory}</ts.work.dir>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
@@ -385,11 +386,12 @@
                                 <additionalClasspathElement>${glassfish.module.dir}/glassfish-naming.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <systemPropertyVariables>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
                                 <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
-                                <ts.home>${env.TS_HOME}</ts.home>
+                                <ts.home>${project.basedir}${file.separator}jakartaeetck</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
+                                <ts.work.dir>${project.build.directory}</ts.work.dir>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
