@@ -56,7 +56,9 @@ env.ts_unix.command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         DISPLAY=:0.0 \
         HOME=${user.home} \
         LD_LIBRARY_PATH=${J2EE_HOME}/nativelib \
-        ${JAVA_HOME}/bin/java ${JAVA_OPTIONS} -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST} \
+        ${JAVA_HOME}/bin/java \
+        --module-path ${J2EE_HOME}/lib/bootstrap --add-modules ALL-MODULE-PATH \
+        ${JAVA_OPTIONS} -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST} \
     -Dcts.tmp=$harness.temp.directory \
 	-Djava.security.auth.login.config=${TS_HOME}/bin/login.config \
 	-Djava.security.auth.policy=${TS_HOME}/bin/java.security.auth.policy \
@@ -65,7 +67,9 @@ env.ts_unix.command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
 env.ts_unix.command.testExecuteAppClient=com.sun.ts.lib.harness.ExecTSTestCmd DISPLAY=:0.0 HOME=${user.home} \
         LD_LIBRARY_PATH=${J2EE_HOME}/nativelib \
 	TZ=${TZ} \
-        ${JAVA_HOME}/bin/java -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST} \
+        ${JAVA_HOME}/bin/java \
+        --module-path ${J2EE_HOME}/lib/bootstrap --add-modules ALL-MODULE-PATH \
+        -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST} \
 		${JAVA_OPTIONS} -Djava.security.policy=${TS_HOME}/bin/java.policy -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
     -Dcts.tmp=$harness.temp.directory \
          -Dorg.xml.sax.driver=org.apache.crimson.parser.XMLReaderImpl \
@@ -82,7 +86,9 @@ env.ts_unix.command.testExecuteAppClient=com.sun.ts.lib.harness.ExecTSTestCmd DI
 env.ts_unix.command.testExecuteAppClient2=com.sun.ts.lib.harness.ExecTSTestCmd DISPLAY=:0.0 HOME=${user.home} \
         LD_LIBRARY_PATH=${J2EE_HOME_RI}/nativelib \
 	TZ=${TZ} \
-        ${JAVA_HOME}/bin/java -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST_RI} \
+        ${JAVA_HOME}/bin/java \
+        --module-path ${J2EE_HOME_RI}/lib/bootstrap --add-modules ALL-MODULE-PATH \
+        -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST_RI} \
 		${JAVA_OPTIONS} -Djava.security.policy=${TS_HOME}/bin/java.policy -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
     -Dcts.tmp=$harness.temp.directory \
          -Dorg.xml.sax.driver=org.apache.crimson.parser.XMLReaderImpl \
@@ -111,7 +117,9 @@ env.ts_win32.command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
 	windir=${windir} \
 	SYSTEMROOT=${SYSTEMROOT} \
 	PATH=${J2EE_HOME}\\nativelib \
-        ${JAVA_HOME}\\bin\\java ${JAVA_OPTIONS} -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST} \
+        ${JAVA_HOME}\\bin\\java \
+        --module-path ${J2EE_HOME}\\lib\\bootstrap --add-modules ALL-MODULE-PATH \
+        ${JAVA_OPTIONS} -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST} \
     -Dcts.tmp=$harness.temp.directory \
 	-Djava.security.auth.login.config=${TS_HOME}\\bin\\login.config \
 	-Djava.security.auth.policy=${TS_HOME}\\bin\\java.security.auth.policy \
@@ -120,7 +128,9 @@ env.ts_win32.command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
 env.ts_win32.command.testExecuteAppClient=com.sun.ts.lib.harness.ExecTSTestCmd \
 			windir=${windir} SYSTEMROOT=${SYSTEMROOT} \
 	PATH=${J2EE_HOME}\\nativelib \
-        ${JAVA_HOME}\\bin\\java ${JAVA_OPTIONS} -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST} \
+        ${JAVA_HOME}\\bin\\java \
+        --module-path ${J2EE_HOME}\\lib\\bootstrap --add-modules ALL-MODULE-PATH \
+        ${JAVA_OPTIONS} -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST} \
     -Dcts.tmp=$harness.temp.directory \
 		-Djava.security.policy=${TS_HOME}\\bin\\java.policy -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
         -Dorg.xml.sax.driver=org.apache.crimson.parser.XMLReaderImpl \
@@ -137,7 +147,9 @@ env.ts_win32.command.testExecuteAppClient=com.sun.ts.lib.harness.ExecTSTestCmd \
 env.ts_win32.command.testExecuteAppClient2=com.sun.ts.lib.harness.ExecTSTestCmd \
 			windir=${windir} SYSTEMROOT=${SYSTEMROOT} \
 	PATH=${J2EE_HOME_RI}\\nativelib \
-        ${JAVA_HOME}\\bin\\java ${JAVA_OPTIONS} -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST_RI} \
+        ${JAVA_HOME}\\bin\\java \
+        --module-path ${J2EE_HOME_RI}\\lib\\bootstrap --add-modules ALL-MODULE-PATH \
+        ${JAVA_OPTIONS} -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST_RI} \
     -Dcts.tmp=$harness.temp.directory \
 		-Djava.security.policy=${TS_HOME}\\bin\\java.policy -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
         -Dorg.xml.sax.driver=org.apache.crimson.parser.XMLReaderImpl \
