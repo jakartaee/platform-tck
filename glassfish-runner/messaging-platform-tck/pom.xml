@@ -745,7 +745,7 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/imq.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/jms.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/fscontext.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/lib/runtime.jar</additionalClasspathElement>
+                                <!-- <additionalClasspathElement>${project.build.directory}/lib/runtime.jar</additionalClasspathElement> -->
                             </additionalClasspathElements>
                             <includes>
                                 <include>com/sun/ts/tests/jms/**/*Test*.java</include>
