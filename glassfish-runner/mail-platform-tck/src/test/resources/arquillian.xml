@@ -22,7 +22,7 @@
             <property name="clientEarDir">target/appclient</property>
             <property name="unpackClientEar">true</property>
             <property name="clientDir">${project.basedir}</property>
-            <property name="workDir">${ts.home}/tmp</property>
+            <property name="workDir">${ts.work.dir}/tmp</property>
             <property name="tsJteFile">${ts.home}/bin/ts.jte</property>
             <property name="tsSqlStmtFile">${ts.home}/bin/tssql.stmt</property>
             <property name="trace">true</property>

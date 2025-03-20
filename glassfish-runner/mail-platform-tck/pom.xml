@@ -361,6 +361,7 @@
                                 <ts.home>${project.basedir}${file.separator}jakartaeetck</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                <ts.work.dir>${project.build.directory}</ts.work.dir>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
@@ -390,6 +391,7 @@
                                 <ts.home>${project.basedir}${file.separator}jakartaeetck</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
+                                <ts.work.dir>${project.build.directory}</ts.work.dir>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
