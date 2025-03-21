@@ -53,6 +53,9 @@ public class RemoteStatus implements Serializable {
         if(error != null) {
             this.errorTrace = error.getStackTrace();
             this.errorMessage = error.getMessage();
+            if(errorMessage == null) {
+                errorMessage = error.toString();
+            }
         }
     }
 
