@@ -37,10 +37,8 @@ import jakarta.persistence.EntityManagerFactory;
 import java.util.Properties;
 
 @Stateless(name = "Stateless3Bean")
-@Remote({ Stateless3IF.class })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class Stateless3Bean implements Stateless3IF {
-
 
 
 	private EntityManagerFactory emf;

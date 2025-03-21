@@ -1,5 +1,6 @@
 package ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local;
 
+import com.sun.ts.tests.common.vehicle.servlet.ServletVehicle;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -9,6 +10,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -59,19 +61,15 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.reso
             ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local.Stateless3IF.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
-            ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local.Client.class
+            Stateless3IFProxy.class,
+            Client.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/jpa/ee/packaging/ejb/resource_local/jpa_ee_packaging_ejb_resource_local_client.xml");
-            if(resURL != null) {
-              jpa_ee_packaging_ejb_resource_local_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/ejb/resource_local/jpa_ee_packaging_ejb_resource_local_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              jpa_ee_packaging_ejb_resource_local_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            jpa_ee_packaging_ejb_resource_local_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
+            URL resURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/ejb/resource_local/jpa_ee_packaging_ejb_resource_local_client.xml");
+            jpa_ee_packaging_ejb_resource_local_client.addAsManifestResource(resURL, "application-client.xml");
+            // The sun-application-client.xml is not used
+            resURL = null;
+            jpa_ee_packaging_ejb_resource_local_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_packaging_ejb_resource_local_client, Client.class, resURL);
 
@@ -86,37 +84,31 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.reso
                 ee.jakarta.tck.persistence.ee.common.B.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/ejb/resource_local/jpa_ee_packaging_ejb_resource_local_ejb.jar.xml");
-            if(ejbResURL1 != null) {
-              jpa_ee_packaging_ejb_resource_local_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
-            }
+            URL ejbResURL1 = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/ejb/resource_local/jpa_ee_packaging_ejb_resource_local_ejb.jar.xml");
+            jpa_ee_packaging_ejb_resource_local_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/ejb/resource_local/jpa_ee_packaging_ejb_resource_local_ejb.jar.jar.sun-ejb-jar.xml");
-            if(ejbResURL1 != null) {
-              jpa_ee_packaging_ejb_resource_local_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
-            }
+            ejbResURL1 = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/ejb/resource_local/jpa_ee_packaging_ejb_resource_local_ejb.jar.sun-ejb-jar.xml");
+            jpa_ee_packaging_ejb_resource_local_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_ee_packaging_ejb_resource_local_ejb, Client.class, ejbResURL1);
+            ejbResURL1 = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/ejb/resource_local/persistence.xml");
+            jpa_ee_packaging_ejb_resource_local_ejb.addAsManifestResource(ejbResURL1, "persistence.xml");
 
+
+            // non-vehicle appclientproxy invoker war
+            WebArchive appclientproxy = ShrinkWrap.create(WebArchive.class, "appclientproxy.war");
+            appclientproxy.addClasses(Client.class, StatelessServletTarget.class, ServletNoVehicle.class);
+            appclientproxy.addAsWebInfResource(new StringAsset(""), "beans.xml");
 
         // Ear
             EnterpriseArchive jpa_ee_packaging_ejb_resource_local_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_packaging_ejb_resource_local.ear");
 
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
             jpa_ee_packaging_ejb_resource_local_ear.addAsModule(jpa_ee_packaging_ejb_resource_local_ejb);
             jpa_ee_packaging_ejb_resource_local_ear.addAsModule(jpa_ee_packaging_ejb_resource_local_client);
-
-
+            jpa_ee_packaging_ejb_resource_local_ear.addAsModule(appclientproxy);
 
             // The application.xml descriptor
             URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_ee_packaging_ejb_resource_local_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
             // Call the archive processor
             archiveProcessor.processEarArchive(jpa_ee_packaging_ejb_resource_local_ear, Client.class, earResURL);
         return jpa_ee_packaging_ejb_resource_local_ear;
@@ -127,7 +119,6 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.reso
         public void test1() throws java.lang.Exception {
             super.test1();
         }
-
         @Test
         @Override
         public void test2() throws java.lang.Exception {
@@ -211,6 +202,5 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.reso
         public void test15() throws java.lang.Exception {
             super.test15();
         }
-
 
 }

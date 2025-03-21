@@ -21,32 +21,37 @@
 package ee.jakarta.tck.persistence.ee.packaging.ejb.standalone;
 
 
-import com.sun.ts.lib.harness.EETest;
-import jakarta.ejb.EJB;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.Dependent;
+import jakarta.enterprise.inject.Instance;
+import jakarta.inject.Inject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Client extends EETest {
+@Dependent
+public class Client {
+	private static Logger log = Logger.getLogger(Client.class.getName());
 
-
-
-	@EJB(name = "ejb/Stateful3Bean", beanInterface = Stateful3IF.class)
-	private static Stateful3IF bean;
+	@Dependent
+	@Inject
+	Instance<Stateful3IF> statefulBeanInstance;
+	Stateful3IF statefulBean;
 
 	private Properties props;
 
 	/*
 	 * @class.setup_props:
 	 */
-	@AfterEach
-	public void setup() throws Exception {
+	@PostConstruct
+	public void setup() {
 		try {
-			bean.init(props);
 			cleanup();
 		} catch (Exception e) {
-			throw new Exception("Setup Failed!", e);
+			throw new IllegalStateException("Setup Failed!", e);
 		}
 	}
 
@@ -81,15 +86,17 @@ public class Client extends EETest {
 	@Test
 	public void test1() throws Exception {
 
-		logTrace( "Begin test1");
+		log.info( "Begin test1");
 		boolean pass = false;
 
 		try {
-			pass = bean.test1();
-
+			statefulBean = statefulBeanInstance.get();
+			pass = statefulBean.test1();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
-
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
@@ -99,11 +106,15 @@ public class Client extends EETest {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			bean.removeTestData();
+			if(statefulBean != null) {
+				statefulBean.removeTestData();
+				statefulBeanInstance.destroy(statefulBean);
+				statefulBean = null;
+			}
 		} catch (Exception re) {
-			logErr( "Unexpected Exception in entity cleanup:", re);
+			log.log(Level.WARNING,"Unexpected Exception in entity cleanup:", re);
 		}
-		logTrace( "cleanup complete");
+		log.info( "cleanup complete");
 	}
 
 }

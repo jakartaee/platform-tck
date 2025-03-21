@@ -20,46 +20,38 @@
 
 package ee.jakarta.tck.persistence.ee.packaging.ejb.descriptor;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
+import jakarta.enterprise.context.Dependent;
+import jakarta.enterprise.inject.Instance;
+import jakarta.inject.Inject;
 
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TSNamingContext;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import java.util.Properties;
+@Dependent
+public class Client {
+	private static Logger log = Logger.getLogger(Client.class.getName());
 
-public class Client extends EETest {
+	@Dependent
+	@Inject
+	Instance<Stateful3IF> statefulBeanInstance;
+	Stateful3IF statefulBean;
+	@EJB
+	private Stateless3IF statelessBean;
 
-
-
-	public static final String StatefulRef = "java:comp/env/ejb/Stateful3Bean";
-
-	public static final String StatelessRef = "java:comp/env/ejb/Stateless3Bean";
-
-	private Stateful3IF bean;
-
-	private Stateless3IF bean1;
-
-	private Properties props;
-
-	/*
+	/** Server side
 	 * @class.setup_props:
 	 */
-
-	@BeforeEach
-	public void setup() throws Exception {
+	@PostConstruct
+	public void setup() {
 		try {
-			TSNamingContext nctx = new TSNamingContext();
-			logTrace( "Look up bean: " + StatefulRef);
-			bean = (Stateful3IF) nctx.lookup(StatefulRef);
-
-			logTrace( "Look up bean: " + StatelessRef);
-			bean1 = (Stateless3IF) nctx.lookup(StatelessRef);
+			log.info( "Look up Stateful3IF: " + statefulBean);
+			log.info( "Look up Stateless3IF: " + statelessBean);
 
 			cleanup();
 		} catch (Exception e) {
-			throw new Exception("Setup Failed!", e);
+			throw new IllegalStateException("Setup Failed!", e);
 		}
 	}
 
@@ -77,24 +69,24 @@ public class Client extends EETest {
 	 * PERSISTENCE:SPEC:975; PERSISTENCE:SPEC:952; PERSISTENCE:SPEC:949.1;
 	 * PERSISTENCE:SPEC:951; PERSISTENCE:SPEC:952; PERSISTENCE:SPEC:953;
 	 * 
-	 * @test_Strategy: With the above archive, deploy bean, create entities,
+	 * @test_Strategy: With the above archive, deploy statefulBean, create entities,
 	 * persist, then find.
 	 *
 	 */
-	@Test
+	
 	public void test1() throws Exception {
 
-		logTrace( "Begin test1");
+		log.info( "Begin test1");
 		boolean pass = false;
 
 		try {
-
-			bean.init(props);
-			pass = bean.test1();
-
+			statefulBean = statefulBeanInstance.get();
+			pass = statefulBean.test1();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
-
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
@@ -123,20 +115,19 @@ public class Client extends EETest {
 	 * context.
 	 *
 	 */
-	@Test
+	
 	public void test2() throws Exception {
-
-		logTrace( "Begin test2");
+		log.info( "Begin test2");
 		boolean pass = false;
 
 		try {
-
-			bean.init(props);
-			pass = bean.test2();
-
+			statefulBean = statefulBeanInstance.get();
+			pass = statefulBean.test2();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
-
+			log.log(Level.SEVERE,  "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
@@ -160,20 +151,20 @@ public class Client extends EETest {
 	 * IllegalStateException is thrown.
 	 *
 	 */
-	@Test
+	
 	public void test3() throws Exception {
 
-		logTrace( "Begin test3");
+		log.info( "Begin test3");
 		boolean pass = false;
 
 		try {
-
-			bean.init(props);
-			pass = bean.test3();
-
+			statefulBean = statefulBeanInstance.get();
+			pass = statefulBean.test3();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
-
+			log.log(Level.SEVERE,  "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
@@ -200,21 +191,22 @@ public class Client extends EETest {
 	 * getTransaction() and ensure IllegalStateException is thrown.
 	 *
 	 */
-	@Test
+	
 	public void test4() throws Exception {
 
-		logTrace( "Begin test4");
+		log.info( "Begin test4");
 		boolean pass = false;
 
 		try {
-
-			bean.init(props);
-			pass = bean.test4();
-
+			statefulBean = statefulBeanInstance.get();
+			pass = statefulBean.test4();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
-
+			log.log(Level.SEVERE,  "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
+
 
 		if (!pass)
 			throw new Exception("test4 failed");
@@ -229,21 +221,21 @@ public class Client extends EETest {
 	 * Application-Managed Entity Manager.
 	 *
 	 */
-	@Test
+	
 	public void test5() throws Exception {
 
-		logTrace( "Begin test5");
+		log.info( "Begin test5");
 		boolean pass = false;
 
 		try {
-
-			bean1.init(props);
-			pass = bean1.test5();
-
+			pass = statelessBean.test5();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
-
+			log.log(Level.SEVERE,  "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
+
 
 		if (!pass)
 			throw new Exception("test5 failed");
@@ -254,40 +246,47 @@ public class Client extends EETest {
 	 * 
 	 * @assertion_ids: PERSISTENCE:SPEC:954;
 	 * 
-	 * @test_Strategy: With the above archive, deploy bean, create entities,
+	 * @test_Strategy: With the above archive, deploy statefulBean, create entities,
 	 * persist, then find. This test makes sure that the contents of an orm.xml file
 	 * is automatically loaded into the persistence unit.
 	 *
 	 */
-	@Test
+	
 	public void test6() throws Exception {
 
-		logTrace( "Begin test6");
+		log.info( "Begin test6");
 		boolean pass = false;
 
 		try {
-
-			bean.init(props);
-			pass = bean.test6();
-
+			statefulBean = statefulBeanInstance.get();
+			pass = statefulBean.test6();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
-
+			log.log(Level.SEVERE,  "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
 			throw new Exception("test6 failed");
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			bean.removeTestData();
-			bean1.removeTestData();
+			if(statefulBean != null) {
+				statefulBean.removeTestData();
+				statefulBeanInstance.destroy(statefulBean);
+				statefulBean = null;
+			}
 		} catch (Exception re) {
-			logTrace( "Unexpected Exception in entity cleanup:", re);
+			log.log(Level.WARNING,"Unexpected Exception in entity cleanup:", re);
 		}
-		logTrace( "cleanup complete");
+		try {
+			statelessBean.removeTestData();
+		} catch (Exception re) {
+			log.log(Level.WARNING,"Unexpected Exception in entity cleanup:", re);
+		}
+		log.info( "cleanup complete");
 	}
 
 }

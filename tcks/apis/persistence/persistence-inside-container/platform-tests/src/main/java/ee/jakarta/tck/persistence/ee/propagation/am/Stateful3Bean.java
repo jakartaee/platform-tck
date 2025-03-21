@@ -26,7 +26,6 @@ import com.sun.ts.lib.util.TestUtil;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
-import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
@@ -38,7 +37,6 @@ import java.math.BigInteger;
 import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
-@Remote({ Stateful3IF.class })
 public class Stateful3Bean implements Stateful3IF {
 
 
@@ -76,13 +74,6 @@ public class Stateful3Bean implements Stateful3IF {
 	}
 
 	public void init(final Properties p) {
-		TestUtil.logTrace( "init");
-		try {
-			TestUtil.init(p);
-		} catch (RemoteLoggingInitException e) {
-			TestUtil.printStackTrace(e);
-			throw new EJBException(e.getMessage());
-		}
 	}
 
 	public boolean test3() {

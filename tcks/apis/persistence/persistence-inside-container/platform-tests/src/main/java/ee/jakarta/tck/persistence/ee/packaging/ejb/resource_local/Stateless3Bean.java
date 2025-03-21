@@ -20,8 +20,6 @@
 
 package ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local;
 
-
-import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.ee.common.A;
@@ -36,6 +34,8 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.RollbackException;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -100,13 +100,6 @@ public class Stateless3Bean implements Stateless3IF {
 	}
 
 	public void init(final Properties p) {
-		TestUtil.logTrace( "init");
-		try {
-			TestUtil.init(p);
-		} catch (RemoteLoggingInitException e) {
-			TestUtil.printStackTrace(e);
-			throw new EJBException(e.getMessage());
-		}
 	}
 
 	@Resource
@@ -124,7 +117,7 @@ public class Stateless3Bean implements Stateless3IF {
 				emf = (EntityManagerFactory) nctx.lookup(thisEMF);
 			}
 			if (emf != null) {
-				TestUtil.logTrace( "EMF is not null, create Entity Manager");
+				TestUtil.logTrace( "EMF is not null, create Entity Manager, EMF.name="+emf.getName());
 				entityManager = emf.createEntityManager(thisMap);
 				if (entityManager == null) {
 					TestUtil.logErr( "EntityManager is null!");
@@ -133,7 +126,10 @@ public class Stateless3Bean implements Stateless3IF {
 				TestUtil.logErr( "EntityManagerFactory is null!");
 			}
 		} catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
 			TestUtil.logErr( "In PostConstruct: Exception caught during init", e);
+			TestUtil.logErr(sw.toString());
 		}
 	}
 

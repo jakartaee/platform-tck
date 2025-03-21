@@ -38,7 +38,6 @@ import java.util.Map;
 import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
-@Remote({ Stateful3IF.class })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class Stateful3Bean implements Stateful3IF {
 

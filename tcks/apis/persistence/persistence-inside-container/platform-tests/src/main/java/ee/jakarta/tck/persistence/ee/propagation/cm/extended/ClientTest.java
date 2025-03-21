@@ -1,5 +1,7 @@
 package ee.jakarta.tck.persistence.ee.propagation.cm.extended;
 
+import com.sun.ts.tests.common.vehicle.none.proxy.AppClient;
+import com.sun.ts.tests.common.vehicle.none.proxy.ServletNoVehicle;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -9,6 +11,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -32,13 +35,6 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.ext
         jpa_ee_propagation_cm_ext_client: jar.sun-application-client.xml
         jpa_ee_propagation_cm_ext_ejb: jar.sun-ejb-jar.xml
 
-        Found Descriptors:
-        Client:
-
-        Ejb:
-
-        Ear:
-
         */
         @TargetsContainer("tck-appclient")
         @OverProtocol("appclient")
@@ -49,23 +45,14 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.ext
             JavaArchive jpa_ee_propagation_cm_ext_client = ShrinkWrap.create(JavaArchive.class, "jpa_ee_propagation_cm_ext_client.jar");
             // The class files
             jpa_ee_propagation_cm_ext_client.addClasses(
-            com.sun.ts.lib.harness.EETest.Fault.class,
-            ee.jakarta.tck.persistence.ee.propagation.cm.extended.Stateful3IF.class,
-            com.sun.ts.lib.harness.EETest.class,
-            ee.jakarta.tck.persistence.ee.propagation.cm.extended.Client.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
-            );
+                    IClient.class,
+                    IClientProxy.class,
+                    TestAppClient.class
+            ).addClasses(AppClient.getAppClasses());
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("");
-            if(resURL != null) {
-              jpa_ee_propagation_cm_ext_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            URL resURL = null;
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/.jar.sun-application-client.xml");
-            if(resURL != null) {
-              jpa_ee_propagation_cm_ext_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            jpa_ee_propagation_cm_ext_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_ee_propagation_cm_ext_client.addAsManifestResource(new StringAsset("Main-Class: " + TestAppClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_propagation_cm_ext_client, Client.class, resURL);
 
@@ -80,18 +67,11 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.ext
                 ee.jakarta.tck.persistence.ee.propagation.cm.extended.Stateful3Bean.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client.class.getResource("/");
-            if(ejbResURL1 != null) {
-              jpa_ee_propagation_cm_ext_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
-            }
+            URL ejbResURL1 = Client.class.getResource("/ee/jakarta/tck/persistence/ee/propagation/cm/extended/jpa_ee_propagation_cm_ext_ejb.jar.sun-ejb-jar.xml");
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client.class.getResource("/.jar.sun-ejb-jar.xml");
-            if(ejbResURL1 != null) {
-              jpa_ee_propagation_cm_ext_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
-            }
+            jpa_ee_propagation_cm_ext_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_ee_propagation_cm_ext_ejb, Client.class, ejbResURL1);
-
 
         // Par
             // the jar with the correct archive name
@@ -103,29 +83,15 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.ext
                 ee.jakarta.tck.persistence.ee.common.B.class
             );
             // The persistence.xml descriptor
-            URL parURL = Client.class.getResource("persistence.xml");
-            if(parURL != null) {
-              jpa_ee_propagation_cm_ext.addAsManifestResource(parURL, "persistence.xml");
-            }
-            // Add the Persistence mapping-file
-            URL mappingURL = Client.class.getResource("myMappingFile.xml");
-            if(mappingURL != null) {
-              jpa_ee_propagation_cm_ext.addAsResource(mappingURL, "myMappingFile.xml");
-            }
-            mappingURL = Client.class.getResource("myMappingFile1.xml");
-            if(mappingURL != null) {
-              jpa_ee_propagation_cm_ext.addAsResource(mappingURL, "myMappingFile1.xml");
-            }
-            mappingURL = Client.class.getResource("myMappingFile2.xml");
-            if(mappingURL != null) {
-              jpa_ee_propagation_cm_ext.addAsResource(mappingURL, "myMappingFile2.xml");
-            }
+            URL parURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/propagation/cm/extended/persistence.xml");
+            jpa_ee_propagation_cm_ext.addAsManifestResource(parURL, "persistence.xml");
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_ee_propagation_cm_ext, Client.class, parURL);
-            parURL = Client.class.getResource("orm.xml");
-            if(parURL != null) {
-              jpa_ee_propagation_cm_ext.addAsManifestResource(parURL, "orm.xml");
-            }
+
+            // non-vehicle appclientproxy invoker war
+            WebArchive appclientproxy = ShrinkWrap.create(WebArchive.class, "appclientproxy.war");
+            appclientproxy.addClasses(Client.class, ClientServletTarget.class, ServletNoVehicle.class);
+            appclientproxy.addAsWebInfResource(new StringAsset(""), "beans.xml");
 
         // Ear
             EnterpriseArchive jpa_ee_propagation_cm_ext_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_propagation_cm_ext.ear");
@@ -135,6 +101,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.ext
             // The component jars built by the package target
             jpa_ee_propagation_cm_ext_ear.addAsModule(jpa_ee_propagation_cm_ext_ejb);
             jpa_ee_propagation_cm_ext_ear.addAsModule(jpa_ee_propagation_cm_ext_client);
+            jpa_ee_propagation_cm_ext_ear.addAsModule(appclientproxy);
 
             jpa_ee_propagation_cm_ext_ear.addAsLibrary(jpa_ee_propagation_cm_ext);
 
