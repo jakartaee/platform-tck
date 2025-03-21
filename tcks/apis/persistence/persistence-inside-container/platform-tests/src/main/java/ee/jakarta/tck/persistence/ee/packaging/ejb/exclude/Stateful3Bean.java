@@ -36,11 +36,8 @@ import jakarta.persistence.PersistenceContext;
 import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
-@Remote({ Stateful3IF.class })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class Stateful3Bean implements Stateful3IF {
-
-
 
 	@PersistenceContext(unitName = "CTS-EJB-EXCLUDE")
 	private EntityManager entityManager;
@@ -97,13 +94,6 @@ public class Stateful3Bean implements Stateful3IF {
 	}
 
 	public void init(final Properties p) {
-		TestUtil.logTrace( "init");
-		try {
-			TestUtil.init(p);
-		} catch (RemoteLoggingInitException e) {
-			TestUtil.printStackTrace(e);
-			throw new EJBException(e.getMessage());
-		}
 	}
 
 	public boolean test1() {

@@ -27,7 +27,6 @@ import ee.jakarta.tck.persistence.ee.common.B;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
-import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
@@ -35,10 +34,8 @@ import jakarta.persistence.EntityManager;
 import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
-@Remote({ Stateful3IF.class })
 public class Stateful3Bean implements Stateful3IF {
 
-	
 
 	private EntityManager entityManager;
 

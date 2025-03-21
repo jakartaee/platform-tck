@@ -38,10 +38,7 @@ import jakarta.persistence.PersistenceContextType;
 import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
-@Remote({ Stateful3IF.class })
 public class Stateful3Bean implements Stateful3IF {
-
-
 
 	/*
 	 * If multiple persistence units exist the unitName element must be specified.
@@ -65,12 +62,6 @@ public class Stateful3Bean implements Stateful3IF {
 
 	public void init(final Properties p) {
 		TestUtil.logTrace( "init");
-		try {
-			TestUtil.init(p);
-		} catch (RemoteLoggingInitException e) {
-			TestUtil.printStackTrace(e);
-			throw new EJBException(e.getMessage());
-		}
 	}
 
 	public void createTestData() {

@@ -17,13 +17,10 @@
 package ee.jakarta.tck.persistence.ee.propagation.am;
 
 
-import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
@@ -37,7 +34,6 @@ import java.util.Properties;
 @PersistenceUnits({ @PersistenceUnit(name = "persistence/cau", unitName = "CTS-APPMANAGED-UNIT"),
 		@PersistenceUnit(name = "persistence/cau2", unitName = "CTS-APPMANAGED-UNIT2") })
 @Stateful(name = "Stateful3Bean2")
-@Remote({ Stateful3IF2.class })
 public class Stateful3Bean2 implements Stateful3IF2 {
 
 	
@@ -134,13 +130,7 @@ public class Stateful3Bean2 implements Stateful3IF2 {
 	}
 
 	public void init(final Properties p) {
-		TestUtil.logTrace( "init");
-		try {
-			TestUtil.init(p);
-		} catch (RemoteLoggingInitException e) {
-			TestUtil.printStackTrace(e);
-			throw new EJBException(e.getMessage());
-		}
+
 	}
 
 	public boolean test5() {

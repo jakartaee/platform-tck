@@ -20,28 +20,29 @@
 
 package ee.jakarta.tck.persistence.ee.propagation.cm.extended;
 
-
-import com.sun.ts.lib.harness.EETest;
-import jakarta.ejb.EJB;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import jakarta.enterprise.context.Dependent;
+import jakarta.enterprise.inject.Instance;
+import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Client extends EETest {
+@Dependent
+public class Client {
+	private static Logger log = Logger.getLogger(Client.class.getName());
 
-
-
-	@EJB(name = "ejb/Stateful3Bean", beanInterface = Stateful3IF.class)
-	private static Stateful3IF bean;
+	@Dependent
+	@Inject
+	Instance<Stateful3IF> statefulBeanInstance;
+	Stateful3IF statefulBean;
 
 	private Properties props;
 
 	/*
 	 * @class.setup_props:
 	 */
-	@BeforeEach
 	public void setup() throws Exception {
 	}
 
@@ -62,16 +63,18 @@ public class Client extends EETest {
 	@Test
 	public void test1() throws Exception {
 
-		logTrace( "Begin test1");
+		log.info( "Begin test1");
 		boolean pass = false;
 
 		try {
-
-			bean.init(props);
-			pass = bean.test1();
-
+			statefulBean = statefulBeanInstance.get();
+			statefulBean.init(props);
+			pass = statefulBean.test1();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
@@ -93,16 +96,18 @@ public class Client extends EETest {
 	@Test
 	public void test2() throws Exception {
 
-		logTrace( "Begin test2");
+		log.info( "Begin test2");
 		boolean pass = false;
 
 		try {
-
-			bean.init(props);
-			pass = bean.test2();
-
+			statefulBean = statefulBeanInstance.get();
+			statefulBean.init(props);
+			pass = statefulBean.test2();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
@@ -118,28 +123,31 @@ public class Client extends EETest {
 	 * @test_Strategy: With a Container Managed Entity Manager with the type defined
 	 * as PersistenceContextType.EXTENDED:
 	 *
-	 * If a stateful session bean instantiates a stateful session bean which also
+	 * If a stateful session statefulBean instantiates a stateful session statefulBean which also
 	 * has an extended persistence context, the extended persistence context of the
-	 * first session bean is inherited by the second stateful session bean and bound
+	 * first session statefulBean is inherited by the second stateful session statefulBean and bound
 	 * to it.
 	 *
 	 * With a container-managed extended persistence context, create an entity from
-	 * invoking a business method from the first bean to the second bean. Once
-	 * created verify that the entity is identical when finding in first bean or
-	 * from second bean.
+	 * invoking a business method from the first statefulBean to the second statefulBean. Once
+	 * created verify that the entity is identical when finding in first statefulBean or
+	 * from second statefulBean.
 	 */
 	@Test
 	public void test3() throws Exception {
 
-		logTrace( "Begin test3");
+		log.info( "Begin test3");
 		boolean pass = false;
 
 		try {
-			bean.init(props);
-			pass = bean.test3();
-
+			statefulBean = statefulBeanInstance.get();
+			statefulBean.init(props);
+			pass = statefulBean.test3();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
@@ -154,9 +162,9 @@ public class Client extends EETest {
 	 * @test_Strategy: With a Container Managed Entity Manager with the type defined
 	 * as PersistenceContextType.EXTENDED:
 	 *
-	 * If a stateful session bean instantiates a stateful session bean which also
+	 * If a stateful session statefulBean instantiates a stateful session statefulBean which also
 	 * has an extended persistence context, the extended persistence context of the
-	 * first session bean is inherited by the second stateful session bean and bound
+	 * first session statefulBean is inherited by the second stateful session statefulBean and bound
 	 * to it.
 	 *
 	 * With a container-managed extended persistence context, create entities,
@@ -167,16 +175,18 @@ public class Client extends EETest {
 	@Test
 	public void test4() throws Exception {
 
-		logTrace( "Begin test4");
+		log.info( "Begin test4");
 		boolean pass = false;
 
 		try {
-
-			bean.init(props);
-			pass = bean.test4();
-
+			statefulBean = statefulBeanInstance.get();
+			statefulBean.init(props);
+			pass = statefulBean.test4();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
@@ -200,16 +210,18 @@ public class Client extends EETest {
 	@Test
 	public void test5() throws Exception {
 
-		logTrace( "Begin test5");
+		log.info( "Begin test5");
 		boolean pass = false;
 
 		try {
-
-			bean.init(props);
-			pass = bean.test5();
-
+			statefulBean = statefulBeanInstance.get();
+			statefulBean.init(props);
+			pass = statefulBean.test5();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
@@ -239,23 +251,24 @@ public class Client extends EETest {
 	@Test
 	public void test6() throws Exception {
 
-		logTrace( "Begin test6");
+		log.info( "Begin test6");
 		boolean pass = false;
 		boolean pass1 = false;
 
 		try {
-
-			bean.init(props);
-			bean.removeTestData();
-			bean.createTestData();
-			pass1 = bean.test6();
+			statefulBean.init(props);
+			statefulBean.removeTestData();
+			statefulBean.createTestData();
+			pass1 = statefulBean.test6();
 
 			if (pass1) {
-				pass = bean.verifyTest6();
+				pass = statefulBean.verifyTest6();
 			}
-
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
@@ -278,25 +291,26 @@ public class Client extends EETest {
 	@Test
 	public void test7() throws Exception {
 
-		logTrace( "Begin test7");
+		log.info( "Begin test7");
 		boolean pass = false;
 
 		try {
-
-			bean.init(props);
-			pass = bean.test7();
-
+			statefulBean = statefulBeanInstance.get();
+			statefulBean.init(props);
+			pass = statefulBean.test7();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
 			throw new Exception("test7 failed");
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
-		logTrace( "cleanup complete");
+		log.info( "cleanup complete");
 	}
 
 }

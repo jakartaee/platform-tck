@@ -21,26 +21,32 @@
 package ee.jakarta.tck.persistence.ee.propagation.am;
 
 
-import com.sun.ts.lib.harness.EETest;
 import jakarta.ejb.EJB;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import jakarta.enterprise.context.Dependent;
+import jakarta.enterprise.inject.Instance;
+import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Client extends EETest {
+@Dependent
+public class Client {
+	private static Logger log = Logger.getLogger(Client.class.getName());
 
+	@Dependent
+	@Inject
+	Instance<Stateful3IF> statefulBeanInstance;
+	Stateful3IF statefulBean;
 
-
-	@EJB(name = "ejb/Stateful3Bean", beanInterface = Stateful3IF.class)
-	private static Stateful3IF statefulBean;
-
-	@EJB(name = "ejb/Stateful3Bean2", beanInterface = Stateful3IF2.class)
-	private static Stateful3IF2 statefulBean2;
+	@Dependent
+	@Inject
+	Instance<Stateful3IF2> statefulBean2Instance;
+	Stateful3IF2 statefulBean2;
 
 	@EJB(name = "ejb/Stateless3Bean", beanInterface = Stateless3IF.class)
-	private static Stateless3IF statelessBean;
+	Stateless3IF statelessBean;
 
 	private Properties props;
 
@@ -48,7 +54,6 @@ public class Client extends EETest {
 	 * @class.setup_props:
 	 */
 
-	@BeforeEach
 	public void setup() throws Exception {
 	}
 
@@ -72,18 +77,18 @@ public class Client extends EETest {
 	@Test
 	public void test1() throws Exception {
 
-		logTrace( "Begin test1");
+		log.info( "Begin test1");
 		boolean pass = false;
 
 		try {
-
 			statelessBean.init(props);
 			statelessBean.doCleanup();
 			pass = statelessBean.test1();
 			statelessBean.doCleanup();
 
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
 		}
 
 		if (!pass)
@@ -108,17 +113,17 @@ public class Client extends EETest {
 	@Test
 	public void test2() throws Exception {
 
-		logTrace( "Begin test2");
+		log.info( "Begin test2");
 		boolean pass = false;
 
 		try {
-
 			statelessBean.init(props);
 			statelessBean.doCleanup();
 			pass = statelessBean.test2();
 			statelessBean.doCleanup();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
 		}
 
 		if (!pass)
@@ -140,15 +145,16 @@ public class Client extends EETest {
 	@Test
 	public void test3() throws Exception {
 
-		logTrace( "Begin test3");
+		log.info( "Begin test3");
 		boolean pass = false;
 
 		try {
+			statefulBean = statefulBeanInstance.get();
 			statefulBean.init(props);
 			pass = statefulBean.test3();
-
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
 		}
 
 		if (!pass)
@@ -174,15 +180,18 @@ public class Client extends EETest {
 	@Test
 	public void test4() throws Exception {
 
-		logTrace( "Begin test4");
+		log.info( "Begin test4");
 		boolean pass = false;
 
 		try {
+			statefulBean = statefulBeanInstance.get();
 			statefulBean.init(props);
 			pass = statefulBean.test4();
-
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
@@ -203,20 +212,38 @@ public class Client extends EETest {
 		boolean pass = false;
 
 		try {
+			statefulBean2 = statefulBean2Instance.get();
 			statefulBean2.init(props);
 			pass = statefulBean2.test5();
-
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
 			throw new Exception("test5 failed");
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
-		logTrace( "cleanup complete");
+		try {
+			if(statefulBean != null) {
+				statefulBeanInstance.destroy(statefulBean);
+				statefulBean = null;
+			}
+		} catch (Exception re) {
+			log.log(Level.WARNING,"Unexpected Exception in entity cleanup:", re);
+		}
+		try {
+			if(statefulBean2 != null) {
+				statefulBean2Instance.destroy(statefulBean2);
+				statefulBean2 = null;
+			}
+		} catch (Exception re) {
+			log.log(Level.WARNING,"Unexpected Exception in entity cleanup:", re);
+		}
+		log.info( "cleanup complete");
 	}
 
 }

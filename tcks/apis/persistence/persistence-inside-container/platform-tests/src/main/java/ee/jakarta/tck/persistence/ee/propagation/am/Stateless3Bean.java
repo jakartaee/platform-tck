@@ -21,12 +21,10 @@
 package ee.jakarta.tck.persistence.ee.propagation.am;
 
 
-import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.ee.common.Account;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
-import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
@@ -42,7 +40,6 @@ import java.util.Map;
 import java.util.Properties;
 
 @Stateless(name = "Stateless3Bean")
-@Remote({ Stateless3IF.class })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class Stateless3Bean implements Stateless3IF {
 
@@ -188,12 +185,6 @@ public class Stateless3Bean implements Stateless3IF {
 
 	public void init(final Properties p) {
 		TestUtil.logTrace( "entering init()");
-		try {
-			TestUtil.init(p);
-		} catch (RemoteLoggingInitException e) {
-			TestUtil.printStackTrace(e);
-			throw new EJBException(e.getMessage());
-		}
 		TestUtil.logTrace( "leaving init()");
 	}
 

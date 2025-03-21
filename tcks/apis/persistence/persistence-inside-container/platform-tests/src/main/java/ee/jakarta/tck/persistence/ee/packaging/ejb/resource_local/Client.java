@@ -20,34 +20,29 @@
 
 package ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local;
 
-
 import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TSNamingContext;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
 
 import java.util.Properties;
 
 public class Client extends EETest {
 
-	
-
 	private Stateless3IF bean = null;
-
 	private Properties props;
 
-	public static final String MyStateless3Bean = "java:comp/env/ejb/Stateless3Bean";
+	/* appclient entry point */
+	public static void main(String[] args) {
+		Client client = new Client();
+		Status s = client.run(args, System.out, System.err);
+		s.exit();
+	}
 
 	/*
 	 * @class.setup_props:
 	 */
-
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties props) throws Exception {
 		try {
-			TSNamingContext nctx = new TSNamingContext();
-			bean = (Stateless3IF) nctx.lookup(MyStateless3Bean);
+			bean = Stateless3IFProxy.newInstance(props);
 			logTrace( "Looked up Bean: " + bean);
 
 		} catch (Exception e) {
@@ -85,7 +80,6 @@ public class Client extends EETest {
 	 *
 	 * begin() starts a resource_transaction
 	 */
-	@Test
 	public void test1() throws Exception {
 
 		logTrace( "Begin test1");
@@ -112,7 +106,6 @@ public class Client extends EETest {
 	 *
 	 * begin() throws an IllegalStateException if isActive() is true
 	 */
-	@Test
 	public void test2() throws Exception {
 
 		logTrace( "Begin test2");
@@ -139,7 +132,6 @@ public class Client extends EETest {
 	 *
 	 * commit() commits the current transaction
 	 */
-	@Test
 	public void test3() throws Exception {
 
 		logTrace( "Begin test3");
@@ -166,7 +158,6 @@ public class Client extends EETest {
 	 *
 	 * commit() throws an IllegalStateException if isActive() is false
 	 */
-	@Test
 	public void test4() throws Exception {
 
 		logTrace( "Begin test4");
@@ -194,7 +185,6 @@ public class Client extends EETest {
 	 *
 	 * commit() throws a RollbackException if commit fails
 	 */
-	@Test
 	public void test5() throws Exception {
 
 		logTrace( "Begin test5");
@@ -221,7 +211,6 @@ public class Client extends EETest {
 	 *
 	 * rollback() rolls back the current transaction
 	 */
-	@Test
 	public void test6() throws Exception {
 
 		logTrace( "Begin test6");
@@ -249,7 +238,6 @@ public class Client extends EETest {
 	 * setRollbackOnly() marks the current transaction so the only outcome is for
 	 * the transaction to be rolled back
 	 */
-	@Test
 	public void test7() throws Exception {
 
 		logTrace( "Begin test7");
@@ -276,7 +264,6 @@ public class Client extends EETest {
 	 *
 	 * setRollbackOnly throws IllegalStateException if isActive() is false
 	 */
-	@Test
 	public void test8() throws Exception {
 
 		logTrace( "Begin test8");
@@ -305,7 +292,6 @@ public class Client extends EETest {
 	 * rollback test getRollbackOnly when isActive() is true and TX has been marked
 	 * for rollback, so getRollbackOnly will return true
 	 */
-	@Test
 	public void test9() throws Exception {
 
 		logTrace( "Begin test9");
@@ -332,7 +318,6 @@ public class Client extends EETest {
 	 *
 	 * getRollbackOnly throws IllegalStateException if isActive() is false
 	 */
-	@Test
 	public void test10() throws Exception {
 
 		logTrace( "Begin test10");
@@ -360,7 +345,6 @@ public class Client extends EETest {
 	 * getRollbackOnly will return false
 	 *
 	 */
-	@Test
 	public void test11() throws Exception {
 
 		logTrace( "Begin test11");
@@ -389,7 +373,6 @@ public class Client extends EETest {
 	 * isActive() indicates whether a transaction is in progress Try when TX is
 	 * active
 	 */
-	@Test
 	public void test12() throws Exception {
 
 		logTrace( "Begin test12");
@@ -417,7 +400,6 @@ public class Client extends EETest {
 	 * isActive() indicates whether a transaction is in progress Try when TX is not
 	 * active
 	 */
-	@Test
 	public void test13() throws Exception {
 
 		logTrace( "Begin test13");
@@ -447,7 +429,6 @@ public class Client extends EETest {
 	 * runtime throws an exception defined to cause a transaction rollback, it must
 	 * mark the transaction for rollback.
 	 */
-	@Test
 	public void test14() throws Exception {
 
 		logTrace( "Begin test14");
@@ -477,7 +458,6 @@ public class Client extends EETest {
 	 *
 	 * 
 	 */
-	@Test
 	public void test15() throws Exception {
 
 		logTrace( "Begin test15");
@@ -495,7 +475,6 @@ public class Client extends EETest {
 			throw new Exception("test15 failed");
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			bean.removeTestData();

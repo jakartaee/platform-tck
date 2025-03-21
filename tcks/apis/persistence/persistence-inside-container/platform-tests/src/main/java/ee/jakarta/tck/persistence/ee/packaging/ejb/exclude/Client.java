@@ -20,28 +20,27 @@
 
 package ee.jakarta.tck.persistence.ee.packaging.ejb.exclude;
 
-
-import com.sun.ts.lib.harness.EETest;
-import jakarta.ejb.EJB;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import jakarta.enterprise.context.Dependent;
+import jakarta.enterprise.inject.Instance;
+import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Client extends EETest {
+@Dependent
+public class Client {
+	private static Logger log = Logger.getLogger(Client.class.getName());
 
-
-
-	@EJB(beanName = "Stateful3Bean")
-	private static Stateful3IF bean;
-
-	private Properties props;
+	@Dependent
+	@Inject
+	Instance<Stateful3IF> statefulBeanInstance;
+	Stateful3IF statefulBean;
 
 	/*
 	 * @class.setup_props:
 	 */
-	@BeforeEach
 	public void setup() throws Exception {
 
 	}
@@ -94,12 +93,13 @@ public class Client extends EETest {
 		boolean pass = false;
 
 		try {
-
-			bean.init(props);
-			pass = bean.test1();
-
+			statefulBean = statefulBeanInstance.get();
+			pass = statefulBean.test1();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
 
 		if (!pass)
@@ -131,24 +131,29 @@ public class Client extends EETest {
 		boolean pass = false;
 
 		try {
-			bean.init(props);
-			pass = bean.test2();
+			statefulBean = statefulBeanInstance.get();
+			pass = statefulBean.test2();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			log.log(Level.SEVERE, "Unexpected Exception :", e);
+			throw e;
+		} finally {
+			cleanup();
 		}
-
 		if (!pass)
 			throw new Exception("test2 failed");
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			bean.removeTestData();
+			if(statefulBean != null) {
+				statefulBean.removeTestData();
+				statefulBeanInstance.destroy(statefulBean);
+				statefulBean = null;
+			}
 		} catch (Exception re) {
-			logErr( "Unexpected Exception in entity cleanup:", re);
+			log.log(Level.SEVERE, "Unexpected Exception :", re);
 		}
-		logTrace( "cleanup complete");
+		log.info( "cleanup complete");
 	}
 
 }

@@ -20,12 +20,8 @@
 
 package ee.jakarta.tck.persistence.ee.packaging.ejb.descriptor;
 
-import java.util.Properties;
-
 public interface Stateless3IF {
 	public void removeTestData();
-
-	public void init(Properties p);
 
 	public boolean test5();
 

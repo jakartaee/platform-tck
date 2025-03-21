@@ -20,17 +20,5 @@
 <application-client version="10" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_10.xsd">
 
     <display-name>ejb3_pkg_descriptor_client</display-name>
-    <ejb-ref>
-        <ejb-ref-name>ejb/Stateless3Bean</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <remote>ee.jakarta.tck.persistence.ee.packaging.ejb.descriptor.Stateless3IF</remote>
-        <ejb-link>Stateless3Bean</ejb-link>
-    </ejb-ref>
-    <ejb-ref>
-        <ejb-ref-name>ejb/Stateful3Bean</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <remote>ee.jakarta.tck.persistence.ee.packaging.ejb.descriptor.Stateful3IF</remote>
-        <ejb-link>Stateful3Bean</ejb-link>
-    </ejb-ref>
 </application-client>
 
