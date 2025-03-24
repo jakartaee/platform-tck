@@ -57,6 +57,9 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.appclien
             jpa_ee_packaging_appclient_annotation_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_packaging_appclient_annotation_client, Client.class, resURL);
+            // The persistence.xml descriptor
+            resURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/appclient/annotation/persistence.xml");
+            jpa_ee_packaging_appclient_annotation_client.addAsManifestResource(resURL, "persistence.xml");
 
 
         // Ear
