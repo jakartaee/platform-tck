@@ -54,7 +54,7 @@
         <version.jakarta.ee.platform.tck.signaturetest>11.0.0-RC8</version.jakarta.ee.platform.tck.signaturetest>
         <version.jakarta.tck.sigtest-maven-plugin>2.6</version.jakarta.tck.sigtest-maven-plugin>
         
-        <version.org.jboss.shrinkwrap.resolver>3.1.4</version.org.jboss.shrinkwrap.resolver>
+        <version.org.jboss.shrinkwrap.resolver>3.3.4</version.org.jboss.shrinkwrap.resolver>
     </properties>
     
     <!-- The Junit5 test frameworks -->
