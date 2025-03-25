@@ -105,16 +105,17 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
-            if(resURL != null) {
-              cditestsejbweb_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            // URL resURL = null;
+            // URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            // if(resURL != null) {
+            //   cditestsejbweb_client.addAsManifestResource(resURL, "application-client.xml");
+            // }
             // // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             // resURL = Client.class.getResource("jar.sun-application-client.xml");
             // if(resURL != null) {
             //   cditestsejbweb_client.addAsManifestResource(resURL, "application-client.xml");
             // }
-            // resURL = null;
+            URL resURL = null;
             cditestsejbweb_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
 
             // Call the archive processor
@@ -156,19 +157,17 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client
             cditestsejbweb_ear.addAsModule(cditestsejbweb_client);
             cditestsejbweb_ear.addAsModule(cditestsejbweb_web);
 
-
-
             // The application.xml descriptor
             URL earResURL = null;
-            earResURL = Client.class.getResource("application.xml.clientear");
+            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/ejbweb/application.xml.clientear");
             if(earResURL != null) {
               cditestsejbweb_ear.addAsManifestResource(earResURL, "application.xml");
             }
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("application.ear.sun-application.xml");
-            if(earResURL != null) {
-              cditestsejbweb_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
+            // earResURL = Client.class.getResource("application.ear.sun-application.xml");
+            // if(earResURL != null) {
+            //   cditestsejbweb_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            // }
             // Call the archive processor
             archiveProcessor.processEarArchive(cditestsejbweb_ear, Client.class, earResURL);
         return cditestsejbweb_ear;

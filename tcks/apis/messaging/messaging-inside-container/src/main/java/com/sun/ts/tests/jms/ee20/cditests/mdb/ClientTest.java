@@ -119,7 +119,7 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
 
             // The application.xml descriptor
             URL earResURL = null;
-            earResURL = Client.class.getResource("application.xml.clientear");
+            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/mdb/application.xml.clientear");
             if(earResURL != null) {
               cditestsmdb_ear.addAsManifestResource(earResURL, "application.xml");
             }
