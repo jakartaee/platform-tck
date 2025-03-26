@@ -44,7 +44,7 @@
 
         <jakarta.tck.arquillian.version>11.0.2</jakarta.tck.arquillian.version>
         <jakarta.tck.common.version>11.0.2</jakarta.tck.common.version>
-        <version.persistence.tck>11.0.0</version.persistence.tck>
+        <tck.test.persistence.version>11.0.0</tck.test.persistence.version>
         
         <ts.home>./jakartaeetck</ts.home>
     </properties>
@@ -92,25 +92,25 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-common</artifactId>
-            <version>${version.persistence.tck}</version>
+            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-spec-tests</artifactId>
-            <version>${version.persistence.tck}</version>
+            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-tests</artifactId>
-            <version>${version.persistence.tck}</version>
+            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-dbprocedures</artifactId>
-            <version>${version.persistence.tck}</version>
+            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
