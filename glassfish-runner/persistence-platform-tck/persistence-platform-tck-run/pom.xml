@@ -44,7 +44,7 @@
 
         <jakarta.tck.arquillian.version>11.0.2</jakarta.tck.arquillian.version>
         <jakarta.tck.common.version>11.0.2</jakarta.tck.common.version>
-        <version.persistence.tck>11.0.0</version.persistence.tck>
+        <tck.test.persistence.version>11.0.0</tck.test.persistence.version>
         
         <ts.home>./jakartaeetck</ts.home>
     </properties>
@@ -92,25 +92,25 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-common</artifactId>
-            <version>${version.persistence.tck}</version>
+            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-spec-tests</artifactId>
-            <version>${version.persistence.tck}</version>
+            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-tests</artifactId>
-            <version>${version.persistence.tck}</version>
+            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-dbprocedures</artifactId>
-            <version>${version.persistence.tck}</version>
+            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -320,6 +320,7 @@
                         <harness.log.traceflag>true</harness.log.traceflag>
                         <cts.harness.debug>true</cts.harness.debug>
                         <project.basedir>${project.basedir}</project.basedir>
+                        <log.file.location>/tmp</log.file.location>
                     </systemPropertyVariables>
                 </configuration>
 
@@ -354,10 +355,12 @@
                                 <!--
                                 <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                                 <include>ee/jakarta/tck/persistence/core/annotations/basic/*Test.java</include>
+                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                                 -->
                                 <include>ee/jakarta/tck/persistence/**/*Test.java</include>
+
                             </includes>
-                            <groups>tck-javatest</groups>
+                            <groups>web</groups>
 
                             <systemPropertyVariables>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
@@ -400,16 +403,6 @@
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
             </properties>
-        </profile>
-        <profile>
-            <id>web</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>appclient</id>
-            
             <dependencies>
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
@@ -420,71 +413,6 @@
 
             <build>
                 <plugins>
-                    <plugin>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <version>3.7.1</version>
-                        <executions>
-                            <execution>
-                                <id>003-copy-protocol-lib</id>
-                                <goals>
-                                    <goal>copy</goal>
-                                </goals>
-                                <phase>generate-resources</phase>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>jakarta.tck.arquillian</groupId>
-                                            <artifactId>arquillian-protocol-lib</artifactId>
-                                            <type>jar</type>
-                                            <overWrite>true</overWrite>
-                                            <outputDirectory>${project.build.directory}/protocol</outputDirectory>
-                                            <destFileName>protocol.jar</destFileName>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>004-copy-lib-appclient</id>
-                                <goals>
-                                    <goal>copy</goal>
-                                </goals>
-                                <phase>generate-resources</phase>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>jakarta.tck</groupId>
-                                            <artifactId>common</artifactId>
-                                            <overWrite>true</overWrite>
-                                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                                            <destFileName>common.jar</destFileName>
-                                        </artifactItem>
-                                        <artifactItem>
-                                            <groupId>jakarta.tck.arquillian</groupId>
-                                            <artifactId>tck-porting-lib</artifactId>
-                                            <overWrite>true</overWrite>
-                                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                                            <destFileName>tck-porting-lib.jar</destFileName>
-                                        </artifactItem>
-                                        <artifactItem>
-                                            <groupId>jakarta.tck</groupId>
-                                            <artifactId>persistence-platform-tck-tests</artifactId>
-                                            <overWrite>true</overWrite>
-                                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                                            <destFileName>persistence-platform-tck-tests.jar</destFileName>
-                                        </artifactItem>
-                                        <artifactItem>
-                                            <groupId>jakarta.tck.arquillian</groupId>
-                                            <artifactId>arquillian-protocol-lib</artifactId>
-                                            <overWrite>true</overWrite>
-                                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                                            <destFileName>arquillian-protocol-lib.jar</destFileName>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    
                     <plugin>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <version>3.5.0</version>
@@ -498,15 +426,14 @@
                                 <configuration>
                                     <includes>
                                         <!--
-                                        <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                                         <include>ee/jakarta/tck/persistence/core/annotations/basic/*Test.java</include>
                                         <include>ee/jakarta/tck/persistence/core/annotations/basic/Client1AppmanagednotxTest.java</include>
                                         <include>ee/jakarta/tck/persistence/core/inheritance/abstractentity/Client*Test.java</include>
                                         -->
-                                        <include>ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local.ClientTest</include>
+                                        <include>ee/jakarta/tck/persistence/**/*Test.java</include>
 
                                     </includes>
-                                    <groups>tck-appclient</groups>
+                                    <groups>platform</groups>
 
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
@@ -518,6 +445,13 @@
                     </plugin>
                 </plugins>
             </build>
+
+        </profile>
+        <profile>
+            <id>web</id>
+            <properties>
+                <glassfish-artifact-id>web</glassfish-artifact-id>
+            </properties>
         </profile>
     </profiles>
 </project>
