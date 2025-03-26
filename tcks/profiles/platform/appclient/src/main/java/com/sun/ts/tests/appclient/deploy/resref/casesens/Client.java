@@ -45,23 +45,21 @@ import com.sun.ts.tests.assembly.util.shared.resref.casesens.TestCode;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
-
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
-  private Properties props = null;
+	private Properties props = null;
 
-  private TSNamingContext nctx = null;
+	private TSNamingContext nctx = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-  
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")	
- 
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
 	@Deployment(testable = false)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
@@ -81,68 +79,66 @@ public class Client extends EETest {
 		if (sunAppClientUrl != null) {
 			ejbClient.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
 		}
-		
+
 		ejbClient.addAsManifestResource(
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.resref.casesens.Client" + "\n"),
 				"MANIFEST.MF");
-
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_resref_casesens.ear");
 		ear.addAsModule(ejbClient);
 		return ear;
 	};
 
+	/**
+	 * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+	 *                     webServerHost; webServerPort; mailuser1;
+	 */
+	public void setup(String[] args, Properties props) throws Exception {
+		this.props = props;
 
-  /**
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *                     webServerHost; webServerPort; mailuser1;
-   */
-  public void setup(String[] args, Properties props) throws Exception {
-    this.props = props;
+		try {
+			nctx = new TSNamingContext();
+		} catch (Exception e) {
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    try {
-      nctx = new TSNamingContext();
-    } catch (Exception e) {
-      throw new Exception("Setup failed:", e);
-    }
-  }
-
-  /**
-   * @testName: testCaseSensitivity
-   *
-   * @assertion_ids: JavaEE:SPEC:279
-   *
-   * @test_Strategy: Deploy an application client declaring two resource
-   *                 references whose names differ only by case and are assigned
-   *                 to two distinct factory types: a
-   *                 jakarta.jms.QueueConnectionFactory and a
-   *                 jakarta.jms.TopicConnectionFactory.
-   *
-   *                 Check that the application client can lookup the two
-   *                 factories, cast them to their respective Java types, and
-   *                 create a connection (corresponding to the factory type).
-   *                 This validates that the resource references were resolved
-   *                 correctly.
-   */
-  @Test
+	/**
+	 * @testName: testCaseSensitivity
+	 *
+	 * @assertion_ids: JavaEE:SPEC:279
+	 *
+	 * @test_Strategy: Deploy an application client declaring two resource
+	 *                 references whose names differ only by case and are assigned
+	 *                 to two distinct factory types: a
+	 *                 jakarta.jms.QueueConnectionFactory and a
+	 *                 jakarta.jms.TopicConnectionFactory.
+	 *
+	 *                 Check that the application client can lookup the two
+	 *                 factories, cast them to their respective Java types, and
+	 *                 create a connection (corresponding to the factory type). This
+	 *                 validates that the resource references were resolved
+	 *                 correctly.
+	 */
+	@Test
 	@TargetVehicle("appclient")
-  public void testCaseSensitivity() throws Exception {
-    boolean pass;
+	public void testCaseSensitivity() throws Exception {
+		boolean pass;
 
-    try {
-      pass = TestCode.testCaseSensitivity(nctx);
-      if (!pass) {
-        throw new Exception("casesens res-ref test failed!");
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-      TestUtil.logErr("[Client] Caught exception: " + e);
-      throw new Exception("casesens res-ref test failed!", e);
-    }
-  }
+		try {
+			pass = TestCode.testCaseSensitivity(nctx);
+			if (!pass) {
+				throw new Exception("casesens res-ref test failed!");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			TestUtil.logErr("[Client] Caught exception: " + e);
+			throw new Exception("casesens res-ref test failed!", e);
+		}
+	}
 
-  public void cleanup() {
-    logTrace("[Client] cleanup()");
-  }
+	public void cleanup() {
+		logTrace("[Client] cleanup()");
+	}
 
 }

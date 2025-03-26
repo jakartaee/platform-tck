@@ -47,42 +47,41 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
-  private static final String prefix = "java:comp/env/ejb/";
+	private static final String prefix = "java:comp/env/ejb/";
 
-  /* These lookups differ only by case */
-  private static final String bean1Lookup = prefix + "Philosopher";
+	/* These lookups differ only by case */
+	private static final String bean1Lookup = prefix + "Philosopher";
 
-  private static final String bean2Lookup = prefix + "philosopher";
+	private static final String bean2Lookup = prefix + "philosopher";
 
-  /* Expected values for the bean name */
-  private static final String bean1RefName = "Voltaire";
+	/* Expected values for the bean name */
+	private static final String bean1RefName = "Voltaire";
 
-  private static final String bean2RefName = "Rousseau";
+	private static final String bean2RefName = "Rousseau";
 
-  private TSNamingContext nctx = null;
+	private TSNamingContext nctx = null;
 
-  private Properties props = null;
+	private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-  
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")	
- 
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
+
 	@Deployment(testable = true)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_casesens_client.jar");
 		ejbClient.addPackages(true, Client.class.getPackage());
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		
 
 		// The appclient-client descriptor
-		URL appClientUrl = Client.class.getResource(
-				"com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_casesens_client.xml");
+		URL appClientUrl = Client.class
+				.getResource("com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_casesens_client.xml");
 		if (appClientUrl != null) {
 			ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
 		}
@@ -102,7 +101,6 @@ public class Client extends EETest {
 		ejb.addPackages(false, "com.sun.ts.tests.assembly.util.shared.ejbref.common");
 		ejb.addPackages(true, Client.class.getPackage());
 
-
 		URL resURL = Client.class.getResource(
 				"/com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_casesens_ejb.jar.sun-ejb-jar.xml");
 
@@ -110,8 +108,8 @@ public class Client extends EETest {
 			ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
 		}
 
-		resURL = Client.class.getResource(
-				"/com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_casesens_ejb.xml");
+		resURL = Client.class
+				.getResource("/com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_casesens_ejb.xml");
 
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
@@ -123,84 +121,81 @@ public class Client extends EETest {
 		return ear;
 	};
 
+	/**
+	 * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+	 *                     generateSQL;
+	 *
+	 * @class.testArgs: -ap tssql.stmt
+	 *
+	 */
+	public void setup(String[] args, Properties props) throws Exception {
+		this.props = props;
 
-  /**
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *                     generateSQL;
-   *
-   * @class.testArgs: -ap tssql.stmt
-   *
-   */
-  public void setup(String[] args, Properties props) throws Exception {
-    this.props = props;
+		try {
+			nctx = new TSNamingContext();
+			logMsg("[Client] Setup succeed (got naming context).");
+		} catch (Exception e) {
+			throw new Exception("[Client] Setup failed:", e);
+		}
+	}
 
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Exception("[Client] Setup failed:", e);
-    }
-  }
-
-  /**
-   * @testName: testCaseSensitivity
-   *
-   * @assertion_ids: JavaEE:SPEC:279
-   *
-   * @test_Strategy: Deploy an application client referencing two beans whose
-   *                 name differ only by case. Each referenced bean is packaged
-   *                 with a different values for a String environment entry
-   *                 called 'myName'.
-   *
-   *                 Check that the application client can lookup the two beans.
-   *                 Check that their runtime value for the 'myName' env. entry
-   *                 are distinct and match the ones specified in the DD
-   *                 (validates that the EJB reference are resolved correctly).
-   */
-  @Test
+	/**
+	 * @testName: testCaseSensitivity
+	 *
+	 * @assertion_ids: JavaEE:SPEC:279
+	 *
+	 * @test_Strategy: Deploy an application client referencing two beans whose name
+	 *                 differ only by case. Each referenced bean is packaged with a
+	 *                 different values for a String environment entry called
+	 *                 'myName'.
+	 *
+	 *                 Check that the application client can lookup the two beans.
+	 *                 Check that their runtime value for the 'myName' env. entry
+	 *                 are distinct and match the ones specified in the DD
+	 *                 (validates that the EJB reference are resolved correctly).
+	 */
+	@Test
 	@TargetVehicle("appclient")
-  public void testCaseSensitivity() throws Exception {
-    ReferencedBean bean1 = null;
-    ReferencedBean bean2 = null;
-    String bean1Name;
-    String bean2Name;
-    boolean pass = false;
+	public void testCaseSensitivity() throws Exception {
+		ReferencedBean bean1 = null;
+		ReferencedBean bean2 = null;
+		String bean1Name;
+		String bean2Name;
+		boolean pass = false;
 
-    try {
-      TestUtil.logTrace("[Client] Looking up '" + bean1Lookup + "'...");
-      bean1 = (ReferencedBean) nctx.lookup(bean1Lookup,
-          ReferencedBean.class);
-      bean1.createNamingContext();
-      bean1.initLogging(props);
-      bean1Name = bean1.whoAreYou();
-      TestUtil.logTrace(bean1Lookup + "name is '" + bean1Name + "'");
+		try {
+			TestUtil.logTrace("[Client] Looking up '" + bean1Lookup + "'...");
+			bean1 = (ReferencedBean) nctx.lookup(bean1Lookup, ReferencedBean.class);
+			bean1.createNamingContext();
+			bean1.initLogging(props);
+			bean1Name = bean1.whoAreYou();
+			TestUtil.logTrace(bean1Lookup + "name is '" + bean1Name + "'");
 
-      TestUtil.logTrace("[Client] Looking up '" + bean2Lookup + "'...");
-      bean2 = (ReferencedBean) nctx.lookup(bean2Lookup,
-          ReferencedBean.class);
-      bean2.createNamingContext();
-      bean2.initLogging(props);
-      bean2Name = bean2.whoAreYou();
-      TestUtil.logTrace(bean2Lookup + " name is '" + bean2Name + "'");
+			TestUtil.logTrace("[Client] Looking up '" + bean2Lookup + "'...");
+			bean2 = (ReferencedBean) nctx.lookup(bean2Lookup, ReferencedBean.class);
+			bean2.createNamingContext();
+			bean2.initLogging(props);
+			bean2Name = bean2.whoAreYou();
+			TestUtil.logTrace(bean2Lookup + " name is '" + bean2Name + "'");
 
-      pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
+			pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
 
-      if (!pass) {
-        TestUtil.logErr("[Client] " + bean1Lookup + "name is '" + bean1Name
-            + "' expected '" + bean1RefName + "'");
+			if (!pass) {
+				TestUtil.logErr(
+						"[Client] " + bean1Lookup + "name is '" + bean1Name + "' expected '" + bean1RefName + "'");
 
-        TestUtil.logErr("[Client] " + bean2Lookup + "name is '" + bean2Name
-            + "' expected '" + bean2RefName + "'");
+				TestUtil.logErr(
+						"[Client] " + bean2Lookup + "name is '" + bean2Name + "' expected '" + bean2RefName + "'");
 
-        throw new Exception("ejb-ref casesens test failed!");
-      }
-    } catch (Exception e) {
-      throw new Exception("ejb-ref casesens test failed: " + e, e);
-    }
-  }
+				throw new Exception("ejb-ref casesens test failed!");
+			}
+		} catch (Exception e) {
+			throw new Exception("ejb-ref casesens test failed: " + e, e);
+		}
+	}
 
-  public void cleanup() throws Exception {
-    logMsg("[Client] cleanup()");
-  }
+	public void cleanup() throws Exception {
+		logMsg("[Client] cleanup()");
+	}
 
 }

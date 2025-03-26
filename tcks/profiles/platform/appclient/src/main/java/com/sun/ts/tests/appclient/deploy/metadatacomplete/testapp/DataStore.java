@@ -21,5 +21,5 @@ import jakarta.ejb.Local;
 @Local
 public interface DataStore {
 
-  public String getData();
+	public String getData();
 }

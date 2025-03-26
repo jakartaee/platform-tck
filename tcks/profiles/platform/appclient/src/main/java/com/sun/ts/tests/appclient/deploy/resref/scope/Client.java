@@ -48,19 +48,19 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
-  private TSNamingContext nctx = null;
+	private TSNamingContext nctx = null;
 
-  private Properties props = null;
+	private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-  
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")	
-@Deployment(name="appclient", testable = false)
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
+	@Deployment(name = "appclient", testable = false)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
 		JavaArchive ejbClient1 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_scope_another_client.jar");
@@ -80,18 +80,17 @@ public class Client extends EETest {
 		if (sunAppClientUrl != null) {
 			ejbClient1.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
 		}
-		
+
 		ejbClient1.addAsManifestResource(
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.resref.scope.Client" + "\n"),
 				"MANIFEST.MF");
-
 
 		JavaArchive ejbClient2 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_scope_client.jar");
 		ejbClient2.addPackages(true, "com.sun.ts.lib.harness");
 		ejbClient2.addClasses(Client.class, QueueCode.class);
 
-		URL resURL = Client.class.getResource(
-				"/com/sun/ts/tests/appclient/deploy/resref/scope/appclient_dep_resref_scope_client.xml");
+		URL resURL = Client.class
+				.getResource("/com/sun/ts/tests/appclient/deploy/resref/scope/appclient_dep_resref_scope_client.xml");
 
 		if (resURL != null) {
 			ejbClient2.addAsManifestResource(resURL, "ejb-jar.xml");
@@ -103,11 +102,10 @@ public class Client extends EETest {
 		if (resURL != null) {
 			ejbClient2.addAsManifestResource(resURL, "sun-ejb-jar.xml");
 		}
-		
+
 		ejbClient2.addAsManifestResource(
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.resref.scope.Client" + "\n"),
 				"MANIFEST.MF");
-
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_resref_scope.ear");
 		ear.addAsModule(ejbClient1);
@@ -115,63 +113,62 @@ public class Client extends EETest {
 		return ear;
 	};
 
+	/*
+	 * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+	 *
+	 */
+	public void setup(String[] args, Properties props) throws Exception {
+		this.props = props;
 
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *
-   */
-  public void setup(String[] args, Properties props) throws Exception {
-    this.props = props;
+		try {
+			nctx = new TSNamingContext();
+			logMsg("[Client] Setup succeed (got naming context).");
+		} catch (Exception e) {
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Exception("Setup failed:", e);
-    }
-  }
-
-  /**
-   * @testName: testScope
-   *
-   * @assertion_ids: JavaEE:SPEC:125
-   *
-   * @test_Strategy:
-   *
-   *                 We package in the same .ear file:
-   *
-   *                 - Two application clients using the same res-ref-name
-   *                 ('jms/myFactory') to reference two distinct resource
-   *                 manager connection factories (a QueueConnectionFactory and
-   *                 a TopicConnectionFactory).
-   *
-   *                 We check that:
-   *
-   *                 - We can deploy the application. - We can run one of the
-   *                 application clients - This application client can lookup
-   *                 its resource manager connection factory. - We can cast that
-   *                 factory to its expected Java type and use it to create a
-   *                 connection. This validates the resolution of the resource
-   *                 manager connection factories reference.
-   *
-   */
-  @Test
+	/**
+	 * @testName: testScope
+	 *
+	 * @assertion_ids: JavaEE:SPEC:125
+	 *
+	 * @test_Strategy:
+	 *
+	 *                 We package in the same .ear file:
+	 *
+	 *                 - Two application clients using the same res-ref-name
+	 *                 ('jms/myFactory') to reference two distinct resource manager
+	 *                 connection factories (a QueueConnectionFactory and a
+	 *                 TopicConnectionFactory).
+	 *
+	 *                 We check that:
+	 *
+	 *                 - We can deploy the application. - We can run one of the
+	 *                 application clients - This application client can lookup its
+	 *                 resource manager connection factory. - We can cast that
+	 *                 factory to its expected Java type and use it to create a
+	 *                 connection. This validates the resolution of the resource
+	 *                 manager connection factories reference.
+	 *
+	 */
+	@Test
 	@TargetVehicle("appclient")
-  public void testScope() throws Exception {
-    boolean pass;
+	public void testScope() throws Exception {
+		boolean pass;
 
-    try {
-      pass = QueueCode.checkYourQueue(nctx);
-      if (!pass) {
-        throw new Exception("res-ref scope test failed!");
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-      throw new Exception("res-ref scope test failed: " + e, e);
-    }
-  }
+		try {
+			pass = QueueCode.checkYourQueue(nctx);
+			if (!pass) {
+				throw new Exception("res-ref scope test failed!");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("res-ref scope test failed: " + e, e);
+		}
+	}
 
-  public void cleanup() throws Exception {
-    logMsg("[Client] cleanup()");
-  }
+	public void cleanup() throws Exception {
+		logMsg("[Client] cleanup()");
+	}
 }

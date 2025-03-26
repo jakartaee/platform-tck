@@ -20,12 +20,9 @@
 
 package com.sun.ts.tests.appclient.deploy.ejblink.casesens;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
-
-import javax.naming.Context;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
@@ -34,7 +31,6 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
@@ -48,36 +44,33 @@ import com.sun.ts.lib.util.TestUtil;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
-
-
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
-  private static final String prefix = "java:comp/env/ejb/";
+	private static final String prefix = "java:comp/env/ejb/";
 
-  /* These lookups differ only by case */
-  private static final String bean1Lookup = prefix + "Samba";
+	/* These lookups differ only by case */
+	private static final String bean1Lookup = prefix + "Samba";
 
-  private static final String bean2Lookup = prefix + "Bossa";
+	private static final String bean2Lookup = prefix + "Bossa";
 
-  /* Expected values for the bean name */
-  private static final String bean1RefName = "Bahia";
+	/* Expected values for the bean name */
+	private static final String bean1RefName = "Bahia";
 
-  private static final String bean2RefName = "Rio";
+	private static final String bean2RefName = "Rio";
 
-  private TSNamingContext nctx = null;
+	private TSNamingContext nctx = null;
 
-  private Properties props = null;
+	private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-  
-  
-  @TargetsContainer("appclient")
-  @OverProtocol("appclient")	
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
 	@Deployment(name = "appclient", testable = true)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
@@ -97,11 +90,10 @@ public class Client extends EETest {
 		if (sunAppClientUrl != null) {
 			ejbClient.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
 		}
-		
+
 		ejbClient.addAsManifestResource(
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.ejblink.casesens.Client" + "\n"),
 				"MANIFEST.MF");
-
 
 		System.out.println(ejbClient.toString(true));
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_casesens_ejb.jar");
@@ -122,28 +114,27 @@ public class Client extends EETest {
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
 		}
-		
-		System.out.println("##################################");
-		
-		System.out.println(ejb.toString(true));
 
+		System.out.println("##################################");
+
+		System.out.println(ejb.toString(true));
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_ejblink_casesens.ear");
 		ear.addAsModule(ejbClient);
 		ear.addAsModule(ejb);
-		//ear.as(ZipExporter.class).exportTo(
-			//    new File("/tmp/ejb.ear"), true);
+		// ear.as(ZipExporter.class).exportTo(
+		// new File("/tmp/ejb.ear"), true);
 
 		return ear;
 	};
 
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   * generateSQL;
-   *
-   * @class.testArgs: -ap tssql.stmt
-   *
-   */
+	/*
+	 * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+	 * generateSQL;
+	 *
+	 * @class.testArgs: -ap tssql.stmt
+	 *
+	 */
 	public void setup(String[] args, Properties props) throws Exception {
 		this.props = props;
 		try {
@@ -154,64 +145,64 @@ public class Client extends EETest {
 		}
 	}
 
-  /**
-   * @testName: testCaseSensitivity
-   *
-   * @assertion_ids: JavaEE:SPEC:279
-   *
-   * @test_Strategy: Have two Stateless Session beans whose ejb-name's differ
-   *                 only by case and whose identity is defined by a String
-   *                 environment entry ('myName').
-   *
-   *                 The application client references these two beans using
-   *                 ejb-link elements. Check that the client can lookup the two
-   *                 beans and check each bean identity based on their value for
-   *                 the 'myName' environment entry. Check that this identity
-   *                 match the references specified in the DD (validates that
-   *                 the EJB references were resolved correctly).
-   */
+	/**
+	 * @testName: testCaseSensitivity
+	 *
+	 * @assertion_ids: JavaEE:SPEC:279
+	 *
+	 * @test_Strategy: Have two Stateless Session beans whose ejb-name's differ only
+	 *                 by case and whose identity is defined by a String environment
+	 *                 entry ('myName').
+	 *
+	 *                 The application client references these two beans using
+	 *                 ejb-link elements. Check that the client can lookup the two
+	 *                 beans and check each bean identity based on their value for
+	 *                 the 'myName' environment entry. Check that this identity
+	 *                 match the references specified in the DD (validates that the
+	 *                 EJB references were resolved correctly).
+	 */
 	@Test
 	@TargetVehicle("appclient")
-  public void testCaseSensitivity() throws Exception {
-    CaseBean bean1 = null;
-    CaseBean bean2 = null;
-    String bean1Name;
-    String bean2Name;
-    boolean pass = false;
-   
-    try {
-      TestUtil.logTrace("[Client] Looking up '" + bean1Lookup + "'...");
-      bean1 = (CaseBean) nctx.lookup(bean1Lookup, CaseBean.class);
-      bean1.createNamingContext();
-      bean1.initLogging(props);
-      bean1Name = bean1.whoAreYou();
-      TestUtil.logTrace(bean1Lookup + "name is '" + bean1Name + "'");
+	public void testCaseSensitivity() throws Exception {
+		CaseBean bean1 = null;
+		CaseBean bean2 = null;
+		String bean1Name;
+		String bean2Name;
+		boolean pass = false;
 
-      TestUtil.logTrace("[Client] Looking up '" + bean2Lookup + "'...");
-      bean2 = (CaseBean) nctx.lookup(bean2Lookup, CaseBean.class);
-      bean2.createNamingContext();
-      bean2.initLogging(props);
-      bean2Name = bean2.whoAreYou();
-      TestUtil.logTrace(bean2Lookup + " name is '" + bean2Name + "'");
+		try {
+			TestUtil.logTrace("[Client] Looking up '" + bean1Lookup + "'...");
+			bean1 = (CaseBean) nctx.lookup(bean1Lookup, CaseBean.class);
+			bean1.createNamingContext();
+			bean1.initLogging(props);
+			bean1Name = bean1.whoAreYou();
+			TestUtil.logTrace(bean1Lookup + "name is '" + bean1Name + "'");
 
-      pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
+			TestUtil.logTrace("[Client] Looking up '" + bean2Lookup + "'...");
+			bean2 = (CaseBean) nctx.lookup(bean2Lookup, CaseBean.class);
+			bean2.createNamingContext();
+			bean2.initLogging(props);
+			bean2Name = bean2.whoAreYou();
+			TestUtil.logTrace(bean2Lookup + " name is '" + bean2Name + "'");
 
-      if (!pass) {
-        TestUtil.logErr("[Client] " + bean1Lookup + "name is '" + bean1Name
-            + "' expected '" + bean1RefName + "'");
+			pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
 
-        TestUtil.logErr("[Client] " + bean2Lookup + "name is '" + bean2Name
-            + "' expected '" + bean2RefName + "'");
+			if (!pass) {
+				TestUtil.logErr(
+						"[Client] " + bean1Lookup + "name is '" + bean1Name + "' expected '" + bean1RefName + "'");
 
-        throw new Exception("ejb-link casesens test failed!");
-      }
-    } catch (Exception e) {
-      throw new Exception("ejb-link casesens test failed: " + e, e);
-    }
-  }
+				TestUtil.logErr(
+						"[Client] " + bean2Lookup + "name is '" + bean2Name + "' expected '" + bean2RefName + "'");
 
-  public void cleanup() throws Exception {
-    logMsg("[Client] cleanup()");
-  }
+				throw new Exception("ejb-link casesens test failed!");
+			}
+		} catch (Exception e) {
+			throw new Exception("ejb-link casesens test failed: " + e, e);
+		}
+	}
+
+	public void cleanup() throws Exception {
+		logMsg("[Client] cleanup()");
+	}
 
 }

@@ -30,36 +30,36 @@ import com.sun.ts.tests.assembly.util.shared.resref.scope.TopicCode;
 /** This client is never run by the TS harness */
 public class TopicClient extends EETest {
 
-  private TSNamingContext nctx = null;
+	private TSNamingContext nctx = null;
 
-  private Properties props = null;
+	private Properties props = null;
 
-  public static void main(String[] args) {
-    TopicClient theTests = new TopicClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public static void main(String[] args) {
+		TopicClient theTests = new TopicClient();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-  /**
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   */
-  public void setup(String[] args, Properties props) throws Exception {
-    this.props = props;
+	/**
+	 * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+	 */
+	public void setup(String[] args, Properties props) throws Exception {
+		this.props = props;
 
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[TopicClient] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Exception("[TopicClient] Setup failed:", e);
-    }
-  }
+		try {
+			nctx = new TSNamingContext();
+			logMsg("[TopicClient] Setup succeed (got naming context).");
+		} catch (Exception e) {
+			throw new Exception("[TopicClient] Setup failed:", e);
+		}
+	}
 
-  /* This method is never called by the TS harness */
-  public void checkYourTopic() {
-    TopicCode.checkYourTopic(nctx);
-  }
+	/* This method is never called by the TS harness */
+	public void checkYourTopic() {
+		TopicCode.checkYourTopic(nctx);
+	}
 
-  public void cleanup() throws Exception {
-    logMsg("[TopicClient] cleanup()");
-  }
+	public void cleanup() throws Exception {
+		logMsg("[TopicClient] cleanup()");
+	}
 }

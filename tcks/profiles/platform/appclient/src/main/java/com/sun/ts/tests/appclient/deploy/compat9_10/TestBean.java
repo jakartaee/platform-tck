@@ -23,9 +23,9 @@ package com.sun.ts.tests.appclient.deploy.compat9_10;
 import java.util.Properties;
 
 public interface TestBean {
-  public void initLogging(Properties p);
+	public void initLogging(Properties p);
 
-  public void createNamingContext();
+	public void createNamingContext();
 
-  public boolean ping();
+	public boolean ping();
 }
