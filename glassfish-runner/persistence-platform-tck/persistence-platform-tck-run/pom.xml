@@ -411,7 +411,7 @@
             <dependencies>
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
-                    <artifactId>arquillian-protocol-appclient</artifactId>
+                    <artifactId>arquillian-protocol-javatest</artifactId>
                     <version>${jakarta.tck.arquillian.version}</version>
                 </dependency>
             </dependencies>
