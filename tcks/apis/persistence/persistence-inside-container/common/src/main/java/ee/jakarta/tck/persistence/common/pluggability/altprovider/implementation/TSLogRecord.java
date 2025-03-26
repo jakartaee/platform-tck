@@ -51,7 +51,7 @@ public class TSLogRecord extends LogRecord {
 	 * @param level     a logging level value
 	 * @param dateTime  dateTime of the entry
 	 * @param contextId the logging contextId
-	 * @param msg       the raw non-localized logging message
+	 * @param message       the raw non-localized logging message
 	 */
 	TSLogRecord(Level level, String dateTime, String message, String contextId) {
 		// set the rest of the fields using parent constructor
@@ -65,7 +65,7 @@ public class TSLogRecord extends LogRecord {
 	 * Construct a LogRecord with the given level and message
 	 *
 	 * @param level a logging level value
-	 * @param msg   the raw non-localized logging message
+	 * @param message   the raw non-localized logging message
 	 */
 	TSLogRecord(Level level, String message) {
 		super(level, message);
@@ -87,7 +87,7 @@ public class TSLogRecord extends LogRecord {
 	/**
 	 * Set the contextId
 	 *
-	 * @param contextId the logging context Id
+	 * @param cId the logging context Id
 	 */
 	public void setContextId(String cId) {
 		this.contextId = cId;

@@ -34,9 +34,14 @@ When running the Jakarta Persistence TCK tests you see an error log message cont
 ----
 LogFileProcessor setup failed
 Please verify that the property log.file.location exists in ts.jte
+
+SVR: Log file not found, using default location:/tmp/JPALog.xml
+Log File : /tmp/JPALog.xml does not exists
+SVR-ERROR: Check permissions for log file
+SVR-ERROR: See User guide for Configuring log file permissions
 ----
 Resolution: +
-You may have the `log.file.location` set in the ts.jte file, but if your Jakarta Persistence integration eagerly loads the testcase custom persistence provider, it may do so before the `log.file.location` property is set by the TCK harness code. To resolve this issue, you can set the `log.file.location` system property in your server configuration.
+You may have the `log.file.location` set in the ts.jte file, but if your Jakarta Persistence integration eagerly loads the testcase custom persistence provider, it may do so before the `log.file.location` property is set by the TCK harness code. To resolve this issue, you can set the `log.file.location` system property in your server configuration so the JVM has this property set before a test deployment is processed.
 
 * Problem: +
 When running signature tests you see the test has failed, but there is no indication as to why.

@@ -1042,7 +1042,7 @@ to Chapter 7 of the Jakarta Persistence API Specification
 
 [NOTE]
 ====
-There is a test of installing a custom Jakarta Persistence provider in the Jakarta Persistence API tests. The tests expect that the log.file.location from the ts.jte file has been propagated to a system property in the server environment. Normally this is automatically done by the TCK harness, but if  your Jakarta Persistence integration causes the custom `jakarta.persistence.spi.PersistenceProvider` or `jakarta.persistence.spi.ProviderUtil` to initialize before the TCK harness, you may need to set the system property manually.
+There are tests that install a custom Jakarta Persistence provider in the Jakarta Persistence API tests. The tests expect that the log.file.location from the ts.jte file has been propagated to a system property in the server environment. Normally this is automatically done by the TCK harness, but if  your Jakarta Persistence integration causes the custom `jakarta.persistence.spi.PersistenceProvider` or `jakarta.persistence.spi.ProviderUtil` to initialize before the TCK harness, you may need to set the system property manually in the container configuration. If this is not set, it will default to a temporary file in the `java.io.tmpdir' and any setting for log.file.location in the ts.jte will be ignored in favor of the temporary file.
 ====
 
 [[configure-jpa-pluggability-tests]]
