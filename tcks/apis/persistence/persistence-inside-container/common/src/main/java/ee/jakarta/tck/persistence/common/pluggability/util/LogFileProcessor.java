@@ -32,17 +32,18 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import com.sun.ts.lib.util.TestUtil;
+import ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.TSLogger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * LogFileProcessor does the following operations
+ * Client side LogFileProcessor does the following operations
  * <p/>
- * 1) Fetches log records from JPALog.txt
+ * 1) Fetches log records from JPALog.xml (TSLogger.LOG_NAME)
  * <p/>
- * 2) Checks for the existance of search string in the log for example to verify
+ * 2) Checks for the existence of search string in the log for example to verify
  * whether server log contains a string "Java EE rocks" use the following code
  * <p/>
  * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean
@@ -55,8 +56,6 @@ import org.w3c.dom.NodeList;
 public class LogFileProcessor {
 
 	private String logFileLocation = null;
-
-	private String logFileName = "JPALog.xml";
 
 	private Collection recordCollection = null;
 
@@ -72,16 +71,19 @@ public class LogFileProcessor {
 	 * setup method
 	 */
 	public void setup(Properties props) {
+		TestUtil.logTrace("LogFileProcessor setup started");
+		String defaultedLogLocation = System.getProperty(TSLogger.LOG_NAME_DEFAULT_PROPERTY);
 		logFileLocation = props.getProperty("log.file.location");
-
-		if (logFileLocation == null) {
+		if(defaultedLogLocation != null) {
+			logFileLocation = defaultedLogLocation;
+		} else if (logFileLocation == null) {
 			TestUtil.logErr("LogFileProcessor setup failed ");
 			TestUtil.logErr("Please verify that the property log.file.location exists in ts.jte");
 			throw new IllegalArgumentException("Configure log.file.location in your ts.jte");
 		} else {
 			TestUtil.logMsg("log.file.location = " + logFileLocation);
+			logFileLocation = getLogFileName(logFileLocation);
 		}
-		logFileLocation = getLogFileName(logFileLocation);
 		TestUtil.logTrace("LogFileProcessor setup finished");
 	}
 
@@ -614,8 +616,8 @@ public class LogFileProcessor {
 	}
 
 	public String getLogFileName(String logFileLocation) {
-		String logName = logFileLocation + File.separator + logFileName;
-		String lastFileName = logFileName;
+		String logName = logFileLocation + File.separator + TSLogger.LOG_NAME;
+		String lastFileName = TSLogger.LOG_NAME;
 		int lastFileIndex = 0;
 		File dir = new File(logFileLocation);
 		if (dir.exists()) {
@@ -629,7 +631,7 @@ public class LogFileProcessor {
 				for (int i = 0; i < chld.length; i++) {
 					String fName = chld[i];
 					// look for file that doesn't contain ".lck"
-					if ((fName.indexOf(logFileName) >= 0) && (fName.indexOf(".lck") < 0)) {
+					if ((fName.indexOf(TSLogger.LOG_NAME) >= 0) && (fName.indexOf(".lck") < 0)) {
 						String fileNameArr[] = fName.split("\\.");
 						if (fileNameArr.length == 3) {
 							int lastFileIndexTemp = Integer.parseInt(fileNameArr[2]);

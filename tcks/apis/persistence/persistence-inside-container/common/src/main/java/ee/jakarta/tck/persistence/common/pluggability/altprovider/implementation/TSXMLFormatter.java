@@ -80,7 +80,7 @@ public class TSXMLFormatter extends XMLFormatter {
 		if (record.getSourceClassName() != null) {
 			sb.append("  <class>");
 			escape(sb, record.getSourceClassName());
-			sb.append("; pkgName +\n");
+			sb.append("</class>\n");
 		}
 
 		if (record.getSourceMethodName() != null) {
