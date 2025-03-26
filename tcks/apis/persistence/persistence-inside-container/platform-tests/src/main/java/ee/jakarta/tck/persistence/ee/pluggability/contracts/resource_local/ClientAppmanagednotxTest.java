@@ -81,14 +81,9 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.ee.plug
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
-            if(resURL != null) {
-              pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
-            }
+            resURL = null;
             pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + com.sun.ts.tests.common.vehicle.VehicleClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client, Client.class, resURL);
@@ -118,15 +113,8 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.ee.plug
                 com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleBean.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
-            if(ejbResURL != null) {
-              pluggability_contracts_resource_local_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
-            }
+            URL ejbResURL = null;
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              pluggability_contracts_resource_local_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
-            }
             // Call the archive processor
             archiveProcessor.processEjbArchive(pluggability_contracts_resource_local_appmanagedNoTx_vehicle_ejb, Client.class, ejbResURL);
 
@@ -144,16 +132,23 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.ee.plug
             );
             // The persistence.xml descriptor
             URL parURL = Client.class.getResource("persistence.xml");
-            if(parURL != null) {
-              pluggability_contracts_resource_local.addAsManifestResource(parURL, "persistence.xml");
-            }
+            pluggability_contracts_resource_local.addAsManifestResource(parURL, "persistence.xml");
             // Call the archive processor
             archiveProcessor.processParArchive(pluggability_contracts_resource_local, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
-            if(parURL != null) {
-              pluggability_contracts_resource_local.addAsManifestResource(parURL, "orm.xml");
-            }
+            pluggability_contracts_resource_local.addAsManifestResource(parURL, "orm.xml");
+            // Mapping files
+            parURL = Client.class.getResource("myMappingFile1.xml");
+            pluggability_contracts_resource_local.addAsManifestResource(parURL, "myMappingFile1.xml");
+            parURL = Client.class.getResource("myMappingFile2.xml");
+            pluggability_contracts_resource_local.addAsManifestResource(parURL, "myMappingFile2.xml");
+
+            // jpa_alternate_provider.jar
+            JavaArchive jpa_alternate_provider = ShrinkWrap.create(JavaArchive.class, "jpa_alternate_provider.jar");
+            jpa_alternate_provider.addPackage("ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation");
+            parURL = Client.class.getResource("/ee/jakarta/tck/persistence/common/pluggability/altprovider/METAINF/services/jakarta.persistence.spi.PersistenceProvider");
+            jpa_alternate_provider.addAsServiceProvider(jakarta.persistence.spi.PersistenceProvider.class, ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.PersistenceProvider.class);
 
         // Ear
             EnterpriseArchive pluggability_contracts_resource_local_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "pluggability_contracts_resource_local_vehicles.ear");
@@ -165,6 +160,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.ee.plug
             pluggability_contracts_resource_local_vehicles_ear.addAsModule(pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client);
 
             pluggability_contracts_resource_local_vehicles_ear.addAsLibrary(pluggability_contracts_resource_local);
+            pluggability_contracts_resource_local_vehicles_ear.addAsLibrary(jpa_alternate_provider);
 
 
 

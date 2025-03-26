@@ -90,9 +90,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.ee.pluggabil
         );
         // The persistence.xml descriptor
         URL parURL = Client.class.getResource("persistence.xml");
-        if(parURL != null) {
-          pluggability_contracts_resource_local.addAsManifestResource(parURL, "persistence.xml");
-        }
+        pluggability_contracts_resource_local.addAsManifestResource(parURL, "persistence.xml");
         // Call the archive processor
         archiveProcessor.processParArchive(pluggability_contracts_resource_local, Client.class, parURL);
         // The orm.xml file

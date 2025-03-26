@@ -79,9 +79,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.ee.pluggabi
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
-            if(resURL != null) {
-              jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
@@ -116,15 +114,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.ee.pluggabi
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
-            if(ejbResURL != null) {
-              jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
-            }
-            // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
-            }
+            URL ejbResURL = null;
             // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_ejb, Client.class, ejbResURL);
 
@@ -141,19 +131,38 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.ee.pluggabi
                 ee.jakarta.tck.persistence.common.pluggability.util.LogFileProcessor.class
             );
             // The persistence.xml descriptor
-            URL parURL = Client.class.getResource("persistence.xml");
-            if(parURL != null) {
-              jpa_ee_pluggability_contracts_jta.addAsManifestResource(parURL, "persistence.xml");
-            }
+            URL parURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/pluggability/contracts/jta/persistence.xml");
+            jpa_ee_pluggability_contracts_jta.addAsManifestResource(parURL, "persistence.xml");
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_ee_pluggability_contracts_jta, Client.class, parURL);
             // The orm.xml file
-            parURL = Client.class.getResource("orm.xml");
-            if(parURL != null) {
-              jpa_ee_pluggability_contracts_jta.addAsManifestResource(parURL, "orm.xml");
-            }
+            parURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/pluggability/contracts/jta/orm.xml");
+            jpa_ee_pluggability_contracts_jta.addAsManifestResource(parURL, "orm.xml");
+            // The myMappingFile1.xml file
+            parURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/pluggability/contracts/jta/myMappingFile1.xml");
+            jpa_ee_pluggability_contracts_jta.addAsManifestResource(parURL, "myMappingFile1.xml");
+            // The myMappingFile2.xml file
+            parURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/pluggability/contracts/jta/myMappingFile2.xml");
+            jpa_ee_pluggability_contracts_jta.addAsManifestResource(parURL, "myMappingFile2.xml");
 
-        // Ear
+            JavaArchive jpa_alternate_provider = ShrinkWrap.create(JavaArchive.class,"jpa_alternate_provider.jar");
+            jpa_alternate_provider.addClasses(
+                    ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.CacheImpl.class,
+                    ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.ClassTransformerImpl.class,
+                    ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.EntityManagerFactoryImpl.class,
+                    ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.EntityManagerImpl.class,
+                    ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.EntityTransactionImpl.class,
+                    ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.PersistenceProvider.class,
+                    ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.PersistenceUnitInfoImpl.class,
+                    ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.QueryImpl.class,
+                    ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.TSLogger.class,
+                    ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.TSLogRecord.class,
+                    ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.TSXMLFormatter.class
+            ).addAsResource(
+                    new StringAsset("ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.PersistenceProvider"),
+                    "META-INF/services/jakarta.persistence.spi.PersistenceProvider");
+
+            // Ear
             EnterpriseArchive jpa_ee_pluggability_contracts_jta_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_pluggability_contracts_jta_vehicles.ear");
 
             // Any libraries added to the ear
@@ -163,19 +172,11 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.ee.pluggabi
             jpa_ee_pluggability_contracts_jta_vehicles_ear.addAsModule(jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_client);
 
             jpa_ee_pluggability_contracts_jta_vehicles_ear.addAsLibrary(jpa_ee_pluggability_contracts_jta);
-
+            jpa_ee_pluggability_contracts_jta_vehicles_ear.addAsLibrary(jpa_alternate_provider);
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/pluggability/contracts/jta/");
-            if(earResURL != null) {
-              jpa_ee_pluggability_contracts_jta_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/pluggability/contracts/jta/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_ee_pluggability_contracts_jta_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
+            URL earResURL = null;
             // Call the archive processor
             archiveProcessor.processEarArchive(jpa_ee_pluggability_contracts_jta_vehicles_ear, Client.class, earResURL);
         return jpa_ee_pluggability_contracts_jta_vehicles_ear;

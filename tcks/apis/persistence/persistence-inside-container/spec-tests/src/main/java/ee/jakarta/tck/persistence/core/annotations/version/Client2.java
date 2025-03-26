@@ -17,11 +17,12 @@
 package ee.jakarta.tck.persistence.core.annotations.version;
 
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import com.sun.ts.lib.harness.Status;
 
 public class Client2 extends Client {
-
+	static final Logger log = Logger.getLogger(Client2.class.getName());
 
 
 	public Client2() {
@@ -35,6 +36,7 @@ public class Client2 extends Client {
 
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupShortData");
+		log.info("setupShortData");
 		try {
 			super.setup(args,p);
 			removeTestData();
@@ -159,16 +161,19 @@ public class Client2 extends Client {
 		boolean pass = false;
 		try {
 			ShortClass_Field a = getEntityManager().find(ShortClass_Field.class, "3");
+			log.info("shortFieldTest, a="+a);
 			if (a != null) {
 				logTrace( "version:" + a.getVersion());
 				// if (a.getVersion() == 1) {
 				Short version = a.getVersion();
+				log.info("shortFieldTest, a.version="+version);
 				a.setName("two");
 				getEntityTransaction().begin();
 				getEntityManager().merge(a);
 				getEntityManager().flush();
 				getEntityTransaction().commit();
 				ShortClass_Field a1 = getEntityManager().find(ShortClass_Field.class, "3");
+				log.info("shortFieldTest, a1="+a1);
 				if (a1 != null) {
 					if (a1.getVersion() > version) {
 						logTrace( "version:" + a1.getVersion());
@@ -249,6 +254,7 @@ public class Client2 extends Client {
 
 	public void createShortTestData() {
 		logTrace( "createShortTestData");
+		log.info("createShortTestData");
 
 		try {
 			getEntityTransaction().begin();
@@ -257,9 +263,12 @@ public class Client2 extends Client {
 			getEntityManager().persist(new ShortClass_Field("3"));
 			getEntityManager().persist(new ShortClass_Property("4"));
 			getEntityTransaction().commit();
+			log.info("createShortTestData, committed objects");
 		} catch (Exception e) {
 			logErr( "Unexpected Exception in createShortTestData:", e);
+			log.severe("Unexpected Exception in createShortTestDat"+e.getMessage());
 		} finally {
+			log.info("createShortTestData, finally tx.isActive()="+getEntityTransaction().isActive());
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
