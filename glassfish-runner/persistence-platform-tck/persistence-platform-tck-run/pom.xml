@@ -363,6 +363,12 @@
                     <artifactId>arquillian-protocol-appclient</artifactId>
                     <version>${jakarta.tck.arquillian.version}</version>
                 </dependency>
+            <dependency>
+                <groupId>jakarta.tck.arquillian</groupId>
+                <artifactId>arquillian-protocol-lib</artifactId>
+                <version>${jakarta.tck.arquillian.version}</version>
+            </dependency>
+
             </dependencies>
 
             <build>
