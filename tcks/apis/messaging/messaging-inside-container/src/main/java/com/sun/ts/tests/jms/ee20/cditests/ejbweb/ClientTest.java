@@ -29,7 +29,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("platform")
 @Tag("jms_web")
 @Tag("web_optional")
-@Tag("tck-appclient")
+@Tag("tck-javatest")
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client {
@@ -54,8 +54,8 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client
         Ear:
 
         */
-        @TargetsContainer("tck-appclient")
-        @OverProtocol("appclient")
+        @TargetsContainer("tck-javatest")
+        @OverProtocol("javatest")
         @Deployment(name = "cditestsejbweb", order = 2)
         public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
@@ -159,7 +159,7 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client
 
             // The application.xml descriptor
             URL earResURL = null;
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/ejbweb/application.xml.clientear");
+            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/ejbweb/application.xml");
             if(earResURL != null) {
               cditestsejbweb_ear.addAsManifestResource(earResURL, "application.xml");
             }
