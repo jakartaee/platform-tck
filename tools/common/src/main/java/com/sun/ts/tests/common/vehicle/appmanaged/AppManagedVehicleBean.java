@@ -23,6 +23,7 @@ package com.sun.ts.tests.common.vehicle.appmanaged;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.RemoteStatus;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean;
 import com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper;
 
@@ -53,6 +54,10 @@ public class AppManagedVehicleBean extends EJB3ShareBaseBean
         props.put("persistence.unit.name", "CTS-EM");
         try {
             setEntityManager(emf.createEntityManager());
+            if (! getEntityManager().isJoinedToTransaction()) {
+                return new RemoteStatus(Status.failed(
+                        "application-managed entity manager should be automatically joined to active Jakarta Transactions transaction"));
+            }
             RemoteStatus retValue;
             retValue = super.runTest(args, props);
             return retValue;
