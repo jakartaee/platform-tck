@@ -23,9 +23,9 @@ package com.sun.ts.tests.appclient.deploy.ejblink.path;
 import java.util.Properties;
 
 public interface ReferencedBean {
-  public void initLogging(Properties p);
+	public void initLogging(Properties p);
 
-  public void createNamingContext();
+	public void createNamingContext();
 
-  public String whoAreYou();
+	public String whoAreYou();
 }

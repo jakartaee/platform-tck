@@ -32,12 +32,13 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.ByteArrayAsset;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
+
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
@@ -45,6 +46,7 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.assembly.util.shared.resref.single.appclient.TestCode;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
@@ -59,55 +61,54 @@ public class Client extends EETest {
 		s.exit();
 	}
 
-	
-	 @TargetsContainer("tck-javatest")
-	  @OverProtocol("javatest")	
-	@Deployment(testable = false)
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
+	@Deployment(name = "appclient", testable = false)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
-		 
-		 EnterpriseArchive ear = null;
-		 
-		 try {
-		 
-		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_single_client.jar");
-		ejbClient.addPackages(true, Client.class.getPackage());
-		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addClasses(TestCode.class, Client.class);
 
-		// The appclient-client descriptor
-		URL appClientUrl = Client.class.getResource(
-				"/com/sun/ts/tests/appclient/deploy/resref/single/appclient_dep_resref_single_client.xml");
-		if (appClientUrl != null) {
-			ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
+		EnterpriseArchive ear = null;
+
+		try {
+
+			JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_single_client.jar");
+			ejbClient.addPackages(true, Client.class.getPackage());
+			ejbClient.addPackages(true, "com.sun.ts.lib.harness");
+			ejbClient.addClasses(TestCode.class, Client.class);
+
+			// The appclient-client descriptor
+			URL appClientUrl = Client.class.getResource(
+					"/com/sun/ts/tests/appclient/deploy/resref/single/appclient_dep_resref_single_client.xml");
+			if (appClientUrl != null) {
+				ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
+			}
+			// The sun appclient-client descriptor
+			URL sunAppClientUrl = Client.class.getResource(
+					"/com/sun/ts/tests/appclient/deploy/resref/single/appclient_dep_resref_single_client.jar.sun-application-client.xml");
+			if (sunAppClientUrl != null) {
+				ejbClient.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
+			}
+
+			ejbClient.addAsManifestResource(
+					new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.resref.single.Client" + "\n"),
+					"MANIFEST.MF");
+			WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "appclient_dep_resref_single_jsp_web.war");
+			InputStream testJSP = Thread.currentThread().getContextClassLoader()
+					.getResourceAsStream("com/sun/ts/tests/appclient/deploy/resref/single/contentRoot/test.jsp");
+			webArchive.add(new ByteArrayAsset(testJSP), "test.jsp");
+
+			// The jsp descriptor
+			URL jspUrl = Client.class.getResource("appclient_dep_resref_single_jsp_web.xml");
+			if (jspUrl != null) {
+				webArchive.addAsWebInfResource(jspUrl, "web.xml");
+			}
+
+			ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_resref_single.ear");
+			ear.addAsModule(ejbClient);
+			ear.addAsModule(webArchive);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		// The sun appclient-client descriptor
-		URL sunAppClientUrl = Client.class.getResource(
-				"/com/sun/ts/tests/appclient/deploy/resref/single/appclient_dep_resref_single_client.jar.sun-application-client.xml");
-		if (sunAppClientUrl != null) {
-			ejbClient.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
-		}
-		
-		ejbClient.addAsManifestResource(
-				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.resref.single.Client" + "\n"),
-				"MANIFEST.MF");
-		WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "appclient_dep_resref_single_jsp_web.war");
-		InputStream testJSP = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/appclient/deploy/resref/single/contentRoot/test.jsp");
-        webArchive.add(new ByteArrayAsset(testJSP), "test.jsp");
-        
-		 // The jsp descriptor
-		 URL jspUrl = Client.class.getResource("appclient_dep_resref_single_jsp_web.xml");
-		 if(jspUrl != null) {
-		 	webArchive.addAsWebInfResource(jspUrl, "web.xml");
-		 }
-		
-		ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_resref_single.ear");
-		ear.addAsModule(ejbClient);
-		ear.addAsModule(webArchive);
-		 }catch(Exception e) {
-			 e.printStackTrace();
-		 }
 		return ear;
 	};
 
@@ -137,6 +138,7 @@ public class Client extends EETest {
 	 *                 the datasource. - We can use it to open a DB connection.
 	 */
 	@Test
+	@TargetVehicle("appclient")
 	public void testDatasource() throws Exception {
 		boolean pass;
 
@@ -165,6 +167,7 @@ public class Client extends EETest {
 	 *                 to a HTML page bundled in the application.
 	 */
 	@Test
+	@TargetVehicle("appclient")
 	public void testURL() throws Exception {
 		boolean pass;
 
@@ -192,6 +195,7 @@ public class Client extends EETest {
 	 *                 the JMS Queue Connection Factory.
 	 */
 	@Test
+	@TargetVehicle("appclient")
 	public void testQueue() throws Exception {
 		boolean pass;
 
@@ -219,6 +223,7 @@ public class Client extends EETest {
 	 *                 the JMS Topic Connection Factory.
 	 */
 	@Test
+	@TargetVehicle("appclient")
 	public void testTopic() throws Exception {
 		boolean pass;
 
@@ -247,6 +252,7 @@ public class Client extends EETest {
 	 *                 all the declared resource factories.
 	 */
 	@Test
+	@TargetVehicle("appclient")
 	public void testAll() throws Exception {
 		try {
 			testDatasource();

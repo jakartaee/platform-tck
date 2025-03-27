@@ -17,53 +17,60 @@
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+     <modelVersion>4.0.0</modelVersion>
+
     <parent>
-        <groupId>org.glassfish</groupId>
-        <artifactId>standalone-tck</artifactId>
-        <version>11.0.0</version>
-        <relativePath>../pom.xml</relativePath>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.9</version>
+        <relativePath />
     </parent>
-    <groupId>jakarta</groupId>
-    <artifactId>glassfish.appclient-platform-tck</artifactId>
-    <version>11.0.0</version>
+
+    <artifactId>appclient-tck</artifactId>
+
     <packaging>jar</packaging>
+
     <properties>
         <admin.pass>admin</admin.pass>
         <admin.pass.file>/tmp/ripassword</admin.pass.file>
         <admin.pass.file.encoded>${admin.pass.file}.encoded</admin.pass.file.encoded>
         <admin.user>admin</admin.user>
-        <arquillian.core.version>1.9.1.Final</arquillian.core.version>
-        <arquillian.junit>1.9.1.Final</arquillian.junit>
+
         <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
         <exec.asadmin>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</exec.asadmin>
+
+        <ri.home>${project.build.directory}/${glassfish.toplevel.dir}/mq</ri.home>
+
         <exec.imqbrokerd>${ri.home}/bin/imqbrokerd</exec.imqbrokerd>
         <exec.imqcmd>${ri.home}/bin/imqcmd</exec.imqcmd>
         <exec.imqobjmgr>${ri.home}/bin/imqobjmgr</exec.imqobjmgr>
         <exec.imqusermgr>${ri.home}/bin/imqusermgr</exec.imqusermgr>
-        <glassfish.home>${project.build.directory}/glassfish7</glassfish.home>
+        
+        <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <glassfish.module.dir>${glassfish.home}/glassfish/modules</glassfish.module.dir>
-        <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
+        <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
+        <glassfish.version>8.0.0-JDK17-M7</glassfish.version>
 
-        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
+
         <!-- mail connection properties -->
         <javamail.password>1234</javamail.password>
         <javamail.protocol>imap</javamail.protocol>
         <javamail.root.path></javamail.root.path>
         <javamail.server>localhost</javamail.server>
         <javamail.username>user01@james.local</javamail.username>
-        <jndi.factory.initial>java.naming.factory.initial=com.sun.jndi.fscontext.RefFSContextFactory</jndi.factory.initial>
+
+
+        <jndi.factory.initial>java.naming.factory.initial=com.sun.enterprise.naming.impl.SerialInitContextFactory</jndi.factory.initial>
         <jndi.fs.dir>/tmp/ri_admin_objects</jndi.fs.dir>
         <jndi.provider.url>java.naming.provider.url=file:///${jndi.fs.dir}</jndi.provider.url>
-        <jndiName>mail/Session</jndiName>
 
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
-        <ri.home>${project.build.directory}/${glassfish.toplevel.dir}/mq</ri.home>
-
-        <tck.artifactId>jakarta.jms-tck</tck.artifactId>
-        <tck.version>11.0.0</tck.version>
-        <tck.version>3.1.0</tck.version>
+        <arquillian.core.version>1.9.1.Final</arquillian.core.version>
+        <arquillian.junit>1.9.1.Final</arquillian.junit>
+        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
+        
+        <tck.version>11.0.0-RC7</tck.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -85,12 +92,17 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.common.version}</version>
+            <version>${tck.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>appclient</artifactId>
-            <version>11.0.0</version>
+            <version>11.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>assembly-tck</artifactId>
+            <version>11.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
@@ -111,17 +123,17 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${project.version}</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>${project.version}</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${project.version}</version>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
@@ -205,32 +217,6 @@
                             </artifactItems>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <execution>
-                        <id>1-unpack</id>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.glassfish.main.distributions</groupId>
-                                    <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
                     <execution>
                         <id>2-copy-lib</id>
                         <goals>
@@ -259,6 +245,20 @@
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${glassfish.lib.dir}</outputDirectory>
                                     <destFileName>tck-porting-lib.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>appclient</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
+                                    <destFileName>appclient.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck.arquillian</groupId>
+                                    <artifactId>arquillian-protocol-lib</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/protocol</outputDirectory>
+                                    <destFileName>protocol.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -383,7 +383,20 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>1-stop-domain</id>
+                        <id>2-start-database</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>start-database</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>10-stop-domain</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -396,7 +409,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>2-start-domain</id>
+                        <id>11-start-domain</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -409,7 +422,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>91-create-mail-resource</id>
+                        <id>12-create-mail-resource</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -426,12 +439,12 @@
                                 <argument>${mail.from}</argument>
                                 <argument>--property</argument>
                                 <argument>mail.smtp.port=${smtp.port}</argument>
-                                <argument>${jndiName}</argument>
+                                <argument>mail/Session</argument>
                             </arguments>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>92-create-jms-resource</id>
+                        <id>13-create-jms-resource</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -447,7 +460,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>93-create-jms-resource</id>
+                        <id>14-create-jms-resource</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -463,7 +476,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>93-list-jndi-resource</id>
+                        <id>15-create-jdbc-connection-pool</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -471,12 +484,88 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
-                                <argument>list-jndi-resources</argument>
+                                <argument>create-jdbc-connection-pool</argument>
+                                <argument>--restype</argument>
+                                <argument>javax.sql.DataSource</argument>
+                                <argument>--datasourceclassname</argument>
+                                <argument>org.apache.derby.jdbc.ClientDataSource</argument>
+                                <argument>--property</argument>
+                                <argument>databaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1:createDatabase=create</argument>
+                                <argument>cts-derby-pool</argument>
                             </arguments>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>95-stop-domain</id>
+                        <id>16-create-jdbc-resource</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>create-jdbc-resource</argument>
+                                <argument>--connectionpoolid</argument>
+                                <argument>cts-derby-pool</argument>
+                                <argument>jdbc/DB1</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>17-create-jvm-options</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>create-jvm-options</argument>
+                                <argument>-Djava.naming.factory.initial=com.sun.enterprise.naming.impl.SerialInitContextFactory</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>18-list-jms-resources</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>list-jms-resources</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>19-list-jdbc-resources</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>list-jdbc-resources</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>20-list-mail-resources</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>list-mail-resources</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>21-stop-domain</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -495,7 +584,7 @@
                 <version>3.0.0-M5</version>
                 <executions>
                     <execution>
-                        <id>mail-tests-appclient</id>
+                        <id>tests-appclient</id>
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
@@ -503,7 +592,7 @@
                         <configuration>
                             <dependenciesToScan>jakarta.tck:appclient</dependenciesToScan>
                             <includes>
-                                <include>**/ejblink/casesens/*.*</include>
+                                <include>**/**/*.*</include>
                             </includes>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${glassfish.module.dir}/angus-mail.jar</additionalClasspathElement>
@@ -523,13 +612,12 @@
                             </additionalClasspathElements>
                             <systemPropertyVariables>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                <ts.home>${env.TS_HOME}</ts.home>
+                                <ts.home>${project.basedir}/jakartaeetck</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
-                                <arquillian.xml>arquillian.xml</arquillian.xml>
+                                <junit.log.traceflag>true</junit.log.traceflag>
+                                <harness.log.traceflag>true</harness.log.traceflag>
+                                <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
                             </systemPropertyVariables>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
                         </configuration>
                     </execution>
                 </executions>

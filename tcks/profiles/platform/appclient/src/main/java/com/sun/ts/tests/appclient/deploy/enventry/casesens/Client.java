@@ -42,25 +42,24 @@ import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.assembly.util.shared.enventry.casesens.TestCode;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
-  private TSNamingContext nctx = null;
+	private TSNamingContext nctx = null;
 
-  private Properties props = null;
+	private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-  
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")	
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-	@Deployment(testable = false)
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
+	@Deployment(name = "appclient", testable = false)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_enventry_casesens_client.jar");
@@ -73,60 +72,59 @@ public class Client extends EETest {
 		if (appClientUrl != null) {
 			ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
 		}
-		
+
 		ejbClient.addAsManifestResource(
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.enventry.casesens.Client" + "\n"),
 				"MANIFEST.MF");
-
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_enventry_casesens.ear");
 		ear.addAsModule(ejbClient);
 		return ear;
 	};
 
+	/*
+	 * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+	 *
+	 */
+	public void setup(String[] args, Properties props) throws Exception {
+		this.props = props;
 
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *
-   */
-  public void setup(String[] args, Properties props) throws Exception {
-    this.props = props;
+		try {
+			nctx = new TSNamingContext();
+			logMsg("[Client] Setup succeed (got naming context).");
+		} catch (Exception e) {
+			throw new Exception("[Client] Setup failed:", e);
+		}
+	}
 
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Exception("[Client] Setup failed:", e);
-    }
-  }
+	/**
+	 * @testName: testCaseSensitivity
+	 *
+	 * @assertion_ids: JavaEE:SPEC:279
+	 *
+	 * @test_Strategy: Deploy an application client with two String environment
+	 *                 entries whose name differ only by case and are assigned to
+	 *                 two distinct values. Check that we can lookup the two
+	 *                 environment entries. Check that their runtime values are
+	 *                 distinct and match the ones specified in the DD.
+	 */
+	@Test
+	@TargetVehicle("appclient")
+	public void testCaseSensitivity() throws Exception {
+		boolean pass;
 
-  /**
-   * @testName: testCaseSensitivity
-   *
-   * @assertion_ids: JavaEE:SPEC:279
-   *
-   * @test_Strategy: Deploy an application client with two String environment
-   *                 entries whose name differ only by case and are assigned to
-   *                 two distinct values. Check that we can lookup the two
-   *                 environment entries. Check that their runtime values are
-   *                 distinct and match the ones specified in the DD.
-   */
-  @Test
-  public void testCaseSensitivity() throws Exception {
-    boolean pass;
+		try {
+			pass = TestCode.testCaseSensitivity(nctx);
+			if (!pass) {
+				throw new Exception("Case sensitivity test failed!");
+			}
+		} catch (Exception e) {
+			throw new Exception("Case sensitivity test failed: " + e, e);
+		}
+	}
 
-    try {
-      pass = TestCode.testCaseSensitivity(nctx);
-      if (!pass) {
-        throw new Exception("Case sensitivity test failed!");
-      }
-    } catch (Exception e) {
-      throw new Exception("Case sensitivity test failed: " + e, e);
-    }
-  }
-
-  public void cleanup() throws Exception {
-    logMsg("[Client] cleanup()");
-  }
+	public void cleanup() throws Exception {
+		logMsg("[Client] cleanup()");
+	}
 
 }

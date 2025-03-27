@@ -24,8 +24,8 @@ import com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper;
 
 public class ReferencedBean2EJB extends Stateless3xWrapper {
 
-  public String whoAreYou() {
-    return ReferencedBeanCode.whoAreYou(nctx);
-  }
+	public String whoAreYou() {
+		return ReferencedBeanCode.whoAreYou(nctx);
+	}
 
 }

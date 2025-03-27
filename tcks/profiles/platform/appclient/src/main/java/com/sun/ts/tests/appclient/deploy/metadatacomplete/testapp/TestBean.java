@@ -23,17 +23,17 @@ import jakarta.inject.Named;
 @Named("mybean")
 public class TestBean {
 
-  public TestBean() {
-    System.out.println(">>>>>>>>>>>>> Test123 ");
-  }
+	public TestBean() {
+		System.out.println(">>>>>>>>>>>>> Test123 ");
+	}
 
-  @PostConstruct
-  public void postConstruct() {
-    System.out.println(">>> TestBean:postConstruct()");
-  }
+	@PostConstruct
+	public void postConstruct() {
+		System.out.println(">>> TestBean:postConstruct()");
+	}
 
-  @PreDestroy
-  public void preDestroy() {
-    System.out.println(">>> TestBean:preDestroy()");
-  }
+	@PreDestroy
+	public void preDestroy() {
+		System.out.println(">>> TestBean:preDestroy()");
+	}
 }

@@ -44,15 +44,19 @@ public class TestCode {
 
     try {
       TestUtil.logTrace("Looking up '" + name + "'");
+      System.out.println("Looking up '" + name + "'");
       runtimeVal = (String) nctx.lookup("java:comp/env/" + name);
       TestUtil.logTrace("Runtime value is '" + runtimeVal + "'");
-
+      System.out.println("Runtime value is '" + runtimeVal + "'");
       pass = runtimeVal.equals(ref);
       if (!pass) {
         TestUtil.logErr("Expected value was '" + ref + "'");
+        System.out.println("Expected value was '" + ref + "'");
       }
     } catch (Exception e) {
       TestUtil.logErr("Caught exception: " + e, e);
+      System.out.println("Caught exception" + e.getMessage());
+      e.printStackTrace();
       pass = false;
     }
 

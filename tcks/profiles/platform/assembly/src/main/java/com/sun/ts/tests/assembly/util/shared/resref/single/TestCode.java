@@ -52,15 +52,15 @@ public class TestCode {
    */
   protected static final String dbLookup = prefix + "jdbc/DB1";
 
-  protected static final String mailLookup = prefix + "mail/MailSession";
+  protected static final String mailLookup = prefix + "mail/Session";
 
   protected static final String urlLookup = prefix + "url/URL";
 
   protected static final String queueLookup = prefix
-      + "jms/myQueueConnectionFactory";
+      + "jms/QueueConnectionFactory";
 
   protected static final String topicLookup = prefix
-      + "jms/myTopicConnectionFactory";
+      + "jms/TopicConnectionFactory";
 
   /*
    * Hard coded values used to send mail.

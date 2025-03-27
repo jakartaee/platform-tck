@@ -42,35 +42,34 @@ import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.assembly.util.shared.enventry.scope.TestCode;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-
+import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
-  /** Env. entry name for JNDI lookup */
-  private static final String entryName = "Duende";
+	/** Env. entry name for JNDI lookup */
+	private static final String entryName = "Duende";
 
-  /** Reference value for the env. entry (as specified in DD). */
-  private static final String entryRef = "Paco de Lucia";
+	/** Reference value for the env. entry (as specified in DD). */
+	private static final String entryRef = "Paco de Lucia";
 
-  private TSNamingContext nctx = null;
+	private TSNamingContext nctx = null;
 
-  private Properties props = null;
+	private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-  
-  
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")	
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-	@Deployment(testable = false)
+	@TargetsContainer("tck-appclient")
+	@OverProtocol("appclient")
+	@Deployment(name = "appclient", testable = false)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
-		JavaArchive ejbClient1 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_enventry_scope_another_client.jar");
+		JavaArchive ejbClient1 = ShrinkWrap.create(JavaArchive.class,
+				"appclient_dep_enventry_scope_another_client.jar");
 		ejbClient1.addClasses(Client.class, TestCode.class);
 		ejbClient1.addPackages(true, "com.sun.ts.lib.harness");
 
@@ -80,11 +79,10 @@ public class Client extends EETest {
 		if (appClientUrl != null) {
 			ejbClient1.addAsManifestResource(appClientUrl, "application-client.xml");
 		}
-		
+
 		ejbClient1.addAsManifestResource(
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.enventry.scope.Client" + "\n"),
 				"MANIFEST.MF");
-
 
 		JavaArchive ejbClient2 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_enventry_scope_client.jar");
 		ejbClient2.addClasses(Client.class, TestCode.class);
@@ -96,11 +94,10 @@ public class Client extends EETest {
 		if (resURL != null) {
 			ejbClient2.addAsManifestResource(resURL, "application-client.xml");
 		}
-		
+
 		ejbClient2.addAsManifestResource(
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.enventry.scope.Client" + "\n"),
 				"MANIFEST.MF");
-
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_enventry_scope.ear");
 		ear.addAsModule(ejbClient1);
@@ -108,53 +105,52 @@ public class Client extends EETest {
 		return ear;
 	};
 
+	/*
+	 * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+	 *
+	 */
+	public void setup(String[] args, Properties props) throws Exception {
+		this.props = props;
 
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *
-   */
-  public void setup(String[] args, Properties props) throws Exception {
-    this.props = props;
+		try {
+			nctx = new TSNamingContext();
+			logMsg("[Client] Setup succeed (got naming context).");
+		} catch (Exception e) {
+			throw new Exception("[Client] Setup failed:", e);
+		}
+	}
 
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Exception("[Client] Setup failed:", e);
-    }
-  }
+	/**
+	 * @testName: testScope
+	 *
+	 * @assertion_ids: JavaEE:SPEC:102
+	 *
+	 * @test_Strategy: We package in the same .ear file 2 application clients
+	 *                 (_client and _another_client). Both use the same
+	 *                 env-entry-name to declare two distinct String environment
+	 *                 entry values.
+	 *
+	 *                 We check that: - We can deploy the application. - One of the
+	 *                 application clients (_client) can be run and can lookup its
+	 *                 String environment entry. - The runtime value of this entry
+	 *                 correspond to the one declared in the Deployment Descriptor.
+	 */
+	@Test
+	@TargetVehicle("appclient")
+	public void testScope() throws Exception {
+		boolean pass;
 
-  /**
-   * @testName: testScope
-   *
-   * @assertion_ids: JavaEE:SPEC:102
-   *
-   * @test_Strategy: We package in the same .ear file 2 application clients
-   *                 (_client and _another_client). Both use the same
-   *                 env-entry-name to declare two distinct String environment
-   *                 entry values.
-   *
-   *                 We check that: - We can deploy the application. - One of
-   *                 the application clients (_client) can be run and can lookup
-   *                 its String environment entry. - The runtime value of this
-   *                 entry correspond to the one declared in the Deployment
-   *                 Descriptor.
-   */
-  @Test
-  public void testScope() throws Exception {
-    boolean pass;
+		try {
+			pass = TestCode.checkEntry(nctx, entryName, entryRef);
+			if (!pass) {
+				throw new Exception("Env entry scope test failed!");
+			}
+		} catch (Exception e) {
+			throw new Exception("Env entry scope test failed: " + e, e);
+		}
+	}
 
-    try {
-      pass = TestCode.checkEntry(nctx, entryName, entryRef);
-      if (!pass) {
-        throw new Exception("Env entry scope test failed!");
-      }
-    } catch (Exception e) {
-      throw new Exception("Env entry scope test failed: " + e, e);
-    }
-  }
-
-  public void cleanup() throws Exception {
-    logMsg("[Client] cleanup()");
-  }
+	public void cleanup() throws Exception {
+		logMsg("[Client] cleanup()");
+	}
 }
