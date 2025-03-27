@@ -323,52 +323,6 @@
                         <log.file.location>/tmp</log.file.location>
                     </systemPropertyVariables>
                 </configuration>
-
-                <executions>
-                    <execution>
-                        <id>jpa-tests-cdi</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <includes>
-                                <include>ee/jakarta/tck/persistence/ee/cdi/*Test.java</include>
-                            </includes>
-
-                            <skipITs>${cdi.skip}</skipITs>
-
-                            <systemPropertyVariables>
-                                <arquillian.xml>rest-arquillian.xml</arquillian.xml>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>jta-tests-javatest</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <includes>
-                                <!--
-                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
-                                <include>ee/jakarta/tck/persistence/core/annotations/basic/*Test.java</include>
-                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
-                                -->
-                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
-
-                            </includes>
-                            <groups>web</groups>
-
-                            <systemPropertyVariables>
-                                <arquillian.xml>arquillian.xml</arquillian.xml>
-                                <ts.home>${ts.home}</ts.home>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
 
             <plugin>
@@ -409,6 +363,12 @@
                     <artifactId>arquillian-protocol-appclient</artifactId>
                     <version>${jakarta.tck.arquillian.version}</version>
                 </dependency>
+            <dependency>
+                <groupId>jakarta.tck.arquillian</groupId>
+                <artifactId>arquillian-protocol-lib</artifactId>
+                <version>${jakarta.tck.arquillian.version}</version>
+            </dependency>
+
             </dependencies>
 
             <build>
@@ -429,6 +389,8 @@
                                         <include>ee/jakarta/tck/persistence/core/annotations/basic/*Test.java</include>
                                         <include>ee/jakarta/tck/persistence/core/annotations/basic/Client1AppmanagednotxTest.java</include>
                                         <include>ee/jakarta/tck/persistence/core/inheritance/abstractentity/Client*Test.java</include>
+
+                                        <include>ee/jakarta/tck/persistence/core/annotations/mapkeycolumn/*Test.java</include>
                                         -->
                                         <include>ee/jakarta/tck/persistence/**/*Test.java</include>
 
@@ -452,6 +414,66 @@
             <properties>
                 <glassfish-artifact-id>web</glassfish-artifact-id>
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-javatest</artifactId>
+                    <version>${jakarta.tck.arquillian.version}</version>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>3.5.0</version>
+                        <executions>
+                        <execution>
+                            <id>jpa-tests-cdi</id>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                            <configuration>
+                                <includes>
+                                    <include>ee/jakarta/tck/persistence/ee/cdi/*Test.java</include>
+                                </includes>
+
+                                <skipITs>${cdi.skip}</skipITs>
+
+                                <systemPropertyVariables>
+                                    <arquillian.xml>rest-arquillian.xml</arquillian.xml>
+                                </systemPropertyVariables>
+                            </configuration>
+                        </execution>
+
+                        <execution>
+                            <id>jta-tests-javatest</id>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                            <configuration>
+                                <includes>
+                                    <!--
+                                    <include>ee/jakarta/tck/persistence/**/*Test.java</include>
+                                    <include>ee/jakarta/tck/persistence/core/annotations/basic/*Test.java</include>
+                                    <include>ee/jakarta/tck/persistence/core/annotations/mapkeycolumn/*Test.java</include>
+                                    -->
+                                    <include>ee/jakarta/tck/persistence/**/*Test.java</include>
+                                </includes>
+                                <groups>web</groups>
+
+                                <systemPropertyVariables>
+                                    <arquillian.xml>arquillian.xml</arquillian.xml>
+                                    <ts.home>${ts.home}</ts.home>
+                                </systemPropertyVariables>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+            </build>
         </profile>
     </profiles>
 </project>
