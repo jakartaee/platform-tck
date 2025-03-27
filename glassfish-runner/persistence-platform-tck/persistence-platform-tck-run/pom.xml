@@ -438,6 +438,7 @@
                                 <includes>
                                     <include>ee/jakarta/tck/persistence/ee/cdi/*Test.java</include>
                                 </includes>
+                                <excludedGroups>tck-appclient,tck-javatest</excludedGroups>
 
                                 <skipITs>${cdi.skip}</skipITs>
 
