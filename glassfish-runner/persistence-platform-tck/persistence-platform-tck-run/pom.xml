@@ -440,7 +440,7 @@
 
                                     </includes>
                                     <groups>platform</groups>
-
+                                    <excludedGroups>web</excludedGroups>
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
