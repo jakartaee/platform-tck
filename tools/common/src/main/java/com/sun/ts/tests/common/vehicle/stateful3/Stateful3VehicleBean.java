@@ -37,6 +37,8 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceUnit;
+import jakarta.transaction.Transaction;
+import jakarta.transaction.Transactional;
 
 @Stateful(name = "Stateful3VehicleBean")
 public class Stateful3VehicleBean extends EJB3ShareBaseBean
@@ -67,6 +69,7 @@ public class Stateful3VehicleBean extends EJB3ShareBaseBean
 
     // ================== business methods ====================================
     @Remove
+    @Transactional(Transactional.TxType.REQUIRED)
     public RemoteStatus runTest(String[] args, Properties props) {
         RemoteStatus retValue;
         props.put("persistence.unit.name", "CTS-EM");
