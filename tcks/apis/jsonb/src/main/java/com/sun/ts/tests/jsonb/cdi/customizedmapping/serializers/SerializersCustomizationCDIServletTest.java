@@ -54,7 +54,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
  **/
 @Tag("tck-javatest")
 @Tag("jsonb")
-@Tag("platform")
 @Tag("web")
 @ExtendWith(ArquillianExtension.class)
 public class SerializersCustomizationCDIServletTest extends SerializersCustomizationCDITest {

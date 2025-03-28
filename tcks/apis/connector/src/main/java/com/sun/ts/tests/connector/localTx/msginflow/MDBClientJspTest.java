@@ -24,7 +24,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("connector_mdb_optional")
-@Tag("platform")
 @Tag("tck-javatest")
 
 @TestMethodOrder(MethodOrderer.MethodName.class)

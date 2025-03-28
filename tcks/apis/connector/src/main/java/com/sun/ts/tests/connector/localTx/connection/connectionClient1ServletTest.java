@@ -25,7 +25,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("connector")
-@Tag("platform")
 @Tag("connector_standalone")
 @Tag("connector_web")
 @Tag("web_optional")

@@ -25,7 +25,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @ExtendWith(ArquillianExtension.class)
 @Tag("ejb")
 @Tag("ejb32")
-@Tag("platform")
 @Tag("tck-javatest")
 
 public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb32.timer.service.singleton.Client {

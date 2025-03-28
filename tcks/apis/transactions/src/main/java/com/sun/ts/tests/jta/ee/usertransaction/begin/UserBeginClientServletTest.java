@@ -22,7 +22,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("jta")
-@Tag("platform")
 @Tag("web")
 @Tag("tck-javatest")
 

@@ -26,7 +26,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("jms")
-@Tag("platform")
 @Tag("jms_web")
 @Tag("web_optional")
 @Tag("tck-javatest")

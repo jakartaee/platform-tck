@@ -26,7 +26,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("integration")
-@Tag("platform")
 @Tag("tck-javatest")
 
 @TestMethodOrder(MethodOrderer.MethodName.class)

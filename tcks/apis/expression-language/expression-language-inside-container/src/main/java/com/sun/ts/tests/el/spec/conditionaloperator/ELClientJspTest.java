@@ -52,7 +52,6 @@ import java.util.stream.Collectors;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("el")
-@Tag("platform")
 @Tag("web")
 @Tag("tck-javatest")
 public class ELClientJspTest extends ServiceEETest {

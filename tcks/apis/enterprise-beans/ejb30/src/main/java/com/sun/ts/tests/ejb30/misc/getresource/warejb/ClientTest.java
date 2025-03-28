@@ -20,7 +20,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("platform")
 @Tag("ejb_3x_remote_optional")
 @Tag("web_optional")
 @Tag("tck-javatest")

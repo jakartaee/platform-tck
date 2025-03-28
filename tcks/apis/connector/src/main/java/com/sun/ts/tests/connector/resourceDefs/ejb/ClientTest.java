@@ -25,7 +25,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("platform")
 @Tag("connector_resourcedef_ejb_optional")
 @Tag("tck-javatest")
 

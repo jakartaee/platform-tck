@@ -21,7 +21,6 @@ import java.net.URL;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("platform")
 @Tag("ejb_web")
 @Tag("web")
 @Tag("tck-javatest")

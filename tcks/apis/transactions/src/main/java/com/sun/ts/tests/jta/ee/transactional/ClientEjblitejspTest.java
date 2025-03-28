@@ -25,7 +25,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("jta")
-@Tag("platform")
 @Tag("web")
 @Tag("tck-javatest")
 public class ClientEjblitejspTest extends com.sun.ts.tests.jta.ee.transactional.Client {

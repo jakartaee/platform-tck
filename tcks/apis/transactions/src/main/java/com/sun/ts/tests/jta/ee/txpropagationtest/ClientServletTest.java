@@ -24,7 +24,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("jta")
-@Tag("platform")
 @Tag("tck-javatest")
 
 public class ClientServletTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Client {

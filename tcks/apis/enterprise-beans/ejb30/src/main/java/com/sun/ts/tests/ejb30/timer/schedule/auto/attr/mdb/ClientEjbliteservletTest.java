@@ -23,7 +23,6 @@ import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("platform")
 @Tag("ejb_mdb_optional")
 @Tag("web_optional")
 @Tag("tck-javatest")

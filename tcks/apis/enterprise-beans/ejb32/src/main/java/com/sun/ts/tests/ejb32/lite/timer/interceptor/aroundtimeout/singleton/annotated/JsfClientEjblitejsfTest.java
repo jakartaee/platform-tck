@@ -18,7 +18,6 @@ import java.net.URL;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("platform")
 @Tag("web_optional")
 @Tag("ejb_persistent_timer_optional")
 @Tag("tck-javatest")

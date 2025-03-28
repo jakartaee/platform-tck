@@ -39,7 +39,6 @@ import static java.lang.System.Logger.Level.INFO;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("jta")
-@Tag("platform")
 @Tag("web")
 @Tag("tck-javatest")
 @jakarta.inject.Named("client")

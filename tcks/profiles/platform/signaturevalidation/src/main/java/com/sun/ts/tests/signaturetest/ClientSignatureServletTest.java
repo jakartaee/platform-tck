@@ -42,7 +42,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("signaturetest")
-@Tag("platform")
 @Tag("web")
 public class ClientSignatureServletTest extends JakartaEESigTest implements Serializable {
     static final String VEHICLE_ARCHIVE = "signaturetest_ClientSignatureServletTest_servlet_vehicle_web.war";

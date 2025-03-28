@@ -19,7 +19,6 @@ import java.net.URL;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("platform")
 @Tag("web")
 @Tag("tck-javatest")
 

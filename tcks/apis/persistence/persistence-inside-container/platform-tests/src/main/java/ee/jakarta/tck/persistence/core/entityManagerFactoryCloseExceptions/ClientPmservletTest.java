@@ -20,7 +20,6 @@ import java.net.URL;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("persistence")
-@Tag("platform")
 @Tag("web")
 @Tag("tck-javatest")
 @TestMethodOrder(MethodOrderer.MethodName.class)
