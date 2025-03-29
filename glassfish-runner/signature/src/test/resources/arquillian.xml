@@ -21,12 +21,6 @@
                 <property name="trace">true</property>
                 <property name="workDir">${project.build.directory}</property>
                 <property name="tsJteFile">${project.build.directory}/test-classes/ts.jte</property>
-                <property name="runClient">true</property>
-                <property name="runAsVehicle">true</property>
-                <property name="clientEarDir">target/appclient</property>
-                <property name="unpackClientEar">true</property>
-                <property name="clientDir">${project.basedir}</property>
-                <property name="clientTimeout">20000</property>
             </protocol>
         </container>
     </group>

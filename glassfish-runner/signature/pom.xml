@@ -47,26 +47,13 @@
         <!-- Note that currently, this must have src as the first directory as it is hard-coded in the test -->
         <signature.file.dir>${base.tck.dir}/src</signature.file.dir>
         
-        <version.jakarta.ee.platform.tck.signaturevalidation>11.0.0</version.jakarta.ee.platform.tck.signaturevalidation>
-        <version.jakarta.tck.arquillian>11.0.0</version.jakarta.tck.arquillian>
-
-        <version.jakarta.ee.platform.tck.common>11.0.0-RC6</version.jakarta.ee.platform.tck.common>
-        <version.jakarta.ee.platform.tck.signaturetest>11.0.0-RC8</version.jakarta.ee.platform.tck.signaturetest>
+        <version.jakarta.tck>11.0.1-SNAPSHOT</version.jakarta.tck>
         <version.jakarta.tck.sigtest-maven-plugin>2.6</version.jakarta.tck.sigtest-maven-plugin>
-        
-        <version.org.jboss.shrinkwrap.resolver>3.1.4</version.org.jboss.shrinkwrap.resolver>
     </properties>
     
-    <!-- The Junit5 test frameworks -->
+    <!-- Import the tck relevant boms -->
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>5.12.0</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
@@ -75,24 +62,25 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.2</version>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                <version>${version.jakarta.tck}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
+
     </dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>signaturevalidation</artifactId>
-            <version>${version.jakarta.ee.platform.tck.signaturevalidation}</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>signaturetest</artifactId>
-            <version>${version.jakarta.ee.platform.tck.signaturetest}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
@@ -101,38 +89,19 @@
         </dependency>
 
         <!-- Jakarta TCK tools dependencies -->
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>common</artifactId>
-            <version>${version.jakarta.ee.platform.tck.common}</version>
-        </dependency>
-        
+
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-container-spi</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-container-test-spi</artifactId>
         </dependency>
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
@@ -143,34 +112,8 @@
         <dependency>
             <groupId>org.jboss.shrinkwrap</groupId>
             <artifactId>shrinkwrap-api</artifactId>
-            <version>1.2.6</version>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-depchain</artifactId>
-            <version>${version.org.jboss.shrinkwrap.resolver}</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-api</artifactId>
-            <version>${version.org.jboss.shrinkwrap.resolver}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-            <version>${version.org.jboss.shrinkwrap.resolver}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-api-maven</artifactId>
-            <version>${version.org.jboss.shrinkwrap.resolver}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-spi-maven</artifactId>
-            <version>${version.org.jboss.shrinkwrap.resolver}</version>
-        </dependency>
+
     </dependencies>
 
     <build>
@@ -229,7 +172,7 @@
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
                                     <artifactId>signaturevalidation</artifactId>
-                                    <version>${version.jakarta.ee.platform.tck.signaturevalidation}</version>
+                                    <version>${version.jakarta.tck}</version>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${base.tck.dir}</outputDirectory>
                                     <includes>**/sig-test.map,**/sig-test-pkg-list.txt</includes>
@@ -237,7 +180,7 @@
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
                                     <artifactId>signaturevalidation</artifactId>
-                                    <version>${version.jakarta.ee.platform.tck.signaturevalidation}</version>
+                                    <version>${version.jakarta.tck}</version>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${signature.file.dir}</outputDirectory>
                                     <includes>**/*.sig</includes>
