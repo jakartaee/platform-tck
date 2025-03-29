@@ -25,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(ArquillianExtension.class)
 @Tag("platform")
 @Tag("web")
+@Tag("arq-servlet")
 public class ServletEMLookupTest {
 
     @ArquillianResource
