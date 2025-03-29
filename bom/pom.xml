@@ -94,6 +94,7 @@
         <artifactId>shrinkwrap-resolver-depchain</artifactId>
         <version>${shrinkwrap.resolver.version}</version>
         <type>pom</type>
+        <scope>import</scope>
       </dependency>
 
       <!-- Jakarta TCK Test Artifacts -->
@@ -281,7 +282,26 @@
         <artifactId>shrinkwrap-api</artifactId>
         <version>1.2.6</version>
       </dependency>
-
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.resolver</groupId>
+        <artifactId>shrinkwrap-resolver-api</artifactId>
+        <version>${shrinkwrap.resolver.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.resolver</groupId>
+        <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+        <version>${shrinkwrap.resolver.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.resolver</groupId>
+        <artifactId>shrinkwrap-resolver-api-maven</artifactId>
+        <version>${shrinkwrap.resolver.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.resolver</groupId>
+        <artifactId>shrinkwrap-resolver-spi-maven</artifactId>
+        <version>${shrinkwrap.resolver.version}</version>
+      </dependency>
     </dependencies> 
   </dependencyManagement> 
 </project>

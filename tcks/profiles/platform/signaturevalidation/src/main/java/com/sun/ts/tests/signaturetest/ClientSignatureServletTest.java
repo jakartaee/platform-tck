@@ -158,8 +158,10 @@ public class ClientSignatureServletTest extends JakartaEESigTest implements Seri
 
         // add jakarta.tck:sigtest-maven-plugin jar to the war
         // Import Maven runtime dependencies
+        String profiles = System.getProperty("active.profiles", "");
+        String[] activeMavenProfiles = !profiles.isEmpty() ? profiles.split(",") : new String[] {};
         File[] files = Maven.resolver()
-                .loadPomFromFile("pom.xml")
+                .loadPomFromFile("pom.xml", activeMavenProfiles)
                 .resolve("jakarta.tck:sigtest-maven-plugin", "jakarta.tck:signaturetest")
                 .withoutTransitivity()
                 .asFile();
