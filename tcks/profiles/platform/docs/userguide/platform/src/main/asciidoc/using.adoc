@@ -47,7 +47,7 @@ Running the tests from a maven test runner pom is the standard way of automating
 
 
 [[running-test-cli]]
-=== To Run Test in Command-Line Mode
+=== To Run Testa in Command-Line Mode
 
 Any framework that allows one to configure the run of Junit5 tests could be used, but in this section we will highlight the use of maven and the maven-surefire-plugin. The platform-tck project includes a set of maven runner projects for {glassfish_version} in the https://github.com/jakartaee/platform-tck/tree/main/glassfish-runner subproject. There is one runner project for each of the technology test artifacts. You can use these runners as a template for your own test runners, or you can create one complete test runner that includes all the technology test artifacts.
 
@@ -75,6 +75,7 @@ Your runner configuration should have a dependencyManagement section that import
 [[maven-dependency-management]]
 [source,xml,subs="attributes+"]
 ----
+    <!-- Import project BOMs to simplify dependency versions -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -212,13 +213,12 @@ The version of these artifacts is the same as the service release version of the
 ==== Arquillian Container Configurations
 
 [[arquillian-container-javatest]]
-===== Arquillian Container Configuration (JavaTest Protocol)
-In addition to specifying the test framework and TCK test artifact dependencies, you need to configure the Arquillian container. The
-Arquillian container manages the VI being tested and handles starting the container, deploying the test archives, and then stopping the container.
+===== Arquillian Container Configuration (javatest Protocol)
+In addition to specifying the test framework and TCK test artifact dependencies, you need to configure the Arquillian container. The Arquillian container manages the VI being tested and handles starting the container, deploying the test archives, and then stopping the container.
 
-The configuration will depend on the container you are using, but you will need to include a configuration of the Arquillian javatest protocol for platform tests.
+The configuration will depend on the container you are using, but you will need to include a configuration of the Arquillian javatest protocol for web profile tests.
 
-.Maven `arquillian.xml` javatest Protocol Configuration
+.Maven `javatest-arquillian.xml` javatest Protocol Configuration
 [source,xml]
 ----
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -235,12 +235,12 @@ The configuration will depend on the container you are using, but you will need 
 
   <group qualifier="glassfish-servers" default="true">
     <container qualifier="tck-javatest" default="true">
-        <configuration> <1>
+        <configuration> <!-- 1 -->
             <property name="glassFishHome">target/glassfish8</property>
             <property name="debug">true</property>
             <property name="suspend">false</property>
         </configuration>
-        <protocol type="javatest"> <2>
+        <protocol type="javatest"> <!-- 2 -->
             <property name="trace">true</property>
             <property name="workDir">/tmp</property>
             <property name="tsJteFile">jakartaeetck/bin/ts.jte</property>
@@ -252,11 +252,52 @@ The configuration will depend on the container you are using, but you will need 
 </arquillian>
 ----
 <1> This is the managed container specific config, here for {glassfish_version}.
-<2> This is the javatest protocol configuration.
+<2> This is the appclient protocol configuration.
 * `tsJteFile` property is the path to the ts.jte file that contains the configuration for the test run.
 * `tsSqlStmtFile` property is the path to the SQL file that contains the DML statements for the test run.
 * the `trace` property is used to enable additional logging for the test run.
 * the `workDir` property is the directory where the test TCK classes will put working files.
+
+[[failsafe-plugin-javatest]]
+===== Failsafe Plugin Configuration (javatest Protocol)
+
+And finally, you need to configure a surefire/failsafe plugin execution to use this container configuration. The following is an example of the surefire/failsafe plugin configuration for the javatest protocol:
+
+.Example `javatest-arquillian.xml` maven-failsafe-plugin Configuration
+[source,xml]
+----
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <trimStackTrace>false</trimStackTrace>
+                    <dependenciesToScan>...</dependenciesToScan>
+                    <systemPropertyVariables>
+                        ...
+                    </systemPropertyVariables>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>jpa-tests-web</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                ...
+                            </includes>
+                            <excludeGroups>tck-appclient,arq-servlet</excludeGroups> <!-- 1 -->
+
+                            <systemPropertyVariables>
+                                <arquillian.xml>javatest-arquillian.xml</arquillian.xml><!-- 2 -->
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
+----
+<1> Exclude other protocol types used in TCK.
+<2> Set the `arquillian.xml` property to the `javatest-arquillian.xml` file example above.
 
 ===== Arquillian Container Configuration (Servlet Protocol)
 The new CDI/Persistence integration tests in the jakarta.tck:persistence-platform-tck-tests artifact ee.jakarta.tck.persistence.ee.cdi package require an Arquillian container with the Servlet protocol. The bom for the common Jakarta EE based protocols was included in the <<runner-maven-dependencies>> section example above.
@@ -305,8 +346,11 @@ You will also need a container configuration for the Servlet protocol. The follo
 ----
 <1> This sets the default protocol to Servlet 5.0.
 
+[[failsafe-plugin-servlet]]
+===== Failsafe Plugin Configuration (Servlet Protocol)
 And finally, you need to configure a surefire/failsafe plugin execution to use this container configuration. The following is an example of the surefire/failsafe plugin configuration for the Servlet protocol:
 
+.Example `servlet-arquillian.xml` maven-failsafe-plugin Configuration
 [source,xml]
 ----
             <plugin>
@@ -343,18 +387,134 @@ And finally, you need to configure a surefire/failsafe plugin execution to use t
 <2> Set the `arquillian.xml` property to the `servlet-arquillian.xml` file example above.
 
 [[arquillian-container-appclient]]
-===== Arquillian Container Configuration (Appclient Protocol) (Full Platform Only)
-To be completed for the full platform TCK release.
+===== Arquillian Container Configuration (appclient Protocol) (Full Platform Only)
+Full platform tests make use of the Application Client container. These tests require a special Arquillian protocol that is used to run the tests in the Application Client container. Thus, full platforrm TCK tests will require a test plugin configuration that setups the appclient protocol.
 
-[[running-sigtest-example]]
-==== Example - Running the Jakarta EE {tck_version} Platform TCK Signature Tests (Needs Rewrite)
-
-To run the Jakarta EE {tck_version} Platform TCK signature tests, enter the following commands:
-
-[source,oac_no_warn]
+.Maven `appclient-arquillian.xml` appclient Protocol Configuration
+[source,xml]
 ----
-TBD
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://jboss.org/schema/arquillian"
+            xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+  <engine>
+    <property name="deploymentExportPath">target/deployments</property>
+  </engine>
+
+  <extension qualifier="glassfish-descriptors">
+    <property name="descriptorDir">target</property>
+  </extension>
+
+  <group qualifier="glassfish-servers" default="true">
+    <container qualifier="tck-appclient" default="true">
+        <configuration> <!-- 1 -->
+            <property name="glassFishHome">target/glassfish8</property>
+            <property name="allowConnectingToRunningServer">true</property>
+            <property name="debug">false</property>
+            <property name="suspend">false</property>
+        </configuration>
+        <protocol type="appclient"> <!-- 2 -->
+            <property name="runClient">true</property>
+            <property name="runAsVehicle">true</property>
+            <property name="clientEarDir">target/appclient</property>
+            <property name="unpackClientEar">true</property>
+            <!-- Need to populate from ts.jte command.testExecuteAppClient setting for glassfish -->
+            <property name="clientCmdLineString">${glassfish.home}/glassfish/bin/appclient \
+                -Djdk.tls.client.enableSessionTicketExtension=false \
+                -Djdk.tls.server.enableSessionTicketExtension=false \
+                -Djava.security.policy=${glassfish.home}/glassfish/lib/appclient/client.policy \
+                -Dcts.tmp=${ts.home}/tmp \
+                -Djava.security.auth.login.config=${glassfish.home}/glassfish/lib/appclient/appclientlogin.conf \
+                -Djava.protocol.handler.pkgs=javax.net.ssl \
+                -Djavax.net.ssl.keyStore=${ts.home}/bin/certificates/clientcert.jks \
+                -Djavax.net.ssl.keyStorePassword=changeit \
+                -Djavax.net.ssl.trustStore=${glassfish.home}/glassfish/domains/domain1/config/cacerts.jks \
+                -Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl \
+                -Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl \
+                -Djavax.xml.transform.TransformerFactory=com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl \
+                -Dorg.xml.sax.driver=com.sun.org.apache.xerces.internal.parsers.SAXParser \
+                -Dorg.xml.sax.parser=org.xml.sax.helpers.XMLReaderAdapter \
+                -Doracle.jdbc.J2EE13Compliant=true \
+                -Doracle.jdbc.mapDateToTimestamp \
+                -Dstartup.login=false \
+                -Dauth.gui=false \
+                -Dlog.file.location=${glassfish.home}/glassfish/domains/domain1/logs \
+                -Dri.log.file.location=${glassfish.home}/glassfish/domains/domain1/logs \
+                -DwebServerHost.2=localhost \
+                -DwebServerPort.2=8080 \
+                -Ddeliverable.class=com.sun.ts.lib.deliverable.cts.CTSDeliverable \
+                -jar \
+                ${clientEarDir}/${clientAppArchive}
+            </property>
+            <property name="cmdLineArgSeparator">\\</property>
+            <!-- Pass ENV vars here -->
+            <property name="clientEnvString">AS_JAVA=${env.JAVA_HOME};PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
+                APPCPATH=target/appclient/lib/arquillian-protocol-lib.jar</property>
+            <property name="clientDir">${project.basedir}</property>
+            <property name="clientTimeout">20000</property>
+            <property name="workDir">/tmp</property>
+            <property name="tsJteFile">jakartaeetck/bin/ts.jte</property>
+            <property name="tsSqlStmtFile">sql/derby/derby.dml.sql</property>
+            <property name="trace">true</property>
+        </protocol>
+    </container>
+  </group>
+
+</arquillian>
 ----
+<1> This is the managed container specific config, here for {glassfish_version}.
+<2> This is the appclient protocol configuration.
+* `runClient` - set to true to run the client
+* `runAsVehicle` - should be true for platform TCK
+* `clientEarDir` - the directory where the client EAR test artifact will be created
+* `unpackClientEar` - if true, the client EAR will be unpacked. If the VI appclient container does not support a path to the client jar inside of an EAR, then this should be set to true.
+* `clientCmdLineString` - the command line the VI uses to launch and application client. This should be a space separated list of arguments, but long command lines can be broken up using a separator character that can be specified using the `cmdLineArgSeparator` property. There are two special properties that can be used in the command line:
+** `${clientEarDir}` : this will be replaced with the clientEarDir property value as an absolute path.
+** `${clientAppArchive}` - this is the client app archive that contains the appclient main class. It is a relative path to the clientEarDir property.
+* `cmdLineArgSeparator` - the character used to split command line arguments into multiple lines. Each line should be a single argument and the last line should not end with the separator character. Each line will be trimmed of leading and trailing whitespace.
+* `clientEnvString` - any environment variables that need to be set for the appclient process. This is a semicolon separated list of environment variables in the form VAR=VALUE. You can pass through runner environment variables if you have the xml file as a resource and have resource filtering on. Use the maven syntax of `${env.VARNAME}` to access the runner VARNAME envrionment variable.
+* `clientDir` - the working directory of the appclient container process.
+* `clientTimeout` - a timeout in milliseconds for the appclient process to finish. The appclient process will be terminated if it does not finish in this time.
+* `tsJteFile` property is the path to the ts.jte file that contains the configuration for the test run.
+* `tsSqlStmtFile` property is the path to the SQL file that contains the DML statements for the test run.
+* the `trace` property is used to enable additional logging for the test run.
+* the `workDir` property is the directory where the test TCK classes will put working files.
+
+[[failsafe-plugin-appclient]]
+===== Failsafe Plugin Configuration (appclient Protocol) (Full Platform Only)
+
+[source,xml]
+----
+        <plugin>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>3.5.0</version>
+            <executions>
+                <execution>
+                    <id>jpa-tests-appclient</id>
+                    <goals>
+                        <goal>integration-test</goal>
+                        <goal>verify</goal>
+                    </goals>
+                    <configuration>
+                        <includes>
+                            <include>...</include>
+                        </includes>
+                        <groups>platform</groups> <!-- 1 -->
+                        <excludedGroups>tck-javatest,arq-servlet</excludedGroups> <!-- 2 -->
+
+                        <systemPropertyVariables>
+                            <arquillian.xml>appclient-arquillian.xml</arquillian.xml> <!-- 3 -->
+                            <ts.home>${ts.home}</ts.home>
+                        </systemPropertyVariables>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+----
+<1> Restrict the tests run to only those in the `platform` group, which is the group of tests required by the Full Platform. Only the Full Platform supports the appclient container.
+<2> Exclude the protocol types other than tck-appclient.
+<3> Set the `arquillian.xml` property to the `appclient-arquillian.xml` file example above.
 
 [[running-tests-package]]
 ==== Example - Running a Single Test Package
@@ -378,12 +538,12 @@ To run a single test package, you would configure your surefile/failsafe plugin 
                         </goals>
                         <configuration>
                             <includes>
-                                <include>ee/jakarta/tck/persistence/ee/cdi/*Test.java</include><1>
+                                <include>ee/jakarta/tck/persistence/ee/cdi/*Test.java</include><!-- 1 -->
                             </includes>
 
 
                             <systemPropertyVariables>
-                                <arquillian.xml>cdi-arquillian.xml</arquillian.xml>
+                                <arquillian.xml>cdi-arquillian.xml</arquillian.xml> <!-- 2 -->
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
@@ -392,16 +552,195 @@ To run a single test package, you would configure your surefile/failsafe plugin 
             </plugin>
 ----
 <1> Restrict the tests run to only those in the `ee.jakarta.tck.persistence.ee.cdi` package.
+<2> As described in the <<arquillian-container-configuration>> section, you need to set the `arquillian.xml` property to a container configuration for the protocol used by the tests.
 
-You could further restrict the included test to a specific test class by changing the include to the specific test class name.
+You could further restrict the included test to a specific test class by changing the includes to a specific test class name.
+
+
+[[running-sigtest-example]]
+=== Running the Jakarta EE {tck_version} Platform TCK Signature Tests
+
+To run the Jakarta EE {tck_version} Platform TCK signature tests, configure a runner as outlined in the following example segments from the glassfish-runner/signature/pom.xml runner.
+
+.Example Maven `dependencyManagement` and `dependencies` Section
+[source,xml]
+----
+   <properties>
+        <!-- Properties set in the JTE file -->
+        <base.tck.dir>${project.build.directory}/jakartaee</base.tck.dir>
+        <bin.dir>${base.tck.dir}/com/sun/ts/tests/signaturetest/signature-repository</bin.dir>
+
+        <!-- Note that currently, this must have src as the first directory as it is hard-coded in the test -->
+        <signature.file.dir>${base.tck.dir}/src</signature.file.dir>
+        <version.jakarta.tck>{jakartaee_tck_version}</version.jakarta.tck>
+        <!-- A classpath type property containing all Jakarta EE API jars -->
+        <jakarta.api.jars>fill-in-api-jars</jakarta.api.jars>
+   </properties>
+   <!-- Import the tck relevant boms -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.9.3.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                <version>${version.jakarta.tck}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>signaturevalidation</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>signaturetest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>sigtest-maven-plugin</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <!-- Jakarta TCK tools dependencies -->
+
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-javatest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>tck-porting-lib</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.omnifaces.arquillian</groupId>
+            <artifactId>arquillian-glassfish-server-managed</artifactId>
+            <version>1.7</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-api</artifactId>
+        </dependency>
+
+    </dependencies>
+----
+
+The signature map and signature files are included in the `jakarta.tck:signaturevalidation` artifact. These should be extracted to the runner `base.tck.dir` and `signature.file.dir` as shown in this `maven-dependency-plugin` segement:
+
+.Example Maven `maven-dependency-plugin` Section
+[source,xml]
+----
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.8.1</version>
+                <executions>
+
+                    <execution>
+                        <id>extract-sigtest-files</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>signaturevalidation</artifactId>
+                                    <version>${version.jakarta.tck}</version>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${base.tck.dir}</outputDirectory>
+                                    <includes>**/sig-test.map,**/sig-test-pkg-list.txt</includes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>signaturevalidation</artifactId>
+                                    <version>${version.jakarta.tck}</version>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${signature.file.dir}</outputDirectory>
+                                    <includes>**/*.sig</includes>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+----
+
+The `jakarta.api.jars` property should be set to a classpath type property that contains all the Jakarta EE API jars. This is passed in as a `additionalClasspathElements` to set the classpath for the tests. It should be built up from the jars included in the VI server distribution.
+
+Using that, you can then configure the failsafe plugin to run the tests as is shown in the following is an example:
+
+.Example Maven `maven-failsafe-plugin` Section
+[source,xml]
+----
+ <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.2</version>
+                <configuration>
+                    <dependenciesToScan>
+                        <dependency>jakarta.tck:signaturevalidation</dependency>
+                    </dependenciesToScan>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>signaturevalidation-web</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/*Test</include>
+                            </includes>
+
+                            <groups>${tck.profile}</groups> <!-- 1 -->
+                            <additionalClasspathElements>
+                                <!-- Include the libraries from the server on the test class path -->
+                                <additionalClasspathElement>${jakarta.api.jars}</additionalClasspathElement>
+                            </additionalClasspathElements>
+
+                            <systemPropertyVariables>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
+                                <javaee.level>web</javaee.level> <!-- 2 -->
+                                <optional.tech.packages.to.ignore>jakarta.resource,jakarta.resource.cci,jakarta.resource.spi,jakarta.resource.spi.work,jakarta.resource.spi.endpoint,jakarta.resource.spi.security,jakarta.mail,jakarta.mail.event,jakarta.mail,jakarta.mail.event,jakarta.mail.internet,jakarta.mail.search,jakarta.mail.util,jakarta.security.jacc,jakarta.security.auth.message,jakarta.security.auth.message.callback,jakarta.security.auth.message.config,jakarta.security.auth.message.module</optional.tech.packages.to.ignore> <!-- 3 -->
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+----
+<1> The groups to run; should be either `web` for the Web Profile or `platform` for the Full Platform.
+<2> A system property that is used to set the Java EE level for the test run. This should be set to `web` for the Web Profile and `platform` for the Full Platform.
+<3> A system property that is used to set the optional technology packages to ignore. This should be set to the optional technology packages that are  included in the Full Platform but not the Web Profile. You can simply copy the setting as shown here.
+
+With your runner configured, you can run the signature tests using `mvn verify`.
 
 [[using-keywords-to-test]]
-== Using Keywords to Test Required Technologies
+=== Using Keywords to Test Required Technologies
 
 The Jakarta EE TCK includes Junit5 `@Tag` annotations that allow you to select a subset of tests based on the tag name. Each test in TCK has keywords associated with it. The keywords are used to create groups and subsets of tests. At test execution time, a user can tell the test harness to only run tests with or without certain groups.
 
 The full list of available tags are:
 
+* @Tag("arq-servlet")
 * @Tag("assembly")
 * @Tag("connector")
 * @Tag("connector_standalone")
@@ -434,10 +773,19 @@ The full list of available tags are:
 * @Tag("websocket")
 * @Tag("xa")
 
-The most useful of these are the "platform" and "web" tags. The "platform" tag is used to run tests that are required by the Full Platform. The "web" tag is used to run tests that are required by the Web Profile.
+The tags are used to group tests by the technology they are testing. For example, the `ejb` tag is used to group all tests that are related to EJB. None of the technology related tags are used by the TCK. They exist to help filter out tests while debugging test run issues.
+
+The non-technology related tags are:
+* "platform" is used to run tests that are required by the Full Platform. To be able to run all tests you will need plugin execution configurations for the servlet, appclient, and javatest protocols.
+* "web" is used to run tests that are required by the Web Profile. To be able to run all tests you will need plugin execution configurations for the servlet, and javatest protocols.
+* "arq-servlet" is used to run tests that use the Arquillian Servlet protocol.
+* "tck-applient" is used to run tests that use the custom Arquillian appclient protocol used in the TCK.
+* "tck-javatest" is used to run tests that use the custom Arquillian javatest protocol used in the TCK.
+
+The protocol tags are generally used to exclude tests that are not relevant to the protocol a given failsafe/surefire plugin execution is using. Examples of this were given in the <<arquillian-container-configuration>> section.
 
 [[to-use-keywords-to-run-required-technologies]]
-=== To Use Keywords to Run Required Technologies
+==== To Use Keywords to Run Required Technologies
 
 You use the `<groups>` element in the failsafe/surefire plugin configuration as described in the https://maven.apache.org/surefire/maven-failsafe-plugin/examples/junit-platform.html#filtering-by-tags[Failsafe Plugin documentation] to specify the tags you want to run.
 
@@ -455,6 +803,10 @@ To restrict the tests to the group of tests that are required by the Full Platfo
             <version>3.5.2</version>
             <configuration>
                 <groups>platform</groups>
+...
+                <executions>
+                ...protocol execution setups for servlet, javatest and appclient...
+                </executions>
             </configuration>
         </plugin>
     </plugins>
@@ -463,7 +815,7 @@ To restrict the tests to the group of tests that are required by the Full Platfo
 Only tests that are required by the Full Platform will be run.
 
 
-=== Example - Running Tests for All Required Technologies in the Web Profile
+==== Example - Running Tests for All Required Technologies in the Web Profile
 
 To restrict the tests to the group of tests that are required by the Web Profile, use the `web` keyword.
 
@@ -478,6 +830,10 @@ To restrict the tests to the group of tests that are required by the Web Profile
             <version>3.5.2</version>
             <configuration>
                 <groups>web</groups>
+...
+                <executions>
+                ...protocol execution setups for servlet and javatest...
+                </executions>
             </configuration>
         </plugin>
     </plugins>
@@ -488,13 +844,34 @@ Only tests that are required by the Web Profile will be run.
 [[rebuilding-test-for-different-databases]]
 == Rebuilding Tests for Different Databases
 
-The following packages in the `jakarta.tck:ejb30` test artifact require rebuilding if you are using a database other than Derby:
+The following packages in the `jakarta.tck:ejb30` test artifact require rebuilding if you are using a database other than Derby with the default settings:
 
 * `com/sun/ts/tests/ejb30/lite/packaging/war/datasource`
 * `com/sun/ts/tests/ejb30/misc/datasource/twojars`
 * `com/sun/ts/tests/ejb30/misc/datasource/twowars`
 
 The tests under these packages use classes with `@DataSourceDefinition` annotations with settings appropriate for the Derby database. If you are using a different database, you will need to update the `@DataSourceDefinition` annotations in these classes to match the settings for your database.
+
+The typical settings that need to be changed are:
+[source,java]
+----
+@DataSourceDefinition(name="java:global/jdbc/DB3",
+        className="org.apache.derby.jdbc.ClientDataSource", // <1>
+        portNumber=1527, // <2>
+        serverName="localhost", // <3>
+        databaseName="derbyDB;create=true", // <4>
+        user="cts1", // <5>
+        transactional=false,
+        password="cts1", // <6>
+        properties={}
+)
+----
+<1>  The class name of the JDBC driver for your database.
+<2>  The port number for your database.
+<3>  The server name for your database.
+<4>  The database name for your database. This may include the path to the database file.
+<5>  The username for your database.
+<6>  The password for your database.
 
 === JMS (Full Platform Only)
 The `com/sun/ts/tests/jms/ee20/resourcedefs` tests may need to be updated and rebuilt for resource definitions...
