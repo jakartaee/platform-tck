@@ -27,7 +27,7 @@
     <groupId>jakarta</groupId>
     <artifactId>signature-tck-runner</artifactId>
     <version>11.0.0</version>
-    <name>WildFly: Jakarta EE Signature TCK Runner</name>
+    <name>GlassFish: Jakarta EE Signature TCK Runner</name>
 
     <properties>
         <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
