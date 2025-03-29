@@ -51,6 +51,22 @@ The signature test driver uses a `java.lang.System.Logger`. Since the tests runs
 are logged via the servers log configuration. If you prefer to see the failure reason with the assertion failure,
 simply add a console handler/appender to your logging configuration.
 
+[[tck-javatest-problem]]
+* Problem: +
+When running the Jakarta Platform, Enterprise Edition TCK tests you see an error log message containing:
+[source,bash]
+----
+[ERROR]   Client2PmservletTest » Validation DeploymentScenario contains a target (tck-javatest) not matching any defined Container in the registry.
+Possible causes are: None of the 1 Containers are marked as default or you have defined a @Deployment with a @TargetsContainer of value (tck-javatest) that does not match any found/configured Containers (tck-appclient), see arquillian.xml container@qualifier
+----
+Resolution: +
+As mentioned in <<arquillian-container-configuration>>, you will need to configuration your Arquillian container configuration to setup one of the Arquillian protocols used in the TCK. If you run a set of tests using the wrong Arquillian protocol, you will see this error. For this `Client2PmservletTest` in the error, an execution configuration that specifies the `tck-javatest` protocol is required. You would need to look at the <<failsafe-plugin-javatest>> section for an example of how to configure the `tck-javatest` protocol.
+
+[NOTE]
+----
+Further details behind this can be found in this platform-tck issue: https://github.com/jakartaee/platform-tck/issues/2138
+----
+
 [[support]]
 == Support
 
