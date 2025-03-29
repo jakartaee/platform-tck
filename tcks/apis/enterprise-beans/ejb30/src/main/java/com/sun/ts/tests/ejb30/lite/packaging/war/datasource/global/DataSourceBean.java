@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.datasource.global;
 import static com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest.verifyDataSource;
 
 import jakarta.annotation.sql.DataSourceDefinition;
-import jakarta.annotation.sql.DataSourceDefinitions;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
@@ -31,7 +30,6 @@ import javax.sql.DataSource;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.sql.DataSource;
 import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceIF;

@@ -19,12 +19,9 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.datasource.global;
 import static com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest.verifyDataSource;
 
 import java.io.Serializable;
-import java.sql.Connection;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import jakarta.annotation.sql.DataSourceDefinition;
-import jakarta.annotation.sql.DataSourceDefinitions;
 import jakarta.ejb.EJB;
 import javax.sql.DataSource;
 
