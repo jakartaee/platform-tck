@@ -41,7 +41,7 @@
         <asciidoctorj.maven.plugin.version>3.1.0</asciidoctorj.maven.plugin.version>
         <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
         <jbake.maven.plugin.version>2.7.0-rc.7</jbake.maven.plugin.version>
-        <freemarker.version>2.3.30</freemarker.version>
+        <freemarker.version>2.3.34</freemarker.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status></status>
         <doc.pdf>Expression-Language-TCK-Users-Guide.pdf</doc.pdf>
