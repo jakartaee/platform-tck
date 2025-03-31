@@ -479,15 +479,15 @@ public class Client1 extends Client {
 	 * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528
 	 * 
 	 * @test_Strategy: The persistent property of an entity may be of the following
-	 * type: Byte[]
+	 * type: byte[]
 	 *
 	 */
 		public void propertyTypeTest9() throws Exception {
 
 		boolean pass = false;
-		final Byte[] b = { 31, 32, 33, 63, 64, 65 };
-		final Byte bv = 5;
-		Byte[] a = null;
+		final byte[] b = { 31, 32, 33, 63, 64, 65 };
+		final byte bv = 5;
+		byte[] a = null;
 
 		try {
 			getEntityTransaction().begin();
@@ -511,10 +511,10 @@ public class Client1 extends Client {
 					pass = true;
 				} else {
 					logErr( "Unexpected result in array comparison.");
-					for (Byte aByte : a) {
+					for (byte aByte : a) {
 						logTrace( "Array a in propertyTest9 equals: " + aByte);
 					}
-					for (Byte bByte : b) {
+					for (byte bByte : b) {
 						logTrace( "Array b in propertyTest9 equals: " + bByte);
 					}
 					pass = false;
@@ -547,7 +547,7 @@ public class Client1 extends Client {
 	 * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528
 	 * 
 	 * @test_Strategy: The persistent property of an entity may be of the following
-	 * type: Character[]
+	 * type: char[]
 	 *
 	 */
 		public void propertyTypeTest10() throws Exception {
@@ -556,7 +556,7 @@ public class Client1 extends Client {
 
 		try {
 			getEntityTransaction().begin();
-			Character[] charData = new Character[] { (char) 'C', (char) 'T', (char) 'S' };
+			char[] charData = new char[] { (char) 'C', (char) 'T', (char) 'S' };
 			clearCache();
 			d1 = null;
 			d1 = getEntityManager().find(DataTypes.class, 1);
@@ -767,8 +767,8 @@ public class Client1 extends Client {
 
 		try {
 			getEntityTransaction().begin();
-			Character[] cArray = { 'a' };
-			Byte[] bArray = { (byte) 100 };
+			char[] cArray = { 'a' };
+			byte[] bArray = { (byte) 100 };
 			d1 = new DataTypes(1, true, 'a', (short) 100, 500, 300L, 50D, 1.0F, cArray, bArray);
 
 			d2 = new DataTypes2(dateId);

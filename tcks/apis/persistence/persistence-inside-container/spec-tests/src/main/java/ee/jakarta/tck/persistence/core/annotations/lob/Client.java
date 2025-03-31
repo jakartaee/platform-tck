@@ -34,7 +34,7 @@ public class Client extends PMClientBase {
 
 	private DataTypes dataTypes;
 
-	private Byte[] smallByteArray = null;
+	private byte[] smallByteArray = null;
 
 
 	public Client() {
@@ -67,7 +67,7 @@ public class Client extends PMClientBase {
 	 * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528
 	 * 
 	 * @test_Strategy: The persistent property of an entity may be of the following
-	 * type: Byte[]
+	 * type: byte[]
 	 *
 	 */
 		public void lobTest() throws Exception {
@@ -75,7 +75,7 @@ public class Client extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
-		Byte[] largeByteArray = null;
+		byte[] largeByteArray = null;
 
 		try {
 			getEntityTransaction().begin();
@@ -149,7 +149,7 @@ public class Client extends PMClientBase {
 
 	}
 
-	private Byte[] createSmallByteArray() {
+	private byte[] createSmallByteArray() {
 
 		// Create a String of size 1MB
 		StringBuffer strbuf = new StringBuffer();
@@ -164,7 +164,7 @@ public class Client extends PMClientBase {
 		final byte myByte[] = value.getBytes();
 
 		// store primitive byte array to array of Byte objects
-		Byte convertedByte[] = new Byte[myByte.length];
+		byte convertedByte[] = new byte[myByte.length];
 		for (int i = 0; i < myByte.length; i++) {
 			convertedByte[i] = Byte.valueOf(myByte[i]);
 		}
@@ -173,7 +173,7 @@ public class Client extends PMClientBase {
 
 	}
 
-	private Byte[] createLargeByteArray() {
+	private byte[] createLargeByteArray() {
 
 		// Create a String of size 4MB
 		StringBuffer strbuf = new StringBuffer();
@@ -188,7 +188,7 @@ public class Client extends PMClientBase {
 		final byte myByte[] = value.getBytes();
 
 		// store primitive byte array to array of Byte objects
-		Byte convertedByte[] = new Byte[myByte.length];
+		byte convertedByte[] = new byte[myByte.length];
 		for (int i = 0; i < myByte.length; i++) {
 			convertedByte[i] = Byte.valueOf(myByte[i]);
 		}

@@ -33,7 +33,7 @@ public class DataTypes implements java.io.Serializable {
 	@Lob
 	@Basic
 	@Column(name = "BYTEARRAYDATA")
-	protected Byte[] byteArrayData;
+	protected byte[] byteArrayData;
 
 	public DataTypes() {
 	}
@@ -42,7 +42,7 @@ public class DataTypes implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public DataTypes(int id, Byte[] byteArrayData) {
+	public DataTypes(int id, byte[] byteArrayData) {
 		this.id = id;
 		this.byteArrayData = byteArrayData;
 
@@ -52,11 +52,11 @@ public class DataTypes implements java.io.Serializable {
 		return id;
 	}
 
-	public Byte[] getByteArrayData() {
+	public byte[] getByteArrayData() {
 		return byteArrayData;
 	}
 
-	public void setByteArrayData(Byte[] byteArrayData) {
+	public void setByteArrayData(byte[] byteArrayData) {
 		this.byteArrayData = byteArrayData;
 	}
 
