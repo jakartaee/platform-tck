@@ -512,20 +512,6 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>17-create-jvm-options</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>create-jvm-options</argument>
-                                <argument>-Djava.naming.factory.initial=com.sun.enterprise.naming.impl.SerialInitContextFactory</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>18-list-jms-resources</id>
                         <goals>
                             <goal>exec</goal>
@@ -592,7 +578,7 @@
                         <configuration>
                             <dependenciesToScan>jakarta.tck:appclient</dependenciesToScan>
                             <includes>
-                                <include>**/**/*.*</include>
+                                <include>**/*.*</include>
                             </includes>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${glassfish.module.dir}/angus-mail.jar</additionalClasspathElement>
@@ -616,7 +602,6 @@
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
-                                <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>

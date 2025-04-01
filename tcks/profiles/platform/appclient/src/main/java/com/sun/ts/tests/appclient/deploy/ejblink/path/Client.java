@@ -77,71 +77,68 @@ public class Client extends EETest {
 			throws IOException {
 
 		EnterpriseArchive ear = null;
-		try {
-			JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_path_client.jar");
-			ejbClient.addPackages(true, "com.sun.ts.tests.appclient.deploy.ejblink.path");
-			ejbClient.addPackages(true, "com.sun.ts.lib.harness");
+		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_path_client.jar");
+		ejbClient.addPackages(true, "com.sun.ts.tests.appclient.deploy.ejblink.path");
+		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
 
-			// The appclient-client descriptor
-			URL appClientUrl = Client.class.getResource(
-					"/com/sun/ts/tests/appclient/deploy/ejblink/casesens/appclient_dep_ejblink_path_client.xml");
-			if (appClientUrl != null) {
-				ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
-			}
-			// The sun appclient-client descriptor
-			URL sunAppClientUrl = Client.class.getResource(
-					"/com/sun/ts/tests/appclient/deploy/ejblink/casesens/appclient_dep_ejblink_path_client.jar.sun-application-client.xml");
-			if (sunAppClientUrl != null) {
-				ejbClient.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
-			}
-
-			ejbClient.addAsManifestResource(
-					new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.ejblink.path.Client" + "\n"),
-					"MANIFEST.MF");
-
-			JavaArchive ejb1 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_path_jar1_ejb.jar");
-			ejb1.addPackages(true, Client.class.getPackage());
-			ejb1.addPackages(true, "com.sun.ts.tests.common.ejb.wrappers");
-
-			URL resURL = Client.class.getResource(
-					"/com/sun/ts/tests/appclient/deploy/ejblink/path/appclient_dep_ejblink_path_jar1_ejb.jar.sun-ejb-jar.xml");
-
-			if (resURL != null) {
-				ejb1.addAsManifestResource(resURL, "sun-ejb-jar.xml");
-			}
-
-			resURL = Client.class.getResource(
-					"/com/sun/ts/tests/appclient/deploy/ejblink/path/appclient_dep_ejblink_path_jar1_ejb.xml");
-
-			if (resURL != null) {
-				ejb1.addAsManifestResource(resURL, "ejb-jar.xml");
-			}
-
-			JavaArchive ejb2 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_path_jar2_ejb.jar");
-			ejb2.addPackages(true, Client.class.getPackage());
-			ejb2.addPackages(true, "com.sun.ts.tests.common.ejb.wrappers");
-
-			resURL = Client.class.getResource(
-					"/com/sun/ts/tests/appclient/deploy/ejblink/path/appclient_dep_ejblink_path_jar2_ejb.jar.sun-ejb-jar.xml");
-
-			if (resURL != null) {
-				ejb2.addAsManifestResource(resURL, "sun-ejb-jar.xml");
-			}
-
-			resURL = Client.class.getResource(
-					"/com/sun/ts/tests/appclient/deploy/ejblink/path/appclient_dep_ejblink_path_jar2_ejb.xml");
-
-			if (resURL != null) {
-				ejb2.addAsManifestResource(resURL, "ejb-jar.xml");
-			}
-
-			ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_ejblink_path.ear");
-			ear.addAsModule(ejbClient);
-			ear.addAsModule(ejb1);
-			ear.addAsModule(ejb2);
-		} catch (Exception e) {
-			e.printStackTrace();
+		// The appclient-client descriptor
+		URL appClientUrl = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/casesens/appclient_dep_ejblink_path_client.xml");
+		if (appClientUrl != null) {
+			ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
 		}
+		// The sun appclient-client descriptor
+		URL sunAppClientUrl = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/casesens/appclient_dep_ejblink_path_client.jar.sun-application-client.xml");
+		if (sunAppClientUrl != null) {
+			ejbClient.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
+		}
+
+		ejbClient.addAsManifestResource(
+				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.ejblink.path.Client" + "\n"),
+				"MANIFEST.MF");
+
+		JavaArchive ejb1 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_path_jar1_ejb.jar");
+		ejb1.addPackages(true, Client.class.getPackage());
+		ejb1.addPackages(true, "com.sun.ts.tests.common.ejb.wrappers");
+
+		URL resURL = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/path/appclient_dep_ejblink_path_jar1_ejb.jar.sun-ejb-jar.xml");
+
+		if (resURL != null) {
+			ejb1.addAsManifestResource(resURL, "sun-ejb-jar.xml");
+		}
+
+		resURL = Client.class
+				.getResource("/com/sun/ts/tests/appclient/deploy/ejblink/path/appclient_dep_ejblink_path_jar1_ejb.xml");
+
+		if (resURL != null) {
+			ejb1.addAsManifestResource(resURL, "ejb-jar.xml");
+		}
+
+		JavaArchive ejb2 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_path_jar2_ejb.jar");
+		ejb2.addPackages(true, Client.class.getPackage());
+		ejb2.addPackages(true, "com.sun.ts.tests.common.ejb.wrappers");
+
+		resURL = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/path/appclient_dep_ejblink_path_jar2_ejb.jar.sun-ejb-jar.xml");
+
+		if (resURL != null) {
+			ejb2.addAsManifestResource(resURL, "sun-ejb-jar.xml");
+		}
+
+		resURL = Client.class
+				.getResource("/com/sun/ts/tests/appclient/deploy/ejblink/path/appclient_dep_ejblink_path_jar2_ejb.xml");
+
+		if (resURL != null) {
+			ejb2.addAsManifestResource(resURL, "ejb-jar.xml");
+		}
+
+		ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_ejblink_path.ear");
+		ear.addAsModule(ejbClient);
+		ear.addAsModule(ejb1);
+		ear.addAsModule(ejb2);
+
 		return ear;
 	};
 

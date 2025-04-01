@@ -95,7 +95,6 @@ public class Client extends EETest {
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.ejblink.casesens.Client" + "\n"),
 				"MANIFEST.MF");
 
-		System.out.println(ejbClient.toString(true));
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_casesens_ejb.jar");
 		ejb.addClasses(CaseBean.class, CaseBeanEJB.class);
 		ejb.addPackages(true, "com.sun.ts.tests.assembly.util.shared.ejbref.common");
@@ -115,15 +114,10 @@ public class Client extends EETest {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
 		}
 
-		System.out.println("##################################");
-
-		System.out.println(ejb.toString(true));
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_ejblink_casesens.ear");
 		ear.addAsModule(ejbClient);
 		ear.addAsModule(ejb);
-		// ear.as(ZipExporter.class).exportTo(
-		// new File("/tmp/ejb.ear"), true);
 
 		return ear;
 	};
