@@ -69,46 +69,41 @@ public class Client extends EETest {
 
 		EnterpriseArchive ear = null;
 
-		try {
+		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_single_client.jar");
+		ejbClient.addPackages(true, Client.class.getPackage());
+		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
+		ejbClient.addClasses(TestCode.class, Client.class);
 
-			JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_single_client.jar");
-			ejbClient.addPackages(true, Client.class.getPackage());
-			ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-			ejbClient.addClasses(TestCode.class, Client.class);
-
-			// The appclient-client descriptor
-			URL appClientUrl = Client.class.getResource(
-					"/com/sun/ts/tests/appclient/deploy/resref/single/appclient_dep_resref_single_client.xml");
-			if (appClientUrl != null) {
-				ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
-			}
-			// The sun appclient-client descriptor
-			URL sunAppClientUrl = Client.class.getResource(
-					"/com/sun/ts/tests/appclient/deploy/resref/single/appclient_dep_resref_single_client.jar.sun-application-client.xml");
-			if (sunAppClientUrl != null) {
-				ejbClient.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
-			}
-
-			ejbClient.addAsManifestResource(
-					new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.resref.single.Client" + "\n"),
-					"MANIFEST.MF");
-			WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "appclient_dep_resref_single_jsp_web.war");
-			InputStream testJSP = Thread.currentThread().getContextClassLoader()
-					.getResourceAsStream("com/sun/ts/tests/appclient/deploy/resref/single/contentRoot/test.jsp");
-			webArchive.add(new ByteArrayAsset(testJSP), "test.jsp");
-
-			// The jsp descriptor
-			URL jspUrl = Client.class.getResource("appclient_dep_resref_single_jsp_web.xml");
-			if (jspUrl != null) {
-				webArchive.addAsWebInfResource(jspUrl, "web.xml");
-			}
-
-			ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_resref_single.ear");
-			ear.addAsModule(ejbClient);
-			ear.addAsModule(webArchive);
-		} catch (Exception e) {
-			e.printStackTrace();
+		// The appclient-client descriptor
+		URL appClientUrl = Client.class
+				.getResource("/com/sun/ts/tests/appclient/deploy/resref/single/appclient_dep_resref_single_client.xml");
+		if (appClientUrl != null) {
+			ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
 		}
+		// The sun appclient-client descriptor
+		URL sunAppClientUrl = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/resref/single/appclient_dep_resref_single_client.jar.sun-application-client.xml");
+		if (sunAppClientUrl != null) {
+			ejbClient.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
+		}
+
+		ejbClient.addAsManifestResource(
+				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.resref.single.Client" + "\n"),
+				"MANIFEST.MF");
+		WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "appclient_dep_resref_single_jsp_web.war");
+		InputStream testJSP = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("com/sun/ts/tests/appclient/deploy/resref/single/contentRoot/test.jsp");
+		webArchive.add(new ByteArrayAsset(testJSP), "test.jsp");
+
+		// The jsp descriptor
+		URL jspUrl = Client.class.getResource("appclient_dep_resref_single_jsp_web.xml");
+		if (jspUrl != null) {
+			webArchive.addAsWebInfResource(jspUrl, "web.xml");
+		}
+
+		ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_resref_single.ear");
+		ear.addAsModule(ejbClient);
+		ear.addAsModule(webArchive);
 		return ear;
 	};
 
