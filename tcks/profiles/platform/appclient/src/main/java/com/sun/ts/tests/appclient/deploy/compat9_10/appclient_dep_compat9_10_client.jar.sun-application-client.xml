@@ -21,6 +21,6 @@
 <sun-application-client>
   <ejb-ref>
     <ejb-ref-name>ejb/TestBean</ejb-ref-name>
-    <jndi-name/>
+    <jndi-name>corbaname:iiop:localhost:3700#java:global/appclient_dep_ejblink_casesens/appclient_dep_compat9_10_ejb/TestBean!com.sun.ts.tests.appclient.deploy.compat9_10.TestBean</jndi-name>
   </ejb-ref>
 </sun-application-client>
