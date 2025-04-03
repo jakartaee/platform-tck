@@ -50,7 +50,6 @@
         <module>tcks/apis/enterprise-beans/ejb32</module>
         <module>tcks/apis/expression-language/expression-language-inside-container</module>
         <module>tcks/apis/expression-language/expression-language-inside-container/docs/userguide</module>
-        <module>tcks/apis/expression-language/expression-language-outside-container</module>
         <module>tcks/apis/javamail</module>
         <module>tcks/apis/jsonb</module>
         <module>tcks/apis/jsonp</module>
