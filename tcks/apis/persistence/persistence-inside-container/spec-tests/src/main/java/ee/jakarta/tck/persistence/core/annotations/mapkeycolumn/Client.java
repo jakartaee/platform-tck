@@ -56,7 +56,7 @@ public class Client extends PMClientBase {
 
 	private static Department deptRef[] = new Department[5];
 
-	private static Department2 deptRef2[] = new Department2[5];
+	private static Department2 deptRef2[] = new Department2[1];
 
 	public Map<String, Employee> link = new HashMap<String, Employee>();
 
@@ -329,30 +329,35 @@ public class Client extends PMClientBase {
 			clearCache();
 
 			// department 3
-			logTrace( "find Department");
+			logTrace( "find Department2 using id=" + deptRef2[0].getId());
 			Department2 dept = getEntityManager().find(Department2.class, deptRef2[0].getId());
-			logTrace( "Dept=" + dept.getName());
-			link = new HashMap<String, Employee>();
-			link.put("OFF-006", empRef[6]);
-			logTrace( "set last names of employees and save");
-			dept.setLastNameEmployees(link);
-			getEntityManager().merge(dept);
-			getEntityManager().flush();
-			clearCache();
-			logTrace( "find Department again");
-			dept = getEntityManager().find(Department2.class, deptRef2[0].getId());
-			Map<String, Employee> emps = dept.getLastNameEmployees();
-			if (emps.size() == 0) {
-				logTrace(
-						"Received expected number of employees for department: " + deptRef2[0].getId());
-				pass = true;
-			} else {
-				logErr( "Expected 0 employees, actual:" + emps.size());
-				logErr( "Actual:");
-				for (Map.Entry<String, Employee> entry : emps.entrySet()) {
-					logErr( "id=" + entry.getValue().getId() + ", Name="
-							+ entry.getValue().getFirstName() + " " + entry.getValue().getLastName());
+			logTrace( "Dept=" + dept != null ? dept.getName() : "Department2 was not found in database");
+			if (dept != null) {
+
+				link = new HashMap<String, Employee>();
+				link.put("OFF-006", empRef[6]);
+				logTrace("set last names of employees and save");
+				dept.setLastNameEmployees(link);
+				getEntityManager().merge(dept);
+				getEntityManager().flush();
+				clearCache();
+				logTrace("find Department again");
+				dept = getEntityManager().find(Department2.class, deptRef2[0].getId());
+				Map<String, Employee> emps = dept.getLastNameEmployees();
+				if (emps.size() == 0) {
+					logTrace(
+							"Received expected number of employees for department: " + deptRef2[0].getId());
+					pass = true;
+				} else {
+					logErr("Expected 0 employees, actual:" + emps.size());
+					logErr("Actual:");
+					for (Map.Entry<String, Employee> entry : emps.entrySet()) {
+						logErr("id=" + entry.getValue().getId() + ", Name="
+								+ entry.getValue().getFirstName() + " " + entry.getValue().getLastName());
+					}
 				}
+			} else {
+				logErr( "Department2 returned was null.  Database lookup id field == " + deptRef2[0].getId());
 			}
 
 			getEntityTransaction().commit();
@@ -477,12 +482,8 @@ public class Client extends PMClientBase {
 			deptRef2[0] = new Department2(3, "IT");
 
 			logTrace( "Start to persist Department2 ");
-			for (Department2 dept : deptRef2) {
-				if (dept != null) {
-					getEntityManager().persist(dept);
-					logTrace( "persisted department " + dept.getName());
-				}
-			}
+			getEntityManager().persist(deptRef2[0]);
+			logTrace( "persisted department " + deptRef2[0].getName());
 
 			logTrace( "Create 5 employees");
 			empRef[0] = new Employee(1, "Alan", "Frechette");
@@ -533,14 +534,10 @@ public class Client extends PMClientBase {
 			}
 
 			// Merge Department2
-			logTrace( "Start to Merge department ");
-			for (Department2 dept : deptRef2) {
-				if (dept != null) {
-					getEntityManager().merge(dept);
-					logTrace( "merged department " + dept.getName());
+			logTrace( "Start to Merge department2 ");
+			deptRef2[0] = getEntityManager().merge(deptRef2[0]);
+			logTrace( "merged department " + deptRef2[0].getName());
 
-				}
-			}
 
 			logTrace( "Start to persist employees ");
 			for (Employee emp : empRef) {
