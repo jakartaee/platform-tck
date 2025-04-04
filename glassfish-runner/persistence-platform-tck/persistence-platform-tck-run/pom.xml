@@ -302,7 +302,6 @@
                         <glassfish.derbySQLFile>${project.build.directory}/sql/derby.ddl.sql</glassfish.derbySQLFile>
                         <glassfish.derbyUser>cts1</glassfish.derbyUser>
                         <glassfish.derbyPasswordFile>${basedir}/sql/derby/password.txt</glassfish.derbyPasswordFile>
-
                         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                         <glassfish.postBootCommands>
                             set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
@@ -316,6 +315,7 @@
                             list-jdbc-resources
                             list-file-users
                         </glassfish.postBootCommands>
+                        
                         <junit.log.traceflag>true</junit.log.traceflag>
                         <harness.log.traceflag>true</harness.log.traceflag>
                         <cts.harness.debug>true</cts.harness.debug>
@@ -352,15 +352,11 @@
                         </goals>
                         <configuration>
                             <includes>
-                                <!--
                                 <include>ee/jakarta/tck/persistence/**/*Test.java</include>
-                                <include>ee/jakarta/tck/persistence/core/annotations/basic/*Test.java</include>
-                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
-                                -->
-                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
-
                             </includes>
-                            <groups>web</groups>
+                            <groups>${includeGroups}</groups>
+                            
+                            <skipITs>${javatest.skip}</skipITs>
 
                             <systemPropertyVariables>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
@@ -390,11 +386,18 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 
     <profiles>
+        <profile>
+            <id>web</id>
+            <properties>
+                <glassfish-artifact-id>web</glassfish-artifact-id>
+                <includeGroups>web</includeGroups>
+            </properties>
+        </profile>
+    
         <profile>
             <id>full</id>
             <activation>
@@ -402,19 +405,20 @@
             </activation>
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <includeGroups>platform</includeGroups>
             </properties>
+            
             <dependencies>
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
                     <version>${jakarta.tck.arquillian.version}</version>
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                <version>${jakarta.tck.arquillian.version}</version>
-            </dependency>
-
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                    <version>${jakarta.tck.arquillian.version}</version>
+                </dependency>
             </dependencies>
 
             <build>
@@ -431,16 +435,12 @@
                                 </goals>
                                 <configuration>
                                     <includes>
-                                        <!--
-                                        <include>ee/jakarta/tck/persistence/core/annotations/basic/*Test.java</include>
-                                        <include>ee/jakarta/tck/persistence/core/annotations/basic/Client1AppmanagednotxTest.java</include>
-                                        <include>ee/jakarta/tck/persistence/core/inheritance/abstractentity/Client*Test.java</include>
-                                        -->
                                         <include>ee/jakarta/tck/persistence/**/*Test.java</include>
-
                                     </includes>
-                                    <groups>platform</groups>
+                                    <!-- Should this not just be tck-appclient ? -->
+                                    <groups>${includeGroups}</groups>
                                     <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
