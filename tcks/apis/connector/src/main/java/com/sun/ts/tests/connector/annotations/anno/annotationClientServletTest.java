@@ -61,6 +61,7 @@ public class annotationClientServletTest extends com.sun.ts.tests.connector.anno
         // War
             // the war with the correct archive name
             WebArchive annotations_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "annotations_servlet_vehicle_web.war");
+
             // The class files
             annotations_servlet_vehicle_web.addClasses(
             com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,

@@ -222,13 +222,6 @@
                                     <destFileName>common.jar</destFileName>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>jakarta.tck</groupId>
-                                    <artifactId>connector</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
-                                    <destFileName>common.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
                                     <artifactId>tck-porting-lib</artifactId>
                                     <overWrite>true</overWrite>
@@ -425,7 +418,7 @@
                             <executable>${exec.asadmin}</executable>
                             <arguments>
                                 <argument>create-jvm-options</argument>
-                                <argument>-Dwhitebox-tx-map=cts1=admin:-Dwhitebox-tx-param-map=cts1=admin:-Dwhitebox-notx-map=cts1=admin:-Dwhitebox-notx-param-map=cts1=admin:-Dwhitebox-xa-map=cts1=admin:-Dwhitebox-xa-param-map=cts1=admin:-Djava.security.manager:-Dj2eelogin.name=admin:-Dj2eelogin.password=admin:-Deislogin.name=admin:-Deislogin.password=admin</argument>
+                                <argument>-Dwhitebox-tx-map=cts1=j2ee:-Dwhitebox-tx-param-map=cts1=j2ee:-Dwhitebox-notx-map=cts1=j2ee:-Dwhitebox-notx-param-map=cts1=j2ee:-Dwhitebox-xa-map=cts1=j2ee:-Dwhitebox-xa-param-map=cts1=j2ee:-Djava.security.manager:-Dj2eelogin.password=cts1:-Dj2eelogin.name=j2ee:-Dj2eelogin.password=j2ee:-Deislogin.name=cts1:-Deislogin.password=cts1</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -1268,7 +1261,7 @@
                                 <argument>--user</argument>
                                 <argument>admin</argument>
                                 <argument>--passwordfile</argument>
-                                <argument>${project.basedir}/admin.pass</argument>
+                                <argument>${project.basedir}/j2ee.pass</argument>
                                 <argument>create-jms-resource</argument>
                                 <argument>--restype</argument>
                                 <argument>jakarta.jms.QueueConnectionFactory</argument>
@@ -1288,7 +1281,7 @@
                                 <argument>--user</argument>
                                 <argument>admin</argument>
                                 <argument>--passwordfile</argument>
-                                <argument>${project.basedir}/admin.pass</argument>
+                                <argument>${project.basedir}/j2ee.pass</argument>
                                 <argument>create-jms-resource</argument>
                                 <argument>--restype</argument>
                                 <argument>jakarta.jms.Queue</argument>
@@ -1310,7 +1303,7 @@
                                 <argument>--user</argument>
                                 <argument>admin</argument>
                                 <argument>--passwordfile</argument>
-                                <argument>${project.basedir}/admin.pass</argument>
+                                <argument>${project.basedir}/j2ee.pass</argument>
                                 <argument>create-jms-resource</argument>
                                 <argument>--restype</argument>
                                 <argument>jakarta.jms.Queue</argument>
@@ -1396,10 +1389,57 @@
                                 <ts.home>${project.basedir}/jakartaeetck</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
+                                <j2eelogin.name>cts1</j2eelogin.name>
+                                <j2eelogin.password>cts1</j2eelogin.password>
+                                <java.security.manager></java.security.manager>
+                                <user>cts1</user>
+                                <password>cts1</password>
+                                <authuser>cts1</authuser>
+                                <authpassword>cts1</authpassword>
                             </systemPropertyVariables>
                             <includes>
                                 <include>**/*Servlet*.*</include>
                                 <include>**/*Jsp**.*</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <executions>
+                    <execution>
+                        <id>connector-ejb-tests</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <dependenciesToScan>jakarta.tck:connector</dependenciesToScan>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derbytools.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derbyclient.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derby.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/glassfish/modules/jakarta.servlet.jsp-api.jar</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <systemPropertyVariables>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
+                                <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
+                                <ts.home>${project.basedir}/jakartaeetck</ts.home>
+                                <project.basedir>${project.basedir}</project.basedir>
+                                <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                <j2eelogin.name>cts1</j2eelogin.name>
+                                <j2eelogin.password>cts1</j2eelogin.password>
+                                <java.security.manager></java.security.manager>
+                                <user>cts1</user>
+                                <password>cts1</password>
+                                <authuser>cts1</authuser>
+                                <authpassword>cts1</authpassword>
+                            </systemPropertyVariables>
+                            <includes>
+                                <include>**/*-Ejb*Test.*</include>
                             </includes>
                         </configuration>
                     </execution>
