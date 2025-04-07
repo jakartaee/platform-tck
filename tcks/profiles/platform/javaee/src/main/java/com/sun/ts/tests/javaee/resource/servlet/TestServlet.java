@@ -18,7 +18,7 @@ package com.sun.ts.tests.javaee.resource.servlet;
 
 import java.io.IOException;
 
-import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.javaee.common.servlets.HttpTCKServlet;
 
 import jakarta.annotation.Resource;
 import jakarta.inject.Inject;

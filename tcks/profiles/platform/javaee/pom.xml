@@ -75,7 +75,6 @@
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
         </dependency>
-        
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
