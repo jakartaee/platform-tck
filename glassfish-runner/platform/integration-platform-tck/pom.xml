@@ -256,8 +256,8 @@
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
-            <artifactId>dbprocedures</artifactId>
-            <version>3.2.0</version>
+            <artifactId>persistence-platform-tck-dbprocedures</artifactId>
+            <version>11.0.0-M14</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
