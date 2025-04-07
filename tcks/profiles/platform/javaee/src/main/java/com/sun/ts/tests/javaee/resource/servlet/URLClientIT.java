@@ -20,14 +20,16 @@
 
 package com.sun.ts.tests.javaee.resource.servlet;
 
-import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet2.common.client.AbstractUrlClient;
 
 import java.io.IOException;
 
-import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-import com.sun.ts.tests.servlet.common.util.Data;
+import com.sun.ts.tests.servlet2.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.servlet2.common.util.ServletTestUtil;
+import com.sun.ts.tests.servlet2.common.util.Data;
 
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.Filters;
@@ -43,8 +45,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 
 import java.lang.System.Logger;
+import java.util.Properties;
 
 @Tag("platform")
+@Tag("javaee-module")
+@Tag("tck-javatest")
 @ExtendWith(ArquillianExtension.class)
 public class URLClientIT extends AbstractUrlClient {
 

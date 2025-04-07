@@ -74,6 +74,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
+            <version>11.0.5-SNAPSHOT</version>
         </dependency>
         
         <dependency>
