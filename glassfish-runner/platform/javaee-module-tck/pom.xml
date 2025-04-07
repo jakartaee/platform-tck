@@ -48,7 +48,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>11.0.5-SNAPSHOT</version>
+            <version>11.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.junit.vintage</groupId>
