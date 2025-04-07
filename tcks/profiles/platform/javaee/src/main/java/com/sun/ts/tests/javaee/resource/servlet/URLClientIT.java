@@ -26,7 +26,7 @@ import java.io.IOException;
 
 import com.sun.ts.tests.servlet2.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet2.common.util.ServletTestUtil;
-import com.sun.ts.tests.servlet2.common.util.Data;
+import com.sun.ts.tests.servlet.common.util.Data;
 
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;

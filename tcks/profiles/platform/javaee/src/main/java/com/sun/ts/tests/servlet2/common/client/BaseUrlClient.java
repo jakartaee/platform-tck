@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.servlet2.common.client;
 
-import com.sun.ts.tests.servlet2.common.request.HttpRequest;
-import com.sun.ts.tests.servlet2.common.request.WebTestCase;
+import com.sun.ts.tests.common.webclient.WebTestCase;
+import com.sun.ts.tests.common.webclient.http.HttpRequest;
+
 import org.apache.commons.httpclient.HttpState;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;

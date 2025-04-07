@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.servlet2.common.client;
 
-import com.sun.ts.tests.servlet2.common.request.HttpRequest;
-import com.sun.ts.tests.servlet2.common.request.WebTestCase;
-import com.sun.ts.tests.servlet2.common.util.Data;
+import com.sun.ts.tests.common.webclient.WebTestCase;
+import com.sun.ts.tests.common.webclient.http.HttpRequest;
+import com.sun.ts.tests.servlet.common.util.Data;
 
 import java.io.IOException;
 import java.net.InetAddress;
