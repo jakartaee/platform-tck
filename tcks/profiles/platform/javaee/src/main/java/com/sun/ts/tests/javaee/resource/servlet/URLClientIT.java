@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.javaee.resource.servlet;
 
-import com.sun.ts.tests.servlet2.common.client.AbstractUrlClient;
-
 import java.io.IOException;
 
-import com.sun.ts.tests.servlet2.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.servlet2.common.util.ServletTestUtil;
+import com.sun.ts.tests.javaee.common.client.AbstractUrlClient;
+import com.sun.ts.tests.javaee.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.javaee.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.Data;
 
 import org.jboss.arquillian.container.test.api.OverProtocol;

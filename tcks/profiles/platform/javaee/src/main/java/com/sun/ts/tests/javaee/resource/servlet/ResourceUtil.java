@@ -22,7 +22,7 @@ import java.io.PrintWriter;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import com.sun.ts.tests.servlet2.common.util.ServletTestUtil;
+import com.sun.ts.tests.javaee.common.util.ServletTestUtil;
 
 import jakarta.mail.Session;
 import jakarta.servlet.http.HttpServletResponse;

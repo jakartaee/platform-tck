@@ -18,7 +18,9 @@
  * $Id$
  */
 
-package com.sun.ts.tests.servlet2.common.util;
+package com.sun.ts.tests.javaee.common.util;
+
+import com.sun.ts.tests.servlet.common.util.Data;
 
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.Cookie;
