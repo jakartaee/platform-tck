@@ -88,7 +88,6 @@
         <ts.home>./jakartaeetck</ts.home>
         <user1>cts1</user1>
         <user2>cts1</user2>
-        <version.jakarta.tck>11.0.0</version.jakarta.tck>
     </properties>
     
     <dependencyManagement>
@@ -104,13 +103,6 @@
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
                 <version>1.9.3.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.tck</groupId>
-                <artifactId>artifacts-bom</artifactId>
-                <version>${tck.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
