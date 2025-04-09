@@ -57,7 +57,7 @@
         
         <imqbin.loc>${s1as.imqbin.loc}</imqbin.loc>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
-        <jakarta.tck.arquillian.version>11.0.3</jakarta.tck.arquillian.version>
+        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
         <javaee.home>${project.build.directory}/${glassfish.toplevel.dir}/glassfish</javaee.home>
         <jdbc.classpath>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyshared.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</jdbc.classpath>
@@ -88,6 +88,7 @@
         <ts.home>./jakartaeetck</ts.home>
         <user1>cts1</user1>
         <user2>cts1</user2>
+        <version.jakarta.tck>11.0.0</version.jakarta.tck>
     </properties>
     
     <dependencyManagement>
@@ -103,6 +104,13 @@
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
                 <version>1.9.3.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                <version>${tck.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -161,7 +169,6 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -187,7 +194,6 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -210,7 +216,6 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
@@ -220,12 +225,10 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <!-- Needed, if so, should be 11.0.0 version from tck
         <dependency>
@@ -683,7 +686,37 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.5.0</version>
                 <configuration>
-                    <trimStackTrace>false</trimStackTrace>
+                    <includes>
+                        <include>com/sun/ts/tests/jms/**/*Test*.java</include>
+                    </includes>
+                    <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
+                    
+                    <systemPropertyVariables>
+                        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                        <glassfish.postBootCommands>
+                            create-file-user --groups staff:mgr:DIRECTOR --passwordfile ${project.build.directory}/../j2ee.pass j2ee
+                            create-file-user --groups guest:OTHERROLE --passwordfile ${project.build.directory}/../javajoe.pass javajoe
+                            set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                            create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=myQueue MY_QUEUE
+                            create-jms-resource --restype jakarta.jms.Topic --property imqDestinationName=myTopic MY_TOPIC
+                            create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
+                            create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
+                            create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
+                            create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/TopicConnectionFactory
+                            create-jms-resource --restype jakarta.jms.ConnectionFactory --property name=cFactory jms/ConnectionFactory
+                            list-jdbc-connection-pools
+                            list-jdbc-resources
+                            list-file-users
+                        </glassfish.postBootCommands>
+                        
+                        <junit.log.traceflag>true</junit.log.traceflag>
+                        <harness.log.traceflag>true</harness.log.traceflag>
+                        <cts.harness.debug>true</cts.harness.debug>
+                        <java.io.tmpdir>/tmp</java.io.tmpdir>
+                        <project.basedir>${project.basedir}</project.basedir>
+                        
+                        <ts.home>${ts.home}</ts.home>
+                    </systemPropertyVariables>
                 </configuration>
                 <executions>
                     <execution>
@@ -693,48 +726,11 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.jms-api.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-corba-omgapi.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/imq.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/jms.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/fscontext.jar</additionalClasspathElement>
-                            </additionalClasspathElements>
-                            <includes>
-                                <include>com/sun/ts/tests/jms/**/*Test*.java</include>
-                            </includes>
                             <!-- Select the @Tag("tck-appclient") tests -->
                             <groups>tck-appclient</groups>
-                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
+                            
                             <systemPropertyVariables>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                <glassfish.postBootCommands>
-                                    create-file-user --groups staff:mgr:DIRECTOR --passwordfile ${project.build.directory}/../j2ee.pass j2ee
-                                    create-file-user --groups guest:OTHERROLE --passwordfile ${project.build.directory}/../javajoe.pass javajoe
-                                    set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                                    create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=myQueue MY_QUEUE
-                                    create-jms-resource --restype jakarta.jms.Topic --property imqDestinationName=myTopic MY_TOPIC
-                                    create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
-                                    create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
-                                    create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
-                                    create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/TopicConnectionFactory
-                                    create-jms-resource --restype jakarta.jms.ConnectionFactory --property name=cFactory jms/ConnectionFactory
-                                    list-jdbc-connection-pools
-                                    list-jdbc-resources
-                                    list-file-users
-                                </glassfish.postBootCommands>
-                                
-                                <junit.log.traceflag>true</junit.log.traceflag>
-                                <harness.log.traceflag>true</harness.log.traceflag>
-                                <cts.harness.debug>true</cts.harness.debug>
-                                <java.io.tmpdir>/tmp</java.io.tmpdir>
-                                <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
-                                <ts.home>${ts.home}</ts.home>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
@@ -746,47 +742,11 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.jms-api.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-corba-omgapi.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/imq.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/jms.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/fscontext.jar</additionalClasspathElement>
-                            </additionalClasspathElements>
-                            <includes>
-                                <include>com/sun/ts/tests/jms/**/*Test*.java</include>
-                            </includes>
                             <!-- Select the @Tag("tck-javatest") tests -->
                             <groups>tck-javatest</groups>
-                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
+                            
                             <systemPropertyVariables>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                <glassfish.postBootCommands>
-                                    create-file-user --groups staff:mgr:DIRECTOR --passwordfile ${project.build.directory}/../j2ee.pass j2ee
-                                    create-file-user --groups guest:OTHERROLE --passwordfile ${project.build.directory}/../javajoe.pass javajoe
-                                    set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                                    create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=myQueue MY_QUEUE
-                                    create-jms-resource --restype jakarta.jms.Topic --property imqDestinationName=myTopic MY_TOPIC
-                                    create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
-                                    create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
-                                    create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
-                                    create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/TopicConnectionFactory
-                                    create-jms-resource --restype jakarta.jms.ConnectionFactory --property name=cFactory jms/ConnectionFactory
-                                    list-jdbc-connection-pools
-                                    list-jdbc-resources
-                                    list-file-users
-                                </glassfish.postBootCommands>
-                                
-                                <junit.log.traceflag>true</junit.log.traceflag>
-                                <harness.log.traceflag>true</harness.log.traceflag>
-                                <cts.harness.debug>true</cts.harness.debug>
-                                <java.io.tmpdir>/tmp</java.io.tmpdir>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
-                                <ts.home>${ts.home}</ts.home>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
