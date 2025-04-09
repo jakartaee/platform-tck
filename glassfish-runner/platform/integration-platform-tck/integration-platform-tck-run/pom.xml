@@ -155,11 +155,6 @@
             <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
-            <groupId>org.glassfish.main.common</groupId>
-            <artifactId>simple-glassfish-api</artifactId>
-            <version>${glassfish.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
             <version>${arquillian.junit}</version>
