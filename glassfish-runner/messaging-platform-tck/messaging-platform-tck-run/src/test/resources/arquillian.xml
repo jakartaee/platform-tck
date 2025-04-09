@@ -20,7 +20,7 @@
             <property name="trace">true</property>
             <property name="workDir">/tmp</property>
             <property name="tsJteFile">jakartaeetck/bin/ts.jte</property>
-            <property name="tsSqlStmtFile">sql/derby/derby.dml.sql</property>
+            <property name="tsSqlStmtFile">src/test/resources/derby.dml.sql</property>
             <property name="runClient">true</property>
             <property name="runAsVehicle">true</property>
             <property name="clientEarDir">target/appclient</property>
