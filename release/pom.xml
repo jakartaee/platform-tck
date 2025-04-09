@@ -266,6 +266,12 @@
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
+            <artifactId>assembly-tck</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
             <artifactId>connector</artifactId>
             <version>${project.version}</version>
         </dependency>

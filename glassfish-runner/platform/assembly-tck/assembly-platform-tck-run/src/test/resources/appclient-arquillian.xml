@@ -54,7 +54,7 @@
             <!-- <property name="clientEnvString">PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
                 APPCPATH=${glassfish.home}/glassfish/lib/arquillian-protocol-lib.jar:${glassfish.home}/glassfish/lib/tck-porting-lib.jar:target/appclient/lib/arquillian-core.jar:target/appclient/lib/arquillian-junit5.jar:${glassfish.home}/glassfish/modules/security.jar</property> -->
             <property name="clientEnvString">AS_JAVA=${env.JAVA_HOME};PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
-                 APPCPATH=${clientEarLibClasspath}:target/lib/libutil.jar:target/lib/arquillian-protocol-lib.jar:target/lib/tck-porting-lib.jar:target/appclient/lib/arquillian-core.jar:target/appclient/lib/arquillian-junit5.jar:${glassfish.home}/glassfish/modules/security.jar:${glassfish.home}/glassfish/lib/gf-client.jar</property>
+                 APPCPATH=${clientEarLibClasspath}:target/lib/arquillian-protocol-lib.jar:target/lib/tck-porting-lib.jar:target/appclient/lib/arquillian-core.jar:target/appclient/lib/arquillian-junit5.jar:${glassfish.home}/glassfish/modules/security.jar:${glassfish.home}/glassfish/lib/gf-client.jar</property>
             <property name="clientDir">${project.basedir}</property>
             <property name="workDir">/tmp</property>
             <property name="tsJteFile">jakartaeetck/bin/ts.jte</property>
