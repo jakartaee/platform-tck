@@ -57,7 +57,7 @@
         
         <imqbin.loc>${s1as.imqbin.loc}</imqbin.loc>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
-        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
+        <jakarta.tck.arquillian.version>11.0.3</jakarta.tck.arquillian.version>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
         <javaee.home>${project.build.directory}/${glassfish.toplevel.dir}/glassfish</javaee.home>
         <jdbc.classpath>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyshared.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</jdbc.classpath>
@@ -169,6 +169,7 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -194,6 +195,7 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -216,6 +218,7 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
@@ -225,10 +228,12 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <!-- Needed, if so, should be 11.0.0 version from tck
         <dependency>
