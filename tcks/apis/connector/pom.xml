@@ -80,7 +80,11 @@
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
         </dependency>
-        
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
