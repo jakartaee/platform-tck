@@ -34,8 +34,6 @@ import com.sun.ts.tests.common.connector.whitebox.Util;
 
 import jakarta.resource.ResourceException;
 import jakarta.resource.spi.ConfigProperty;
-import jakarta.resource.spi.ConnectionDefinition;
-import jakarta.resource.spi.ConnectionDefinitions;
 import jakarta.resource.spi.ConnectionManager;
 import jakarta.resource.spi.ConnectionRequestInfo;
 import jakarta.resource.spi.EISSystemException;

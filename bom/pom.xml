@@ -165,11 +165,6 @@
       </dependency>
       <dependency>
         <groupId>jakarta.tck</groupId>
-        <artifactId>samples</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>jakarta.tck</groupId>
         <artifactId>persistence-platform-tck-dbprocedures</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -205,7 +200,7 @@
       </dependency>
       <dependency>
         <groupId>jakarta.tck</groupId>
-        <artifactId>jdbc</artifactId>
+        <artifactId>jdbc-platform-tck</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -254,6 +249,79 @@
         <groupId>jakarta.tck</groupId>
         <artifactId>signaturetest</artifactId>
         <version>${jakarta.tck.sigtest.version}</version>
+      </dependency>
+
+      <!-- Platform TCK Whitebox RARs and common JAR -->
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>whitebox</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>annotated</artifactId>
+        <version>${project.version}</version>
+        <type>rar</type>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>ibanno</artifactId>
+        <version>${project.version}</version>
+        <type>rar</type>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>mdcomplete</artifactId>
+        <version>${project.version}</version>
+        <type>rar</type>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>mixedmode</artifactId>
+        <version>${project.version}</version>
+        <type>rar</type>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>multianno</artifactId>
+        <version>${project.version}</version>
+        <type>rar</type>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>whitebox-notx</artifactId>
+        <version>${project.version}</version>
+        <type>rar</type>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>whitebox-notx-param</artifactId>
+        <version>${project.version}</version>
+        <type>rar</type>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>whitebox-tx</artifactId>
+        <version>${project.version}</version>
+        <type>rar</type>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>whitebox-tx-param</artifactId>
+        <version>${project.version}</version>
+        <type>rar</type>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>whitebox-xa</artifactId>
+        <version>${project.version}</version>
+        <type>rar</type>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>whitebox-xa-param</artifactId>
+        <version>${project.version}</version>
+        <type>rar</type>
       </dependency>
 
       <!-- TCK Arquillian artifacts -->

@@ -28,6 +28,10 @@
     <artifactId>release</artifactId>
     <packaging>pom</packaging>
     <name>Jakarta TCK Release</name>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -273,7 +277,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>connector</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
@@ -298,7 +301,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>jdbc-platform-tck</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
@@ -332,7 +334,66 @@
             <version>${project.version}</version>
             <classifier>javadoc</classifier>
         </dependency>
-
+        <!-- Whitebox RARs -->
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>annotated</artifactId>
+            <type>rar</type>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>ibanno</artifactId>
+            <type>rar</type>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>mdcomplete</artifactId>
+            <type>rar</type>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>mixedmode</artifactId>
+            <type>rar</type>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>multianno</artifactId>
+            <type>rar</type>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox-notx</artifactId>
+            <type>rar</type>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox-notx-param</artifactId>
+            <type>rar</type>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox-tx</artifactId>
+            <type>rar</type>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox-tx-param</artifactId>
+            <type>rar</type>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox-xa</artifactId>
+            <type>rar</type>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox-xa-param</artifactId>
+            <type>rar</type>
+        </dependency>
     </dependencies>
 
     <build>

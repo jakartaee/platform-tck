@@ -591,24 +591,14 @@ which the Web server is running and configured with the CI.
 [[jakarta-connector-test-setup]]
 === Jakarta Connector Test Setup (Full Platform Only)
 
-The Jakarta Connector tests verify that a Jakarta EE {tck_version} server correctly implements the Jakarta Connector V1.7 specification. The Connector compatibility tests
-ensure that your Jakarta EE {tck_version} server still supports the Connector V1.0 functionality.
+The Jakarta Connector tests verify that a Jakarta EE {tck_version} server correctly implements the Jakarta Connector V1.7 specification. The Connector compatibility tests ensure that your Jakarta EE {tck_version} server still supports the Connector V1.0 functionality.
 
-The `config.vi` target is run to configure the Jakarta EE {tck_version} server for
-running Connector tests. The `config.vi` target calls the
-`config.connecto`r target, which is defined in
-`TS_HOME/bin/xml/impl/glassfish/s1as.xml`, to deploy the RAR files
-listed in <<extension-libraries>> and
-create the required connection resources and connection pools used for
-the Connector tests. The `config.vi` target also performs several other
-tasks, such as creating required users and security mappings, setting
-appropriate JVM options, etc. that also are needed to run the Connector
-tests.
+Your runner for the Jakarta Connector TCK tests needs to deploy the RAR files listed in <<extension-libraries>> and create the required connection resources and connection pools used for the Connector tests. The `glassfish-runner/connector-platform-tck` example runner also performs several other tasks, such as creating required users and security mappings, setting appropriate JVM options, etc. that also are needed to run the Connector tests.
 
 [[extension-libraries]]
 ==== Extension Libraries
 
-The following Connector files are deployed as part of the `config.vi` Ant target:
+The following Connector files need to be deployed as part of VI server setup for the Jakarta Connector TCK platform tests:
 
 * `whitebox-mixedmode.rar`
 * `whitebox-tx-param.rar`
@@ -620,40 +610,15 @@ The following Connector files are deployed as part of the `config.vi` Ant target
 * `whitebox-mdcomplete.rar`
 * `whitebox-notx.rar`
 * `whitebox-xa.rar`
-* `old-dd-whitebox-notx-param.rar`
-* `old-dd-whitebox-xa-param.rar`
-* `old-dd-whitebox-tx.rar`
-* `old-dd-whitebox-notx.rar`
-* `old-dd-whitebox-xa.rar`
-* `old-dd-whitebox-tx-param.rar`
 
+These RAR artifacts are available in the platform TCK distribution artifacts directory. Each RAR file has a dependency on the whitebox extension library. The `jakarta.tck:whitebox` whitebox.jar file is a Shared Library that must be deployed as a separate entity that all the Jakarta Connector RAR files access. This extension library is needed to address classloading issues.
 
-[NOTE]
-======================================================================
-RAR files with an `old` prefix are used to test the support of RAs that
-are bundled with an older version of the `ra.xml` files.  TODO: These need to be built for the EE 11 dist.
-======================================================================
-
-
-The manifest file in each RAR file includes a reference to the whitebox
-extension library. The `whitebox.jar` file is a Shared Library that must
-be deployed as a separate entity that all the Jakarta Connector RAR files
-access. This extension library is needed to address classloading issues.
-
-The RAR files that are used with Jakarta EE {tck_version} Platform TCK test suite differ from
-those that were used in earlier test suites. Jakarta EE {tck_version} Platform TCK no longer
-bundles the same common classes into every RAR file. Duplicate common
-classes have been removed and now exist in the `whitebox.jar` file, an
-Installed Library that is deployed and is made available before any
-other RAR files are deployed.
+The RAR files that are used with Jakarta EE {tck_version} Platform TCK test suite differ from those that were used in other test suites. Jakarta EE {tck_version} Platform TCK no longer bundles the same common classes into every RAR file. Duplicate common classes have been removed and now exist in the `whitebox.jar` file, an Installed Library that is deployed and is made available before any other RAR files are deployed.
 
 This was done to address the following compatibility issues:
 
-* Portable use of Installed Libraries for specifying a resource
-adapter's shared libraries +
-See section EE.8.2.2 of the Jakarta EE {tck_version} platform specification and section
-20.2.0.1 in the Jakarta Connectors (formerly JCA) 1.7 specification, which explicitly state that the
-resource adapter server may employ the library mechanisms in Jakarta EE {tck_version}.
+* Portable use of Installed Libraries for specifying a resource adapter's shared libraries +
+See section EE.8.2.2 of the Jakarta EE {tck_version} platform specification and section 20.2.0.1 in the Jakarta Connectors (formerly JCA) 1.7 specification, which explicitly state that the resource adapter server may employ the library mechanisms in Jakarta EE {tck_version}.
 
 * Support application-based standalone connector accessibility +
 Section 20.2.0.4 of the Jakarta Connectors (formerly JCA) 1.7 Specification uses the classloading
@@ -664,91 +629,42 @@ requirements that are listed in section 20.3 in the specification.
 
 Jakarta EE {tck_version} Platform TCK has scenarios in which multiple standalone RAR files that use the same shared library (for example, `whitebox.jar`) are referenced from an application component.
 
-Each standalone RAR file gets loaded in its own classloader. Since the
-application component refers to more than one standalone RAR file, all
-of the referenced standalone RAR files need to be made available in the
-classpath of the application component. In versions of the TCK prior to
-Java EE 5, since each standalone RAR file contained a copy of the
-`whitebox.jar` file, every time there was a reference to a class in the
-`whitebox.jar` file from a standalone RAR, the reference was resolved by
-using the private version of `whitebox.jar` (the `whitebox.jar` file was
-bundled in each standalone RAR file). This approach can lead to class
-type inconsistency issues.
+Each standalone RAR file gets loaded in its own classloader. Since the application component refers to more than one standalone RAR file, all of the referenced standalone RAR files need to be made available in the classpath of the application component. In versions of the TCK prior to Java EE 5, since each standalone RAR file contained a copy of the `whitebox.jar` file, every time there was a reference to a class in the `whitebox.jar` file from a standalone RAR, the reference was resolved by using the private version of `whitebox.jar` (the `whitebox.jar` file was bundled in each standalone RAR file). This approach can lead to class type inconsistency issues.
 
 [[use-case-problem-scenario]]
 
 ==== Use Case Problem Scenario
 
-Assume that RAR1 and RAR2 are standalone RAR files that are referred to
-by an application, where:
+Assume that RAR1 and RAR2 are standalone RAR files that are referred to by an application, where:
 
-* RAR1's classloader has access to RAR1's classes and its copy of
-`whitebox.jar`. (RAR1's classloader contains RAR1's classes and
-`whitebox.jar`)
+* RAR1's classloader has access to RAR1's classes and its copy of `whitebox.jar`. (RAR1's classloader contains RAR1's classes and `whitebox.jar`)
 
-* RAR2's classloader has access to RAR2's classes and its copy of
-`whitebox.jar`. (RAR2's classloader contains RAR2's classes and
-`whitebox.jar`)
+* RAR2's classloader has access to RAR2's classes and its copy of `whitebox.jar`. (RAR2's classloader contains RAR2's classes and `whitebox.jar`)
 
-When the application refers to both of these RAR files, a classloader
-that encompasses both of these classloaders (thereby creating a
-classloader search order) is provided to the application. The
-classloader search order could have the following sequence: ([RAR1's
-Classloader: RAR1's classes and whitebox.jar], [RAR2's Classloader:
-RAR2's classes and whitebox.jar]).
+When the application refers to both of these RAR files, a classloader that encompasses both of these classloaders (thereby creating a classloader search order) is provided to the application. The classloader search order could have the following sequence: ([RAR1's Classloader: RAR1's classes and whitebox.jar], [RAR2's Classloader: RAR2's classes and whitebox.jar]).
 
-In this scenario, when an application loads a class (for example, class
-`Foo`) in `whitebox.jar`, the application gets class `Foo` from RAR1's
-classloader because that is first in the classloader search order.
-However, when this is cast to a class (for example, `Foo` or a subclass
-of `Foo` or even a class that references `Foo`) that is obtained from
-RAR2's classloader (a sequence that is typically realized in a
-`ConnectionFactory` lookup), this would result in a class-cast
-exception.
+In this scenario, when an application loads a class (for example, class `Foo`) in `whitebox.jar`, the application gets class `Foo` from RAR1's classloader because that is first in the classloader search order.
+However, when this is cast to a class (for example, `Foo` or a subclass of `Foo` or even a class that references `Foo`) that is obtained from RAR2's classloader (a sequence that is typically realized in a `ConnectionFactory` lookup), this would result in a class-cast exception.
 
-The portable way of solving the issues raised by this use case problem
-scenario is to use installed libraries, as described in section EE.8.2.2
-in the Jakarta EE {tck_version} platform specification. If both RAR files (RAR1 and
-RAR2) reference `whitebox.jar` as an installed library and the
-application server can use a single classloader to load this common
-dependency, there will be no type-related issues.
+The portable way of solving the issues raised by this use case problem scenario is to use installed libraries, as was described in section EE.8.2.2 in the Jakarta EE 10 platform specification. If both RAR files (RAR1 and RAR2) reference `whitebox.jar` as an installed library and the application server can use a single classloader to load this common dependency, there will be no type-related issues.
+
+For Jakarta EE 11 and beyond, VI servers will need to configure the common `whitebox.jar` in whatever manner is supported by the server.
 
 In the CI Eclipse {glassfish_version}, `domain-dir/lib/applibs` is used as the Installed Library directory and is the location to which the `whitebox.jar` file gets copied.
 
 [[required-porting-package]]
 ==== Required Porting Package
 
-The Jakarta EE {tck_version} Platform TCK test suite treats the `whitebox.jar` dependency as an
-Installed Library dependency instead of bundling the dependency (or
-dependencies) with every RAR file. Each RAR file now contains a
-reference to the `whitebox.jar` file through its Manifest files
-Extension-List attribute.
+The Jakarta EE {tck_version} Platform TCK test suite treats the `whitebox.jar` dependency as an Installed Library dependency instead of bundling the dependency (or dependencies) with every RAR file.
 
-It is necessary to identify the `whitebox.jar` to the connector server
-as an installed library. The mechanism used to identify the
-`whitebox.jar` file to the connector server as an Installed Library must
-allow the Installed Libraries to have dependencies on Jakarta EE APIs. In
-other words, because the `whitebox.jar` file depends on Jakarta EE APIs,
-one cannot simply put the `whitebox.jar` file into a `java.ext.dir`
-directory , which gets loaded by the VM extension classloader, because
-that mechanism does not allow the `whitebox.jar` file to support its
-dependencies on the Jakarta EE APIs. For this reason, the Installed Library
-must support access to the Jakarta EE APIs.
-
-See section EE.8.2.2 in the Jakarta EE {tck_version} platform specification for
-information about the compatible implementation's support for Installed
-libraries. However, note that this section does not recommend a
-mechanism that a deployer can use to provide Installed Libraries in a
-portable manner.
+It is necessary to identify the `whitebox.jar` to the connector server as an installed library. Because the `whitebox.jar` file depends on Jakarta EE APIs, one cannot simply put the `whitebox.jar` file into a `java.ext.dir` directory , which gets loaded by the VM extension classloader, because that mechanism does not allow the `whitebox.jar` file to support its dependencies on the Jakarta EE APIs. For this reason, the common `whitebox.jar` must support access to the Jakarta EE APIs.
 
 [[creating-security-mappings--connector-rar-files]]
 ==== Creating Security Mappings for the Connector RAR Files (Full Platform Only)
 
-The Ant target `create.security.eis.mappings` in the
-`<TS_HOME>/bin/xml/impl/glassfish/connector.xml` file maps Resource
-Adapter user information to existing user information in the CI.
+The VI server needs to map Resource Adapter user information to existing user information in the CI.
 
-For the Eclipse {glassfish_version} CI, these mappings add a line to the `domain.xml` file, similar to the one shown below, and should include 6 of these mappings:
+For the Eclipse {glassfish_version} CI, the required mappings add a line to the `domain.xml` file, similar to the one shown below, and should include 6 of these mappings:
 
 [source,properties]
 ----
@@ -760,9 +676,7 @@ For the Eclipse {glassfish_version} CI, these mappings add a line to the `domain
 <jvm-options>-Dwhitebox-xa-param-map=cts1=j2ee</jvm-options>
 ----
 
-If the `rauser1` property has been set to `cts1` and the `user` property
-has been set to `j2ee` in the `ts.jte` file, the following mappings
-would be required in the connector runtime:
+If the `rauser1` property has been set to `cts1` and the `user` property has been set to `j2ee` in the `ts.jte` file, the following mappings would be required in the connector runtime:
 
 * For RA `whitebox-tx`, map `cts1` to `j2ee`
 * For RA `whitebox-tx-param`, map `cts1` to `j2ee`
@@ -774,14 +688,9 @@ would be required in the connector runtime:
 [[creating-required-server-side-jvm-options]]
 ==== Creating Required Server-Side JVM Options
 
-Create the required JVM options that enable user information to be set
-and/or passed from the `ts.jte` file to the server. The RAR files use
-some of the property settings in the `ts.jte` file.
+Create the required JVM options that enable user information to be set and/or passed from the `ts.jte` file to the server. The RAR files use some of the property settings in the `ts.jte` file.
 
-To see some of the required JVM options for the server under test, see
-the `s1as.jvm.options` property in the `ts.jte` file. The connector
-tests require that the following subset of JVM options be set in the
-server under test:
+To see some of the required JVM options for the server under test, see the `s1as.jvm.options` property in the `ts.jte` file. The connector tests require that the following subset of JVM options be set in the server under test:
 
 [source,bash]
 ----
@@ -792,10 +701,9 @@ server under test:
 ----
 
 [[xa-test-setup]]
-=== XA Test Setup (Full Platform Only)
+=== XA Test Setup
 
-The XA Test setup requires that the `ejb_Tsr.ear` file be deployed as
-part of the `config.vi` Ant target. The `ejb_Tsr.ear` file contains an
+The XA Test setup requires that the `ejb_Tsr.ear` file be deployed as part of the `config.vi` Ant target. The `ejb_Tsr.ear` file contains an
 embedded RAR file, which requires the creation of a connection-pool and
 a connector resource.
 
@@ -876,11 +784,7 @@ does reuse the same connection pool ID for testing the Jakarta EE {tck_version} 
 .  Make sure that the following EIS and RAR files have been deployed
 into your environment before you run the XA tests:
 
-* For the EIS resource adapter, deploy the following RAR files. Most of
-these files are standalone RAR files, but there is also an embedded RAR
-file that is contained in the `ejb_Tsr.ear` file. With the CI, these RAR
-files are deployed as part of the config.vi Ant task. The following RAR
-files are defined in the `ts.jte` file. 
+* For the EIS resource adapter, deploy the following RAR files. Most of these files are standalone RAR files, but there is also an embedded RAR file that is contained in the `ejb_Tsr.ear` file. With the CI runner these files are deployed as part of . The following `ts.jte` properties refer to the required common RAR files and define the JNDI bindings for the RAR connection factory as deployed by the VI server deployments.
 +
 [source,properties]
 ----
@@ -897,16 +801,8 @@ whitebox-embed-xa=
 * The embedded RAR files are located in the
 `<TS_HOME>/src/com/sun/ts/tests/xa/ee/tsr` directory.
 
-* The EIS RAR files are located in the following directory:
-`<TS_HOME>/src/com/sun/ts/tests/common/connector/whitebox` +
-RAR files in the `<TS_HOME>/src/com/sun/ts/tests/common/connector`
-directory must be built before any dependent tests can pass. Deployment
-can either be done ahead of time or at runtime, as long as connection
-pools and resources are established prior to test execution. +
-The XA tests make use of existing connector RAR files, which typically
-get deployed when the `config.vi` Ant task is run. Note that there are
-currently no `JDBCwhitebox` source files and no `JDNCwhitebox` RAR
-files.
+* The EIS RAR files are located TCK distribution artifacts directory. Deployment can either be done ahead of time or at runtime, as long as connection pools and resources are established prior to test execution. +
+The XA tests make use of existing connector RAR files. Note that there are currently no `JDBCwhitebox` source files and no `JDNCwhitebox` RAR files.
 
 [[jakarta-enterprise-beans-4-test-setup]]
 === Jakarta Enterprise Beans 4.0 Test Setup

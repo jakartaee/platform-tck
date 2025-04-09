@@ -16,6 +16,8 @@
         <configuration>
             <property name="glassFishHome">target/glassfish8</property>
             <property name="allowConnectingToRunningServer">true</property>
+            <property name="debug">false</property>
+            <property name="suspend">false</property>
         </configuration>
         <protocol type="appclient" default="true">
             <property name="runClient">true</property>
