@@ -68,6 +68,8 @@
         <rauser1>rauser1</rauser1>
         <sql.directory>./sql</sql.directory>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
+        <tck.dist.file>jakartaeetck-${tck.version}-dist.zip</tck.dist.file>
+        <tck.dist.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.dist.file}</tck.dist.url>
 
        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
 
@@ -103,7 +105,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>connector</artifactId>
-            <version>${project.version}</version>
+            <version>${tck.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -1424,5 +1426,31 @@
                 <glassfish-artifact-id>web</glassfish-artifact-id>
             </properties>
         </profile>
+       <profile>
+           <id>install-tck-dist</id>
+           <build>
+               <plugins>
+                   <plugin>
+                       <groupId>com.googlecode.maven-download-plugin</groupId>
+                       <artifactId>download-maven-plugin</artifactId>
+                       <version>1.13.0</version>
+                       <configuration>
+                           <url>${tck.dist.url}</url>
+                           <unpack>true</unpack>
+                           <outputDirectory>${project.build.directory}</outputDirectory>
+                       </configuration>
+                       <executions>
+                           <execution>
+                               <id>download-platform-tck</id>
+                               <goals>
+                                   <goal>wget</goal>
+                               </goals>
+                               <phase>generate-resources</phase>
+                           </execution>
+                       </executions>
+                   </plugin>
+               </plugins>
+           </build>
+       </profile>
     </profiles>
 </project>
