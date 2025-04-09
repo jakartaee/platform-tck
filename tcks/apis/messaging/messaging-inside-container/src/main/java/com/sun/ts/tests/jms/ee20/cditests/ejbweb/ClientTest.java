@@ -29,7 +29,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("platform")
 @Tag("jms_web")
 @Tag("web_optional")
-@Tag("tck-javatest")
+@Tag("tck-appclient")
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client {
@@ -54,8 +54,8 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client
         Ear:
 
         */
-        @TargetsContainer("tck-javatest")
-        @OverProtocol("javatest")
+        @TargetsContainer("tck-appclient")
+        @OverProtocol("appclient")
         @Deployment(name = "cditestsejbweb", order = 2)
         public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
