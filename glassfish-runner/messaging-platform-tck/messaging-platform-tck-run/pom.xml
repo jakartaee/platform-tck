@@ -35,27 +35,8 @@
         <admin.pass.file.encoded>${admin.pass.file}.encoded</admin.pass.file.encoded>
         <admin.user>admin</admin.user>
         <arquillian.junit>1.9.1.Final</arquillian.junit>
-        <connectionpoolid>${derby.poolName}</connectionpoolid>
-        <datasourceclassname>${derby.dataSource}</datasourceclassname>
         <db.delimiter>;</db.delimiter>
-        <db1>db1</db1>
-        <db2>db1OnlyUsedIfDriverManagerIsYes</db2>
-        <derby.classes>${derby.home}/lib/derbyclient.jar${pathsep}${derby.home}/lib/derbyshared.jar${pathsep}${derby.home}/lib/derbytools.jar</derby.classes>
-        <derby.classpath>../../lib/dbprocedures.jar${pathsep}${derby.home}/lib/derbynet.jar${pathsep}${derby.home}/lib/derbyshared.jar${pathsep}${derby.home}/lib/derbytools.jar</derby.classpath>
-        <derby.dataSource>org.apache.derby.jdbc.ClientDataSource</derby.dataSource>
-        <derby.dbName>derbyDB</derby.dbName>
-        <derby.dml.file>derby/derby.dml.sql</derby.dml.file>
-        <derby.driver>org.apache.derby.jdbc.ClientDriver</derby.driver>
-        <derby.home>${project.build.directory}/${glassfish.toplevel.dir}/javadb</derby.home>
-        <derby.passwd>cts1</derby.passwd>
-        <derby.poolName>cts-derby-pool</derby.poolName>
-        <derby.port>1527</derby.port>
-        <derby.properties>DatabaseName\=\"${derby.dbName}\":user\=${derby.user}:password\=${derby.passwd}:serverName\=${derby.server}:portNumber=${derby.port}</derby.properties>
-        <derby.server>localhost</derby.server>
-        <derby.startup.delay>5</derby.startup.delay>
-        <derby.system.home>${derby.home}/databases</derby.system.home>
-        <derby.url>jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true</derby.url>
-        <derby.user>cts1</derby.user>
+        
         <exec.asadmin>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</exec.asadmin>
         <exec.imqbrokerd>${ri.home}/bin/imqbrokerd</exec.imqbrokerd>
         <exec.imqbrokerd.part2></exec.imqbrokerd.part2>
@@ -65,7 +46,7 @@
         <exec.imqobjmgr.part2></exec.imqobjmgr.part2>
         <exec.imqusermgr>${ri.home}/bin/imqusermgr</exec.imqusermgr>
         <exec.imqusermgr.part2></exec.imqusermgr.part2>
-        <ftable>ctstable2</ftable>
+        
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <!-- Use JDK21 to run with GF 8.0.0-M5 -->
@@ -73,6 +54,7 @@
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
         <glassfish.version>8.0.0-JDK17-M7</glassfish.version>
+        
         <imqbin.loc>${s1as.imqbin.loc}</imqbin.loc>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
         <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
@@ -95,11 +77,7 @@
         <password1>cts1</password1>
         <password2>cts1</password2>
         <pathsep>:</pathsep>
-        <pool.properties>${derby.properties}</pool.properties>
-        <poolName>${derby.poolName}</poolName>
         <propName>SupportsXA=true:ProviderIntegrationMode=javabean:ConnectionFactoryClassName=com.sun.messaging.ConnectionFactory:CommonSetterMethodName=setProperty:UserName=guest:Password=guest:QueueConnectionFactoryClassName=com.sun.messaging.QueueConnectionFactory:TopicConnectionFactoryClassName=com.sun.messaging.TopicConnectionFactory:QueueClassName=com.sun.messaging.Queue:TopicClassName=com.sun.messaging.Topic:LogLevel=info:UserName=guest:Password=guest:XAQueueConnectionFactoryClassName=com.sun.messaging.XAQueueConnectionFactory:XATopicConnectionFactoryClassName=com.sun.messaging.XATopicConnectionFactory:XAConnectionFactoryClassName=com.sun.messaging.XAConnectionFactory</propName>
-        <ptable>ctstable1</ptable>
-        <restype>javax.sql.DataSource</restype>
         <ri.home>${project.build.directory}/${glassfish.toplevel.dir}/mq</ri.home>
         <s1as.imq.share.lib>${javaee.home}/../mq/lib</s1as.imq.share.lib>
         <s1as.imqbin.loc>${javaee.home}/../mq/bin</s1as.imqbin.loc>
@@ -112,6 +90,7 @@
         <user2>cts1</user2>
         <version.jakarta.tck>11.0.0</version.jakarta.tck>
     </properties>
+    
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -301,25 +280,6 @@
                                     <outputDirectory>${project.build.directory}</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <id>002-asadmin-permission</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <target>
-                                <chmod dir="target/glassfish8/glassfish/bin/asadmin" perm="777"></chmod>
-                            </target>
                         </configuration>
                     </execution>
                 </executions>
@@ -746,7 +706,6 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/imq.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/jms.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/fscontext.jar</additionalClasspathElement>
-                                <!-- <additionalClasspathElement>${project.build.directory}/lib/runtime.jar</additionalClasspathElement> -->
                             </additionalClasspathElements>
                             <includes>
                                 <include>com/sun/ts/tests/jms/**/*Test*.java</include>
@@ -756,19 +715,22 @@
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                <glassfish.postBootCommands>create-file-user --groups staff:mgr:DIRECTOR --passwordfile ${project.build.directory}/../j2ee.pass j2ee
-                                create-file-user --groups guest:OTHERROLE --passwordfile ${project.build.directory}/../javajoe.pass javajoe
-                                set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                                create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=myQueue MY_QUEUE
-                                create-jms-resource --restype jakarta.jms.Topic --property imqDestinationName=myTopic MY_TOPIC
-                                create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
-                                create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
-                                create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
-                                create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/TopicConnectionFactory
-                                create-jms-resource --restype jakarta.jms.ConnectionFactory --property name=cFactory jms/ConnectionFactory
-                                list-jdbc-connection-pools
-                                list-jdbc-resources
-                                list-file-users</glassfish.postBootCommands>
+                                <glassfish.postBootCommands>
+                                    create-file-user --groups staff:mgr:DIRECTOR --passwordfile ${project.build.directory}/../j2ee.pass j2ee
+                                    create-file-user --groups guest:OTHERROLE --passwordfile ${project.build.directory}/../javajoe.pass javajoe
+                                    set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                                    create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=myQueue MY_QUEUE
+                                    create-jms-resource --restype jakarta.jms.Topic --property imqDestinationName=myTopic MY_TOPIC
+                                    create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
+                                    create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
+                                    create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
+                                    create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/TopicConnectionFactory
+                                    create-jms-resource --restype jakarta.jms.ConnectionFactory --property name=cFactory jms/ConnectionFactory
+                                    list-jdbc-connection-pools
+                                    list-jdbc-resources
+                                    list-file-users
+                                </glassfish.postBootCommands>
+                                
                                 <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>
@@ -806,19 +768,22 @@
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                <glassfish.postBootCommands>create-file-user --groups staff:mgr:DIRECTOR --passwordfile ${project.build.directory}/../j2ee.pass j2ee
-                                create-file-user --groups guest:OTHERROLE --passwordfile ${project.build.directory}/../javajoe.pass javajoe
-                                set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                                create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=myQueue MY_QUEUE
-                                create-jms-resource --restype jakarta.jms.Topic --property imqDestinationName=myTopic MY_TOPIC
-                                create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
-                                create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
-                                create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
-                                create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/TopicConnectionFactory
-                                create-jms-resource --restype jakarta.jms.ConnectionFactory --property name=cFactory jms/ConnectionFactory
-                                list-jdbc-connection-pools
-                                list-jdbc-resources
-                                list-file-users</glassfish.postBootCommands>
+                                <glassfish.postBootCommands>
+                                    create-file-user --groups staff:mgr:DIRECTOR --passwordfile ${project.build.directory}/../j2ee.pass j2ee
+                                    create-file-user --groups guest:OTHERROLE --passwordfile ${project.build.directory}/../javajoe.pass javajoe
+                                    set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                                    create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=myQueue MY_QUEUE
+                                    create-jms-resource --restype jakarta.jms.Topic --property imqDestinationName=myTopic MY_TOPIC
+                                    create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
+                                    create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
+                                    create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
+                                    create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/TopicConnectionFactory
+                                    create-jms-resource --restype jakarta.jms.ConnectionFactory --property name=cFactory jms/ConnectionFactory
+                                    list-jdbc-connection-pools
+                                    list-jdbc-resources
+                                    list-file-users
+                                </glassfish.postBootCommands>
+                                
                                 <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>
