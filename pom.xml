@@ -44,6 +44,7 @@
         <module>tcks/apis/cdi-ee-tck/tck</module>
         <module>tcks/apis/connector</module>
         <module>tcks/apis/connector/docs</module>
+        <module>tcks/apis/connector-whitebox</module>
         <module>tcks/apis/enterprise-beans/ejb30</module>
         <!-- PENDING: Additional action necessary to expurgate WebServices content. -->
         <!-- https://github.com/jakartaee/platform-tck/issues/1387 -->

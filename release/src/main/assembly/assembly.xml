@@ -112,7 +112,7 @@
     </fileSets>
 
     <dependencySets>
-        <dependencySet>
+        <dependencySet xml:id="jakarta-tck">
             <includes>
                 <include>${project.groupId}:appclient</include>
                 <include>${project.groupId}:artifacts-bom</include>
@@ -143,6 +143,18 @@
                 <include>${project.groupId}:signaturevalidation</include>
                 <include>${project.groupId}:websocket-tck-platform-tests</include>
                 <include>${project.groupId}:xa</include>
+                <include>${project.groupId}:whitebox</include>
+                <include>${project.groupId}:annotated</include>
+                <include>${project.groupId}:ibanno</include>
+                <include>${project.groupId}:mdcomplete</include>
+                <include>${project.groupId}:mixedmode</include>
+                <include>${project.groupId}:multianno</include>
+                <include>${project.groupId}:whitebox-notx</include>
+                <include>${project.groupId}:whitebox-notx-param</include>
+                <include>${project.groupId}:whitebox-tx</include>
+                <include>${project.groupId}:whitebox-tx-param</include>
+                <include>${project.groupId}:whitebox-xa</include>
+                <include>${project.groupId}:whitebox-xa-param</include>
             </includes>
             <useTransitiveDependencies>true</useTransitiveDependencies>
             <outputDirectory>artifacts</outputDirectory>

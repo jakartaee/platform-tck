@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Extension-List: whitebox
+whitebox-Extension-Name: whitebox
+whitebox-Specification-Version: 1.6
+whitebox-Implementation-Version: 1.6
+whitebox-Implementation-Vendor-Id: com.sun
