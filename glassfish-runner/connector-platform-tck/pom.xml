@@ -71,8 +71,7 @@
         <tck.dist.file>jakartaeetck-${tck.version}-dist.zip</tck.dist.file>
         <tck.dist.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.dist.file}</tck.dist.url>
 
-       <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
-
+        <whitebox.directory>target/whiteboxes</whitebox.directory>
         <!-- XA properties -->
         <xa.datasource.class>org.apache.derby.jdbc.ClientXADataSource</xa.datasource.class>
         <xa.maxpoolsize>64</xa.maxpoolsize>
@@ -85,16 +84,9 @@
    <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>${junit.jupiter.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.9.3.Final</version>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                <version>${tck.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -105,13 +97,11 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>connector</artifactId>
-            <version>${tck.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>11.0.2</version>
         </dependency>
     
         <dependency>
@@ -135,29 +125,35 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
+            <version>11.0.5</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
-        <dependency>
+       <dependency>
+           <groupId>jakarta.tck</groupId>
+           <artifactId>whitebox</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>jakarta.tck</groupId>
+           <artifactId>mdcomplete</artifactId>
+           <type>rar</type>
+       </dependency>
+
+       <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <version>1.6</version>
@@ -247,6 +243,102 @@
                             </artifactItems>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>3-install-whiteboxes</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>whitebox</artifactId>
+                                    <outputDirectory>${whitebox.directory}</outputDirectory>
+                                    <destFileName>whitebox.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>annotated</artifactId>
+                                    <version>${tck.version}</version>
+                                    <type>rar</type>
+                                    <outputDirectory>${whitebox.directory}</outputDirectory>
+                                    <destFileName>whitebox-anno_no_md.rar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>ibanno</artifactId>
+                                    <version>${tck.version}</version>
+                                    <type>rar</type>
+                                    <outputDirectory>${whitebox.directory}</outputDirectory>
+                                    <destFileName>whitebox-ibanno_no_md.rar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>mdcomplete</artifactId>
+                                    <type>rar</type>
+                                    <outputDirectory>${whitebox.directory}</outputDirectory>
+                                    <destFileName>whitebox-mdcomplete.rar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>mixedmode</artifactId>
+                                    <type>rar</type>
+                                    <outputDirectory>${whitebox.directory}</outputDirectory>
+                                    <destFileName>whitebox-mixedmode.rar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>multianno</artifactId>
+                                    <type>rar</type>
+                                    <outputDirectory>${whitebox.directory}</outputDirectory>
+                                    <destFileName>whitebox-multianno.rar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>whitebox-notx</artifactId>
+                                    <type>rar</type>
+                                    <outputDirectory>${whitebox.directory}</outputDirectory>
+                                    <destFileName>whitebox-notx.rar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>whitebox-notx-param</artifactId>
+                                    <type>rar</type>
+                                    <outputDirectory>${whitebox.directory}</outputDirectory>
+                                    <destFileName>whitebox-notx-param.rar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>whitebox-tx</artifactId>
+                                    <type>rar</type>
+                                    <outputDirectory>${whitebox.directory}</outputDirectory>
+                                    <destFileName>whitebox-tx.rar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>whitebox-tx-param</artifactId>
+                                    <type>rar</type>
+                                    <outputDirectory>${whitebox.directory}</outputDirectory>
+                                    <destFileName>whitebox-tx-param.rar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>whitebox-xa</artifactId>
+                                    <type>rar</type>
+                                    <outputDirectory>${whitebox.directory}</outputDirectory>
+                                    <destFileName>whitebox-xa.rar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>whitebox-xa-param</artifactId>
+                                    <type>rar</type>
+                                    <outputDirectory>${whitebox.directory}</outputDirectory>
+                                    <destFileName>whitebox-xa-param.rar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -321,7 +413,7 @@
                             <outputDirectory>${glassfish.lib.dir}</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${basedir}</directory>
+                                    <directory>${whitebox.directory}</directory>
                                     <includes>
                                         <include>*.jar</include>
                                     </includes>
@@ -364,7 +456,7 @@
                             <outputDirectory>${glassfish.lib.dir}</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${basedir}</directory>
+                                    <directory>${whitebox.directory}</directory>
                                     <includes>
                                         <include>*.jar</include>
                                     </includes>
@@ -564,7 +656,7 @@
                                 <argument>--passwordfile</argument>
                                 <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
-                                <argument>${project.basedir}/connectors/whitebox/whitebox-tx.rar</argument>
+                                <argument>${whitebox.directory}/whitebox-tx.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -626,7 +718,7 @@
                                 <argument>--passwordfile</argument>
                                 <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
-                                <argument>${project.basedir}/connectors/whitebox/whitebox-xa.rar</argument>
+                                <argument>${whitebox.directory}/whitebox-xa.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -688,7 +780,7 @@
                                 <argument>--passwordfile</argument>
                                 <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
-                                <argument>${project.basedir}/connectors/whitebox/whitebox-notx.rar</argument>
+                                <argument>${whitebox.directory}/whitebox-notx.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -750,7 +842,7 @@
                                 <argument>--passwordfile</argument>
                                 <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
-                                <argument>${project.basedir}/connectors/whitebox/mdcomplete/whitebox-mdcomplete.rar</argument>
+                                <argument>${whitebox.directory}/whitebox-mdcomplete.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -812,7 +904,7 @@
                                 <argument>--passwordfile</argument>
                                 <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
-                                <argument>${project.basedir}/connectors/whitebox/annotated/whitebox-anno_no_md.rar</argument>
+                                <argument>${whitebox.directory}/whitebox-anno_no_md.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -874,7 +966,7 @@
                                 <argument>--passwordfile</argument>
                                 <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
-                                <argument>${project.basedir}/connectors/whitebox/mixedmode/whitebox-mixedmode.rar</argument>
+                                <argument>${whitebox.directory}/whitebox-mixedmode.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -936,7 +1028,7 @@
                                 <argument>--passwordfile</argument>
                                 <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
-                                <argument>${project.basedir}/connectors/whitebox/multianno/whitebox-multianno.rar</argument>
+                                <argument>${whitebox.directory}/whitebox-multianno.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -998,7 +1090,7 @@
                                 <argument>--passwordfile</argument>
                                 <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
-                                <argument>${project.basedir}/connectors/whitebox/whitebox-tx-param.rar</argument>
+                                <argument>${whitebox.directory}/whitebox-tx-param.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -1060,7 +1152,7 @@
                                 <argument>--passwordfile</argument>
                                 <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
-                                <argument>${project.basedir}/connectors/whitebox/whitebox-notx-param.rar</argument>
+                                <argument>${whitebox.directory}/whitebox-notx-param.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -1122,7 +1214,7 @@
                                 <argument>--passwordfile</argument>
                                 <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
-                                <argument>${project.basedir}/connectors/whitebox/whitebox-xa-param.rar</argument>
+                                <argument>${whitebox.directory}/whitebox-xa-param.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -1184,7 +1276,7 @@
                                 <argument>--passwordfile</argument>
                                 <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
-                                <argument>${project.basedir}/connectors/whitebox/ibanno/whitebox-ibanno_no_md.rar</argument>
+                                <argument>${whitebox.directory}/whitebox-ibanno_no_md.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -1400,6 +1492,12 @@
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
                             <includes>
+                                <!--
+                                <include>**/*Servlet*.*</include>
+                                <include>**/*Jsp**.*</include>
+                                <include>com.sun.ts.tests.connector.annotations.mdcomplete.ClientServletTest</include>
+                                <include>com.sun.ts.tests.connector.connManager.connManagerClient1ServletTest</include>
+                                -->
                                 <include>**/*Servlet*.*</include>
                                 <include>**/*Jsp**.*</include>
                             </includes>
@@ -1427,6 +1525,7 @@
             </properties>
         </profile>
        <profile>
+           <!-- Downloads the staged TCK and run the jakartaeetck/artifacts/pom.xml to install -->
            <id>install-tck-dist</id>
            <build>
                <plugins>
@@ -1436,6 +1535,7 @@
                        <version>1.13.0</version>
                        <configuration>
                            <url>${tck.dist.url}</url>
+                           <skipCache>true</skipCache>
                            <unpack>true</unpack>
                            <outputDirectory>${project.build.directory}</outputDirectory>
                        </configuration>
@@ -1444,6 +1544,26 @@
                                <id>download-platform-tck</id>
                                <goals>
                                    <goal>wget</goal>
+                               </goals>
+                               <phase>generate-resources</phase>
+                           </execution>
+                       </executions>
+                   </plugin>
+                   <plugin>
+                       <artifactId>maven-invoker-plugin</artifactId>
+                       <version>3.9.0</version>
+                       <configuration>
+                           <projectsDirectory>target/jakartaeetck/artifacts</projectsDirectory>
+                           <pomIncludes>
+                               <pomInclude>pom.xml</pomInclude>
+                           </pomIncludes>
+                       </configuration>
+                       <executions>
+                           <execution>
+                               <id>run-install</id>
+                               <goals>
+                                   <goal>install</goal>
+                                   <goal>run</goal>
                                </goals>
                                <phase>generate-resources</phase>
                            </execution>

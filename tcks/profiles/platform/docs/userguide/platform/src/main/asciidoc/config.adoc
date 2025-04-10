@@ -629,7 +629,7 @@ requirements that are listed in section 20.3 in the specification.
 
 Jakarta EE {tck_version} Platform TCK has scenarios in which multiple standalone RAR files that use the same shared library (for example, `whitebox.jar`) are referenced from an application component.
 
-Each standalone RAR file gets loaded in its own classloader. Since the application component refers to more than one standalone RAR file, all of the referenced standalone RAR files need to be made available in the classpath of the application component. In versions of the TCK prior to Java EE 5, since each standalone RAR file contained a copy of the `whitebox.jar` file, every time there was a reference to a class in the `whitebox.jar` file from a standalone RAR, the reference was resolved by using the private version of `whitebox.jar` (the `whitebox.jar` file was bundled in each standalone RAR file). This approach can lead to class type inconsistency issues.
+Each standalone RAR file gets loaded in its own classloader. Since the application component refers to more than one standalone RAR file, all the referenced standalone RAR files need to be made available in the classpath of the application component. In versions of the TCK prior to Java EE 5, since each standalone RAR file contained a copy of the `whitebox.jar` file, every time there was a reference to a class in the `whitebox.jar` file from a standalone RAR, the reference was resolved by using the private version of `whitebox.jar` (the `whitebox.jar` file was bundled in each standalone RAR file). This approach can lead to class type inconsistency issues.
 
 [[use-case-problem-scenario]]
 
@@ -660,7 +660,7 @@ The Jakarta EE {tck_version} Platform TCK test suite treats the `whitebox.jar` d
 It is necessary to identify the `whitebox.jar` to the connector server as an installed library. Because the `whitebox.jar` file depends on Jakarta EE APIs, one cannot simply put the `whitebox.jar` file into a `java.ext.dir` directory , which gets loaded by the VM extension classloader, because that mechanism does not allow the `whitebox.jar` file to support its dependencies on the Jakarta EE APIs. For this reason, the common `whitebox.jar` must support access to the Jakarta EE APIs.
 
 [[creating-security-mappings--connector-rar-files]]
-==== Creating Security Mappings for the Connector RAR Files (Full Platform Only)
+==== Creating Security Mappings for the Connector RAR Files
 
 The VI server needs to map Resource Adapter user information to existing user information in the CI.
 

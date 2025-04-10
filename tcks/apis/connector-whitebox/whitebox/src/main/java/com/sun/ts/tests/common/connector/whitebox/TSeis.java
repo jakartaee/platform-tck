@@ -99,7 +99,7 @@ public class TSeis {
         System.out.println("User is " + usr);
         if ((usr.equals("cts1") && passwd[0] == 'c' && passwd[1] == 't' && passwd[2] == 's' && passwd[3] == '1')
                 || (usr.equals("cts2") && passwd[0] == 'c' && passwd[1] == 't' && passwd[2] == 's' && passwd[3] == '2')) {
-            System.out.println("Passwd lenght is " + passwd.length);
+            System.out.println("Passwd length is " + passwd.length);
 
             for (int in = 0; in < passwd.length; in++) {
                 System.out.println("Password 3 is " + passwd[in]);
@@ -118,7 +118,7 @@ public class TSeis {
             conset.addElement(con);
             return con;
         } else {
-            System.out.println("Connection null returned");
+            System.out.println("Connection null returned, wrong user or password");
             return null;
         }
     }
