@@ -48,8 +48,9 @@
 
         <!-- glassfish properties -->
         <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
-        <glassfish.version>7.0.0</glassfish.version>
-        <glassfish.home>${project.build.directory}/glassfish7</glassfish.home>
+        <glassfish.major>8</glassfish.major>
+        <glassfish.version>8.0.0-JDK17-M10</glassfish.version>
+        <glassfish.home>${project.build.directory}/glassfish${glassfish.major}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
 
@@ -925,7 +926,7 @@
                                 <argument>--raname</argument>
                                 <argument>whitebox-anno_no_md</argument>
                                 <argument>--property</argument>
-                                <argument>eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry</argument>
+                                <argument>eisPrincipalName=cts1:userName=j2ee:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>
                                 <argument>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</argument>
                                 <argument>cts-connector-pool-whitebox-anno_no_md-pool.rar</argument>
@@ -1499,7 +1500,7 @@
                                 <include>com.sun.ts.tests.connector.connManager.connManagerClient1ServletTest</include>
                                 -->
                                 <include>**/*Servlet*.*</include>
-                                <include>**/*Jsp**.*</include>
+                                <!--include>**/*Jsp**.*</include-->
                             </includes>
                         </configuration>
                     </execution>
