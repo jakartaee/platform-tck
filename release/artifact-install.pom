@@ -462,7 +462,6 @@
                             <groupId>jakarta.tck</groupId>
                             <artifactId>whitebox</artifactId>
                             <version>${project.version}</version>
-                            <packaging>rar</packaging>
                             <file>whitebox-${project.version}.jar</file>
                             <generatePom>false</generatePom>
                         </configuration>
