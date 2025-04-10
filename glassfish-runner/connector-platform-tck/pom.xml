@@ -1524,53 +1524,5 @@
                 <glassfish-artifact-id>web</glassfish-artifact-id>
             </properties>
         </profile>
-       <profile>
-           <!-- Downloads the staged TCK and run the jakartaeetck/artifacts/pom.xml to install -->
-           <id>install-tck-dist</id>
-           <build>
-               <plugins>
-                   <plugin>
-                       <groupId>com.googlecode.maven-download-plugin</groupId>
-                       <artifactId>download-maven-plugin</artifactId>
-                       <version>1.13.0</version>
-                       <configuration>
-                           <url>${tck.dist.url}</url>
-                           <skipCache>true</skipCache>
-                           <unpack>true</unpack>
-                           <outputDirectory>${project.build.directory}</outputDirectory>
-                       </configuration>
-                       <executions>
-                           <execution>
-                               <id>download-platform-tck</id>
-                               <goals>
-                                   <goal>wget</goal>
-                               </goals>
-                               <phase>generate-resources</phase>
-                           </execution>
-                       </executions>
-                   </plugin>
-                   <plugin>
-                       <artifactId>maven-invoker-plugin</artifactId>
-                       <version>3.9.0</version>
-                       <configuration>
-                           <projectsDirectory>target/jakartaeetck/artifacts</projectsDirectory>
-                           <pomIncludes>
-                               <pomInclude>pom.xml</pomInclude>
-                           </pomIncludes>
-                       </configuration>
-                       <executions>
-                           <execution>
-                               <id>run-install</id>
-                               <goals>
-                                   <goal>install</goal>
-                                   <goal>run</goal>
-                               </goals>
-                               <phase>generate-resources</phase>
-                           </execution>
-                       </executions>
-                   </plugin>
-               </plugins>
-           </build>
-       </profile>
     </profiles>
 </project>
