@@ -316,9 +316,9 @@
                             list-file-users
                         </glassfish.postBootCommands>
                         
-                        <junit.log.traceflag>false</junit.log.traceflag>
-                        <harness.log.traceflag>false</harness.log.traceflag>
-                        <cts.harness.debug>false</cts.harness.debug>
+                        <junit.log.traceflag>true</junit.log.traceflag>
+                        <harness.log.traceflag>true</harness.log.traceflag>
+                        <cts.harness.debug>true</cts.harness.debug>
                         <project.basedir>${project.basedir}</project.basedir>
                         <log.file.location>/tmp</log.file.location>
                     </systemPropertyVariables>
