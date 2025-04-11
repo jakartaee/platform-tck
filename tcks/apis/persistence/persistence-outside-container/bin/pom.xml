@@ -808,7 +808,7 @@
         <profile>
             <id>postgresql</id>
             <properties>
-                <postgresql.jdbc.version>42.6.2</postgresql.jdbc.version>
+                <postgresql.jdbc.version>42.7.4</postgresql.jdbc.version>
                 <jdbc.db>postgresql</jdbc.db>
                 <jakarta.persistence.jdbc.driver>org.postgresql.Driver</jakarta.persistence.jdbc.driver>
             </properties>
