@@ -171,7 +171,9 @@ public class Client3 extends Client {
 				getEntityTransaction().commit();
 				LongClass_Field a1 = getEntityManager().find(LongClass_Field.class, "3");
 				if (a1 != null) {
-					if (a1.getVersion() > version) {
+					if (a1.getVersion() == null) {
+						logErr("version is null for updated entity");
+					} else if (version == null || a1.getVersion() > version) {
 						logTrace( "version:" + a1.getVersion());
 						pass = true;
 					} else {
@@ -221,7 +223,9 @@ public class Client3 extends Client {
 				getEntityTransaction().commit();
 				LongClass_Property a1 = getEntityManager().find(LongClass_Property.class, "4");
 				if (a1 != null) {
-					if (a1.getBasicLong() > version) {
+					if (a1.getBasicLong() == null) {
+						logErr("version is null for updated entity");
+					} else if (version == null || a1.getBasicLong() > version) {
 						logTrace( "version:" + a1.getBasicLong());
 						pass = true;
 					} else {

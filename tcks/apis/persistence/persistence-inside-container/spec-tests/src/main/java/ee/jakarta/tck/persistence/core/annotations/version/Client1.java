@@ -173,7 +173,9 @@ public class Client1 extends Client {
 				getEntityTransaction().commit();
 				Integer_Field a1 = getEntityManager().find(Integer_Field.class, "3");
 				if (a1 != null) {
-					if (a1.getVersion() > version) {
+					if (a1.getVersion() == null) {
+						logErr("version is null for updated entity");
+					} else if (version == null || a1.getVersion() > version) {
 						logTrace( "version:" + a1.getVersion());
 						pass = true;
 					} else {
@@ -223,7 +225,9 @@ public class Client1 extends Client {
 				getEntityTransaction().commit();
 				Integer_Property a1 = getEntityManager().find(Integer_Property.class, "4");
 				if (a1 != null) {
-					if (a1.getBasicInteger() > version) {
+					if (a1.getBasicInteger() == null) {
+						logErr("version is null for updated entity");
+					} else if (version == null || a1.getBasicInteger() > version) {
 						logTrace( "version:" + a1.getBasicInteger());
 						pass = true;
 					} else {
