@@ -458,9 +458,6 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.5.0</version>
                 <configuration>
-                    <includes>
-                        <include>com/sun/ts/tests/jms/**/*Test*.java</include>
-                    </includes>
                     <dependenciesToScan>jakarta.tck:jms-platform-tck</dependenciesToScan>
                     
                     <systemPropertyVariables>
@@ -524,6 +521,9 @@
                                     <goal>verify</goal>
                                 </goals>
                                 <configuration>
+                                    <includes>
+                                        <include>com/sun/ts/tests/jms/**/*Test*.java</include>
+                                    </includes>
                                     <!-- Select the @Tag("tck-javatest") tests -->
                                     <groups>tck-javatest</groups>
 
@@ -728,6 +728,87 @@
 
             </build>
 
+        </profile>
+        
+        <!-- 
+            [INFO] Tests run: 1221, Failures: 0, Errors: 0, Skipped: 0
+            [INFO] Total time:  01:02 h
+        -->
+        <profile>
+            <id>core</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <includes> 
+                                <include>com.sun.ts.tests.jms.core.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <!-- 
+            [INFO] Tests run: 458, Failures: 0, Errors: 0, Skipped: 0
+            [INFO] Total time:  47:09 min
+        -->
+        <profile>
+            <id>core20</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <includes> 
+                                <include>com.sun.ts.tests.jms.core20.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <!-- 
+            -Pfull,appclient,ee 
+            [ERROR] Tests run: 187, Failures: 0, Errors: 34, Skipped: 0
+            [INFO] Total time:  01:11 h
+        -->
+        <profile>
+            <id>ee</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <includes> 
+                                <include>com.sun.ts.tests.jms.ee.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <!-- 
+            [ERROR] Tests run: 66, Failures: 0, Errors: 43, Skipped: 0
+            [INFO] Total time:  53:01 min
+        -->
+        <profile>
+            <id>ee20</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <includes> 
+                                <include>com.sun.ts.tests.jms.ee20.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
 
 
