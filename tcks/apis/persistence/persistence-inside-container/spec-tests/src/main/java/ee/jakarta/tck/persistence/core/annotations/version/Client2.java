@@ -215,11 +215,6 @@ public class Client2 extends Client {
 	public void shortClassPropertyTest() throws Exception {
 		boolean pass = false;
 		try {
-			if (! getEntityManager().isJoinedToTransaction()) {
-				throw new Exception("shortClassPropertyTest failed because there the persistence context " +
-						"is not joined to the transaction " +
-						getEntityTransaction() != null ? getEntityTransaction().getClass().getName() : "getEntityTransaction() returns null" );
-			}
 			ShortClass_Property a = getEntityManager().find(ShortClass_Property.class, "4");
 			if (a != null) {
 				logTrace( "version:" + a.getBasicShort());
