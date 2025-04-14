@@ -17,8 +17,9 @@
 package ee.jakarta.tck.persistence.jpa.ee.packaging.jar;
 
 
+import java.util.Properties;
+
 import ee.jakarta.tck.persistence.common.PMClientBase;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class Client extends PMClientBase {
@@ -31,12 +32,10 @@ public class Client extends PMClientBase {
 	/*
 	 * @class.setup_props:
 	 */
-	@Override
-    @BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
+			super.setup(args, p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -114,7 +113,6 @@ public class Client extends PMClientBase {
 	}
 
 	@Override
-    @BeforeEach
 	public void cleanup() throws Exception {
 		logTrace( "cleanup");
 		removeTestData();

@@ -193,11 +193,9 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
             logTrace("WARNING: " + MODE_PROP + " is set to " + mode
                     + ", an invalid value.");
         }
-    cachingSupported = Boolean.parseBoolean(
-        p.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED, "true"));
-    if (TestUtil.traceflag) {
+        cachingSupported = Boolean.parseBoolean(
+            p.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED, "true"));
       displayProperties(p);
-    }
 
     }
 
