@@ -193,49 +193,12 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
             logTrace("WARNING: " + MODE_PROP + " is set to " + mode
                     + ", an invalid value.");
         }
+    cachingSupported = Boolean.parseBoolean(
+        p.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED, "true"));
+    if (TestUtil.traceflag) {
+      displayProperties(p);
     }
-    public void setup() throws Exception {
-        if (mode == JAKARTA_EE) {
-            throw new IllegalStateException("Standalone JPA TCK setup method called in Jakarta EE mode, instead call setup(String[], Properties) or figure out why JUnit @BeforeEach is being run against the calling class that called setup().");
-        }
-        logTrace("PMClientBase.setup");
-        mode = System.getProperty(MODE_PROP, JAKARTA_EE);
-        myProps.put(MODE_PROP, mode);
-        persistenceUnitName = System.getProperty(PERSISTENCE_UNIT_NAME_PROP);
-        myProps.put(PERSISTENCE_UNIT_NAME_PROP, persistenceUnitName);
-        logTrace( "Persistence Unit Name =" + persistenceUnitName);
-        secondPersistenceUnitName = System.getProperty(SECOND_PERSISTENCE_UNIT_NAME_PROP);
-        myProps.put(SECOND_PERSISTENCE_UNIT_NAME_PROP, secondPersistenceUnitName);
-        logTrace( "Second Persistence Unit Name =" + secondPersistenceUnitName);
 
-        myProps.put(JAVAX_PERSISTENCE_PROVIDER, System.getProperty(JAVAX_PERSISTENCE_PROVIDER));
-
-        myProps.put(JAVAX_PERSISTENCE_JDBC_DRIVER, System.getProperty(JAVAX_PERSISTENCE_JDBC_DRIVER));
-
-        myProps.put(JAVAX_PERSISTENCE_JDBC_URL, System.getProperty(JAVAX_PERSISTENCE_JDBC_URL));
-
-        myProps.put(JAVAX_PERSISTENCE_JDBC_USER, System.getProperty(JAVAX_PERSISTENCE_JDBC_USER));
-
-        myProps.put(JAVAX_PERSISTENCE_JDBC_PASSWORD, System.getProperty(JAVAX_PERSISTENCE_JDBC_PASSWORD));
-
-        myProps.put(JPA_PROVIDER_IMPLEMENTATION_SPECIFIC_PROPERTIES,
-                System.getProperty(JPA_PROVIDER_IMPLEMENTATION_SPECIFIC_PROPERTIES));
-
-        myProps.put(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED,
-                System.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED));
-
-        if (JAKARTA_EE.equalsIgnoreCase(mode)) {
-            logTrace(
-                    MODE_PROP + " is set to " + mode + ", so tests are running in JakartaEE environment.");
-        } else if (STANDALONE_MODE.equalsIgnoreCase(mode)) {
-            logTrace(
-                    MODE_PROP + " is set to " + mode + ", so tests are running in J2SE environment standalone mode."
-                            + PERSISTENCE_UNIT_NAME_PROP + " is set to " + persistenceUnitName);
-        } else {
-            logMsg( "WARNING: " + MODE_PROP + " is set to " + mode + ", an invalid value.");
-        }
-
-        cachingSupported = Boolean.parseBoolean(System.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED, "true"));
     }
 
     public void displayProperties(Properties props) {
