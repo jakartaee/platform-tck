@@ -255,12 +255,13 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.enums.C
             super.flushModeTypeValuesTest();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("pmservlet")
-        public void setgetFlushModeEntityManagerTest() throws java.lang.Exception {
-            super.setgetFlushModeEntityManagerTest();
-        }
+// Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("pmservlet")
+//        public void setgetFlushModeEntityManagerTest() throws java.lang.Exception {
+//            super.setgetFlushModeEntityManagerTest();
+//        }
 
         @Test
         @Override

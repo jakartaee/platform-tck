@@ -200,12 +200,13 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.cache.b
             super.getcacheTest();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("stateful3")
-        public void evictTest1() throws java.lang.Exception {
-            super.evictTest1();
-        }
+// Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("stateful3")
+//        public void evictTest1() throws java.lang.Exception {
+//            super.evictTest1();
+//        }
 
         @Test
         @Override

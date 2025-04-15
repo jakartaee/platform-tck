@@ -392,12 +392,13 @@ public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.Store
             super.executeUpdateOfADeleteTest();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("appmanaged")
-        public void executeUpdateTransactionRequiredExceptionTest() throws java.lang.Exception {
-            super.executeUpdateTransactionRequiredExceptionTest();
-        }
+    // Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+    //    @Test
+    //    @Override
+    //    @TargetVehicle("appmanaged")
+    //    public void executeUpdateTransactionRequiredExceptionTest() throws java.lang.Exception {
+    //        super.executeUpdateTransactionRequiredExceptionTest();
+    //    }
 
         @Test
         @Override

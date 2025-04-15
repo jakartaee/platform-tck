@@ -216,11 +216,12 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.ee.entityMan
             super.createEntityManagerSynchronizationTypeTest();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("stateful3")
-        public void joinTransactionTransactionRequiredExceptionTest() throws java.lang.Exception {
-            super.joinTransactionTransactionRequiredExceptionTest();
-        }
+// Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("stateful3")
+//        public void joinTransactionTransactionRequiredExceptionTest() throws java.lang.Exception {
+//            super.joinTransactionTransactionRequiredExceptionTest();
+//        }
 
 }

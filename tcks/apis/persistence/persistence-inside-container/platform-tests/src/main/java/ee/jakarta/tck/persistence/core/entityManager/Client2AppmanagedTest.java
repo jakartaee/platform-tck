@@ -238,12 +238,13 @@ public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.entit
         return jpa_core_entityManager_vehicles_ear;
         }
 
-        @Test
-        @Override
-        @TargetVehicle("appmanaged")
-        public void persistExceptionsTest() throws java.lang.Exception {
-            super.persistExceptionsTest();
-        }
+// Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("appmanaged")
+//        public void persistExceptionsTest() throws java.lang.Exception {
+//            super.persistExceptionsTest();
+//        }
 
         @Test
         @Override
