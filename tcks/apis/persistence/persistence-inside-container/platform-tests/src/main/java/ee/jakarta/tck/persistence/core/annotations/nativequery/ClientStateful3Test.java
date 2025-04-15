@@ -259,12 +259,13 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.annotat
             super.createNativeQueryResultClassTQTest();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("stateful3")
-        public void executeUpdateTransactionRequiredExceptionTest() throws java.lang.Exception {
-            super.executeUpdateTransactionRequiredExceptionTest();
-        }
+// Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("stateful3")
+//        public void executeUpdateTransactionRequiredExceptionTest() throws java.lang.Exception {
+//            super.executeUpdateTransactionRequiredExceptionTest();
+//        }
 
         @Test
         @Override

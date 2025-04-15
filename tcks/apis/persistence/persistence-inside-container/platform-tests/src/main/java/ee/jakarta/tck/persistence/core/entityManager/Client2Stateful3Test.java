@@ -227,12 +227,13 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.entity
         return jpa_core_entityManager_vehicles_ear;
         }
 
-        @Test
-        @Override
-        @TargetVehicle("stateful3")
-        public void persistExceptionsTest() throws java.lang.Exception {
-            super.persistExceptionsTest();
-        }
+// Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("stateful3")
+//        public void persistExceptionsTest() throws java.lang.Exception {
+//            super.persistExceptionsTest();
+//        }
 
         @Test
         @Override

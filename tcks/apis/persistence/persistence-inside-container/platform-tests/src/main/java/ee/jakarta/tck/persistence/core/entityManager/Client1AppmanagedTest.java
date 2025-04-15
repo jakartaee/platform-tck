@@ -235,12 +235,13 @@ public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.entit
             super.autoCloseableTest();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("appmanaged")
-        public void mergeTest() throws java.lang.Exception {
-            super.mergeTest();
-        }
+// Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("appmanaged")
+//        public void mergeTest() throws java.lang.Exception {
+//            super.mergeTest();
+//        }
 
         @Test
         @Override
@@ -256,12 +257,13 @@ public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.entit
             super.removeExceptionsTest();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("appmanaged")
-        public void lockIllegalStateExceptionTest() throws java.lang.Exception {
-            super.lockIllegalStateExceptionTest();
-        }
+// Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("appmanaged")
+//        public void lockIllegalStateExceptionTest() throws java.lang.Exception {
+//            super.lockIllegalStateExceptionTest();
+//        }
 
         @Test
         @Override
@@ -375,12 +377,13 @@ public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.entit
             super.getCriteriaBuilderTest();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("appmanaged")
-        public void isJoinedToTransactionTest() throws java.lang.Exception {
-            super.isJoinedToTransactionTest();
-        }
+// Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("appmanaged")
+//        public void isJoinedToTransactionTest() throws java.lang.Exception {
+//            super.isJoinedToTransactionTest();
+//        }
 
         @Test
         @Override
