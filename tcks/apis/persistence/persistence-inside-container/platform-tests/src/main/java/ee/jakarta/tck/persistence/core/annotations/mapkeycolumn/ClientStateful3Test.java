@@ -219,12 +219,13 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.annotat
             super.annotationMapKeyColumnTest3();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("stateful3")
-        public void mapKeyColumnInsertableFalseTest() throws java.lang.Exception {
-            super.mapKeyColumnInsertableFalseTest();
-        }
+// Exclude tests not meant to run with stateful3 as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("stateful3")
+//        public void mapKeyColumnInsertableFalseTest() throws java.lang.Exception {
+//            super.mapKeyColumnInsertableFalseTest();
+//        }
 
         @Test
         @Override
