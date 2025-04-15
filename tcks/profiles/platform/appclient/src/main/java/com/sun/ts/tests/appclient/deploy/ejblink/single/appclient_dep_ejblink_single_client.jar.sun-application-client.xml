@@ -21,11 +21,11 @@
 <sun-application-client>
   <ejb-ref>
     <ejb-ref-name>ejb/StatelessBean_ExternalJAR</ejb-ref-name>
-    <jndi-name/>
+    <jndi-name>java:global/appclient_dep_ejblink_single/appclient_dep_ejblink_single_ejb/Stateless!com.sun.ts.tests.assembly.util.refbean.StatelessExternal</jndi-name>
   </ejb-ref>
   <ejb-ref>
     <ejb-ref-name>ejb/StatefulBean_ExternalJAR</ejb-ref-name>
-    <jndi-name/>
+    <jndi-name>java:global/appclient_dep_ejblink_single/appclient_dep_ejblink_single_ejb/Stateful!com.sun.ts.tests.assembly.util.refbean.StatefulExternal</jndi-name>
   </ejb-ref>
   <resource-ref>
     <res-ref-name>jdbc/DB1</res-ref-name>

@@ -21,10 +21,10 @@
 <sun-application-client>
   <ejb-ref>
     <ejb-ref-name>ejb/Philosopher</ejb-ref-name>
-    <jndi-name/>
+    <jndi-name>java:global/appclient_dep_ejbref_casesens/appclient_dep_ejbref_casesens_ejb#ReferencedBean1!com.sun.ts.tests.assembly.util.refbean.StatefulExternalEJB</jndi-name>
   </ejb-ref>
   <ejb-ref>
     <ejb-ref-name>ejb/philosopher</ejb-ref-name>
-    <jndi-name/>
+    <jndi-name>java:global/appclient_dep_ejbref_casesens/appclient_dep_ejbref_casesens_ejb#ReferencedBean2!com.sun.ts.tests.assembly.util.refbean.StatefulExternalEJB</jndi-name>
   </ejb-ref>
 </sun-application-client>

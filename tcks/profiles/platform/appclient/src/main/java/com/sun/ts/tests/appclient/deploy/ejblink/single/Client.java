@@ -70,7 +70,7 @@ public class Client extends EETest {
 
 		// The appclient-client descriptor
 		URL appClientUrl = Client.class.getResource(
-				"/com/sun/ts/tests/appclient/deploy/ejblink/single/appclient_dep_ejblink_singe_client.xml");
+				"/com/sun/ts/tests/appclient/deploy/ejblink/single/appclient_dep_ejblink_single_client.xml");
 		if (appClientUrl != null) {
 			ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
 		}
@@ -104,6 +104,9 @@ public class Client extends EETest {
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
 		}
+
+		System.out.println(ejbClient.toString(true));
+		System.out.println(ejb.toString(true));
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_ejblink_single.ear");
 		ear.addAsModule(ejbClient);
