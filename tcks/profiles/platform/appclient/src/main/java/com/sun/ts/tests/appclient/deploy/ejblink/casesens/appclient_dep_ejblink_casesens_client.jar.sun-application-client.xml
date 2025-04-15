@@ -21,10 +21,10 @@
 <sun-application-client>
   <ejb-ref>
     <ejb-ref-name>ejb/Samba</ejb-ref-name>
-    <jndi-name/>
+    <jndi-name>java:global/appclient_dep_ejblink_casesens/appclient_dep_ejblink_casesens_ejb/Heaven!com.sun.ts.tests.appclient.deploy.ejblink.casesens.CaseBean</jndi-name>
   </ejb-ref>
   <ejb-ref>
     <ejb-ref-name>ejb/Bossa</ejb-ref-name>
-    <jndi-name/>
+    <jndi-name>java:global/appclient_dep_ejblink_casesens/appclient_dep_ejblink_casesens_ejb/heaven!com.sun.ts.tests.appclient.deploy.ejblink.casesens.CaseBean</jndi-name>
   </ejb-ref>
 </sun-application-client>

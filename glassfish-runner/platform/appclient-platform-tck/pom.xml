@@ -46,7 +46,7 @@
         <exec.imqobjmgr>${ri.home}/bin/imqobjmgr</exec.imqobjmgr>
         <exec.imqusermgr>${ri.home}/bin/imqusermgr</exec.imqusermgr>
         
-        <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
+        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <glassfish.module.dir>${glassfish.home}/glassfish/modules</glassfish.module.dir>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
@@ -254,6 +254,13 @@
                                     <destFileName>appclient.jar</destFileName>
                                 </artifactItem>
                                 <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>assembly-tck</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
+                                    <destFileName>assembly-tck.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
                                     <artifactId>arquillian-protocol-lib</artifactId>
                                     <overWrite>true</overWrite>
@@ -396,7 +403,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>10-stop-domain</id>
+                        <id>9-stop-domain</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -551,7 +558,25 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>21-stop-domain</id>
+                        <id>21-create-file-user</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>create-file-user</argument>
+                                <argument>--groups</argument>
+                                <argument>staff:mgr</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>j2ee.pass</argument>
+                                <argument>j2ee</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>22-stop-domain</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>

@@ -21,10 +21,10 @@
 <sun-application-client>
   <ejb-ref>
     <ejb-ref-name>ejb/Nikita</ejb-ref-name>
-    <jndi-name/>
+    <jndi-name>java:global/appclient_dep_ejblink_path/appclient_dep_ejblink_path_jar1_ejb/Director!com.sun.ts.tests.appclient.deploy.ejblink.path.ReferencedBean</jndi-name>
   </ejb-ref>
   <ejb-ref>
     <ejb-ref-name>ejb/Illusion</ejb-ref-name>
-    <jndi-name/>
+    <jndi-name>java:global/appclient_dep_ejblink_path/appclient_dep_ejblink_path_jar2_ejb/Director!com.sun.ts.tests.appclient.deploy.ejblink.path.ReferencedBean2</jndi-name>
   </ejb-ref>
 </sun-application-client>
