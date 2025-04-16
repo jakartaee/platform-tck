@@ -49,7 +49,7 @@ public class fetchprofileEJB_Test extends fetchprofile_Test implements Serializa
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee");
 		ejbClient.addClasses(fetchprofileEJB_Test.class, fetchprofile_Test.class);
 
 		URL resURL = fetchprofileEJB_Test.class
@@ -69,7 +69,7 @@ public class fetchprofileEJB_Test extends fetchprofile_Test implements Serializa
 				"MANIFEST.MF");
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "fetchprofile_ejb_vehicle_ejb.jar");
-		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");

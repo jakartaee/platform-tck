@@ -48,7 +48,7 @@ public class mimemessageJSP_Test extends mimemessage_Test implements Serializabl
 	@Deployment(name = "jsp", testable = true)
 	public static WebArchive createDeploymentJSP(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "mimemessage_jsp_vehicle_web.war");
-		archive.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		archive.addPackages(true, "com.sun.ts.tests.javamail.ee");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 				archive.addPackages(true, "com.sun.ts.lib.harness");

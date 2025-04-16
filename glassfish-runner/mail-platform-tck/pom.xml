@@ -44,7 +44,7 @@
         <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <glassfish.module.dir>${glassfish.home}/glassfish/modules</glassfish.module.dir>
-        <glassfish.version>8.0.0-M9</glassfish.version>
+        <glassfish.version>8.0.0-JDK17-M10</glassfish.version>
         
         <imap.port>1143</imap.port>
         <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
@@ -63,7 +63,9 @@
         <mail.user>user01</mail.user>
         <mailboxFolder1>${project.build.directory}/../mailboxes</mailboxFolder1>
         <smtp.port>1025</smtp.port>
-        <tck.version>11.0.0</tck.version>
+        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        <arquillian.core.version>1.9.1.Final</arquillian.core.version>
+        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
     </properties>
 
     <dependencyManagement>
@@ -103,6 +105,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>javamail</artifactId>
+            <version>${tck.version}</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.angus</groupId>
@@ -113,10 +116,12 @@
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-test-spi</artifactId>
+            <version>${arquillian.core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
+            <version>${arquillian.core.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -127,14 +132,17 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
@@ -154,14 +162,17 @@
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-spi</artifactId>
+            <version>${arquillian.core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.core</groupId>
             <artifactId>arquillian-core-spi</artifactId>
+            <version>${arquillian.core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.test</groupId>
             <artifactId>arquillian-test-impl-base</artifactId>
+            <version>${arquillian.core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap</groupId>
@@ -209,13 +220,6 @@
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${glassfish.lib.dir}</outputDirectory>
                                     <destFileName>arquillian-protocol-lib.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>jakarta.tck</groupId>
-                                    <artifactId>common</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
-                                    <destFileName>common.jar</destFileName>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
@@ -354,6 +358,7 @@
                                 <additionalClasspathElement>${glassfish.module.dir}/mail-connector.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${glassfish.module.dir}/mail-runtime.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${glassfish.module.dir}/glassfish-naming.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.module.dir}/javamail.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <systemPropertyVariables>
                                 <glassfish.home>${glassfish.home}</glassfish.home>
@@ -384,6 +389,7 @@
                                 <additionalClasspathElement>${glassfish.module.dir}/mail-connector.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${glassfish.module.dir}/mail-runtime.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${glassfish.module.dir}/glassfish-naming.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.module.dir}/javamail.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <systemPropertyVariables>
                                 <glassfish.home>${glassfish.home}</glassfish.home>
