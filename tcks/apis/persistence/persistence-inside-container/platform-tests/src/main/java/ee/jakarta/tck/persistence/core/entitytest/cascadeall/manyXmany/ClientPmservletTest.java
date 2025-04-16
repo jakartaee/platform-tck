@@ -104,6 +104,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.entityt
                 ee.jakarta.tck.persistence.core.entitytest.cascadeall.manyXmany.B.class,
                 ee.jakarta.tck.persistence.core.entitytest.cascadeall.manyXmany.A.class
             );
+            jpa_core_et_cascadeall_manyXmany.addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The persistence.xml descriptor
             URL parURL = Client.class.getResource("persistence.xml");
             jpa_core_et_cascadeall_manyXmany.addAsManifestResource(parURL, "persistence.xml");
