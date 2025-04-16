@@ -151,6 +151,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.entity
                 ee.jakarta.tck.persistence.core.entitytest.persist.manyXone.A.class,
                 ee.jakarta.tck.persistence.core.entitytest.persist.manyXone.B.class
             );
+            jpa_core_et_persist_manyXone.addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The persistence.xml descriptor
             URL parURL = Client.class.getResource("persistence.xml");
             if(parURL != null) {
