@@ -45,7 +45,7 @@ public class getMessageContentEJB_Test extends getMessageContent_Test {
 	public static EnterpriseArchive createDeploymentEjb(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "getMessageContent_ejb_vehicle_client.jar");
-		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
@@ -66,7 +66,7 @@ public class getMessageContentEJB_Test extends getMessageContent_Test {
 		}
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "getMessageContent_ejb_vehicle_ejb.jar");
-		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
