@@ -65,7 +65,7 @@
         <smtp.port>1025</smtp.port>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <arquillian.core.version>1.9.1.Final</arquillian.core.version>
-        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
+        <jakarta.tck.arquillian.version>11.0.5</jakarta.tck.arquillian.version>
     </properties>
 
     <dependencyManagement>
@@ -74,13 +74,6 @@
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
                 <version>5.11.4</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.tck</groupId>
-                <artifactId>artifacts-bom</artifactId>
-                <version>${tck.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -100,6 +93,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
 
         <dependency>
@@ -152,6 +146,7 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
@@ -177,6 +172,7 @@
         <dependency>
             <groupId>org.jboss.shrinkwrap</groupId>
             <artifactId>shrinkwrap-api</artifactId>
+            <version>1.2.6</version>
         </dependency>
     </dependencies>
 
