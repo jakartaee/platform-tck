@@ -235,12 +235,12 @@ The configuration will depend on the container you are using, but you will need 
 
   <group qualifier="glassfish-servers" default="true">
     <container qualifier="tck-javatest" default="true">
-        <configuration> <!-- 1 -->
+        <configuration> <1>
             <property name="glassFishHome">target/glassfish8</property>
             <property name="debug">true</property>
             <property name="suspend">false</property>
         </configuration>
-        <protocol type="javatest"> <!-- 2 -->
+        <protocol type="javatest"> <2>
             <property name="trace">true</property>
             <property name="workDir">/tmp</property>
             <property name="tsJteFile">jakartaeetck/bin/ts.jte</property>
@@ -288,10 +288,10 @@ And finally, you need to configure a surefire/failsafe plugin execution to use t
                             <includes>
                                 ...
                             </includes>
-                            <excludeGroups>tck-appclient,arq-servlet</excludeGroups> <!-- 1 -->
+                            <excludeGroups>tck-appclient,arq-servlet</excludeGroups> <1>
 
                             <systemPropertyVariables>
-                                <arquillian.xml>javatest-arquillian.xml</arquillian.xml><!-- 2 -->
+                                <arquillian.xml>javatest-arquillian.xml</arquillian.xml><2>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
@@ -408,13 +408,13 @@ Full platform tests make use of the Application Client container. These tests re
 
   <group qualifier="glassfish-servers" default="true">
     <container qualifier="tck-appclient" default="true">
-        <configuration> <!-- 1 -->
+        <configuration> <1>
             <property name="glassFishHome">target/glassfish8</property>
             <property name="allowConnectingToRunningServer">true</property>
             <property name="debug">false</property>
             <property name="suspend">false</property>
         </configuration>
-        <protocol type="appclient"> <!-- 2 -->
+        <protocol type="appclient"> <2>
             <property name="runClient">true</property>
             <property name="runAsVehicle">true</property>
             <property name="clientEarDir">target/appclient</property>
@@ -500,11 +500,11 @@ Full platform tests make use of the Application Client container. These tests re
                         <includes>
                             <include>...</include>
                         </includes>
-                        <groups>platform</groups> <!-- 1 -->
-                        <excludedGroups>tck-javatest,arq-servlet</excludedGroups> <!-- 2 -->
+                        <groups>platform</groups> <1>
+                        <excludedGroups>tck-javatest,arq-servlet</excludedGroups> <2>
 
                         <systemPropertyVariables>
-                            <arquillian.xml>appclient-arquillian.xml</arquillian.xml> <!-- 3 -->
+                            <arquillian.xml>appclient-arquillian.xml</arquillian.xml> <3>
                             <ts.home>${ts.home}</ts.home>
                         </systemPropertyVariables>
                     </configuration>
@@ -538,12 +538,12 @@ To run a single test package, you would configure your surefile/failsafe plugin 
                         </goals>
                         <configuration>
                             <includes>
-                                <include>ee/jakarta/tck/persistence/ee/cdi/*Test.java</include><!-- 1 -->
+                                <include>ee/jakarta/tck/persistence/ee/cdi/*Test.java</include><1>
                             </includes>
 
 
                             <systemPropertyVariables>
-                                <arquillian.xml>cdi-arquillian.xml</arquillian.xml> <!-- 2 -->
+                                <arquillian.xml>cdi-arquillian.xml</arquillian.xml> <2>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
@@ -711,7 +711,7 @@ Using that, you can then configure the failsafe plugin to run the tests as is sh
                                 <include>**/*Test</include>
                             </includes>
 
-                            <groups>${tck.profile}</groups> <!-- 1 -->
+                            <groups>${tck.profile}</groups> <1>
                             <additionalClasspathElements>
                                 <!-- Include the libraries from the server on the test class path -->
                                 <additionalClasspathElement>${jakarta.api.jars}</additionalClasspathElement>
@@ -719,8 +719,8 @@ Using that, you can then configure the failsafe plugin to run the tests as is sh
 
                             <systemPropertyVariables>
                                 <glassfish.home>${glassfish.home}</glassfish.home>
-                                <javaee.level>web</javaee.level> <!-- 2 -->
-                                <optional.tech.packages.to.ignore>jakarta.resource,jakarta.resource.cci,jakarta.resource.spi,jakarta.resource.spi.work,jakarta.resource.spi.endpoint,jakarta.resource.spi.security,jakarta.mail,jakarta.mail.event,jakarta.mail,jakarta.mail.event,jakarta.mail.internet,jakarta.mail.search,jakarta.mail.util,jakarta.security.jacc,jakarta.security.auth.message,jakarta.security.auth.message.callback,jakarta.security.auth.message.config,jakarta.security.auth.message.module</optional.tech.packages.to.ignore> <!-- 3 -->
+                                <javaee.level>web</javaee.level> <2>
+                                <optional.tech.packages.to.ignore>jakarta.resource,jakarta.resource.cci,jakarta.resource.spi,jakarta.resource.spi.work,jakarta.resource.spi.endpoint,jakarta.resource.spi.security,jakarta.mail,jakarta.mail.event,jakarta.mail,jakarta.mail.event,jakarta.mail.internet,jakarta.mail.search,jakarta.mail.util,jakarta.security.jacc,jakarta.security.auth.message,jakarta.security.auth.message.callback,jakarta.security.auth.message.config,jakarta.security.auth.message.module</optional.tech.packages.to.ignore> <3>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
