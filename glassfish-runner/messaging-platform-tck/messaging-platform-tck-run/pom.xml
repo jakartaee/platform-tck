@@ -41,11 +41,11 @@
         
         <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
         <glassfish.version>8.0.0-JDK17-M10</glassfish.version>
+        <glassfish-artifact-id>glassfish</glassfish-artifact-id>
         
         <tck.version>11.0.1-SNAPSHOT</tck.version>
-        <version.jakarta.tck>11.0.0</version.jakarta.tck>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
-        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
+        <jakarta.tck.arquillian.version>11.0.5</jakarta.tck.arquillian.version>
         
         <admin.pass>admin</admin.pass>
         <admin.pass.file>${project.build.directory}/ripassword</admin.pass.file>
@@ -122,14 +122,17 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         
         <!-- Junit5 -->
@@ -174,7 +177,7 @@
                 <version>3.6.1</version>
                 <executions>
                     <execution>
-                        <id>001-unpack</id>
+                        <id>01-unpack</id>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
@@ -194,7 +197,7 @@
                     </execution>
                     
                     <execution>
-                        <id>004-copy-lib</id>
+                        <id>02-copy-lib</id>
                         <goals>
                             <goal>copy</goal>
                         </goals>
@@ -222,13 +225,168 @@
                 </executions>
             </plugin>
 
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>07-init</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <delete failonerror="false" file="${admin.pass.file}"></delete>
+                                <delete dir="${jndi.fs.dir}" failonerror="false"></delete>
+                                <mkdir dir="${jndi.fs.dir}"></mkdir>
+                                <echo message="Echoing: imq.imqcmd.password=${admin.pass} &gt;${admin.pass.file}"></echo>
+                                <echo file="${admin.pass.file}" message="imq.imqcmd.password=${admin.pass}"></echo>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>08-encodeAdminPassword</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <echo message="Encode admin password in JMS RI or OpenMQ via (imqusermgr) ......"></echo>
+                                <exec executable="${exec.imqusermgr}">
+                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
+                                    <arg line="${exec.imqusermgr.part2}"></arg>
+                                    <arg line="encode -f -src ${admin.pass.file} -target ${admin.pass.file.encoded}"></arg>
+                                </exec>
+                                <move file="${admin.pass.file.encoded}" overwrite="true" tofile="${admin.pass.file}"></move>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>09-list.tck.jms.objects</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <echo message="List JMS objects in JMS RI or OpenMQ object store via (imgobjmgr) ......"></echo>
+                                <exec executable="${exec.imqobjmgr}">
+                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
+                                    <arg line="${exec.imqobjmgr.part2}"></arg>
+                                    <arg line="list -j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
+                                </exec>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>10-startbkr</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <echo message="Start JMS RI or OpenMQ Broker via (imqbrokerd) ....."></echo>
+                                <exec executable="${exec.imqbrokerd}" spawn="true">
+                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
+                                    <arg line="${exec.imqbrokerd.part2} -reset store"></arg>
+                                </exec>
+                                <echo message="Sleeping 10 seconds ....."></echo>
+                                <sleep seconds="10"></sleep>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>11-create.tck.users</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <echo message="Create user j2ee, javajoe in JMS RI or OpenMQ via (imqusermgr) ......"></echo>
+                                <exec executable="${exec.imqusermgr}">
+                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
+                                    <arg line="${exec.imqusermgr.part2}"></arg>
+                                    <arg line="-i imqbroker add -u j2ee -p j2ee -g ${admin.user}"></arg>
+                                </exec>
+                                <exec executable="${exec.imqusermgr}">
+                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
+                                    <arg line="${exec.imqusermgr.part2}"></arg>
+                                    <arg line="-i imqbroker add -u javajoe -p javajoe -g ${admin.user}"></arg>
+                                </exec>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>12-copy.mq.jars</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <copy file="${s1as.imq.share.lib}/imq.jar" overwrite="yes" todir="${s1as.lib}"></copy>
+                                <copy file="${s1as.imq.share.lib}/imqutil.jar" overwrite="yes" todir="${s1as.lib}"></copy>
+                                <copy file="${s1as.imq.share.lib}/imqjmx.jar" overwrite="yes" todir="${s1as.lib}"></copy>
+                                <copy file="${s1as.imq.share.lib}/imqbroker.jar" overwrite="yes" todir="${s1as.lib}"></copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>13-create-resource-adapter-config</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <echo message="create-resource-adapter-config jmsra"></echo>
+                                <exec executable="${exec.asadmin}">
+                                    <arg line=" --user admin"></arg>
+                                    <arg line=" --passwordfile ${project.basedir}/j2ee.pass"></arg>
+                                    <arg line=" --host localhost"></arg>
+                                    <arg line=" --port 4848"></arg>
+                                    <arg line=" create-resource-adapter-config"></arg>
+                                    <arg line=" --property ${propName}"></arg>
+                                    <arg line=" jmsra"></arg>
+                                </exec>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.5.0</version>
                 <executions>
                     <execution>
-                        <id>10-StartDomain1</id>
+                        <id>14-StopDomain1</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>stop-domain</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
+
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>15-StartDomain1</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -245,7 +403,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>11-create-jms-template</id>
+                        <id>16-create-jms-template</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -272,7 +430,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>12-createJMSRAtemplate</id>
+                        <id>17-createJMSRAtemplate</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -298,7 +456,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>13-StopDomain1</id>
+                        <id>18-StopDomain1</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -318,149 +476,10 @@
                 </executions>
             </plugin>
 
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <id>04-init</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <target>
-                                <delete failonerror="false" file="${admin.pass.file}"></delete>
-                                <delete dir="${jndi.fs.dir}" failonerror="false"></delete>
-                                <mkdir dir="${jndi.fs.dir}"></mkdir>
-                                <echo message="Echoing: imq.imqcmd.password=${admin.pass} &gt;${admin.pass.file}"></echo>
-                                <echo file="${admin.pass.file}" message="imq.imqcmd.password=${admin.pass}"></echo>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>05-encodeAdminPassword</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <target>
-                                <echo message="Encode admin password in JMS RI or OpenMQ via (imqusermgr) ......"></echo>
-                                <exec executable="${exec.imqusermgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqusermgr.part2}"></arg>
-                                    <arg line="encode -f -src ${admin.pass.file} -target ${admin.pass.file.encoded}"></arg>
-                                </exec>
-                                <move file="${admin.pass.file.encoded}" overwrite="true" tofile="${admin.pass.file}"></move>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>06-list.tck.jms.objects</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <target>
-                                <echo message="List JMS objects in JMS RI or OpenMQ object store via (imgobjmgr) ......"></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="list -j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>07-startbkr</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <target>
-                                <echo message="Start JMS RI or OpenMQ Broker via (imqbrokerd) ....."></echo>
-                                <exec executable="${exec.imqbrokerd}" spawn="true">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqbrokerd.part2} -reset store"></arg>
-                                </exec>
-                                <echo message="Sleeping 10 seconds ....."></echo>
-                                <sleep seconds="10"></sleep>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>08-create.tck.users</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <target>
-                                <echo message="Create user j2ee, javajoe in JMS RI or OpenMQ via (imqusermgr) ......"></echo>
-                                <exec executable="${exec.imqusermgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqusermgr.part2}"></arg>
-                                    <arg line="-i imqbroker add -u j2ee -p j2ee -g ${admin.user}"></arg>
-                                </exec>
-                                <exec executable="${exec.imqusermgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqusermgr.part2}"></arg>
-                                    <arg line="-i imqbroker add -u javajoe -p javajoe -g ${admin.user}"></arg>
-                                </exec>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>09-copy.mq.jars</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <target>
-                                <copy file="${s1as.imq.share.lib}/imq.jar" overwrite="yes" todir="${s1as.lib}"></copy>
-                                <copy file="${s1as.imq.share.lib}/imqutil.jar" overwrite="yes" todir="${s1as.lib}"></copy>
-                                <copy file="${s1as.imq.share.lib}/imqjmx.jar" overwrite="yes" todir="${s1as.lib}"></copy>
-                                <copy file="${s1as.imq.share.lib}/imqbroker.jar" overwrite="yes" todir="${s1as.lib}"></copy>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>10-create-resource-adapter-config</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <target>
-                                <echo message="create-resource-adapter-config jmsra"></echo>
-                                <exec executable="${exec.asadmin}">
-                                    <arg line=" --user admin"></arg>
-                                    <arg line=" --passwordfile ${project.basedir}/j2ee.pass"></arg>
-                                    <arg line=" --host localhost"></arg>
-                                    <arg line=" --port 4848"></arg>
-                                    <arg line=" create-resource-adapter-config"></arg>
-                                    <arg line=" --property ${propName}"></arg>
-                                    <arg line=" jmsra"></arg>
-                                </exec>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.5.0</version>
                 <configuration>
-                    <includes>
-                        <include>com/sun/ts/tests/jms/**/*Test*.java</include>
-                    </includes>
                     <dependenciesToScan>jakarta.tck:jms-platform-tck</dependenciesToScan>
                     
                     <systemPropertyVariables>
@@ -524,6 +543,9 @@
                                     <goal>verify</goal>
                                 </goals>
                                 <configuration>
+                                    <includes>
+                                        <include>com/sun/ts/tests/jms/**/*Test*.java</include>
+                                    </includes>
                                     <!-- Select the @Tag("tck-javatest") tests -->
                                     <groups>tck-javatest</groups>
 
@@ -598,10 +620,12 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
+                    <version>${jakarta.tck.arquillian.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>tck-porting-lib</artifactId>
+                    <version>${jakarta.tck.arquillian.version}</version>
                 </dependency>
                 
                 
@@ -661,7 +685,7 @@
                         <version>3.6.1</version>
                         <executions>
                             <execution>
-                                <id>004-copy-lib</id>
+                                <id>03-copy-lib</id>
                                 <goals>
                                     <goal>copy</goal>
                                 </goals>
@@ -691,7 +715,7 @@
                                         <artifactItem>
                                             <groupId>jakarta.tck.arquillian</groupId>
                                             <artifactId>arquillian-protocol-lib</artifactId>
-                                            <version>${jakarta.tck.arquillian.version}</version>
+                                            <!-- <version>${jakarta.tck.arquillian.version}</version> -->
                                             <type>jar</type>
                                             <overWrite>true</overWrite>
                                             <outputDirectory>${project.build.directory}/protocol</outputDirectory>
@@ -702,6 +726,68 @@
                             </execution>
                         </executions>
                     </plugin>
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>04-StartDomain</id>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                                <configuration>
+                                    <executable>${exec.asadmin}</executable>
+                                    <arguments>
+                                        <argument>start-domain</argument>
+                                    </arguments>
+                                    <successCodes>
+                                        <successCode>0</successCode>
+                                        <successCode>1</successCode>
+                                    </successCodes>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>05-StartDatabase</id>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                                <configuration>
+                                    <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                                    <workingDirectory>${derby.basedir}</workingDirectory>
+                                    <arguments>
+                                        <argument>start-database</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>06-initdb</id>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <phase>process-resources</phase>
+                                <configuration>
+                                    <target>
+                                        <sql autocommit="true" classpath="${jdbc.classpath}" delimiter="${db.delimiter}" driver="${jdbc.driver}" onerror="continue" password="${jdbc.password}" url="${jdbc.url}" userid="${jdbc.user}">
+                                            <transaction src="${project.build.directory}/test-classes/derby.ddl.sql"></transaction>
+                                        </sql>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+
                 
                     <plugin>
                         <artifactId>maven-failsafe-plugin</artifactId>
@@ -728,6 +814,87 @@
 
             </build>
 
+        </profile>
+        
+        <!-- 
+            [INFO] Tests run: 1221, Failures: 0, Errors: 0, Skipped: 0
+            [INFO] Total time:  01:02 h
+        -->
+        <profile>
+            <id>core</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <includes> 
+                                <include>com.sun.ts.tests.jms.core.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <!-- 
+            [INFO] Tests run: 458, Failures: 0, Errors: 0, Skipped: 0
+            [INFO] Total time:  47:09 min
+        -->
+        <profile>
+            <id>core20</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <includes> 
+                                <include>com.sun.ts.tests.jms.core20.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <!-- 
+            -Pfull,appclient,ee 
+            [ERROR] Tests run: 187, Failures: 0, Errors: 34, Skipped: 0
+            [INFO] Total time:  01:11 h
+        -->
+        <profile>
+            <id>ee</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <includes> 
+                                <include>com.sun.ts.tests.jms.ee.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <!-- 
+            [ERROR] Tests run: 66, Failures: 0, Errors: 43, Skipped: 0
+            [INFO] Total time:  53:01 min
+        -->
+        <profile>
+            <id>ee20</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <includes> 
+                                <include>com.sun.ts.tests.jms.ee20.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
 
 

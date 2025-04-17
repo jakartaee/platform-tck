@@ -45,7 +45,7 @@ public class internetMimeMultipartAppClient_Test extends internetMimeMultipart_T
 			throws IOException {
 		JavaArchive archive = ShrinkWrap.create(JavaArchive.class,
 				"internetMimeMultipart_appclient_vehicle_client.jar");
-		archive.addPackages(false, "com.sun.ts.tests.javamail.ee.common");
+		archive.addPackages(true, "com.sun.ts.tests.javamail.ee");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(internetMimeMultipartAppClient_Test.class, internetMimeMultipart_Test.class);

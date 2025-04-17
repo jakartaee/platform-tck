@@ -219,19 +219,21 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.annota
             super.annotationMapKeyColumnTest3();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("appmanaged")
-        public void mapKeyColumnInsertableFalseTest() throws java.lang.Exception {
-            super.mapKeyColumnInsertableFalseTest();
-        }
+// Exclude tests not meant to run with appmanaged as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("appmanaged")
+//        public void mapKeyColumnInsertableFalseTest() throws java.lang.Exception {
+//            super.mapKeyColumnInsertableFalseTest();
+//        }
 
-        @Test
-        @Override
-        @TargetVehicle("appmanaged")
-        public void mapKeyColumnUpdatableFalseTest() throws java.lang.Exception {
-            super.mapKeyColumnUpdatableFalseTest();
-        }
+// Exclude tests not meant to run with appmanaged as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("appmanaged")
+//        public void mapKeyColumnUpdatableFalseTest() throws java.lang.Exception {
+//            super.mapKeyColumnUpdatableFalseTest();
+//        }
 
         @Test
         @Override

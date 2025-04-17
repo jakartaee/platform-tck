@@ -178,6 +178,8 @@ public class Client7Stateless3Test extends ee.jakarta.tck.persistence.core.crite
                 ee.jakarta.tck.persistence.common.schema30.LineItemException.class,
                 ee.jakarta.tck.persistence.common.schema30.Country.class
             );
+
+            jpa_core_criteriaapi_CriteriaQuery.addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The persistence.xml descriptor
             URL parURL = Client7.class.getResource("persistence.xml");
             if(parURL != null) {

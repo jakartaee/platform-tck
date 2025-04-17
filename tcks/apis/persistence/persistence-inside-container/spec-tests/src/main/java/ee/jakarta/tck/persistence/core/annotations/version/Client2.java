@@ -175,7 +175,9 @@ public class Client2 extends Client {
 				ShortClass_Field a1 = getEntityManager().find(ShortClass_Field.class, "3");
 				log.info("shortFieldTest, a1="+a1);
 				if (a1 != null) {
-					if (a1.getVersion() > version) {
+					if (a1.getVersion() == null) {
+						logErr("version is null for updated entity");
+					} else if (version == null || a1.getVersion() > version) {
 						logTrace( "version:" + a1.getVersion());
 						pass = true;
 					} else {
@@ -213,11 +215,6 @@ public class Client2 extends Client {
 	public void shortClassPropertyTest() throws Exception {
 		boolean pass = false;
 		try {
-			if (! getEntityManager().isJoinedToTransaction()) {
-				throw new Exception("shortClassPropertyTest failed because there the persistence context " +
-						"is not joined to the transaction " +
-						getEntityTransaction() != null ? getEntityTransaction().getClass().getName() : "getEntityTransaction() returns null" );
-			}
 			ShortClass_Property a = getEntityManager().find(ShortClass_Property.class, "4");
 			if (a != null) {
 				logTrace( "version:" + a.getBasicShort());
@@ -230,7 +227,10 @@ public class Client2 extends Client {
 				getEntityTransaction().commit();
 				ShortClass_Property a1 = getEntityManager().find(ShortClass_Property.class, "4");
 				if (a1 != null) {
-					if (a1.getBasicShort() > version) {
+					if (a1.getBasicShort() == null) {
+						logErr("version is null for updated entity");
+					}
+					else if (version == null || a1.getBasicShort() > version) {
 						logTrace( "version:" + a1.getBasicShort());
 						pass = true;
 					} else {

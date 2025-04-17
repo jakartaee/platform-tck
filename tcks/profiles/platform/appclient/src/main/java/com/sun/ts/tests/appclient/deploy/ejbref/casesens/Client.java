@@ -115,7 +115,7 @@ public class Client extends EETest {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
 		}
 
-		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_ejbref_scope.ear");
+		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_ejbref_casesens.ear");
 		ear.addAsModule(ejbClient);
 		ear.addAsModule(ejb);
 		return ear;

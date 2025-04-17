@@ -225,19 +225,21 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.annotat
             super.convertTest();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("stateful3")
-        public void convertExceptionDuringPersistTest() throws java.lang.Exception {
-            super.convertExceptionDuringPersistTest();
-        }
+// Exclude tests not meant to run with stateful3 as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("stateful3")
+//        public void convertExceptionDuringPersistTest() throws java.lang.Exception {
+//            super.convertExceptionDuringPersistTest();
+//        }
 
-        @Test
-        @Override
-        @TargetVehicle("stateful3")
-        public void convertExceptionDuringLoadTest() throws java.lang.Exception {
-            super.convertExceptionDuringLoadTest();
-        }
+// Exclude tests not meant to run with stateful3 as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("stateful3")
+//        public void convertExceptionDuringLoadTest() throws java.lang.Exception {
+//            super.convertExceptionDuringLoadTest();
+//        }
 
         @Test
         @Override

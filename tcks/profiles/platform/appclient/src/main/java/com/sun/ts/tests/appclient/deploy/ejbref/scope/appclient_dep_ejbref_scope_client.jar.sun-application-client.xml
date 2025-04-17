@@ -21,6 +21,6 @@
 <sun-application-client>
   <ejb-ref>
     <ejb-ref-name>ejb/Verona</ejb-ref-name>
-    <jndi-name/>
+    <jndi-name>java:global/appclient_dep_ejbref_scope/appclient_dep_ejbref_scope_ejb/ReferencedBean2!com.sun.ts.tests.appclient.deploy.ejbref.scope.ReferencedBean</jndi-name>
   </ejb-ref>
 </sun-application-client>

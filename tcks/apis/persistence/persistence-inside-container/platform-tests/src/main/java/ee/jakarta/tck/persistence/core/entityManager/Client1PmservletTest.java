@@ -309,12 +309,13 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.entity
             super.emGetMetamodelTest();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("pmservlet")
-        public void setPropertyTest() throws java.lang.Exception {
-            super.setPropertyTest();
-        }
+// Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("pmservlet")
+//        public void setPropertyTest() throws java.lang.Exception {
+//            super.setPropertyTest();
+//        }
 
         @Test
         @Override

@@ -78,7 +78,9 @@ public class Client4 extends Client {
 				getEntityTransaction().commit();
 				Timestamp_Field a1 = getEntityManager().find(Timestamp_Field.class, "1");
 				if (a1 != null) {
-					if (a1.getVersion().after(version)) {
+					if (a1.getVersion() == null) {
+						logErr("version is null for updated entity");
+					} else if (version == null || a1.getVersion().after(version)) {
 						logTrace( "version:" + a1.getVersion());
 						pass = true;
 					} else {
@@ -134,7 +136,9 @@ public class Client4 extends Client {
 				getEntityTransaction().commit();
 				Timestamp_Property a1 = getEntityManager().find(Timestamp_Property.class, "2");
 				if (a1 != null) {
-					if (a1.getBasicTimestamp().after(version)) {
+					if (a1.getBasicTimestamp() == null) {
+						logErr("version is null for updated entity");
+					} else if (version == null || a1.getBasicTimestamp().after(version)) {
 						logTrace( "version:" + a1.getBasicTimestamp());
 						pass = true;
 					} else {

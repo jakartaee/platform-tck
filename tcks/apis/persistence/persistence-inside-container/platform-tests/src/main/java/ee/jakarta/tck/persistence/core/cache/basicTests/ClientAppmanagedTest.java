@@ -200,19 +200,21 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.cache.
             super.getcacheTest();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("appmanaged")
-        public void evictTest1() throws java.lang.Exception {
-            super.evictTest1();
-        }
+// Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("appmanaged")
+//        public void evictTest1() throws java.lang.Exception {
+//            super.evictTest1();
+//        }
 
-        @Test
-        @Override
-        @TargetVehicle("appmanaged")
-        public void evictTest2() throws java.lang.Exception {
-            super.evictTest2();
-        }
+// Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("appmanaged")
+//        public void evictTest2() throws java.lang.Exception {
+//            super.evictTest2();
+//        }
 
         @Test
         @Override

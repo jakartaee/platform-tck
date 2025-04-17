@@ -156,7 +156,7 @@ public class Client extends EETest {
     if (resURL != null) {
       assembly_standalone_war_component_web.addAsWebInfResource(resURL, "web.xml");
     }
-    URL jspURL = Client.class.getResource("webFiles/test.jsp");
+    URL jspURL = Client.class.getResource("test.jsp");
     if(jspURL != null) {
       assembly_standalone_war_component_web.addAsWebResource(jspURL, "test.jsp");
     }

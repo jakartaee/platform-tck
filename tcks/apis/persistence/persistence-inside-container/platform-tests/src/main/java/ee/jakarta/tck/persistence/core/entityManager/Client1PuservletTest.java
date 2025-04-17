@@ -183,12 +183,13 @@ public class Client1PuservletTest extends ee.jakarta.tck.persistence.core.entity
             super.autoCloseableTest();
         }
 
-        @Test
-        @Override
-        @TargetVehicle("puservlet")
-        public void mergeTest() throws java.lang.Exception {
-            super.mergeTest();
-        }
+// Exclude tests not meant to run as per https://github.com/jakartaee/platform-tck/blob/10.0.x/install/jakartaee/other/vehicle.properties#L121
+//        @Test
+//        @Override
+//        @TargetVehicle("puservlet")
+//        public void mergeTest() throws java.lang.Exception {
+//            super.mergeTest();
+//        }
 
         @Test
         @Override
