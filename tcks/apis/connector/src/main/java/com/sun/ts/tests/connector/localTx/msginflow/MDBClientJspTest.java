@@ -186,7 +186,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testReceiveMessage() throws java.lang.Exception {
             super.testReceiveMessage();
@@ -194,7 +194,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testProxyInterfaceImp() throws java.lang.Exception {
             super.testProxyInterfaceImp();
@@ -202,7 +202,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testUniqueMessageEndpoint() throws java.lang.Exception {
             super.testUniqueMessageEndpoint();
@@ -210,7 +210,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testMessageEndpointFactoryForEquals() throws java.lang.Exception {
             super.testMessageEndpointFactoryForEquals();
@@ -218,7 +218,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testUniqueMessageEndpointFactory() throws java.lang.Exception {
             super.testUniqueMessageEndpointFactory();
@@ -226,7 +226,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testEndpointActivationName() throws java.lang.Exception {
             super.testEndpointActivationName();
@@ -234,7 +234,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testGetEndpoinClass() throws java.lang.Exception {
             super.testGetEndpoinClass();
@@ -242,7 +242,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testMessageDeliveryTransacted() throws java.lang.Exception {
             super.testMessageDeliveryTransacted();
@@ -250,7 +250,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testMessageDeliveryNonTransacted() throws java.lang.Exception {
             super.testMessageDeliveryNonTransacted();
@@ -258,7 +258,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testMessageDeliveryTransactedUsingXid() throws java.lang.Exception {
             super.testMessageDeliveryTransactedUsingXid();
@@ -266,7 +266,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testActivationSpeccalledOnce() throws java.lang.Exception {
             super.testActivationSpeccalledOnce();
@@ -274,7 +274,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testEJBExceptionNotSupported() throws java.lang.Exception {
             super.testEJBExceptionNotSupported();
@@ -282,7 +282,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testEJBExceptionRequired() throws java.lang.Exception {
             super.testEJBExceptionRequired();
@@ -290,7 +290,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testAppExceptionNotSupported() throws java.lang.Exception {
             super.testAppExceptionNotSupported();
@@ -298,7 +298,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testAppExceptionRequired() throws java.lang.Exception {
             super.testAppExceptionRequired();
@@ -306,7 +306,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testSICMsgPrincipal() throws java.lang.Exception {
             super.testSICMsgPrincipal();
@@ -314,7 +314,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testIBAnnoMsgTransactedUsingXid() throws java.lang.Exception {
             super.testIBAnnoMsgTransactedUsingXid();
@@ -322,7 +322,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testActivationSpecImplRAA() throws java.lang.Exception {
             super.testActivationSpecImplRAA();
@@ -330,7 +330,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testIBAnnoASConfigProp() throws java.lang.Exception {
             super.testIBAnnoASConfigProp();
@@ -338,7 +338,7 @@ public class MDBClientJspTest extends com.sun.ts.tests.connector.localTx.msginfl
 
         @Test
         @Override
-        @OperateOnDeployment("msginflow_mdb")
+        @OperateOnDeployment(VEHICLE_ARCHIVE)
         @TargetVehicle("jsp")
         public void testContextSetupCompleted() throws java.lang.Exception {
             super.testContextSetupCompleted();
