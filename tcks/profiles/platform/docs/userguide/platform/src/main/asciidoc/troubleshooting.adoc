@@ -63,9 +63,9 @@ Resolution: +
 As mentioned in <<arquillian-container-configuration>>, you will need to configuration your Arquillian container configuration to setup one of the Arquillian protocols used in the TCK. If you run a set of tests using the wrong Arquillian protocol, you will see this error. For this `Client2PmservletTest` in the error, an execution configuration that specifies the `tck-javatest` protocol is required. You would need to look at the <<failsafe-plugin-javatest>> section for an example of how to configure the `tck-javatest` protocol.
 
 [NOTE]
-----
+====
 Further details behind this can be found in this platform-tck issue: https://github.com/jakartaee/platform-tck/issues/2138
-----
+====
 
 [[support]]
 == Support
