@@ -392,7 +392,7 @@
             </plugin>
         </plugins>
     </build>
-
+    <profiles>
         <profile>
             <id>ee</id>
             <activation>
@@ -593,8 +593,6 @@
                 </plugins>
             </build>
         </profile>
-            <profiles>
-    <profiles>
         <profile>
             <id>coreannotations</id>
             <activation>
@@ -646,7 +644,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>corebasic</id>
             <activation>
@@ -698,7 +695,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>corecache</id>
             <activation>
@@ -750,7 +746,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>corecallback</id>
             <activation>
@@ -802,7 +797,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>corecriteriaapi</id>
             <activation>
@@ -854,7 +848,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>corederivedid</id>
             <activation>
@@ -906,7 +899,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coreEntityGraph</id>
             <activation>
@@ -958,7 +950,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coreentityManager</id>
             <activation>
@@ -1009,7 +1000,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coreentityManager2</id>
             <activation>
@@ -1060,7 +1050,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coreentityManagerFactory</id>
             <activation>
@@ -1111,7 +1100,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coreentityManagerFactoryCloseExceptions</id>
             <activation>
@@ -1162,7 +1150,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coreentitytest</id>
             <activation>
@@ -1213,7 +1200,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coreentityTransaction</id>
             <activation>
@@ -1264,7 +1250,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coreenums</id>
             <activation>
@@ -1315,7 +1300,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coreexceptions</id>
             <activation>
@@ -1366,7 +1350,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coreinheritance</id>
             <activation>
@@ -1416,7 +1399,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>corelock</id>
             <activation>
@@ -1466,7 +1448,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coremetamodelapi</id>
             <activation>
@@ -1516,7 +1497,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>corenestedembedding</id>
             <activation>
@@ -1566,7 +1546,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coreoverride</id>
             <activation>
@@ -1616,7 +1595,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>corepersistenceUnitUtil</id>
             <activation>
@@ -1666,7 +1644,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>corepersistenceUtil</id>
             <activation>
@@ -1716,7 +1693,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>corequery</id>
             <activation>
@@ -1766,7 +1742,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>corerelationship</id>
             <activation>
@@ -1816,7 +1791,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coreStoredProcedureQuery</id>
             <activation>
@@ -1866,7 +1840,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coretypes</id>
             <activation>
@@ -1916,7 +1889,6 @@
                 </plugins>
             </build>
         </profile>
-    <profiles>
         <profile>
             <id>coreversioning</id>
             <activation>
