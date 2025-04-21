@@ -36,7 +36,7 @@
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
-        <arquillian.core.version>1.9.1.Final</arquillian.core.version>
+        <arquillian.core.version>1.9.4.Final</arquillian.core.version>
         <arquillian.junit>1.9.3.Final</arquillian.junit>
         <destinationURL>imap://${escaped.javamail.username}:${javamail.password}@${javamail.server}:${imap.port}</destinationURL>
         <escaped.javamail.username>user01%40james.local</escaped.javamail.username>
@@ -64,7 +64,7 @@
         <mailboxFolder1>${project.build.directory}/../mailboxes</mailboxFolder1>
         <smtp.port>1025</smtp.port>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
-        <arquillian.core.version>1.9.1.Final</arquillian.core.version>
+        <arquillian.core.version>1.9.4.Final</arquillian.core.version>
         <jakarta.tck.arquillian.version>11.0.5</jakarta.tck.arquillian.version>
     </properties>
 
