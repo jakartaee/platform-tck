@@ -703,32 +703,15 @@ To see some of the required JVM options for the server under test, see the `s1as
 [[xa-test-setup]]
 === XA Test Setup
 
-The XA Test setup requires that the `ejb_Tsr.ear` file be deployed as part of the `config.vi` Ant target. The `ejb_Tsr.ear` file contains an
-embedded RAR file, which requires the creation of a connection-pool and
-a connector resource.
-
-For more details about the deployment of `ejb_Tsr.ear` and its
-corresponding connection pool and connector resource values, see the
-`setup.tsr.embedded.rar` Ant target in the
-`<TS_HOME>/bin/xml/impl/glassfish/s1as.xml` file.
-
 The XA tests reference some `JDBCWhitebox` name bindings that are
 created as part of the `config.vi` target but those name bindings are
-not tied to any JDBC RAR files. Instead, the following XA-specific
-connection pool ids are referenced by the XA tests:
+not tied to any JDBC RAR files. Instead, the following XA-specific connection pool JNDI names are referenced by the XA tests:
 
 * `eis/JDBCwhitebox-xa`
 * `eis/JDBCwhitebox-tx`
 * `eis/JDBCwhitebox-notx`
 
-For more details on these JDBC resources, examine the
-`add.jdbc.resources` target in the same file to see the required JDBC
-resources that are created. Both targets are called as part of the
-`config.vi` target.
-
-Complete the following steps (create JDBC connection pools and JDBC
-resource elements, deploy the RAR files) to set up your environment to
-run the XA tests:
+These JNDI names need to point to a JDBC connection pool. Complete the following steps (create JDBC connection pools and JDBC resource elements, deploy the RAR files) to set up your environment to run the XA tests:
 
 .  Create a JDBC connection pool with the following attributes:
 
@@ -784,7 +767,7 @@ does reuse the same connection pool ID for testing the Jakarta EE {tck_version} 
 .  Make sure that the following EIS and RAR files have been deployed
 into your environment before you run the XA tests:
 
-* For the EIS resource adapter, deploy the following RAR files. Most of these files are standalone RAR files, but there is also an embedded RAR file that is contained in the `ejb_Tsr.ear` file. With the CI runner these files are deployed as part of . The following `ts.jte` properties refer to the required common RAR files and define the JNDI bindings for the RAR connection factory as deployed by the VI server deployments.
+* For the EIS resource adapter, deploy the  standalone RAR files found in the TCK distribution artifacts directory. With the CI runner these files are deployed as part of pre-integration-test phase. The following `ts.jte` properties refer to the required common RAR files and define the JNDI bindings for the RAR connection factory as deployed by the VI server deployments.
 +
 [source,properties]
 ----
@@ -797,9 +780,6 @@ whitebox-xa-param=java:comp/env/eis/whitebox-xa-param
 whitebox-embed-xa=
 "__SYSTEM/resource/ejb_Tsr#whitebox-xa#com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory"
 ----
-+
-* The embedded RAR files are located in the
-`<TS_HOME>/src/com/sun/ts/tests/xa/ee/tsr` directory.
 
 * The EIS RAR files are located TCK distribution artifacts directory. Deployment can either be done ahead of time or at runtime, as long as connection pools and resources are established prior to test execution. +
 The XA tests make use of existing connector RAR files. Note that there are currently no `JDBCwhitebox` source files and no `JDNCwhitebox` RAR files.
