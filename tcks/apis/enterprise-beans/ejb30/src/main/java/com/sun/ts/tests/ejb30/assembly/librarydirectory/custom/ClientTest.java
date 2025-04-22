@@ -162,8 +162,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.librarydirectory
                 JavaArchive second_level_jar_lib = ShrinkWrap.create(JavaArchive.class, "second-level-jar.jar");
 
                 // The resources
-                        libURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/librarydirectory/custom/second-level-jar.txt");
-                        second_level_jar_lib.addAsResource(libURL, "/com/sun/ts/tests/ejb30/assembly/librarydirectory/custom/second-level-jar.txt");
+                StringAsset secondTxt = new StringAsset("second-level-jar.txt");
+                second_level_jar_lib.addAsResource(secondTxt, "/com/sun/ts/tests/ejb30/assembly/librarydirectory/custom/second-level-jar.txt");
 
                 ejb3_assembly_librarydirectory_custom_ear.addAsLibrary(second_level_jar_lib);
 
