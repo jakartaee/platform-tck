@@ -19,10 +19,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.glassfish</groupId>
-        <artifactId>standalone-tck</artifactId>
-        <version>11.0.0</version>
-        <relativePath>../pom.xml</relativePath>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.9</version>
+        <relativePath />
     </parent>
     <groupId>jakarta</groupId>
     <artifactId>glassfish.xa-platform-tck</artifactId>
@@ -42,10 +42,12 @@
 
         <!-- glassfish properties -->
         <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
-        <glassfish.home>${project.build.directory}/glassfish7</glassfish.home>
+        <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
-        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
+        <!-- Use JDK17 to run with GF-8.0.0-JDK17-M10 -->
+        <glassfish.version>8.0.0-JDK17-M10</glassfish.version>
+
 
         <!-- JDBC properties -->
         <jdbc.db>derby</jdbc.db>
@@ -61,8 +63,12 @@
         <rapassword1>cts1</rapassword1>
         <rauser1>cts1</rauser1>
         <sql.directory>./sql</sql.directory>
+        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
+
         <tck.artifactId>jakarta.tck.jdbc</tck.artifactId>
         <tck.version>11.0.0</tck.version>
+        <jakarta.tck.common.version>11.0.0</jakarta.tck.common.version>
+
 
         <!-- XA properties -->
         <xa.datasource.class>org.apache.derby.jdbc.ClientXADataSource</xa.datasource.class>
@@ -194,13 +200,6 @@
                                     <destFileName>arquillian-protocol-lib.jar</destFileName>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>jakarta.tck</groupId>
-                                    <artifactId>common</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
-                                    <destFileName>common.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
                                     <artifactId>tck-porting-lib</artifactId>
                                     <overWrite>true</overWrite>
@@ -286,6 +285,10 @@
                         </goals>
                         <phase>pre-integration-test</phase>
                         <configuration>
+                            <srcFiles>
+                                <srcFile>${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.sql</srcFile>
+                                <srcFile>${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.sprocs.sql</srcFile>
+                            </srcFiles>
                             <sqlCommand>CREATE SCHEMA CTS1 AUTHORIZATION CTS1;</sqlCommand>
                         </configuration>
                     </execution>
@@ -458,20 +461,6 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>23-ping-connection-pool</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>ping-connection-pool</argument>
-                                <argument>${xa.poolName}</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>24-deploy-whitebox-tx-connector</id>
                         <goals>
                             <goal>exec</goal>
@@ -497,10 +486,6 @@
                                 <argument>create-connector-connection-pool</argument>
                                 <argument>--raname</argument>
                                 <argument>whitebox-tx</argument>
-                                <argument>--user</argument>
-                                <argument>${admin.user}</argument>
-                                <argument>--passwordfile</argument>
-                                <argument>${password.file}</argument>
                                 <argument>--property</argument>
                                 <argument>user=cts1:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>
@@ -685,8 +670,8 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <systemPropertyVariables>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                <ts.home>${env.TS_HOME}</ts.home>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
+                                <ts.home>${project.basedir}/jakartaeetck</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
@@ -717,9 +702,9 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <systemPropertyVariables>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
                                 <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
-                                <ts.home>${env.TS_HOME}</ts.home>
+                                <ts.home>${project.basedir}/jakartaeetck</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
