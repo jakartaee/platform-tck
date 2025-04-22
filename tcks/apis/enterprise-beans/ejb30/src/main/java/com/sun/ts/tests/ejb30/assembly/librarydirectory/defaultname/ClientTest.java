@@ -142,8 +142,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.librarydirectory
                 JavaArchive sub_shared_lib = ShrinkWrap.create(JavaArchive.class, "sub-shared.jar");
 
                 // The resources
-                        libURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/librarydirectory/defaultname/foo.txt");
-                        sub_shared_lib.addAsResource(libURL, "/com/sun/ts/tests/ejb30/assembly/librarydirectory/defaultname/foo.txt");
+                StringAsset fooTxt = new StringAsset("foo.txt");
+                sub_shared_lib.addAsResource(fooTxt, "/com/sun/ts/tests/ejb30/assembly/librarydirectory/defaultname/foo.txt");
 
                 ejb3_assembly_librarydirectory_defaultname_ear.addAsLibrary(sub_shared_lib);
                 JavaArchive hello_client_view_lib = ShrinkWrap.create(JavaArchive.class, "hello-client-view.jar");
