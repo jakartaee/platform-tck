@@ -104,6 +104,9 @@ public class ClientTest extends com.sun.ts.tests.ejb30.timer.basic.mdb.Client {
             if(ejbResURL != null) {
               ejb3_timer_basic_mdb_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            StringAsset fooTxt = new StringAsset("foo.txt");
+            ejb3_timer_basic_mdb_ejb.addAsResource(fooTxt, "com/sun/ts/tests/ejb30/timer/basic/mdb/foo.txt");
+
             // Call the archive processor
             archiveProcessor.processEjbArchive(ejb3_timer_basic_mdb_ejb, Client.class, ejbResURL);
 

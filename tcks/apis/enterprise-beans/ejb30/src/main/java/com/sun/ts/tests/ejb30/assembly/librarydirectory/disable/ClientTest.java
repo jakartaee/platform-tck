@@ -165,12 +165,10 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.librarydirectory
 
 
                 // The resources
-                        libURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/common/foo.txt");
-                        shared_lib.addAsResource(libURL, "/com/sun/ts/tests/ejb30/assembly/common/foo.txt");
-                        libURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/librarydirectory/disable/foo.txt");
-                        shared_lib.addAsResource(libURL, "/com/sun/ts/tests/ejb30/assembly/librarydirectory/disable/foo.txt");
-                        libURL = Client.class.getResource("/foo.txt");
-                        shared_lib.addAsResource(libURL, "/foo.txt");
+                StringAsset fooTxt = new StringAsset("foo.txt");
+                shared_lib.addAsResource(fooTxt, "/com/sun/ts/tests/ejb30/assembly/common/foo.txt");
+                shared_lib.addAsResource(fooTxt, "/com/sun/ts/tests/ejb30/assembly/librarydirectory/disable/foo.txt");
+                shared_lib.addAsResource(fooTxt, "/foo.txt");
 
                 ejb3_assembly_librarydirectory_disable_ear.addAsLibrary(shared_lib);
 
