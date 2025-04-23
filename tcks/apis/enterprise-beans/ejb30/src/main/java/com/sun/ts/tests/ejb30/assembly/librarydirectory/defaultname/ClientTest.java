@@ -9,6 +9,7 @@ import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.ArchiveAsset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
@@ -145,7 +146,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.librarydirectory
                 StringAsset fooTxt = new StringAsset("foo.txt");
                 sub_shared_lib.addAsResource(fooTxt, "/com/sun/ts/tests/ejb30/assembly/librarydirectory/defaultname/foo.txt");
 
-                ejb3_assembly_librarydirectory_defaultname_ear.addAsLibrary(sub_shared_lib);
+                ejb3_assembly_librarydirectory_defaultname_ear.add(new ArchiveAsset(sub_shared_lib, ZipExporter.class), "/lib/lib/" + sub_shared_lib.getName());
                 JavaArchive hello_client_view_lib = ShrinkWrap.create(JavaArchive.class, "hello-client-view.jar");
                     // The class files
                     hello_client_view_lib.addClasses(
