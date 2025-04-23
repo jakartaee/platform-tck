@@ -78,6 +78,7 @@ public class AnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.Se
         this.serverSidePwd = TestUtil.getSystemProperty("j2eelogin.password");
         this.eisUser = TestUtil.getSystemProperty("eislogin.name");
         this.eisPwd = TestUtil.getSystemProperty("eislogin.password");
+        debug("AnnotatedResourceAdapterImpl, eisUser: "+eisUser);
 
         debug("leaving constructor...");
     }

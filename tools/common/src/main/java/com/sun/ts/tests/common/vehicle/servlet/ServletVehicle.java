@@ -27,6 +27,7 @@ package com.sun.ts.tests.common.vehicle.servlet;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
@@ -63,7 +64,13 @@ public class ServletVehicle extends HttpServlet {
             // the properties and args.
             TestUtil.logTrace("ServletVehicle - In doGet");
 
-            ObjectInputStream objInStream = new ObjectInputStream(new BufferedInputStream(req.getInputStream()));
+            Class<? extends HttpServlet> hsClazz = this.getClass();
+            TestUtil.logTrace("ServletVehicle - HttpServlet.class: "+hsClazz.getClassLoader());
+            Class<? extends HttpServletRequest> clazz = req.getClass();
+            TestUtil.logTrace("ServletVehicle - HttpServletRequest.class: "+clazz.getClassLoader());
+            InputStream is = req.getInputStream();
+
+            ObjectInputStream objInStream = new ObjectInputStream(new BufferedInputStream(is));
             System.out.println("ServletVehicle - got InputStream");
             TestUtil.logTrace("ServletVehicle - got InputStream");
             properties = (Properties) objInStream.readObject();

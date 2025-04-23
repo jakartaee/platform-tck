@@ -89,6 +89,7 @@ public class LocalTxMessageWork implements Work, WorkContextProvider {
      * with connector/mdb/MessageBean.java)
      */
     private void doSICMsgCheck(MessageEndpoint ep, Method onMessage) {
+        debug("LocalTxMessageWork.doSICMsgCheck");
 
         try {
 
