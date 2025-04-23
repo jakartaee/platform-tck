@@ -163,13 +163,6 @@
                                     <destFileName>arquillian-protocol-lib.jar</destFileName>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>jakarta.tck</groupId>
-                                    <artifactId>common</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
-                                    <destFileName>common.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
                                     <artifactId>tck-porting-lib</artifactId>
                                     <overWrite>true</overWrite>
@@ -297,7 +290,7 @@ CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS
                             <systemPropertyVariables>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
-                                <ts.home>${ts.home}</ts.home>
+                                <ts.home>${project.basedir}/jakartaeetck</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
@@ -330,7 +323,7 @@ CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS
                             <systemPropertyVariables>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
-                                <ts.home>${ts.home}</ts.home>
+                                <ts.home>${project.basedir}/jakartaeetck</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
