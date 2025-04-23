@@ -14,6 +14,7 @@ import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 
+@Disabled("https://github.com/jakartaee/platform-tck/issues/2231")
 @ExtendWith(ArquillianExtension.class)
 @Tag("jms")
 @Tag("jms_optional")

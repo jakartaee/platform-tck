@@ -1,2 +1,6 @@
 * tcks/apis/persistence/persistence-inside-container/spec-tests/src/main/java/ee/jakarta/tck/persistence/core/metamodelapi/identifiabletype/Client.java
 * tcks/apis/persistence/persistence-inside-container/spec-tests/src/main/java/ee/jakarta/tck/persistence/core/query/language/Client6.java
+* tcks/apis/messaging/messaging-inside-container/src/main/java/com/sun/ts/tests/jms/ee20/resourcedefs/descriptor/ClientAppclientTest.java
+* tcks/apis/messaging/messaging-inside-container/src/main/java/com/sun/ts/tests/jms/ee20/resourcedefs/descriptor/ClientEjbTest.java
+* tcks/apis/messaging/messaging-inside-container/src/main/java/com/sun/ts/tests/jms/ee20/resourcedefs/descriptor/ClientJspTest.java
+* tcks/apis/messaging/messaging-inside-container/src/main/java/com/sun/ts/tests/jms/ee20/resourcedefs/descriptor/ClientServletTest.java
