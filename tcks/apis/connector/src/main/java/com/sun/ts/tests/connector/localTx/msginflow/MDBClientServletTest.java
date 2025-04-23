@@ -38,13 +38,9 @@ public class MDBClientServletTest extends com.sun.ts.tests.connector.localTx.msg
                     com.sun.ts.tests.connector.util.DBSupport.class
             );
             URL ejbResURL = MDBClient.class.getResource("/com/sun/ts/tests/connector/mdb/msginflow_mdb_msginflow_ejb.xml");
-            if (ejbResURL != null) {
-                msginflow_mdb_msginflow_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
-            }
+            msginflow_mdb_msginflow_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             ejbResURL = MDBClient.class.getResource("/com/sun/ts/tests/connector/mdb/msginflow_mdb_msginflow_ejb.jar.sun-ejb-jar.xml");
-            if (ejbResURL != null) {
-                msginflow_mdb_msginflow_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
-            }
+            msginflow_mdb_msginflow_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             archiveProcessor.processEjbArchive(msginflow_mdb_msginflow_ejb, com.sun.ts.tests.connector.mdb.MessageBean.class, ejbResURL);
 
             JavaArchive msginflow1_mdb_msginflow_ejb = ShrinkWrap.create(JavaArchive.class, "msginflow1_mdb_msginflow_ejb.jar");
@@ -54,13 +50,9 @@ public class MDBClientServletTest extends com.sun.ts.tests.connector.localTx.msg
                     com.sun.ts.tests.connector.util.DBSupport.class
             );
             ejbResURL = MDBClient.class.getResource("/com/sun/ts/tests/connector/mdb/msginflow1_mdb_msginflow_ejb.xml");
-            if (ejbResURL != null) {
-                msginflow1_mdb_msginflow_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
-            }
+            msginflow1_mdb_msginflow_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             ejbResURL = MDBClient.class.getResource("/com/sun/ts/tests/connector/mdb/msginflow1_mdb_msginflow_ejb.jar.sun-ejb-jar.xml");
-            if (ejbResURL != null) {
-                msginflow1_mdb_msginflow_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
-            }
+            msginflow1_mdb_msginflow_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             archiveProcessor.processEjbArchive(msginflow1_mdb_msginflow_ejb, com.sun.ts.tests.connector.mdb.MessageBean.class, ejbResURL);
 
             EnterpriseArchive msginflow_mdb_ear = ShrinkWrap.create(EnterpriseArchive.class, "msginflow_mdb.ear");
@@ -80,13 +72,9 @@ public class MDBClientServletTest extends com.sun.ts.tests.connector.localTx.msg
                     com.sun.ts.tests.connector.util.DBSupport.class
             );
             URL ejbResURL = MDBClient.class.getResource("/com/sun/ts/tests/connector/mdb/msginflow_mdb_jca_msginflow_ejb.xml");
-            if (ejbResURL != null) {
                 msginflow_mdb_jca_msginflow_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
-            }
             ejbResURL = MDBClient.class.getResource("/com/sun/ts/tests/connector/mdb/msginflow_mdb_jca_msginflow_ejb.jar.sun-ejb-jar.xml");
-            if (ejbResURL != null) {
-                msginflow_mdb_jca_msginflow_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
-            }
+            msginflow_mdb_jca_msginflow_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             archiveProcessor.processEjbArchive(msginflow_mdb_jca_msginflow_ejb, com.sun.ts.tests.connector.mdb.JCAMessageBean.class, ejbResURL);
 
             EnterpriseArchive msginflow_mdb_jca_ear = ShrinkWrap.create(EnterpriseArchive.class, "msginflow_mdb_jca.ear");

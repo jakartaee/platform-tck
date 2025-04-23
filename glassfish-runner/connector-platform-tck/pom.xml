@@ -1500,7 +1500,7 @@
                                 <include>com.sun.ts.tests.connector.connManager.connManagerClient1ServletTest</include>
                                 -->
                                 <include>**/*Servlet*.*</include>
-                                <!--include>**/*Jsp**.*</include-->
+                                <include>**/*Jsp**.*</include>
                             </includes>
                         </configuration>
                     </execution>

@@ -68,6 +68,7 @@ public class AnnoManagedConnectionFactory
     private String user;
 
     private String userName;
+    private String eisPrincipalName;
 
     private String setterMethodVal = "DEFAULT";
 
@@ -166,6 +167,14 @@ public class AnnoManagedConnectionFactory
     public void setUser(String val) {
         debug("AnnoManagedConnectionFactory.setUser() with val = " + val);
         user = val;
+    }
+
+    public String getEisPrincipalName() {
+        return eisPrincipalName;
+    }
+
+    public void setEisPrincipalName(String eisPrincipalName) {
+        this.eisPrincipalName = eisPrincipalName;
     }
 
     /**
@@ -316,7 +325,7 @@ public class AnnoManagedConnectionFactory
                 setUserName(pc.getUserName());
                 setPassword(new String(pc.getPassword()));
                 debug("TSConnectionImpl.getConnection(u,p)");
-                con = new TSConnectionImpl().getConnection(pc.getUserName(), pc.getPassword());
+                con = new TSConnectionImpl().getConnection(getEisPrincipalName(), pc.getPassword());
             }
 
             ManagedConnection mcon = new TSManagedConnection(this, pc, null, con, false, true);
