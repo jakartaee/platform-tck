@@ -76,3 +76,8 @@ The Jakarta EE TCK release has been ported to use Arquillian and Junit 5 as the 
 * The distribution includes an artifacts/artifacts-bom-11.0.0-*.pom bom type file that can be used to import the TCK artifacts into your project.
 * The distribution includes an artifacts/artifacts-sums.txt that provides the SHA1 and MD5 checksums for the TCK artifacts as they exist in the staging repository or Maven Central. This can be used to double check the integrity of the artifacts.
 
+== Excluded Tests
+
+The following tests are annotated as disabled due to exclusions:
+
+include::EXCLUDES.adoc[]

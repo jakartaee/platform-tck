@@ -1,0 +1,2 @@
+* tcks/apis/persistence/persistence-inside-container/spec-tests/src/main/java/ee/jakarta/tck/persistence/core/metamodelapi/identifiabletype/Client.java
+* tcks/apis/persistence/persistence-inside-container/spec-tests/src/main/java/ee/jakarta/tck/persistence/core/query/language/Client6.java

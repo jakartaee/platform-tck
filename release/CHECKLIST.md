@@ -11,6 +11,7 @@
     - [ ] jakarta.tck.common.version
     - [ ] jakarta.tck.sigtest.version
 - [ ] Ensure the release/README.adoc has updated release note highlights
+- [ ] Ensure the release/README.adoc has updated excluded tests
 - [ ] Drop any previously staged release using its staging repository id and the
   https://ci.eclipse.org/jakartaee-tck/job/DropStagingRepo/ job if this is a restage
 - [ ] Delete any previous tag before running the https://ci.eclipse.org/jakartaee-tck/job/11/job/stage-artifacts/job/TCKDistRelease/ job if this is a restage

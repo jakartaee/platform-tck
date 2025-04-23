@@ -14,6 +14,10 @@
             <source>README.adoc</source>
             <filtered>true</filtered>
         </file>
+        <file>
+            <source>EXCLUDES.adoc</source>
+            <filtered>false</filtered>
+        </file>
         <!-- This is the final EFTL license -->
         <file>
             <source>../LICENSE.md</source>
