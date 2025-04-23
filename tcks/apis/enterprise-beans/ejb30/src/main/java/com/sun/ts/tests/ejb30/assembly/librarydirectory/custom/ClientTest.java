@@ -9,6 +9,8 @@ import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.ArchiveAsset;
+import org.jboss.shrinkwrap.api.asset.Asset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
@@ -147,8 +149,12 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.librarydirectory
                         com.sun.ts.tests.ejb30.assembly.common.AssemblyCommonIF.class
                     );
 
-
-                ejb3_assembly_librarydirectory_custom_ear.addAsLibrary(shared_lib);
+                // Create a MANIFEST.MF for the shared JAR
+                shared_lib.setManifest(new StringAsset("""
+                        Manifest-Version: 1.0
+                        Class-Path: second-level-dir/  4/second-level-jar.jar
+                        """));
+                ejb3_assembly_librarydirectory_custom_ear.add(new ArchiveAsset(shared_lib, ZipExporter.class), "/1/2/3/" + shared_lib.getName());
                 JavaArchive hello_client_view_lib = ShrinkWrap.create(JavaArchive.class, "hello-client-view.jar");
                     // The class files
                     hello_client_view_lib.addClasses(
@@ -158,14 +164,18 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.librarydirectory
                     );
 
 
-                ejb3_assembly_librarydirectory_custom_ear.addAsLibrary(hello_client_view_lib);
+                ejb3_assembly_librarydirectory_custom_ear.add(new ArchiveAsset(hello_client_view_lib, ZipExporter.class), "/1/2/3/" + hello_client_view_lib.getName());
                 JavaArchive second_level_jar_lib = ShrinkWrap.create(JavaArchive.class, "second-level-jar.jar");
 
                 // The resources
                 StringAsset secondTxt = new StringAsset("second-level-jar.txt");
                 second_level_jar_lib.addAsResource(secondTxt, "/com/sun/ts/tests/ejb30/assembly/librarydirectory/custom/second-level-jar.txt");
 
-                ejb3_assembly_librarydirectory_custom_ear.addAsLibrary(second_level_jar_lib);
+                // Add a library at a second level
+                ejb3_assembly_librarydirectory_custom_ear.add(new ArchiveAsset(second_level_jar_lib, ZipExporter.class), "/1/2/3/4/" + second_level_jar_lib.getName());
+
+                // Add a simple text resource at a second level
+                ejb3_assembly_librarydirectory_custom_ear.add(new StringAsset("second-level-dir.txt"), "/1/2/3/second-level-dir/com/sun/ts/tests/ejb30/assembly/librarydirectory/custom/second-level-dir.txt");
 
 
             // The component jars built by the package target
