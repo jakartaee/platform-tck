@@ -2,6 +2,8 @@ package com.sun.ts.tests.ejb30.assembly.metainf.appclientejb;
 
 import com.sun.ts.tests.ejb30.assembly.metainf.appclientejb.Client;
 import java.net.URL;
+
+import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
@@ -9,6 +11,7 @@ import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.ClassAsset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
@@ -85,22 +88,34 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainf.appclien
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/assembly/metainf/appclientejb/ejb3_assembly_metainf_appclientejb_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/metainf/appclientejb/ejb3_assembly_metainf_appclientejb_client.xml");
             if(resURL != null) {
               ejb3_assembly_metainf_appclientejb_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/metainf/appclientejb/ejb3_assembly_metainf_appclientejb_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              ejb3_assembly_metainf_appclientejb_client.addAsManifestResource(resURL, "application-client.xml");
+              ejb3_assembly_metainf_appclientejb_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            ejb3_assembly_metainf_appclientejb_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            // Currently the tck.arquillian.protocol.appclient.AppClientDeploymentPackage requires a StringAsset
+            ejb3_assembly_metainf_appclientejb_client.setManifest(new StringAsset("""
+                            Manifest-Version: 1.0
+                            Main-Class: com.sun.ts.tests.ejb30.assembly.metainf.appclientejb.Client
+                            Class-Path: 2/ 4common-1.0.1.jar  4client.jar   hello-client-view.jar
+
+                            """));
             // Call the archive processor
             archiveProcessor.processClientArchive(ejb3_assembly_metainf_appclientejb_client, Client.class, resURL);
 
         // Ejb
             // the jar with the correct archive name
             JavaArchive ejb3_assembly_metainf_appclientejb_ejb = ShrinkWrap.create(JavaArchive.class, "ejb3_assembly_metainf_appclientejb_ejb.jar");
+            // Set the class path
+            ejb3_assembly_metainf_appclientejb_ejb.setManifest(new StringAsset("""
+                            Manifest-Version: 1.0
+                            Class-Path: hello-client-view.jar 2/ 4common-1.0.1.jar 4ejb.jar
+
+                            """));
             // The class files
             ejb3_assembly_metainf_appclientejb_ejb.addClasses(
                 com.sun.ts.tests.ejb30.assembly.metainf.appclientejb.AssemblyBean.class
@@ -121,9 +136,13 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainf.appclien
         // Ear
             EnterpriseArchive ejb3_assembly_metainf_appclientejb_ear = ShrinkWrap.create(EnterpriseArchive.class, "ejb3_assembly_metainf_appclientejb.ear");
 
+            // Add the CalculatorException directly to the EAR in the "2" directory
+            ejb3_assembly_metainf_appclientejb_ear.add(new ClassAsset(CalculatorException.class), String.format("/2/%s.class", CalculatorException.class.getCanonicalName().replace('.', '/')));
+
             // Any libraries added to the ear
                 URL libURL;
                 JavaArchive x4ejb_lib = ShrinkWrap.create(JavaArchive.class, "4ejb.jar");
+                //x4ejb_lib.setManifest(new StringAsset("Manifest-Version: 1.0\n"));
                     // The class files
                     x4ejb_lib.addClasses(
                         com.sun.ts.tests.ejb30.assembly.common.AssemblyInterceptor.class,
@@ -131,7 +150,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainf.appclien
                     );
 
 
-                ejb3_assembly_metainf_appclientejb_ear.addAsLibrary(x4ejb_lib);
+                ejb3_assembly_metainf_appclientejb_ear.addAsModule(x4ejb_lib);
                 JavaArchive x4client_lib = ShrinkWrap.create(JavaArchive.class, "4client.jar");
                     // The class files
                     x4client_lib.addClasses(
@@ -139,7 +158,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainf.appclien
                     );
 
 
-                ejb3_assembly_metainf_appclientejb_ear.addAsLibrary(x4client_lib);
+                ejb3_assembly_metainf_appclientejb_ear.addAsModule(x4client_lib);
                 JavaArchive hello_client_view_lib = ShrinkWrap.create(JavaArchive.class, "hello-client-view.jar");
                     // The class files
                     hello_client_view_lib.addClasses(
@@ -149,7 +168,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainf.appclien
                     );
 
 
-                ejb3_assembly_metainf_appclientejb_ear.addAsLibrary(hello_client_view_lib);
+                ejb3_assembly_metainf_appclientejb_ear.addAsModule(hello_client_view_lib);
                 JavaArchive x4common_1_0_1_lib = ShrinkWrap.create(JavaArchive.class, "4common-1.0.1.jar");
                     // The class files
                     x4common_1_0_1_lib.addClasses(
@@ -165,7 +184,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainf.appclien
                     );
 
 
-                ejb3_assembly_metainf_appclientejb_ear.addAsLibrary(x4common_1_0_1_lib);
+                ejb3_assembly_metainf_appclientejb_ear.addAsModule(x4common_1_0_1_lib);
 
 
             // The component jars built by the package target

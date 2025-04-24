@@ -101,7 +101,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.c
         tx_stateless_covariant_ear.addAsModule(tx_stateless_covariant_web);
 
         // The application.xml descriptor
-        URL earResURL = Client.class.getResource("application.xml");
+        URL earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/covariant/application.xml");
         if (earResURL != null) {
             tx_stateless_covariant_ear.addAsManifestResource(earResURL, "application.xml");
         }

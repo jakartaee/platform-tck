@@ -80,7 +80,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.datasource.twowars.C
             com.sun.ts.tests.servlet.common.util.Data.class);
 
         // The web.xml descriptor
-        URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/misc/datasource/twowars/ejb3_misc_datasource_twowars_web.xml");
+        URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/datasource/twowars/ejb3_misc_datasource_twowars_web.xml");
         if (warResURL != null) {
             ejb3_misc_datasource_twowars_web.addAsWebInfResource(warResURL, "web.xml");
         }

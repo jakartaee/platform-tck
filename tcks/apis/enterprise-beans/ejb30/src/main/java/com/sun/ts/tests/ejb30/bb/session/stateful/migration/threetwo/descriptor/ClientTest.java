@@ -66,14 +66,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateful.migra
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/bb/session/stateful/migration/threetwo/descriptor/stateful_migration_threetwo_descriptor_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/migration/threetwo/descriptor/stateful_migration_threetwo_descriptor_client.xml");
             if(resURL != null) {
               stateful_migration_threetwo_descriptor_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/migration/threetwo/descriptor/stateful_migration_threetwo_descriptor_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              stateful_migration_threetwo_descriptor_client.addAsManifestResource(resURL, "application-client.xml");
+              stateful_migration_threetwo_descriptor_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             stateful_migration_threetwo_descriptor_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -116,15 +116,17 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateful.migra
                     com.sun.ts.tests.ejb30.common.migration.threetwo.TwoRemoteIF.class
             );
             // The ejb-jar.xml descriptor
-            ejbResURL = Client.class.getResource("two_ejb.xml");
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/migration/threetwo/descriptor/two_ejb.xml");
             if(ejbResURL != null) {
-                one_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+                two_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("two_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/migration/threetwo/descriptor/two_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
-                one_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+                two_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
+            archiveProcessor.processEjbArchive(two_ejb, Client.class, ejbResURL);
 
         // Ear
             EnterpriseArchive stateful_migration_threetwo_descriptor_ear = ShrinkWrap.create(EnterpriseArchive.class, "stateful_migration_threetwo_descriptor.ear");

@@ -62,7 +62,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.v
             com.sun.ts.tests.servlet.common.util.Data.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("tx_stateless_varargs_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/varargs/tx_stateless_varargs_web.xml");
             if(warResURL != null) {
               tx_stateless_varargs_web.addAsWebInfResource(warResURL, "web.xml");
             }
@@ -82,7 +82,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.v
                 com.sun.ts.tests.ejb30.tx.session.stateless.cm.varargs.VarargsBean.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("tx_stateless_varargs_ejb.xml");
+            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/varargs/tx_stateless_varargs_ejb.xml");
             if(ejbResURL != null) {
               tx_stateless_varargs_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }

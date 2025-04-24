@@ -59,15 +59,18 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.getresource.appclien
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
+            misc_getresource_appclient_client.add(new StringAsset("cts-ejb3-test-5.1.1-beta.txt"), "/com/sun/ts/tests/ejb30/misc/getresource/appclient/cts-ejb3-test-5.1.1-beta.txt");
+            misc_getresource_appclient_client.add(new StringAsset("/"), "/cts-ejb3-test-5.1.1-beta.txt");
+
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/misc/getresource/appclient/misc_getresource_appclient_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/getresource/appclient/misc_getresource_appclient_client.xml");
             if(resURL != null) {
               misc_getresource_appclient_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/getresource/appclient/misc_getresource_appclient_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              misc_getresource_appclient_client.addAsManifestResource(resURL, "application-client.xml");
+              misc_getresource_appclient_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             misc_getresource_appclient_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -77,7 +80,6 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.getresource.appclien
             EnterpriseArchive misc_getresource_appclient_ear = ShrinkWrap.create(EnterpriseArchive.class, "misc_getresource_appclient.ear");
 
             // Any libraries added to the ear
-                URL libURL;
                 JavaArchive shared_lib = ShrinkWrap.create(JavaArchive.class, "shared.jar");
                     // The class files
                     shared_lib.addClasses(
@@ -89,10 +91,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.getresource.appclien
 
 
                 // The resources
-                        libURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/getresource/appclient/cts-ejb3-test-5.1.1-beta-ear-lib.txt");
-                        shared_lib.addAsResource(libURL, "/com/sun/ts/tests/ejb30/misc/getresource/appclient/cts-ejb3-test-5.1.1-beta-ear-lib.txt");
-                        libURL = Client.class.getResource("/cts-ejb3-test-5.1.1-beta-ear-lib.txt");
-                        shared_lib.addAsResource(libURL, "/cts-ejb3-test-5.1.1-beta-ear-lib.txt");
+                shared_lib.add(new StringAsset("cts-ejb3-test-5.1.1-beta-ear-lib.txt"), "/com/sun/ts/tests/ejb30/misc/getresource/appclient/cts-ejb3-test-5.1.1-beta-ear-lib.txt");
+                shared_lib.add(new StringAsset("/lib"), "/cts-ejb3-test-5.1.1-beta-ear-lib.txt");
 
                 misc_getresource_appclient_ear.addAsLibrary(shared_lib);
 

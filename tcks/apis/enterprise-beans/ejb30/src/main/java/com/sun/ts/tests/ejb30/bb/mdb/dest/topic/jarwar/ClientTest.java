@@ -68,7 +68,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.mdb.dest.topic.jarwar.
             com.sun.ts.tests.ejb30.common.messaging.Constants.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/bb/mdb/dest/topic/jarwar/mdb_dest_topic_jarwar_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/mdb/dest/topic/jarwar/mdb_dest_topic_jarwar_web.xml");
             if(warResURL != null) {
               mdb_dest_topic_jarwar_web.addAsWebInfResource(warResURL, "web.xml");
             }
@@ -106,14 +106,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.mdb.dest.topic.jarwar.
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/bb/mdb/dest/topic/jarwar/mdb_dest_topic_jarwar_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/mdb/dest/topic/jarwar/mdb_dest_topic_jarwar_client.xml");
             if(resURL != null) {
               mdb_dest_topic_jarwar_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/mdb/dest/topic/jarwar/mdb_dest_topic_jarwar_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              mdb_dest_topic_jarwar_client.addAsManifestResource(resURL, "application-client.xml");
+              mdb_dest_topic_jarwar_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             mdb_dest_topic_jarwar_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor

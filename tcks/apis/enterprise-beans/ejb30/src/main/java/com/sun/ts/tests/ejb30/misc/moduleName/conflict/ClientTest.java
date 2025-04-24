@@ -55,7 +55,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.conflict.
             com.sun.ts.tests.ejb30.misc.moduleName.conflict.TestServlet.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/misc/moduleName/conflict/ejb3_misc_moduleName_conflict_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/conflict/ejb3_misc_moduleName_conflict_web.xml");
             if(warResURL != null) {
               ejb3_misc_moduleName_conflict_web.addAsWebInfResource(warResURL, "web.xml");
             }
@@ -80,14 +80,41 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.conflict.
             ejb3_misc_moduleName_conflict_ear.addAsModule(ejb3_misc_moduleName_conflict_web);
 
 
+            // Create the conflict.jar
+            final JavaArchive conflictJar = ShrinkWrap.create(JavaArchive.class, "conflict.jar");
+            conflictJar.addClass(ModuleBean.class);
+            ejb3_misc_moduleName_conflict_ear.addAsModule(conflictJar);
+
+            // Create the conflict.war
+            final WebArchive conflictWar = ShrinkWrap.create(WebArchive.class, "conflict.war");
+            conflictWar.addClasses(
+                    Module2Bean.class,
+                    TestServlet.class
+            );
+            ejb3_misc_moduleName_conflict_ear.addAsModule(conflictWar);
+
+            // Created the shared.jar library
+            final JavaArchive sharedJar = ShrinkWrap.create(JavaArchive.class, "shared.jar");
+            sharedJar.addClasses(
+                    com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase.class,
+                    com.sun.ts.tests.ejb30.assembly.appres.common.AppResCommonIF.class,
+                    com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF.class,
+                    com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase.class,
+                    com.sun.ts.tests.ejb30.common.helper.Helper.class,
+                    com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
+                    com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet.class,
+                    com.sun.ts.tests.servlet.common.util.Data.class
+            );
+            ejb3_misc_moduleName_conflict_ear.addAsLibrary(sharedJar);
+
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/conflict/");
+            URL earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/conflict/jb3_misc_moduleName_conflict.ear.application.xml");
             if(earResURL != null) {
               ejb3_misc_moduleName_conflict_ear.addAsManifestResource(earResURL, "application.xml");
             }
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/conflict/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/conflict/jb3_misc_moduleName_conflict.ear.sun-application.xml");
             if(earResURL != null) {
               ejb3_misc_moduleName_conflict_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

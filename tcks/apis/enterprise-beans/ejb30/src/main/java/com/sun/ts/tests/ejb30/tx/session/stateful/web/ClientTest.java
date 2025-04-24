@@ -68,7 +68,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateful.web.C
             );
 
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("tx_stateful_web_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateful/web/tx_stateful_web_web.xml");
             if(warResURL != null) {
               tx_stateful_web_web.addAsWebInfResource(warResURL, "web.xml");
             }
@@ -90,7 +90,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateful.web.C
                 com.sun.ts.tests.ejb30.tx.common.web.Constants.class
             );
             // The sun-ejb-jar.xml file
-            URL ejbResURL = Client.class.getResource("tx_stateful_web_ejb.jar.sun-ejb-jar.xml");
+            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateful/web/tx_stateful_web_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               tx_stateful_web_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }

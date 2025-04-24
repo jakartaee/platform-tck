@@ -111,7 +111,7 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.sched
               ejb30_timer_schedule_tz_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejbliteservlet_vehicle_web.xml");
             }
             // zone.tab
-            warResURL = Client.class.getResource("zone.tab");
+            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/timer/schedule/tz/zone.tab");
             ejb30_timer_schedule_tz_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/classes/com/sun/ts/tests/ejb30/timer/schedule/tz/zone.tab");
 
            // Call the archive processor

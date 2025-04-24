@@ -64,12 +64,12 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.i
             com.sun.ts.tests.servlet.common.util.Data.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("tx_stateless_inheritance_annotated_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/inheritance/annotated/tx_stateless_inheritance_annotated_web.xml");
             if(warResURL != null) {
               tx_stateless_inheritance_annotated_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("tx_stateless_inheritance_annotated_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/inheritance/annotated/tx_stateless_inheritance_annotated_web.war.sun-web.xml");
             if(warResURL != null) {
               tx_stateless_inheritance_annotated_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
@@ -100,7 +100,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.i
             );
 
             // The sun-ejb-jar.xml file
-            URL ejbResURL = Client.class.getResource("tx_stateless_inheritance_annotated_ejb.jar.sun-ejb-jar.xml");
+            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/inheritance/annotated/tx_stateless_inheritance_annotated_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               tx_stateless_inheritance_annotated_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -133,7 +133,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.i
 
 
             // The sun-application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/inheritance/annotated/.ear.sun-application.xml");
+            URL earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/inheritance/annotated/tx_stateless_inheritance_annotated.ear.sun-application.xml");
             if(earResURL != null) {
               tx_stateless_inheritance_annotated_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

@@ -70,14 +70,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.sec.stateless.secrunaspro
             com.sun.ts.tests.ejb30.sec.stateless.common.SecTest.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/sec/stateless/secrunaspropagation/ejb3_sec_stateless_secrunaspropagation_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/sec/stateless/secrunaspropagation/ejb3_sec_stateless_secrunaspropagation_client.xml");
             if(resURL != null) {
               ejb3_sec_stateless_secrunaspropagation_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/sec/stateless/secrunaspropagation/ejb3_sec_stateless_secrunaspropagation_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              ejb3_sec_stateless_secrunaspropagation_client.addAsManifestResource(resURL, "application-client.xml");
+              ejb3_sec_stateless_secrunaspropagation_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             ejb3_sec_stateless_secrunaspropagation_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
