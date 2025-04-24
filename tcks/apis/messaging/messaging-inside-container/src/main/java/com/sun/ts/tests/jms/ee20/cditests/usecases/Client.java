@@ -45,16 +45,16 @@ public class Client extends EETest {
 
   private URLConnection urlConn = null;
 
-  @EJB(name = "ejb/CDIUseCasesCMBEAN1")
+  // @EJB(name = "ejb/CDIUseCasesCMBEAN1")
   static CMBean1IF cmbean1;
 
-  @EJB(name = "ejb/CDIUseCasesCMBEAN2")
+  // @EJB(name = "ejb/CDIUseCasesCMBEAN2")
   static CMBean2IF cmbean2;
 
-  @EJB(name = "ejb/CDIUseCasesBMBEAN1")
+  // @EJB(name = "ejb/CDIUseCasesBMBEAN1")
   static BMBean1IF bmbean1;
 
-  @EJB(name = "ejb/CDIUseCasesBMBEAN2")
+  // @EJB(name = "ejb/CDIUseCasesBMBEAN2")
   static BMBean2IF bmbean2;
 
   private static final long serialVersionUID = 1L;
@@ -112,6 +112,11 @@ public class Client extends EETest {
       } catch (Exception e) {
         throw new Exception("'webServerPort' in ts.jte must be a number");
       }
+      bmbean1 = BMBean1IFProxy.newInstance(props);
+      bmbean2 = BMBean2IFProxy.newInstance(props);
+      cmbean1 = CMBean1IFProxy.newInstance(props);
+      cmbean2 = CMBean2IFProxy.newInstance(props);
+
       TestUtil.logMsg(
           "AppClient DEBUG: cmbean1=" + cmbean1 + " cmbean2=" + cmbean2);
       TestUtil.logMsg(

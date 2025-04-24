@@ -65,6 +65,10 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
             com.sun.ts.tests.jms.ee20.cditests.usecases.BMBean2IF.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
+            BMBean1IFProxy.class,
+            BMBean2IFProxy.class,
+            CMBean1IFProxy.class,
+            CMBean2IFProxy.class,
             com.sun.ts.tests.jms.ee20.cditests.usecases.CMBean2IF.class
             );
             // The application-client.xml descriptor
@@ -109,6 +113,12 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
             // Call the archive processor
             archiveProcessor.processEjbArchive(cditestsusecases_ejb, Client.class, ejbResURL);
 
+            // non-vehicle appclientproxy invoker war
+            WebArchive appclientproxy = ShrinkWrap.create(WebArchive.class, "appclientproxy.war");
+            appclientproxy.addClasses(Client.class, ServletTarget.class, ServletNoVehicle.class);
+            appclientproxy.addAsWebInfResource(new StringAsset(""), "beans.xml");
+
+
         // Ear
             EnterpriseArchive cditestsusecases_ear = ShrinkWrap.create(EnterpriseArchive.class, "cditestsusecases.ear");
 
@@ -117,12 +127,12 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
             // The component jars built by the package target
             cditestsusecases_ear.addAsModule(cditestsusecases_ejb);
             cditestsusecases_ear.addAsModule(cditestsusecases_client);
-
+            cditestsusecases_ear.addAsModule(appclientproxy);
 
 
             // The application.xml descriptor
             URL earResURL = null;
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/usecases/application.xml");
+            earResURL = Client.class.getResource("application.xml");
             if(earResURL != null) {
               cditestsusecases_ear.addAsManifestResource(earResURL, "application.xml");
             }
