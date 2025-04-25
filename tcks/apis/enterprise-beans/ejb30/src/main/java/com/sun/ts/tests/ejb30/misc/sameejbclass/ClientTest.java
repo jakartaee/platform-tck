@@ -62,7 +62,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.sameejbclass.Client 
             com.sun.ts.tests.servlet.common.util.Data.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/misc/sameejbclass/misc_sameejbclass_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/sameejbclass/misc_sameejbclass_web.xml");
             if(warResURL != null) {
               misc_sameejbclass_web.addAsWebInfResource(warResURL, "web.xml");
             }

@@ -70,7 +70,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.jndi.earwar.Client {
             com.sun.ts.tests.ejb30.misc.jndi.earwar.TestServlet.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/misc/jndi/earwar/misc_jndi_earwar_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/jndi/earwar/misc_jndi_earwar_web.xml");
             if(warResURL != null) {
               misc_jndi_earwar_web.addAsWebInfResource(warResURL, "web.xml");
             }

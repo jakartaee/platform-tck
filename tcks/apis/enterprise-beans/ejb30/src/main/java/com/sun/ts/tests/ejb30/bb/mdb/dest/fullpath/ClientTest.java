@@ -69,14 +69,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.mdb.dest.fullpath.Clie
             com.sun.ts.tests.ejb30.bb.mdb.dest.common.ClientBase.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/bb/mdb/dest/fullpath/mdb_dest_fullpath_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/mdb/dest/fullpath/mdb_dest_fullpath_client.xml");
             if(resURL != null) {
               mdb_dest_fullpath_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/mdb/dest/fullpath/mdb_dest_fullpath_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              mdb_dest_fullpath_client.addAsManifestResource(resURL, "application-client.xml");
+              mdb_dest_fullpath_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             mdb_dest_fullpath_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -116,15 +116,17 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.mdb.dest.fullpath.Clie
                     com.sun.ts.tests.ejb30.common.calc.RemoteCalculator.class
             );
             // The ejb-jar.xml descriptor
-            ejbResURL = Client.class.getResource("two_ejb.xml");
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/mdb/dest/fullpath/two_ejb.xml");
             if(ejbResURL != null) {
-                one_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+                two_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("two_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/mdb/dest/fullpath/two_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
-                one_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+                two_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
+            archiveProcessor.processEjbArchive(two_ejb, Client.class, ejbResURL);
 
         // Ear
             EnterpriseArchive mdb_dest_fullpath_ear = ShrinkWrap.create(EnterpriseArchive.class, "mdb_dest_fullpath.ear");

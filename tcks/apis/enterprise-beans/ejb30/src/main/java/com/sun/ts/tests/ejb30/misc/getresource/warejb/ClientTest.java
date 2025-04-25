@@ -55,7 +55,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.getresource.warejb.C
             com.sun.ts.tests.ejb30.misc.getresource.warejb.GetResourceDelegateForWeb.class);
 
         // The web.xml descriptor
-        URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/misc/getresource/warejb/misc_getresource_warejb_web.xml");
+        URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/getresource/warejb/misc_getresource_warejb_web.xml");
         if (warResURL != null) {
             misc_getresource_warejb_web.addAsWebInfResource(warResURL, "web.xml");
         }

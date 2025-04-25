@@ -83,17 +83,17 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainfandlibdir
             com.sun.ts.tests.ejb30.assembly.metainfandlibdir.TestServlet.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("ejb3_assembly_metainfandlibdir_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/metainfandlibdir/ejb3_assembly_metainfandlibdir_web.xml");
             if(warResURL != null) {
               ejb3_assembly_metainfandlibdir_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("ejb3_assembly_metainfandlibdir_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/metainfandlibdir/ejb3_assembly_metainfandlibdir_web.war.sun-web.xml");
             if(warResURL != null) {
               ejb3_assembly_metainfandlibdir_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
-            warResURL = Client.class.getResource("war.mf");
+            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/metainfandlibdir/war.mf");
             ejb3_assembly_metainfandlibdir_web.setManifest(warResURL);
 
             // Any libraries added to the war
@@ -116,11 +116,11 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainfandlibdir
               ejb3_assembly_metainfandlibdir_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("ejb3_assembly_metainfandlibdir_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/metainfandlibdir/ejb3_assembly_metainfandlibdir_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               ejb3_assembly_metainfandlibdir_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
-            ejbResURL = Client.class.getResource("ejb-jar.mf");
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/metainfandlibdir/ejb-jar.mf");
             ejb3_assembly_metainfandlibdir_ejb.setManifest(ejbResURL);
             // Call the archive processor
             archiveProcessor.processEjbArchive(ejb3_assembly_metainfandlibdir_ejb, Client.class, ejbResURL);

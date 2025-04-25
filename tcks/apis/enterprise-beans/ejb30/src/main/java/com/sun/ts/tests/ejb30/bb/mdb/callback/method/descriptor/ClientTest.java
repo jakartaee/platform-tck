@@ -70,14 +70,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.mdb.callback.method.de
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/bb/mdb/callback/method/descriptor/mdb_callback_method_descriptor_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/mdb/callback/method/descriptor/mdb_callback_method_descriptor_client.xml");
             if(resURL != null) {
               mdb_callback_method_descriptor_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/mdb/callback/method/descriptor/mdb_callback_method_descriptor_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              mdb_callback_method_descriptor_client.addAsManifestResource(resURL, "application-client.xml");
+              mdb_callback_method_descriptor_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             mdb_callback_method_descriptor_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor

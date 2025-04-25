@@ -48,9 +48,9 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.C
                 com.sun.ts.tests.ejb30.misc.moduleName.twowars.TestServlet2.class,
                 com.sun.ts.tests.ejb30.misc.moduleName.twowars.Module2Bean.class
         );
-        URL warResURL = Client.class.getResource("two_standalone_component_web.xml");
+        URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/twowars/two_standalone_component_web.xml");
         two_standalone_component_web.addAsWebInfResource(warResURL, "web.xml");
-        warResURL = Client.class.getResource("two_standalone_component_web.war.sun-web.xml");
+        warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/twowars/two_standalone_component_web.war.sun-web.xml");
         two_standalone_component_web.addAsWebInfResource(warResURL, "sun-web.xml");
 
         return two_standalone_component_web;
@@ -84,12 +84,12 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.C
             com.sun.ts.tests.servlet.common.util.Data.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("ejb3_misc_moduleName_twowars_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/twowars/ejb3_misc_moduleName_twowars_web.xml");
             if(warResURL != null) {
               ejb3_misc_moduleName_twowars_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("jb3_misc_moduleName_twowars_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/twowars/ejb3_misc_moduleName_twowars_web.war.sun-web.xml");
             if(warResURL != null) {
               ejb3_misc_moduleName_twowars_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
