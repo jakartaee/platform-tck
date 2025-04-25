@@ -21,6 +21,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
+import com.sun.ts.tests.common.vehicle.none.proxy.AppClient;
+import com.sun.ts.tests.common.vehicle.none.proxy.ServletNoVehicle;
 
 
 
@@ -58,19 +60,10 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
             JavaArchive cditestsusecases_client = ShrinkWrap.create(JavaArchive.class, "cditestsusecases_client.jar");
             // The class files
             cditestsusecases_client.addClasses(
-            com.sun.ts.tests.jms.ee20.cditests.usecases.CMBean1IF.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
-            com.sun.ts.tests.jms.ee20.cditests.usecases.Client.class,
-            com.sun.ts.tests.jms.ee20.cditests.usecases.BMBean1IF.class,
-            com.sun.ts.tests.jms.ee20.cditests.usecases.BMBean2IF.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
-            BMBean1IFProxy.class,
-            BMBean2IFProxy.class,
-            CMBean1IFProxy.class,
-            CMBean2IFProxy.class,
-            com.sun.ts.tests.jms.ee20.cditests.usecases.CMBean2IF.class
-            );
+            IClientProxy.class,
+            IClient.class,
+            TestAppClient.class
+            ).addClasses(AppClient.getAppClasses());
             // The application-client.xml descriptor
             // URL resURL = Client.class.getResource("");
             // if(resURL != null) {
@@ -82,7 +75,7 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
             //   cditestsusecases_client.addAsManifestResource(resURL, "application-client.xml");
             // }
             URL resURL = null;
-            cditestsusecases_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            cditestsusecases_client.addAsManifestResource(new StringAsset("Main-Class: " + TestAppClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(cditestsusecases_client, Client.class, resURL);
 
@@ -115,7 +108,7 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
 
             // non-vehicle appclientproxy invoker war
             WebArchive appclientproxy = ShrinkWrap.create(WebArchive.class, "appclientproxy.war");
-            appclientproxy.addClasses(Client.class, ServletTarget.class, ServletNoVehicle.class);
+            appclientproxy.addClasses(Client.class, ClientServletTarget.class, ServletNoVehicle.class);
             appclientproxy.addAsWebInfResource(new StringAsset(""), "beans.xml");
 
 
