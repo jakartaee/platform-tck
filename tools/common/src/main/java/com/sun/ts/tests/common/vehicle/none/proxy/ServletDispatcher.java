@@ -6,6 +6,7 @@ import com.sun.ts.lib.harness.Status;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -48,8 +49,14 @@ public class ServletDispatcher implements Function<Object[], RemoteStatus> {
         return status;
     }
 
+    /**
+     * Sends a GET request to the server with the given method name as test parameter.
+     * @param methodName - the name of the method to call
+     * @return the status of the method call
+     */
     private RemoteStatus sendGet(String methodName) {
         URI uri = URI.create("http://"+webServerHost + ":" + webServerPort + "/appclientproxy/appclient_novehicle?test=" + methodName);
+        log.info("Sending GET request to " + uri);
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
@@ -63,25 +70,46 @@ public class ServletDispatcher implements Function<Object[], RemoteStatus> {
                 String msg = String.format("Failed to send %s(), status code %d, content length: %s",
                         methodName, response.statusCode(), response.headers().firstValue("Content-Length"));
                 log.severe(msg);
+                return new RemoteStatus(Status.failed("Failed to send " + methodName));
             }
         } catch (Throwable e) {
             return new RemoteStatus(Status.failed("Failed to send " + methodName), e);
         }
         // Read the response
         RemoteStatus status;
-        try (ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(response.body()))) {
-            status = (RemoteStatus) ois.readObject();
-        } catch (Throwable e) {
-            status = new RemoteStatus(Status.failed("Failed to read response body"), e);
+        byte[] body = response.body();
+        if(body != null && body.length > 0) {
+            try (ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(response.body()))) {
+                status = (RemoteStatus) ois.readObject();
+            } catch (Throwable e) {
+                status = new RemoteStatus(Status.failed("Failed to read response body"), e);
+            }
+        } else {
+            status = new RemoteStatus(Status.failed("Failed to read response body, empty response"));
+            log.severe("Failed to read response body, empty response");
         }
         return status;
     }
 
+    /**
+     * Sends a POST request to the server with the given method name as test parameter and the arguments
+     * as the body in the format of a serialized object byte[].
+     * @param methodName - the name of the method to call
+     * @param args - the arguments to pass to the method
+     * @return the status of the method call
+     */
     private RemoteStatus sendPost(String methodName, Object[] args) {
-        URI uri = URI.create("http://" + webServerPort + ":" + webServerPort + "/appclientproxy/appclient_novehicle?test=" + methodName);
+        URI uri = URI.create("http://" + webServerHost + ":" + webServerPort + "/appclientproxy/appclient_novehicle?test=" + methodName);
+        log.info("Sending POST request to " + uri);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try (ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+            oos.writeObject(args);
+            oos.flush();
+            oos.close();
+        } catch (Throwable e) {
+            return new RemoteStatus(Status.failed("Failed to serialize args"), e);
+        }
         byte[] body = baos.toByteArray();
-        // TODO: serialize args to body
         HttpRequest.BodyPublisher publisher = HttpRequest.BodyPublishers.ofByteArray(body);
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(uri)

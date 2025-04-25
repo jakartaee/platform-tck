@@ -8,13 +8,20 @@ import com.sun.ts.lib.harness.Status;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.net.InetSocketAddress;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Properties;
 
+/**
+ * Local test HTTP server that uses the bundled com.sun.net.httpserver.HttpServer
+ */
 public class MockHttpServer {
     HttpServer server;
     Object testCase;
@@ -46,22 +53,50 @@ public class MockHttpServer {
 
         @Override
         public void handle(HttpExchange exchange) throws IOException {
+            RemoteStatus status = null;
             String query = exchange.getRequestURI().getQuery();
             String testName = getParameterByName(query, "test");
             System.out.println("Invoking " + testName);
-            Method testMethod = null;
-            RemoteStatus status = null;
-            try {
-                testMethod = testCase.getClass().getDeclaredMethod(testName);
-            } catch (NoSuchMethodException e) {
-                status = new RemoteStatus(Status.failed("Method not found: " + testName));
+            Object[] args = null;
+            Class<?>[] paramTypes = null;
+            if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+                // Read the request body
+                InputStream inputStream = exchange.getRequestBody();
+                try(ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
+                    args = (Object[]) objectInputStream.readObject();
+                    System.out.println("Received POST request with body: " + Arrays.toString(args));
+                    // Hardcode the parameter types for the test method
+                    if(args.length > 1) {
+                        // setup(String[], Properties)
+                        paramTypes = new Class<?>[]{String[].class, Properties.class};
+                    } else {
+                        // setup(String[])
+                        paramTypes = new Class<?>[]{String[].class};
+                    }
+                } catch (Exception e) {
+                    status = new RemoteStatus(Status.failed("Failed to deserialize request body"), e);
+                }
             }
-            if(testMethod != null) {
+
+            // Invoke method if there was no error in the request body
+            if(status == null) {
+                Method testMethod = null;
                 try {
-                    testMethod.invoke(testCase);
-                    status = new RemoteStatus(Status.passed("Test passed"));
-                } catch (Throwable e) {
-                    status = new RemoteStatus(Status.failed("Test failed: " + testName), e);
+                    testMethod = testCase.getClass().getDeclaredMethod(testName, paramTypes);
+                } catch (NoSuchMethodException e) {
+                    status = new RemoteStatus(Status.failed("Method not found: " + testName));
+                }
+                if (testMethod != null) {
+                    try {
+                        if(args != null) {
+                            testMethod.invoke(testCase, args);
+                        } else {
+                            testMethod.invoke(testCase);
+                        }
+                        status = new RemoteStatus(Status.passed("Test passed"));
+                    } catch (Throwable e) {
+                        status = new RemoteStatus(Status.failed("Test failed: " + testName), e);
+                    }
                 }
             }
 

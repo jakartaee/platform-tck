@@ -7,6 +7,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Proxy;
 import java.lang.reflect.Type;
 import java.util.Arrays;
+import java.util.Properties;
 import java.util.function.Function;
 
 /**
@@ -18,6 +19,18 @@ public abstract class AbstractBaseProxy<I, IP extends InvocationProxy> implement
 
     private Function<Object[], RemoteStatus> dispatcher;
     private I lastProxy;
+
+    /**
+     * Optional setup method that can be overridden by subclasses to perform any necessary setup.
+     * @param args - the command line arguments
+     */
+    public void setup(String[] args) {}
+    /**
+     * Optional setup method that can be overridden by subclasses to perform any necessary setup.
+     * @param args - the command line arguments
+     * @param props - test properties
+     */
+    public void setup(String[] args, Properties props) {}
 
     /**
      * Implemented by the IP class to dispatch the method call to the remote server.
@@ -65,7 +78,7 @@ public abstract class AbstractBaseProxy<I, IP extends InvocationProxy> implement
 
     /**
      * Returns the last proxy instance created.
-     * @return
+     * @return the last proxy instance
      */
     public I getLastProxy() {
         return lastProxy;
@@ -74,10 +87,19 @@ public abstract class AbstractBaseProxy<I, IP extends InvocationProxy> implement
         Class<?>[] typeArguments = getReifiedTypeArguments();
         return (Class<I>) typeArguments[0];
     }
+    /**
+     * Returns the invocation proxy class.
+     * @return the invocation proxy class
+     */
     public Class<IP> getInvocationProxyClass() {
         Class<?>[] typeArguments = getReifiedTypeArguments();
         return (Class<IP>) typeArguments[1];
     }
+
+    /**
+     * Utility method to get the reified type arguments of the proxy.
+     * @return [0] - the interface type, [1] - the proxy type
+     */
     public Class<?>[] getReifiedTypeArguments() {
         Class<?> currentClass = getClass();
         ParameterizedType genericType = (ParameterizedType) currentClass.getGenericSuperclass();
@@ -87,6 +109,10 @@ public abstract class AbstractBaseProxy<I, IP extends InvocationProxy> implement
         return reifiedTypeArguments;
     }
 
+    /**
+     * Utility method to get the generic type information of the proxy.
+     * @return - a string representation of the generic type information
+     */
     public String getGenericInfo() {
         Class<?>[] typeArguments = getReifiedTypeArguments();
         StringBuilder genericInfo = new StringBuilder();
@@ -97,6 +123,10 @@ public abstract class AbstractBaseProxy<I, IP extends InvocationProxy> implement
         return genericInfo.toString();
     }
 
+    /**
+     * Get the dispatcher that handles the method calls.
+     * @return - the dispatcher
+     */
     public Function<Object[], RemoteStatus> getDispatcher() {
         return dispatcher;
     }
@@ -112,7 +142,7 @@ public abstract class AbstractBaseProxy<I, IP extends InvocationProxy> implement
 
     /**
      * Use the DirectDispatcher to handle the method calls.
-     * @param testCase
+     * @param testCase - the test case instance
      */
     public void useDirectDispatcher(Object testCase) {
         setDispatcher(new DirectDispatcher(testCase));
@@ -149,12 +179,16 @@ public abstract class AbstractBaseProxy<I, IP extends InvocationProxy> implement
         String methodName = method.getName();
 
         // Handle Object methods
-        if (methodName.equals("toString")) {
-            return this.getClass().getName() + "-proxy";
-        } else if (methodName.equals("hashCode")) {
-            return this.hashCode();
-        } else if (methodName.equals("equals")) {
-            return this.equals(proxy);
+        switch (methodName) {
+            case "toString" -> {
+                return this.getClass().getName() + "-proxy";
+            }
+            case "hashCode" -> {
+                return this.hashCode();
+            }
+            case "equals" -> {
+                return this.equals(proxy);
+            }
         }
         //
         if (dispatcher != null) {

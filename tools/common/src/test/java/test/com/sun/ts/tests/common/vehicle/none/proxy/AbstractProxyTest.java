@@ -66,4 +66,18 @@ public class AbstractProxyTest {
         TestHttpRunner testRunner = new TestHttpRunner();
         testRunner.runTests();
     }
+
+    @Test
+    public void testHttpRunnerTestWithSetup() throws IOException {
+        TestHttpRunner testRunner = new TestHttpRunner();
+        String[] args = new String[]{"-p", "tmp/tstest.jte"};
+        testRunner.runTests(args);
+    }
+
+    @Test
+    public void testHttpRunnerTestWithSetupProps() throws IOException {
+        TestHttpRunner testRunner = new TestHttpRunner();
+        String[] args = new String[]{"-p", "tmp/tstest.jte"};
+        testRunner.runTests(args, System.getProperties());
+    }
 }
