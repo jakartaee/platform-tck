@@ -15,6 +15,11 @@
 
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     
+        
+    **********************************
+    TODO: THIS POM NEEDS MAJOR CLEANUP
+    **********************************
+
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
@@ -214,6 +219,13 @@
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${glassfish.lib.dir}</outputDirectory>
                                     <destFileName>tck-porting-lib.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck.arquillian</groupId>
+                                    <artifactId>arquillian-protocol-lib</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/protocol</outputDirectory>
+                                    <destFileName>protocol.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -1429,6 +1441,23 @@
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.5.3</version>
+                <configuration>
+                    <dependenciesToScan>jakarta.tck:connector</dependenciesToScan>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${glassfish.home}/javadb/lib/derbytools.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${glassfish.home}/javadb/lib/derbyclient.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${glassfish.home}/javadb/lib/derby.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${glassfish.home}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${glassfish.home}/glassfish/modules/jakarta.servlet.jsp-api.jar</additionalClasspathElement>
+                    </additionalClasspathElements>
+                    <systemPropertyVariables>
+                        <glassfish.home>${glassfish.home}</glassfish.home>
+                        <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
+                        <ts.home>${project.basedir}/jakartaeetck</ts.home>
+                        <project.basedir>${project.basedir}</project.basedir>
+                    </systemPropertyVariables>
+                </configuration>
+
                 <executions>
                     <execution>
                         <id>connector-javatest-tests</id>
@@ -1438,24 +1467,15 @@
                         </goals>
                         <configuration>
                             <groups>tck-javatest</groups>
-                            <dependenciesToScan>jakarta.tck:connector</dependenciesToScan>
                             <systemPropertyVariables>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
                             <includes>
-                                <!--
                                 <include>**/*Servlet*.*</include>
                                 <include>**/*Jsp**.*</include>
-                                <include>com.sun.ts.tests.connector.annotations.mdcomplete.ClientServletTest</include>
-                                <include>com.sun.ts.tests.connector.connManager.connManagerClient1ServletTest</include>
-                                -->
-                                <include>com.sun.ts.tests.connector.annotations.mdcomplete.ClientEjbTest</include>
                             </includes>
                         </configuration>
                     </execution>
-                    <!-- Can be run separately with
-                     mvn -Pfull,staging pre-integration-test failsafe:integration-test@connector-appclient-tests
-                    -->
                     <execution>
                         <id>connector-appclient-tests</id>
                         <goals>
@@ -1464,53 +1484,11 @@
                         </goals>
                         <configuration>
                             <groups>tck-appclient</groups>
-                            <dependenciesToScan>jakarta.tck:connector</dependenciesToScan>
                             <systemPropertyVariables>
                                 <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
                             <includes>
-                                <!--
-                                <include>**/*Test.java</include>
-                                -->
-                                <include>**/*Test.java</include>
-                            </includes>
-                            <excludes>
-                                <exclude>**/*Servlet*.*</exclude>
-                                <exclude>**/*Jsp**.*</exclude>
-                            </excludes>
-                        </configuration>
-                    </execution>
-
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
-                <executions>
-                    <execution>
-                        <id>connector-ejb-tests</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <dependenciesToScan>jakarta.tck:connector</dependenciesToScan>
-                            <additionalClasspathElements>
-                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derbytools.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derbyclient.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derby.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${glassfish.home}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${glassfish.home}/glassfish/modules/jakarta.servlet.jsp-api.jar</additionalClasspathElement>
-                            </additionalClasspathElements>
-                            <systemPropertyVariables>
-                                <glassfish.home>${glassfish.home}</glassfish.home>
-                                <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
-                                <ts.home>${project.basedir}/jakartaeetck</ts.home>
-                                <project.basedir>${project.basedir}</project.basedir>
-                                <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
-                            </systemPropertyVariables>
-                            <includes>
-                                <include>**/*Ejb*Test.*</include>
+                                <include>**/*Test.*</include>
                             </includes>
                         </configuration>
                     </execution>
