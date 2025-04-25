@@ -6,6 +6,7 @@ import com.sun.ts.lib.harness.Status;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Properties;
@@ -21,6 +22,11 @@ public class AppClient<IC, ICP extends InvocationProxy<IC>> {
             com.sun.ts.tests.common.vehicle.none.proxy.InvocationProxy.class,
             com.sun.ts.tests.common.vehicle.none.proxy.ServletDispatcher.class,
     };
+
+    /**
+     * Classes used by the AppClient that needs to be added to the proxy deployment.
+     * @return the classes used by the AppClient
+     */
     public static Class[] getAppClasses() {
         return appClasses;
     }
@@ -48,6 +54,8 @@ public class AppClient<IC, ICP extends InvocationProxy<IC>> {
         String webServerHost = testProps.getProperty("webServerHost", "localhost");
         String webServerPort = testProps.getProperty("webServerPort", "8080");
 
+        // Invoke the setup
+
         // Invoke the test
         RemoteStatus status = runTest(testName, webServerHost, webServerPort);
         if(status.toStatus().isFailed()) {
@@ -71,11 +79,8 @@ public class AppClient<IC, ICP extends InvocationProxy<IC>> {
      */
     RemoteStatus runTest(String testName, String webServerHost, String webServerPort) {
         RemoteStatus status;
-        Class<ICP> clientProxyClass = getInvocationProxyClass();
         try {
-            Constructor<ICP> clientProxyCtor = clientProxyClass.getDeclaredConstructor();
-            ICP clientProxy = clientProxyCtor.newInstance();
-            clientProxy.newProxy(webServerHost, webServerPort);
+            ICP clientProxy = getInvocationProxy(webServerHost, webServerPort);
             status = clientProxy.runTest(testName);
         } catch (Throwable e) {
             status = new RemoteStatus(Status.failed(testName+"  failure in main"), e);
@@ -93,6 +98,15 @@ public class AppClient<IC, ICP extends InvocationProxy<IC>> {
         Properties props = new Properties();
         props.load(new FileReader(fileName));
         return props;
+    }
+
+    protected ICP getInvocationProxy(String webServerHost, String webServerPort) throws NoSuchMethodException,
+            InvocationTargetException, InstantiationException, IllegalAccessException {
+        Class<ICP> clientProxyClass = getInvocationProxyClass();
+        Constructor<ICP> clientProxyCtor = clientProxyClass.getDeclaredConstructor();
+        ICP clientProxy = clientProxyCtor.newInstance();
+        clientProxy.newProxy(webServerHost, webServerPort);
+        return clientProxy;
     }
 
     /**
