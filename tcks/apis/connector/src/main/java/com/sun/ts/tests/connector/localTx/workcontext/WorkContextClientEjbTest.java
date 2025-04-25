@@ -84,14 +84,10 @@ public class WorkContextClientEjbTest extends com.sun.ts.tests.connector.localTx
             );
             // The application-client.xml descriptor
             URL resURL = WorkContextClient.class.getResource("workcontext_ejb_vehicle_client.xml");
-            if(resURL != null) {
-              workcontext_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            workcontext_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = WorkContextClient.class.getResource("workcontext_ejb_vehicle_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              workcontext_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
-            }
+            workcontext_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             workcontext_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(workcontext_ejb_vehicle_client, WorkContextClient.class, resURL);
@@ -115,14 +111,10 @@ public class WorkContextClientEjbTest extends com.sun.ts.tests.connector.localTx
             );
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = WorkContextClient.class.getResource("workcontext_ejb_vehicle_ejb.xml");
-            if(ejbResURL1 != null) {
-              workcontext_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
-            }
+            workcontext_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             // The sun-ejb-jar.xml file
             ejbResURL1 = WorkContextClient.class.getResource("workcontext_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL1 != null) {
-              workcontext_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
-            }
+            workcontext_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             // Call the archive processor
             archiveProcessor.processEjbArchive(workcontext_ejb_vehicle_ejb, WorkContextClient.class, ejbResURL1);
 

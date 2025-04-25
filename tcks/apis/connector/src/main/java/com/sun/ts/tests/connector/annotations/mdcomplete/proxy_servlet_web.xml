@@ -17,13 +17,18 @@
 
 -->
 
-<web-app version="5.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
-  <display-name>jsp_vehicle</display-name>
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+  <display-name>mdcomplete_proxy_servlet</display-name>
   <servlet>
-    <servlet-name>jsp_vehicle</servlet-name>
-    <jsp-file>/jsp_vehicle.jsp</jsp-file>
-    <load-on-startup>0</load-on-startup>
+    <servlet-name>ClientServletTarget</servlet-name>
+    <servlet-class>com.sun.ts.tests.connector.annotations.mdcomplete.proxy.ClientServletTarget</servlet-class>
   </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientServletTarget</servlet-name>
+    <url-pattern>/appclient_novehicle</url-pattern>
+  </servlet-mapping>
   <session-config>
     <session-timeout>54</session-timeout>
   </session-config>

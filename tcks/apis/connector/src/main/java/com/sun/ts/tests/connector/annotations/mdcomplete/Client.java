@@ -27,11 +27,13 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.connector.util.DBSupport;
+import jakarta.enterprise.context.Dependent;
 
 /*
  * These are the tests that are used to validate behavior
  * with RA's that utilize combinations of annotations and DD's.
  */
+@Dependent
 public class Client extends ServiceEETest implements Serializable {
 
   private TSNamingContext nctx = null;
@@ -47,13 +49,6 @@ public class Client extends ServiceEETest implements Serializable {
   private TSDataSource ds2 = null;
 
   private DBSupport dbutil = null;
-
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /*
    * @class.setup_props: whitebox-mdcomplete; rauser1; rapassword1;

@@ -1,24 +1,30 @@
 package com.sun.ts.tests.connector.annotations.mdcomplete;
 
 import java.net.URL;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.RemoteStatus;
+import com.sun.ts.tests.connector.annotations.mdcomplete.proxy.ClientServletTarget;
+import com.sun.ts.tests.connector.annotations.mdcomplete.proxy.IClient;
+import com.sun.ts.tests.connector.annotations.mdcomplete.proxy.IClientProxy;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-import tck.arquillian.protocol.common.TargetVehicle;
-
+import tck.arquillian.protocol.javatest.JavaTestProtocolConfiguration;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -27,7 +33,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("connector_standalone")
 @Tag("connector_web")
 @Tag("web_optional")
-@Tag("tck-appclient")
+@Tag("tck-javatest")
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientEjbTest extends com.sun.ts.tests.connector.annotations.mdcomplete.Client {
@@ -60,104 +66,71 @@ public class ClientEjbTest extends com.sun.ts.tests.connector.annotations.mdcomp
         Ear:
 
         */
-        @TargetsContainer("tck-appclient")
-        @OverProtocol("appclient")
+        @TargetsContainer("tck-javatest")
+        @OverProtocol("javatest")
         @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
-        // Client
-            // the jar with the correct archive name
-            JavaArchive mdcomplete_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "mdcomplete_ejb_vehicle_client.jar");
-            // The class files
-            mdcomplete_ejb_vehicle_client.addClasses(
-            com.sun.ts.tests.connector.annotations.mdcomplete.Client.class,
-            com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-            com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-            com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
-            com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
-            com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
-            com.sun.ts.tests.connector.util.DBSupport.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class
+        public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+
+            // non-vehicle appclientproxy invoker war
+            WebArchive appclientproxy = ShrinkWrap.create(WebArchive.class, "appclientproxy.war");
+            appclientproxy.addClasses(Client.class,
+                    com.sun.ts.lib.harness.EETest.Fault.class,
+                    com.sun.ts.tests.connector.util.DBSupport.class,
+                    com.sun.ts.lib.harness.EETest.class,
+                    com.sun.ts.lib.harness.ServiceEETest.class,
+                    com.sun.ts.lib.harness.EETest.SetupException.class,
+                    com.sun.ts.tests.connector.annotations.mdcomplete.proxy.ClientServletTarget.class,
+                    com.sun.ts.tests.common.vehicle.none.proxy.ServletNoVehicle.class
             );
-            // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
-            if(resURL != null) {
-              mdcomplete_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              mdcomplete_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
-            }
-            mdcomplete_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
-            // Call the archive processor
-            archiveProcessor.processClientArchive(mdcomplete_ejb_vehicle_client, Client.class, resURL);
+            appclientproxy.addAsWebInfResource(new StringAsset(""), "beans.xml");
+            URL webResURL = Client.class.getResource("proxy_servlet_web.xml");
+            appclientproxy.addAsWebInfResource(webResURL, "web.xml");
+            archiveProcessor.processWebArchive(appclientproxy, Client.class, null);
 
-        // Ejb 1
-            // the jar with the correct archive name
-            JavaArchive mdcomplete_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "mdcomplete_ejb_vehicle_ejb.jar");
-            // The class files
-            mdcomplete_ejb_vehicle_ejb.addClasses(
-                com.sun.ts.tests.connector.annotations.mdcomplete.Client.class,
-                com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-                com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-                com.sun.ts.lib.harness.EETest.Fault.class,
-                com.sun.ts.tests.connector.util.DBSupport.class,
-                com.sun.ts.lib.harness.EETest.class,
-                com.sun.ts.lib.harness.ServiceEETest.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class,
-                com.sun.ts.tests.common.vehicle.VehicleClient.class,
-                com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class
-            );
-            // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client.class.getResource("mdcomplete_ejb_vehicle_ejb.xml");
-            if(ejbResURL1 != null) {
-              mdcomplete_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
-            }
-            // The sun-ejb-jar.xml file
-            ejbResURL1 = Client.class.getResource("mdcomplete_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL1 != null) {
-              mdcomplete_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEjbArchive(mdcomplete_ejb_vehicle_ejb, Client.class, ejbResURL1);
-
-
-        // Ear
-            EnterpriseArchive mdcomplete_ejb_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "mdcomplete_ejb_vehicle.ear");
-
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            mdcomplete_ejb_vehicle_ear.addAsModule(mdcomplete_ejb_vehicle_ejb);
-            mdcomplete_ejb_vehicle_ear.addAsModule(mdcomplete_ejb_vehicle_client);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            // Call the archive processor
-            archiveProcessor.processEarArchive(mdcomplete_ejb_vehicle_ear, Client.class, earResURL);
-        return mdcomplete_ejb_vehicle_ear;
+        return appclientproxy;
         }
 
+        static IClient client;
+
+        @BeforeAll
+        public static void setUp() throws Exception {
+            IClientProxy clientProxy = new IClientProxy();
+            Properties testProps = JavaTestProtocolConfiguration.getTsJteProps();
+            String webServerHost = testProps.getProperty("webServerHost", "localhost");
+            String webServerPort = testProps.getProperty("webServerPort", "8080");
+            client = clientProxy.newProxy(webServerHost, webServerPort);
+            RemoteStatus status = client.setup(new String[]{VEHICLE_ARCHIVE}, testProps);
+            validateStatus(status, "setup");
+        }
         @Test
         @Override
-        @TargetVehicle("ejb")
+        @RunAsClient
         public void testMDCompleteConfigProp() throws java.lang.Exception {
-            super.testMDCompleteConfigProp();
+            RemoteStatus status = client.testMDCompleteConfigProp();
+            System.out.println(status);
+            validateStatus(status, "testMDCompleteConfigProp");
         }
 
         @Test
         @Override
-        @TargetVehicle("ejb")
+        @RunAsClient
         public void testMDCompleteMCFAnno() throws java.lang.Exception {
-            super.testMDCompleteMCFAnno();
+            RemoteStatus status = client.testMDCompleteMCFAnno();
+            System.out.println(status);
+            validateStatus(status, "testMDCompleteMCFAnno");
         }
 
+        static void validateStatus(RemoteStatus status, String test) throws Exception{
+            if (status.toStatus().isFailed()) {
+                if(status.hasError()) {
+                    Exception ex = new Exception(test+" failed: " + status.getErrorMessage());
+                    if (status.getErrorTrace() != null) {
+                        ex.setStackTrace(status.getErrorTrace());
+                    }
+                    throw ex;
+                }
+                Assertions.fail(test+" failed: " + status.toString());
+            }
 
+        }
 }

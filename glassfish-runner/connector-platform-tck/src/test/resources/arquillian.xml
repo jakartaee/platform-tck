@@ -22,15 +22,14 @@
     <container default="true" qualifier="tck-javatest">
         <configuration>
             <property name="allowConnectingToRunningServer">true</property>
-            <property name="debug">false</property>
-            <property name="suspend">false</property>
+            <property name="debug">true</property>
+            <property name="suspend">true</property>
         </configuration>
         <protocol type="javatest">
             <property name="workDir">${ts.home}/tmp</property>
             <property name="tsJteFile">${ts.home}/bin/ts.jte</property>
             <property name="tsSqlStmtFile">${ts.home}/bin/tssql.stmt</property>
             <property name="trace">true</property>
-            <property name="clientTimeout">20000</property>
         </protocol>
     </container>
 </arquillian>

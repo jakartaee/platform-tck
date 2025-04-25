@@ -23,6 +23,5 @@
   <ejb-ref>
     <ejb-ref-name>ejb/EJBVehicle</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>
-    <remote>com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote</remote>
   </ejb-ref>
 </application-client>

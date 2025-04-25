@@ -66,15 +66,11 @@ public class ClientTest extends com.sun.ts.tests.connector.localTx.transaction.c
             com.sun.ts.tests.connector.localTx.transaction.conSharing2.TestBean.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/connector/localTx/transaction/conSharing2/ejb_txTran_conSharing2_client.xml");
-            if(resURL != null) {
-              ejb_txTran_conSharing2_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/connector/localTx/transaction/conSharing2/ejb_txTran_conSharing2_client.xml");
+            ejb_txTran_conSharing2_client.addAsManifestResource(resURL, "application-client.xml");
+            // The sun-application-client.xml
             resURL = Client.class.getResource("/com/sun/ts/tests/connector/localTx/transaction/conSharing2/ejb_txTran_conSharing2_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              ejb_txTran_conSharing2_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            ejb_txTran_conSharing2_client.addAsManifestResource(resURL, "sun-application-client.xml");
             ejb_txTran_conSharing2_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.connector.localTx.transaction.conSharing2.Client\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(ejb_txTran_conSharing2_client, Client.class, resURL);
@@ -94,14 +90,10 @@ public class ClientTest extends com.sun.ts.tests.connector.localTx.transaction.c
             );
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/connector/localTx/transaction/conSharing2/ejb_txTran_conSharing2_ejb.xml");
-            if(ejbResURL1 != null) {
-              ejb_txTran_conSharing2_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
-            }
+            ejb_txTran_conSharing2_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             // The sun-ejb-jar.xml file
             ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/connector/localTx/transaction/conSharing2/ejb_txTran_conSharing2_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL1 != null) {
-              ejb_txTran_conSharing2_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
-            }
+            ejb_txTran_conSharing2_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             // Call the archive processor
             archiveProcessor.processEjbArchive(ejb_txTran_conSharing2_ejb, Client.class, ejbResURL1);
 
@@ -120,10 +112,6 @@ public class ClientTest extends com.sun.ts.tests.connector.localTx.transaction.c
             // The application.xml descriptor
             URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              ejb_txTran_conSharing2_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
             // Call the archive processor
             archiveProcessor.processEarArchive(ejb_txTran_conSharing2_ear, Client.class, earResURL);
         return ejb_txTran_conSharing2_ear;

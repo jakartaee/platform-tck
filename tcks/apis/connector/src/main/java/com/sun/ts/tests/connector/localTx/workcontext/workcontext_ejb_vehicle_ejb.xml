@@ -33,6 +33,20 @@
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>eis/whitebox-mdcomplete</res-ref-name>
+        <res-type>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>eis/whitebox-anno_no_md</res-ref-name>
+        <res-type>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
       <security-identity>
         <use-caller-identity/>
       </security-identity>

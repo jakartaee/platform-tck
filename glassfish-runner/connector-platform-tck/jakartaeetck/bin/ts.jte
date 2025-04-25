@@ -1643,7 +1643,7 @@ certLoginUserAlias=cts
 #                        a single instance of a SingleTheadModel
 #                        servlet, leave the default value of 2.
 #####################################################################
-webServerHost=${orb.host}
+webServerHost=localhost
 webServerPort=8080
 webServerHost.2=${orb.host.ri}
 webServerPort.2=8181

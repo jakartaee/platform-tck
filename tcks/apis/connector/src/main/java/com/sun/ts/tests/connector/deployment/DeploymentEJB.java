@@ -27,6 +27,7 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.connector.util.DBSupport;
+import jakarta.annotation.PostConstruct;
 
 public class DeploymentEJB {
   private TSNamingContext context = null;
@@ -65,6 +66,7 @@ public class DeploymentEJB {
       whitebox_tx = p.getProperty("whitebox-embed");
 
       System.out.println("whitebox value is " + whitebox_tx);
+      TestUtil.logTrace("whitebox value is " + whitebox_tx);
 
       uname = p.getProperty("rauser1");
       password = p.getProperty("rapassword1");

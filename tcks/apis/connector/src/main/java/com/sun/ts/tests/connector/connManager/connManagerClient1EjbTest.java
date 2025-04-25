@@ -54,7 +54,7 @@ public class connManagerClient1EjbTest extends com.sun.ts.tests.connector.connMa
         /com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.xml
         Rar:
 
-        /com/sun/ts/tests/common/connector/whitebox/mdcomplete/ra-md-complete.xml
+        /com/sun/ts/tests/common/connector/whitebox/connManager/ra-md-complete.xml
         Ear:
 
         */
@@ -81,12 +81,12 @@ public class connManagerClient1EjbTest extends com.sun.ts.tests.connector.connMa
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The application-client.xml descriptor
-            URL resURL = connManagerClient1.class.getResource("mdcomplete_ejb_vehicle_client.xml");
+            URL resURL = connManagerClient1.class.getResource("connManager_ejb_vehicle_client.xml");
             if(resURL != null) {
               connManager_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = connManagerClient1.class.getResource("mdcomplete_ejb_vehicle_client.jar.sun-application-client.xml");
+            resURL = connManagerClient1.class.getResource("connManager_ejb_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
               connManager_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
@@ -112,12 +112,12 @@ public class connManagerClient1EjbTest extends com.sun.ts.tests.connector.connMa
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = connManagerClient1.class.getResource("mdcomplete_ejb_vehicle_ejb.xml");
+            URL ejbResURL1 = connManagerClient1.class.getResource("connManager_ejb_vehicle_ejb.xml");
             if(ejbResURL1 != null) {
               connManager_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = connManagerClient1.class.getResource("mdcomplete_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL1 = connManagerClient1.class.getResource("connManager_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               connManager_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }

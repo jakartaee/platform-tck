@@ -65,6 +65,7 @@ public class DeploymentClient extends EETest {
     try {
       jc = new TSNamingContext();
       hr = (Deployment) jc.lookup("java:comp/env/ejb/Deployment", Deployment.class);
+      hr.initialize(props);
       logMsg("Setup ok;");
     } catch (Exception e) {
       throw new Exception("Setup Failed!", e);
