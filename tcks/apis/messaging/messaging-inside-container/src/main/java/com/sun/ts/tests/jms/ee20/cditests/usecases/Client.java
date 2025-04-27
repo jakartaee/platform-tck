@@ -55,16 +55,16 @@ public class Client { //extends EETest {
 
   private URLConnection urlConn = null;
 
-  @EJB(name = "ejb/CDIUseCasesCMBEAN1")
+  // @EJB(name = "ejb/CDIUseCasesCMBEAN1")
   static CMBean1IF cmbean1;
 
-  @EJB(name = "ejb/CDIUseCasesCMBEAN2")
+  // @EJB(name = "ejb/CDIUseCasesCMBEAN2")
   static CMBean2IF cmbean2;
 
-  @EJB(name = "ejb/CDIUseCasesBMBEAN1")
+  // @EJB(name = "ejb/CDIUseCasesBMBEAN1")
   static BMBean1IF bmbean1;
 
-  @EJB(name = "ejb/CDIUseCasesBMBEAN2")
+  // @EJB(name = "ejb/CDIUseCasesBMBEAN2")
   static BMBean2IF bmbean2;
 
 
