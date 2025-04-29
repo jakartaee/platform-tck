@@ -21,10 +21,12 @@
 <sun-application-client>
   <ejb-ref>
     <ejb-ref-name>ejb/Vision</ejb-ref-name>
-    <jndi-name/>
+    <!-- <jndi-name/> -->
+    <jndi-name>java:global/assembly_compat_cocktail_compat9_10/assembly_compat_cocktail_compat9_10_jar1_ejb/ReferencedBean1!com.sun.ts.tests.assembly.compat.cocktail.compat9_10.ReferencedBean</jndi-name>
   </ejb-ref>
   <ejb-ref>
     <ejb-ref-name>ejb/Music</ejb-ref-name>
-    <jndi-name/>
+    <!-- <jndi-name/> -->
+    <jndi-name>java:global/assembly_compat_cocktail_compat9_10/assembly_compat_cocktail_compat9_10_jar2_ejb/ReferencedBean2!com.sun.ts.tests.assembly.compat.cocktail.compat9_10.ReferencedBean</jndi-name>
   </ejb-ref>
 </sun-application-client>

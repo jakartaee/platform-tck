@@ -141,8 +141,6 @@ public class Client extends EETest {
     if (ejbResURL != null) {
       assembly_altDD_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
     }
-    assembly_altDD_ejb.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
-        "MANIFEST.MF");
 
     archiveProcessor.processEjbArchive(assembly_altDD_ejb, Client.class, ejbResURL);
 
@@ -160,8 +158,6 @@ public class Client extends EETest {
     if (earResURL != null) {
       assembly_altDD_ear.addAsManifestResource(earResURL, "application.xml");
     }
-    assembly_altDD_ear.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
-        "MANIFEST.MF");
 
     archiveProcessor.processEarArchive(assembly_altDD_ear, Client.class, earResURL);
 

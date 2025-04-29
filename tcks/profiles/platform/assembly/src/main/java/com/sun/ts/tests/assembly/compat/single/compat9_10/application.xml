@@ -17,7 +17,11 @@
 
 -->
 
-<application xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="10" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application_10.xsd">
+<application xmlns="https://jakarta.ee/xml/ns/jakartaee"
+	      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	      xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+	      https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd"
+	      version="9">
 
   <display-name>assembly_compat_single_compat9_10</display-name>
   <description>Application description</description>
