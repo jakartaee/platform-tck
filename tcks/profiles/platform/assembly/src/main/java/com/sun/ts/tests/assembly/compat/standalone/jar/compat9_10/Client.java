@@ -143,8 +143,6 @@ public class Client extends EETest {
     if (earResURL != null) {
       assembly_compat_standalone_jar_compat9_10_ear.addAsManifestResource(earResURL, "application.xml");
     }
-    // assembly_compat_standalone_jar_compat9_10_ear
-    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processEarArchive(assembly_compat_standalone_jar_compat9_10_ear, Client.class, earResURL);
     return assembly_compat_standalone_jar_compat9_10_ear;
   }
@@ -172,8 +170,6 @@ public class Client extends EETest {
     if(resURL != null) {
       assembly_compat_standalone_jar_compat9_10_component_ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
     }
-    // assembly_compat_standalone_jar_compat9_10_component_ejb
-    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processEjbArchive(assembly_compat_standalone_jar_compat9_10_component_ejb, Client.class, resURL);
 
     return assembly_compat_standalone_jar_compat9_10_component_ejb;

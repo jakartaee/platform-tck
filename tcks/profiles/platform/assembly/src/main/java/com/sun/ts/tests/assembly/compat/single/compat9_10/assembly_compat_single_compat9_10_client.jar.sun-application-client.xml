@@ -21,6 +21,7 @@
 <sun-application-client>
   <ejb-ref>
     <ejb-ref-name>ejb/TestBean</ejb-ref-name>
-    <jndi-name/>
+    <!-- <jndi-name/> -->
+    <jndi-name>java:global/assembly_compat_single_compat9_10/assembly_compat_single_compat9_10_ejb/TestBean!com.sun.ts.tests.assembly.compat.single.compat9_10.TestBean</jndi-name>
   </ejb-ref>
 </sun-application-client>

@@ -20,8 +20,8 @@
 <application-client xmlns="https://jakarta.ee/xml/ns/jakartaee"
 	      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	      xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
-	      https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd"
-	      version="9">
+	      https://jakarta.ee/xml/ns/jakartaee/application-client_10.xsd"
+	      version="10">
 
   <description>client for TS assembly compat single compat9_10 test</description>
   <display-name>assembly_compat_single_compat9_10_client</display-name>
