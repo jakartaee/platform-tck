@@ -48,8 +48,8 @@
 
         <!-- glassfish properties -->
         <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
-        <glassfish.major>7</glassfish.major>
-        <glassfish.version>7.0.0</glassfish.version>
+        <glassfish.major>8</glassfish.major>
+        <glassfish.version>8.0.0-M11</glassfish.version>
         <glassfish.home>${project.build.directory}/glassfish${glassfish.major}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
@@ -1440,7 +1440,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>3.5.3</version>
                 <executions>
                     <execution>
                         <id>connector-javatest-tests</id>
