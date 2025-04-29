@@ -127,7 +127,7 @@ public class lifecycleClient1EjbTest extends com.sun.ts.tests.connector.localTx.
             // Call the archive processor
             archiveProcessor.processEjbArchive(localTx_lifecycle_ejb_vehicle_ejb, lifecycleClient1.class, ejbResURL1);
 
-        // Ear
+            // Ear
             EnterpriseArchive localTx_lifecycle_ejb_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "localTx_lifecycle_ejb_vehicle.ear");
 
             // Any libraries added to the ear
