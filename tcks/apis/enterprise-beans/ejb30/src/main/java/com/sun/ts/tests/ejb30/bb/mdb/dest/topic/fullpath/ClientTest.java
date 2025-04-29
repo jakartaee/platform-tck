@@ -110,14 +110,11 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.mdb.dest.topic.fullpat
             // two_ejb
             JavaArchive two_ejb = ShrinkWrap.create(JavaArchive.class, "two_ejb.jar");
             two_ejb.addClasses(
-                    com.sun.ts.tests.ejb30.common.helper.TLogger.class,
                     com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator.class,
                     com.sun.ts.tests.ejb30.common.calc.CalculatorException.class,
                     com.sun.ts.tests.ejb30.common.calc.NoInterfaceRemoteCalculator.class,
                     com.sun.ts.tests.ejb30.common.calc.RemoteCalculator.class,
-                    com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.BusinessInterceptorNotUsed.class,
-                    com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.InterceptorUsed.class,
-                    com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean.class
+                    com.sun.ts.tests.ejb30.bb.session.stateless.basic.RemoteCalculatorBean.class
             );
             // The ejb-jar.xml descriptor
             ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/mdb/dest/topic/fullpath/two_ejb.xml");

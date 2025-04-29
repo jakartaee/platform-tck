@@ -33,7 +33,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.Client {
 
-    @Deployment(name = "two_standalone_component_web", order = 1, testable = false)
+    @Deployment(name = "two_standalone_component_web", order = 2, testable = false)
     public static WebArchive createCommonDeployment() {
         WebArchive two_standalone_component_web = ShrinkWrap.create(WebArchive.class, "two_standalone_component_web.war");
         // The class files
@@ -45,6 +45,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.C
                 com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet.class,
                 com.sun.ts.tests.servlet.common.util.Data.class,
                 com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase.class,
+                com.sun.ts.tests.ejb30.common.helper.Helper.class,
+                com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
                 com.sun.ts.tests.ejb30.misc.moduleName.twowars.TestServlet2.class,
                 com.sun.ts.tests.ejb30.misc.moduleName.twowars.Module2Bean.class
         );
@@ -70,7 +72,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.C
         */
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
-        @Deployment(name = "ejb3_misc_moduleName_twowars", order = 2)
+        @Deployment(name = "ejb3_misc_moduleName_twowars", order = 1)
         public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
@@ -141,18 +143,21 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.C
 
         @Test
         @Override
+        @OperateOnDeployment("ejb3_misc_moduleName_twowars")
         public void servletPostConstruct() throws java.lang.Exception {
             super.servletPostConstruct();
         }
 
         @Test
         @Override
+        @OperateOnDeployment("ejb3_misc_moduleName_twowars")
         public void servletPostConstruct2() throws java.lang.Exception {
             super.servletPostConstruct2();
         }
 
         @Test
         @Override
+        @OperateOnDeployment("ejb3_misc_moduleName_twowars")
         public void ejbPostConstruct() throws java.lang.Exception {
             super.ejbPostConstruct();
         }
