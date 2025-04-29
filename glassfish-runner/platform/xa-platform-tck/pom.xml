@@ -83,9 +83,9 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>${junit.jupiter.version}</version>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                <version>${tck.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -105,7 +105,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>xa</artifactId>
-            <version>11.0.0</version>
+            <version>11.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
@@ -149,6 +149,15 @@
             <version>1.6</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+           <groupId>jakarta.tck</groupId>
+           <artifactId>whitebox</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>jakarta.tck</groupId>
+           <artifactId>mdcomplete</artifactId>
+           <type>rar</type>
+       </dependency>
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyclient</artifactId>
@@ -194,6 +203,13 @@
                         <phase>pre-integration-test</phase>
                         <configuration>
                             <artifactItems>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>whitebox</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
+                                    <destFileName>whitebox.jar</destFileName>
+                                </artifactItem>
                                 <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
                                     <artifactId>arquillian-protocol-lib</artifactId>

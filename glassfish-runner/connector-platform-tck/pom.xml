@@ -206,7 +206,7 @@
                         <phase>initialize</phase>
                         <configuration>
                             <artifactItems>
-                                <artifactItem>
+                                 <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
                                     <artifactId>arquillian-protocol-lib</artifactId>
                                     <overWrite>true</overWrite>
