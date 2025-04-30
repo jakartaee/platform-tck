@@ -494,7 +494,7 @@
                             <executable>${exec.asadmin}</executable>
                             <arguments>
                                 <argument>create-jvm-options</argument>
-                                <argument>-Dwhitebox-tx-map=cts1=admin:-Dwhitebox-tx-param-map=cts1=admin:-Dwhitebox-notx-map=cts1=admin:-Dwhitebox-notx-param-map=cts1=admin:-Dwhitebox-xa-map=cts1=admin:-Dwhitebox-xa-param-map=cts1=admin:-Djava.security.manager:-Dj2eelogin.name=admin:-Dj2eelogin.password=admin:-Deislogin.name=CTS:-Deislogin.password=CTS</argument>
+                                <argument>-Dwhitebox-tx-map=cts1=admin:-Dwhitebox-tx-param-map=cts1=admin:-Dwhitebox-notx-map=cts1=admin:-Dwhitebox-notx-param-map=cts1=admin:-Dwhitebox-xa-map=cts1=admin:-Dwhitebox-xa-param-map=cts1=admin:-Dj2eelogin.name=admin:-Dj2eelogin.password=admin:-Deislogin.name=CTS:-Deislogin.password=CTS</argument>
                             </arguments>
                         </configuration>
                     </execution>
