@@ -3,6 +3,7 @@ package com.sun.ts.tests.ejb30.misc.datasource.twowars;
 import java.net.URL;
 
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
@@ -31,7 +32,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.datasource.twowars.C
     // Doesn't seem to work, but is needed for test:
     // org.jboss.arquillian.container.test.impl.execution.ClientTestExecuter#deployment will always return null
     // deployment with this deployment present.
-    @Deployment(name = "two_standalone_component_web", order = 1, testable = true)
+    @Deployment(name = "two_standalone_component_web", order = 2, testable = true)
     public static WebArchive createDeploymentWar(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War 2
         // the war with the correct archive name
@@ -39,10 +40,17 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.datasource.twowars.C
 
         // The class files
         ejb3_misc_datasource_twowars_web_2.addClasses(
-            com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet.class,
-            com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase.class,
-            com.sun.ts.tests.ejb30.misc.datasource.twowars.TestServlet2.class,
-            com.sun.ts.tests.servlet.common.util.Data.class);
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResCommonIF.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResLocalIF.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase.class,
+                com.sun.ts.tests.ejb30.common.helper.Helper.class,
+                com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
+                com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest.class,
+                com.sun.ts.tests.ejb30.misc.datasource.twowars.TestServlet2.class,
+                com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet.class,
+                com.sun.ts.tests.servlet.common.util.Data.class);
 
         // Call the archive processor
         URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/datasource/twowars/ejb3_misc_datasource_twowars_web.war.sun-web.xml");
@@ -65,7 +73,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.datasource.twowars.C
      */
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
-    @Deployment(name = "ejb3_misc_datasource_twowars", order = 2)
+    @Deployment(name = "ejb3_misc_datasource_twowars", order = 1)
     public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
         // War 1
@@ -80,7 +88,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.datasource.twowars.C
             com.sun.ts.tests.servlet.common.util.Data.class);
 
         // The web.xml descriptor
-        URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/misc/datasource/twowars/ejb3_misc_datasource_twowars_web.xml");
+        URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/datasource/twowars/ejb3_misc_datasource_twowars_web.xml");
         if (warResURL != null) {
             ejb3_misc_datasource_twowars_web.addAsWebInfResource(warResURL, "web.xml");
         }
@@ -161,18 +169,21 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.datasource.twowars.C
 
     @Test
     @Override
+    @OperateOnDeployment("ejb3_misc_datasource_twowars")
     public void servletPostConstruct() throws java.lang.Exception {
         super.servletPostConstruct();
     }
 
     @Test
     @Override
+    @OperateOnDeployment("ejb3_misc_datasource_twowars")
     public void servletPostConstruct2() throws java.lang.Exception {
         super.servletPostConstruct2();
     }
 
     @Test
     @Override
+    @OperateOnDeployment("ejb3_misc_datasource_twowars")
     public void ejbPostConstruct() throws java.lang.Exception {
         super.ejbPostConstruct();
     }

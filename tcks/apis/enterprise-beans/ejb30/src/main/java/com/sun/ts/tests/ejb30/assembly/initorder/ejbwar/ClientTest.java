@@ -82,7 +82,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.initorder.ejbwar
             com.sun.ts.tests.servlet.common.util.Data.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/assembly/initorder/ejbwar/ejb3_assembly_initorder_ejbwar_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/initorder/ejbwar/ejb3_assembly_initorder_ejbwar_web.xml");
             if(warResURL != null) {
               ejb3_assembly_initorder_ejbwar_web.addAsWebInfResource(warResURL, "web.xml");
             }

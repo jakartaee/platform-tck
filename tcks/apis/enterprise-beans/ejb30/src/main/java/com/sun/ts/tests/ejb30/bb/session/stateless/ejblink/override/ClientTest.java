@@ -71,14 +71,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateless.ejbl
             com.sun.ts.tests.ejb30.common.ejblink.CommonIF.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/bb/session/stateless/ejblink/override/ejb3_stateless_ejblink_override_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateless/ejblink/override/ejb3_stateless_ejblink_override_client.xml");
             if(resURL != null) {
               ejb3_stateless_ejblink_override_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateless/ejblink/override/ejb3_stateless_ejblink_override_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              ejb3_stateless_ejblink_override_client.addAsManifestResource(resURL, "application-client.xml");
+              ejb3_stateless_ejblink_override_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             ejb3_stateless_ejblink_override_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -89,9 +89,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateless.ejbl
             JavaArchive one_ejb = ShrinkWrap.create(JavaArchive.class, "one_ejb.jar");
             // The class files
             one_ejb.addClasses(
-                    com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.override.EjbLink2Bean.class,
-                    com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.override.EjbLink2BeanBase.class,
-                    com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.override.EjbLink3Bean.class,
+                    com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.override.EjbLink1Bean.class,
+                    com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.override.UnusedEjbLink3Bean.class,
                     com.sun.ts.tests.ejb30.common.ejblink.Constants.class,
                     com.sun.ts.tests.ejb30.common.ejblink.EjbLinkBeanBase.class,
                     com.sun.ts.tests.ejb30.common.ejblink.EjbLinkIF.class,
@@ -116,24 +115,32 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateless.ejbl
             JavaArchive two_ejb = ShrinkWrap.create(JavaArchive.class, "two_ejb.jar");
             two_ejb.addClasses(
                     com.sun.ts.tests.ejb30.common.helper.TLogger.class,
+                    com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
                     com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator.class,
                     com.sun.ts.tests.ejb30.common.calc.CalculatorException.class,
                     com.sun.ts.tests.ejb30.common.calc.NoInterfaceRemoteCalculator.class,
                     com.sun.ts.tests.ejb30.common.calc.RemoteCalculator.class,
-                    com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.BusinessInterceptorNotUsed.class,
-                    com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.InterceptorUsed.class,
-                    com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean.class
+                    com.sun.ts.tests.ejb30.common.ejblink.CommonIF.class,
+                    com.sun.ts.tests.ejb30.common.ejblink.Constants.class,
+                    com.sun.ts.tests.ejb30.common.ejblink.EjbLinkBeanBase.class,
+                    com.sun.ts.tests.ejb30.common.ejblink.EjbLinkIF.class,
+                    com.sun.ts.tests.ejb30.common.ejblink.EjbLinkLocalIF.class,
+                    com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.override.EjbLink2Bean.class,
+                    com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.override.EjbLink2BeanBase.class,
+                    com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.override.EjbLink3Bean.class
             );
             // The ejb-jar.xml descriptor
-            ejbResURL = Client.class.getResource("two_ejb.xml");
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateless/ejblink/override/two_ejb.xml");
             if(ejbResURL != null) {
-                one_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+                two_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("two_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateless/ejblink/override/two_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
-                one_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+                two_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
+            archiveProcessor.processEjbArchive(two_ejb, Client.class, ejbResURL);
 
         // Ear
             EnterpriseArchive ejb3_stateless_ejblink_override_ear = ShrinkWrap.create(EnterpriseArchive.class, "ejb3_stateless_ejblink_override.ear");

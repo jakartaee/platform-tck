@@ -70,14 +70,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.mdb.customlistener.Cli
             com.sun.ts.tests.ejb30.bb.mdb.customlistener.Client.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/bb/mdb/customlistener/mdb_custom_listener_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/mdb/customlistener/mdb_custom_listener_client.xml");
             if(resURL != null) {
               mdb_custom_listener_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/mdb/customlistener/mdb_custom_listener_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              mdb_custom_listener_client.addAsManifestResource(resURL, "application-client.xml");
+              mdb_custom_listener_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             mdb_custom_listener_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor

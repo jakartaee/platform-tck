@@ -1,5 +1,8 @@
 package test.com.sun.ts.tests.common.vehicle.none.proxy;
 
+/**
+ * Basic test class target that does not have a setup(String[]) method.
+ */
 public class ExampleTest {
     public void test1() {
         System.out.println("ExampleTest.test1");

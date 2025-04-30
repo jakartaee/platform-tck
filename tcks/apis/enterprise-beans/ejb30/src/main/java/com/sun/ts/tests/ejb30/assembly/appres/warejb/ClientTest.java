@@ -86,7 +86,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.appres.warejb.Cl
             com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase2.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/assembly/appres/warejb/ejb3_assembly_appres_warejb_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/appres/warejb/ejb3_assembly_appres_warejb_web.xml");
             if(warResURL != null) {
               ejb3_assembly_appres_warejb_web.addAsWebInfResource(warResURL, "web.xml");
             }
@@ -157,12 +157,12 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.appres.warejb.Cl
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("application.xml");
+            URL earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/appres/warejb/application.xml");
             if(earResURL != null) {
               ejb3_assembly_appres_warejb_ear.addAsManifestResource(earResURL, "application.xml");
             }
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("ejb3_assembly_appres_warejb.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/appres/warejb/ejb3_assembly_appres_warejb.ear.sun-application.xml");
             if(earResURL != null) {
               ejb3_assembly_appres_warejb_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

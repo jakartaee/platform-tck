@@ -43,8 +43,8 @@
 
         <!-- glassfish properties -->
         <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
-        <glassfish.major>7</glassfish.major>
-        <glassfish.version>7.0.0</glassfish.version>
+        <glassfish.major>8</glassfish.major>
+        <glassfish.version>8.0.0-M11</glassfish.version>
         <glassfish.home>${project.build.directory}/glassfish${glassfish.major}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
@@ -201,7 +201,7 @@
                         <phase>initialize</phase>
                         <configuration>
                             <artifactItems>
-                                <artifactItem>
+                                 <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
                                     <artifactId>arquillian-protocol-lib</artifactId>
                                     <overWrite>true</overWrite>
@@ -481,20 +481,6 @@
                             <executable>${exec.asadmin}</executable>
                             <arguments>
                                 <argument>start-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>13-create-jvm-options</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>create-jvm-options</argument>
-                                <argument>-Dwhitebox-tx-map=cts1=admin:-Dwhitebox-tx-param-map=cts1=admin:-Dwhitebox-notx-map=cts1=admin:-Dwhitebox-notx-param-map=cts1=admin:-Dwhitebox-xa-map=cts1=admin:-Dwhitebox-xa-param-map=cts1=admin:-Dj2eelogin.name=admin:-Dj2eelogin.password=admin:-Deislogin.name=CTS:-Deislogin.password=CTS</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -1442,23 +1428,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
-                <configuration>
-                    <dependenciesToScan>jakarta.tck:connector</dependenciesToScan>
-                    <additionalClasspathElements>
-                        <additionalClasspathElement>${glassfish.home}/javadb/lib/derbytools.jar</additionalClasspathElement>
-                        <additionalClasspathElement>${glassfish.home}/javadb/lib/derbyclient.jar</additionalClasspathElement>
-                        <additionalClasspathElement>${glassfish.home}/javadb/lib/derby.jar</additionalClasspathElement>
-                        <additionalClasspathElement>${glassfish.home}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
-                        <additionalClasspathElement>${glassfish.home}/glassfish/modules/jakarta.servlet.jsp-api.jar</additionalClasspathElement>
-                    </additionalClasspathElements>
-                    <systemPropertyVariables>
-                        <glassfish.home>${glassfish.home}</glassfish.home>
-                        <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
-                        <ts.home>${project.basedir}/jakartaeetck</ts.home>
-                        <project.basedir>${project.basedir}</project.basedir>
-                    </systemPropertyVariables>
-                </configuration>
+                <version>3.5.3</version>
                 <executions>
                     <execution>
                         <id>connector-javatest-tests</id>
@@ -1511,6 +1481,39 @@
                         </configuration>
                     </execution>
 
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <executions>
+                    <execution>
+                        <id>connector-ejb-tests</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <dependenciesToScan>jakarta.tck:connector</dependenciesToScan>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derbytools.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derbyclient.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derby.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/glassfish/modules/jakarta.servlet.jsp-api.jar</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <systemPropertyVariables>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
+                                <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
+                                <ts.home>${project.basedir}/jakartaeetck</ts.home>
+                                <project.basedir>${project.basedir}</project.basedir>
+                                <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                            </systemPropertyVariables>
+                            <includes>
+                                <include>**/*Ejb*Test.*</include>
+                            </includes>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>

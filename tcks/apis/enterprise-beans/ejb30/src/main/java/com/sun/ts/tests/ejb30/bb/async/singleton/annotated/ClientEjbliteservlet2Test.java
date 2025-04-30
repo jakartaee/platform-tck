@@ -97,12 +97,12 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.bb.async.s
             );
 
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("ejbliteservlet2_vehicle_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/async/singleton/annotated/ejbliteservlet2_vehicle_web.xml");
             if(warResURL != null) {
               ejbbb_async_singleton_annotated_ejbliteservlet2_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/ejbliteservlet2_vehicle_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/async/singleton/annotated/ejbliteservlet2_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               ejbbb_async_singleton_annotated_ejbliteservlet2_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }

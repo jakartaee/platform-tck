@@ -21,6 +21,7 @@
 <sun-application-client>
   <ejb-ref>
     <ejb-ref-name>ejb/myPainter</ejb-ref-name>
-    <jndi-name/>
+    <!-- <jndi-name/> -->
+    <jndi-name>java:global/assembly_altDD/assembly_altDD_ejb/Bean1!com.sun.ts.tests.assembly.altDD.PainterBean</jndi-name>
   </ejb-ref>
 </sun-application-client>

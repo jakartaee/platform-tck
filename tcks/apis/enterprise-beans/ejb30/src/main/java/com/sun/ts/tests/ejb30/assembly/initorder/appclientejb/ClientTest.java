@@ -88,14 +88,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.initorder.appcli
             com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/assembly/initorder/appclientejb/ejb3_assembly_initorder_appclientejb_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/initorder/appclientejb/ejb3_assembly_initorder_appclientejb_client.xml");
             if(resURL != null) {
               ejb3_assembly_initorder_appclientejb_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/initorder/appclientejb/ejb3_assembly_initorder_appclientejb_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              ejb3_assembly_initorder_appclientejb_client.addAsManifestResource(resURL, "application-client.xml");
+              ejb3_assembly_initorder_appclientejb_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             ejb3_assembly_initorder_appclientejb_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -132,15 +132,17 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.initorder.appcli
                     com.sun.ts.tests.ejb30.assembly.initorder.appclientejb.InitOrder2Bean.class
             );
             // The ejb-jar.xml descriptor
-            ejbResURL = Client.class.getResource("two_ejb.xml");
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/initorder/appclientejb/two_ejb.xml");
             if(ejbResURL != null) {
-                one_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+                two_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("two_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/initorder/appclientejb/two_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
-                one_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+                two_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
+            archiveProcessor.processEjbArchive(two_ejb, Client.class, ejbResURL);
 
         // Ear
             EnterpriseArchive ejb3_assembly_initorder_appclientejb_ear = ShrinkWrap.create(EnterpriseArchive.class, "ejb3_assembly_initorder_appclientejb.ear");

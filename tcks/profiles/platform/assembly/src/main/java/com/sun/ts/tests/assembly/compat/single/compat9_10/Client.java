@@ -123,8 +123,7 @@ public class Client extends EETest {
     if (resURL != null) {
       assembly_compat_single_compat9_10_client.addAsManifestResource(resURL, "application-client.xml");
     }
-    resURL = Client.class.getClassLoader()
-        .getResource("assembly_compat_single_compat9_10_client.jar.sun-application-client.xml");
+    resURL = Client.class.getResource("assembly_compat_single_compat9_10_client.jar.sun-application-client.xml");
     if (resURL != null) {
       assembly_compat_single_compat9_10_client.addAsManifestResource(resURL, "sun-application-client.xml");
     }
@@ -135,8 +134,6 @@ public class Client extends EETest {
     JavaArchive assembly_compat_single_compat9_10_ejb = ShrinkWrap.create(JavaArchive.class,
         "assembly_compat_single_compat9_10_ejb.jar");
     assembly_compat_single_compat9_10_ejb.addClasses(
-        // com.sun.ts.tests.assembly.classpath.ejb.TestBean.class,
-        // com.sun.ts.tests.assembly.classpath.ejb.TestBeanEJB.class,
         com.sun.ts.tests.assembly.compat.single.compat9_10.TestBean.class,
         com.sun.ts.tests.assembly.compat.single.compat9_10.TestBeanEJB.class,
         com.sun.ts.lib.util.RemoteLoggingInitException.class,
@@ -147,13 +144,10 @@ public class Client extends EETest {
     if (ejbResURL != null) {
       assembly_compat_single_compat9_10_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
     }
-    ejbResURL = Client.class.getClassLoader()
-        .getResource("assembly_compat_single_compat9_10_ejb.jar.sun-ejb-jar.xml");
+    ejbResURL = Client.class.getResource("assembly_compat_single_compat9_10_ejb.jar.sun-ejb-jar.xml");
     if (ejbResURL != null) {
       assembly_compat_single_compat9_10_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
     }
-    // assembly_compat_single_compat9_10_ejb
-    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processEjbArchive(assembly_compat_single_compat9_10_ejb, Client.class, ejbResURL);
 
     EnterpriseArchive assembly_compat_single_compat9_10_ear = ShrinkWrap.create(EnterpriseArchive.class,
@@ -161,13 +155,12 @@ public class Client extends EETest {
     assembly_compat_single_compat9_10_ear.addAsModule(assembly_compat_single_compat9_10_client);
     assembly_compat_single_compat9_10_ear.addAsModule(assembly_compat_single_compat9_10_ejb);
 
-    // URL earResURL = Client.class.getResource("application.xml");
-    // if (earResURL != null) {
-    //   assembly_compat_single_compat9_10_ear.addAsManifestResource(earResURL, "application.xml");
-    // }
-    // assembly_compat_single_compat9_10_ear
-    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
-    // archiveProcessor.processEarArchive(assembly_compat_single_compat9_10_ear, Client.class, earResURL);
+    URL earResURL = Client.class.getResource("application.xml");
+    if (earResURL != null) {
+      assembly_compat_single_compat9_10_ear.addAsManifestResource(earResURL, "application.xml");
+    }
+    archiveProcessor.processEarArchive(assembly_compat_single_compat9_10_ear, Client.class, earResURL);
+    
 
     return assembly_compat_single_compat9_10_ear;
   }

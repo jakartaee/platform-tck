@@ -73,14 +73,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateful.busif
             com.sun.ts.tests.ejb30.common.busiface.BusinessIF1.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/bb/session/stateful/busiface/ejb3_bb_stateful_busiface_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/busiface/ejb3_bb_stateful_busiface_client.xml");
             if(resURL != null) {
               ejb3_bb_stateful_busiface_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/busiface/ejb3_bb_stateful_busiface_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              ejb3_bb_stateful_busiface_client.addAsManifestResource(resURL, "application-client.xml");
+              ejb3_bb_stateful_busiface_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             ejb3_bb_stateful_busiface_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor

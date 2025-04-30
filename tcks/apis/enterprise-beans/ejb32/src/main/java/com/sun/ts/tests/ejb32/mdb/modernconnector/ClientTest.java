@@ -109,7 +109,7 @@ public class ClientTest extends com.sun.ts.tests.ejb32.mdb.modernconnector.Clien
                  com.sun.ts.tests.ejb32.mdb.modernconnector.connector.NoUseListener.class,
                  com.sun.ts.tests.ejb32.mdb.modernconnector.connector.EventMonitor.class
             );
-            JavaArchive ejb32_mdb_modernconnector_ra = ShrinkWrap.create(JavaArchive.class, "ejb32_mdb_modernconnector.rar");
+            JavaArchive ejb32_mdb_modernconnector_ra = ShrinkWrap.create(JavaArchive.class, "ejb32_mdb_modernconnector_ra.rar");
             ejb32_mdb_modernconnector_ra.add(ejb32_mdb_modernconnector_ra_jar, ejb32_mdb_modernconnector_ra_jar.getName(), ZipExporter.class);
             // The ra-jar.xml descriptor
             URL raResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/mdb/modernconnector/connector/META-INF/ra.xml");

@@ -73,14 +73,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateful.noatt
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/bb/session/stateful/noattrremotelocal/ejb3_bb_stateful_noattrremotelocal_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/noattrremotelocal/ejb3_bb_stateful_noattrremotelocal_client.xml");
             if(resURL != null) {
               ejb3_bb_stateful_noattrremotelocal_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/noattrremotelocal/ejb3_bb_stateful_noattrremotelocal_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              ejb3_bb_stateful_noattrremotelocal_client.addAsManifestResource(resURL, "application-client.xml");
+              ejb3_bb_stateful_noattrremotelocal_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             ejb3_bb_stateful_noattrremotelocal_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor

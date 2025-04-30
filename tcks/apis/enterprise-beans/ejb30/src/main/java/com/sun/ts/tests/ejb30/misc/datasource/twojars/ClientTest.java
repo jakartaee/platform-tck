@@ -32,9 +32,33 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientTest extends com.sun.ts.tests.ejb30.misc.datasource.twojars.Client {
+
+    @Deployment(name = "ejb3_2standalone_component_ejb", order = 1, testable = false)
+    public static JavaArchive createCommonDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        JavaArchive ejb3_2standalone_component_ejb = ShrinkWrap.create(JavaArchive.class, "ejb3_2standalone_component_ejb.jar");
+        // The class files
+        ejb3_2standalone_component_ejb.addClasses(
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResCommonIF.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResLocalIF.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF.class,
+                com.sun.ts.tests.ejb30.common.helper.Helper.class,
+                com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
+                com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest.class,
+                com.sun.ts.tests.ejb30.misc.datasource.twojars.DataSource2Bean.class
+
+        );
+        URL ejbResURL = com.sun.ts.tests.ejb30.assembly.appres.appclientejb.Client.class.getResource("/com/sun/ts/tests/ejb30/misc/datasource/twojars/two_standalone_component_ejb.jar.sun-ejb-jar.xml");
+        if(ejbResURL != null) {
+            ejb3_2standalone_component_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+        }
+        archiveProcessor.processEjbArchive(ejb3_2standalone_component_ejb, Client.class, ejbResURL);
+
+        return ejb3_2standalone_component_ejb;
+    }
     /**
         EE10 Deployment Descriptors:
-        ejb3_misc_datasource_twojars: 
+        ejb3_misc_datasource_twojars:
         ejb3_misc_datasource_twojars_client: META-INF/application-client.xml
         ejb3_misc_datasource_twojars_ejb: jar.sun-ejb-jar.xml
 
@@ -63,14 +87,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.datasource.twojars.C
             com.sun.ts.tests.ejb30.misc.datasource.twojars.Client.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/misc/datasource/twojars/ejb3_misc_datasource_twojars_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/datasource/twojars/ejb3_misc_datasource_twojars_client.xml");
             if(resURL != null) {
               ejb3_misc_datasource_twojars_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/datasource/twojars/ejb3_misc_datasource_twojars_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              ejb3_misc_datasource_twojars_client.addAsManifestResource(resURL, "application-client.xml");
+              ejb3_misc_datasource_twojars_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             ejb3_misc_datasource_twojars_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -140,18 +164,21 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.datasource.twojars.C
 
         @Test
         @Override
+        @OperateOnDeployment("ejb3_misc_datasource_twojars")
         public void clientPostConstruct() {
             super.clientPostConstruct();
         }
 
         @Test
         @Override
+        @OperateOnDeployment("ejb3_misc_datasource_twojars")
         public void ejbPostConstruct() {
             super.ejbPostConstruct();
         }
 
         @Test
         @Override
+        @OperateOnDeployment("ejb3_misc_datasource_twojars")
         public void ejb2PostConstruct() {
             super.ejb2PostConstruct();
         }

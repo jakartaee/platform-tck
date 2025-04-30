@@ -32,6 +32,34 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twojars.Client {
+
+    @Deployment(name = "two_standalone_component_ejb", testable = false, order = 2)
+    public static JavaArchive createCommonDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        JavaArchive two_standalone_component_ejb = ShrinkWrap.create(JavaArchive.class, "two_standalone_component_ejb.jar");
+        // The class files
+        two_standalone_component_ejb.addClasses(
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResCommonIF.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResLocalIF.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF.class,
+                com.sun.ts.tests.ejb30.common.helper.Helper.class,
+                com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
+                com.sun.ts.tests.ejb30.misc.moduleName.twojars.Module2Bean.class
+
+        );
+        URL ejbResURL = com.sun.ts.tests.ejb30.assembly.appres.appclientejb.Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/twojars/two_standalone_component_ejb.xml");
+        if(ejbResURL != null) {
+            two_standalone_component_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+        }
+        ejbResURL = com.sun.ts.tests.ejb30.assembly.appres.appclientejb.Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/twojars/two_standalone_component_ejb.jar.sun-ejb-jar.xml");
+        if(ejbResURL != null) {
+            two_standalone_component_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+        }
+        archiveProcessor.processEjbArchive(two_standalone_component_ejb, Client.class, ejbResURL);
+
+        return two_standalone_component_ejb;
+    }
+
     /**
         EE10 Deployment Descriptors:
         ejb3_misc_moduleName_twojars: 
@@ -51,7 +79,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twojars.C
         */
         @TargetsContainer("tck-appclient")
         @OverProtocol("appclient")
-        @Deployment(name = "ejb3_misc_moduleName_twojars", order = 2)
+        @Deployment(name = "ejb3_misc_moduleName_twojars", order = 1)
         public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // Client
             // the jar with the correct archive name
@@ -64,14 +92,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twojars.C
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb30/misc/moduleName/twojars/ejb3_misc_moduleName_twojars_client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/twojars/ejb3_misc_moduleName_twojars_client.xml");
             if(resURL != null) {
               ejb3_misc_moduleName_twojars_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/twojars/ejb3_misc_moduleName_twojars_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              ejb3_misc_moduleName_twojars_client.addAsManifestResource(resURL, "application-client.xml");
+              ejb3_misc_moduleName_twojars_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             ejb3_misc_moduleName_twojars_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -139,18 +167,21 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twojars.C
 
         @Test
         @Override
+        @OperateOnDeployment("ejb3_misc_moduleName_twojars")
         public void clientPostConstruct() {
             super.clientPostConstruct();
         }
 
         @Test
         @Override
+        @OperateOnDeployment("ejb3_misc_moduleName_twojars")
         public void ejbPostConstruct() {
             super.ejbPostConstruct();
         }
 
         @Test
         @Override
+        @OperateOnDeployment("ejb3_misc_moduleName_twojars")
         public void ejb2PostConstruct() {
             super.ejb2PostConstruct();
         }

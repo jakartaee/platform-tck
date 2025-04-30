@@ -22,5 +22,6 @@
   <ejb-ref>
     <ejb-ref-name>ejb/TestBean</ejb-ref-name>
     <jndi-name/>
+    <jndi-name>java:global/assembly_classpath_ejb/assembly_classpath_ejb_ejb/TestBean!com.sun.ts.tests.assembly.classpath.ejb.TestBean</jndi-name>
   </ejb-ref>
 </sun-application-client>

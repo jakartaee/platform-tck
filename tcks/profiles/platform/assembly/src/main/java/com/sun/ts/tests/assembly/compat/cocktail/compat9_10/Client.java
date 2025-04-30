@@ -139,8 +139,6 @@ public class Client extends EETest {
       assembly_compat_cocktail_compat9_10_jar1_ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
     }
 
-    // assembly_compat_cocktail_compat9_10_jar1_ejb.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
-    //     "MANIFEST.MF");
     archiveProcessor.processEjbArchive(assembly_compat_cocktail_compat9_10_jar1_ejb, Client.class, resURL);
     
     JavaArchive assembly_compat_cocktail_compat9_10_jar2_ejb = ShrinkWrap.create(JavaArchive.class, "assembly_compat_cocktail_compat9_10_jar2_ejb.jar");
@@ -161,8 +159,6 @@ public class Client extends EETest {
       assembly_compat_cocktail_compat9_10_jar2_ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
     }
 
-    // assembly_compat_cocktail_compat9_10_jar2_ejb.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
-    //     "MANIFEST.MF");
     archiveProcessor.processEjbArchive(assembly_compat_cocktail_compat9_10_jar1_ejb, Client.class, resURL);
 
 
@@ -231,8 +227,6 @@ public class Client extends EETest {
     if (earResURL != null) {
       assembly_compat_cocktail_compat9_10.addAsManifestResource(earResURL, "application.xml");
     }
-    // assembly_compat_cocktail_compat9_10
-    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processEarArchive(assembly_compat_cocktail_compat9_10, Client.class, earResURL);
 
     return assembly_compat_cocktail_compat9_10;
