@@ -22,6 +22,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import com.sun.ts.tests.common.vehicle.none.proxy.AppClient;
+import com.sun.ts.tests.common.vehicle.none.proxy.ServletNoVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -58,12 +61,17 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
             JavaArchive cditestsmdb_client = ShrinkWrap.create(JavaArchive.class, "cditestsmdb_client.jar");
             // The class files
             cditestsmdb_client.addClasses(
-            com.sun.ts.tests.jms.ee20.cditests.mdb.EjbClientIF.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
-            com.sun.ts.tests.jms.ee20.cditests.mdb.Client.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
-            );
+            // com.sun.ts.tests.jms.ee20.cditests.mdb.EjbClientIF.class,
+            // com.sun.ts.lib.harness.EETest.Fault.class,
+            // com.sun.ts.tests.jms.ee20.cditests.mdb.Client.class,
+            // com.sun.ts.lib.harness.EETest.class,
+            // com.sun.ts.lib.harness.EETest.SetupException.class
+            // );
+                    IClient.class,
+                    IClientProxy.class,
+                    TestAppClient.class
+            ).addClasses(AppClient.getAppClasses())
+            ;
             // The application-client.xml descriptor
             // URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
             // if(resURL != null) {
@@ -75,7 +83,7 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
             //   cditestsmdb_client.addAsManifestResource(resURL, "sun-application-client.xml");
             // }
             URL resURL = null;
-            cditestsmdb_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            cditestsmdb_client.addAsManifestResource(new StringAsset("Main-Class: " + TestAppClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(cditestsmdb_client, Client.class, resURL);
 
@@ -106,6 +114,11 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
             // Call the archive processor
             archiveProcessor.processEjbArchive(cditestsmdb_ejb, Client.class, ejbResURL);
 
+            // non-vehicle appclientproxy invoker war
+            WebArchive appclientproxy = ShrinkWrap.create(WebArchive.class, "appclientproxy.war");
+            appclientproxy.addClasses(Client.class, ClientServletTarget.class, ServletNoVehicle.class);
+            appclientproxy.addAsWebInfResource(new StringAsset(""), "beans.xml");
+
         // Ear
             EnterpriseArchive cditestsmdb_ear = ShrinkWrap.create(EnterpriseArchive.class, "cditestsmdb.ear");
 
@@ -114,6 +127,7 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
             // The component jars built by the package target
             cditestsmdb_ear.addAsModule(cditestsmdb_ejb);
             cditestsmdb_ear.addAsModule(cditestsmdb_client);
+            cditestsmdb_ear.addAsModule(appclientproxy);
 
 
 

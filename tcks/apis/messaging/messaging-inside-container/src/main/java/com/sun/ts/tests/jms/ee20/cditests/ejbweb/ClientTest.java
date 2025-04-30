@@ -102,7 +102,8 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client.class,
             com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            com.sun.ts.lib.harness.EETest.SetupException.class,
+            EjbClientIFProxy.class
             );
             // The application-client.xml descriptor
             // URL resURL = null;
@@ -147,6 +148,12 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client
             // Call the archive processor
             archiveProcessor.processEjbArchive(cditestsejbweb_ejb, Client.class, ejbResURL);
 
+            // non-vehicle appclientproxy invoker war
+            WebArchive appclientproxy = ShrinkWrap.create(WebArchive.class, "appclientproxy.war");
+            appclientproxy.addClasses(Client.class, EjbServletTarget.class, ServletNoVehicle.class);
+            appclientproxy.addAsWebInfResource(new StringAsset(""), "beans.xml");
+            
+
         // Ear
             EnterpriseArchive cditestsejbweb_ear = ShrinkWrap.create(EnterpriseArchive.class, "cditestsejbweb.ear");
 
@@ -156,6 +163,8 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client
             cditestsejbweb_ear.addAsModule(cditestsejbweb_ejb);
             cditestsejbweb_ear.addAsModule(cditestsejbweb_client);
             cditestsejbweb_ear.addAsModule(cditestsejbweb_web);
+            cditestsejbweb_ear.addAsModule(appclientproxy);
+
 
             // The application.xml descriptor
             URL earResURL = null;
