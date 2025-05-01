@@ -23,30 +23,24 @@ pipeline {
         stage('Run connector-platform-tck javatest') {
             steps {
                 dir('glassfish-runner/connector-platform-tck') {
-                  sh "mvn -Pfull,staging failsafe:integration-test@connector-javatest-tests"
+                  sh "mvn -Pfull,staging pre-integration-test failsafe:integration-test@connector-javatest-tests"
                 }
             }
         }
         stage('Run connector-platform-tck appclient') {
             steps {
                 dir('glassfish-runner/connector-platform-tck') {
-                  sh "mvn -Pfull,staging failsafe:integration-test@connector-appclient-tests"
+                  sh "mvn -Pfull,staging pre-integration-test failsafe:integration-test@connector-appclient-tests"
                 }
             }
         }
-        stage('Generate failsafe hmtl') {
+        stage('Reporting') {
             steps {
-                sh "mvn -Pstaging surefire-report:failsafe-report-only"
-            }
-        }
-        stage('Collect Tests XML') {
-            steps {
-                junit '**/target/failsafe-reports/*.xml'
-            }
-        }
-        stage('Collect HTML Summary') {
-            steps {
-                junit '**/target/reports/*.html'
+                dir('glassfish-runner/connector-platform-tck') {
+                  sh "mvn -Pstaging surefire-report:failsafe-report-only"
+                  junit 'target/failsafe-reports/*.xml'
+                  junit 'target/reports/*.html'
+                }
             }
         }
     }
