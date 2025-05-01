@@ -39,7 +39,14 @@ pipeline {
                 dir('glassfish-runner/connector-platform-tck') {
                   sh "mvn -Pstaging surefire-report:failsafe-report-only"
                   junit 'target/failsafe-reports/*.xml'
-                  junit 'target/reports/*.html'
+                  publishHTML target: [
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'target/reports',
+                    reportFiles: 'failsafe.html',
+                    reportName: 'Connector TCK Report'
+                  ]
                 }
             }
         }
