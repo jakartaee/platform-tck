@@ -1,4 +1,48 @@
 pipeline {
     agent any
-  
+      parameters {
+          string(name: 'VERSION', defaultValue: '1.0-SNAPSHOT', description: 'What version to build?')
+          // Need to know the configured JDKs in Jenkins
+          choice(name: 'JDK', choices: ['temurin-17.jdk', 'temurin-21.jdk'], description: 'JDK Version')
+      }
+
+    tools {
+        jdk "${params.JDK}"
+        maven 'maven-3.9.9'
+    }
+    stages {
+        stage('Build platform-tck') {
+            steps {
+                git branch: 'connectors-appclient' url: 'https://github.com/jakartaee/platform-tck.git'
+                withMaven {
+                  sh "mvn -Pstaging install"
+                }
+            }
+        }
+        stage('Run connector-platform-tck javatest') {
+            steps {
+                dir('glassfish-runner/connector-platform-tck') {
+                  sh "mvn -Pstaging failsafe:integration-test@connector-javatest-tests"
+                }
+            }
+        }
+        stage('Run connector-platform-tck appclient') {
+            steps {
+                dir('glassfish-runner/connector-platform-tck') {
+                  sh "mvn -Pstaging failsafe:integration-test@connector-appclient-tests"
+                }
+            }
+        }
+        stage('Generate failsafe hmtl') {
+            steps {
+                mvn -Pstaging surefire-report:failsafe-report-only
+            }
+        }
+        stage('Collect Tests XML') {
+            junit '**/target/failsafe-reports/*.xml'
+        }
+        stage('Collect HTML Summary') {
+            junit '**/target/reports/*.html'
+        }
+    }
 }
