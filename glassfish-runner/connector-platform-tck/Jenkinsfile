@@ -12,11 +12,11 @@ pipeline {
         maven 'maven-3.9.9'
     }
     stages {
-        stage('Build platform-tck') {
+        stage('Build connector-tck') {
             steps {
                 git branch: "${params.BRANCH}", url: 'https://github.com/jakartaee/platform-tck.git'
                 withMaven {
-                  sh "mvn -Pstaging install"
+                  sh "mvn -Pstaging -pl .,bom,tcks/apis/connector,tcks/apis/connector-whitebox install"
                 }
             }
         }
