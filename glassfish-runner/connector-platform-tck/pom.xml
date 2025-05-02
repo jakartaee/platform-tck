@@ -273,12 +273,19 @@
                         
                         <glassfish.enableDerby>true</glassfish.enableDerby>
                         
+                        <glassfish.systemProperties>
+                            j2eelogin.name=j2ee
+                            j2eelogin.password=j2ee
+                            eislogin.name=cts1
+                            eislogin.password=cts1
+                        </glassfish.systemProperties>
+                        
                         <glassfish.postBootCommands>
                             create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
                             create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
                             create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1:createDatabase=create cts-derby-pool
                             create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
-                            create-jdbc-connection-pool --restype javax.sql.XADataSource --datasourceclassname org.apache.derby.jdbc.ClientXADataSource --property serverName=${derby.server}:portNumber=${derby.port}:user=${derby.user}:password=${derby.passwd}:DatabaseName=${derby.dbName}:connectionAttributes=";create\=true;" --steadypoolsize 32 --maxpoolsize 64 cts-derby-XA-pool   
+                            create-jdbc-connection-pool --restype javax.sql.XADataSource --datasourceclassname org.apache.derby.jdbc.ClientXADataSource --property serverName=localhost:portNumber=1527:user=cts1:password=cts1:DatabaseName=derbyDB:connectionAttributes=";create\=true;" --steadypoolsize 32 --maxpoolsize 64 cts-derby-XA-pool   
                             create-jdbc-resource --connectionpoolid cts-derby-XA-pool eis/JDBCwhitebox-xa
                             create-jdbc-resource --connectionpoolid cts-derby-XA-pool eis/JDBCwhitebox-notx
                             list-jdbc-connection-pools
