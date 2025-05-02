@@ -16,7 +16,22 @@ pipeline {
             steps {
                 git branch: "${params.BRANCH}", url: 'https://github.com/jakartaee/platform-tck.git'
                 withMaven {
-                  sh "mvn -Pstaging -pl .,bom,tcks/apis/connector,tcks/apis/connector-whitebox install"
+                  sh """#!/bin/bash -xe
+                    PROJECTS=".,bom,tcks/apis/connector,tcks/apis/connector-whitebox"
+                    PROJECTS=“${PROJECTS},tcks/apis/connector-whitebox/annotated”
+                    PROJECTS=“${PROJECTS},tcks/apis/connector-whitebox/ibanno”
+                    PROJECTS=“${PROJECTS},tcks/apis/connector-whitebox/mdcomplete”
+                    PROJECTS=“${PROJECTS},tcks/apis/connector-whitebox/mixedmode”
+                    PROJECTS=“${PROJECTS},tcks/apis/connector-whitebox/multianno”
+                    PROJECTS=“${PROJECTS},tcks/apis/connector-whitebox/whitebox”
+                    PROJECTS=“${PROJECTS},tcks/apis/connector-whitebox/whitebox-notx”
+                    PROJECTS=“${PROJECTS},tcks/apis/connector-whitebox/whitebox-notx-param”
+                    PROJECTS=“${PROJECTS},tcks/apis/connector-whitebox/whitebox-tx”
+                    PROJECTS=“${PROJECTS},tcks/apis/connector-whitebox/whitebox-tx-param”
+                    PROJECTS=“${PROJECTS},tcks/apis/connector-whitebox/whitebox-xa”
+                    PROJECTS=“${PROJECTS},tcks/apis/connector-whitebox/whitebox-xa-param”
+                    mvn -Pstaging -pl "${PROJECTS}" install
+                    """
                 }
             }
         }
