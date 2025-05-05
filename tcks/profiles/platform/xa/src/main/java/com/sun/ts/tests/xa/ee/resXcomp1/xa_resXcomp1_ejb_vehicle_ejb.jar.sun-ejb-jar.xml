@@ -25,7 +25,7 @@
       <ejb-name>com_sun_ts_tests_common_vehicle_ejb_EJBVehicle</ejb-name>
       <jndi-name>xa_resXcomp1_ejb_vehicle</jndi-name>
       <ejb-ref>
-        <ejb-ref-name>ejb/MyEjbReferenceEJB</ejb-ref-name>
+        <ejb-ref-name>ejb/MyEjbReference</ejb-ref-name>
         <jndi-name>xa_resXcomp1_ejb_TxRequired_TxBeanEJB1</jndi-name>
       </ejb-ref>
       <resource-ref>

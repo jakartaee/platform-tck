@@ -126,7 +126,7 @@ public class ClientEJB extends Client implements Serializable {
   
   
   public String getTxRef() {
-	   return "java:comp/env/ejb/MyEjbReferenceEJB";
+	   return "java:comp/env/ejb/MyEjbReference";
  }
 
   /* Run test */
