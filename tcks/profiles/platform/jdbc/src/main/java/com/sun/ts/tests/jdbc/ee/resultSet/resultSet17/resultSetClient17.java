@@ -60,8 +60,6 @@ import com.sun.ts.tests.jdbc.ee.common.rsSchema;
 @ExtendWith(ArquillianExtension.class)
 @Tag("jdbc")
 @Tag("platform")
-@Tag("web")
-@Tag("tck-javatest")
 
 public class resultSetClient17 extends ServiceEETest implements Serializable {
 	private static final String testName = "jdbc.ee.resultSet.resultSet17";
