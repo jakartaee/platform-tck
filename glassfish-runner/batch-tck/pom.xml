@@ -39,7 +39,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
 
     <properties>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
-        <glassfish.version>8.0.0-M9</glassfish.version>
+        <glassfish.version>8.0.0-JDK17-M10</glassfish.version>
         <jakarta.batch.version>2.1.5</jakarta.batch.version>
     </properties>
 

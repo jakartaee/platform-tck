@@ -51,7 +51,7 @@
         <derby.lib>${glassfish.home}/javadb/lib</derby.lib>
         <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>8.0.0-M9</glassfish.version>
+        <glassfish.version>8.0.0-JDK17-M10</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
         <glassfish-artifact-id>glassfish</glassfish-artifact-id>
 
