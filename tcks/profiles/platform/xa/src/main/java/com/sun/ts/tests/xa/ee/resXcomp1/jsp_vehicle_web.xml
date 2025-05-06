@@ -17,50 +17,59 @@
 
 -->
 
-<web-app version="5.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
-  <display-name>jsp_vehicle</display-name>
-  <servlet>
-    <servlet-name>jsp_vehicle</servlet-name>
-    <jsp-file>/jsp_vehicle.jsp</jsp-file>
-  </servlet>
-  <session-config>
-    <session-timeout>54</session-timeout>
-  </session-config>
-  <resource-ref>
-    <res-ref-name>eis/whitebox-tx</res-ref-name>
-    <res-type>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</res-type>
-    <res-auth>Container</res-auth>
-    <res-sharing-scope>Shareable</res-sharing-scope>
-  </resource-ref>
-  <resource-ref>
-    <res-ref-name>eis/JDBCwhitebox-tx</res-ref-name>
-    <res-type>javax.sql.DataSource</res-type>
-    <res-auth>Container</res-auth>
-    <res-sharing-scope>Shareable</res-sharing-scope>
-  </resource-ref>
-  <env-entry>
-    <env-entry-name>size</env-entry-name>
-    <env-entry-type>java.lang.Integer</env-entry-type>
-    <env-entry-value>5</env-entry-value>
-  </env-entry>
-  <env-entry>
-    <env-entry-name>fromKey1</env-entry-name>
-    <env-entry-type>java.lang.Integer</env-entry-type>
-    <env-entry-value>2</env-entry-value>
-  </env-entry>
-  <env-entry>
-    <env-entry-name>fromKey2</env-entry-name>
-    <env-entry-type>java.lang.Integer</env-entry-type>
-    <env-entry-value>2</env-entry-value>
-  </env-entry>
-  <env-entry>
-    <env-entry-name>toKey2</env-entry-name>
-    <env-entry-type>java.lang.Integer</env-entry-type>
-    <env-entry-value>3</env-entry-value>
-  </env-entry>
-  <ejb-ref>
-    <ejb-ref-name>ejb/MyEjbReference</ejb-ref-name>
-    <ejb-ref-type>Session</ejb-ref-type>
-    <remote>com.sun.ts.tests.xa.ee.resXcomp1.TxBean</remote>
-  </ejb-ref>
+<web-app version="5.0"
+    xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
+    
+    <display-name>jsp_vehicle</display-name>
+    
+    <servlet>
+        <servlet-name>jsp_vehicle</servlet-name>
+        <jsp-file>/jsp_vehicle.jsp</jsp-file>
+    </servlet>
+    
+    <session-config>
+        <session-timeout>54</session-timeout>
+    </session-config>
+    
+    <resource-ref>
+        <res-ref-name>eis/whitebox-tx</res-ref-name>
+        <res-type>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>eis/JDBCwhitebox-tx</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
+    
+    <env-entry>
+        <env-entry-name>size</env-entry-name>
+        <env-entry-type>java.lang.Integer</env-entry-type>
+        <env-entry-value>5</env-entry-value>
+    </env-entry>
+    <env-entry>
+        <env-entry-name>fromKey1</env-entry-name>
+        <env-entry-type>java.lang.Integer</env-entry-type>
+        <env-entry-value>2</env-entry-value>
+    </env-entry>
+    <env-entry>
+        <env-entry-name>fromKey2</env-entry-name>
+        <env-entry-type>java.lang.Integer</env-entry-type>
+        <env-entry-value>2</env-entry-value>
+    </env-entry>
+    <env-entry>
+        <env-entry-name>toKey2</env-entry-name>
+        <env-entry-type>java.lang.Integer</env-entry-type>
+        <env-entry-value>3</env-entry-value>
+    </env-entry>
+    
+    <ejb-ref>
+        <ejb-ref-name>ejb/MyEjbReference</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.sun.ts.tests.xa.ee.resXcomp1.TxBean</remote>
+    </ejb-ref>
 </web-app>

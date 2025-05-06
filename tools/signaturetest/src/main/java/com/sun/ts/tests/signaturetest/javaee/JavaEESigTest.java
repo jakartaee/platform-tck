@@ -92,71 +92,182 @@ public class JavaEESigTest extends SigTestEE {
 
         Map<Containers, Map<String, String[]>> tempMap = new EnumMap<Containers, Map<String, String[]>>(Containers.class);
 
-        Map EJB_MAP = new HashMap<String, String[]>();
-        Map SERVLET_MAP = new HashMap<String, String[]>();
-        Map JSP_MAP = new HashMap<String, String[]>();
-        Map APPCLIENT_MAP = new HashMap<String, String[]>();
+        Map<String, String[]> EJB_MAP = new HashMap<String, String[]>();
+        Map<String, String[]> SERVLET_MAP = new HashMap<>();
+        Map<String, String[]> JSP_MAP = new HashMap<>();
+        Map<String, String[]> APPCLIENT_MAP = new HashMap<>();
 
         // These need to be filled in properly. If one map is a subset of
         // another map we can use putAll to add one map to the other.
         // So maybe populate appclient first then add it to the EJB map
         // then do EJB then add it to JSP then set JSP to SERVLET.
 
-        APPCLIENT_MAP.put("ejb",
-                new String[] { "jakarta.ejb", "jakarta.ejb.spi", "jakarta.ejb.embeddable", "jakarta.interceptor", "javax.rmi" });
-        APPCLIENT_MAP.put("interceptors", new String[] { "jakarta.interceptor" });
-        APPCLIENT_MAP.put("caj", new String[] { "jakarta.annotation", "jakarta.annotation.security", "jakarta.annotation.sql" });
-        APPCLIENT_MAP.put("jms", new String[] { "jakarta.jms" });
-        APPCLIENT_MAP.put("javamail",
-                new String[] { "jakarta.mail", "jakarta.mail.event", "jakarta.mail.internet", "jakarta.mail.search", "jakarta.mail.util" });
-        APPCLIENT_MAP.put("persistence", new String[] { "jakarta.persistence", "jakarta.persistence.spi", "jakarta.persistence.criteria",
+        APPCLIENT_MAP.put("ejb", new String[] {
+                "jakarta.ejb",
+                "jakarta.ejb.spi",
+                "jakarta.ejb.embeddable",
+                "jakarta.interceptor",
+                "javax.rmi" });
+
+        APPCLIENT_MAP.put("interceptors", new String[] {
+                "jakarta.interceptor" });
+
+        APPCLIENT_MAP.put("caj", new String[] {
+                "jakarta.annotation",
+                "jakarta.annotation.security",
+                "jakarta.annotation.sql" });
+
+        APPCLIENT_MAP.put("jms", new String[] {
+                "jakarta.jms" });
+
+        APPCLIENT_MAP.put("javamail", new String[] {
+                "jakarta.mail",
+                "jakarta.mail.event",
+                "jakarta.mail.internet",
+                "jakarta.mail.search",
+                "jakarta.mail.util" });
+
+        APPCLIENT_MAP.put("persistence", new String[] {
+                "jakarta.persistence",
+                "jakarta.persistence.spi",
+                "jakarta.persistence.criteria",
                 "jakarta.persistence.metamodel" });
-        // note: cdi API's actually utilize two different base packages and
+
+        // Note: cdi API's actually utilize two different base packages and
         // so will require two different sigfiles.
-        APPCLIENT_MAP.put("cdi", new String[] { "jakarta.decorator", "jakarta.enterprise.context", "jakarta.enterprise.context.control",
-                "jakarta.enterprise.context.spi", "jakarta.enterprise.event", "jakarta.enterprise.inject", "jakarta.enterprise.inject.spi",
-                "jakarta.enterprise.inject.literal", "jakarta.enterprise.inject.spi.configurator", "jakarta.enterprise.util" });
-        APPCLIENT_MAP.put("beanval",
-                new String[] { "jakarta.validation", "jakarta.validation.bootstrap", "jakarta.validation.constraints",
-                        "jakarta.validation.groups", "jakarta.validation.metadata", "jakarta.validation.constraintvalidation",
-                        "jakarta.validation.executable", "jakarta.validation.spi", "jakarta.validation.valueextraction" });
-        APPCLIENT_MAP.put("di", new String[] { "jakarta.inject" });
-        APPCLIENT_MAP.put("jsonp", new String[] { "jakarta.json", "jakarta.json.spi", "jakarta.json.stream" });
-        APPCLIENT_MAP.put("jsonb", new String[] { "jakarta.json.bind", "jakarta.json.bind.adapter", "jakarta.json.bind.annotation",
-                "jakarta.json.bind.config", "jakarta.json.bind.serializer", "jakarta.json.bind.spi" });
+        APPCLIENT_MAP.put("cdi", new String[] {
+                "jakarta.decorator",
+                "jakarta.enterprise.context",
+                "jakarta.enterprise.context.control",
+                "jakarta.enterprise.context.spi",
+                "jakarta.enterprise.context.spi.el",
+                "jakarta.enterprise.event",
+                "jakarta.enterprise.inject",
+                "jakarta.enterprise.inject.spi",
+                "jakarta.enterprise.inject.literal",
+                "jakarta.enterprise.inject.spi.configurator",
+                "jakarta.enterprise.util" });
+
+        APPCLIENT_MAP.put("beanval", new String[] {
+                "jakarta.validation",
+                "jakarta.validation.bootstrap",
+                "jakarta.validation.constraints",
+                "jakarta.validation.groups",
+                "jakarta.validation.metadata",
+                "jakarta.validation.constraintvalidation",
+                "jakarta.validation.executable",
+                "jakarta.validation.spi",
+                "jakarta.validation.valueextraction" });
+
+        APPCLIENT_MAP.put("di", new String[] {
+                "jakarta.inject" });
+
+        APPCLIENT_MAP.put("jsonp", new String[] {
+                "jakarta.json",
+                "jakarta.json.spi",
+                "jakarta.json.stream" });
+
+        APPCLIENT_MAP.put("jsonb", new String[] {
+                "jakarta.json.bind",
+                "jakarta.json.bind.adapter",
+                "jakarta.json.bind.annotation",
+                "jakarta.json.bind.config",
+                "jakarta.json.bind.serializer",
+                "jakarta.json.bind.spi" });
 
         EJB_MAP.putAll(APPCLIENT_MAP);
-        EJB_MAP.put("connector", new String[] { "jakarta.resource", "jakarta.resource.cci", "jakarta.resource.spi",
-                "jakarta.resource.spi.work", "jakarta.resource.spi.endpoint", "jakarta.resource.spi.security" });
-        EJB_MAP.put("jacc", new String[] { "jakarta.security.jacc" });
-        EJB_MAP.put("jaspic", new String[] { "jakarta.security.auth.message", "jakarta.security.auth.message.callback",
-                "jakarta.security.auth.message.config", "jakarta.security.auth.message.module" });
-        EJB_MAP.put("jta", new String[] { "jakarta.transaction" });
-        EJB_MAP.put("batch",
-                new String[] { "jakarta.batch.api", "jakarta.batch.api.chunk", "jakarta.batch.api.chunk.listener",
-                        "jakarta.batch.api.listener", "jakarta.batch.api.partition", "jakarta.batch.operations", "jakarta.batch.runtime",
-                        "jakarta.batch.runtime.context" });
-        EJB_MAP.put("securityapi",
-                new String[] { "jakarta.security.enterprise", "jakarta.security.enterprise.authentication.mechanism.http",
-                        "jakarta.security.enterprise.credential", "jakarta.security.enterprise.identitystore" });
-        EJB_MAP.put("concurrency", new String[] { "jakarta.enterprise.concurrent" });
+
+        EJB_MAP.put("connector", new String[] {
+                "jakarta.resource",
+                "jakarta.resource.cci",
+                "jakarta.resource.spi",
+                "jakarta.resource.spi.work",
+                "jakarta.resource.spi.endpoint",
+                "jakarta.resource.spi.security" });
+
+        EJB_MAP.put("jacc", new String[] {
+                "jakarta.security.jacc" });
+
+        EJB_MAP.put("jaspic", new String[] {
+                "jakarta.security.auth.message",
+                "jakarta.security.auth.message.callback",
+                "jakarta.security.auth.message.config",
+                "jakarta.security.auth.message.module" });
+        EJB_MAP.put("jta", new String[] {
+                "jakarta.transaction" });
+
+        EJB_MAP.put("batch", new String[] {
+                "jakarta.batch.api",
+                "jakarta.batch.api.chunk",
+                "jakarta.batch.api.chunk.listener",
+                "jakarta.batch.api.listener",
+                "jakarta.batch.api.partition",
+                "jakarta.batch.operations",
+                "jakarta.batch.runtime",
+                "jakarta.batch.runtime.context" });
+
+        EJB_MAP.put("securityapi", new String[] {
+                "jakarta.security.enterprise",
+                "jakarta.security.enterprise.authentication.mechanism.http",
+                "jakarta.security.enterprise.credential",
+                "jakarta.security.enterprise.identitystore" });
+
+        EJB_MAP.put("concurrency", new String[] {
+                "jakarta.enterprise.concurrent" });
 
         SERVLET_MAP.putAll(EJB_MAP);
-        SERVLET_MAP.put("el", new String[] { "jakarta.el" });
-        SERVLET_MAP.put("servlet",
-                new String[] { "jakarta.servlet", "jakarta.servlet.annotation", "jakarta.servlet.descriptor", "jakarta.servlet.http",
-                        "jakarta.servlet.jsp", "jakarta.servlet.jsp.el", "jakarta.servlet.jsp.jstl.core", "jakarta.servlet.jsp.jstl.fmt",
-                        "jakarta.servlet.jsp.jstl.sql", "jakarta.servlet.jsp.jstl.tlv", "jakarta.servlet.jsp.tagext" });
-        SERVLET_MAP.put("jsf",
-                new String[] { "jakarta.faces", "jakarta.faces.application", "jakarta.faces.annotation", "jakarta.faces.component",
-                        "jakarta.faces.bean", "jakarta.faces.flow", "jakarta.faces.flow.builder", "jakarta.faces.component.behavior",
-                        "jakarta.faces.component.html", "jakarta.faces.component.visit", "jakarta.faces.component.search",
-                        "jakarta.faces.context", "jakarta.faces.convert", "jakarta.faces.el", "jakarta.faces.event",
-                        "jakarta.faces.lifecycle", "jakarta.faces.model", "jakarta.faces.push", "jakarta.faces.render",
-                        "jakarta.faces.validator", "jakarta.faces.view", "jakarta.faces.view.facelets", "jakarta.faces.webapp" });
-        SERVLET_MAP.put("jaxrs", new String[] { "jakarta.ws.rs", "jakarta.ws.rs.core", "jakarta.ws.rs.ext", "jakarta.ws.rs.client",
-                "jakarta.ws.rs.container", "jakarta.ws.rs.sse" });
-        SERVLET_MAP.put("websocket", new String[] { "jakarta.websocket", "jakarta.websocket.server" });
+        SERVLET_MAP.put("el", new String[] {
+                "jakarta.el" });
+
+        SERVLET_MAP.put("servlet", new String[] {
+                "jakarta.servlet",
+                "jakarta.servlet.annotation",
+                "jakarta.servlet.descriptor",
+                "jakarta.servlet.http",
+                "jakarta.servlet.jsp",
+                "jakarta.servlet.jsp.el",
+                "jakarta.servlet.jsp.jstl.core",
+                "jakarta.servlet.jsp.jstl.fmt",
+                "jakarta.servlet.jsp.jstl.sql",
+                "jakarta.servlet.jsp.jstl.tlv",
+                "jakarta.servlet.jsp.tagext" });
+
+        SERVLET_MAP.put("jsf", new String[] {
+                "jakarta.faces",
+                "jakarta.faces.application",
+                "jakarta.faces.annotation",
+                "jakarta.faces.component",
+                "jakarta.faces.bean",
+                "jakarta.faces.flow",
+                "jakarta.faces.flow.builder",
+                "jakarta.faces.component.behavior",
+                "jakarta.faces.component.html",
+                "jakarta.faces.component.visit",
+                "jakarta.faces.component.search",
+                "jakarta.faces.context",
+                "jakarta.faces.convert",
+                "jakarta.faces.el",
+                "jakarta.faces.event",
+                "jakarta.faces.lifecycle",
+                "jakarta.faces.model",
+                "jakarta.faces.push",
+                "jakarta.faces.render",
+                "jakarta.faces.validator",
+                "jakarta.faces.view",
+                "jakarta.faces.view.facelets",
+                "jakarta.faces.webapp" });
+
+        SERVLET_MAP.put("jaxrs", new String[] {
+                "jakarta.ws.rs",
+                "jakarta.ws.rs.core",
+                "jakarta.ws.rs.ext",
+                "jakarta.ws.rs.client",
+                "jakarta.ws.rs.container",
+                "jakarta.ws.rs.sse" });
+
+        SERVLET_MAP.put("websocket", new String[] {
+                "jakarta.websocket",
+                "jakarta.websocket.server" });
 
         JSP_MAP = SERVLET_MAP;
 
@@ -183,7 +294,7 @@ public class JavaEESigTest extends SigTestEE {
      * Set the current level, either web profile or full EE. If isFullEEProfile is false it must be web since there are only
      * two valid values, full and web. It is possible that the javaee.level in the ts.jte is set to web +
      * <some_additional_technologies> so we want to make sure that the string is parsed appropriately.
-     * 
+     *
      */
     private void setLevel() {
         level = testInfo.getJavaeeLevel().toLowerCase();
@@ -232,8 +343,6 @@ public class JavaEESigTest extends SigTestEE {
      * of pacakages for a given techonology (eg connector, jacc, etc)
      */
     private Set<String> resolveAggregateKeywords() throws IOException {
-        String tsHome = testInfo.getTSHome();
-
         Set<String> result = new HashSet<String>();
         String strKeywords;
         if (isFullEEProfile) {
@@ -246,7 +355,8 @@ public class JavaEESigTest extends SigTestEE {
         if (otherTechnologyKeywords != null) {
             strKeywords = strKeywords + " " + otherTechnologyKeywords;
         }
-        List terminals = getTerminals(strKeywords);
+
+        List<String> terminals = getTerminals(strKeywords);
         result.addAll(terminals);
         debugit("JavaEESigTest.resolveAggregateKeywords(): strKeywords = " + strKeywords);
 
@@ -270,12 +380,12 @@ public class JavaEESigTest extends SigTestEE {
     }
 
     /**
-     * 
+     *
      */
     @Override
     protected ArrayList<String> getUnlistedOptionalPackages() {
-        ArrayList unlistedOptPkgs = new ArrayList<String>();
-        ArrayList unlistedKeywords = new ArrayList<String>();
+        ArrayList<String> unlistedOptPkgs = new ArrayList<String>();
+        ArrayList<String> unlistedKeywords = new ArrayList<String>();
 
         debugit("Enterred getUnlistedOptionalPackages()");
 
@@ -370,10 +480,11 @@ public class JavaEESigTest extends SigTestEE {
     /**
      * Returns a list of strings where each string represents a package name. Each package name will have it's signature
      * tested by the signature test framework.
-     * 
+     *
      * @param vehicleName The name of the JavaEE container where the signature tests should be conducted.
      * @return String[] The names of the packages whose signatures should be verified.
      */
+    @Override
     protected String[] getPackages(String vehicleName) {
 
         Set<String> packages = new HashSet<String>();
@@ -468,10 +579,10 @@ public class JavaEESigTest extends SigTestEE {
     // XXX current.keywords does not seem to be in the props instance
     /*
      * @testName: signatureTest
-     * 
+     *
      * @assertion: A JavaEE platform must implement the required classes and and APIs specified in the JavaEE Platform
      * Specification.
-     * 
+     *
      * @test_Strategy: Using reflection, gather the implementation specific classes and APIs. Compare these results with the
      * expected (required) classes and APIs.
      */

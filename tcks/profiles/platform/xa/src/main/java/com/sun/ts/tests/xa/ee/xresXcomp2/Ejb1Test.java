@@ -28,29 +28,29 @@ import java.util.Properties;
 import java.util.Vector;
 
 public interface Ejb1Test {
-  public void initialize(Properties p);
+    public void initialize(Properties p);
 
-  public void dbConnect(String tName);
+    public void dbConnect(String tName);
 
-  public void txDbConnect(String tName);
+    public void txDbConnect(String tName);
 
-  public void createData(String tName);
+    public void createData(String tName);
 
-  public void insertDup(String tName, String tSize);
+    public void insertDup(String tName, String tSize);
 
-  public boolean insert(String tName, int key);
+    public boolean insert(String tName, int key);
 
-  public void delete(String tName, int fromKey, int toKey);
+    public void delete(String tName, int fromKey, int toKey);
 
-  public Vector getResults(String tName);
+    public Vector getResults(String tName);
 
-  public void destroyData(String tName);
+    public void destroyData(String tName);
 
-  public void dbUnConnect(String tName);
+    public void dbUnConnect(String tName);
 
-  public void txDbUnConnect(String tName);
+    public void txDbUnConnect(String tName);
 
-  public void initLogging(Properties p);
+    public void initLogging(Properties p);
 
-  public void throwEJBException();
+    public void throwEJBException();
 }

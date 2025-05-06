@@ -28,25 +28,15 @@ import java.util.Properties;
 import java.util.Vector;
 
 public interface TxBean {
-  public void initialize();
-
-  public void dbConnect(String tName);
-
-  public void createData(String tName);
-
-  public boolean insert(String tName, int key);
-
-  public void delete(String tName, int fromKey, int toKey);
-
-  public void destroyData(String tName);
-
-  public void dbUnConnect(String tName);
-
-  public Vector getResults(String tName);
-
-  public void initLogging(Properties p);
-
-  public void throwEJBException();
-
-  public void listTableData(Vector dbResults);
+    void initialize();
+    void dbConnect(String tName);
+    void createData(String tName);
+    boolean insert(String tName, int key);
+    void delete(String tName, int fromKey, int toKey);
+    void destroyData(String tName);
+    void dbUnConnect(String tName);
+    Vector getResults(String tName);
+    void initLogging(Properties p);
+    void throwEJBException();
+    void listTableData(Vector dbResults);
 }

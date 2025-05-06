@@ -19,25 +19,27 @@
 -->
 
 <sun-web-app>
-  <ejb-ref>
-    <ejb-ref-name>ejb/MyEjbReference</ejb-ref-name>
-    <jndi-name>xa_resXcomp1_ejb_TxRequired_TxBeanEJB3</jndi-name>
-  </ejb-ref>
-  <resource-ref>
-    <res-ref-name>eis/whitebox-tx</res-ref-name>
-    <jndi-name>eis/whitebox-tx</jndi-name>
-    <default-resource-principal>
-      <name>cts1</name>
-      <password>cts1</password>
-    </default-resource-principal>
-  </resource-ref>
-  <resource-ref>
-    <res-ref-name>eis/JDBCwhitebox-tx</res-ref-name>
-    <jndi-name>eis/JDBCwhitebox-tx</jndi-name>
-    <default-resource-principal>
-      <name>cts1</name>
-      <password>cts1</password>
-    </default-resource-principal>
-  </resource-ref>
-  <class-loader delegate="true"/>
+    <ejb-ref>
+        <ejb-ref-name>ejb/MyEjbReference</ejb-ref-name>
+        <jndi-name>xa_resXcomp1_ejb_TxRequired_TxBeanEJB3</jndi-name>
+    </ejb-ref>
+    
+    <resource-ref>
+        <res-ref-name>eis/whitebox-tx</res-ref-name>
+        <jndi-name>eis/whitebox-tx</jndi-name>
+        <default-resource-principal>
+            <name>cts1</name>
+            <password>cts1</password>
+        </default-resource-principal>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>eis/JDBCwhitebox-tx</res-ref-name>
+        <jndi-name>eis/JDBCwhitebox-tx</jndi-name>
+        <default-resource-principal>
+            <name>cts1</name>
+            <password>cts1</password>
+        </default-resource-principal>
+    </resource-ref>
+    
+    <class-loader delegate="true" />
 </sun-web-app>

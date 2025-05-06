@@ -45,122 +45,120 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 @Tag("tck-javatest")
 public class ClientServletTest extends Client implements Serializable {
-	
-	  @TargetsContainer("tck-javatest")
-	  @OverProtocol("javatest")
-	  @Deployment(name = "servlet", testable = true)
-		public static EnterpriseArchive createDeploymentServlet(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
-		  	WebArchive servletVehicleArchive = ShrinkWrap.create(WebArchive.class, "xa_resXcomp1_servlet_vehicle_web.war");
-		  	servletVehicleArchive.addPackages(false, "com.sun.ts.tests.common.vehicle");
-		  	servletVehicleArchive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
-		  	servletVehicleArchive.addPackages(true, "com.sun.ts.lib.harness");
-		  	servletVehicleArchive.addClasses(ClientServletTest.class, Client.class);
-		  	servletVehicleArchive.addAsWebInfResource(ClientServletTest.class.getPackage(), "servlet_vehicle_web.xml", "web.xml");
-		  	servletVehicleArchive.addAsWebInfResource(ClientServletTest.class.getPackage(), "xa_resXcomp1_servlet_vehicle_web.war.sun-web.xml", "sun-web.xml");
 
-		  	JavaArchive javaAchive = ShrinkWrap.create(JavaArchive.class, "xa_resXcomp1_ee_txpropagate2_ejb.jar");
-		  	javaAchive.addPackages(false, "com.sun.ts.tests.common.util");
-		  	javaAchive.addPackages(false, "com.sun.ts.tests.common.whitebox");
-		  	javaAchive.addPackages(true, "com.sun.ts.lib.harness");
-		  	javaAchive.addClasses(TxBean.class, TxBeanEJB.class);
-		  	javaAchive.addClasses(ClientServletTest.class, Client.class);
+    @TargetsContainer("tck-javatest")
+    @OverProtocol("javatest")
+    @Deployment(name = "servlet", testable = true)
+    public static EnterpriseArchive createDeploymentServlet(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+        WebArchive servletVehicleArchive = ShrinkWrap.create(WebArchive.class, "xa_resXcomp1_servlet_vehicle_web.war");
+        servletVehicleArchive.addPackages(false, "com.sun.ts.tests.common.vehicle");
+        servletVehicleArchive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
+        servletVehicleArchive.addPackages(true, "com.sun.ts.lib.harness");
+        servletVehicleArchive.addClasses(ClientServletTest.class, Client.class);
+        servletVehicleArchive.addAsWebInfResource(ClientServletTest.class.getPackage(), "servlet_vehicle_web.xml", "web.xml");
+        servletVehicleArchive.addAsWebInfResource(ClientServletTest.class.getPackage(), "xa_resXcomp1_servlet_vehicle_web.war.sun-web.xml",
+                "sun-web.xml");
 
-		  	javaAchive.addAsManifestResource(ClientServletTest.class.getPackage(), "xa_resXcomp1_ee_txpropagate2_ejb.xml", "ejb-jar.xml");
-		  	javaAchive.addAsManifestResource(ClientServletTest.class.getPackage(), "xa_resXcomp1_ee_txpropagate2_ejb.jar.sun-ejb-jar.xml", "sun-ejb-jar.xml");
-		  	
-		  	EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "xa_resXcomp1_servlet_vehicle.ear");
-		  	ear.addAsModule(servletVehicleArchive);
-		  	ear.addAsModule(javaAchive);
+        JavaArchive javaAchive = ShrinkWrap.create(JavaArchive.class, "xa_resXcomp1_ee_txpropagate2_ejb.jar");
+        javaAchive.addPackages(false, "com.sun.ts.tests.common.util");
+        javaAchive.addPackages(false, "com.sun.ts.tests.common.whitebox");
+        javaAchive.addPackages(true, "com.sun.ts.lib.harness");
+        javaAchive.addClasses(TxBean.class, TxBeanEJB.class);
+        javaAchive.addClasses(ClientServletTest.class, Client.class);
 
-			return ear;
-		};
+        javaAchive.addAsManifestResource(ClientServletTest.class.getPackage(), "xa_resXcomp1_ee_txpropagate2_ejb.xml", "ejb-jar.xml");
+        javaAchive.addAsManifestResource(ClientServletTest.class.getPackage(), "xa_resXcomp1_ee_txpropagate2_ejb.jar.sun-ejb-jar.xml",
+                "sun-ejb-jar.xml");
 
-  public static void main(String[] args) {
-    ClientServletTest client = new ClientServletTest();
-    Status s = client.run(args, System.out, System.err);
-    s.exit();
-  }
-  
-   /* Run test */
+        EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "xa_resXcomp1_servlet_vehicle.ear");
+        ear.addAsModule(servletVehicleArchive);
+        ear.addAsModule(javaAchive);
 
-  /*
-   * @testName: test1
-   *
-   * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:68
-   *
-   * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-   * interface. Perform global transactions using the TxBean (deployed as
-   * TX_REQUIRED) to a single RDBMS table.
-   * 
-   * Insert/Delete followed by a commit to a single table.
-   *
-   * Database Access is performed from TxBean EJB.
-   *
-   */
-	@Test
-	@TargetVehicle("servlet")
-  public void test1() throws Exception {
-	  super.test1();
-  }
+        return ear;
+    };
 
-  /*
-   * @testName: test2
-   *
-   * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:68
-   *
-   * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-   * interface. Perform global transactions using the TxBean (deployed as
-   * TX_REQUIRED) to a single RDBMS table.
-   * 
-   * Insert/Delete followed by a rollback to a single table.
-   *
-   * Database Access is performed from TxBean EJB.
-   *
-   */
-	@Test
-	@TargetVehicle("servlet")
-  public void test2() throws Exception {
-	  super.test2();
-  }
+    public static void main(String[] args) {
+        ClientServletTest client = new ClientServletTest();
+        Status s = client.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @testName: test3
-   *
-   * @assertion_ids: JavaEE:SPEC:74
-   *
-   * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-   * interface. Perform global transactions using the TxBean (deployed as
-   * TX_REQUIRED) to a single RDBMS table.
-   * 
-   * Insert/Delete followed by a commit to a single table.
-   *
-   * Database Access is performed from TxBean EJB.
-   *
-   */
-	@Test
-	@TargetVehicle("servlet")
-  public void test3() throws Exception {
-	  super.test3();
-  }
+    /* Run test */
 
-  /*
-   * @testName: test4
-   *
-   * @assertion_ids: JavaEE:SPEC:74
-   *
-   * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-   * interface. Perform global transactions using the TxBean (deployed as
-   * TX_REQUIRED) to a single RDBMS table.
-   * 
-   * Insert/Delete followed by a rollback to a single table.
-   *
-   * Database Access is performed from TxBean EJB.
-   *
-   */
-	@Test
-	@TargetVehicle("servlet")
-  public void test4() throws Exception {
-	  super.test4();
-  }
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:68
+     *
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the TxBean (deployed as TX_REQUIRED) to a single RDBMS table.
+     * 
+     * Insert/Delete followed by a commit to a single table.
+     *
+     * Database Access is performed from TxBean EJB.
+     *
+     */
+    @Test
+    @TargetVehicle("servlet")
+    public void test1() throws Exception {
+        super.test1();
+    }
+
+    /*
+     * @testName: test2
+     *
+     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:68
+     *
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the TxBean (deployed as TX_REQUIRED) to a single RDBMS table.
+     * 
+     * Insert/Delete followed by a rollback to a single table.
+     *
+     * Database Access is performed from TxBean EJB.
+     *
+     */
+    @Test
+    @TargetVehicle("servlet")
+    public void test2() throws Exception {
+        super.test2();
+    }
+
+    /*
+     * @testName: test3
+     *
+     * @assertion_ids: JavaEE:SPEC:74
+     *
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the TxBean (deployed as TX_REQUIRED) to a single RDBMS table.
+     * 
+     * Insert/Delete followed by a commit to a single table.
+     *
+     * Database Access is performed from TxBean EJB.
+     *
+     */
+    @Test
+    @TargetVehicle("servlet")
+    public void test3() throws Exception {
+        super.test3();
+    }
+
+    /*
+     * @testName: test4
+     *
+     * @assertion_ids: JavaEE:SPEC:74
+     *
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the TxBean (deployed as TX_REQUIRED) to a single RDBMS table.
+     * 
+     * Insert/Delete followed by a rollback to a single table.
+     *
+     * Database Access is performed from TxBean EJB.
+     *
+     */
+    @Test
+    @TargetVehicle("servlet")
+    public void test4() throws Exception {
+        super.test4();
+    }
 
 }

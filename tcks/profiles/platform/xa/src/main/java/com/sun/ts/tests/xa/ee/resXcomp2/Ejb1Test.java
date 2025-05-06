@@ -27,19 +27,19 @@ package com.sun.ts.tests.xa.ee.resXcomp2;
 import java.util.Properties;
 
 public interface Ejb1Test {
-  public void initialize(Properties p);
+    public void initialize(Properties p);
 
-  public void dbConnect(String tName);
+    public void dbConnect(String tName);
 
-  public void insert(String tName);
+    public void insert(String tName);
 
-  public void destroyData(String tName);
+    public void destroyData(String tName);
 
-  public void dbUnConnect(String tName);
+    public void dbUnConnect(String tName);
 
-  public void initLogging(Properties p);
+    public void initLogging(Properties p);
 
-  public void throwEJBException();
+    public void throwEJBException();
 
-  public boolean verifyData(String operation, String tName, int[] expResults);
+    public boolean verifyData(String operation, String tName, int[] expResults);
 }

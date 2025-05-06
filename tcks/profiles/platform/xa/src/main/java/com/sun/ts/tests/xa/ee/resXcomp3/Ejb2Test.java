@@ -27,16 +27,16 @@ package com.sun.ts.tests.xa.ee.resXcomp3;
 import java.util.Properties;
 
 public interface Ejb2Test {
-  public void initialize(Properties p);
+    public void initialize(Properties p);
 
-  public void dbConnect(String tName);
+    public void dbConnect(String tName);
 
-  public void insert(String tName);
+    public void insert(String tName);
 
-  public void dbUnConnect(String tName);
+    public void dbUnConnect(String tName);
 
-  public void initLogging(Properties p);
+    public void initLogging(Properties p);
 
-  public void throwEJBException();
+    public void throwEJBException();
 
 }
