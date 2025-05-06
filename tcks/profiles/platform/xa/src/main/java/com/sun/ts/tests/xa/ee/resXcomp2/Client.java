@@ -42,378 +42,361 @@ import jakarta.transaction.UserTransaction;
 @Tag("platform")
 
 public class Client extends ServiceEETest implements Serializable {
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties testProps = null;
+    private Properties testProps = null;
 
-  private static final String txRef = "java:comp/env/ejb/MyEjbReference";
+    private static final String txRef = "java:comp/env/ejb/MyEjbReference";
 
-  private Ejb1Test beanRef = null;
+    private Ejb1Test beanRef = null;
 
-  private UserTransaction ut = null;
+    private UserTransaction ut = null;
 
-  private String tName1 = null;
+    private String tName1 = null;
 
-  // Expected resultSet from JDBC and EIS
-  private int expResultstest1ds[] = { 1, 2, 3 };
+    // Expected resultSet from JDBC and EIS
+    private int expResultstest1ds[] = { 1, 2, 3 };
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup: */
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   * 
-   * @class.testArgs: -ap tssql.stmt
-   */
-  public void setup(String args[], Properties p) throws Exception {
-    try {
-      this.testProps = p;
-      TestUtil.init(p);
-      TestUtil.logMsg("Setup tests");
-
-      TestUtil.logMsg("Obtain naming context");
-      nctx = new TSNamingContext();
-
-      TestUtil.logMsg("Lookup Ejb1Test: " + txRef);
-      beanRef = (Ejb1Test) nctx.lookup(txRef, Ejb1Test.class);
-
-      TestUtil.logMsg("Lookup java:comp/UserTransaction");
-      ut = (UserTransaction) nctx.lookup("java:comp/UserTransaction");
-
-      // Get the table names
-      TestUtil.logMsg("Lookup environment variables");
-      this.tName1 = TestUtil
-          .getTableName(TestUtil.getProperty("Xa_Tab1_Delete"));
-      TestUtil.logTrace("tName1: " + this.tName1);
-
-      TestUtil.logMsg("Initialize " + txRef);
-      beanRef.initialize(testProps);
-
-      TestUtil.logMsg("Initialize logging data from server in Client");
-      beanRef.initLogging(p);
-
-      TestUtil.logMsg("Setup ok");
-    } catch (Exception e) {
-      TestUtil.logErr("Exception in setup: ", e);
-      throw new Exception("setup failed", e);
+    /* Run test in standalone mode */
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /* Test cleanup */
+    /* Test setup: */
 
-  public void cleanup() throws Exception {
-    TestUtil.logMsg("Cleanup ok");
-  }
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     * 
+     * @class.testArgs: -ap tssql.stmt
+     */
+    public void setup(String args[], Properties p) throws Exception {
+        try {
+            this.testProps = p;
+            TestUtil.init(p);
+            TestUtil.logMsg("Setup tests");
 
-  /* Run tests */
-  /*
-   * @testName: test5
-   *
-   * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:68; JavaEE:SPEC:69;
-   * JavaEE:SPEC:84
-   *
-   * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-   * interface. Perform global transactions using the Ejb1Test (deployed as
-   * TX_REQUIRED) to a single RDBMS table.
-   * 
-   * Insert/Delete followed by a commit to a single table.
-   *
-   * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1:
-   * Insert, EJB2: Insert, tx_commit
-   */
-  public void test5() throws Exception {
-    String testname = "test5";
-    boolean testResult = false;
-    String tName1 = this.tName1;
+            TestUtil.logMsg("Obtain naming context");
+            nctx = new TSNamingContext();
 
-    try {
-      TestUtil.logTrace(testname);
-      TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
-      TestUtil.logMsg("Insert/Delete followed by a commit to a single table");
-      TestUtil
-          .logMsg("Database access is performed from EJB1Test and EJB2Test");
+            TestUtil.logMsg("Lookup Ejb1Test: " + txRef);
+            beanRef = (Ejb1Test) nctx.lookup(txRef, Ejb1Test.class);
 
-      TestUtil.logMsg("Creating the table");
-      ut.begin();
-      beanRef.dbConnect(tName1);
-      beanRef.destroyData(tName1);
-      beanRef.dbUnConnect(tName1);
-      ut.commit();
+            TestUtil.logMsg("Lookup java:comp/UserTransaction");
+            ut = (UserTransaction) nctx.lookup("java:comp/UserTransaction");
 
-      TestUtil.logMsg("Insert rows");
-      ut.begin();
-      beanRef.dbConnect(tName1);
-      TestUtil.logMsg("Calling insert in Ejb1");
-      beanRef.insert(tName1);
-      beanRef.dbUnConnect(tName1);
-      ut.commit();
+            // Get the table names
+            TestUtil.logMsg("Lookup environment variables");
+            this.tName1 = TestUtil.getTableName(TestUtil.getProperty("Xa_Tab1_Delete"));
+            TestUtil.logTrace("tName1: " + this.tName1);
 
-      TestUtil.logMsg("Get test results");
-      ut.begin();
-      beanRef.dbConnect(tName1);
-      testResult = beanRef.verifyData(new String("commit"), tName1,
-          expResultstest1ds);
+            TestUtil.logMsg("Initialize " + txRef);
+            beanRef.initialize(testProps);
 
-      TestUtil.logTrace("Test results");
-      if (!testResult) {
-        TestUtil.logMsg(testResult + " - verification of data failed");
-      } else {
-        TestUtil.logMsg(testResult + " - verification of data successfull");
-      }
-      beanRef.dbUnConnect(tName1);
-      ut.commit();
+            TestUtil.logMsg("Initialize logging data from server in Client");
+            beanRef.initLogging(p);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      throw new Exception(testname + " failed", e);
-    } finally {
-      // cleanup the bean
-      try {
-        ut.begin();
-        beanRef.dbConnect(tName1);
-        beanRef.destroyData(tName1);
-        beanRef.dbUnConnect(tName1);
-        ut.commit();
-      } catch (Exception e) {
-      }
-      ;
-      if (!testResult)
-        throw new Exception(testname + " failed");
+            TestUtil.logMsg("Setup ok");
+        } catch (Exception e) {
+            TestUtil.logErr("Exception in setup: ", e);
+            throw new Exception("setup failed", e);
+        }
     }
-  }
 
-  /*
-   * @testName: test6
-   *
-   * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:68; JavaEE:SPEC:69;
-   * JavaEE:SPEC:84
-   *
-   * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-   * interface. Perform global transactions using the Ejb1Test (deployed as
-   * TX_REQUIRED) to a single RDBMS table.
-   * 
-   * Insert/Delete followed by a rollback to a single table.
-   *
-   * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1:
-   * Insert, EJB2: Insert, tx_rollback
-   */
-  public void test6() throws Exception {
-    String testname = "test6";
-    boolean testResult = false;
-    String tName1 = this.tName1;
+    /* Test cleanup */
 
-    try {
-      TestUtil.logTrace(testname);
-      TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
-      TestUtil.logMsg("Insert/Delete followed by a rollback to a single table");
-      TestUtil
-          .logMsg("Database access is performed from EJB1Test and EJB2Test");
-
-      TestUtil.logMsg("Creating the table");
-      ut.begin();
-      beanRef.dbConnect(tName1);
-      beanRef.destroyData(tName1);
-      beanRef.dbUnConnect(tName1);
-      ut.commit();
-
-      TestUtil.logMsg("Insert rows");
-      ut.begin();
-      beanRef.dbConnect(tName1);
-      TestUtil.logMsg("Calling insert in Ejb1");
-      beanRef.insert(tName1);
-      beanRef.dbUnConnect(tName1);
-      ut.rollback();
-
-      TestUtil.logMsg("Get test results");
-      ut.begin();
-      beanRef.dbConnect(tName1);
-      testResult = beanRef.verifyData(new String("rollback"), tName1,
-          expResultstest1ds);
-
-      TestUtil.logTrace("Test results");
-      if (!testResult) {
-        TestUtil.logMsg(testResult + " - verification of data failed");
-      } else {
-        TestUtil.logMsg(testResult + " - verification of data successfull");
-      }
-      beanRef.dbUnConnect(tName1);
-      ut.commit();
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      throw new Exception(testname + " failed", e);
-    } finally {
-      // cleanup the bean
-      try {
-        ut.begin();
-        beanRef.dbConnect(tName1);
-        beanRef.destroyData(tName1);
-        beanRef.dbUnConnect(tName1);
-        ut.commit();
-      } catch (Exception e) {
-      }
-      ;
-      if (!testResult)
-        throw new Exception(testname + " failed");
+    public void cleanup() throws Exception {
+        TestUtil.logMsg("Cleanup ok");
     }
-  }
 
-  /*
-   * @testName: test7
-   *
-   * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:69; JavaEE:SPEC:84
-   *
-   * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-   * interface. Perform global transactions using the Ejb1Test (deployed as
-   * TX_REQUIRED) to a single RDBMS table.
-   * 
-   * Insert/Delete followed by a commit to a single table.
-   *
-   * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1:
-   * Insert, EJB2: Insert, tx_commit
-   */
-  public void test7() throws Exception {
-    String testname = "test7";
-    boolean testResult = false;
-    // String tName1 = this.tName1;
+    /* Run tests */
+    /*
+     * @testName: test5
+     *
+     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:68; JavaEE:SPEC:69; JavaEE:SPEC:84
+     *
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the Ejb1Test (deployed as TX_REQUIRED) to a single RDBMS table.
+     * 
+     * Insert/Delete followed by a commit to a single table.
+     *
+     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1: Insert, EJB2: Insert, tx_commit
+     */
+    public void test5() throws Exception {
+        String testname = "test5";
+        boolean testResult = false;
+        String tName1 = this.tName1;
 
-    try {
-      TestUtil.logTrace(testname);
-      TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
-      TestUtil.logMsg("Insert/Delete followed by a commit to a single table");
-      TestUtil
-          .logMsg("Database access is performed from EJB1Test and EJB2Test");
+        try {
+            TestUtil.logTrace(testname);
+            TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
+            TestUtil.logMsg("Insert/Delete followed by a commit to a single table");
+            TestUtil.logMsg("Database access is performed from EJB1Test and EJB2Test");
 
-      TestUtil.logMsg("Creating the table");
-      ut.begin();
-      beanRef.dbConnect("EIS");
-      beanRef.destroyData("EIS");
-      beanRef.dbUnConnect("EIS");
-      ut.commit();
+            TestUtil.logMsg("Creating the table");
+            ut.begin();
+            beanRef.dbConnect(tName1);
+            beanRef.destroyData(tName1);
+            beanRef.dbUnConnect(tName1);
+            ut.commit();
 
-      TestUtil.logMsg("Insert rows");
-      ut.begin();
-      beanRef.dbConnect("EIS");
-      TestUtil.logMsg("Calling insert in Ejb1");
-      beanRef.insert("EIS");
-      beanRef.dbUnConnect("EIS");
-      ut.commit();
+            TestUtil.logMsg("Insert rows");
+            ut.begin();
+            beanRef.dbConnect(tName1);
+            TestUtil.logMsg("Calling insert in Ejb1");
+            beanRef.insert(tName1);
+            beanRef.dbUnConnect(tName1);
+            ut.commit();
 
-      TestUtil.logMsg("Get test results");
-      ut.begin();
-      beanRef.dbConnect("EIS");
-      testResult = beanRef.verifyData("commit", "EIS", expResultstest1ds);
+            TestUtil.logMsg("Get test results");
+            ut.begin();
+            beanRef.dbConnect(tName1);
+            testResult = beanRef.verifyData(new String("commit"), tName1, expResultstest1ds);
 
-      TestUtil.logTrace("Test results : " + testResult);
-      if (!testResult) {
-        TestUtil.logMsg(testResult + " - verification of data failed");
-      } else {
-        TestUtil.logMsg(testResult + " - verification of data successfull");
-      }
-      beanRef.dbUnConnect("EIS");
-      ut.commit();
+            TestUtil.logTrace("Test results");
+            if (!testResult) {
+                TestUtil.logMsg(testResult + " - verification of data failed");
+            } else {
+                TestUtil.logMsg(testResult + " - verification of data successfull");
+            }
+            beanRef.dbUnConnect(tName1);
+            ut.commit();
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      throw new Exception(testname + " failed", e);
-    } finally {
-      // cleanup the bean
-      try {
-        ut.begin();
-        beanRef.dbConnect("EIS");
-        beanRef.destroyData("EIS");
-        beanRef.dbUnConnect("EIS");
-        ut.commit();
-      } catch (Exception e) {
-      }
-      ;
-      if (!testResult)
-        throw new Exception(testname + " failed");
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            throw new Exception(testname + " failed", e);
+        } finally {
+            // cleanup the bean
+            try {
+                ut.begin();
+                beanRef.dbConnect(tName1);
+                beanRef.destroyData(tName1);
+                beanRef.dbUnConnect(tName1);
+                ut.commit();
+            } catch (Exception e) {
+            }
+            ;
+            if (!testResult)
+                throw new Exception(testname + " failed");
+        }
     }
-  }
 
-  /*
-   * @testName: test8
-   *
-   * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:69; JavaEE:SPEC:84
-   *
-   * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-   * interface. Perform global transactions using the Ejb1Test (deployed as
-   * TX_REQUIRED) to a single RDBMS table.
-   * 
-   * Insert/Delete followed by a rollback to a single table.
-   *
-   * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1:
-   * Insert, EJB2: Insert, tx_rollback
-   */
-  public void test8() throws Exception {
-    String testname = "test8";
-    boolean testResult = false;
-    // String tName1 = this.tName1;
+    /*
+     * @testName: test6
+     *
+     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:68; JavaEE:SPEC:69; JavaEE:SPEC:84
+     *
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the Ejb1Test (deployed as TX_REQUIRED) to a single RDBMS table.
+     * 
+     * Insert/Delete followed by a rollback to a single table.
+     *
+     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1: Insert, EJB2: Insert, tx_rollback
+     */
+    public void test6() throws Exception {
+        String testname = "test6";
+        boolean testResult = false;
+        String tName1 = this.tName1;
 
-    try {
-      TestUtil.logTrace(testname);
-      TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
-      TestUtil.logMsg("Insert/Delete followed by a rollback to a single table");
-      TestUtil
-          .logMsg("Database access is performed from EJB1Test and EJB2Test");
+        try {
+            TestUtil.logTrace(testname);
+            TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
+            TestUtil.logMsg("Insert/Delete followed by a rollback to a single table");
+            TestUtil.logMsg("Database access is performed from EJB1Test and EJB2Test");
 
-      TestUtil.logMsg("Creating the table");
-      ut.begin();
-      beanRef.dbConnect("EIS");
-      beanRef.destroyData("EIS");
-      beanRef.dbUnConnect("EIS");
-      ut.commit();
+            TestUtil.logMsg("Creating the table");
+            ut.begin();
+            beanRef.dbConnect(tName1);
+            beanRef.destroyData(tName1);
+            beanRef.dbUnConnect(tName1);
+            ut.commit();
 
-      TestUtil.logMsg("Insert rows");
-      ut.begin();
-      beanRef.dbConnect("EIS");
-      TestUtil.logMsg("Calling insert in Ejb1");
-      beanRef.insert("EIS");
-      beanRef.dbUnConnect("EIS");
-      ut.rollback();
+            TestUtil.logMsg("Insert rows");
+            ut.begin();
+            beanRef.dbConnect(tName1);
+            TestUtil.logMsg("Calling insert in Ejb1");
+            beanRef.insert(tName1);
+            beanRef.dbUnConnect(tName1);
+            ut.rollback();
 
-      TestUtil.logMsg("Get test results");
-      ut.begin();
-      beanRef.dbConnect("EIS");
-      testResult = beanRef.verifyData("rollback", "EIS", expResultstest1ds);
+            TestUtil.logMsg("Get test results");
+            ut.begin();
+            beanRef.dbConnect(tName1);
+            testResult = beanRef.verifyData(new String("rollback"), tName1, expResultstest1ds);
 
-      TestUtil.logTrace("Test results : " + testResult);
-      if (!testResult) {
-        TestUtil.logMsg(testResult + " - verification of data failed");
-      } else {
-        TestUtil.logMsg(testResult + " - verification of data successfull");
-      }
-      beanRef.dbUnConnect("EIS");
-      ut.commit();
+            TestUtil.logTrace("Test results");
+            if (!testResult) {
+                TestUtil.logMsg(testResult + " - verification of data failed");
+            } else {
+                TestUtil.logMsg(testResult + " - verification of data successfull");
+            }
+            beanRef.dbUnConnect(tName1);
+            ut.commit();
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      throw new Exception(testname + " failed", e);
-    } finally {
-      // cleanup the bean
-      try {
-        ut.begin();
-        beanRef.dbConnect("EIS");
-        beanRef.destroyData("EIS");
-        beanRef.dbUnConnect("EIS");
-        ut.commit();
-      } catch (Exception e) {
-      }
-      ;
-      if (!testResult)
-        throw new Exception(testname + " failed");
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            throw new Exception(testname + " failed", e);
+        } finally {
+            // cleanup the bean
+            try {
+                ut.begin();
+                beanRef.dbConnect(tName1);
+                beanRef.destroyData(tName1);
+                beanRef.dbUnConnect(tName1);
+                ut.commit();
+            } catch (Exception e) {
+            }
+            ;
+            if (!testResult)
+                throw new Exception(testname + " failed");
+        }
     }
-  }
+
+    /*
+     * @testName: test7
+     *
+     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:69; JavaEE:SPEC:84
+     *
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the Ejb1Test (deployed as TX_REQUIRED) to a single RDBMS table.
+     * 
+     * Insert/Delete followed by a commit to a single table.
+     *
+     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1: Insert, EJB2: Insert, tx_commit
+     */
+    public void test7() throws Exception {
+        String testname = "test7";
+        boolean testResult = false;
+        // String tName1 = this.tName1;
+
+        try {
+            TestUtil.logTrace(testname);
+            TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
+            TestUtil.logMsg("Insert/Delete followed by a commit to a single table");
+            TestUtil.logMsg("Database access is performed from EJB1Test and EJB2Test");
+
+            TestUtil.logMsg("Creating the table");
+            ut.begin();
+            beanRef.dbConnect("EIS");
+            beanRef.destroyData("EIS");
+            beanRef.dbUnConnect("EIS");
+            ut.commit();
+
+            TestUtil.logMsg("Insert rows");
+            ut.begin();
+            beanRef.dbConnect("EIS");
+            TestUtil.logMsg("Calling insert in Ejb1");
+            beanRef.insert("EIS");
+            beanRef.dbUnConnect("EIS");
+            ut.commit();
+
+            TestUtil.logMsg("Get test results");
+            ut.begin();
+            beanRef.dbConnect("EIS");
+            testResult = beanRef.verifyData("commit", "EIS", expResultstest1ds);
+
+            TestUtil.logTrace("Test results : " + testResult);
+            if (!testResult) {
+                TestUtil.logMsg(testResult + " - verification of data failed");
+            } else {
+                TestUtil.logMsg(testResult + " - verification of data successfull");
+            }
+            beanRef.dbUnConnect("EIS");
+            ut.commit();
+
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            throw new Exception(testname + " failed", e);
+        } finally {
+            // cleanup the bean
+            try {
+                ut.begin();
+                beanRef.dbConnect("EIS");
+                beanRef.destroyData("EIS");
+                beanRef.dbUnConnect("EIS");
+                ut.commit();
+            } catch (Exception e) {
+            }
+            ;
+            if (!testResult)
+                throw new Exception(testname + " failed");
+        }
+    }
+
+    /*
+     * @testName: test8
+     *
+     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:69; JavaEE:SPEC:84
+     *
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the Ejb1Test (deployed as TX_REQUIRED) to a single RDBMS table.
+     * 
+     * Insert/Delete followed by a rollback to a single table.
+     *
+     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1: Insert, EJB2: Insert, tx_rollback
+     */
+    public void test8() throws Exception {
+        String testname = "test8";
+        boolean testResult = false;
+        // String tName1 = this.tName1;
+
+        try {
+            TestUtil.logTrace(testname);
+            TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
+            TestUtil.logMsg("Insert/Delete followed by a rollback to a single table");
+            TestUtil.logMsg("Database access is performed from EJB1Test and EJB2Test");
+
+            TestUtil.logMsg("Creating the table");
+            ut.begin();
+            beanRef.dbConnect("EIS");
+            beanRef.destroyData("EIS");
+            beanRef.dbUnConnect("EIS");
+            ut.commit();
+
+            TestUtil.logMsg("Insert rows");
+            ut.begin();
+            beanRef.dbConnect("EIS");
+            TestUtil.logMsg("Calling insert in Ejb1");
+            beanRef.insert("EIS");
+            beanRef.dbUnConnect("EIS");
+            ut.rollback();
+
+            TestUtil.logMsg("Get test results");
+            ut.begin();
+            beanRef.dbConnect("EIS");
+            testResult = beanRef.verifyData("rollback", "EIS", expResultstest1ds);
+
+            TestUtil.logTrace("Test results : " + testResult);
+            if (!testResult) {
+                TestUtil.logMsg(testResult + " - verification of data failed");
+            } else {
+                TestUtil.logMsg(testResult + " - verification of data successfull");
+            }
+            beanRef.dbUnConnect("EIS");
+            ut.commit();
+
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            throw new Exception(testname + " failed", e);
+        } finally {
+            // cleanup the bean
+            try {
+                ut.begin();
+                beanRef.dbConnect("EIS");
+                beanRef.destroyData("EIS");
+                beanRef.dbUnConnect("EIS");
+                ut.commit();
+            } catch (Exception e) {
+            }
+            ;
+            if (!testResult)
+                throw new Exception(testname + " failed");
+        }
+    }
 
 }

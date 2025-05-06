@@ -43,618 +43,598 @@ import jakarta.transaction.UserTransaction;
 @Tag("platform")
 
 public class Client extends ServiceEETest implements Serializable {
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties testProps = null;
+    private Properties testProps = null;
 
-  private static final String txRef = "java:comp/env/ejb/MyEjbReference";
+    private static final String txRef = "java:comp/env/ejb/MyEjbReference";
 
-  private Ejb1Test beanRef = null;
+    private Ejb1Test beanRef = null;
 
-  private UserTransaction ut = null;
+    private UserTransaction ut = null;
 
-  private String tName1 = null;
+    private String tName1 = null;
 
-  private Integer tSize = null;
+    private Integer tSize = null;
 
-  private Integer fromKey1 = null;
+    private Integer fromKey1 = null;
 
-  private Integer fromKey2 = null;
+    private Integer fromKey2 = null;
 
-  private Integer toKey2 = null;
+    private Integer toKey2 = null;
 
-  // Expected resultSet from JDBC and EIS
-  // private int expResultstest1ds1 [] = { 1,2,3,4,5 };
-  // private int expResultstest1ds2 [] = { 1,2,3 };
+    // Expected resultSet from JDBC and EIS
+    // private int expResultstest1ds1 [] = { 1,2,3,4,5 };
+    // private int expResultstest1ds2 [] = { 1,2,3 };
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup: */
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   * 
-   * @class.testArgs: -ap tssql.stmt
-   */
-  public void setup(String args[], Properties p) throws Exception {
-    try {
-      this.testProps = p;
-      TestUtil.init(p);
-      TestUtil.logMsg("Setup tests");
-
-      TestUtil.logMsg("Obtain naming context");
-      nctx = new TSNamingContext();
-
-      TestUtil.logMsg("Lookup Ejb1Test: " + txRef);
-      beanRef = (Ejb1Test) nctx.lookup(txRef, Ejb1Test.class);
-
-      TestUtil.logMsg("Lookup java:comp/UserTransaction");
-      ut = (UserTransaction) nctx.lookup("java:comp/UserTransaction");
-
-      // Get the table names
-      TestUtil.logMsg("Lookup environment variables");
-      this.tName1 = TestUtil
-          .getTableName(TestUtil.getProperty("Xa_Tab1_Delete"));
-      TestUtil.logTrace("tName1: " + this.tName1);
-
-      // Get the table sizes
-      this.tSize = (Integer) nctx.lookup("java:comp/env/size");
-      TestUtil.logTrace("tSize: " + this.tSize);
-
-      this.fromKey1 = (Integer) nctx.lookup("java:comp/env/fromKey1");
-      TestUtil.logTrace("fromKey1: " + this.fromKey1);
-
-      this.fromKey2 = (Integer) nctx.lookup("java:comp/env/fromKey2");
-      TestUtil.logTrace("fromKey2: " + this.fromKey2);
-
-      this.toKey2 = (Integer) nctx.lookup("java:comp/env/toKey2");
-      TestUtil.logTrace("toKey2: " + this.toKey2);
-
-      TestUtil.logMsg("Initialize " + txRef);
-      beanRef.initialize(testProps);
-
-      TestUtil.logMsg("Initialize logging data from server in Client");
-      beanRef.initLogging(p);
-
-      TestUtil.logMsg("Setup ok");
-    } catch (Exception e) {
-      TestUtil.logErr("Exception in setup: ", e);
-      throw new Exception("setup failed", e);
+    /* Run test in standalone mode */
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /* Test cleanup */
+    /* Test setup: */
 
-  public void cleanup() throws Exception {
-    TestUtil.logMsg("Cleanup ok");
-  }
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     * 
+     * @class.testArgs: -ap tssql.stmt
+     */
+    public void setup(String args[], Properties p) throws Exception {
+        try {
+            this.testProps = p;
+            TestUtil.init(p);
+            TestUtil.logMsg("Setup tests");
 
-  /* Run tests */
-  /*
-   * @testName: test14
-   *
-   * @assertion_ids: JavaEE:SPEC:90; JavaEE:SPEC:92; JavaEE:SPEC:79;
-   * JavaEE:SPEC:76; JavaEE:SPEC:74; JavaEE:SPEC:70
-   *
-   * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-   * interface. Perform global transactions using the Ejb1Test (deployed as
-   * TX_REQUIRED) to a single RDBMS table.
-   * 
-   * Insert/Delete followed by a commit to a single table.
-   *
-   * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1:
-   * Insert, EJB2: Insert, tx_commit
-   */
-  public void test14() throws Exception {
-    String testname = "test14";
-    Vector dbResults = new Vector();
-    boolean testResult = false;
-    boolean b1, b2, b3, b4;
-    b1 = b2 = b3 = b4 = false;
-    String tName1 = this.tName1;
-    int tSize = this.tSize.intValue();
-    int tRng = this.fromKey1.intValue();
+            TestUtil.logMsg("Obtain naming context");
+            nctx = new TSNamingContext();
 
-    try {
-      TestUtil.logTrace(testname);
-      TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
-      TestUtil.logMsg(
-          "Insert/Delete followed by a commit to a single table in EIS and JDBC");
-      TestUtil.logMsg("Database access is performed from EJB1Test");
+            TestUtil.logMsg("Lookup Ejb1Test: " + txRef);
+            beanRef = (Ejb1Test) nctx.lookup(txRef, Ejb1Test.class);
 
-      TestUtil.logMsg("Creating the data in JDBC table");
-      ut.begin();
-      beanRef.txDbConnect(tName1);
-      beanRef.createData(tName1);
-      beanRef.txDbUnConnect(tName1);
-      ut.commit();
+            TestUtil.logMsg("Lookup java:comp/UserTransaction");
+            ut = (UserTransaction) nctx.lookup("java:comp/UserTransaction");
 
-      TestUtil.logMsg("Creating the data in EIS table");
-      ut.begin();
-      beanRef.txDbConnect("EIS");
-      beanRef.createData("EIS");
-      beanRef.txDbUnConnect("EIS");
-      ut.commit();
+            // Get the table names
+            TestUtil.logMsg("Lookup environment variables");
+            this.tName1 = TestUtil.getTableName(TestUtil.getProperty("Xa_Tab1_Delete"));
+            TestUtil.logTrace("tName1: " + this.tName1);
 
-      TestUtil.logMsg("Insert and delete some rows");
-      ut.begin();
+            // Get the table sizes
+            this.tSize = (Integer) nctx.lookup("java:comp/env/size");
+            TestUtil.logTrace("tSize: " + this.tSize);
 
-      beanRef.dbConnect(tName1);
-      TestUtil.logMsg("Inserting 2 new rows in JDBC");
-      if (beanRef.insert(tName1, tSize + 1))
-        tSize++;
-      if (beanRef.insert(tName1, tSize + 1))
-        tSize++;
-      // TestUtil.logMsg("Deleting a row in JDBC");
-      // beanRef.delete(tName1, tRng, tRng);
-      beanRef.dbUnConnect(tName1);
+            this.fromKey1 = (Integer) nctx.lookup("java:comp/env/fromKey1");
+            TestUtil.logTrace("fromKey1: " + this.fromKey1);
 
-      tSize = tSize - 2;
+            this.fromKey2 = (Integer) nctx.lookup("java:comp/env/fromKey2");
+            TestUtil.logTrace("fromKey2: " + this.fromKey2);
 
-      beanRef.dbConnect("EIS");
-      TestUtil.logMsg("Inserting 2 new rows in EIS");
-      if (beanRef.insert("EIS", tSize + 1))
-        tSize++;
-      if (beanRef.insert("EIS", tSize + 1))
-        tSize++;
-      // TestUtil.logMsg("Deleting a row in EIS");
-      // beanRef.delete("EIS", tRng, tRng);
-      beanRef.dbUnConnect("EIS");
+            this.toKey2 = (Integer) nctx.lookup("java:comp/env/toKey2");
+            TestUtil.logTrace("toKey2: " + this.toKey2);
 
-      ut.commit();
+            TestUtil.logMsg("Initialize " + txRef);
+            beanRef.initialize(testProps);
 
-      TestUtil.logMsg("Get test results for JDBC");
-      ut.begin();
-      beanRef.txDbConnect(tName1);
-      dbResults = beanRef.getResults(tName1);
-      for (int i = 0; i < dbResults.size(); i++)
-        TestUtil.logTrace(
-            "JDBC dbResults.elementAt" + i + " :" + dbResults.elementAt(i));
+            TestUtil.logMsg("Initialize logging data from server in Client");
+            beanRef.initLogging(p);
 
-      beanRef.txDbUnConnect(tName1);
-      ut.commit();
-
-      TestUtil.logMsg("Verifying the test results of JDBC");
-      // if( ! dbResults.contains(new Integer(tRng)) )
-      // b1 = true;
-
-      for (int i = 1; i <= tSize; i++) {
-        // if(i == tRng)
-        // continue;
-        // else
-        // {
-        if (dbResults.contains(new Integer(i)))
-          b2 = true;
-        else {
-          b2 = false;
-          break;
+            TestUtil.logMsg("Setup ok");
+        } catch (Exception e) {
+            TestUtil.logErr("Exception in setup: ", e);
+            throw new Exception("setup failed", e);
         }
-        // }
-      }
-
-      dbResults = null;
-      TestUtil.logMsg("Get test results for EIS");
-      ut.begin();
-      beanRef.txDbConnect("EIS");
-      dbResults = beanRef.getResults("EIS");
-      beanRef.txDbUnConnect("EIS");
-      ut.commit();
-      for (int i = 0; i < dbResults.size(); i++)
-        TestUtil.logTrace(
-            "EIS dbResults.elementAt" + i + " :" + dbResults.elementAt(i));
-
-      TestUtil.logMsg("Verifying the test results of EIS");
-      // if( ! dbResults.contains(new Integer(tRng)) )
-      // b3 = true;
-
-      for (int i = 1; i <= tSize; i++) {
-        // if(i == tRng)
-        // continue;
-        // else
-        // {
-        if (dbResults.contains(new Integer(i).toString()))
-          b4 = true;
-        else {
-          b4 = false;
-          break;
-        }
-        // }
-      }
-      // TestUtil.logMsg("b1 : " + b1);
-      TestUtil.logTrace("b2 : " + b2);
-      // TestUtil.logMsg("b3 : " + b3);
-      TestUtil.logTrace("b4 : " + b4);
-
-      if (b2 && b4)
-        // if( b1 && b2 && b3 && b4)
-        testResult = true;
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      throw new Exception(testname + " failed", e);
-    } finally {
-      // cleanup the bean
-      try {
-        TestUtil.logMsg("Finally cleaning the test data for JDBC");
-        ut.begin();
-        beanRef.txDbConnect(tName1);
-        beanRef.destroyData(tName1);
-        beanRef.txDbUnConnect(tName1);
-        ut.commit();
-        TestUtil.logMsg("Finally cleaning the test data for EIS");
-        ut.begin();
-        beanRef.txDbConnect("EIS");
-        beanRef.destroyData("EIS");
-        beanRef.txDbUnConnect("EIS");
-        ut.commit();
-      } catch (Exception e) {
-      }
-      ;
-      if (!testResult)
-        throw new Exception(testname + " failed");
     }
-  }
 
-  /*
-   * @testName: test15
-   *
-   * @assertion_ids: JavaEE:SPEC:90; JavaEE:SPEC:92; JavaEE:SPEC:79;
-   * JavaEE:SPEC:76; JavaEE:SPEC:74; JavaEE:SPEC:70
-   *
-   * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-   * interface. Perform global transactions using the Ejb1Test (deployed as
-   * TX_REQUIRED) to a single RDBMS table.
-   * 
-   * Insert/Delete followed by a commit to a single table.
-   *
-   * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1:
-   * Insert, EJB2: Insert, tx_commit
-   */
-  public void test15() throws Exception {
-    String testname = "test15";
-    Vector dbResults = new Vector();
-    boolean testResult = false;
-    boolean b1, b2, b3, b4;
-    b1 = b2 = b3 = b4 = false;
-    String tName1 = this.tName1;
-    int tSize = this.tSize.intValue();
-    int tSizeOrig = this.tSize.intValue();
-    int tRngFrom = this.fromKey2.intValue();
-    int tRngTo = this.toKey2.intValue();
+    /* Test cleanup */
 
-    try {
-      TestUtil.logTrace(testname);
-      TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
-      TestUtil.logMsg(
-          "Insert/Delete followed by a commit to a single table in EIS and JDBC");
-      TestUtil.logMsg("Database access is performed from EJB1Test");
-
-      TestUtil.logMsg("Creating the data in JDBC table");
-      ut.begin();
-      beanRef.txDbConnect(tName1);
-      beanRef.createData(tName1);
-      beanRef.txDbUnConnect(tName1);
-      ut.commit();
-
-      TestUtil.logMsg("Creating the data in EIS table");
-      ut.begin();
-      beanRef.txDbConnect("EIS");
-      beanRef.createData("EIS");
-      beanRef.txDbUnConnect("EIS");
-      ut.commit();
-
-      TestUtil.logMsg("Insert and delete some rows");
-      ut.begin();
-
-      beanRef.dbConnect(tName1);
-      TestUtil.logMsg("Inserting 2 new rows in JDBC");
-      if (beanRef.insert(tName1, tSize + 1))
-        tSize++;
-      if (beanRef.insert(tName1, tSize + 1))
-        tSize++;
-      TestUtil.logMsg("Deleting a row in JDBC");
-      beanRef.delete(tName1, tRngFrom, tRngTo);
-      beanRef.dbUnConnect(tName1);
-
-      tSize = tSize - 2;
-
-      beanRef.dbConnect("EIS");
-      TestUtil.logMsg("Inserting 2 new rows in EIS");
-      if (beanRef.insert("EIS", tSize + 1))
-        tSize++;
-      if (beanRef.insert("EIS", tSize + 1))
-        tSize++;
-      TestUtil.logMsg("Deleting a row in EIS");
-      beanRef.delete("EIS", tRngFrom, tRngTo);
-      beanRef.dbUnConnect("EIS");
-
-      ut.rollback();
-
-      TestUtil.logMsg("Get test results for JDBC");
-      ut.begin();
-      beanRef.txDbConnect(tName1);
-      dbResults = beanRef.getResults(tName1);
-      for (int i = 0; i < dbResults.size(); i++)
-        TestUtil.logTrace(
-            "JDBC dbResults.elementAt" + i + " :" + dbResults.elementAt(i));
-
-      beanRef.txDbUnConnect(tName1);
-      ut.commit();
-
-      TestUtil.logMsg("Verifying the test results of JDBC");
-      for (int i = 1; i <= tSizeOrig; i++) {
-        if (dbResults.contains(new Integer(i))) {
-          b1 = true;
-        } else {
-          b1 = false;
-          break;
-        }
-      }
-      for (int j = tSize; j > tSizeOrig; j--) {
-        if (dbResults.contains(new Integer(j))) {
-          b2 = false;
-          break;
-        } else {
-          b2 = true;
-        }
-      }
-
-      dbResults = null;
-      TestUtil.logMsg("Get test results for EIS");
-      ut.begin();
-      beanRef.txDbConnect("EIS");
-      dbResults = beanRef.getResults("EIS");
-      beanRef.txDbUnConnect("EIS");
-      ut.commit();
-      for (int i = 0; i < dbResults.size(); i++)
-        TestUtil.logTrace(
-            "EIS dbResults.elementAt" + i + " :" + dbResults.elementAt(i));
-
-      TestUtil.logMsg("Verifying the test results of EIS");
-      for (int i = 1; i <= tSizeOrig; i++) {
-        if (dbResults.contains((new Integer(i)).toString())) {
-          b3 = true;
-        } else {
-          b3 = false;
-          break;
-        }
-      }
-      for (int j = tSize; j > tSizeOrig; j--) {
-        if (dbResults.contains((new Integer(j)).toString())) {
-          b4 = false;
-          break;
-        } else {
-          b4 = true;
-        }
-      }
-      TestUtil.logTrace("b1 : " + b1);
-      TestUtil.logTrace("b2 : " + b2);
-      TestUtil.logTrace("b3 : " + b3);
-      TestUtil.logTrace("b4 : " + b4);
-
-      if (b1 && b2 && b3 && b4)
-        testResult = true;
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      throw new Exception(testname + " failed", e);
-    } finally {
-      // cleanup the bean
-      try {
-        TestUtil.logMsg("Finally cleaning the test data for JDBC");
-        ut.begin();
-        beanRef.txDbConnect(tName1);
-        beanRef.destroyData(tName1);
-        beanRef.txDbUnConnect(tName1);
-        ut.commit();
-        TestUtil.logMsg("Finally cleaning the test data for EIS");
-        ut.begin();
-        beanRef.txDbConnect("EIS");
-        beanRef.destroyData("EIS");
-        beanRef.txDbUnConnect("EIS");
-        ut.commit();
-      } catch (Exception e) {
-      }
-      ;
-      if (!testResult)
-        throw new Exception(testname + " failed");
+    public void cleanup() throws Exception {
+        TestUtil.logMsg("Cleanup ok");
     }
-  }
 
-  /*
-   * @testName: test16
-   *
-   * @assertion_ids: JavaEE:SPEC:90; JavaEE:SPEC:92; JavaEE:SPEC:79;
-   * JavaEE:SPEC:76; JavaEE:SPEC:74; JavaEE:SPEC:70
-   *
-   * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-   * interface. Perform global transactions using the Ejb1Test (deployed as
-   * TX_REQUIRED) to a single RDBMS table.
-   * 
-   * Insert/Delete followed by a commit to a single table.
-   *
-   * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1:
-   * Insert, EJB2: Insert, tx_commit
-   */
-  public void test16() throws Exception {
-    String testname = "test16";
-    Vector dbResults = new Vector();
-    boolean testResult = false;
-    boolean b1, b2, b3, b4, b5;
-    b1 = b2 = b3 = b4 = b5 = false;
-    String tName1 = this.tName1;
-    int tSize = this.tSize.intValue();
-    int tSizeOrig = this.tSize.intValue();
-    int tSizeDuplicate = this.tSize.intValue() + 1;
-    int tRng = this.fromKey1.intValue();
+    /* Run tests */
+    /*
+     * @testName: test14
+     *
+     * @assertion_ids: JavaEE:SPEC:90; JavaEE:SPEC:92; JavaEE:SPEC:79; JavaEE:SPEC:76; JavaEE:SPEC:74; JavaEE:SPEC:70
+     *
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the Ejb1Test (deployed as TX_REQUIRED) to a single RDBMS table.
+     * 
+     * Insert/Delete followed by a commit to a single table.
+     *
+     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1: Insert, EJB2: Insert, tx_commit
+     */
+    public void test14() throws Exception {
+        String testname = "test14";
+        Vector dbResults = new Vector();
+        boolean testResult = false;
+        boolean b1, b2, b3, b4;
+        b1 = b2 = b3 = b4 = false;
+        String tName1 = this.tName1;
+        int tSize = this.tSize.intValue();
+        int tRng = this.fromKey1.intValue();
 
-    try {
-      TestUtil.logTrace(testname);
-      TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
-      TestUtil.logMsg(
-          "Insert/Delete followed by a commit to a single table in EIS and JDBC");
-      TestUtil.logMsg("Database access is performed from EJB1Test");
+        try {
+            TestUtil.logTrace(testname);
+            TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
+            TestUtil.logMsg("Insert/Delete followed by a commit to a single table in EIS and JDBC");
+            TestUtil.logMsg("Database access is performed from EJB1Test");
 
-      TestUtil.logMsg("Creating the data in JDBC table");
-      ut.begin();
-      beanRef.txDbConnect(tName1);
-      beanRef.createData(tName1);
-      beanRef.txDbUnConnect(tName1);
-      ut.commit();
+            TestUtil.logMsg("Creating the data in JDBC table");
+            ut.begin();
+            beanRef.txDbConnect(tName1);
+            beanRef.createData(tName1);
+            beanRef.txDbUnConnect(tName1);
+            ut.commit();
 
-      TestUtil.logMsg("Creating the data in EIS table");
-      ut.begin();
-      beanRef.txDbConnect("EIS");
-      beanRef.createData("EIS");
-      beanRef.txDbUnConnect("EIS");
-      ut.commit();
+            TestUtil.logMsg("Creating the data in EIS table");
+            ut.begin();
+            beanRef.txDbConnect("EIS");
+            beanRef.createData("EIS");
+            beanRef.txDbUnConnect("EIS");
+            ut.commit();
 
-      try {
-        TestUtil.logMsg("Insert and delete some rows");
-        ut.begin();
+            TestUtil.logMsg("Insert and delete some rows");
+            ut.begin();
 
-        beanRef.dbConnect(tName1);
-        TestUtil.logMsg("Inserting 2 new rows in JDBC");
-        if (beanRef.insert(tName1, tSize + 1))
-          tSize++;
-        if (beanRef.insert(tName1, tSize + 1))
-          tSize++;
-        TestUtil.logMsg("Deleting a row in JDBC");
-        beanRef.delete(tName1, tRng, tRng);
-        beanRef.dbUnConnect(tName1);
+            beanRef.dbConnect(tName1);
+            TestUtil.logMsg("Inserting 2 new rows in JDBC");
+            if (beanRef.insert(tName1, tSize + 1))
+                tSize++;
+            if (beanRef.insert(tName1, tSize + 1))
+                tSize++;
+            // TestUtil.logMsg("Deleting a row in JDBC");
+            // beanRef.delete(tName1, tRng, tRng);
+            beanRef.dbUnConnect(tName1);
 
-        tSize = tSize - 2;
+            tSize = tSize - 2;
 
-        beanRef.dbConnect("EIS");
-        TestUtil.logMsg("Inserting 2 new rows in EIS");
-        if (beanRef.insert("EIS", tSize + 1))
-          tSize++;
-        if (beanRef.insert("EIS", tSize + 1))
-          tSize++;
-        // TestUtil.logMsg("Deleting a row in EIS");
-        // beanRef.delete("EIS", tRng, tRng);
-        beanRef.dbUnConnect("EIS");
+            beanRef.dbConnect("EIS");
+            TestUtil.logMsg("Inserting 2 new rows in EIS");
+            if (beanRef.insert("EIS", tSize + 1))
+                tSize++;
+            if (beanRef.insert("EIS", tSize + 1))
+                tSize++;
+            // TestUtil.logMsg("Deleting a row in EIS");
+            // beanRef.delete("EIS", tRng, tRng);
+            beanRef.dbUnConnect("EIS");
 
-        TestUtil.logMsg("Insert rows using notx whitebox");
-        TestUtil
-            .logMsg("Calling insertDup in Ejb1 with value = " + tSizeDuplicate);
-        beanRef.insertDup("EIS", Integer.toString(tSizeDuplicate)); // 6
-        // beanRef.insertDup("EIS");
+            ut.commit();
 
-        ut.commit();
-      } catch (jakarta.transaction.RollbackException rex) {
-        TestUtil.printStackTrace(rex);
-        b5 = true;
-        TestUtil.logMsg("Captured Rollback Exception : b5 : " + b5);
-      } catch (Exception ex) {
-        TestUtil.printStackTrace(ex);
-        b5 = false;
-        TestUtil.logMsg("Captured Exception : b5 : " + b5);
-      }
+            TestUtil.logMsg("Get test results for JDBC");
+            ut.begin();
+            beanRef.txDbConnect(tName1);
+            dbResults = beanRef.getResults(tName1);
+            for (int i = 0; i < dbResults.size(); i++)
+                TestUtil.logTrace("JDBC dbResults.elementAt" + i + " :" + dbResults.elementAt(i));
 
-      TestUtil.logMsg("Get test results for JDBC");
-      ut.begin();
-      beanRef.txDbConnect(tName1);
-      dbResults = beanRef.getResults(tName1);
-      for (int i = 0; i < dbResults.size(); i++)
-        TestUtil.logTrace(
-            "JDBC dbResults.elementAt" + i + " :" + dbResults.elementAt(i));
+            beanRef.txDbUnConnect(tName1);
+            ut.commit();
 
-      beanRef.txDbUnConnect(tName1);
-      ut.commit();
+            TestUtil.logMsg("Verifying the test results of JDBC");
+            // if( ! dbResults.contains(new Integer(tRng)) )
+            // b1 = true;
 
-      TestUtil.logMsg("Verifying the test results of JDBC");
-      for (int i = 1; i <= tSizeOrig; i++) {
-        if (dbResults.contains(new Integer(i))) {
-          b1 = true;
-        } else {
-          b1 = false;
-          break;
+            for (int i = 1; i <= tSize; i++) {
+                // if(i == tRng)
+                // continue;
+                // else
+                // {
+                if (dbResults.contains(new Integer(i)))
+                    b2 = true;
+                else {
+                    b2 = false;
+                    break;
+                }
+                // }
+            }
+
+            dbResults = null;
+            TestUtil.logMsg("Get test results for EIS");
+            ut.begin();
+            beanRef.txDbConnect("EIS");
+            dbResults = beanRef.getResults("EIS");
+            beanRef.txDbUnConnect("EIS");
+            ut.commit();
+            for (int i = 0; i < dbResults.size(); i++)
+                TestUtil.logTrace("EIS dbResults.elementAt" + i + " :" + dbResults.elementAt(i));
+
+            TestUtil.logMsg("Verifying the test results of EIS");
+            // if( ! dbResults.contains(new Integer(tRng)) )
+            // b3 = true;
+
+            for (int i = 1; i <= tSize; i++) {
+                // if(i == tRng)
+                // continue;
+                // else
+                // {
+                if (dbResults.contains(new Integer(i).toString()))
+                    b4 = true;
+                else {
+                    b4 = false;
+                    break;
+                }
+                // }
+            }
+            // TestUtil.logMsg("b1 : " + b1);
+            TestUtil.logTrace("b2 : " + b2);
+            // TestUtil.logMsg("b3 : " + b3);
+            TestUtil.logTrace("b4 : " + b4);
+
+            if (b2 && b4)
+                // if( b1 && b2 && b3 && b4)
+                testResult = true;
+
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            throw new Exception(testname + " failed", e);
+        } finally {
+            // cleanup the bean
+            try {
+                TestUtil.logMsg("Finally cleaning the test data for JDBC");
+                ut.begin();
+                beanRef.txDbConnect(tName1);
+                beanRef.destroyData(tName1);
+                beanRef.txDbUnConnect(tName1);
+                ut.commit();
+                TestUtil.logMsg("Finally cleaning the test data for EIS");
+                ut.begin();
+                beanRef.txDbConnect("EIS");
+                beanRef.destroyData("EIS");
+                beanRef.txDbUnConnect("EIS");
+                ut.commit();
+            } catch (Exception e) {
+            }
+            ;
+            if (!testResult)
+                throw new Exception(testname + " failed");
         }
-      }
-      for (int j = tSize; j > tSizeOrig; j--) {
-        if (dbResults.contains(new Integer(j))) {
-          b2 = false;
-          break;
-        } else {
-          b2 = true;
-        }
-      }
-
-      dbResults = null;
-      TestUtil.logMsg("Get test results for EIS");
-      ut.begin();
-      beanRef.txDbConnect("EIS");
-      dbResults = beanRef.getResults("EIS");
-      beanRef.txDbUnConnect("EIS");
-      ut.commit();
-      for (int i = 0; i < dbResults.size(); i++)
-        TestUtil.logTrace(
-            "EIS dbResults.elementAt" + i + " :" + dbResults.elementAt(i));
-
-      TestUtil.logMsg("Verifying the test results of EIS");
-      for (int i = 1; i <= (tSizeOrig + 1); i++) { // to include tSizeDuplicate
-                                                   // also
-        if (dbResults.contains((new Integer(i)).toString())) {
-          b3 = true;
-        } else {
-          b3 = false;
-          break;
-        }
-      }
-      for (int j = tSize; j > tSizeOrig; j--) {
-        if (j == tSizeDuplicate) {
-          continue;
-        } else {
-          if (dbResults.contains((new Integer(j)).toString())) {
-            b4 = false;
-            break;
-          } else {
-            b4 = true;
-          }
-        }
-      }
-      TestUtil.logTrace("b1 : " + b1);
-      TestUtil.logTrace("b2 : " + b2);
-      TestUtil.logTrace("b3 : " + b3);
-      TestUtil.logTrace("b4 : " + b4);
-      TestUtil.logTrace("b5 : " + b5);
-
-      if (b1 && b2 && b3 && b4 && b5)
-        testResult = true;
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      throw new Exception(testname + " failed", e);
-    } finally {
-      // cleanup the bean
-      try {
-        TestUtil.logMsg("Finally cleaning the test data for JDBC");
-        ut.begin();
-        beanRef.txDbConnect(tName1);
-        beanRef.destroyData(tName1);
-        beanRef.txDbUnConnect(tName1);
-        ut.commit();
-        TestUtil.logMsg("Finally cleaning the test data for EIS");
-        ut.begin();
-        beanRef.txDbConnect("EIS");
-        beanRef.destroyData("EIS");
-        beanRef.txDbUnConnect("EIS");
-        ut.commit();
-      } catch (Exception e) {
-      }
-      ;
-      if (!testResult)
-        throw new Exception(testname + " failed");
     }
-  }
+
+    /*
+     * @testName: test15
+     *
+     * @assertion_ids: JavaEE:SPEC:90; JavaEE:SPEC:92; JavaEE:SPEC:79; JavaEE:SPEC:76; JavaEE:SPEC:74; JavaEE:SPEC:70
+     *
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the Ejb1Test (deployed as TX_REQUIRED) to a single RDBMS table.
+     * 
+     * Insert/Delete followed by a commit to a single table.
+     *
+     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1: Insert, EJB2: Insert, tx_commit
+     */
+    public void test15() throws Exception {
+        String testname = "test15";
+        Vector dbResults = new Vector();
+        boolean testResult = false;
+        boolean b1, b2, b3, b4;
+        b1 = b2 = b3 = b4 = false;
+        String tName1 = this.tName1;
+        int tSize = this.tSize.intValue();
+        int tSizeOrig = this.tSize.intValue();
+        int tRngFrom = this.fromKey2.intValue();
+        int tRngTo = this.toKey2.intValue();
+
+        try {
+            TestUtil.logTrace(testname);
+            TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
+            TestUtil.logMsg("Insert/Delete followed by a commit to a single table in EIS and JDBC");
+            TestUtil.logMsg("Database access is performed from EJB1Test");
+
+            TestUtil.logMsg("Creating the data in JDBC table");
+            ut.begin();
+            beanRef.txDbConnect(tName1);
+            beanRef.createData(tName1);
+            beanRef.txDbUnConnect(tName1);
+            ut.commit();
+
+            TestUtil.logMsg("Creating the data in EIS table");
+            ut.begin();
+            beanRef.txDbConnect("EIS");
+            beanRef.createData("EIS");
+            beanRef.txDbUnConnect("EIS");
+            ut.commit();
+
+            TestUtil.logMsg("Insert and delete some rows");
+            ut.begin();
+
+            beanRef.dbConnect(tName1);
+            TestUtil.logMsg("Inserting 2 new rows in JDBC");
+            if (beanRef.insert(tName1, tSize + 1))
+                tSize++;
+            if (beanRef.insert(tName1, tSize + 1))
+                tSize++;
+            TestUtil.logMsg("Deleting a row in JDBC");
+            beanRef.delete(tName1, tRngFrom, tRngTo);
+            beanRef.dbUnConnect(tName1);
+
+            tSize = tSize - 2;
+
+            beanRef.dbConnect("EIS");
+            TestUtil.logMsg("Inserting 2 new rows in EIS");
+            if (beanRef.insert("EIS", tSize + 1))
+                tSize++;
+            if (beanRef.insert("EIS", tSize + 1))
+                tSize++;
+            TestUtil.logMsg("Deleting a row in EIS");
+            beanRef.delete("EIS", tRngFrom, tRngTo);
+            beanRef.dbUnConnect("EIS");
+
+            ut.rollback();
+
+            TestUtil.logMsg("Get test results for JDBC");
+            ut.begin();
+            beanRef.txDbConnect(tName1);
+            dbResults = beanRef.getResults(tName1);
+            for (int i = 0; i < dbResults.size(); i++)
+                TestUtil.logTrace("JDBC dbResults.elementAt" + i + " :" + dbResults.elementAt(i));
+
+            beanRef.txDbUnConnect(tName1);
+            ut.commit();
+
+            TestUtil.logMsg("Verifying the test results of JDBC");
+            for (int i = 1; i <= tSizeOrig; i++) {
+                if (dbResults.contains(new Integer(i))) {
+                    b1 = true;
+                } else {
+                    b1 = false;
+                    break;
+                }
+            }
+            for (int j = tSize; j > tSizeOrig; j--) {
+                if (dbResults.contains(new Integer(j))) {
+                    b2 = false;
+                    break;
+                } else {
+                    b2 = true;
+                }
+            }
+
+            dbResults = null;
+            TestUtil.logMsg("Get test results for EIS");
+            ut.begin();
+            beanRef.txDbConnect("EIS");
+            dbResults = beanRef.getResults("EIS");
+            beanRef.txDbUnConnect("EIS");
+            ut.commit();
+            for (int i = 0; i < dbResults.size(); i++)
+                TestUtil.logTrace("EIS dbResults.elementAt" + i + " :" + dbResults.elementAt(i));
+
+            TestUtil.logMsg("Verifying the test results of EIS");
+            for (int i = 1; i <= tSizeOrig; i++) {
+                if (dbResults.contains((new Integer(i)).toString())) {
+                    b3 = true;
+                } else {
+                    b3 = false;
+                    break;
+                }
+            }
+            for (int j = tSize; j > tSizeOrig; j--) {
+                if (dbResults.contains((new Integer(j)).toString())) {
+                    b4 = false;
+                    break;
+                } else {
+                    b4 = true;
+                }
+            }
+            TestUtil.logTrace("b1 : " + b1);
+            TestUtil.logTrace("b2 : " + b2);
+            TestUtil.logTrace("b3 : " + b3);
+            TestUtil.logTrace("b4 : " + b4);
+
+            if (b1 && b2 && b3 && b4)
+                testResult = true;
+
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            throw new Exception(testname + " failed", e);
+        } finally {
+            // cleanup the bean
+            try {
+                TestUtil.logMsg("Finally cleaning the test data for JDBC");
+                ut.begin();
+                beanRef.txDbConnect(tName1);
+                beanRef.destroyData(tName1);
+                beanRef.txDbUnConnect(tName1);
+                ut.commit();
+                TestUtil.logMsg("Finally cleaning the test data for EIS");
+                ut.begin();
+                beanRef.txDbConnect("EIS");
+                beanRef.destroyData("EIS");
+                beanRef.txDbUnConnect("EIS");
+                ut.commit();
+            } catch (Exception e) {
+            }
+            ;
+            if (!testResult)
+                throw new Exception(testname + " failed");
+        }
+    }
+
+    /*
+     * @testName: test16
+     *
+     * @assertion_ids: JavaEE:SPEC:90; JavaEE:SPEC:92; JavaEE:SPEC:79; JavaEE:SPEC:76; JavaEE:SPEC:74; JavaEE:SPEC:70
+     *
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the Ejb1Test (deployed as TX_REQUIRED) to a single RDBMS table.
+     * 
+     * Insert/Delete followed by a commit to a single table.
+     *
+     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1: Insert, EJB2: Insert, tx_commit
+     */
+    public void test16() throws Exception {
+        String testname = "test16";
+        Vector dbResults = new Vector();
+        boolean testResult = false;
+        boolean b1, b2, b3, b4, b5;
+        b1 = b2 = b3 = b4 = b5 = false;
+        String tName1 = this.tName1;
+        int tSize = this.tSize.intValue();
+        int tSizeOrig = this.tSize.intValue();
+        int tSizeDuplicate = this.tSize.intValue() + 1;
+        int tRng = this.fromKey1.intValue();
+
+        try {
+            TestUtil.logTrace(testname);
+            TestUtil.logMsg("Transaction propagation from Servlet, EJB or JSP");
+            TestUtil.logMsg("Insert/Delete followed by a commit to a single table in EIS and JDBC");
+            TestUtil.logMsg("Database access is performed from EJB1Test");
+
+            TestUtil.logMsg("Creating the data in JDBC table");
+            ut.begin();
+            beanRef.txDbConnect(tName1);
+            beanRef.createData(tName1);
+            beanRef.txDbUnConnect(tName1);
+            ut.commit();
+
+            TestUtil.logMsg("Creating the data in EIS table");
+            ut.begin();
+            beanRef.txDbConnect("EIS");
+            beanRef.createData("EIS");
+            beanRef.txDbUnConnect("EIS");
+            ut.commit();
+
+            try {
+                TestUtil.logMsg("Insert and delete some rows");
+                ut.begin();
+
+                beanRef.dbConnect(tName1);
+                TestUtil.logMsg("Inserting 2 new rows in JDBC");
+                if (beanRef.insert(tName1, tSize + 1))
+                    tSize++;
+                if (beanRef.insert(tName1, tSize + 1))
+                    tSize++;
+                TestUtil.logMsg("Deleting a row in JDBC");
+                beanRef.delete(tName1, tRng, tRng);
+                beanRef.dbUnConnect(tName1);
+
+                tSize = tSize - 2;
+
+                beanRef.dbConnect("EIS");
+                TestUtil.logMsg("Inserting 2 new rows in EIS");
+                if (beanRef.insert("EIS", tSize + 1))
+                    tSize++;
+                if (beanRef.insert("EIS", tSize + 1))
+                    tSize++;
+                // TestUtil.logMsg("Deleting a row in EIS");
+                // beanRef.delete("EIS", tRng, tRng);
+                beanRef.dbUnConnect("EIS");
+
+                TestUtil.logMsg("Insert rows using notx whitebox");
+                TestUtil.logMsg("Calling insertDup in Ejb1 with value = " + tSizeDuplicate);
+                beanRef.insertDup("EIS", Integer.toString(tSizeDuplicate)); // 6
+                // beanRef.insertDup("EIS");
+
+                ut.commit();
+            } catch (jakarta.transaction.RollbackException rex) {
+                TestUtil.printStackTrace(rex);
+                b5 = true;
+                TestUtil.logMsg("Captured Rollback Exception : b5 : " + b5);
+            } catch (Exception ex) {
+                TestUtil.printStackTrace(ex);
+                b5 = false;
+                TestUtil.logMsg("Captured Exception : b5 : " + b5);
+            }
+
+            TestUtil.logMsg("Get test results for JDBC");
+            ut.begin();
+            beanRef.txDbConnect(tName1);
+            dbResults = beanRef.getResults(tName1);
+            for (int i = 0; i < dbResults.size(); i++)
+                TestUtil.logTrace("JDBC dbResults.elementAt" + i + " :" + dbResults.elementAt(i));
+
+            beanRef.txDbUnConnect(tName1);
+            ut.commit();
+
+            TestUtil.logMsg("Verifying the test results of JDBC");
+            for (int i = 1; i <= tSizeOrig; i++) {
+                if (dbResults.contains(new Integer(i))) {
+                    b1 = true;
+                } else {
+                    b1 = false;
+                    break;
+                }
+            }
+            for (int j = tSize; j > tSizeOrig; j--) {
+                if (dbResults.contains(new Integer(j))) {
+                    b2 = false;
+                    break;
+                } else {
+                    b2 = true;
+                }
+            }
+
+            dbResults = null;
+            TestUtil.logMsg("Get test results for EIS");
+            ut.begin();
+            beanRef.txDbConnect("EIS");
+            dbResults = beanRef.getResults("EIS");
+            beanRef.txDbUnConnect("EIS");
+            ut.commit();
+            for (int i = 0; i < dbResults.size(); i++)
+                TestUtil.logTrace("EIS dbResults.elementAt" + i + " :" + dbResults.elementAt(i));
+
+            TestUtil.logMsg("Verifying the test results of EIS");
+            for (int i = 1; i <= (tSizeOrig + 1); i++) { // to include tSizeDuplicate
+                                                         // also
+                if (dbResults.contains((new Integer(i)).toString())) {
+                    b3 = true;
+                } else {
+                    b3 = false;
+                    break;
+                }
+            }
+            for (int j = tSize; j > tSizeOrig; j--) {
+                if (j == tSizeDuplicate) {
+                    continue;
+                } else {
+                    if (dbResults.contains((new Integer(j)).toString())) {
+                        b4 = false;
+                        break;
+                    } else {
+                        b4 = true;
+                    }
+                }
+            }
+            TestUtil.logTrace("b1 : " + b1);
+            TestUtil.logTrace("b2 : " + b2);
+            TestUtil.logTrace("b3 : " + b3);
+            TestUtil.logTrace("b4 : " + b4);
+            TestUtil.logTrace("b5 : " + b5);
+
+            if (b1 && b2 && b3 && b4 && b5)
+                testResult = true;
+
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            throw new Exception(testname + " failed", e);
+        } finally {
+            // cleanup the bean
+            try {
+                TestUtil.logMsg("Finally cleaning the test data for JDBC");
+                ut.begin();
+                beanRef.txDbConnect(tName1);
+                beanRef.destroyData(tName1);
+                beanRef.txDbUnConnect(tName1);
+                ut.commit();
+                TestUtil.logMsg("Finally cleaning the test data for EIS");
+                ut.begin();
+                beanRef.txDbConnect("EIS");
+                beanRef.destroyData("EIS");
+                beanRef.txDbUnConnect("EIS");
+                ut.commit();
+            } catch (Exception e) {
+            }
+            ;
+            if (!testResult)
+                throw new Exception(testname + " failed");
+        }
+    }
 
 }
