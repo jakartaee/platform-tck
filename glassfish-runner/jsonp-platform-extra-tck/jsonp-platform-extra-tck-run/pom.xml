@@ -276,7 +276,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-dependency-plugin</artifactId>
-                        <version>3.6.1</version>
+                        <version>3.8.1</version>
                         <executions>
                             <execution>
                                 <id>004-copy-lib</id>
