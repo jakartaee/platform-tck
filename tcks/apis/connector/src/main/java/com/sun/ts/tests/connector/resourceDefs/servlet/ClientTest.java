@@ -61,33 +61,51 @@ public class ClientTest extends com.sun.ts.tests.connector.resourceDefs.servlet.
             );
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("servlet_resourcedefs_web.xml");
-            if(warResURL != null) {
-              servlet_resourcedefs_web.addAsWebInfResource(warResURL, "web.xml");
-            }
+            servlet_resourcedefs_web.addAsWebInfResource(warResURL, "web.xml");
             // The sun-web.xml descriptor
             warResURL = Client.class.getResource("servlet_resourcedefs_web.war.sun-web.xml");
-            if(warResURL != null) {
-              servlet_resourcedefs_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
-
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/connector/resourceDefs/servlet/servlet_resourcedefs_web.xml");
-            if(warResURL != null) {
-              servlet_resourcedefs_web.addAsWebResource(warResURL, "//servlet_resourcedefs_web.xml");
-            }
+            servlet_resourcedefs_web.addAsWebInfResource(warResURL, "sun-web.xml");
 
            // Call the archive processor
            archiveProcessor.processWebArchive(servlet_resourcedefs_web, Client.class, warResURL);
 
-        // Ear
+            // RAR
+            // the rar with the correct archive name
+            JavaArchive conn_resourcedefs_jar = ShrinkWrap.create(JavaArchive.class, "resouredef.jar");
+            // The class files
+            conn_resourcedefs_jar.addClasses(
+                    com.sun.ts.tests.common.connector.embedded.adapter1.CRDActivationSpec.class,
+                    com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject.class,
+                    com.sun.ts.tests.common.connector.embedded.adapter1.CRDManagedConnectionFactory.class,
+                    com.sun.ts.tests.common.connector.embedded.adapter1.CRDMessageListener.class,
+                    com.sun.ts.tests.common.connector.embedded.adapter1.CRDMessageWork.class,
+                    com.sun.ts.tests.common.connector.embedded.adapter1.CRDResourceAdapterImpl.class,
+                    com.sun.ts.tests.common.connector.embedded.adapter1.CRDWorkManager.class,
+                    com.sun.ts.tests.common.connector.embedded.adapter1.MsgXAResource.class,
+                    com.sun.ts.tests.common.connector.embedded.adapter1.NestedWorkXid1.ContextType.class,
+                    com.sun.ts.tests.common.connector.embedded.adapter1.NestedWorkXid1.class,
+                    com.sun.ts.tests.common.connector.util.ConnectorStatus.class,
+                    com.sun.ts.tests.common.connector.util.Log.class,
+                    com.sun.ts.tests.common.connector.whitebox.Debug.class,
+                    com.sun.ts.tests.common.connector.whitebox.NestedWorkXid.class,
+                    com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory.class,
+                    com.sun.ts.tests.common.connector.whitebox.TSDataSource.class,
+                    com.sun.ts.tests.common.connector.whitebox.WorkImpl.class,
+                    com.sun.ts.tests.common.connector.whitebox.WorkListenerImpl.class,
+                    com.sun.ts.tests.common.connector.whitebox.XidImpl.class
+            );
+            JavaArchive conn_resourcedefs_rar = ShrinkWrap.create(JavaArchive.class, "whitebox-rd.rar");
+            conn_resourcedefs_rar.add(conn_resourcedefs_jar, "/", ZipExporter.class);
+
+            // Ear
             EnterpriseArchive servlet_resourcedefs_ear = ShrinkWrap.create(EnterpriseArchive.class, "servlet_resourcedefs.ear");
 
             // Any libraries added to the ear
 
             // The component jars built by the package target
             servlet_resourcedefs_ear.addAsModule(servlet_resourcedefs_web);
+            servlet_resourcedefs_ear.addAsModule(conn_resourcedefs_rar);
+
 
 
 
@@ -95,9 +113,7 @@ public class ClientTest extends com.sun.ts.tests.connector.resourceDefs.servlet.
             URL earResURL = null;
             // The sun-application.xml descriptor
             earResURL = Client.class.getResource("servlet_resourcedefs.ear.sun-application.xml");
-            if(earResURL != null) {
-              servlet_resourcedefs_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
+            servlet_resourcedefs_ear.addAsManifestResource(earResURL, "sun-application.xml");
             // Call the archive processor
             archiveProcessor.processEarArchive(servlet_resourcedefs_ear, Client.class, earResURL);
         return servlet_resourcedefs_ear;

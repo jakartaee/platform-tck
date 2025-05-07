@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sun-application-client PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 8.0 Application Client 1.4//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-application-client_1_4-0.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,9 +17,12 @@
 
 -->
 
-<sun-application-client>
+<application-client version="10" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_10.xsd">
+  <description>TS ejbvehicle client</description>
+  <display-name>msginflow_mdb_ejb_vehicle_client</display-name>
   <ejb-ref>
     <ejb-ref-name>ejb/EJBVehicle</ejb-ref-name>
-    <jndi-name>corbaname:iiop:localhost:3700#mdcomplete_ejb_vehicle</jndi-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <remote>com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote</remote>
   </ejb-ref>
-</sun-application-client>
+</application-client>

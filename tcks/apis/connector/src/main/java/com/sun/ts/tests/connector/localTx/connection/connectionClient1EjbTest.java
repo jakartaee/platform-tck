@@ -84,14 +84,10 @@ public class connectionClient1EjbTest extends com.sun.ts.tests.connector.localTx
             );
             // The application-client.xml descriptor
             URL resURL = connectionClient1.class.getResource("localTx_conn_ejb_vehicle_client.xml");
-            if(resURL != null) {
-              localTx_conn_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            localTx_conn_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = connectionClient1.class.getResource("localTx_conn_ejb_vehicle_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              localTx_conn_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            localTx_conn_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             localTx_conn_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(localTx_conn_ejb_vehicle_client, connectionClient1.class, resURL);
@@ -115,17 +111,12 @@ public class connectionClient1EjbTest extends com.sun.ts.tests.connector.localTx
             );
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = connectionClient1.class.getResource("localTx_conn_ejb_vehicle_ejb.xml");
-            if(ejbResURL1 != null) {
-              localTx_conn_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
-            }
+            localTx_conn_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             // The sun-ejb-jar.xml file
             ejbResURL1 = connectionClient1.class.getResource("localTx_conn_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL1 != null) {
-              localTx_conn_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
-            }
+            localTx_conn_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             // Call the archive processor
             archiveProcessor.processEjbArchive(localTx_conn_ejb_vehicle_ejb, connectionClient1.class, ejbResURL1);
-
 
 
         // Ear
@@ -140,11 +131,6 @@ public class connectionClient1EjbTest extends com.sun.ts.tests.connector.localTx
 
             // The application.xml descriptor
             URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = connectionClient1.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              localTx_conn_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
             // Call the archive processor
             archiveProcessor.processEarArchive(localTx_conn_ejb_vehicle_ear, connectionClient1.class, earResURL);
         return localTx_conn_ejb_vehicle_ear;

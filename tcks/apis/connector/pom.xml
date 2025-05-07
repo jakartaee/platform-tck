@@ -71,6 +71,10 @@
             <artifactId>jakarta.annotation-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>jakarta.jms</groupId>
             <artifactId>jakarta.jms-api</artifactId>
         </dependency>
@@ -88,6 +92,10 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-javatest</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>

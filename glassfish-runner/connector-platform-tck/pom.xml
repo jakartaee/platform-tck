@@ -360,9 +360,15 @@
                                     <goal>verify</goal>
                                 </goals>
                                 <configuration>
+                                    <groups>tck-javatest</groups>
                                     <includes>
+                                        <!--
+                                        <include>**/ClientTest.*</include>
                                         <include>**/*Servlet*.*</include>
                                         <include>**/*Jsp**.*</include>
+                                        -->
+                                        <include>com.sun.ts.tests.connector.resourceDefs.servlet.ClientTest</include>
+
                                     </includes>
                                     
                                     <systemPropertyVariables>
@@ -457,8 +463,10 @@
                                     <goal>verify</goal>
                                 </goals>
                                 <configuration>
+                                    <groups>tck-appclient</groups>
                                     <includes>
-                                        <include>**/*Ejb*Test.*</include>
+                                        <include>**/ClientTest.*</include>
+                                        <include>**/*EjbTest.*</include>
                                     </includes>
                                     
                                     <systemPropertyVariables>

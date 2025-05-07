@@ -145,109 +145,39 @@ public class MDBClientEjbTest extends com.sun.ts.tests.connector.localTx.msginfl
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The application-client.xml descriptor
-            URL resURL = MDBClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
-            if(resURL != null) {
-              msginflow_mdb_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = MDBClient.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              msginflow_mdb_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            URL resURL = MDBClient.class.getResource("msginflow_mdb_ejb_vehicle_client.jar.application-client.xml");
+            msginflow_mdb_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+            resURL = MDBClient.class.getResource("msginflow_mdb_ejb_vehicle_client.jar.sun-application-client.xml");
+            msginflow_mdb_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             msginflow_mdb_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(msginflow_mdb_ejb_vehicle_client, MDBClient.class, resURL);
 
         // Ejb 1
             // the jar with the correct archive name
-            JavaArchive msginflow_mdb_msginflow_ejb = ShrinkWrap.create(JavaArchive.class, "msginflow_mdb_msginflow_ejb.jar");
-            // The class files
-            msginflow_mdb_msginflow_ejb.addClasses(
-                com.sun.ts.tests.connector.mdb.MessageBean.class,
-                com.sun.ts.tests.connector.util.DBSupport.class
-            );
-            // The ejb-jar.xml descriptor
-            URL ejbResURL1 = MDBClient.class.getResource("/com/sun/ts/tests/connector/mdb/msginflow_mdb_msginflow_ejb.xml");
-            if(ejbResURL1 != null) {
-              msginflow_mdb_msginflow_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
-            }
-            // The sun-ejb-jar.xml file
-            ejbResURL1 = MDBClient.class.getResource("/com/sun/ts/tests/connector/mdb/msginflow_mdb_msginflow_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL1 != null) {
-              msginflow_mdb_msginflow_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEjbArchive(msginflow_mdb_msginflow_ejb, MDBClient.class, ejbResURL1);
-        // Ejb 2
-            // the jar with the correct archive name
-            JavaArchive msginflow1_mdb_msginflow_ejb = ShrinkWrap.create(JavaArchive.class, "msginflow1_mdb_msginflow_ejb.jar");
-            // The class files
-            msginflow1_mdb_msginflow_ejb.addClasses(
-                com.sun.ts.tests.connector.mdb.MessageBeanOne.class,
-                com.sun.ts.tests.connector.util.DBSupport.class
-            );
-            // The ejb-jar.xml descriptor
-            URL ejbResURL2 = MDBClient.class.getResource("/com/sun/ts/tests/connector/mdb/msginflow1_mdb_msginflow_ejb.xml");
-            if(ejbResURL2 != null) {
-              msginflow1_mdb_msginflow_ejb.addAsManifestResource(ejbResURL2, "ejb-jar.xml");
-            }
-            // The sun-ejb-jar.xml file
-            ejbResURL2 = MDBClient.class.getResource("/com/sun/ts/tests/connector/mdb/msginflow1_mdb_msginflow_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL2 != null) {
-              msginflow1_mdb_msginflow_ejb.addAsManifestResource(ejbResURL2, "sun-ejb-jar.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEjbArchive(msginflow1_mdb_msginflow_ejb, MDBClient.class, ejbResURL2);
-        // Ejb 3
-            // the jar with the correct archive name
-            JavaArchive msginflow_mdb_jca_msginflow_ejb = ShrinkWrap.create(JavaArchive.class, "msginflow_mdb_jca_msginflow_ejb.jar");
-            // The class files
-            msginflow_mdb_jca_msginflow_ejb.addClasses(
-                com.sun.ts.tests.connector.util.DBSupport.class,
-                com.sun.ts.tests.connector.mdb.JCAMessageBean.class
-            );
-            // The ejb-jar.xml descriptor
-            URL ejbResURL3 = MDBClient.class.getResource("/com/sun/ts/tests/connector/mdb/msginflow_mdb_jca_msginflow_ejb.xml");
-            if(ejbResURL3 != null) {
-              msginflow_mdb_jca_msginflow_ejb.addAsManifestResource(ejbResURL3, "ejb-jar.xml");
-            }
-            // The sun-ejb-jar.xml file
-            ejbResURL3 = MDBClient.class.getResource("/com/sun/ts/tests/connector/mdb/msginflow_mdb_jca_msginflow_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL3 != null) {
-              msginflow_mdb_jca_msginflow_ejb.addAsManifestResource(ejbResURL3, "sun-ejb-jar.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEjbArchive(msginflow_mdb_jca_msginflow_ejb, MDBClient.class, ejbResURL3);
-        // Ejb 4
-            // the jar with the correct archive name
             JavaArchive msginflow_mdb_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "msginflow_mdb_ejb_vehicle_ejb.jar");
             // The class files
             msginflow_mdb_ejb_vehicle_ejb.addClasses(
-                com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-                com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-                com.sun.ts.lib.harness.EETest.Fault.class,
-                com.sun.ts.tests.connector.util.DBSupport.class,
-                com.sun.ts.lib.harness.EETest.class,
-                com.sun.ts.lib.harness.ServiceEETest.class,
-                com.sun.ts.tests.connector.localTx.msginflow.MDBClient.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class,
-                com.sun.ts.tests.common.vehicle.VehicleClient.class,
-                com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class
+                    com.sun.ts.lib.harness.EETest.Fault.class,
+                    com.sun.ts.lib.harness.EETest.SetupException.class,
+                    com.sun.ts.lib.harness.EETest.class,
+                    com.sun.ts.lib.harness.ServiceEETest.class,
+                    com.sun.ts.tests.common.vehicle.VehicleClient.class,
+                    com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+                    com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+                    com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
+                    com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
+                    com.sun.ts.tests.connector.localTx.msginflow.MDBClient.class,
+                    com.sun.ts.tests.connector.util.DBSupport.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL4 = MDBClient.class.getResource("/ejb_vehicle_ejb.xml");
-            if(ejbResURL4 != null) {
-              msginflow_mdb_ejb_vehicle_ejb.addAsManifestResource(ejbResURL4, "ejb-jar.xml");
-            }
+            URL ejbResURL1 = MDBClient.class.getResource("ejb_vehicle_ejb.xml");
+            msginflow_mdb_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             // The sun-ejb-jar.xml file
-            ejbResURL4 = MDBClient.class.getResource("/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL4 != null) {
-              msginflow_mdb_ejb_vehicle_ejb.addAsManifestResource(ejbResURL4, "sun-ejb-jar.xml");
-            }
+            ejbResURL1 = MDBClient.class.getResource("msginflow_mdb_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            msginflow_mdb_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             // Call the archive processor
-            archiveProcessor.processEjbArchive(msginflow_mdb_ejb_vehicle_ejb, MDBClient.class, ejbResURL4);
-
+            archiveProcessor.processEjbArchive(msginflow_mdb_ejb_vehicle_ejb, MDBClient.class, ejbResURL1);
 
         // Ear
             EnterpriseArchive msginflow_mdb_ejb_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "msginflow_mdb_ejb_vehicle.ear");
@@ -255,9 +185,6 @@ public class MDBClientEjbTest extends com.sun.ts.tests.connector.localTx.msginfl
             // Any libraries added to the ear
 
             // The component jars built by the package target
-            msginflow_mdb_ejb_vehicle_ear.addAsModule(msginflow_mdb_msginflow_ejb);
-            msginflow_mdb_ejb_vehicle_ear.addAsModule(msginflow1_mdb_msginflow_ejb);
-            msginflow_mdb_ejb_vehicle_ear.addAsModule(msginflow_mdb_jca_msginflow_ejb);
             msginflow_mdb_ejb_vehicle_ear.addAsModule(msginflow_mdb_ejb_vehicle_ejb);
             msginflow_mdb_ejb_vehicle_ear.addAsModule(msginflow_mdb_ejb_vehicle_client);
 
@@ -265,10 +192,6 @@ public class MDBClientEjbTest extends com.sun.ts.tests.connector.localTx.msginfl
             // The application.xml descriptor
             URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = MDBClient.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              msginflow_mdb_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
             // Call the archive processor
             archiveProcessor.processEarArchive(msginflow_mdb_ejb_vehicle_ear, MDBClient.class, earResURL);
         return msginflow_mdb_ejb_vehicle_ear;
