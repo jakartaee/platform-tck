@@ -165,7 +165,6 @@ public class Client extends EETest {
         String myMessage = "MDB deploy tests";
         Enumeration e;
         String key = null;
-        String notValid = ".";
         try {
             msg = session.createTextMessage();
             e = props.propertyNames();
@@ -177,13 +176,18 @@ public class Client extends EETest {
             msg.setStringProperty("harnesshost", hostname);
             msg.setStringProperty("harnesslogtraceflag", traceFlag);
             msg.setStringProperty("harnesslogport", logPort);
+            // TODO: Not sure why we should be loading all properties
             e = props.propertyNames();
             key = null;
             while (e.hasMoreElements()) {
                 key = (String) e.nextElement();
-                if ((key.indexOf(notValid) == -1) && (key.indexOf("***") == -1)) {
+                if (!key.contains("-") && !key.contains(".") && !key.contains("***")) {
                     String value = TestUtil.getProperty(props, key);
-                    msg.setStringProperty(key, value);
+                    try {
+                        msg.setStringProperty(key, value);
+                    } catch (JMSException ex) {
+                        // ignore
+                    }
                 }
             }
 
