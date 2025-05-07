@@ -14,5 +14,6 @@ jakartaeetck-bundles/
 /tck-env.cfg
 .DS_Store
 wip-find.txt
+*.class
 
 /**/.flattened-pom.xml
