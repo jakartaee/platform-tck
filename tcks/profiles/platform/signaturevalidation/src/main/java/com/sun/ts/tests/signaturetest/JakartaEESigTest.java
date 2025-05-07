@@ -102,6 +102,7 @@ public class JakartaEESigTest extends SigTestEE {
     // So maybe populate appclient first then add it to the EJB map
     // then do EJB then add it to JSP then set JSP to SERVLET.
 
+    APPCLIENT_MAP.put("data", new String[] {"jakarta.data"});
     APPCLIENT_MAP.put("ejb", new String[] { "jakarta.ejb", "jakarta.ejb.spi",
         "jakarta.ejb.embeddable", "jakarta.interceptor"});
     APPCLIENT_MAP.put("interceptors", new String[] { "jakarta.interceptor" });
