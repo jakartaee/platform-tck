@@ -84,14 +84,10 @@ public class lifecycleClient1EjbTest extends com.sun.ts.tests.connector.noTx.lif
             );
             // The application-client.xml descriptor
             URL resURL = lifecycleClient1.class.getResource("lifecycle_ejb_vehicle_client.xml");
-            if(resURL != null) {
-              lifecycle_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            lifecycle_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = lifecycleClient1.class.getResource("lifecycle_ejb_vehicle_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              lifecycle_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            lifecycle_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             lifecycle_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(lifecycle_ejb_vehicle_client, lifecycleClient1.class, resURL);
@@ -115,14 +111,10 @@ public class lifecycleClient1EjbTest extends com.sun.ts.tests.connector.noTx.lif
             );
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = lifecycleClient1.class.getResource("lifecycle_ejb_vehicle_ejb.xml");
-            if(ejbResURL1 != null) {
-              lifecycle_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
-            }
+            lifecycle_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             // The sun-ejb-jar.xml file
             ejbResURL1 = lifecycleClient1.class.getResource("lifecycle_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL1 != null) {
-              lifecycle_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
-            }
+            lifecycle_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             // Call the archive processor
             archiveProcessor.processEjbArchive(lifecycle_ejb_vehicle_ejb, lifecycleClient1.class, ejbResURL1);
 

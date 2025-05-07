@@ -21,8 +21,8 @@
   <display-name>Ejb1</display-name>
   <enterprise-beans>
     <session>
-      <ejb-name>com_sun_ts_tests_common_vehicle_ejb_EJBVehicle</ejb-name>
-      <business-remote>com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote</business-remote>
+      <ejb-name>EJBVehicle</ejb-name>
+      <remote>com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote</remote>
       <ejb-class>com.sun.ts.tests.common.vehicle.ejb.EJBVehicle</ejb-class>
       <session-type>Stateful</session-type>
       <transaction-type>Container</transaction-type>
@@ -41,8 +41,7 @@
   <assembly-descriptor>
     <container-transaction>
       <method>
-        <ejb-name>com_sun_ts_tests_common_vehicle_ejb_EJBVehicle</ejb-name>
-        <method-intf>Remote</method-intf>
+        <ejb-name>EJBVehicle</ejb-name>
         <method-name>runTest</method-name>
       </method>
       <trans-attribute>Required</trans-attribute>

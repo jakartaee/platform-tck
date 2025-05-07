@@ -22,7 +22,7 @@
   <enterprise-beans>
     <unique-id>0</unique-id>
     <ejb>
-      <ejb-name>com_sun_ts_tests_common_vehicle_ejb_EJBVehicle</ejb-name>
+      <ejb-name>EJBVehicle</ejb-name>
       <jndi-name>mdcomplete_ejb_vehicle</jndi-name>
       <resource-ref>
         <res-ref-name>eis/whitebox-mdcomplete</res-ref-name>

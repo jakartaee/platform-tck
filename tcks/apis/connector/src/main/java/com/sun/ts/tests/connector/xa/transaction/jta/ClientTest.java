@@ -65,15 +65,11 @@ public class ClientTest extends com.sun.ts.tests.connector.xa.transaction.jta.JT
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = JTATestClient.class.getResource("com/sun/ts/tests/connector/xa/transaction/jta/ejb_JTATest_client.xml");
-            if(resURL != null) {
-              ejb_JTATest_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            URL resURL = JTATestClient.class.getResource("/com/sun/ts/tests/connector/xa/transaction/jta/ejb_JTATest_client.xml");
+            ejb_JTATest_client.addAsManifestResource(resURL, "application-client.xml");
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = JTATestClient.class.getResource("/com/sun/ts/tests/connector/xa/transaction/jta/ejb_JTATest_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              ejb_JTATest_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            ejb_JTATest_client.addAsManifestResource(resURL, "sun-application-client.xml");
             ejb_JTATest_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.connector.xa.transaction.jta.JTATestClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(ejb_JTATest_client, JTATestClient.class, resURL);
@@ -115,10 +111,6 @@ public class ClientTest extends com.sun.ts.tests.connector.xa.transaction.jta.JT
             // The application.xml descriptor
             URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = JTATestClient.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              ejb_JTATest_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
             // Call the archive processor
             archiveProcessor.processEarArchive(ejb_JTATest_ear, JTATestClient.class, earResURL);
         return ejb_JTATest_ear;

@@ -75,7 +75,7 @@ public class ClientServletTest extends com.sun.ts.tests.connector.annotations.md
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("servlet_vehicle_web.xml");
+            URL warResURL = Client.class.getResource("mdcomplete_servlet_vehicle_web.xml");
             if(warResURL != null) {
               mdcomplete_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }

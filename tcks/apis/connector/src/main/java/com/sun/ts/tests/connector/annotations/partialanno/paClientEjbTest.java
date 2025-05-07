@@ -56,7 +56,7 @@ public class paClientEjbTest extends com.sun.ts.tests.connector.annotations.part
         /com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.xml
         Rar:
 
-        /com/sun/ts/tests/common/connector/whitebox/mdcomplete/ra-md-complete.xml
+        /com/sun/ts/tests/common/connector/whitebox/partialanno/ra-md-complete.xml
         Ear:
 
         */
@@ -83,15 +83,11 @@ public class paClientEjbTest extends com.sun.ts.tests.connector.annotations.part
             com.sun.ts.tests.connector.annotations.partialanno.paClient.class
             );
             // The application-client.xml descriptor
-            URL resURL = paClient.class.getResource("mdcomplete_ejb_vehicle_client.xml");
-            if(resURL != null) {
-              partialanno_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            URL resURL = paClient.class.getResource("partialanno_ejb_vehicle_client.xml");
+            partialanno_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = paClient.class.getResource("mdcomplete_ejb_vehicle_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              partialanno_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
-            }
+            resURL = paClient.class.getResource("partialanno_ejb_vehicle_client.jar.sun-application-client.xml");
+            partialanno_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             partialanno_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(partialanno_ejb_vehicle_client, paClient.class, resURL);
@@ -114,15 +110,11 @@ public class paClientEjbTest extends com.sun.ts.tests.connector.annotations.part
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = paClient.class.getResource("mdcomplete_ejb_vehicle_ejb.xml");
-            if(ejbResURL1 != null) {
-              partialanno_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
-            }
+            URL ejbResURL1 = paClient.class.getResource("partialanno_ejb_vehicle_ejb.xml");
+            partialanno_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             // The sun-ejb-jar.xml file
-            ejbResURL1 = paClient.class.getResource("mdcomplete_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL1 != null) {
-              partialanno_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
-            }
+            ejbResURL1 = paClient.class.getResource("partialanno_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            partialanno_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             // Call the archive processor
             archiveProcessor.processEjbArchive(partialanno_ejb_vehicle_ejb, paClient.class, ejbResURL1);
 
@@ -135,8 +127,6 @@ public class paClientEjbTest extends com.sun.ts.tests.connector.annotations.part
             // The component jars built by the package target
             partialanno_ejb_vehicle_ear.addAsModule(partialanno_ejb_vehicle_ejb);
             partialanno_ejb_vehicle_ear.addAsModule(partialanno_ejb_vehicle_client);
-
-
 
             // The application.xml descriptor
             URL earResURL = null;

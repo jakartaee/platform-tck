@@ -101,6 +101,14 @@ public class ClientTest extends com.sun.ts.tests.connector.deployment.Deployment
             // Call the archive processor
             archiveProcessor.processEjbArchive(ejb_Deployment_ejb, DeploymentClient.class, ejbResURL1);
 
+            // Rar
+            JavaArchive ejb_Deployment_rar = ShrinkWrap.create(JavaArchive.class, "whitebox-tx.rar");
+            URL rarURL = ClientTest.class.getResource("ra.xml");
+            ejb_Deployment_rar.addAsManifestResource(rarURL, "ra.xml");;
+            rarURL = ClientTest.class.getResource("sun-ra.xml");
+            ejb_Deployment_rar.addAsManifestResource(rarURL, "sun-ra.xml");;
+            archiveProcessor.processRarArchive(ejb_Deployment_rar, DeploymentClient.class, rarURL);
+
         // Ear
             EnterpriseArchive ejb_Deployment_ear = ShrinkWrap.create(EnterpriseArchive.class, "ejb_Deployment.ear");
 
@@ -109,6 +117,7 @@ public class ClientTest extends com.sun.ts.tests.connector.deployment.Deployment
             // The component jars built by the package target
             ejb_Deployment_ear.addAsModule(ejb_Deployment_ejb);
             ejb_Deployment_ear.addAsModule(ejb_Deployment_client);
+            ejb_Deployment_ear.addAsModule(ejb_Deployment_rar);
 
 
             // The application.xml descriptor
