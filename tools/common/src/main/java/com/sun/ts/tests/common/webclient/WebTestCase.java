@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -165,11 +166,12 @@ public class WebTestCase implements TestCase {
         } catch (Throwable t) {
             String message = t.getMessage();
             throw new TestFailureException(
-                    "[FATAL] Unexpected failure during " + "test execution." + (message == null ? t.toString() : message), t);
+                    "[FATAL] Unexpected failure during test execution." + (message == null ? t.toString() : message), t);
         }
 
         // Validate this test case instance
         if (!_strategy.validate(this)) {
+            LOGGER.log(Level.SEVERE, String.format("[FAILED] Request: %s%nResponse: %s", _request, _response));
             throw new TestFailureException("Test FAILED!");
         }
 
