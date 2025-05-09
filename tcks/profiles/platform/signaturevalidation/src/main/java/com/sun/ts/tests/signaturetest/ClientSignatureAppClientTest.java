@@ -44,31 +44,31 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @ExtendWith(ArquillianExtension.class)
 @Tag("signaturetest")
 @Tag("platform")
+@Tag("tck-appclient")
 public class ClientSignatureAppClientTest extends JakartaEESigTest implements Serializable {
-    static final String VEHICLE_ARCHIVE = "signaturetest_ClientSignatureServletTest_servlet_vehicle_web.war";
 
     @TargetsContainer("tck-appclient")
     @OverProtocol("appclient")
     @Deployment(name = "appclient", testable = true)
     public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
-        JavaArchive archive = ShrinkWrap.create(JavaArchive.class, "rsMeta_appclient_vehicle_client.jar");
+        JavaArchive archive = ShrinkWrap.create(JavaArchive.class, "ClientSignatureAppClientTest_client.jar");
         archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
         archive.addPackages(true, "com.sun.ts.lib.harness");
+        archive.addPackages(true, "com.sun.ts.tests.signaturetest");
         archive.addClasses(ClientSignatureAppClientTest.class,
                 JakartaEESigTest.class,
                 SigTestEE.class,
-                com.sun.ts.lib.harness.EETest.class,
                 Fault.class,
                 SetupException.class,
-                com.sun.ts.lib.harness.ServiceEETest.class,
-                com.sun.ts.lib.harness.Status.class,
                 com.sun.ts.lib.util.TestUtil.class
         );
         // The appclient-client descriptor
         URL appClientUrl = ClientSignatureAppClientTest.class.getResource("application-client.xml");
         if (appClientUrl != null) {
             archive.addAsManifestResource(appClientUrl, "application-client.xml");
+        } else {
+            throw new IllegalStateException("missing application-client.xml");
         }
         archive.addAsManifestResource(
                 new StringAsset("Main-Class: " + "com.sun.ts.tests.common.vehicle.VehicleClient" + "\n"),
