@@ -137,7 +137,7 @@ public abstract class ServletAbstractUrlClient extends BaseUrlClient {
       sb.append(GET).append(_contextRoot).append(SL);
       sb.append(testValue).append(HTTP10);
     }
-    logger.log(Logger.Level.DEBUG, "REQUEST LINE: {}", sb);
+    logger.log(Logger.Level.DEBUG, "REQUEST LINE: {0}", sb);
 
     HttpRequest req = new HttpRequest(sb.toString(), _hostname, _port);
     testCase.setRequest(req);
@@ -187,7 +187,7 @@ public abstract class ServletAbstractUrlClient extends BaseUrlClient {
       sb.append(GET).append(_contextRoot).append(SL);
       sb.append(testValue).append(HTTP10);
     }
-    logger.log(Logger.Level.DEBUG, "REQUEST LINE: {}", sb);
+    logger.log(Logger.Level.DEBUG, "REQUEST LINE: {0}", sb);
     HttpRequest req = new HttpRequest(sb.toString(), _hostname, _port);
     testCase.setRequest(req);
   }
@@ -241,7 +241,7 @@ public abstract class ServletAbstractUrlClient extends BaseUrlClient {
         }
       }
       result = sb.toString();
-      logger.log(Logger.Level.TRACE, "[AbstractUrlClient] Interface info: {}", result);
+      logger.log(Logger.Level.TRACE, "[AbstractUrlClient] Interface info: {0}", result);
     }
     return result;
   }
