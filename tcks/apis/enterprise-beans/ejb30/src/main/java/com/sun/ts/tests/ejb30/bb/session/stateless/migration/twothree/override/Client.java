@@ -23,21 +23,22 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.override;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ClientBase;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ThreeTestIF;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteHome;
 
+import com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteIF;
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
   // declared in descriptor, too
   // the type of the target EJB is present in descriptor only.
-  @EJB(name = "twoTestBeanHome")
-  private static Object twoTestBeanHome;
+  @EJB(name = "TwoTestBean")
+  private static Object migrationBean;
 
   @EJB(name = "threeTestBean")
   private static ThreeTestIF threeTestBean;
 
-  protected TwoTestRemoteHome getTwoTestRemoteHome() {
-    return (TwoTestRemoteHome) twoTestBeanHome;
+  @Override
+  protected TwoTestRemoteIF getTwoTestBean() {
+    return (TwoTestRemoteIF) migrationBean;
   }
 
   protected ThreeTestIF getThreeTestBean() {

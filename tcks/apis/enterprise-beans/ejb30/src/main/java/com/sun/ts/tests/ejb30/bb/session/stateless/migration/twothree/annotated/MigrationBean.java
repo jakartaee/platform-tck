@@ -23,24 +23,18 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.annotated
 import com.sun.ts.tests.ejb30.common.migration.twothree.MigrationBeanBase;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ThreeIF;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ThreeLocalIF;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
 
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Local;
-import jakarta.ejb.LocalHome;
 import jakarta.ejb.Remote;
-import jakarta.ejb.RemoteHome;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "MigrationBean")
 @Remote({ ThreeIF.class })
 @Local({ ThreeLocalIF.class })
-@RemoteHome(TwoRemoteHome.class)
-@LocalHome(TwoLocalHome.class)
-public class MigrationBean extends MigrationBeanBase implements ThreeIF {
+public class MigrationBean extends MigrationBeanBase /*implements ThreeIF*/ {
 
   @Resource
   private SessionContext sessionContext;

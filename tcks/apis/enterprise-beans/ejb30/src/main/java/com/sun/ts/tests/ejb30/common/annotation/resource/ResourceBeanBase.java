@@ -47,7 +47,6 @@ import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.Topic;
 import jakarta.jms.TopicConnection;
 import jakarta.jms.TopicConnectionFactory;
-import jakarta.mail.Session;
 import jakarta.transaction.TransactionSynchronizationRegistry;
 import jakarta.transaction.UserTransaction;
 
@@ -65,10 +64,6 @@ abstract public class ResourceBeanBase implements ResourceIF {
   abstract protected DataSource getDataSource2();
 
   abstract protected String getDataSource2Name();
-
-  abstract protected jakarta.mail.Session getMailSession();
-
-  abstract protected String getMailSessionName();
 
   abstract protected URL getUrl();
 
@@ -308,23 +303,6 @@ abstract public class ResourceBeanBase implements ResourceIF {
     try {
       Topic topic3 = (Topic) ServiceLocator.lookup(PREFIX + getTopicName());
       verify(topic3, "Naming Context lookup");
-    } catch (NamingException e) {
-      throw new TestFailedException(e);
-    }
-  }
-
-  public void testMailSession() throws TestFailedException {
-    Session session1 = getMailSession();
-    verify(session1, "getMailSession()");
-    session1 = null;
-
-    Session session2 = (Session) getEJBContext().lookup(getMailSessionName());
-    verify(session2, "EJBContext.lookup" + getMailSessionName());
-
-    try {
-      Session session3 = (Session) ServiceLocator
-          .lookup(PREFIX + getMailSessionName());
-      verify(session3, "Naming Context lookup");
     } catch (NamingException e) {
       throw new TestFailedException(e);
     }

@@ -23,8 +23,8 @@
     <res-ref-name>queueConnectionFactory</res-ref-name>
     <jndi-name>jms/QueueConnectionFactory</jndi-name>
     <default-resource-principal>
-      <name>j2ee</name>
-      <password>j2ee</password>
+      <name>guest</name>
+      <password>guest</password>
     </default-resource-principal>
   </resource-ref>
   <message-destination-ref>

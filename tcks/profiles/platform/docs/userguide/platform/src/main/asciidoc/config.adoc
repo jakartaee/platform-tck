@@ -805,6 +805,41 @@ configured to support XA. Consult the documentation for your database
 system and JDBC driver for information that explains how to enable XA
 support.
 
+[[configure-the-tests-ejb-resource-tests]]
+==== To Configure the Test Environment to Run the Jakarta Enterprise Beans 4.0 Resource Tests (Full Platform Only)
+Several jakarta.tck:ejb30 test classes require bindings for `@Resource` injection of type `java.net.URL` as well as a custom JNDI resource.
+
+The `com.sun.ts.tests.ejb30.bb.mdb.dest.jarwar.ClientTest` test has an `com.sun.ts.tests.ejb30.bb.mdb.dest.jarwar.Client` application client that expects a `Resource("url")` to be injected with a URL pointing to a servlet that is deployed in the web container. With the default webServerHost of `localhost` and webServerPort of `8080`, the URL should be set to `http://localhost:8080/mdbdest/TestServlet`.
+
+Other tests using a `java.net.URL` simply expect a valid `http://localhost:8080`, or whatever your test environment webServerHost/webServerPort map to.
+
+The `com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resource` package has an application client with EJBs that expect a `Resource("custom/dog")` to be injected with a custom resource of type `com.sun.ts.lib.deliverable.cts.resource.Dog`. The JNDI `javax.naming.spi.ObjectFactory` for the custom type is `com.sun.ts.lib.deliverable.cts.resource.DogFactory`.
+
+With {glassfish_version} the runner for the jakarta.tck:ejb30 tests uses these custom resource bindings to satisfy these requirements:
+[source,bash]
+----
+create-custom-resource --restype com.sun.ts.lib.deliverable.cts.resource.Dog --factoryclass com.sun.ts.lib.deliverable.cts.resource.DogFactory custom/dog
+create-custom-resource --restype java.net.URL --factoryclass org.glassfish.resources.custom.factory.URLObjectFactory --property spec=http\://localhost\:8080 webServerURL
+create-custom-resource --restype java.net.URL --factoryclass org.glassfish.resources.custom.factory.URLObjectFactory --property spec=http\://localhost\:8080/mdbdest/TestServlet webServerMdbtestURL
+----
+
+A {glassfish_version} specific descriptor is used to configure the custom resource bindings, e.g., this is the `sun-application-client.xml` for the `com.sun.ts.tests.ejb30.bb.mdb.dest.jarwar.ClientTest` test:
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-application-client PUBLIC "-//Sun Microsystems, Inc.//DTD Application Server 9.0 Application Client 5.0//EN"
+    "http://www.sun.com/software/appserver/dtds/sun-application-client_5_0-0.dtd">
+
+<sun-application-client>
+    <resource-ref>
+        <res-ref-name>url</res-ref-name>
+        <jndi-name>webServerMdbtestURL</jndi-name>
+      </resource-ref>
+...
+</sun-application-client>
+
+----
+
 [[configure-the-tests-ejb-datasource-tests]]
 ==== To Configure the Test Environment to Run the Jakarta Enterprise Beans 4.0 DataSource Tests
 

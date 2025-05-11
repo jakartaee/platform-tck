@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.ejb30.common.migration.twothree;
 
-import jakarta.ejb.EJBLocalObject;
+import jakarta.ejb.Local;
 
-public interface TwoLocalIF extends EJBLocalObject {
+@Local
+public interface TwoLocalIF {
   public String from2LocalClient();
 
   public void localSameTxContext();

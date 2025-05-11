@@ -45,6 +45,7 @@ import jakarta.jms.Session;
 import jakarta.jms.TextMessage;
 
 abstract public class ClientBase extends Client implements Constants {
+  private static final int N_TRIES = 3;
   private String currentTestName;
 
   //////////////////////////////////////////////////////////////////////
@@ -307,7 +308,7 @@ abstract public class ClientBase extends Client implements Constants {
     // dequeue the response from the mdb
     Message msgRec = null;
 
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < N_TRIES; ++i) {
       TestUtil
           .logMsg("@recvMessageInternal trying to receive the message: " + i);
       msgRec = rcvr.receive(timeout);
@@ -315,6 +316,8 @@ abstract public class ClientBase extends Client implements Constants {
       if (msgRec != null && msgRec.getStringProperty("TestCase") != null
           && msgRec.getStringProperty("TestCase").equals(TestCase)) {
         break;
+      } else {
+        TestUtil.logMsg("Ignoring message: " + msgRec);
       }
     } // end for loop
     if (msgRec != null) {

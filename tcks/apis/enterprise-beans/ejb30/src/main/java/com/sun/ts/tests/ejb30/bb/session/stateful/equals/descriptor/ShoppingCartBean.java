@@ -30,7 +30,7 @@ import jakarta.ejb.TransactionManagementType;
 //@Local({LocalShoppingCartIF.class})
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ShoppingCartBean
-// implements CartIF, ShoppingCartIF, LocalCartIF, LocalShoppingCartIF
+//  implements CartIF, ShoppingCartIF, LocalCartIF, LocalShoppingCartIF
 {
   @Resource(name = "sessionContext")
   private SessionContext sessionContext;

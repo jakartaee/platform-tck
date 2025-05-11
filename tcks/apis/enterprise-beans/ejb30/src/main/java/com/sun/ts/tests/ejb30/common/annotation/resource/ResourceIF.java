@@ -33,8 +33,6 @@ public interface ResourceIF {
 
   public void testDataSource2() throws TestFailedException;
 
-  public void testMailSession() throws TestFailedException;
-
   public void testUrl() throws TestFailedException;
 
   public void testTopicConnectionFactory() throws TestFailedException;

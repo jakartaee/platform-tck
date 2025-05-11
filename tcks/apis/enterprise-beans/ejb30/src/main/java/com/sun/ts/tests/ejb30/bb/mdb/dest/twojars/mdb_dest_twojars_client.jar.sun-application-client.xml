@@ -27,4 +27,12 @@
       <password>guest</password>
     </default-resource-principal>
   </resource-ref>
+  <message-destination-ref>
+    <message-destination-ref-name>sendQueue</message-destination-ref-name>
+    <jndi-name>MDB_QUEUE</jndi-name>
+  </message-destination-ref>
+  <message-destination-ref>
+    <message-destination-ref-name>receiveQueue</message-destination-ref-name>
+    <jndi-name>MDB_QUEUE_REPLY</jndi-name>
+  </message-destination-ref>
 </sun-application-client>

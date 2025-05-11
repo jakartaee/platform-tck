@@ -17,45 +17,51 @@
 
 -->
 
-<application-client xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" metadata-complete="false" version="10" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_10.xsd">
-<ejb-ref>
-<ejb-ref-name>sessionContextBean</ejb-ref-name>
-<ejb-ref-type>Session</ejb-ref-type>
-<remote>com.sun.ts.tests.ejb30.common.sessioncontext.Three1IF</remote>
-<ejb-link>stateless_sessioncontext_descriptor_ejb.jar#SessionContextBean</ejb-link>
-<injection-target>
-<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor.Client</injection-target-class>
-<injection-target-name>sessionContextBean</injection-target-name>
-</injection-target>
-</ejb-ref>
-<ejb-ref>
-<ejb-ref-name>sessionContextBean2</ejb-ref-name>
-<ejb-ref-type>Session</ejb-ref-type>
-<remote>com.sun.ts.tests.ejb30.common.sessioncontext.Three2IF</remote>
-<ejb-link>stateless_sessioncontext_descriptor_ejb.jar#SessionContextBean</ejb-link>
-<injection-target>
-<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor.Client</injection-target-class>
-<injection-target-name>sessionContextBean2</injection-target-name>
-</injection-target>
-</ejb-ref>
-<ejb-ref>
-<ejb-ref-name>testBean</ejb-ref-name>
-<ejb-ref-type>Session</ejb-ref-type>
-<remote>com.sun.ts.tests.ejb30.common.sessioncontext.TestIF</remote>
-<ejb-link>stateless_sessioncontext_descriptor_ejb.jar#TestBean</ejb-link>
-<injection-target>
-<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor.Client</injection-target-class>
-<injection-target-name>testBean</injection-target-name>
-</injection-target>
-</ejb-ref>
-<ejb-ref>
-<ejb-ref-name>acceptBean</ejb-ref-name>
-<ejb-ref-type>Session</ejb-ref-type>
-<remote>com.sun.ts.tests.ejb30.common.sessioncontext.AcceptIF</remote>
-<ejb-link>stateless_sessioncontext_descriptor_ejb.jar#AcceptBean</ejb-link>
-<injection-target>
-<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor.Client</injection-target-class>
-<injection-target-name>acceptBean</injection-target-name>
-</injection-target>
-</ejb-ref>
+<application-client xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    metadata-complete="false" version="10"
+                    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_10.xsd">
+    <ejb-ref>
+        <ejb-ref-name>sessionContextBean</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.sun.ts.tests.ejb30.common.sessioncontext.Three1IF</remote>
+        <ejb-link>stateless_sessioncontext_descriptor_ejb.jar#SessionContextBean</ejb-link>
+        <injection-target>
+            <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor.Client
+            </injection-target-class>
+            <injection-target-name>sessionContextBean</injection-target-name>
+        </injection-target>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>sessionContextBean2</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.sun.ts.tests.ejb30.common.sessioncontext.Three2IF</remote>
+        <ejb-link>stateless_sessioncontext_descriptor_ejb.jar#SessionContextBean</ejb-link>
+        <injection-target>
+            <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor.Client
+            </injection-target-class>
+            <injection-target-name>sessionContextBean2</injection-target-name>
+        </injection-target>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>testBean</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.sun.ts.tests.ejb30.common.sessioncontext.TestIF</remote>
+        <ejb-link>stateless_sessioncontext_descriptor_ejb.jar#TestBean</ejb-link>
+        <injection-target>
+            <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor.Client
+            </injection-target-class>
+            <injection-target-name>testBean</injection-target-name>
+        </injection-target>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>acceptBean</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.sun.ts.tests.ejb30.common.sessioncontext.AcceptIF</remote>
+        <ejb-link>stateless_sessioncontext_descriptor_ejb.jar#AcceptBean</ejb-link>
+        <injection-target>
+            <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor.Client
+            </injection-target-class>
+            <injection-target-name>acceptBean</injection-target-name>
+        </injection-target>
+    </ejb-ref>
 </application-client>

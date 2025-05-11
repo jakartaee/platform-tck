@@ -22,11 +22,8 @@
     <resource-ref>
         <res-ref-name>queueConnectionFactory</res-ref-name>
         <jndi-name>jms/QueueConnectionFactory</jndi-name>
-        <default-resource-principal>
-            <name>guest</name>
-            <password>guest</password>
-        </default-resource-principal>
     </resource-ref>
+
     <message-destination-ref>
         <message-destination-ref-name>sendQueue</message-destination-ref-name>
         <jndi-name>MDB_QUEUE</jndi-name>

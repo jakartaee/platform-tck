@@ -29,13 +29,13 @@ import com.sun.ts.tests.ejb30.common.busiface.TestIF;
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB
+  @EJB(name="bean1")
   private static BusinessIF1 bean1;
 
-  @EJB
+  @EJB(name = "bean2")
   private static BusinessIF2 bean2;
 
-  @EJB
+  @EJB(name = "testBean")
   private static TestIF testBean;
 
   public static void main(String[] args) {

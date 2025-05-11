@@ -31,16 +31,16 @@ import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
 
-  @EJB(beanName = "ResourceSetterBean")
+  @EJB(name = "ResourceSetterBean", beanName = "ResourceSetterBean")
   private static ResourceIF resourceSetterBean;
 
-  @EJB(beanName = "ResourceFieldBean")
+  @EJB(name = "ResourceFieldBean", beanName = "ResourceFieldBean")
   private static ResourceIF resourceFieldBean;
 
-  @EJB(beanName = "ResourceTypeBean")
+  @EJB(name = "ResourceTypeBean", beanName = "ResourceTypeBean")
   private static ResourceIF resourceTypeBean;
 
-  @EJB(beanName = "UserTransactionNegativeBean")
+  @EJB(name = "UserTransactionNegativeBean", beanName = "UserTransactionNegativeBean")
   private static UserTransactionNegativeIF userTransactionNegativeBean;
 
   @Resource(name = "dog", description = "inject a custom jndi resource")

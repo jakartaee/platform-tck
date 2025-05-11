@@ -36,17 +36,17 @@ import jakarta.ejb.EJB;
  */
 
 public class Client extends ClientBase3 {
-  @EJB(beanName = "CallbackBean")
+  @EJB(beanName = "CallbackBean", name = "CallbackBean")
   private static CallbackIF bean;
 
-  @EJB(beanName = "Callback2Bean")
+  @EJB(beanName = "Callback2Bean", name = "Callback2Bean")
   private static Callback2IF bean2;
 
-  @EJB(beanName = "SessionBeanCallbackBean")
+  @EJB(beanName = "SessionBeanCallbackBean", name = "SessionBeanCallbackBean")
   private static CallbackIF sessionBeanCallbackBean;
 
   // used only in this class, not in any superclass
-  @EJB(beanName = "EjbCreateCallbackBean")
+  @EJB(beanName = "EjbCreateCallbackBean", name = "EjbCreateCallbackBean")
   private static CallbackIF ejbCreateCallbackBean;
 
   protected Callback2IF getBean2() {

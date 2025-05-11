@@ -151,22 +151,6 @@ abstract public class ClientBase extends EETest {
   }
 
   /*
-   * testName: mailSessionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void mailSessionTest() throws Exception {
-    try {
-      getResourceFieldBean().testMailSession();
-      getResourceSetterBean().testMailSession();
-      getResourceTypeBean().testMailSession();
-    } catch (TestFailedException e) {
-      throw new Exception("Test Failed", e);
-    }
-  }
-
-  /*
    * testName: queueConnectionFactoryTest
    * 
    * @test_Strategy:

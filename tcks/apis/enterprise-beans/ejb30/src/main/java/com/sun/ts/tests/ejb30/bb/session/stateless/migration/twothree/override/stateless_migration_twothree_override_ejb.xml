@@ -17,59 +17,56 @@
 
 -->
 
-<ejb-jar xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.0" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/ejb-jar_4_0.xsd">
-<enterprise-beans>
-  <session>
-    <display-name>TwoTestBean</display-name>
-    <ejb-name>TwoTestBean</ejb-name>
-    <home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteHome</home>
-    <remote>com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteIF</remote>
-    <ejb-class>com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestBean</ejb-class>
-    <session-type>Stateless</session-type>
-    
-    <ejb-ref>
-        <ejb-ref-name>ejb/tworemote</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome</home>
-        <remote>com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteIF</remote>
-        <ejb-link>MigrationBean</ejb-link>
-    </ejb-ref>
-    
-    <ejb-local-ref>
-        <ejb-ref-name>ejb/twolocal</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local-home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome</local-home>
-        <local>com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalIF</local>
-        <ejb-link>MigrationBean</ejb-link>
-    </ejb-local-ref>
+<ejb-jar xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.0"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/ejb-jar_4_0.xsd">
+    <enterprise-beans>
+        <session>
+            <display-name>TwoTestBean</display-name>
+            <ejb-name>TwoTestBean</ejb-name>
+            <remote>com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteIF</remote>
+            <ejb-class>com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestBean</ejb-class>
+            <session-type>Stateless</session-type>
 
-    </session>
-    
-    <session>
-    <display-name>MigrationBean</display-name>
-    <ejb-name>MigrationBean</ejb-name>
-    
-    <home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome</home>
-    <remote>com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteIF</remote>
-    
-    <local-home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome</local-home>
-    <local>com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalIF</local>
-    
-    <business-local>com.sun.ts.tests.ejb30.common.migration.twothree.ThreeLocalIF</business-local>
-    <business-remote>com.sun.ts.tests.ejb30.common.migration.twothree.ThreeIF</business-remote> 
-    
-    <ejb-class>com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.override.MigrationBean</ejb-class>
-    <session-type>Stateless</session-type>
+            <ejb-ref>
+                <ejb-ref-name>ejb/tworemote</ejb-ref-name>
+                <ejb-ref-type>Session</ejb-ref-type>
+                <remote>com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteIF</remote>
+                <ejb-link>MigrationBean</ejb-link>
+            </ejb-ref>
 
-     <resource-env-ref>
-       <resource-env-ref-name>sessionContext</resource-env-ref-name>
-       <resource-env-ref-type>jakarta.ejb.SessionContext</resource-env-ref-type>
-       <injection-target>
-       <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.override.MigrationBean</injection-target-class>
-       <injection-target-name>sessionContext</injection-target-name>
-       </injection-target>
-     </resource-env-ref>
+            <ejb-local-ref>
+                <ejb-ref-name>ejb/twolocal</ejb-ref-name>
+                <ejb-ref-type>Session</ejb-ref-type>
+                <local>com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalIF</local>
+                <ejb-link>MigrationBean</ejb-link>
+            </ejb-local-ref>
 
-    </session>
-  </enterprise-beans>
+        </session>
+
+        <session>
+            <display-name>MigrationBean</display-name>
+            <ejb-name>MigrationBean</ejb-name>
+
+            <remote>com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteIF</remote>
+            <local>com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalIF</local>
+
+            <business-local>com.sun.ts.tests.ejb30.common.migration.twothree.ThreeLocalIF</business-local>
+            <business-remote>com.sun.ts.tests.ejb30.common.migration.twothree.ThreeIF</business-remote>
+
+            <ejb-class>com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.override.MigrationBean</ejb-class>
+            <session-type>Stateless</session-type>
+
+            <resource-env-ref>
+                <resource-env-ref-name>sessionContext</resource-env-ref-name>
+                <resource-env-ref-type>jakarta.ejb.SessionContext</resource-env-ref-type>
+                <injection-target>
+                    <injection-target-class>
+                        com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.override.MigrationBean
+                    </injection-target-class>
+                    <injection-target-name>sessionContext</injection-target-name>
+                </injection-target>
+            </resource-env-ref>
+
+        </session>
+    </enterprise-beans>
 </ejb-jar>

@@ -228,6 +228,7 @@ public class MdbTestBean extends TestBeanBase implements MessageListener,
     try {
       bean = lookup(refName, klass);
     } catch (TestFailedException e) {
+      e.printStackTrace();
       status = false;
       reason = e.getMessage();
       TLogger.log(status, reason);
@@ -283,6 +284,7 @@ public class MdbTestBean extends TestBeanBase implements MessageListener,
     try {
       bean = lookup(refName, klass);
     } catch (TestFailedException e) {
+      e.printStackTrace();
       status = false;
       reason = e.getMessage();
       TLogger.log(status, reason);

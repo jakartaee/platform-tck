@@ -82,11 +82,6 @@ public class TwoTestBean implements SessionBean {
     } catch (RemoteException e) {
       throw new TestFailedException(e);
     } finally {
-      try {
-        twoRemote.remove();
-      } catch (Exception e) {
-        // ignore
-      }
     }
 
   }
@@ -104,18 +99,11 @@ public class TwoTestBean implements SessionBean {
       }
     } catch (RemoteException e) {
       throw new TestFailedException(e);
-    } finally {
-      try {
-        twoRemote.remove();
-      } catch (Exception e) {
-        // ignore
-      }
     }
   }
 
   public void callLocal() throws TestFailedException {
     TwoLocalIF twoLocal = getTwoLocalBean();
-    try {
       String result = twoLocal.from2LocalClient();
       if ("from2LocalClient".equals(result)) {
         // good
@@ -123,13 +111,6 @@ public class TwoTestBean implements SessionBean {
         throw new TestFailedException("Expected from2LocalClient() to return"
             + "from2LocalClient, but actual '" + result + "'");
       }
-    } finally {
-      try {
-        twoLocal.remove();
-      } catch (Exception e) {
-        // igore
-      }
-    }
   }
 
   public void callLocalSameTxContext() throws TestFailedException {
@@ -144,74 +125,54 @@ public class TwoTestBean implements SessionBean {
             "Expected getRollbackOnly to return true," + " but got false.");
       }
     } finally {
-      try {
-        twoLocal.remove();
-      } catch (Exception e) {
-        // ignore
-      }
     }
   }
 
   //////////////////////////////////////////////////////////////////////
 
   protected TwoRemoteIF getTwoRemoteBean() throws TestFailedException {
-    TwoRemoteHome twoRemoteHome = null;
     TwoRemoteIF twoRemote = null;
     try {
       Object obj = sessionContext.lookup(TWO_REMOTE_SHORT);
-      twoRemoteHome = (TwoRemoteHome) obj;
-      twoRemote = twoRemoteHome.create();
-    } catch (CreateException e) {
-      throw new TestFailedException(e);
-    } catch (RemoteException e) {
+      twoRemote = (TwoRemoteIF) obj;
+    } catch (Exception e) {
       throw new TestFailedException(e);
     }
     return twoRemote;
   }
 
   protected TwoRemoteIF getTwoRemoteBeanJndi() throws TestFailedException {
-    TwoRemoteHome twoRemoteHome = null;
     TwoRemoteIF twoRemote = null;
     try {
       Context ic = new InitialContext();
       Object obj = ic.lookup(TWO_REMOTE);
-      twoRemoteHome = (TwoRemoteHome) PortableRemoteObject.narrow(obj,
-          TwoRemoteHome.class);
-      twoRemote = twoRemoteHome.create();
+      twoRemote = (TwoRemoteIF) PortableRemoteObject.narrow(obj,
+              TwoRemoteIF.class);
     } catch (NamingException e) {
       throw new TestFailedException(e);
-    } catch (CreateException e) {
-      throw new TestFailedException(e);
-    } catch (RemoteException e) {
+    } catch (Exception e) {
       throw new TestFailedException(e);
     }
     return twoRemote;
   }
 
   protected TwoLocalIF getTwoLocalBean() throws TestFailedException {
-    TwoLocalHome twoLocalHome = null;
     TwoLocalIF twoLocal = null;
     try {
       Object obj = sessionContext.lookup(TWO_LOCAL_SHORT);
-      twoLocalHome = (TwoLocalHome) obj;
-      twoLocal = twoLocalHome.create();
-    } catch (CreateException e) {
-      throw new TestFailedException(e);
+      twoLocal = (TwoLocalIF) obj;
+    } catch (Exception e) {
+        throw new TestFailedException(e);
     }
     return twoLocal;
   }
 
   protected TwoLocalIF getTwoLocalBeanJndi() throws TestFailedException {
-    TwoLocalHome twoLocalHome = null;
     TwoLocalIF twoLocal = null;
     try {
       Context ic = new InitialContext();
-      Object obj = ic.lookup(TWO_LOCAL);
-      twoLocalHome = (TwoLocalHome) obj;
-      twoLocal = twoLocalHome.create();
+      twoLocal = (TwoLocalIF) ic.lookup(TWO_LOCAL);
     } catch (NamingException e) {
-      throw new TestFailedException(e);
-    } catch (CreateException e) {
       throw new TestFailedException(e);
     }
     return twoLocal;

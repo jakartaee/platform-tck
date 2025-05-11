@@ -44,10 +44,10 @@ public class Client extends ClientBase implements Constants {
   @EJB(name = "ejb/sessionContextAllowedBean", beanName = "SessionContextAllowedBean")
   private static SessionContextAllowedIF sessionContextAllowedBean;
 
-  @EJB(beanName = "NoTxAllowedBean")
+  @EJB(name = "ejb/NoTxAllowedBean")
   private static NoTxAllowedIF noTxAllowedBean;
 
-  @EJB(beanName = "SetRollbackOnlyBean")
+  @EJB(name = "ejb/SetRollbackOnlyBean")
   private static SetRollbackOnlyIF setRollbackOnlyBean;
 
   @EJB(name = "ejb/injectionAllowedBean", beanName = "InjectionAllowedBean")

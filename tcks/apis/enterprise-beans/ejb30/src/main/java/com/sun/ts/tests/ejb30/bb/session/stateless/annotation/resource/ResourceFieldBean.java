@@ -86,12 +86,6 @@ public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
     return "myDataSource2";
   }
 
-  @Resource(name = "mailSession")
-  private jakarta.mail.Session mailSession;
-
-  protected String getMailSessionName() {
-    return "mailSession";
-  }
 
   @Resource(name = "url")
   private URL url;
@@ -202,10 +196,6 @@ public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
 
   protected DataSource getDataSource2() {
     return dataSource2;
-  }
-
-  protected jakarta.mail.Session getMailSession() {
-    return mailSession;
   }
 
   protected URL getUrl() {

@@ -30,13 +30,13 @@ import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB
+  @EJB(name = "bean1")
   private static BusinessIF1 bean1;
 
-  @EJB
+  @EJB(name = "bean2")
   private static BusinessIF2 bean2;
 
-  @EJB
+  @EJB(name = "testBean")
   private static TestIF testBean;
 
   public void cleanup() throws com.sun.ts.lib.harness.EETest.Fault {

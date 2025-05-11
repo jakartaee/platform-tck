@@ -22,7 +22,6 @@
 <ejb-ref>
 <ejb-ref-name>twoTestBeanHome</ejb-ref-name>
 <ejb-ref-type>Session</ejb-ref-type>
-<home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteHome</home>
 <remote>com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteIF</remote>
 <ejb-link>stateless_migration_twothree_descriptor_ejb.jar#TwoTestBean</ejb-link>
 

@@ -53,6 +53,8 @@ public class StatusReporter implements Constants {
       QueueConnectionFactory qFactory, Queue queueR) {
     QueueConnection qConnection = null;
     QueueSession qSession = null;
+    TLogger.log("StatusReporter: reporting test " + testname + " result: "
+        + result + " reason: " + reason);
     try {
       qConnection = qFactory.createQueueConnection();
       qSession = qConnection.createQueueSession(false,

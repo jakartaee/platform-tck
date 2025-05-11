@@ -22,7 +22,6 @@
   <session>
     <display-name>TwoTestBean</display-name>
     <ejb-name>TwoTestBean</ejb-name>
-    <home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteHome</home>
     <remote>com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteIF</remote>
     <ejb-class>com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestBean</ejb-class>
     <session-type>Stateless</session-type>

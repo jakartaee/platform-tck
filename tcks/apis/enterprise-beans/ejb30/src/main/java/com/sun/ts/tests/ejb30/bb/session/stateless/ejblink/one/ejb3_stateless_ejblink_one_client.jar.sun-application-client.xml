@@ -21,10 +21,14 @@
 <sun-application-client>
   <ejb-ref>
     <ejb-ref-name>ejb/EjbLink1Bean</ejb-ref-name>
-    <jndi-name/>
+    <jndi-name>ejb3_stateless_ejblink_one_EjbLink1Bean</jndi-name>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/injected-EjbLink1Bean</ejb-ref-name>
+    <jndi-name>ejb3_stateless_ejblink_one_EjbLink1Bean</jndi-name>
   </ejb-ref>
   <ejb-ref>
     <ejb-ref-name>ejb/EjbLink2Bean</ejb-ref-name>
-    <jndi-name/>
+    <jndi-name>ejb3_stateless_ejblink_one_EjbLink2Bean</jndi-name>
   </ejb-ref>
 </sun-application-client>

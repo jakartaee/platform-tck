@@ -26,7 +26,7 @@
       <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.Client</injection-target-class>
       <injection-target-name>removeBean</injection-target-name>
     </injection-target>
-    <lookup-name>java:app/stateful_remove_complement_ejb/RemoveBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF</lookup-name>
+    <lookup-name>java:global/stateful_remove_complement/stateful_remove_complement_ejb/RemoveBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF</lookup-name>
   </ejb-ref>
 
   <ejb-ref>
@@ -37,7 +37,7 @@
       <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.Client</injection-target-class>
       <injection-target-name>removeBean2</injection-target-name>
     </injection-target>
-    <lookup-name>java:app/stateful_remove_complement_ejb/RemoveBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.Remove2IF</lookup-name>
+    <lookup-name>java:global/stateful_remove_complement/stateful_remove_complement_ejb/RemoveBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.Remove2IF</lookup-name>
   </ejb-ref>
 
   <ejb-ref>
@@ -48,7 +48,7 @@
       <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.Client</injection-target-class>
       <injection-target-name>removeNotRetainBean</injection-target-name>
     </injection-target>
-    <lookup-name>java:app/stateful_remove_complement_ejb/RemoveNotRetainBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainIF</lookup-name>
+    <lookup-name>java:global/stateful_remove_complement/stateful_remove_complement_ejb/RemoveNotRetainBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainIF</lookup-name>
   </ejb-ref>
 
   <ejb-ref>

@@ -58,7 +58,6 @@ import jakarta.transaction.UserTransaction;
     @Resource(description = "user transaction", name = "myUserTransaction", type = UserTransaction.class),
     @Resource(name = "dataSource", type = DataSource.class, shareable = true, authenticationType = AuthenticationType.CONTAINER, description = "<resource-ref>"),
     @Resource(name = "myDataSource2", type = DataSource.class, authenticationType = AuthenticationType.CONTAINER),
-    @Resource(name = "mailSession", type = Session.class),
     @Resource(name = "url", type = URL.class),
     @Resource(name = "queueConnectionFactory", type = QueueConnectionFactory.class),
     @Resource(name = "topicConnectionFactory", type = TopicConnectionFactory.class),
@@ -157,10 +156,6 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
 
   protected DataSource getDataSource2() {
     return (DataSource) getEJBContext().lookup(getDataSource2Name());
-  }
-
-  protected jakarta.mail.Session getMailSession() {
-    return (Session) getEJBContext().lookup(getMailSessionName());
   }
 
   protected URL getUrl() {
