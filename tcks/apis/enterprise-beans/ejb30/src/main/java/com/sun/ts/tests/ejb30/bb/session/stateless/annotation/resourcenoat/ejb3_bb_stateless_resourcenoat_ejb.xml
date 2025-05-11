@@ -39,14 +39,6 @@
             </resource-ref>
 
             <resource-ref>
-                <res-ref-name>mailSession</res-ref-name>
-                <injection-target>
-                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
-                    <injection-target-name>mailSession</injection-target-name>
-                </injection-target>
-            </resource-ref>
-
-            <resource-ref>
                 <description>description</description>
                 <res-ref-name>url</res-ref-name>
                 <injection-target>
@@ -145,14 +137,6 @@
                 <injection-target>
                     <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
                     <injection-target-name>dataSource2</injection-target-name>
-                </injection-target>
-            </resource-ref>
-
-            <resource-ref>
-                <res-ref-name>mailSession</res-ref-name>
-                <injection-target>
-                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
-                    <injection-target-name>mailSession</injection-target-name>
                 </injection-target>
             </resource-ref>
 

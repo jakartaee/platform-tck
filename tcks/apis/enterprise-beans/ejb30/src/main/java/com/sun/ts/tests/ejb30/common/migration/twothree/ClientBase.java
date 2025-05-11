@@ -30,8 +30,7 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import jakarta.ejb.CreateException;
 
 /*
- * Client accesses TwoTestBean, which calls MigrationBean through its adapted
- * client view (TwoRemoteHome and TwoLocalHome);
+ * Client accesses TwoTestBean, which calls MigrationBean
  * Client accesses ThreeTestBean, which calls MigrationBean throught its ejb3-
  * style business interface (ThreeIF and ThreeLocalIF). This is to make sure
  * that a bean with adapted client view can still be accessed via its declared
@@ -40,8 +39,7 @@ import jakarta.ejb.CreateException;
 abstract public class ClientBase extends EETest {
   protected Properties props;
 
-  abstract protected TwoTestRemoteHome getTwoTestRemoteHome();
-
+  abstract protected TwoTestRemoteIF getTwoTestBean();
   abstract protected ThreeTestIF getThreeTestBean();
 
   private TwoTestRemoteIF twoTestBean;
@@ -69,7 +67,7 @@ abstract public class ClientBase extends EETest {
 
   protected void createTestBean() throws Exception {
     try {
-      twoTestBean = getTwoTestRemoteHome().create();
+      twoTestBean = getTwoTestBean();
       if (!twoTestBean.isIdentical(twoTestBean)) {
         throw new Exception("twoTestBean.isIdentical(twoTestBean) returned false");
       }

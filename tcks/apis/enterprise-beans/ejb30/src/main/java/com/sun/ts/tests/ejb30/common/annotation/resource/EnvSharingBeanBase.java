@@ -69,28 +69,6 @@ abstract public class EnvSharingBeanBase extends ResourceBeanBase
     }
   }
 
-  public void testMailSession() throws TestFailedException {
-    List list = new ArrayList();
-    Session session1 = getMailSession();
-    verify(session1, "getMailSession()", list);
-    session1 = null;
-
-    for (int i = 0; i < LOOKUP_TIMES; i++) {
-      Session session2 = (Session) getEJBContext().lookup(getMailSessionName());
-      verify(session2, "EJBContext.lookup" + getMailSessionName(), list);
-    }
-
-    for (int i = 0; i < LOOKUP_TIMES; i++) {
-      try {
-        Session session3 = (Session) ServiceLocator
-            .lookup(PREFIX + getMailSessionName());
-        verify(session3, "Naming Context lookup" + getMailSessionName(), list);
-      } catch (NamingException e) {
-        throw new TestFailedException(e);
-      }
-    }
-  }
-
   //////////////////////////////////////////////////////////////////////////
 
   protected void verify(Object o, String description, List list)

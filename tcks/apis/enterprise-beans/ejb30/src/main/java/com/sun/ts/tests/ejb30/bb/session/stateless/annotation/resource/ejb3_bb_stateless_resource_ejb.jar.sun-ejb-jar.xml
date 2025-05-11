@@ -41,43 +41,39 @@
                 </default-resource-principal>
             </resource-ref>
             <resource-ref>
-                <res-ref-name>mailSession</res-ref-name>
-                <jndi-name>mail/Session</jndi-name>
-            </resource-ref>
-            <resource-ref>
                 <res-ref-name>url</res-ref-name>
-                <jndi-name>http://webServerHost:webServerPort</jndi-name>
+                <jndi-name>webServerURL</jndi-name>
             </resource-ref>
             <resource-ref>
                 <res-ref-name>queueConnectionFactory</res-ref-name>
                 <jndi-name>jms/QueueConnectionFactory</jndi-name>
                 <default-resource-principal>
-                    <name>j2ee</name>
-                    <password>j2ee</password>
+                    <name>guest</name>
+                    <password>guest</password>
                 </default-resource-principal>
             </resource-ref>
             <resource-ref>
                 <res-ref-name>topicConnectionFactory</res-ref-name>
                 <jndi-name>jms/TopicConnectionFactory</jndi-name>
                 <default-resource-principal>
-                    <name>j2ee</name>
-                    <password>j2ee</password>
+                    <name>guest</name>
+                    <password>guest</password>
                 </default-resource-principal>
             </resource-ref>
             <resource-ref>
                 <res-ref-name>connectionFactoryQ</res-ref-name>
                 <jndi-name>jms/QueueConnectionFactory</jndi-name>
                 <default-resource-principal>
-                    <name>j2ee</name>
-                    <password>j2ee</password>
+                    <name>guest</name>
+                    <password>guest</password>
                 </default-resource-principal>
             </resource-ref>
             <resource-ref>
                 <res-ref-name>connectionFactoryT</res-ref-name>
                 <jndi-name>jms/TopicConnectionFactory</jndi-name>
                 <default-resource-principal>
-                    <name>j2ee</name>
-                    <password>j2ee</password>
+                    <name>guest</name>
+                    <password>guest</password>
                 </default-resource-principal>
             </resource-ref>
             
@@ -159,27 +155,23 @@
                 </default-resource-principal>
             </resource-ref>
             <resource-ref>
-                <res-ref-name>mailSession</res-ref-name>
-                <jndi-name>mail/Session</jndi-name>
-            </resource-ref>
-            <resource-ref>
                 <res-ref-name>url</res-ref-name>
-                <jndi-name>http://webServerHost:webServerPort</jndi-name>
+                <jndi-name>webServerURL</jndi-name>
             </resource-ref>
             <resource-ref>
                 <res-ref-name>queueConnectionFactory</res-ref-name>
                 <jndi-name>jms/QueueConnectionFactory</jndi-name>
                 <default-resource-principal>
-                    <name>j2ee</name>
-                    <password>j2ee</password>
+                    <name>guest</name>
+                    <password>guest</password>
                 </default-resource-principal>
             </resource-ref>
             <resource-ref>
                 <res-ref-name>topicConnectionFactory</res-ref-name>
                 <jndi-name>jms/TopicConnectionFactory</jndi-name>
                 <default-resource-principal>
-                    <name>j2ee</name>
-                    <password>j2ee</password>
+                    <name>guest</name>
+                    <password>guest</password>
                 </default-resource-principal>
             </resource-ref>
             
@@ -187,16 +179,16 @@
                 <res-ref-name>connectionFactoryQ</res-ref-name>
                 <jndi-name>jms/QueueConnectionFactory</jndi-name>
                 <default-resource-principal>
-                    <name>j2ee</name>
-                    <password>j2ee</password>
+                    <name>guest</name>
+                    <password>guest</password>
                 </default-resource-principal>
             </resource-ref>
             <resource-ref>
                 <res-ref-name>connectionFactoryT</res-ref-name>
                 <jndi-name>jms/TopicConnectionFactory</jndi-name>
                 <default-resource-principal>
-                    <name>j2ee</name>
-                    <password>j2ee</password>
+                    <name>guest</name>
+                    <password>guest</password>
                 </default-resource-principal>
             </resource-ref>
             
@@ -270,43 +262,39 @@
                 </default-resource-principal>
             </resource-ref>
             <resource-ref>
-                <res-ref-name>mailSession</res-ref-name>
-                <jndi-name>mail/Session</jndi-name>
-            </resource-ref>
-            <resource-ref>
                 <res-ref-name>url</res-ref-name>
-                <jndi-name>http://webServerHost:webServerPort</jndi-name>
+                <jndi-name>webServerURL</jndi-name>
             </resource-ref>
             <resource-ref>
                 <res-ref-name>queueConnectionFactory</res-ref-name>
                 <jndi-name>jms/QueueConnectionFactory</jndi-name>
                 <default-resource-principal>
-                    <name>j2ee</name>
-                    <password>j2ee</password>
+                    <name>guest</name>
+                    <password>guest</password>
                 </default-resource-principal>
             </resource-ref>
             <resource-ref>
                 <res-ref-name>topicConnectionFactory</res-ref-name>
                 <jndi-name>jms/TopicConnectionFactory</jndi-name>
                 <default-resource-principal>
-                    <name>j2ee</name>
-                    <password>j2ee</password>
+                    <name>guest</name>
+                    <password>guest</password>
                 </default-resource-principal>
             </resource-ref>
             <resource-ref>
                 <res-ref-name>connectionFactoryQ</res-ref-name>
                 <jndi-name>jms/QueueConnectionFactory</jndi-name>
                 <default-resource-principal>
-                    <name>j2ee</name>
-                    <password>j2ee</password>
+                    <name>guest</name>
+                    <password>guest</password>
                 </default-resource-principal>
             </resource-ref>
             <resource-ref>
                 <res-ref-name>connectionFactoryT</res-ref-name>
                 <jndi-name>jms/TopicConnectionFactory</jndi-name>
                 <default-resource-principal>
-                    <name>j2ee</name>
-                    <password>j2ee</password>
+                    <name>guest</name>
+                    <password>guest</password>
                 </default-resource-principal>
             </resource-ref>
             

@@ -78,10 +78,6 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
     return "myDataSource2";
   }
 
-  protected String getMailSessionName() {
-    return "mailSession";
-  }
-
   protected String getUrlName() {
     return "url";
   }
@@ -126,10 +122,6 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
 
   protected DataSource getDataSource2() {
     return (DataSource) getEJBContext().lookup(getDataSource2Name());
-  }
-
-  protected jakarta.mail.Session getMailSession() {
-    return (Session) getEJBContext().lookup(getMailSessionName());
   }
 
   protected URL getUrl() {

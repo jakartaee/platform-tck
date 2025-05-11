@@ -47,14 +47,6 @@
 
       <resource-ref>
         <description>description</description>
-        <res-ref-name>mailSession</res-ref-name>
-        <res-type>jakarta.mail.Session</res-type>
-        <res-auth>Container</res-auth>
-        <res-sharing-scope>Shareable</res-sharing-scope>
-      </resource-ref>
-
-      <resource-ref>
-        <description>description</description>
         <res-ref-name>url</res-ref-name>
         <res-type>java.net.URL</res-type>
         <res-auth>Container</res-auth>
@@ -133,14 +125,6 @@
 
       <resource-ref>
         <description>description</description>
-        <res-ref-name>mailSession</res-ref-name>
-        <res-type>jakarta.mail.Session</res-type>
-        <res-auth>Container</res-auth>
-        <res-sharing-scope>Shareable</res-sharing-scope>
-      </resource-ref>
-
-      <resource-ref>
-        <description>description</description>
         <res-ref-name>url</res-ref-name>
         <res-type>java.net.URL</res-type>
         <res-auth>Container</res-auth>
@@ -213,14 +197,6 @@
         <description>description</description>
         <res-ref-name>myDataSource2</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
-        <res-auth>Container</res-auth>
-        <res-sharing-scope>Shareable</res-sharing-scope>
-      </resource-ref>
-
-      <resource-ref>
-        <description>description</description>
-        <res-ref-name>mailSession</res-ref-name>
-        <res-type>jakarta.mail.Session</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>

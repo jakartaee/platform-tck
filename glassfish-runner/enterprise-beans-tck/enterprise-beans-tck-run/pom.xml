@@ -51,7 +51,8 @@
         <derby.lib>${glassfish.home}/javadb/lib</derby.lib>
         <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>8.0.0-M9</glassfish.version>
+        <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
+        <glassfish.version>8.0.0-M11</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
         <glassfish-artifact-id>glassfish</glassfish-artifact-id>
 
@@ -66,26 +67,19 @@
         <version.jakarta.enterprise>4.0.1</version.jakarta.enterprise>
         <version.jakarta.inject>2.0.1</version.jakarta.inject>
         <version.jakarta.servlet>6.1.0</version.jakarta.servlet>
-        <version.jakarta.tck>11.0.0-10</version.jakarta.tck>
-        <version.ejb.tck>4.0.0-M1</version.ejb.tck>
+        <version.jakarta.tck>11.0.1-SNAPSHOT</version.jakarta.tck>
         <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
 
+        <whitebox.directory>target/whiteboxes</whitebox.directory>
     </properties>
 
     <!-- The Junit5 test frameworks -->
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>5.10.2</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.9.3.Final</version>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>artifacts-bom</artifactId>
+                <version>${version.jakarta.tck}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -143,13 +137,13 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>ejb30</artifactId>
-            <version>${version.ejb.tck}</version>
+            <version>${version.jakarta.tck}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>ejb32</artifactId>
-            <version>${version.ejb.tck}</version>
+            <version>${version.jakarta.tck}</version>
             <scope>test</scope>
         </dependency>
 
@@ -233,6 +227,22 @@
             <version>3.1</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox</artifactId>
+            <version>${version.jakarta.tck}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox-tx</artifactId>
+            <version>${version.jakarta.tck}</version>
+            <type>rar</type>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-lib</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -287,6 +297,37 @@
                             </artifactItems>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>install-whitebox</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>test-compile</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>jakarta.tck.arquillian</groupId>
+                                    <artifactId>arquillian-protocol-lib</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
+                                    <destFileName>arquillian-protocol-lib.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>whitebox</artifactId>
+                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
+                                    <destFileName>whitebox.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>whitebox-tx</artifactId>
+                                    <type>rar</type>
+                                    <outputDirectory>${whitebox.directory}</outputDirectory>
+                                    <destFileName>whitebox-tx.rar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -304,7 +345,7 @@
                     <systemPropertyVariables>
                         <glassfish.home>${glassfish.home}</glassfish.home>
                         <glassfish.httpPort>8080</glassfish.httpPort>
-                        <arquillian.xml>javatest-arquillian.xml</arquillian.xml>
+                        <arquillian.xml>${arquillian.xml.file}</arquillian.xml>
                         <ts.home>${ts.home}</ts.home>
 
                         <glassfish.enableDerby>true</glassfish.enableDerby>
@@ -319,8 +360,22 @@
                             create-jdbc-resource --connectionpoolid cts-derby-XA-pool jdbc/DBTimer
                             create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
                             create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
+                            create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/TopicConnectionFactory
+                            create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/DURABLE_SUB_CONNECTION_FACTORY
+
+                            create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=MY_QUEUE MY_QUEUE
                             create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=MDB_QUEUE MDB_QUEUE
                             create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=MDB_QUEUE_REPLY MDB_QUEUE_REPLY
+                            create-jms-resource --restype jakarta.jms.Topic --property imqDestinationName=MY_TOPIC MY_TOPIC
+
+                            deploy ${whitebox.directory}/whitebox-tx.rar
+                            create-connector-connection-pool --raname whitebox-tx --property eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry --connectiondefinition com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory cts-connector-pool-whitebox-tx-pool.rar
+                            create-connector-resource --poolname cts-connector-pool-whitebox-tx-pool.rar eis/whitebox-tx
+
+                            create-custom-resource --restype com.sun.ts.lib.deliverable.cts.resource.Dog --factoryclass com.sun.ts.lib.deliverable.cts.resource.DogFactory custom/dog
+                            create-custom-resource --restype java.net.URL --factoryclass org.glassfish.resources.custom.factory.URLObjectFactory --property spec=http\://localhost\:8080 webServerURL
+                            create-custom-resource --restype java.net.URL --factoryclass org.glassfish.resources.custom.factory.URLObjectFactory --property spec=http\://localhost\:8080/mdbdest/TestServlet webServerMdbtestURL
+                            list-jndi-resources
                             list-jdbc-resources</glassfish.postBootCommands>
                     </systemPropertyVariables>
                 </configuration>
@@ -333,7 +388,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>3.3.1</version>
+                <version>3.5.3</version>
                 <configuration>
                     <outputName>jakartaee-report</outputName>
                 </configuration>
@@ -538,6 +593,22 @@
                                 <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.JsfClientEjblitejsfTest</exclude>
                             </excludes>
                             <includes>
+                                <!--
+                                <include>com.sun.ts.tests.ejb30.bb.localaccess.mdbclient.ClientTest</include>
+                                <include>com.sun.ts.tests.ejb30.bb.**.*Test</include>
+                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.method.descriptor.ClientTest</include>
+                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.one.ClientTest</include>
+                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.basic.ClientTest</include>
+                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.envsharing.ClientTest</include>
+                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.override.ClientTest</include>
+                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.listener.override.ClientTest</include>
+                                <include>com.sun.ts.tests.ejb30.bb.session.stateful.callback.listener.annotated.ClientTest</include>
+                                <include>com.sun.ts.tests.ejb30.bb.mdb.activationconfig.topic.selectordupsnondurable.complement.ClientTest</include>
+                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ClientTest</include>
+                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.callback.defaultinterceptor.descriptor.ClientTest</include>
+                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.invocationcontext.ClientTest</include>
+                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor.ClientTest</include>
+                                -->
                                 <include>com.sun.ts.tests.ejb30.bb.**.*Test</include>
                             </includes>
                             <groups>${groups}</groups>
@@ -1077,7 +1148,25 @@
                 <groups>web</groups>
             </properties>
         </profile>
-
+        <!-- Enable to run the tck-javatest protocol based tests -->
+        <profile>
+            <id>javatest</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <groups>tck-javatest</groups>
+                <arquillian.xml.file>javatest-arquillian.xml</arquillian.xml.file>
+            </properties>
+        </profile>
+        <!-- Enable to run the tck-appclient based tests -->
+        <profile>
+            <id>appclient</id>
+            <properties>
+                <groups>tck-appclient</groups>
+                <arquillian.xml.file>appclient-arquillian.xml</arquillian.xml.file>
+            </properties>
+        </profile>
     </profiles>
 
 </project>

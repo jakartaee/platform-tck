@@ -29,10 +29,10 @@ import jakarta.ejb.EJB;
 abstract public class ClientBase extends EETest {
   protected Properties props;
 
-  @EJB(beanName = "InvocationContextBean")
+  @EJB(name = "InvocationContextBean")
   static private InvocationContextIF bean;
 
-  @EJB(beanName = "InvocationContextInterceptorBean")
+  @EJB(name = "InvocationContextInterceptorBean")
   static private InvocationContextIF bean2;
 
   private InvocationContextIF[] beans = new InvocationContextIF[] { bean,

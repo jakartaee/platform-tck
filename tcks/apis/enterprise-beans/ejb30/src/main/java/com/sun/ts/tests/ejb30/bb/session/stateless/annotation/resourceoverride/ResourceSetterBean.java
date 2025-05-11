@@ -54,8 +54,6 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
   private DataSource dataSource2;
 
-  private jakarta.mail.Session mailSession;
-
   private URL url;
 
   private QueueConnectionFactory queueConnectionFactory;
@@ -116,23 +114,6 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
   protected String getDataSource2Name() {
     return "myDataSource2";
   }
-
-  //////////////////////////////////////////////////////////////////////
-
-  protected jakarta.mail.Session getMailSession() {
-    return mailSession;
-  }
-
-  @Resource(name = "mailSession", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
-  private void setMailSession(jakarta.mail.Session mailSession) {
-    this.mailSession = mailSession;
-  }
-
-  protected String getMailSessionName() {
-    return "mailSession";
-  }
-
-  //////////////////////////////////////////////////////////////////////
 
   protected URL getUrl() {
     return url;

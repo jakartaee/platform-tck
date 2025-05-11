@@ -74,15 +74,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.localaccess.statefulcl
             com.sun.ts.tests.ejb30.bb.localaccess.common.LocalIF.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/localaccess/statefulclient/localaccess_statefulclient_client.xml");
-            if(resURL != null) {
-              localaccess_statefulclient_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/localaccess/statefulclient/localaccess_statefulclient_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              localaccess_statefulclient_client.addAsManifestResource(resURL, "sun-application-client.xml");
-            }
+            URL resURL = Client.class.getResource("client.sun-application-client.xml");
+            localaccess_statefulclient_client.addAsManifestResource(resURL, "sun-application-client.xml");
             localaccess_statefulclient_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(localaccess_statefulclient_client, Client.class, resURL);

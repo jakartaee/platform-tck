@@ -14,49 +14,61 @@
 ~ See the License for the specific language governing permissions and
 ~ limitations under the License.
 -->
-
-<arquillian xmlns="http://jboss.org/schema/arquillian" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
-
-    <defaultProtocol type="appclient">
-        <property name="runClient">true</property>
-        <!-- This is similar to what one would provide for the modifications found in the command.testExecuteAppClient
-        of the ts.jte file in the EE10 TCK. The appclient protocol parses this into a String[] by using ';' as
-        the command line argument value separator. -->
-        <property name="clientCmdLineString">${jboss.home}/bin/appclient.sh;target/appclient/ejb3_bb_stateless_basic.ear#ejb3_bb_stateless_basic_client.jar;-p;${tck.jte.path}</property>
-        <!-- Provide any environment variable settings needed by the appclient runner.
-        The appclient protocol parses this into a String[] by using ';' as
-        the environment variable value pair separator. The pattern is env1=value1;env2=value2;... -->
-        <property name="clientEnvString">JAVA_OPTS=-Djboss.modules.system.pkgs=com.sun.ts.lib,com.sun.javatest;CLASSPATH=${project.build.directory}/appclient/javatest.jar:${project.build.directory}/appclient/libutil.jar:${project.build.directory}/appclient/libcommon.jar</property>
-        <!-- This should be set to the test project basedir since the appclient protocol writes out the ear from
-         the test class @Deployment method with the protocol dependencies added to the test ear under
-         its lib directory to the ${project.basedir}/target/appclient directory. The clientCmdLineString references
-         this location above as the wildfly appclient runner expects the client ear to be passed into
-         it as the first argument with the appclient jar name appended. -->
-        <property name="clientDir">${project.basedir}</property>
-    </defaultProtocol>
-
+<arquillian xmlns="http://jboss.org/schema/arquillian" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
     <engine>
-        <!--property name="deploymentExportPath">target/deployments</property-->
+        <property name="deploymentExportPath">target/deployments</property>
     </engine>
 
-    <container qualifier="jboss-client-ee11-tck" default="true">
+    <container default="true" qualifier="tck-appclient">
         <configuration>
-            <property name="jbossHome">${jboss.home}</property>
-            <property name="jbossArguments">-P=src/test/resources/testfile.properties</property>
-            <property name="javaVmArguments">${debug.vm.args} ${jvm.args}</property>
-            <property name="serverConfig">${wildfly.standalone.config}</property>
             <property name="allowConnectingToRunningServer">false</property>
+            <property name="debug">true</property>
+            <property name="suspend">false</property>
         </configuration>
-        <protocol type="appclient">
+
+        <protocol type="appclient" default="true">
             <property name="runClient">true</property>
-            <property name="clientCmdLineString">${jboss.home}/bin/appclient.sh;target/appclient/ejb3_bb_stateless_basic.ear#ejb3_bb_stateless_basic_client.jar</property>
-            <property name="clientEnvString">MY_EN=my-env-stting;JAVA_OPTS=-Djboss.modules.system.pkgs=com.sun.ts.lib,com.sun.javatest;CLASSPATH=${project.build.directory}/appclient/javatest.jar:${project.build.directory}/appclient/libutil.jar:${project.build.directory}/appclient/libcommon.jar</property>
+            <property name="runAsVehicle">true</property>
+            <property name="clientEarDir">target/appclient</property>
+            <property name="unpackClientEar">true</property>
+            <!-- Need to populate from ts.jte command.testExecuteAppClient setting for glassfish -->
+            <property name="clientCmdLineString">${glassfish.home}/glassfish/bin/appclient \
+                -Djdk.tls.client.enableSessionTicketExtension=false \
+                -Djdk.tls.server.enableSessionTicketExtension=false \
+                -Djava.security.policy=${glassfish.home}/glassfish/lib/appclient/client.policy \
+                -Dcts.tmp=${ts.home}/tmp \
+                -Djava.security.auth.login.config=${glassfish.home}/glassfish/lib/appclient/appclientlogin.conf \
+                -Djava.protocol.handler.pkgs=javax.net.ssl \
+                -Djavax.net.ssl.keyStore=${ts.home}/bin/certificates/clientcert.jks \
+                -Djavax.net.ssl.keyStorePassword=changeit \
+                -Djavax.net.ssl.trustStore=${glassfish.home}/glassfish/domains/domain1/config/cacerts.jks \
+                -Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl \
+                -Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl \
+                -Djavax.xml.transform.TransformerFactory=com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl \
+                -Dorg.xml.sax.driver=com.sun.org.apache.xerces.internal.parsers.SAXParser \
+                -Dorg.xml.sax.parser=org.xml.sax.helpers.XMLReaderAdapter \
+                -Doracle.jdbc.J2EE13Compliant=true \
+                -Doracle.jdbc.mapDateToTimestamp \
+                -Dstartup.login=false \
+                -Dauth.gui=false \
+                -Dlog.file.location=${glassfish.home}/glassfish/domains/domain1/logs \
+                -Dri.log.file.location=${glassfish.home}/glassfish/domains/domain1/logs \
+                -DwebServerHost.2=localhost \
+                -DwebServerPort.2=8080 \
+                -Ddeliverable.class=com.sun.ts.lib.deliverable.cts.CTSDeliverable \
+                -jar \
+                ${clientEarDir}/${clientAppArchive}
+            </property>
+            <property name="cmdLineArgSeparator">\\</property>
+            <!-- Pass ENV vars here -->
+            <property name="clientEnvString">PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
+                APPCPATH=target/appclient/lib/shared.jar:target/appclient/lib/arquillian-protocol-lib.jar:target/appclient/lib/arquillian-core.jar:target/appclient/lib/arquillian-junit5.jar:${glassfish.home}/glassfish/modules/security.jar</property>
             <property name="clientDir">${project.basedir}</property>
             <property name="workDir">${ts.home}/tmp</property>
             <property name="tsJteFile">${ts.home}/bin/ts.jte</property>
+            <property name="tsSqlStmtFile">${ts.home}/bin/tssql.stmt</property>
             <property name="trace">true</property>
+            <property name="clientTimeout">20000</property>
         </protocol>
     </container>
-
 </arquillian>

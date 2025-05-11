@@ -27,13 +27,13 @@ import com.sun.ts.tests.ejb30.common.annotation.enventry.EnvEntryIF;
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB(beanName = "EnvEntrySetterBean")
+  @EJB(name = "ejb/EnvEntrySetterBean")
   private static EnvEntryIF envEntrySetterBean;
 
-  @EJB(beanName = "EnvEntryFieldBean")
+  @EJB(name = "ejb/EnvEntryFieldBean")
   private static EnvEntryIF envEntryFieldBean;
 
-  @EJB(beanName = "EnvEntryTypeBean")
+  @EJB(name = "ejb/EnvEntryTypeBean")
   private static EnvEntryIF envEntryTypeBean;
 
   protected EnvEntryIF getEnvEntrySetterBean() {

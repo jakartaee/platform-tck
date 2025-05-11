@@ -41,12 +41,8 @@
                 </default-resource-principal>
             </resource-ref>
             <resource-ref>
-                <res-ref-name>mailSession</res-ref-name>
-                <jndi-name>mail/Session</jndi-name>
-            </resource-ref>
-            <resource-ref>
                 <res-ref-name>url</res-ref-name>
-                <jndi-name>http://webServerHost:webServerPort</jndi-name>
+                <jndi-name>webServerURL</jndi-name>
             </resource-ref>
             <resource-ref>
                 <res-ref-name>queueConnectionFactory</res-ref-name>
@@ -138,12 +134,8 @@
                 </default-resource-principal>
             </resource-ref>
             <resource-ref>
-                <res-ref-name>mailSession</res-ref-name>
-                <jndi-name>mail/Session</jndi-name>
-            </resource-ref>
-            <resource-ref>
                 <res-ref-name>url</res-ref-name>
-                <jndi-name>http://webServerHost:webServerPort</jndi-name>
+                <jndi-name>webServerURL</jndi-name>
             </resource-ref>
             <resource-ref>
                 <res-ref-name>queueConnectionFactory</res-ref-name>

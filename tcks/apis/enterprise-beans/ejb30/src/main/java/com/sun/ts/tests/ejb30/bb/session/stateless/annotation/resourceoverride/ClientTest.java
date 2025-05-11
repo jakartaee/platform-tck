@@ -162,12 +162,6 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateless.anno
 
         @Test
         @Override
-        public void mailSessionTest() throws java.lang.Exception {
-            super.mailSessionTest();
-        }
-
-        @Test
-        @Override
         public void queueConnectionFactoryTest() throws java.lang.Exception {
             super.queueConnectionFactoryTest();
         }

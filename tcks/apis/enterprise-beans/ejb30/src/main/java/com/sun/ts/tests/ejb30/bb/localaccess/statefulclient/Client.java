@@ -28,7 +28,7 @@ import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB
+  @EJB(name = "ejb/TestBeanIF")
   private static TestBeanIF bean;
 
   protected TestBeanIF getBean() {

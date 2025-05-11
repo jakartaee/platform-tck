@@ -47,6 +47,7 @@ public class TLogger {
       msg = sb.toString();
     }
     System.out.println(msg);
+    System.out.flush();
   }
 
   public static void log(String arg, Throwable thr) {

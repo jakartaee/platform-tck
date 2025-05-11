@@ -23,19 +23,20 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.annotated
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ClientBase;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ThreeTestIF;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteHome;
 
+import com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteIF;
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB(name = "twoTestBeanHome")
-  private static TwoTestRemoteHome twoTestBeanHome;
+  @EJB(name = "twoTestBean")
+  private static TwoTestRemoteIF twoTestBean;
 
   @EJB(name = "threeTestBean")
   private static ThreeTestIF threeTestBean;
 
-  protected TwoTestRemoteHome getTwoTestRemoteHome() {
-    return twoTestBeanHome;
+  @Override
+  protected TwoTestRemoteIF getTwoTestBean() {
+    return twoTestBean;
   }
 
   protected ThreeTestIF getThreeTestBean() {

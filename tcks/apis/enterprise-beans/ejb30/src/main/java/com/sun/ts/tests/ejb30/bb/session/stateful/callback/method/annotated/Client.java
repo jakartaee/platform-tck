@@ -33,13 +33,13 @@ import jakarta.ejb.EJB;
  * through the returned value.
  */
 public class Client extends ClientBase {
-  @EJB(beanName = "CallbackBean")
+  @EJB(name = "CallbackBean")
   private static CallbackIF bean;
 
-  @EJB(beanName = "Callback2Bean")
+  @EJB(name = "Callback2Bean")
   private static Callback2IF bean2;
 
-  @EJB(beanName = "SessionBeanCallbackBean")
+  @EJB(name = "SessionBeanCallbackBean")
   private static CallbackIF sessionBeanCallbackBean;
 
   protected Callback2IF getBean2() {

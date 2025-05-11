@@ -71,14 +71,10 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateful.equal
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/equals/descriptor/stateful_equals_descriptor_client.xml");
-            if(resURL != null) {
-              stateful_equals_descriptor_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            stateful_equals_descriptor_client.addAsManifestResource(resURL, "application-client.xml");
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/equals/descriptor/stateful_equals_descriptor_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              stateful_equals_descriptor_client.addAsManifestResource(resURL, "sun-application-client.xml");
-            }
+            resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/equals/descriptor/stateful_equals_descriptor_client.sun-application-client.xml");
+            stateful_equals_descriptor_client.addAsManifestResource(resURL, "sun-application-client.xml");
             stateful_equals_descriptor_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(stateful_equals_descriptor_client, Client.class, resURL);
@@ -98,14 +94,10 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateful.equal
             );
             // The ejb-jar.xml descriptor
             URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/equals/descriptor/stateful_equals_descriptor_ejb.xml");
-            if(ejbResURL != null) {
-              stateful_equals_descriptor_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
-            }
+            stateful_equals_descriptor_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             // The sun-ejb-jar.xml file
             ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/equals/descriptor/stateful_equals_descriptor_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              stateful_equals_descriptor_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
-            }
+            stateful_equals_descriptor_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             // Call the archive processor
             archiveProcessor.processEjbArchive(stateful_equals_descriptor_ejb, Client.class, ejbResURL);
 

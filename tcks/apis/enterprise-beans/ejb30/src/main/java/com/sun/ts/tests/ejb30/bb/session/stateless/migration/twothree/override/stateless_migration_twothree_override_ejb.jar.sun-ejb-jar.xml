@@ -27,6 +27,10 @@
       <ejb>
         <ejb-name>TwoTestBean</ejb-name>
         <jndi-name>stateless_migration_twothree_override_TwoTestBean</jndi-name>
+        <ejb-ref>
+          <ejb-ref-name>ejb/tworemote</ejb-ref-name>
+          <jndi-name>stateless_migration_twothree_override_MigrationBean</jndi-name>
+        </ejb-ref>
       </ejb>
       <ejb>
         <ejb-name>ThreeTestBean</ejb-name>

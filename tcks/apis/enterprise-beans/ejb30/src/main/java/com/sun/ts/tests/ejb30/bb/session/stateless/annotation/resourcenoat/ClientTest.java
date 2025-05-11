@@ -69,15 +69,9 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateless.anno
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateless/annotation/resourcenoat/ejb3_bb_stateless_resourcenoat_client.xml");
-            if(resURL != null) {
-              ejb3_bb_stateless_resourcenoat_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateless/annotation/resourcenoat/ejb3_bb_stateless_resourcenoat_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              ejb3_bb_stateless_resourcenoat_client.addAsManifestResource(resURL, "sun-application-client.xml");
-            }
+            // The sun-application-client.xml
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateless/annotation/resourcenoat/ejb3_bb_stateless_resourcenoat_client.jar.sun-application-client.xml");
+            ejb3_bb_stateless_resourcenoat_client.addAsManifestResource(resURL, "sun-application-client.xml");
             ejb3_bb_stateless_resourcenoat_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(ejb3_bb_stateless_resourcenoat_client, Client.class, resURL);
@@ -157,12 +151,6 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateless.anno
         @Override
         public void urlTest() throws java.lang.Exception {
             super.urlTest();
-        }
-
-        @Test
-        @Override
-        public void mailSessionTest() throws java.lang.Exception {
-            super.mailSessionTest();
         }
 
         @Test

@@ -95,6 +95,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.mdb.customlistener.Cli
                 com.sun.ts.tests.ejb30.common.messaging.StatusReporter.class,
                 com.sun.ts.tests.ejb30.common.messaging.Constants.class,
                 com.sun.ts.tests.ejb30.bb.mdb.customlistener.MDBean.class,
+                com.sun.ts.tests.common.connector.util.TSMessageListenerInterface.class,
+                com.sun.ts.tests.common.connector.util.AppException.class,
                 com.sun.ts.tests.ejb30.common.helper.TLogger.class
             );
             // The ejb-jar.xml descriptor

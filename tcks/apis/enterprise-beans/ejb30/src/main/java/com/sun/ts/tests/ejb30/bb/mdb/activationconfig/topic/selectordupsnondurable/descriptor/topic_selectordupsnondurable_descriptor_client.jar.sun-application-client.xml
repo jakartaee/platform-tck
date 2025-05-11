@@ -19,30 +19,21 @@
 -->
 
 <sun-application-client>
-  <resource-ref>
-    <res-ref-name>queueConnectionFactory</res-ref-name>
-    <jndi-name>jms/QueueConnectionFactory</jndi-name>
-    <default-resource-principal>
-      <name>guest</name>
-      <password>guest</password>
-    </default-resource-principal>
-  </resource-ref>
-  <resource-ref>
-    <res-ref-name>topicConnectionFactory</res-ref-name>
-    <jndi-name>jms/TopicConnectionFactory</jndi-name>
-    <default-resource-principal>
-      <name>guest</name>
-      <password>guest</password>
-    </default-resource-principal>
-  </resource-ref>
+    <resource-ref>
+        <res-ref-name>topicConnectionFactory</res-ref-name>
+        <jndi-name>jms/TopicConnectionFactory</jndi-name>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>queueConnectionFactory</res-ref-name>
+        <jndi-name>jms/QueueConnectionFactory</jndi-name>
+    </resource-ref>
 
-  <message-destination-ref>
-      <message-destination-ref-name>sendTopic</message-destination-ref-name>
-      <jndi-name>MY_TOPIC</jndi-name>
-  </message-destination-ref>
-  <message-destination-ref>
-      <message-destination-ref-name>receiveQueue</message-destination-ref-name>
-      <jndi-name>MDB_QUEUE_REPLY</jndi-name>
-  </message-destination-ref>
-
+    <message-destination-ref>
+        <message-destination-ref-name>sendTopic</message-destination-ref-name>
+        <jndi-name>MY_TOPIC</jndi-name>
+    </message-destination-ref>
+    <message-destination-ref>
+        <message-destination-ref-name>receiveQueue</message-destination-ref-name>
+        <jndi-name>MDB_QUEUE_REPLY</jndi-name>
+    </message-destination-ref>
 </sun-application-client>
