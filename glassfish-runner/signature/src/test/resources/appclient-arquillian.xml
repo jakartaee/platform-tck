@@ -41,7 +41,7 @@
             <!-- <property name="clientEnvString">PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
                 APPCPATH=${glassfish.home}/glassfish/lib/arquillian-protocol-lib.jar:${glassfish.home}/glassfish/lib/tck-porting-lib.jar:target/appclient/lib/arquillian-core.jar:target/appclient/lib/arquillian-junit5.jar:${glassfish.home}/glassfish/modules/security.jar</property> -->
             <property name="clientEnvString">AS_JAVA=${env.JAVA_HOME};PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
-                APPCPATH=target/appclient/lib/arquillian-protocol-lib.jar;target/appclient/lib/sigtest-maven-plugin-2.6.jar;target/appclient/lib/signaturetest-11.0.0.jar</property>
+                APPCPATH=target/appclient/lib/arquillian-protocol-lib.jar:${clientEarLibClasspath}</property>
             <property name="clientDir">${project.basedir}</property>
             <property name="workDir">${project.build.directory}</property>
             <property name="tsJteFile">${project.build.directory}/test-classes/ts.jte</property>
