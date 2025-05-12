@@ -83,8 +83,8 @@
                 <property name="cmdLineArgSeparator">\\</property>
                 <!-- Pass ENV vars here -->
                 <property name="clientEnvString">PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
-                    APPCPATH=target/appclient/lib/shared.jar:target/appclient/lib/arquillian-protocol-lib.jar:target/appclient/lib/arquillian-core.jar:target/appclient/lib/arquillian-junit5.jar:${glassfish.home}/glassfish/modules/security.jar</property>
-                <property name="clientDir">${project.basedir}</property>
+                   APPCPATH=${clientEarLibClasspath}:${glassfish.home}/glassfish/modules/security.jar</property>
+                 <property name="clientDir">${project.basedir}</property>
                 <property name="workDir">${ts.home}/tmp</property>
                 <property name="tsJteFile">${ts.home}/bin/ts.jte</property>
                 <property name="tsSqlStmtFile">${ts.home}/bin/tssql.stmt</property>
