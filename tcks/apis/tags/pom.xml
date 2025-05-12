@@ -27,7 +27,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>tags-tck</artifactId>
-    <version>11.0.1-M1</version>
+    <version>11.0.1-SNAPSHOT</version>
 
     <name>Jakarta Tags TCK</name>
     <description>This module contains all the tests for the Jakarta Tags TCK</description>
