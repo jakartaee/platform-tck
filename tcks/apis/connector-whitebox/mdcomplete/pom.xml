@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>mdcomplete</artifactId>
+    <name>whitebox-mdcomplete</name>
     <packaging>rar</packaging>
 
     <properties>

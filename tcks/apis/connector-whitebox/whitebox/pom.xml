@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>whitebox</artifactId>
+    <name>whitebox-jar</name>
     <packaging>jar</packaging>
 
     <properties>
