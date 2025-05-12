@@ -28,7 +28,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>mail-tck-install</artifactId>
-    <version>11.0.0</version>
+    <version>11.0.1</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta Mail TCK</name>
 
@@ -36,7 +36,7 @@
         <tck.test.mail.file>jakartaeetck-${tck.test.mail.version}-dist.zip</tck.test.mail.file>
         <tck.test.mail.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.mail.file}</tck.test.mail.url>
         
-        <tck.test.mail.version>${project.version}</tck.test.mail.version>
+        <tck.test.mail.version>11.0.1-SNAPSHOT</tck.test.mail.version>
     </properties>
 
     <build>

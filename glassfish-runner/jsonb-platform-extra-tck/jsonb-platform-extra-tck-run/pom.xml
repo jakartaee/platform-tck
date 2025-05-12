@@ -27,7 +27,7 @@
     
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jsonb-platform-tck</artifactId>
-    <version>11.0.0</version>
+    <version>11.0.1</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -43,7 +43,7 @@
         
         <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
         <jakarta.tck.common.version>11.0.0</jakarta.tck.common.version>
-        <tck.version>3.0.0-M1</tck.version>
+        <tck.version>11.0.1-SNAPSHOT</tck.version>
         <ts.home>/jakartaeetck</ts.home>
     </properties>
     

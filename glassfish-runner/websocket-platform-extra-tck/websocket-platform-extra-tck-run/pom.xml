@@ -40,7 +40,7 @@
         <glassfish.root>${project.build.directory}</glassfish.root>
         <glassfish.version>8.0.0-M9</glassfish.version>
 
-        <tck.version>11.0.0</tck.version>
+        <tck.version>11.0.1-SNAPSHOT</tck.version>
         <jakarta.tck.websocket.version>2.2.0</jakarta.tck.websocket.version>
         <tck.test.websocket.extra.version>${tck.version}</tck.test.websocket.extra.version>
         

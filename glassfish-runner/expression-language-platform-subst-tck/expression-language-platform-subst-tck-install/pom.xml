@@ -27,14 +27,14 @@
     </parent>
 
     <artifactId>expression-language-extra-tck-install</artifactId>
-    <version>11.0.0</version>
+    <version>11.0.1</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta Expression Language Platform Substitute TCK</name>
 
     <properties>
         <tck.test.expression-language-extra.file>jakartaeetck-${tck.test.expression-language-extra.version}-dist.zip</tck.test.expression-language-extra.file>
         <tck.test.expression-language-extra.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.expression-language-extra.file}</tck.test.expression-language-extra.url>
-        <tck.test.expression-language-extra.version>${project.version}</tck.test.expression-language-extra.version>
+        <tck.test.expression-language-extra.version>11.0.1-SNAPSHOT</tck.test.expression-language-extra.version>
     </properties>
 
     <build>

@@ -27,14 +27,14 @@
     </parent>
 
     <artifactId>pages-extra-tck-install</artifactId>
-    <version>11.0.0</version>
+    <version>11.0.1</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta Pages Platform Extra TCK</name>
 
     <properties>
         <tck.test.pages-extra.file>jakartaeetck-${tck.test.pages-extra.version}-dist.zip</tck.test.pages-extra.file>
         <tck.test.pages-extra.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.pages-extra.file}</tck.test.pages-extra.url>
-        <tck.test.pages-extra.version>${project.version}</tck.test.pages-extra.version>
+        <tck.test.pages-extra.version>11.0.1-SNAPSHOT</tck.test.pages-extra.version>
 
     </properties>
 

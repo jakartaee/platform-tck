@@ -25,7 +25,7 @@
 
    <groupId>jakarta.tck</groupId>
    <artifactId>messaging-platform-tck-run</artifactId>
-   <version>11.0.0</version>
+   <version>11.0.1</version>
    <packaging>jar</packaging>
 
    <properties>
