@@ -72,7 +72,7 @@
                             <file>${project.build.directory}/jakartaeetck/artifacts/ejb30-${tck.test.enterprise-beans.version}.jar</file>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>ejb30</artifactId>
-                            <version>4.0.0-M1</version>
+                            <version>${tck.test.enterprise-beans.version}</version>
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
@@ -86,7 +86,7 @@
                             <file>${project.build.directory}/jakartaeetck/artifacts/ejb32-${tck.test.enterprise-beans.version}.jar</file>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>ejb32</artifactId>
-                            <version>4.0.0-M1</version>
+                            <version>${tck.test.enterprise-beans.version}</version>
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
