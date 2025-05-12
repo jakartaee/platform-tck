@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>ibanno</artifactId>
+    <name>whitebox-ibanno_no_md</name>
     <packaging>rar</packaging>
 
     <properties>

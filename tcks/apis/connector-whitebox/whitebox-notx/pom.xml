@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>whitebox-notx</artifactId>
+    <name>whitebox-notx</name>
     <packaging>rar</packaging>
 
     <properties>

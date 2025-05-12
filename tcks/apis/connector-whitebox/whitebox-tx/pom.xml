@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>whitebox-tx</artifactId>
+    <name>whitebox-tx</name>
     <packaging>rar</packaging>
 
     <properties>

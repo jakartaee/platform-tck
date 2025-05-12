@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>whitebox-xa-param</artifactId>
+    <name>whitebox-xa-param</name>
     <packaging>rar</packaging>
 
     <properties>

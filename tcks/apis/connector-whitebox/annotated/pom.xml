@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>annotated</artifactId>
+    <name>whitebox-anno_no_md</name>
     <packaging>rar</packaging>
 
     <properties>
