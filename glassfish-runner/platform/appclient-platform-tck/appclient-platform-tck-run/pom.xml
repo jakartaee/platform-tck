@@ -570,8 +570,8 @@
                                 <!--
                                 <include>**/Client</include>
                                 -->
-                                <!-- <include>com.sun.ts.tests.appclient.**.Client</include> -->
-                                <include>com.sun.ts.tests.appclient.deploy.ejblink.path.Client</include>
+                                <include>com.sun.ts.tests.appclient.**.Client</include>
+                                <!-- <include>com.sun.ts.tests.appclient.deploy.ejblink.path.Client</include> -->
                             </includes>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${glassfish.module.dir}/angus-mail.jar</additionalClasspathElement>
