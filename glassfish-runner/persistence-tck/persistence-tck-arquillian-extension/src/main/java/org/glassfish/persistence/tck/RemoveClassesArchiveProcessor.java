@@ -29,6 +29,7 @@ import org.jboss.shrinkwrap.api.Node;
  */
 public class RemoveClassesArchiveProcessor implements ProtocolArchiveProcessor {
 
+    @Override
     public void process(TestDeployment td, Archive<?> archive) {
         final Node toDelete = archive.get("/WEB-INF/classes/ee");
         if (toDelete != null) {
@@ -44,6 +45,7 @@ public class RemoveClassesArchiveProcessor implements ProtocolArchiveProcessor {
                 deleteChildren(childNode, archive);
             });
         }
+
         archive.delete(node.getPath());
     }
 

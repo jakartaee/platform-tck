@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2022, 2025 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License,
@@ -23,15 +23,21 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
+
 import org.jboss.arquillian.container.spi.client.deployment.DeploymentDescription;
-import org.jboss.arquillian.container.test.spi.client.deployment.*;
+import org.jboss.arquillian.container.test.spi.client.deployment.DeploymentScenarioGenerator;
 import org.jboss.arquillian.test.spi.TestClass;
 import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.resolver.api.maven.*;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
+import org.jboss.shrinkwrap.resolver.api.maven.MavenResolvedArtifact;
+
+import static org.glassfish.persistence.tck.PropertyKeys.ACTIVE_MAVEN_PROFILES;
+import static org.jboss.shrinkwrap.resolver.api.maven.ScopeType.COMPILE;
+import static org.jboss.shrinkwrap.resolver.api.maven.ScopeType.TEST;
 
 public class MavenTestDependenciesDeploymentPackager implements DeploymentScenarioGenerator {
 
-    private List<String> coordinatePrefixesToIgnore = null;
+    private List<String> coordinatePrefixesToIgnore;
 
     private DeploymentPackageType deploymentPackageType = DeploymentPackageType.WAR;
 
@@ -59,9 +65,13 @@ public class MavenTestDependenciesDeploymentPackager implements DeploymentScenar
     private Archive<?> generateDeployment() {
         String[] activeMavenProfiles = getListOfActiveMavenProfiles();
 
-        MavenResolvedArtifact[] resolvedArtifacts = Maven.resolver().loadPomFromFile("pom.xml", activeMavenProfiles)
-                .importDependencies(ScopeType.COMPILE, ScopeType.TEST)
-                .resolve().withTransitivity().asResolvedArtifact();
+        MavenResolvedArtifact[] resolvedArtifacts =
+            Maven.resolver()
+                 .loadPomFromFile("pom.xml", activeMavenProfiles)
+                 .importDependencies(COMPILE, TEST)
+                 .resolve()
+                 .withTransitivity()
+                 .asResolvedArtifact();
 
         DeploymentPackageType.PackageBuilder packageBuilder = deploymentPackageType.getPackageBuilder();
 
@@ -77,25 +87,33 @@ public class MavenTestDependenciesDeploymentPackager implements DeploymentScenar
     }
 
     private String[] getListOfActiveMavenProfiles() {
-        String activeMavenProfilesRawValue = System.getProperty(PropertyKeys.ACTIVE_MAVEN_PROFILES);
+        String activeMavenProfilesRawValue = System.getProperty(ACTIVE_MAVEN_PROFILES);
         if (activeMavenProfilesRawValue != null) {
             return activeMavenProfilesRawValue.split("\\s*,\\s*");
-        } else {
-            return new String[] {};
         }
+
+        return new String[] {};
     }
 
     private boolean artifactShouldntBeIgnored(MavenResolvedArtifact artifact) {
         String groupId = artifact.getCoordinate().getGroupId();
         String artifactId = artifact.getCoordinate().getArtifactId();
         String coordinates = groupId + ":" + artifactId;
-        final boolean forceGroupInclude = coordinatePrefixesToIgnore.stream()
-                .anyMatch(prefix -> ("!" + coordinates).startsWith(prefix));
+
+        final boolean forceGroupInclude =
+            coordinatePrefixesToIgnore.stream()
+                                      .anyMatch(prefix -> ("!" + coordinates)
+                                      .startsWith(prefix));
+
         if (forceGroupInclude) {
             return true;
         }
-        final boolean groupMatchesAPrefix = coordinatePrefixesToIgnore.stream()
-                .anyMatch(prefix -> coordinates.startsWith(prefix));
+
+        final boolean groupMatchesAPrefix =
+            coordinatePrefixesToIgnore.stream()
+                                      .anyMatch(prefix -> coordinates
+                                      .startsWith(prefix));
+
         return !groupMatchesAPrefix;
     }
 

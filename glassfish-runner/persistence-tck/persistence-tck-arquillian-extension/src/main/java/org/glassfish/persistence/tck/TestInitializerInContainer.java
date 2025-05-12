@@ -19,6 +19,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Initialized;
 import jakarta.enterprise.event.Observes;
 
+import static org.glassfish.persistence.tck.PropertyKeys.JUNIT_AUTO_EXTENSIONS_ENABLED;
+
 /**
  *
  * @author Ondro Mihalyi
@@ -26,6 +28,6 @@ import jakarta.enterprise.event.Observes;
 @ApplicationScoped
 public class TestInitializerInContainer {
     public void init(@Observes @Initialized(ApplicationScoped.class) Object init) {
-        System.setProperty(PropertyKeys.JUNIT_AUTO_EXTENSIONS_ENABLED, "true");
+        System.setProperty(JUNIT_AUTO_EXTENSIONS_ENABLED, "true");
     }
 }

@@ -19,6 +19,7 @@
 package org.glassfish.persistence.tck;
 
 import java.io.File;
+
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.Asset;
@@ -31,6 +32,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
  * @author omihalyi
  */
 public enum DeploymentPackageType {
+
     WAR {
         @Override
         protected PackageBuilder getPackageBuilder(Archive<?> archive) {
@@ -47,23 +49,25 @@ public enum DeploymentPackageType {
         if (value == null || value.isEmpty()) {
             return null;
         }
-        String upperCaseValue = value.toUpperCase();
-        // remove special chars, e.g. ejb-jar is turned into EJBJAR
-        upperCaseValue = upperCaseValue.replaceAll("-|_|\\.| ", "");
-        return DeploymentPackageType.valueOf(upperCaseValue);
+
+        // Remove special chars, e.g. ejb-jar is turned into EJBJAR
+        return DeploymentPackageType.valueOf(value.toUpperCase().replaceAll("-|_|\\.| ", ""));
     }
 
     public static DeploymentPackageType fromArchive(Archive<?> archive) {
         if (archive == null) {
             return null;
         }
+
         if (archive instanceof WebArchive) {
             return WAR;
-        } else if (archive instanceof EnterpriseArchive) {
-            return EAR;
-        } else {
-            throw new RuntimeException("Unsupported archive type: " + archive.getClass());
         }
+
+        if (archive instanceof EnterpriseArchive) {
+            return EAR;
+        }
+
+        throw new RuntimeException("Unsupported archive type: " + archive.getClass());
     }
 
     protected PackageBuilder getPackageBuilder() {
@@ -111,6 +115,7 @@ public enum DeploymentPackageType {
             return this;
         }
 
+        @Override
         public WarPackageBuilder addClass(Class<?> cls) {
             archive.addClass(cls);
             return this;

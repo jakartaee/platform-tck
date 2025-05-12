@@ -297,12 +297,14 @@
 
                     <systemPropertyVariables>
                         <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
+                        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                        
                         <glassfish.enableDerby>true</glassfish.enableDerby>
                         <glassfish.derbyDatabaseName>${glassfish.home}/glassfish/domains/domain1/config/derbyDB;create=true</glassfish.derbyDatabaseName>
                         <glassfish.derbySQLFile>${project.build.directory}/sql/derby.ddl.sql</glassfish.derbySQLFile>
                         <glassfish.derbyUser>cts1</glassfish.derbyUser>
                         <glassfish.derbyPasswordFile>${basedir}/sql/derby/password.txt</glassfish.derbyPasswordFile>
-                        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                        
                         <glassfish.postBootCommands>
                             set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
                             create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
