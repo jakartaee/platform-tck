@@ -17,22 +17,27 @@ package org.glassfish.persistence.tck;
 
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager;
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceUnit;
 import jakarta.transaction.UserTransaction;
+
 import java.lang.reflect.Method;
 import java.util.Properties;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.naming.Context;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.InvocationInterceptor;
 import org.junit.jupiter.api.extension.ReflectiveInvocationContext;
+
+import static java.util.logging.Level.SEVERE;
+import static org.glassfish.persistence.tck.PropertyKeys.DEFAULT_PERSISTENCE_UNIT;
 
 /**
  *
@@ -40,93 +45,95 @@ import org.junit.jupiter.api.extension.ReflectiveInvocationContext;
  */
 public class JakartaEeExecutionInterceptor implements InvocationInterceptor {
 
-    private Properties props;
-
     public JakartaEeExecutionInterceptor(Properties props) {
-        this.props = props;
     }
 
+    @Override
     public void interceptBeforeEachMethod(Invocation<Void> invocation, ReflectiveInvocationContext<Method> invocationContext, ExtensionContext extensionContext) throws Throwable {
         interceptTestMethod(invocation, invocationContext, extensionContext);
     }
 
     @Override
-    public void interceptTestTemplateMethod(Invocation<Void> invocation,
-            ReflectiveInvocationContext<Method> invocationContext,
-            ExtensionContext extensionContext) throws Throwable {
+    public void interceptTestTemplateMethod(Invocation<Void> invocation, ReflectiveInvocationContext<Method> invocationContext, ExtensionContext extensionContext) throws Throwable {
         interceptTestMethod(invocation, invocationContext, extensionContext);
     }
 
     @Override
-    public void interceptTestMethod(Invocation<Void> invocation,
-            ReflectiveInvocationContext<Method> invocationContext,
-            ExtensionContext extensionContext) throws Throwable {
+    public void interceptTestMethod(Invocation<Void> invocation, ReflectiveInvocationContext<Method> invocationContext, ExtensionContext extensionContext) throws Throwable {
         Reporter.logTrace("Invoking test method " + invocationContext.getExecutable().getName() + " in a Jakarta EE container.");
-            invocationContext.getTarget().ifPresent(newTestObject -> {
-                setEntityManager(newTestObject);
-                setEntityManagerFactory(newTestObject);
-                setEntityTransaction(newTestObject);
-            });
-            invocation.proceed();
+
+        invocationContext.getTarget().ifPresent(newTestObject -> {
+            setEntityManager(newTestObject);
+            setEntityManagerFactory(newTestObject);
+            setEntityTransaction(newTestObject);
+        });
+
+        invocation.proceed();
+
         Reporter.logTrace("...finished test method " + invocationContext.getExecutable().getName() + " in a Jakarts EE container.");
     }
 
     private <T> void setEntityManager(T testObject) {
-        if (testObject instanceof UseEntityManager) {
-            UseEntityManager useEm = (UseEntityManager) testObject;
-            String unitName = System.getProperty(PropertyKeys.DEFAULT_PERSISTENCE_UNIT);
+        if (testObject instanceof UseEntityManager useEntityManager) {
+            String unitName = System.getProperty(DEFAULT_PERSISTENCE_UNIT);
             PersistenceContext persistenceContextAnnotation = null;
+
             try {
-                persistenceContextAnnotation = useEm.getClass().getMethod("setEntityManager", EntityManager.class)
-                        .getAnnotation(PersistenceContext.class);
+                persistenceContextAnnotation =
+                    useEntityManager.getClass()
+                                   .getMethod("setEntityManager", EntityManager.class)
+                                   .getAnnotation(PersistenceContext.class);
             } catch (NoSuchMethodException | SecurityException ex) {
             }
+
             if (persistenceContextAnnotation != null) {
                 if (persistenceContextAnnotation.unitName() != null) {
                     unitName = persistenceContextAnnotation.unitName();
                 }
             }
-            useEm.setEntityManager(getEM(unitName));
+            useEntityManager.setEntityManager(EntityManager(unitName));
         }
     }
 
     private <T> void setEntityManagerFactory(T testObject) {
-        if (testObject instanceof UseEntityManagerFactory) {
-            UseEntityManagerFactory useEmf = (UseEntityManagerFactory) testObject;
-            String unitName = System.getProperty(PropertyKeys.DEFAULT_PERSISTENCE_UNIT);
+        if (testObject instanceof UseEntityManagerFactory useEntityManager) {
+            String unitName = System.getProperty(DEFAULT_PERSISTENCE_UNIT);
+
             PersistenceUnit persistenceUnitAnnotation = null;
             try {
-                persistenceUnitAnnotation = useEmf.getClass().getMethod("setEntityManagerFactory", EntityManagerFactory.class)
-                        .getAnnotation(PersistenceUnit.class);
+                persistenceUnitAnnotation =
+                    useEntityManager.getClass()
+                                    .getMethod("setEntityManagerFactory", EntityManagerFactory.class)
+                                    .getAnnotation(PersistenceUnit.class);
             } catch (NoSuchMethodException | SecurityException ex) {
             }
+
             if (persistenceUnitAnnotation != null) {
                 if (persistenceUnitAnnotation.unitName() != null) {
                     unitName = persistenceUnitAnnotation.unitName();
                 }
             }
-            useEmf.setEntityManagerFactory(getEMF(unitName));
+
+            useEntityManager.setEntityManagerFactory(getEntityManagerFactory(unitName));
         }
     }
 
     private void setEntityTransaction(Object testObject) {
-        if (testObject instanceof UseEntityManager) {
+        if (testObject instanceof UseEntityManager useEntityManager) {
             try {
-                UseEntityManager useEm = (UseEntityManager) testObject;
-                Context namingContext = new InitialContext();
-                UserTransaction userTx = (UserTransaction) namingContext.lookup("java:comp/UserTransaction");
-                useEm.setEntityTransaction(new UserTransactionWrapper(userTx));
+                UserTransaction userTx = InitialContext.doLookup("java:comp/UserTransaction");
+                useEntityManager.setEntityTransaction(new UserTransactionWrapper(userTx));
             } catch (NamingException ex) {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(this.getClass().getName()).log(SEVERE, null, ex);
             }
         }
     }
 
-    private EntityManager getEM(String unitName) {
-        return getEMF(unitName).createEntityManager();
+    private EntityManager EntityManager(String unitName) {
+        return getEntityManagerFactory(unitName).createEntityManager();
     }
 
-    private EntityManagerFactory getEMF(String unitName) {
+    private EntityManagerFactory getEntityManagerFactory(String unitName) {
         return Persistence.createEntityManagerFactory(unitName);
     }
 

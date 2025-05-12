@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2024, 202 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License,
@@ -29,8 +29,8 @@ import org.jboss.shrinkwrap.api.asset.StringAsset;
 /**
  * Copies the system properties into a properties file inside the test deployment package.
  *
- * The TestInvocationInterceptor JUnit extension can then read the properties file from the classpath
- * and set system properties for tests running in a Jakarta EE container.
+ * The TestInvocationInterceptor JUnit extension can then read the properties file from the classpath and set system
+ * properties for tests running in a Jakarta EE container.
  *
  * @author omihalyi
  */
@@ -41,16 +41,15 @@ public class SystemPropertiesArchiveProcessor implements ApplicationArchiveProce
         Properties props = new Properties();
         props.putAll(System.getProperties());
         String propertiesContent = propertiesToStringContent(props);
-        DeploymentPackageType deploymentpackage
-                = DeploymentPackageType.fromArchive(archive);
+
+        DeploymentPackageType deploymentpackage = DeploymentPackageType.fromArchive(archive);
         deploymentpackage.getPackageBuilder(archive)
                 // store properties into a properties file
-                .addResource(new StringAsset(propertiesContent), PropertyKeys.SYSTEM_PROPERTIES_FILE_NAME)
-                .build();
+                .addResource(new StringAsset(propertiesContent), PropertyKeys.SYSTEM_PROPERTIES_FILE_NAME).build();
     }
 
     private String propertiesToStringContent(Properties props) {
-        try ( StringWriter propertiesWriter = new StringWriter()) {
+        try (StringWriter propertiesWriter = new StringWriter()) {
             props.store(propertiesWriter, null);
             return propertiesWriter.toString();
         } catch (IOException ex) { // can't happen from StringWriter

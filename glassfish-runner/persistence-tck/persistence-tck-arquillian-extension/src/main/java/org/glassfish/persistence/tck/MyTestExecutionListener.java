@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021-2025 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License,
@@ -19,21 +19,42 @@
 
 package org.glassfish.persistence.tck;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 import org.junit.platform.engine.TestExecutionResult;
 import org.junit.platform.engine.reporting.ReportEntry;
+import org.junit.platform.engine.support.descriptor.ClassSource;
+import org.junit.platform.engine.support.descriptor.MethodSource;
 import org.junit.platform.launcher.TestExecutionListener;
 import org.junit.platform.launcher.TestIdentifier;
 import org.junit.platform.launcher.TestPlan;
 import org.junit.platform.launcher.listeners.LoggingListener;
 
 public class MyTestExecutionListener implements TestExecutionListener {
-    
+
     private final LoggingListener loggingListener = LoggingListener.forJavaUtilLogging(Level.INFO);
     private final TestExecutionListener[] delegates = new TestExecutionListener[] {loggingListener};
+
+    long testCount;
+    AtomicInteger currentTest = new AtomicInteger();
+
+    @Override
+    public void testPlanExecutionStarted(TestPlan testPlan) {
+        LogManager.getLogManager().getLogger(LoggingListener.class.getName()).setLevel(Level.INFO);
+
+        Stream.of(delegates).forEach( l -> l.testPlanExecutionStarted(testPlan));
+
+        testCount = testPlan.countTestIdentifiers(
+                testIdentifier -> testIdentifier.isTest()
+            );
+
+        Logger logger = Logger.getLogger(LoggingListener.class.getName());
+
+        logger.info("******************** Total number of tests: " + testCount);
+    }
 
     @Override
     public void reportingEntryPublished(TestIdentifier testIdentifier, ReportEntry entry) {
@@ -43,14 +64,31 @@ public class MyTestExecutionListener implements TestExecutionListener {
     }
 
     @Override
-    public void executionFinished(TestIdentifier testIdentifier, TestExecutionResult testExecutionResult) {
-        Stream.of(delegates).forEach( l -> l.executionFinished(testIdentifier, testExecutionResult));
+    public void executionStarted(TestIdentifier testIdentifier) {
+        Logger logger = Logger.getLogger(LoggingListener.class.getName());
+
+        String fullMethodName = "";
+
+        if (testIdentifier.getSource().isPresent()) {
+            if (testIdentifier.getSource().get() instanceof MethodSource methodSource) {
+                fullMethodName = methodSource.getClassName() + "#" + methodSource.getMethodName();
+
+                logger.info(
+                    "\n******************** Running test \u001B[1m" + fullMethodName + "\u001B[0m \033[1;32m (" +
+                    currentTest.incrementAndGet()  + "/" + testCount + ")\u001B[0m \n");
+
+            } else if (testIdentifier.getSource().get() instanceof ClassSource classSource) {
+                logger.info(
+                    "\n\n=========== Switching to test class \u001B[1m" + classSource.getClassName() + "\u001B[0m \n");
+            }
+        }
+
+        Stream.of(delegates).forEach( l -> l.executionStarted(testIdentifier));
     }
 
     @Override
-    public void executionStarted(TestIdentifier testIdentifier) {
-        Logger logger = Logger.getLogger(LoggingListener.class.getName());
-        Stream.of(delegates).forEach( l -> l.executionStarted(testIdentifier));
+    public void executionFinished(TestIdentifier testIdentifier, TestExecutionResult testExecutionResult) {
+        Stream.of(delegates).forEach( l -> l.executionFinished(testIdentifier, testExecutionResult));
     }
 
     @Override
@@ -68,11 +106,6 @@ public class MyTestExecutionListener implements TestExecutionListener {
         Stream.of(delegates).forEach( l -> l.testPlanExecutionFinished(testPlan));
     }
 
-    @Override
-    public void testPlanExecutionStarted(TestPlan testPlan) {
-        LogManager.getLogManager().getLogger(LoggingListener.class.getName()).setLevel(Level.INFO);
-        
-        Stream.of(delegates).forEach( l -> l.testPlanExecutionStarted(testPlan));
-    }
+
 
 }
