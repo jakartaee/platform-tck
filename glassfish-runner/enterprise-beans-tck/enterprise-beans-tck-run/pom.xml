@@ -71,6 +71,11 @@
         <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
 
         <whitebox.directory>target/whiteboxes</whitebox.directory>
+
+        <!-- Enable to run the tck-javatest protocol based tests by default -->
+        <groups>tck-javatest</groups>
+        <arquillian.xml.file>arquillian.xml</arquillian.xml.file>
+
     </properties>
 
     <!-- The Junit5 test frameworks -->
@@ -400,10 +405,6 @@
         <profile>
             <id>ejb30</id>
 
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-
             <build>
                 <plugins>
                     <plugin>
@@ -471,10 +472,6 @@
         <profile>
             <id>ejb32</id>
 
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-
             <build>
                 <plugins>
                     <plugin>
@@ -500,9 +497,6 @@
 
         <profile>
             <id>exclude-timeout</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
 
             <build>
                 <plugins>
@@ -1138,25 +1132,14 @@
             </activation>
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-                <groups>platform</groups>
+                <groups>platform,tck-javatest</groups>
             </properties>
         </profile>
         <profile>
             <id>web</id>
             <properties>
                 <glassfish-artifact-id>web</glassfish-artifact-id>
-                <groups>web</groups>
-            </properties>
-        </profile>
-        <!-- Enable to run the tck-javatest protocol based tests -->
-        <profile>
-            <id>javatest</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <groups>tck-javatest</groups>
-                <arquillian.xml.file>javatest-arquillian.xml</arquillian.xml.file>
+                <groups>web,tck-javatest</groups>
             </properties>
         </profile>
         <!-- Enable to run the tck-appclient based tests -->
@@ -1164,7 +1147,6 @@
             <id>appclient</id>
             <properties>
                 <groups>tck-appclient</groups>
-                <arquillian.xml.file>appclient-arquillian.xml</arquillian.xml.file>
             </properties>
         </profile>
     </profiles>
