@@ -31,7 +31,9 @@
         <relativePath />
     </parent>
 
+    <groupId>jakarta.tck</groupId>
     <artifactId>enterprise-beans-tck-run</artifactId>
+    <version>11.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>enterprise-beans-tck</name>
@@ -68,7 +70,6 @@
         <version.jakarta.inject>2.0.1</version.jakarta.inject>
         <version.jakarta.servlet>6.1.0</version.jakarta.servlet>
         <version.jakarta.tck>11.0.1-SNAPSHOT</version.jakarta.tck>
-        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
 
         <whitebox.directory>target/whiteboxes</whitebox.directory>
 
@@ -155,17 +156,14 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
 
         <!-- Junit5 -->
