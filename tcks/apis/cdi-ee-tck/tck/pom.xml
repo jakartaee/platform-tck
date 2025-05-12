@@ -11,7 +11,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>cdi-tck-ee-impl</artifactId>
-    <version>11.0.1-SNAPSHOT</version>
+    <version>11.0.1-M1</version>
 
     <name>CDI EE Integration TCK Test Suite</name>
     <description>CDI EE Integration TCK tests</description>
