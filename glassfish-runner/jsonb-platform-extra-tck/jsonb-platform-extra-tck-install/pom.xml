@@ -76,7 +76,7 @@
                             <sources>${project.build.directory}/jakartaeetck/artifacts/jsonb-platform-tck-${tck.test.jsonb.version}-sources.jar</sources>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>jsonb-platform-tck</artifactId>
-                            <version>3.0.0-M1</version>
+                            <version>${tck.test.jsonb.version}</version>
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
