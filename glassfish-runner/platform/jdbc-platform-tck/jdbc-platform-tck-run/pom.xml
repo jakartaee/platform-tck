@@ -28,7 +28,7 @@
 
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jdbc-platform-tck</artifactId>
-    <version>11.0.0</version>
+    <version>11.0.1</version>
     <packaging>jar</packaging>
     <properties>
         <arquillian.core.version>1.9.1.Final</arquillian.core.version>
@@ -39,7 +39,7 @@
         <ts.home>./jakartaeetck</ts.home>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <sql.directory>./sql</sql.directory>
-        <tck.version>11.0.0</tck.version>
+        <tck.version>11.0.1-SNAPSHOT</tck.version>
         <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <!-- Use JDK17 to run with GF-8.0.0-JDK17-M7 -->
@@ -71,7 +71,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>jdbc-platform-tck</artifactId>
-            <version>${project.version}</version>
+            <version>${tck.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>

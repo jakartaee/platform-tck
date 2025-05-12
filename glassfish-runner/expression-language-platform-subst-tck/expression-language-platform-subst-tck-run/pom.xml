@@ -35,7 +35,7 @@
         <glassfish.version>8.0.0-M10</glassfish.version>
         
         <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
-        <tck.version>11.0.0</tck.version>
+        <tck.version>11.0.1-SNAPSHOT</tck.version>
         <ts.home>./jakartaeetck</ts.home>
     </properties>
 

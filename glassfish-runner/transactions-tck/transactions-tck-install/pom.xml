@@ -27,14 +27,14 @@
     </parent>
 
     <artifactId>transactions-tck-install</artifactId>
-    <version>11.0.0</version>
+    <version>11.0.1</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta Transactions TCK</name>
 
     <properties>
         <tck.test.transactions.file>jakartaeetck-${tck.test.transactions.version}-dist.zip</tck.test.transactions.file>
         <tck.test.transactions.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.transactions.file}</tck.test.transactions.url>
-        <tck.test.transactions.version>${project.version}</tck.test.transactions.version>
+        <tck.test.transactions.version>11.0.1-SNAPSHOT</tck.test.transactions.version>
     </properties>
 
     <build>

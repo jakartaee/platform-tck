@@ -27,14 +27,14 @@
     </parent>
 
     <artifactId>rest-extra-tck-install</artifactId>
-    <version>11.0.0</version>
+    <version>11.0.1</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta REST Platform Extra TCK</name>
 
     <properties>
         <tck.test.rest-extra.file>jakartaeetck-${tck.test.rest-extra.version}-dist.zip</tck.test.rest-extra.file>
         <tck.test.rest-extra.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.rest-extra.file}</tck.test.rest-extra.url>
-        <tck.test.rest-extra.version>${project.version}</tck.test.rest-extra.version>
+        <tck.test.rest-extra.version>11.0.1-SNAPSHOT</tck.test.rest-extra.version>
     </properties>
 
     <build>

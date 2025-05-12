@@ -26,7 +26,7 @@
     </parent>
 
     <artifactId>transactions-tck-run</artifactId>
-    <version>11.0.0</version>
+    <version>11.0.1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -45,7 +45,7 @@
         
         <jakarta.tck.common.version>11.0.0</jakarta.tck.common.version>
         <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
-        <tck.version>${project.version}</tck.version>
+        <tck.version>11.0.1-SNAPSHOT</tck.version>
         <jakarta.tck.transactions.version>${tck.version}</jakarta.tck.transactions.version>
     </properties>
 
