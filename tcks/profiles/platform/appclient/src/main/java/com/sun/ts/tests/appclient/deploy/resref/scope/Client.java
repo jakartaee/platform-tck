@@ -33,6 +33,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -46,129 +47,110 @@ import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
+@Tag("platform")
+@Tag("tck-appclient")
 public class Client extends EETest {
 
-	private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-	private Properties props = null;
+    private Properties props = null;
 
-	public static void main(String[] args) {
-		Client theTests = new Client();
-		Status s = theTests.run(args, System.out, System.err);
-		s.exit();
-	}
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-	@TargetsContainer("tck-appclient")
-	@OverProtocol("appclient")
-	@Deployment(name = "appclient", testable = false)
-	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
-			throws IOException {
-		JavaArchive ejbClient1 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_scope_another_client.jar");
-		ejbClient1.addPackages(true, Client.class.getPackage());
-		ejbClient1.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient1.addClasses(Client.class, QueueCode.class, TopicCode.class);
+    @TargetsContainer("tck-appclient")
+    @OverProtocol("appclient")
+    @Deployment(name = "appclient_dep_resref_scope")
+    public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
+            throws IOException {
+        JavaArchive ejbClient1 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_scope_another_client.jar");
+        ejbClient1.addClasses(Client.class, EETest.class, EETest.Fault.class, EETest.SetupException.class, QueueCode.class, TopicCode.class);
 
-		// The appclient-client descriptor
-		URL appClientUrl = Client.class.getResource(
-				"com/sun/ts/tests/appclient/deploy/resref/scope/appclient_dep_resref_scope_another_client.xml");
-		if (appClientUrl != null) {
-			ejbClient1.addAsManifestResource(appClientUrl, "application-client.xml");
-		}
-		// The sun appclient-client descriptor
-		URL sunAppClientUrl = Client.class.getResource(
-				"/com/sun/ts/tests/appclient/deploy/resref/scope/appclient_dep_resref_scope_another_client.jar.sun-application-client.xml");
-		if (sunAppClientUrl != null) {
-			ejbClient1.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
-		}
+        // The appclient-client descriptor
+        URL appClientUrl = Client.class.getResource("appclient_dep_resref_scope_another_client.xml");
+        ejbClient1.addAsManifestResource(appClientUrl, "application-client.xml");
+        // The sun appclient-client descriptor
+        URL sunAppClientUrl = Client.class.getResource("appclient_dep_resref_scope_another_client.jar.sun-application-client.xml");
+        ejbClient1.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
 
-		ejbClient1.addAsManifestResource(
-				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.resref.scope.Client" + "\n"),
-				"MANIFEST.MF");
+        ejbClient1.addAsManifestResource(
+                new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+                "MANIFEST.MF");
 
-		JavaArchive ejbClient2 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_scope_client.jar");
-		ejbClient2.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient2.addClasses(Client.class, QueueCode.class);
+        JavaArchive ejbClient2 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_scope_client.jar");
+        ejbClient2.addClasses(Client.class, EETest.class, EETest.Fault.class, EETest.SetupException.class, QueueCode.class);
 
-		URL resURL = Client.class
-				.getResource("/com/sun/ts/tests/appclient/deploy/resref/scope/appclient_dep_resref_scope_client.xml");
+        URL resURL = Client.class.getResource("appclient_dep_resref_scope_client.xml");
+        ejbClient2.addAsManifestResource(resURL, "application-client.xml");
+        resURL = Client.class.getResource("appclient_dep_resref_scope_client.jar.sun-application-client.xml");
+        ejbClient2.addAsManifestResource(resURL, "sun-application-client.xml");
 
-		if (resURL != null) {
-			ejbClient2.addAsManifestResource(resURL, "ejb-jar.xml");
-		}
+        ejbClient2.addAsManifestResource(
+                new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+                "MANIFEST.MF");
 
-		resURL = Client.class.getResource(
-				"/com/sun/ts/tests/appclient/deploy/resref/scope/appclient_dep_resref_scope_client.jar.sun-application-client.xml");
+        EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_resref_scope.ear");
+        ear.addAsModule(ejbClient1);
+        ear.addAsModule(ejbClient2);
+        return ear;
+    }
 
-		if (resURL != null) {
-			ejbClient2.addAsManifestResource(resURL, "sun-ejb-jar.xml");
-		}
+    ;
 
-		ejbClient2.addAsManifestResource(
-				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.resref.scope.Client" + "\n"),
-				"MANIFEST.MF");
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     *
+     */
+    public void setup(String[] args, Properties props) throws Exception {
+        this.props = props;
 
-		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_resref_scope.ear");
-		ear.addAsModule(ejbClient1);
-		ear.addAsModule(ejbClient2);
-		return ear;
-	};
+        try {
+            nctx = new TSNamingContext();
+            logMsg("[Client] Setup succeed (got naming context).");
+        } catch (Exception e) {
+            throw new Exception("Setup failed:", e);
+        }
+    }
 
-	/*
-	 * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-	 *
-	 */
-	public void setup(String[] args, Properties props) throws Exception {
-		this.props = props;
+    /**
+     * @testName: testScope
+     * @assertion_ids: JavaEE:SPEC:125
+     * @test_Strategy: We package in the same .ear file:
+     * <p>
+     * - Two application clients using the same res-ref-name
+     * ('jms/myFactory') to reference two distinct resource manager
+     * connection factories (a QueueConnectionFactory and a
+     * TopicConnectionFactory).
+     * <p>
+     * We check that:
+     * <p>
+     * - We can deploy the application. - We can run one of the
+     * application clients - This application client can lookup its
+     * resource manager connection factory. - We can cast that
+     * factory to its expected Java type and use it to create a
+     * connection. This validates the resolution of the resource
+     * manager connection factories reference.
+     */
+    @Test
+    @TargetVehicle("appclient")
+    public void testScope() throws Exception {
+        boolean pass;
 
-		try {
-			nctx = new TSNamingContext();
-			logMsg("[Client] Setup succeed (got naming context).");
-		} catch (Exception e) {
-			throw new Exception("Setup failed:", e);
-		}
-	}
+        try {
+            pass = QueueCode.checkYourQueue(nctx);
+            if (!pass) {
+                throw new Exception("res-ref scope test failed!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("res-ref scope test failed: " + e, e);
+        }
+    }
 
-	/**
-	 * @testName: testScope
-	 *
-	 * @assertion_ids: JavaEE:SPEC:125
-	 *
-	 * @test_Strategy:
-	 *
-	 *                 We package in the same .ear file:
-	 *
-	 *                 - Two application clients using the same res-ref-name
-	 *                 ('jms/myFactory') to reference two distinct resource manager
-	 *                 connection factories (a QueueConnectionFactory and a
-	 *                 TopicConnectionFactory).
-	 *
-	 *                 We check that:
-	 *
-	 *                 - We can deploy the application. - We can run one of the
-	 *                 application clients - This application client can lookup its
-	 *                 resource manager connection factory. - We can cast that
-	 *                 factory to its expected Java type and use it to create a
-	 *                 connection. This validates the resolution of the resource
-	 *                 manager connection factories reference.
-	 *
-	 */
-	@Test
-	@TargetVehicle("appclient")
-	public void testScope() throws Exception {
-		boolean pass;
-
-		try {
-			pass = QueueCode.checkYourQueue(nctx);
-			if (!pass) {
-				throw new Exception("res-ref scope test failed!");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new Exception("res-ref scope test failed: " + e, e);
-		}
-	}
-
-	public void cleanup() throws Exception {
-		logMsg("[Client] cleanup()");
-	}
+    public void cleanup() throws Exception {
+        logMsg("[Client] cleanup()");
+    }
 }

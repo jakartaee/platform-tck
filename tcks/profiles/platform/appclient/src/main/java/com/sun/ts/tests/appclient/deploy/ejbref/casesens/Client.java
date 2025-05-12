@@ -33,6 +33,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -45,6 +46,8 @@ import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
+@Tag("platform")
+@Tag("tck-appclient")
 public class Client extends EETest {
 
 	private static final String prefix = "java:comp/env/ejb/";
@@ -72,7 +75,7 @@ public class Client extends EETest {
 	@TargetsContainer("tck-appclient")
 	@OverProtocol("appclient")
 
-	@Deployment(testable = true)
+	@Deployment(name = "appclient_dep_ejbref_casesens")
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_casesens_client.jar");
@@ -80,40 +83,29 @@ public class Client extends EETest {
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
 
 		// The appclient-client descriptor
-		URL appClientUrl = Client.class
-				.getResource("com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_casesens_client.xml");
-		if (appClientUrl != null) {
-			ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
-		}
+		URL appClientUrl = Client.class.getResource("appclient_dep_ejbref_casesens_client.xml");
+		ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
 		// The sun appclient-client descriptor
-		URL sunAppClientUrl = Client.class.getResource(
-				"/com/sun/ts/tests/appclient/deploy/ejbref/single/appclient_dep_ejbref_casesens_client.jar.sun-application-client.xml");
-		if (sunAppClientUrl != null) {
-			ejbClient.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
-		}
+		URL sunAppClientUrl = Client.class.getResource("appclient_dep_ejbref_casesens_client.jar.sun-application-client.xml");
+		ejbClient.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
 
 		ejbClient.addAsManifestResource(
-				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.ejbref.casesens.Client" + "\n"),
+				new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
 				"MANIFEST.MF");
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_casesens_ejb.jar");
-		ejb.addPackages(false, "com.sun.ts.tests.assembly.util.refbean");
-		ejb.addPackages(false, "com.sun.ts.tests.assembly.util.shared.ejbref.common");
-		ejb.addPackages(true, Client.class.getPackage());
+		ejb.addClasses(
+				com.sun.ts.tests.appclient.deploy.ejbref.casesens.ReferencedBean.class,
+				com.sun.ts.tests.appclient.deploy.ejbref.casesens.ReferencedBeanEJB.class,
+				com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode.class,
+				com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper.class
+		);
 
-		URL resURL = Client.class.getResource(
-				"/com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_casesens_ejb.jar.sun-ejb-jar.xml");
+		URL resURL = Client.class.getResource("appclient_dep_ejbref_casesens_ejb.jar.sun-ejb-jar.xml");
+		ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
 
-		if (resURL != null) {
-			ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
-		}
-
-		resURL = Client.class
-				.getResource("/com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_casesens_ejb.xml");
-
-		if (resURL != null) {
-			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
-		}
+		resURL = Client.class.getResource("appclient_dep_ejbref_casesens_ejb.xml");
+		ejb.addAsManifestResource(resURL, "ejb-jar.xml");
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_ejbref_casesens.ear");
 		ear.addAsModule(ejbClient);

@@ -33,6 +33,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -45,6 +46,8 @@ import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
+@Tag("platform")
+@Tag("tck-appclient")
 public class Client extends EETest {
 
 	private static final String prefix = "java:comp/env/ejb/";
@@ -71,7 +74,7 @@ public class Client extends EETest {
 
 	@TargetsContainer("tck-appclient")
 	@OverProtocol("appclient")
-	@Deployment(name = "appclient", testable = true)
+	@Deployment(name = "appclient_dep_ejblink_casesens", testable = true)
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_casesens_client.jar");
