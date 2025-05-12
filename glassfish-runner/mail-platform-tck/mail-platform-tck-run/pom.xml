@@ -65,7 +65,7 @@
         <smtp.port>1025</smtp.port>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <arquillian.core.version>1.9.4.Final</arquillian.core.version>
-        <jakarta.tck.arquillian.version>11.0.5</jakarta.tck.arquillian.version>
+        <jakarta.tck.arquillian.version>11.0.8</jakarta.tck.arquillian.version>
     </properties>
 
     <dependencyManagement>

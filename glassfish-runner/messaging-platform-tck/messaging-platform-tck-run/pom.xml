@@ -45,7 +45,7 @@
         
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
-        <jakarta.tck.arquillian.version>11.0.5</jakarta.tck.arquillian.version>
+        <jakarta.tck.arquillian.version>11.0.8</jakarta.tck.arquillian.version>
         
         <admin.pass>admin</admin.pass>
         <admin.pass.file>${project.build.directory}/ripassword</admin.pass.file>

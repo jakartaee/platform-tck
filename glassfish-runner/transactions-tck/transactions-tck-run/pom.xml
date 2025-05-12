@@ -44,7 +44,7 @@
         <ts.home>${basedir}/jakartaeetck</ts.home>
         
         <jakarta.tck.common.version>11.0.0</jakarta.tck.common.version>
-        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
+        <jakarta.tck.arquillian.version>11.0.8</jakarta.tck.arquillian.version>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <jakarta.tck.transactions.version>${tck.version}</jakarta.tck.transactions.version>
     </properties>
