@@ -209,7 +209,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.entity
             super.cascadeAllMX1Test1();
         }
 
-        @Disabled
+        @Disabled("https://github.com/jakartaee/platform-tck/issues/2111")
         @Test
         @Override
         @TargetVehicle("stateless3")
