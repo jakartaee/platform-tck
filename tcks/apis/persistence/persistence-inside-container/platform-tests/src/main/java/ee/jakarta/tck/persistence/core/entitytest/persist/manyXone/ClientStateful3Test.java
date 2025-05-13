@@ -203,7 +203,7 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.entityt
             super.persistMX1Test1();
         }
 
-        @Disabled
+        @Disabled("https://github.com/jakartaee/platform-tck/issues/2111")
         @Test
         @Override
         @TargetVehicle("stateful3")

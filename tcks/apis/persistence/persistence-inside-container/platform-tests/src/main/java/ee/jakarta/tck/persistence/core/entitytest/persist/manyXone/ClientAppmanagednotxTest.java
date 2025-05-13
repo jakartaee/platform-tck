@@ -209,7 +209,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.en
             super.persistMX1Test1();
         }
 
-        @Disabled
+        @Disabled("https://github.com/jakartaee/platform-tck/issues/2111")
         @Test
         @Override
         @TargetVehicle("appmanagedNoTx")
