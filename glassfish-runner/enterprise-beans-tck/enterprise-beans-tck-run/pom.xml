@@ -362,6 +362,7 @@
                             create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 cts-derby-pool
                             create-jdbc-resource --connectionpoolid cts-derby-XA-pool jdbc/DBTimer
                             create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
+                            create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB_no_tx
                             create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
                             create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/TopicConnectionFactory
                             create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/DURABLE_SUB_CONNECTION_FACTORY

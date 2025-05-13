@@ -53,22 +53,22 @@ public class Client extends EETest {
   @Resource(lookup = "java:app/env/myString")
   private static String myString;
 
-  @EJB(lookup = "java:app/env/hello")
+  @EJB(lookup = "java:app/env/hello", name = "hello")
   private static HelloRemoteIF hello;
 
-  @EJB(lookup = "java:app/env/AppResBean-remote")
+  @EJB(lookup = "java:app/env/AppResBean-remote", name = "appResBean")
   private static AppResRemoteIF appResBeanRemote;
 
   @Resource(lookup = "java:app/env/db1")
   private static DataSource db1;
 
-  @Resource(lookup = "java:app/env/receiveQueue")
+  @Resource(lookup = "java:app/env/receiveQueue", name = "receiveQueue")
   private static Queue receiveQueue;
 
-  @Resource(lookup = "java:app/env/appds")
+  @Resource(lookup = "java:app/env/appds", name = "appds")
   private static DataSource appds;
 
-  @Resource(lookup = "java:global/env/ejb3_assembly_appres_appclientejb/globalds")
+  @Resource(lookup = "java:global/env/ejb3_assembly_appres_appclientejb/globalds", name = "globalds")
   private static DataSource globalds;
 
   @Resource
