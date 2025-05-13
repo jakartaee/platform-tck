@@ -82,12 +82,12 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>11.0.0</version>
+            <version>11.0.8</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>11.0.0</version>
+            <version>11.0.8</version>
         </dependency>
     
          <!-- Junit5 -->
