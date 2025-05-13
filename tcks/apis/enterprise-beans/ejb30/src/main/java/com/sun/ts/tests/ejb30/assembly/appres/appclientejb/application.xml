@@ -126,7 +126,7 @@
   </data-source>
 
   <data-source>
-    <name>java:global/env/ejb3_assembly_appres_warejb/globalds</name>
+    <name>java:global/env/ejb3_assembly_appres_appclientejb/globalds</name>
     <class-name>org.apache.derby.jdbc.ClientDataSource</class-name>
     <server-name>localhost</server-name>
     <port-number>1527</port-number>

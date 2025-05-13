@@ -85,15 +85,11 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.appres.appclient
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/appres/appclientejb/ejb3_assembly_appres_appclientejb_client.xml");
-            if(resURL != null) {
-              ejb3_assembly_appres_appclientejb_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/appres/appclientejb/ejb3_assembly_appres_appclientejb_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              ejb3_assembly_appres_appclientejb_client.addAsManifestResource(resURL, "sun-application-client.xml");
-            }
+            //URL resURL = Client.class.getResource("ejb3_assembly_appres_appclientejb_client.xml");
+            //ejb3_assembly_appres_appclientejb_client.addAsManifestResource(resURL, "application-client.xml");
+            // The sun-application-client.xml
+            URL resURL = Client.class.getResource("ejb3_assembly_appres_appclientejb_client.jar.sun-application-client.xml");
+            ejb3_assembly_appres_appclientejb_client.addAsManifestResource(resURL, "sun-application-client.xml");
             ejb3_assembly_appres_appclientejb_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(ejb3_assembly_appres_appclientejb_client, Client.class, resURL);
@@ -153,15 +149,11 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.appres.appclient
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/appres/appclientejb/application.xml");
-            if(earResURL != null) {
-              ejb3_assembly_appres_appclientejb_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = Client.class.getResource("application.xml");
+            ejb3_assembly_appres_appclientejb_ear.addAsManifestResource(earResURL, "application.xml");
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/appres/appclientejb/application.ear.sun-application.xml");
-            if(earResURL != null) {
-              ejb3_assembly_appres_appclientejb_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
+            earResURL = Client.class.getResource("ejb3_assembly_appres_appclientejb.ear.sun-application.xml");
+            ejb3_assembly_appres_appclientejb_ear.addAsManifestResource(earResURL, "sun-application.xml");
             // Call the archive processor
             archiveProcessor.processEarArchive(ejb3_assembly_appres_appclientejb_ear, Client.class, earResURL);
         return ejb3_assembly_appres_appclientejb_ear;

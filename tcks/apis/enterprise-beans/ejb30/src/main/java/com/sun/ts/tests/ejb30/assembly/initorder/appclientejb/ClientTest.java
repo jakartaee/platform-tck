@@ -154,18 +154,9 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.initorder.appcli
             ejb3_assembly_initorder_appclientejb_ear.addAsModule(one_ejb);
             ejb3_assembly_initorder_appclientejb_ear.addAsModule(ejb3_assembly_initorder_appclientejb_client);
 
-
-
             // The application.xml descriptor
             URL earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/initorder/appclientejb/application.xml");
-            if(earResURL != null) {
-              ejb3_assembly_initorder_appclientejb_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/initorder/appclientejb/application.ear.sun-application.xml");
-            if(earResURL != null) {
-              ejb3_assembly_initorder_appclientejb_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
+            ejb3_assembly_initorder_appclientejb_ear.addAsManifestResource(earResURL, "application.xml");
             // Call the archive processor
             archiveProcessor.processEarArchive(ejb3_assembly_initorder_appclientejb_ear, Client.class, earResURL);
         return ejb3_assembly_initorder_appclientejb_ear;
