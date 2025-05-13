@@ -110,8 +110,8 @@ public class Client extends EETest {
 
         JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_scope_ejb.jar");
         ejb.addClasses(
-                com.sun.ts.tests.appclient.deploy.ejbref.casesens.ReferencedBean.class,
-                com.sun.ts.tests.appclient.deploy.ejbref.casesens.ReferencedBeanEJB.class,
+        		com.sun.ts.tests.appclient.deploy.ejbref.scope.ReferencedBean.class,
+        		com.sun.ts.tests.appclient.deploy.ejbref.scope.ReferencedBeanEJB.class,
                 com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode.class,
                 com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper.class
         );
