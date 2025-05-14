@@ -30,6 +30,7 @@
     <artifactId>glassfish.connector-platform-tck-installer</artifactId>
     <version>11.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <description>Downloads and installs the connector-tck and dependencies</description>
 
     <properties>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
@@ -82,22 +83,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>full</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>web</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
-            </properties>
-        </profile>
-    </profiles>
 </project>
