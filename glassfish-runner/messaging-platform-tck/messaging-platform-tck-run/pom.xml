@@ -44,9 +44,10 @@
         <glassfish-artifact-id>glassfish</glassfish-artifact-id>
         
         <tck.version>11.0.1-SNAPSHOT</tck.version>
-        <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
-        <jakarta.tck.arquillian.version>11.0.8</jakarta.tck.arquillian.version>
-        
+        <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
+       <jakarta.tck.common.version>11.0.7</jakarta.tck.common.version>
+       <jakarta.tck.arquillian.version>11.0.8</jakarta.tck.arquillian.version>
+
         <admin.pass>admin</admin.pass>
         <admin.pass.file>${project.build.directory}/ripassword</admin.pass.file>
         <admin.pass.file.encoded>${admin.pass.file}.encoded</admin.pass.file.encoded>
@@ -132,7 +133,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
+            <version>${jakarta.tck.common.version}</version>
         </dependency>
         
         <!-- Junit5 -->
