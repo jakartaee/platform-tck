@@ -33,10 +33,7 @@ import jakarta.inject.Inject;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Dependent
-public class Client { //extends EETest {
-
-  private static Logger log = Logger.getLogger(Client.class.getName());
+public class Client extends EETest {
 
   // The webserver defaults (overidden by harness properties)
   private static final String PROTOCOL = "http";
@@ -58,13 +55,8 @@ public class Client { //extends EETest {
 
   private String SERVLET = "/cditestsmdb_web/ServletTest";
 
-  // @EJB(name = "ejb/CDITestsMDBClntBean")
-  // static EjbClientIF ejbclient;
-  @Dependent
-	@Inject
-	Instance<EjbClientIF> ejbclientInstance;
-	EjbClientIF ejbclient;
-
+  @EJB(name = "ejb/CDITestsMDBClntBean")
+  static EjbClientIF ejbclient;
 
   private static final long serialVersionUID = 1L;
 
@@ -76,11 +68,11 @@ public class Client { //extends EETest {
 
   String mode;
 
-  // public static void main(String[] args) {
-  //   Client theTests = new Client();
-  //   Status s = theTests.run(args, System.out, System.err);
-  //   s.exit();
-  // }
+  public static void main(String[] args) {
+    Client theTests = new Client();
+    Status s = theTests.run(args, System.out, System.err);
+    s.exit();
+  }
 
   /* Test setup */
 
@@ -88,7 +80,6 @@ public class Client { //extends EETest {
    * @class.setup_props: jms_timeout; user; password; platform.mode;
    * webServerHost; webServerPort;
    */
-  @PostConstruct
   public void setup(String[] args, Properties p) throws Exception {
     props = p;
     boolean pass = true;
@@ -122,9 +113,7 @@ public class Client { //extends EETest {
       } catch (Exception e) {
         throw new Exception("'webServerPort' in ts.jte must be a number");
       }
-      log.info( "AppClient DEBUG: ejbclient: " + ejbclient);
-      ejbclient = ejbclientInstance.get();
-      // TestUtil.logMsg("AppClient DEBUG: ejbclient=" + ejbclient);
+      TestUtil.logMsg("AppClient DEBUG: ejbclient=" + ejbclient);
       if (ejbclient == null) {
         throw new Exception("setup failed: ejbclient injection failure");
       } else {
