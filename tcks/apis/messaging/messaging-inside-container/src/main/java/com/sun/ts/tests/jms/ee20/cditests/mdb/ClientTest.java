@@ -61,29 +61,23 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
             JavaArchive cditestsmdb_client = ShrinkWrap.create(JavaArchive.class, "cditestsmdb_client.jar");
             // The class files
             cditestsmdb_client.addClasses(
-            // com.sun.ts.tests.jms.ee20.cditests.mdb.EjbClientIF.class,
-            // com.sun.ts.lib.harness.EETest.Fault.class,
-            // com.sun.ts.tests.jms.ee20.cditests.mdb.Client.class,
-            // com.sun.ts.lib.harness.EETest.class,
-            // com.sun.ts.lib.harness.EETest.SetupException.class
-            // );
-                    IClient.class,
-                    IClientProxy.class,
-                    TestAppClient.class
-            ).addClasses(AppClient.getAppClasses())
-            ;
-            // The application-client.xml descriptor
-            // URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
-            // if(resURL != null) {
-            //   cditestsmdb_client.addAsManifestResource(resURL, "application-client.xml");
-            // } 
+            com.sun.ts.tests.jms.ee20.cditests.mdb.EjbClientIF.class,
+            com.sun.ts.lib.harness.EETest.Fault.class,
+            com.sun.ts.tests.jms.ee20.cditests.mdb.Client.class,
+            com.sun.ts.lib.harness.EETest.class,
+            com.sun.ts.lib.harness.EETest.SetupException.class
+            );
+            // The sun-application-client.xml descriptor
+            URL resURL = Client.class.getResource("cditestsmdb_client.jar.sun-application-client.xml");
+            if(resURL != null) {
+              cditestsmdb_client.addAsManifestResource(resURL, "sun-application-client.xml");
+            }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             // resURL = Client.class.getResource("");
             // if(resURL != null) {
             //   cditestsmdb_client.addAsManifestResource(resURL, "sun-application-client.xml");
             // }
-            URL resURL = null;
-            cditestsmdb_client.addAsManifestResource(new StringAsset("Main-Class: " + TestAppClient.class.getName() + "\n"), "MANIFEST.MF");
+            cditestsmdb_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(cditestsmdb_client, Client.class, resURL);
 
@@ -114,11 +108,6 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
             // Call the archive processor
             archiveProcessor.processEjbArchive(cditestsmdb_ejb, Client.class, ejbResURL);
 
-            // non-vehicle appclientproxy invoker war
-            WebArchive appclientproxy = ShrinkWrap.create(WebArchive.class, "appclientproxy.war");
-            appclientproxy.addClasses(Client.class, ClientServletTarget.class, ServletNoVehicle.class);
-            appclientproxy.addAsWebInfResource(new StringAsset(""), "beans.xml");
-
         // Ear
             EnterpriseArchive cditestsmdb_ear = ShrinkWrap.create(EnterpriseArchive.class, "cditestsmdb.ear");
 
@@ -127,13 +116,10 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
             // The component jars built by the package target
             cditestsmdb_ear.addAsModule(cditestsmdb_ejb);
             cditestsmdb_ear.addAsModule(cditestsmdb_client);
-            cditestsmdb_ear.addAsModule(appclientproxy);
-
-
 
             // The application.xml descriptor
             URL earResURL = null;
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/mdb/application.xml");
+            earResURL = Client.class.getResource("application.xml");
             if(earResURL != null) {
               cditestsmdb_ear.addAsManifestResource(earResURL, "application.xml");
             }

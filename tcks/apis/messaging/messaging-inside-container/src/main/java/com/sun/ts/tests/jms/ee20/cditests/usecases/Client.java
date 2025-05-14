@@ -33,9 +33,8 @@ import jakarta.inject.Inject;
 
 import jakarta.ejb.EJB;
 
-@Dependent
-public class Client { //extends EETest {
-  private static Logger log = Logger.getLogger(Client.class.getName());
+// @Dependent
+public class Client extends EETest {
 
   // The webserver defaults (overidden by harness properties)
   private static final String PROTOCOL = "http";
@@ -55,34 +54,18 @@ public class Client { //extends EETest {
 
   private URLConnection urlConn = null;
 
-  // @EJB(name = "ejb/CDIUseCasesCMBEAN1")
+  @EJB(name = "ejb/CDIUseCasesCMBEAN1")
   static CMBean1IF cmbean1;
 
-  // @EJB(name = "ejb/CDIUseCasesCMBEAN2")
+  @EJB(name = "ejb/CDIUseCasesCMBEAN2")
   static CMBean2IF cmbean2;
 
-  // @EJB(name = "ejb/CDIUseCasesBMBEAN1")
+  @EJB(name = "ejb/CDIUseCasesBMBEAN1")
   static BMBean1IF bmbean1;
 
-  // @EJB(name = "ejb/CDIUseCasesBMBEAN2")
+  @EJB(name = "ejb/CDIUseCasesBMBEAN2")
   static BMBean2IF bmbean2;
 
-
-	@Dependent
-	@Inject
-	Instance<CMBean1IF> cmbean1Instance;
-
-  @Dependent
-	@Inject
-	Instance<BMBean1IF> bmbean1Instance;
-
-  @Dependent
-	@Inject
-	Instance<CMBean2IF> cmbean2Instance;
-
-  @Dependent
-	@Inject
-	Instance<BMBean2IF> bmbean2Instance;
 
 
   private static final long serialVersionUID = 1L;
@@ -95,33 +78,11 @@ public class Client { //extends EETest {
 
   String mode;
 
-  @PostConstruct
-	public void setup() {
-		try {
-
-      cmbean1 = cmbean1Instance.get();
-      bmbean1 = bmbean1Instance.get();
-      cmbean2 = cmbean2Instance.get();
-      bmbean2 = bmbean2Instance.get();
-      
-      log.info( "Look up cmbean1: " + cmbean1);
-      log.info( "Look up bmbean1: " + bmbean1);
-      log.info( "Look up cmbean2: " + cmbean2);
-      log.info( "Look up bmbean2: " + bmbean2);
-      
-      cleanup();
-
-      } catch (Exception e) {
-          throw new IllegalStateException("Setup Failed!", e);
-    }
-	}
-
-
-  // public static void main(String[] args) {
-  //   Client theTests = new Client();
-  //   Status s = theTests.run(args, System.out, System.err);
-  //   s.exit();
-  // }
+  public static void main(String[] args) {
+    Client theTests = new Client();
+    Status s = theTests.run(args, System.out, System.err);
+    s.exit();
+  }
 
   /* Test setup */
 
@@ -162,11 +123,7 @@ public class Client { //extends EETest {
       } catch (Exception e) {
         throw new Exception("'webServerPort' in ts.jte must be a number");
       }
-      // bmbean1 = BMBean1IFProxy.newInstance(props);
-      // bmbean2 = BMBean2IFProxy.newInstance(props);
-      // cmbean1 = CMBean1IFProxy.newInstance(props);
-      // cmbean2 = CMBean2IFProxy.newInstance(props);
-
+      
       TestUtil.logMsg(
           "AppClient DEBUG: cmbean1=" + cmbean1 + " cmbean2=" + cmbean2);
       TestUtil.logMsg(

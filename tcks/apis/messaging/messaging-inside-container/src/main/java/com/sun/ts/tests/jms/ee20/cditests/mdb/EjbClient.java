@@ -36,7 +36,7 @@ import jakarta.jms.TextMessage;
 import jakarta.jms.Topic;
 
 @Stateful(name = "CDITestsMDBClntBean")
-// @Remote({ EjbClientIF.class })
+@Remote({ EjbClientIF.class })
 public class EjbClient implements EjbClientIF {
 
   private static final boolean debug = false;
