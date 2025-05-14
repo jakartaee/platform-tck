@@ -41,7 +41,7 @@ import jakarta.transaction.UserTransaction;
 
 @TransactionManagement(TransactionManagementType.BEAN)
 @Stateless(name = "CDIUseCasesBMBEAN1")
-// @Remote({ BMBean1IF.class })
+@Remote({ BMBean1IF.class })
 public class BMBean1 implements BMBean1IF {
 
   private static final long serialVersionUID = 1L;

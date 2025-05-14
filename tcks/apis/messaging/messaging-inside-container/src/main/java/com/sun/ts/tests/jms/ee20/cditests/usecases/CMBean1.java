@@ -42,7 +42,7 @@ import jakarta.jms.Topic;
 
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @Stateless(name = "CDIUseCasesCMBEAN1")
-// @Remote({ CMBean1IF.class })
+@Remote({ CMBean1IF.class })
 public class CMBean1 implements CMBean1IF {
 
   private static final long serialVersionUID = 1L;

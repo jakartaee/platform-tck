@@ -60,22 +60,22 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
             JavaArchive cditestsusecases_client = ShrinkWrap.create(JavaArchive.class, "cditestsusecases_client.jar");
             // The class files
             cditestsusecases_client.addClasses(
-            IClientProxy.class,
-            IClient.class,
-            TestAppClient.class
-            ).addClasses(AppClient.getAppClasses());
-            // The application-client.xml descriptor
-            // URL resURL = Client.class.getResource("");
-            // if(resURL != null) {
-            //   cditestsusecases_client.addAsManifestResource(resURL, "application-client.xml");
-            // }
-            // // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            // resURL = Client.class.getResource("/.jar.sun-application-client.xml");
-            // if(resURL != null) {
-            //   cditestsusecases_client.addAsManifestResource(resURL, "application-client.xml");
-            // }
-            URL resURL = null;
-            cditestsusecases_client.addAsManifestResource(new StringAsset("Main-Class: " + TestAppClient.class.getName() + "\n"), "MANIFEST.MF");
+                com.sun.ts.tests.jms.ee20.cditests.usecases.CMBean1IF.class,
+                com.sun.ts.lib.harness.EETest.Fault.class,
+                com.sun.ts.tests.jms.ee20.cditests.usecases.Client.class,
+                com.sun.ts.tests.jms.ee20.cditests.usecases.BMBean1IF.class,
+                com.sun.ts.tests.jms.ee20.cditests.usecases.BMBean2IF.class,
+                com.sun.ts.lib.harness.EETest.class,
+                com.sun.ts.lib.harness.EETest.SetupException.class,
+                com.sun.ts.tests.jms.ee20.cditests.usecases.CMBean2IF.class
+                );
+                // The sun-application-client.xml descriptor
+            URL resURL = Client.class.getResource("cditestsusecases_client.jar.sun-application-client.xml");
+            if(resURL != null) {
+              cditestsusecases_client.addAsManifestResource(resURL, "sun-application-client.xml");
+            }
+
+            cditestsusecases_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(cditestsusecases_client, Client.class, resURL);
 
@@ -93,23 +93,26 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
                 com.sun.ts.tests.jms.ee20.cditests.usecases.CMBean1.class,
                 com.sun.ts.tests.jms.ee20.cditests.usecases.CMBean2IF.class
             );
+
             // The ejb-jar.xml descriptor
             URL ejbResURL = Client.class.getResource("cditestsusecases_ejb.xml");
             if(ejbResURL != null) {
               cditestsusecases_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
+
+            ejbResURL = Client.class.getResource("beans.xml");
+            if(ejbResURL != null) {
+                cditestsusecases_ejb.addAsManifestResource(ejbResURL, "beans.xml");
+            }
+
             // The sun-ejb-jar.xml file
             ejbResURL = Client.class.getResource("cditestsusecases_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               cditestsusecases_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+
             // Call the archive processor
             archiveProcessor.processEjbArchive(cditestsusecases_ejb, Client.class, ejbResURL);
-
-            // non-vehicle appclientproxy invoker war
-            WebArchive appclientproxy = ShrinkWrap.create(WebArchive.class, "appclientproxy.war");
-            appclientproxy.addClasses(Client.class, ClientServletTarget.class, ServletNoVehicle.class);
-            appclientproxy.addAsWebInfResource(new StringAsset(""), "beans.xml");
 
 
         // Ear
@@ -120,7 +123,6 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
             // The component jars built by the package target
             cditestsusecases_ear.addAsModule(cditestsusecases_ejb);
             cditestsusecases_ear.addAsModule(cditestsusecases_client);
-            cditestsusecases_ear.addAsModule(appclientproxy);
 
 
             // The application.xml descriptor
