@@ -28,7 +28,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>pages-platform-tck</artifactId>
-    <version>11.0.1-M2</version>
+    <version>11.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Jakarta Pages Tests</name>
