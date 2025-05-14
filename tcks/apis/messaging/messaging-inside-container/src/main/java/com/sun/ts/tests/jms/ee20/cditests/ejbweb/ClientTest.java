@@ -102,21 +102,19 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client.class,
             com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
-            EjbClientIFProxy.class
+            com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            // URL resURL = null;
-            // URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
-            // if(resURL != null) {
-            //   cditestsejbweb_client.addAsManifestResource(resURL, "application-client.xml");
-            // }
+            URL resURL = Client.class.getResource("cditestsejbweb_client.jar.sun-application-client.xml");
+            if(resURL != null) {
+              cditestsejbweb_client.addAsManifestResource(resURL, "sun-application-client.xml");
+            }
             // // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             // resURL = Client.class.getResource("jar.sun-application-client.xml");
             // if(resURL != null) {
             //   cditestsejbweb_client.addAsManifestResource(resURL, "application-client.xml");
             // }
-            URL resURL = null;
+            // URL resURL = null;
             cditestsejbweb_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
 
             // Call the archive processor
@@ -147,11 +145,6 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client
 
             // Call the archive processor
             archiveProcessor.processEjbArchive(cditestsejbweb_ejb, Client.class, ejbResURL);
-
-            // non-vehicle appclientproxy invoker war
-            WebArchive appclientproxy = ShrinkWrap.create(WebArchive.class, "appclientproxy.war");
-            appclientproxy.addClasses(Client.class, EjbServletTarget.class, ServletNoVehicle.class);
-            appclientproxy.addAsWebInfResource(new StringAsset(""), "beans.xml");
             
 
         // Ear
@@ -163,8 +156,6 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.ejbweb.Client
             cditestsejbweb_ear.addAsModule(cditestsejbweb_ejb);
             cditestsejbweb_ear.addAsModule(cditestsejbweb_client);
             cditestsejbweb_ear.addAsModule(cditestsejbweb_web);
-            cditestsejbweb_ear.addAsModule(appclientproxy);
-
 
             // The application.xml descriptor
             URL earResURL = null;

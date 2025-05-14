@@ -50,7 +50,7 @@ public class Client extends EETest {
 
   private String SERVLET = "/cditestsejbweb_web/ServletTest";
 
-  // @EJB(name = "ejb/CDITestsEjbWebClntBean")
+  @EJB(name = "ejb/CDITestsEjbWebClntBean")
   static EjbClientIF ejbclient;
 
   private static final long serialVersionUID = 1L;
@@ -108,8 +108,6 @@ public class Client extends EETest {
       } catch (Exception e) {
         throw new Exception("'webServerPort' in ts.jte must be a number");
       }
-
-      ejbclient = EjbClientIFProxy.newInstance(props);
 
       TestUtil.logMsg("AppClient DEBUG: ejbclient=" + ejbclient);
       if (ejbclient == null) {

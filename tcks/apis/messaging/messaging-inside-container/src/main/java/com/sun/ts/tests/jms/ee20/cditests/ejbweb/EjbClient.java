@@ -43,7 +43,7 @@ import jakarta.jms.TopicConnectionFactory;
 import jakarta.transaction.UserTransaction;
 
 @Stateful(name = "CDITestsEjbWebClntBean")
-// @Remote({ EjbClientIF.class })
+@Remote({ EjbClientIF.class })
 public class EjbClient implements EjbClientIF {
 
   private static final boolean debug = false;

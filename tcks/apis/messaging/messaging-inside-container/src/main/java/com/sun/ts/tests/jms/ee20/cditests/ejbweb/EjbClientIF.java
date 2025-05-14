@@ -22,18 +22,4 @@ public interface EjbClientIF {
 
   public boolean echo(String testName);
 
-  public boolean sendRecvQueueTestUsingCDIFromEjb();
-
-  public boolean sendRecvTopicTestUsingCDIFromEjb();
-
-  public boolean sendRecvUsingCDIDefaultFactoryFromEjb();
-
-  public boolean verifySessionModeOnCDIJMSContextFromEjb();
-
-  public boolean testRestrictionsOnCDIJMSContextFromEjb();
-
-  public boolean testActiveJTAUsingCDICallMethod1FromEjb();
-
-  public boolean testActiveJTAUsingCDICallMethod2FromEjb();
-
 }
