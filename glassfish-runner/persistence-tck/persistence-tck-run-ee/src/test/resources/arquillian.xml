@@ -17,9 +17,9 @@ SPDX-License-Identifier: Apache-2.0 -->
 
     <!-- Uncomment to have test archives exported to the file system for inspection -->
     
-<!--    <engine>
+    <engine>
         <property name="deploymentExportPath">target/</property>
-    </engine>-->
+    </engine>
     
 
     <container qualifier="glassfish">
@@ -30,8 +30,6 @@ SPDX-License-Identifier: Apache-2.0 -->
             <property name="authorisation">false</property>
             <property name="adminPort">4848</property>
             <property name="outputToConsole">true</property>
-            <property name="glassFishHome">${glassfish.home}</property>
-            <property name="suspend">${glassfish.debug}</property>
         </configuration>
     </container>
 
