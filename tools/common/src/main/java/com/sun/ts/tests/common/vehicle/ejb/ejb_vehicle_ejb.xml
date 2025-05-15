@@ -22,7 +22,7 @@
   <enterprise-beans>
     <session>
       <ejb-name>com_sun_ts_tests_common_vehicle_ejb_EJBVehicle</ejb-name>
-      <remote>com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote</remote>
+      <business-remote>com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote</business-remote>
       <ejb-class>com.sun.ts.tests.common.vehicle.ejb.EJBVehicle</ejb-class>
       <session-type>Stateful</session-type>
       <transaction-type>Container</transaction-type>
