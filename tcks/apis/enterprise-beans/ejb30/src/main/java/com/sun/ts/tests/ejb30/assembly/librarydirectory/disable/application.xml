@@ -17,12 +17,14 @@
 
 -->
 
-<application xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="10" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application_10.xsd">
-<module>
-<java>ejb3_assembly_librarydirectory_disable_client.jar</java>
-</module>
-<module>
-<ejb>ejb3_assembly_librarydirectory_disable_ejb.jar</ejb>
-</module>
-<library-directory></library-directory>
+<application xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             version="10"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application_10.xsd">
+    <module>
+        <java>ejb3_assembly_librarydirectory_disable_client.jar</java>
+    </module>
+    <module>
+        <ejb>ejb3_assembly_librarydirectory_disable_ejb.jar</ejb>
+    </module>
+    <library-directory></library-directory>
 </application>

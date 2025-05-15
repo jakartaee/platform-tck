@@ -27,6 +27,10 @@
         <ejb-ref-name>helloBean2</ejb-ref-name>
         <jndi-name>ejb3_common_helloejbjar_ejb</jndi-name>
     </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>remoteAssemblyBean</ejb-ref-name>
+        <jndi-name>ejb3_assembly_metainf-appclientejb_AssemblyBean</jndi-name>
+    </ejb-ref>
     <resource-ref>
         <res-ref-name>dataSource</res-ref-name>
         <jndi-name>jdbc/DB1</jndi-name>

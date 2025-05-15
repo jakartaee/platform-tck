@@ -21,12 +21,13 @@
 -->
 
 <sun-application-client>
-    <ejb-ref>
-        <ejb-ref-name>helloBean</ejb-ref-name>
-        <jndi-name>ejb3_common_helloejbjar_ejb</jndi-name>
-    </ejb-ref>
-    <ejb-ref>
-        <ejb-ref-name>remoteAssemblyBean</ejb-ref-name>
-        <jndi-name>ejb3_assembly_librarydirectory_custom_AssemblyBean</jndi-name>
-    </ejb-ref>
+    <resource-ref>
+        <res-ref-name>db1</res-ref-name>
+        <jndi-name>java:app/env/db1</jndi-name>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>datasource/twojars/appclient/appds</res-ref-name>
+        <jndi-name>jdbc/DB1</jndi-name>
+    </resource-ref>
+
 </sun-application-client>

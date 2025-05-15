@@ -47,7 +47,7 @@ import jakarta.ejb.EJB;
 public class Client extends EETest {
   private static StringBuilder postConstructRecords = new StringBuilder();
 
-  @EJB(beanName = "DataSourceBean")
+  @EJB(beanName = "DataSourceBean", name = "java:global/ejb3_misc_datasource_twojars/ejb3_misc_datasource_twojars_ejb/DataSourceBean")
   private static AppResRemoteIF dataSourceBean;
 
   @EJB(lookup = "java:global/ejb3_2standalone_component_ejb/DataSource2Bean")
