@@ -42,9 +42,9 @@
         <glassfish.version>8.0.0-JDK17-M10</glassfish.version>
         
         <jakarta.tck.arquillian.version>11.0.8</jakarta.tck.arquillian.version>
-        <jakarta.tck.common.version>11.0.0</jakarta.tck.common.version>
+        <jakarta.tck.common.version>11.0.7</jakarta.tck.common.version>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
-        <ts.home>/jakartaeetck</ts.home>
+        <ts.home>./jakartaeetck</ts.home>
     </properties>
 
     <dependencyManagement>
@@ -370,6 +370,7 @@
                                         <java.io.tmpdir>/tmp</java.io.tmpdir>
                                         <project.basedir>${project.basedir}</project.basedir>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                        <ts.home>${ts.home}</ts.home>
                                     </systemPropertyVariables>
                                 </configuration>
                             </execution>
@@ -402,6 +403,7 @@
                                         <java.io.tmpdir>/tmp</java.io.tmpdir>
                                         <project.basedir>${project.basedir}</project.basedir>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                        <ts.home>${ts.home}</ts.home>
                                     </systemPropertyVariables>
                                     <properties>
                                         <configurationParameters>

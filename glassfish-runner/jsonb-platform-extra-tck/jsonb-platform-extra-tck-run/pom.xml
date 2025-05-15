@@ -42,9 +42,10 @@
         <glassfish.version>8.0.0-JDK17-M9</glassfish.version>
         
         <jakarta.tck.arquillian.version>11.0.8</jakarta.tck.arquillian.version>
-        <jakarta.tck.common.version>11.0.0</jakarta.tck.common.version>
+        <jakarta.tck.common.version>11.0.7</jakarta.tck.common.version>
+        <tck.artifactId>jsonb-platform-tck</tck.artifactId>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
-        <ts.home>/jakartaeetck</ts.home>
+        <ts.home>./jakartaeetck</ts.home>
     </properties>
     
     <dependencyManagement>
@@ -89,7 +90,7 @@
         <!-- The actual TCK containing the tests -->
         <dependency>
             <groupId>jakarta.tck</groupId>
-            <artifactId>jsonb-platform-tck</artifactId>
+            <artifactId>${tck.artifactId}</artifactId>
             <version>${tck.version}</version>
         </dependency>
     
@@ -203,7 +204,7 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <dependenciesToScan>jakarta.tck:jsonb-platform-tck</dependenciesToScan>
+                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <groups>${javatest-testGroups}</groups>
                             <includes>
                                 <include>com/sun/ts/tests/jsonb/cdi/**/*Servlet*.java</include>
@@ -219,8 +220,8 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <dependenciesToScan>jakarta.tck:jsonb-platform-tck</dependenciesToScan>
-                            <groups>tck-javatest</groups>
+                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
+                            <groups>${javatest-testGroups}</groups>
                             <includes>
                                 <include>com/sun/ts/tests/jsonb/pluggability/jsonbprovidertests/*Servlet*.java</include>
                                 <include>com/sun/ts/tests/jsonb/pluggability/jsonbprovidertests/*Jsp*.java</include>
@@ -291,10 +292,10 @@
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>jakarta.tck</groupId>
-                                            <artifactId>jsonp-platform-tck</artifactId>
+                                            <artifactId>${tck.artifactId}</artifactId>
                                             <overWrite>true</overWrite>
                                             <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                                            <destFileName>jsonp-platform-tck.jar</destFileName>
+                                            <destFileName>jsonb-platform-tck.jar</destFileName>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>jakarta.tck.arquillian</groupId>
@@ -357,6 +358,7 @@
                                         <java.io.tmpdir>/tmp</java.io.tmpdir>
                                         <project.basedir>${project.basedir}</project.basedir>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                        <ts.home>${ts.home}</ts.home>
                                     </systemPropertyVariables>
                                 </configuration>
                             </execution>
@@ -386,6 +388,7 @@
                                         <java.io.tmpdir>/tmp</java.io.tmpdir>
                                         <project.basedir>${project.basedir}</project.basedir>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                        <ts.home>${ts.home}</ts.home>
                                     </systemPropertyVariables>
                                 </configuration>
                             </execution>
