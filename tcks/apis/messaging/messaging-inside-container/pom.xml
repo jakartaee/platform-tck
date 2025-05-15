@@ -27,7 +27,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>jms-platform-tck</artifactId>
-    <version>11.0.1-SNAPSHOT</version>
+    <version>11.0.1-M3</version>
     <packaging>jar</packaging>
 
     <name>Jakarta Messaging</name>

@@ -27,7 +27,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>ejb32</artifactId>
-    <version>11.0.1-SNAPSHOT</version>
+    <version>11.0.1-M3</version>
     <packaging>jar</packaging>
 
     <name>EJB32</name>

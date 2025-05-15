@@ -28,7 +28,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>rest-platform-tck</artifactId>
-    <version>11.0.1-SNAPSHOT</version>
+    <version>11.0.1-M3</version>
 
     <name>Jakarta REST Tests</name>
     <description>Jakarta REST Tests for Jakarta EE Platform</description>
