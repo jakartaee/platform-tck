@@ -37,7 +37,7 @@ import jakarta.ejb.EJB;
 public class Client extends EETest {
   private static StringBuilder postConstructRecords = new StringBuilder();
 
-  @EJB
+  @EJB(name = "moduleBean")
   private static AppResRemoteIF moduleBean;
 
   public static void main(String[] args) {

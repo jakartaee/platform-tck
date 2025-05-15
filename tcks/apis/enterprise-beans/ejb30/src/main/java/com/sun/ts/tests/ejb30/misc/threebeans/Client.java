@@ -31,16 +31,16 @@ import jakarta.ejb.EJBException;
 
 public class Client extends EETest {
 
-  @EJB
+  @EJB(name = "oneRemote")
   private static OneRemoteIF oneRemote;
 
-  @EJB
+  @EJB(name = "twoRemote")
   private static TwoRemoteIF twoRemote;
 
-  @EJB(beanName = "ThreeBean")
+  @EJB(beanName = "ThreeBean", name = "threeRemote")
   private static ThreeRemoteIF threeRemote;
 
-  @EJB(beanName = "FourBean")
+  @EJB(beanName = "FourBean", name = "fourRemote")
   private static ThreeRemoteIF fourRemote;
 
   public static void main(String[] args) {

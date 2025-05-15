@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.ejb30.timer.basic.mdb;
 
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.misc.getresource.common.GetResourceTest;
 import com.sun.ts.tests.ejb30.timer.common.MethodDispatcher;
@@ -46,6 +47,7 @@ abstract public class TimerBasicBeanBase2 extends TimerMessageBeanBase
   }
 
   public void onMessage(Message message) throws RuntimeException {
+    TestUtil.logTrace("TimerBasicBeanBase2.onMessage");
     initTimerInfo(message);
     MethodDispatcher.dispatchOnMessage(message, this,
         getTimerInfo().getTestName());
@@ -54,6 +56,7 @@ abstract public class TimerBasicBeanBase2 extends TimerMessageBeanBase
   @SuppressWarnings("unused")
   @Timeout
   private void timeOut(Timer timer) throws RuntimeException {
+    TestUtil.logTrace("TimerBasicBeanBase2.timeOut");
     MethodDispatcher.dispatchTimeOut(timer, this, getQFactory(),
         getReplyQueue());
   }
