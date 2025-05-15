@@ -27,7 +27,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>jsonp-platform-tck</artifactId>
-    <version>11.0.1-M3</version>
+    <version>11.0.1-SNAPSHOT</version>
 
     <name>Jakarta JSON Processing</name>
     <description>Jakarta JSON Processing extra platform tests</description>

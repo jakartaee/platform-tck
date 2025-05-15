@@ -21,12 +21,12 @@
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>jakarta.tck-user-guide-parent</artifactId>
-        <version>11.0.1-M3</version>
+        <version>11.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>jakarta.jakartaee-tck-user-guide</artifactId>
-    <version>11.0.1-M3</version>
+    <version>11.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta EE Platform, Enterprise Edition, Release 11.0 ${project.version}</name>
 
