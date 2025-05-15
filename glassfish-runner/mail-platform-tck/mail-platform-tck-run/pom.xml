@@ -66,6 +66,7 @@
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <arquillian.core.version>1.9.4.Final</arquillian.core.version>
         <jakarta.tck.arquillian.version>11.0.8</jakarta.tck.arquillian.version>
+        <jakarta.tck.common.version>11.0.7</jakarta.tck.common.version>
     </properties>
 
     <dependencyManagement>
@@ -93,7 +94,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
+            <version>${jakarta.tck.common.version}</version>
         </dependency>
 
         <dependency>
