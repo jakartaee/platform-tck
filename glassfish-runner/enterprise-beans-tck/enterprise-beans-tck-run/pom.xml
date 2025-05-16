@@ -33,8 +33,8 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>enterprise-beans-tck-run</artifactId>
-    <version>11.0.1-SNAPSHOT</version>
-
+    <version>11.0.1</version>
+    <packaging>jar</packaging>
     <name>enterprise-beans-tck</name>
     <description>Aggregates dependencies and runs the Enterprise Beans TCK on GlassFish</description>
 
@@ -65,11 +65,14 @@
         <ts.home>${basedir}/src/test/resources/jakartaeetck</ts.home>
 
         <version.jakarta.ejb>4.0.1</version.jakarta.ejb>
-        <version.jakarta.enterprise>4.0.1</version.jakarta.enterprise>
+        <version.jakarta.enterprise>4.1.0</version.jakarta.enterprise>
         <version.jakarta.inject>2.0.1</version.jakarta.inject>
         <version.jakarta.servlet>6.1.0</version.jakarta.servlet>
-        <version.jakarta.tck>11.0.1-SNAPSHOT</version.jakarta.tck>
-        <version.surefire>3.5.4-SNAPSHOT</version.surefire>
+        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        <version.surefire>3.5.3</version.surefire>
+        <jakarta.tck.arquillian.version>11.0.9</jakarta.tck.arquillian.version>
+        <arquillian.core.version>1.9.4.Final</arquillian.core.version>
+        <junit.version>5.10.2</junit.version>
 
         <whitebox.directory>target/whiteboxes</whitebox.directory>
 
@@ -85,7 +88,7 @@
             <dependency>
                 <groupId>jakarta.tck</groupId>
                 <artifactId>artifacts-bom</artifactId>
-                <version>${version.jakarta.tck}</version>
+                <version>${tck.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -109,12 +112,14 @@
         <dependency>
             <groupId>jakarta.ejb</groupId>
             <artifactId>jakarta.ejb-api</artifactId>
+            <version>${version.jakarta.ejb}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>${version.jakarta.enterprise}</version>
             <scope>test</scope>
             <!-- CDI references wrong version of annotations -->
             <exclusions>
@@ -127,11 +132,13 @@
         <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
+            <version>${version.jakarta.inject}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
+            <version>${version.jakarta.servlet}</version>
             <scope>test</scope>
         </dependency>
 
@@ -139,60 +146,62 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>ejb30</artifactId>
-            <version>${version.jakarta.tck}</version>
+            <version>${tck.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>ejb32</artifactId>
-            <version>${version.jakarta.tck}</version>
+            <version>${tck.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
 
         <!-- Junit5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-suite-engine</artifactId>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-reporting</artifactId>
-            <scope>test</scope>
+            <version>1.13.0-M3</version>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
+            <version>${arquillian.core.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-spi</artifactId>
+            <version>${arquillian.core.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.shrinkwrap.descriptors</groupId>
             <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
+            <version>2.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -233,17 +242,18 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>whitebox</artifactId>
-            <version>${version.jakarta.tck}</version>
+            <version>${tck.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>whitebox-tx</artifactId>
-            <version>${version.jakarta.tck}</version>
+            <version>${tck.version}</version>
             <type>rar</type>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
     </dependencies>
 
@@ -313,6 +323,14 @@
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${glassfish.lib.dir}</outputDirectory>
                                     <destFileName>arquillian-protocol-lib.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck.arquillian</groupId>
+                                    <artifactId>arquillian-protocol-lib</artifactId>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/protocol</outputDirectory>
+                                    <destFileName>protocol.jar</destFileName>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
