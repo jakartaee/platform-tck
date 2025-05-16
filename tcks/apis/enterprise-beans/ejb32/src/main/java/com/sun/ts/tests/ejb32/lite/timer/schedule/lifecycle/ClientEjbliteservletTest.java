@@ -7,8 +7,6 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import org.jboss.shrinkwrap.resolver.api.maven.MavenResolvedArtifact;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -81,12 +79,10 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb32.lite.timer.
             com.sun.ts.tests.ejb30.timer.common.TimerUtil.class,
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
-            String[] activeMavenProfiles = {"staging"};
-            MavenResolvedArtifact resolvedArtifact = Maven.resolver().loadPomFromFile("pom.xml", activeMavenProfiles)
-                    .resolve("org.apache.commons:commons-lang3:3.9")
-                    .withTransitivity()
-                    .asSingleResolvedArtifact();
-            ejb32_lite_timer_schedule_lifecycle_ejbliteservlet_vehicle_web.addAsLibrary(resolvedArtifact.asFile());
+            ejb32_lite_timer_schedule_lifecycle_ejbliteservlet_vehicle_web.addClasses(
+                    org.apache.commons.lang3.StringUtils.class,
+                    org.apache.commons.lang3.time.DateUtils.class
+            );
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("ejbliteservlet_vehicle_web.xml");
             if(warResURL != null) {

@@ -81,12 +81,11 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb32.lite.timer
             com.sun.ts.tests.ejb30.timer.common.TimerUtil.class,
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
-            String[] activeMavenProfiles = {"staging"};
-            MavenResolvedArtifact resolvedArtifact = Maven.resolver().loadPomFromFile("pom.xml", activeMavenProfiles)
-                    .resolve("org.apache.commons:commons-lang3:3.9")
-                    .withTransitivity()
-                    .asSingleResolvedArtifact();
-            ejb32_lite_timer_schedule_lifecycle_ejbliteservlet2_vehicle_web.addAsLibrary(resolvedArtifact.asFile());
+            // common lang3 classes
+            ejb32_lite_timer_schedule_lifecycle_ejbliteservlet2_vehicle_web.addClasses(
+                    org.apache.commons.lang3.StringUtils.class,
+                    org.apache.commons.lang3.time.DateUtils.class
+            );
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("ejbliteservlet2_vehicle_web.xml");
             if(warResURL != null) {
