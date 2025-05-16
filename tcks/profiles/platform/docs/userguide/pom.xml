@@ -27,7 +27,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>jakarta.tck-user-guide-parent</artifactId>
-    <version>11.0.1-M4</version>
+    <version>11.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Eclipse Foundation Technology Compatibility Kit User's Guides for Jakarta EE ${project.version}</name>
 

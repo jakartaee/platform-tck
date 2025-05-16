@@ -28,7 +28,7 @@
     
     <groupId>jakarta.tck</groupId>
     <artifactId>connector</artifactId>
-    <version>11.0.1-M4</version>
+    <version>11.0.1-SNAPSHOT</version>
 
     <name>Jakarta Connector</name>
     <description>Jakarta Connector</description>
