@@ -322,6 +322,14 @@
                                     <destFileName>arquillian-protocol-lib.jar</destFileName>
                                 </artifactItem>
                                 <artifactItem>
+                                    <groupId>jakarta.tck.arquillian</groupId>
+                                    <artifactId>arquillian-protocol-lib</artifactId>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/protocol</outputDirectory>
+                                    <destFileName>protocol.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
                                     <groupId>jakarta.tck</groupId>
                                     <artifactId>whitebox</artifactId>
                                     <outputDirectory>${glassfish.lib.dir}</outputDirectory>
