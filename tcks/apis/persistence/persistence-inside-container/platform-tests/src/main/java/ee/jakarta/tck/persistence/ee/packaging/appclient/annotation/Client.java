@@ -43,16 +43,15 @@ public class Client extends EETest {
 
 	private EntityTransaction et;
 
-	/*
-	 * @class.setup_props:
-	 */
-
 	public static void main(String[] args) {
   		Client theTests = new Client();
   		Status s = theTests.run(args, System.out, System.err);
   		s.exit();
 	}
 
+	/*
+	 * @class.setup_props:
+	 */
 	public void setup(String[] args, Properties p) throws Exception {
 		try {
 

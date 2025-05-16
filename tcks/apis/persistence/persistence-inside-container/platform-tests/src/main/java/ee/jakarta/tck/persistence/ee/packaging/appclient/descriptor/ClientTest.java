@@ -56,11 +56,11 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.appclien
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/appclient/descriptor/jpa_ee_packaging_appclient_descriptor_client.xml");
             jpa_ee_packaging_appclient_descriptor_client.addAsManifestResource(resURL, "application-client.xml");
-            resURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/appclient/descriptor/persistence.xml");
-            jpa_ee_packaging_appclient_descriptor_client.addAsManifestResource(resURL, "persistence.xml");
+            URL parUrl = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/appclient/descriptor/persistence.xml");
+            jpa_ee_packaging_appclient_descriptor_client.addAsManifestResource(parUrl, "persistence.xml");
             resURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/appclient/descriptor/orm.xml");
             jpa_ee_packaging_appclient_descriptor_client.addAsManifestResource(resURL, "orm.xml");
-
+            archiveProcessor.processParArchive(jpa_ee_packaging_appclient_descriptor_client, Client.class, parUrl);
             jpa_ee_packaging_appclient_descriptor_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_packaging_appclient_descriptor_client, Client.class, resURL);
