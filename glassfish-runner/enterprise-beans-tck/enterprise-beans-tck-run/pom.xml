@@ -34,7 +34,6 @@
     <groupId>jakarta.tck</groupId>
     <artifactId>enterprise-beans-tck-run</artifactId>
     <version>11.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
 
     <name>enterprise-beans-tck</name>
     <description>Aggregates dependencies and runs the Enterprise Beans TCK on GlassFish</description>
@@ -70,6 +69,7 @@
         <version.jakarta.inject>2.0.1</version.jakarta.inject>
         <version.jakarta.servlet>6.1.0</version.jakarta.servlet>
         <version.jakarta.tck>11.0.1-SNAPSHOT</version.jakarta.tck>
+        <version.surefire>3.5.4-SNAPSHOT</version.surefire>
 
         <whitebox.directory>target/whiteboxes</whitebox.directory>
 
@@ -92,7 +92,7 @@
             <dependency>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.2</version>
+                <version>${version.surefire}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -193,6 +193,10 @@
         <dependency>
             <groupId>org.jboss.shrinkwrap.descriptors</groupId>
             <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
         </dependency>
 
         <!--
@@ -331,7 +335,7 @@
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.3</version>
+                <version>${version.surefire}</version>
                 <configuration>
                     <includes>
                         <include>**/*Test.java</include>
@@ -401,7 +405,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.5.2</version>
+                        <version>${version.surefire}</version>
                         <executions>
                             <execution>
                                 <id>001-ejb-30-javatest</id>
@@ -417,9 +421,6 @@
                                         <exclude>com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjblitejspTest</exclude>
                                         <exclude>com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjbliteservlet2Test</exclude>
                                         <exclude>com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjbliteservletTest</exclude>
-                                        <exclude>com.sun.ts.tests.ejb30.misc.datasource.twowars.ClientTest</exclude>
-                                        <exclude>com.sun.ts.tests.ejb30.misc.moduleName.twowars.ClientTest</exclude>
-                                        <exclude>com.sun.ts.tests.ejb30.misc.moduleName.conflict.ClientTest</exclude>
                                         <exclude>com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant.ClientTest</exclude>
 
                                         <!-- These take about 1 hour each: look at reducing timeout settings -->
@@ -467,7 +468,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.5.2</version>
+                        <version>${version.surefire}</version>
                         <executions>
                             <execution>
                                 <id>001-ejb-30-javatest</id>
@@ -494,7 +495,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.5.2</version>
+                        <version>${version.surefire}</version>
                         <configuration>
                             <excludes>
                                 <!-- These take about 1 hour each: look at reducing timeout settings -->
@@ -594,7 +595,7 @@
                                 <include>com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.invocationcontext.ClientTest</include>
                                 <include>com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor.ClientTest</include>
                                 -->
-                                <include>com.sun.ts.tests.ejb30.bb.**.*Test</include>
+                                    <include>com.sun.ts.tests.ejb30.misc.moduleName.twowars.ClientTest</include>
                             </includes>
                             <groups>${groups}</groups>
                         </configuration>
@@ -986,7 +987,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.5.2</version>
+                        <version>${version.surefire}</version>
                         <configuration>
                             <test>com.sun.ts.tests.ejb30.bb.session.stateful.timeout.descriptor.ClientEjblitejspTest</test>
                             <systemPropertyVariables>
@@ -1012,7 +1013,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.5.2</version>
+                        <version>${version.surefire}</version>
                         <configuration>
                             <test>com.sun.ts.tests.ejb30.lite.stateful.timeout.annotated.ClientEjblitejspTest</test>
                             <systemPropertyVariables>
@@ -1037,7 +1038,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.5.2</version>
+                        <version>${version.surefire}</version>
                         <configuration>
                             <test>com.sun.ts.tests.ejb30.lite.stateful.timeout.descriptor.ClientEjblitejspTest</test>
                             <systemPropertyVariables>
@@ -1080,7 +1081,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.5.2</version>
+                        <version>${version.surefire}</version>
                         <configuration>
                             <groups>${groups}</groups>
                             <test>com.sun.ts.tests.ejb30.assembly.initorder.warejb.ClientTest,
@@ -1104,7 +1105,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.5.2</version>
+                        <version>${version.surefire}</version>
                         <configuration>
                             <groups>${groups}</groups>
                             <includes>
