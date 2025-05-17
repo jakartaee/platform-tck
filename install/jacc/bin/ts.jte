@@ -302,6 +302,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         windir=${windir} \
         SYSTEMROOT=${SYSTEMROOT} \
         ${JAVA_HOME}/bin/java \
+        --module-path ${jacc.home}/lib/bootstrap --add-modules ALL-MODULE-PATH \
         -Dcts.tmp=$harness.temp.directory \
         -Dlog.file.location=${log.file.location} \
         -Djava.security.policy=${bin.dir}/harness.policy \
