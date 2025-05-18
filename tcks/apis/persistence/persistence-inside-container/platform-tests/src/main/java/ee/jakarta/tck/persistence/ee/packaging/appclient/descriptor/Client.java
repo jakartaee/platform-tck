@@ -21,13 +21,14 @@
 package ee.jakarta.tck.persistence.ee.packaging.appclient.descriptor;
 
 
+import java.util.Properties;
+
 import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
 
 public class Client extends EETest {
 
@@ -45,11 +46,16 @@ public class Client extends EETest {
 
 	private static final String emfRef = "java:comp/env/persistence/MyPersistenceUnit";
 
+	public static void main(String[] args) {
+  		Client theTests = new Client();
+  		Status s = theTests.run(args, System.out, System.err);
+  		s.exit();
+	}
+
 	/*
 	 * @class.setup_props:
 	 */
-	@AfterEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		try {
 			logTrace( "Obtain naming context");
 			nctx = new TSNamingContext();
@@ -103,7 +109,7 @@ public class Client extends EETest {
 	 * Create entities, persist them, then find.
 	 *
 	 */
-	@Test
+
 	public void test1() throws Exception {
 
 		logTrace( "Begin test1");
@@ -175,7 +181,6 @@ public class Client extends EETest {
 			throw new Exception("test1 failed");
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		logTrace( "cleanup");
 		removeTestData();
