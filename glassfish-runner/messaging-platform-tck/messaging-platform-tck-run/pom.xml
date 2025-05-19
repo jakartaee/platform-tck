@@ -46,7 +46,7 @@
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
        <jakarta.tck.common.version>11.0.8</jakarta.tck.common.version>
-       <jakarta.tck.arquillian.version>11.0.8</jakarta.tck.arquillian.version>
+       <jakarta.tck.arquillian.version>11.0.9</jakarta.tck.arquillian.version>
 
         <admin.pass>admin</admin.pass>
         <admin.pass.file>${project.build.directory}/ripassword</admin.pass.file>
@@ -220,6 +220,16 @@
                                     <outputDirectory>${project.build.directory}/lib</outputDirectory>
                                     <destFileName>jms-tck.jar</destFileName>
                                 </artifactItem>
+
+                                <artifactItem>
+                                    <groupId>jakarta.tck.arquillian</groupId>
+                                    <artifactId>arquillian-protocol-lib</artifactId>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/protocol</outputDirectory>
+                                    <destFileName>protocol.jar</destFileName>
+                                </artifactItem>
+
                             </artifactItems>
                         </configuration>
                     </execution>
@@ -709,19 +719,6 @@
                                             <destFileName>arquillian-protocol-lib.jar</destFileName>
                                         </artifactItem>
 
-                                        <!-- 
-                                            AppClientDeploymentPackager needs this on the Eclipse CI since it can't fully resolve
-                                            jakarta.tck.arquillian:arquillian-protocol-lib in code for some reason.
-                                        -->
-                                        <artifactItem>
-                                            <groupId>jakarta.tck.arquillian</groupId>
-                                            <artifactId>arquillian-protocol-lib</artifactId>
-                                            <!-- <version>${jakarta.tck.arquillian.version}</version> -->
-                                            <type>jar</type>
-                                            <overWrite>true</overWrite>
-                                            <outputDirectory>${project.build.directory}/protocol</outputDirectory>
-                                            <destFileName>protocol.jar</destFileName>
-                                        </artifactItem>
                                     </artifactItems>
                                 </configuration>
                             </execution>
