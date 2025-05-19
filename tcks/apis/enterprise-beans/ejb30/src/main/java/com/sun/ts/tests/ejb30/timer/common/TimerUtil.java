@@ -273,7 +273,7 @@ public final class TimerUtil {
 
   public static Timer createSecondLaterTimer(TimerService timerService,
       TimerConfig timerConfig) {
-    return createSecondLaterTimer(timerService, timerConfig, 1);
+    return createSecondLaterTimer(timerService, timerConfig, 2);
   }
 
   public static Timer createSecondLaterTimer(TimerService timerService,
@@ -286,7 +286,7 @@ public final class TimerUtil {
 
   public static Timer createSecondLaterTimer(TimerService timerService,
       TimerInfo info) {
-    return createSecondLaterTimer(timerService, info, 1);
+    return createSecondLaterTimer(timerService, info, 2);
   }
 
   public static Timer createSecondLaterTimer(TimerService timerService,
