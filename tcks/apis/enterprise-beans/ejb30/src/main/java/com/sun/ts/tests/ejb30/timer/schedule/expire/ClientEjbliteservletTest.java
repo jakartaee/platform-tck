@@ -78,6 +78,8 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.sched
             // commons lang jar
             ejb30_timer_schedule_expire_ejbliteservlet_vehicle_web.addClasses(
                     org.apache.commons.lang3.StringUtils.class,
+                    org.apache.commons.lang3.stream.Streams.class,
+                    org.apache.commons.lang3.stream.LangCollectors.class,
                     org.apache.commons.lang3.time.DateUtils.class
             );
 
