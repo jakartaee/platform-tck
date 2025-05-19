@@ -79,6 +79,8 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb32.lite.timer.sche
             // commons lang jar
             ejb32_lite_timer_schedule_expire_ejblitejsp_vehicle_web.addClasses(
                     org.apache.commons.lang3.StringUtils.class,
+                    org.apache.commons.lang3.stream.Streams.class,
+                    org.apache.commons.lang3.stream.LangCollectors.class,
                     org.apache.commons.lang3.time.DateUtils.class
             );
             // The web.xml descriptor
