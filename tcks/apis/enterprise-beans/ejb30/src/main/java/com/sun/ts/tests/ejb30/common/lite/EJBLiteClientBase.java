@@ -22,6 +22,8 @@ package com.sun.ts.tests.ejb30.common.lite;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -375,6 +377,9 @@ public class EJBLiteClientBase extends ServiceEETest
 
   protected void appendReason(Object... oo) {
     for (Object o : oo) {
+      if (o instanceof Collection<?>) {
+        o = new ArrayList<>((Collection<?>) o); // Copy to prevent ConcurrentModificationException
+      }
       getReasonBuffer().append(o).append(System.getProperty("line.separator"));
     }
   }
