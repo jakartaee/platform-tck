@@ -159,6 +159,19 @@
                                     <outputDirectory>${glassfish.lib.dir}</outputDirectory>
                                     <destFileName>arquillian-protocol-lib.jar</destFileName>
                                 </artifactItem>
+                                <!-- 
+                                    AppClientDeploymentPackager & JavaTestDeploymentPackager needs this on the Eclipse CI since 
+                                    it can't fully resolve jakarta.tck.arquillian:arquillian-protocol-lib in code for some reason.
+                                -->
+                                <artifactItem>
+                                    <groupId>jakarta.tck.arquillian</groupId>
+                                    <artifactId>arquillian-protocol-lib</artifactId>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/protocol</outputDirectory>
+                                    <destFileName>protocol.jar</destFileName>
+                                </artifactItem>
+
                             </artifactItems>
                         </configuration>
                     </execution>
@@ -433,19 +446,6 @@
                                             <destFileName>arquillian-protocol-lib.jar</destFileName>
                                         </artifactItem>
 
-                                        <!-- 
-                                            AppClientDeploymentPackager needs this on the Eclipse CI since it can't fully resolve
-                                            jakarta.tck.arquillian:arquillian-protocol-lib in code for some reason.
-                                        -->
-                                        <artifactItem>
-                                            <groupId>jakarta.tck.arquillian</groupId>
-                                            <artifactId>arquillian-protocol-lib</artifactId>
-                                            <!-- <version>${jakarta.tck.arquillian.version}</version> -->
-                                            <type>jar</type>
-                                            <overWrite>true</overWrite>
-                                            <outputDirectory>${project.build.directory}/protocol</outputDirectory>
-                                            <destFileName>protocol.jar</destFileName>
-                                        </artifactItem>
                                     </artifactItems>
                                 </configuration>
                             </execution>
