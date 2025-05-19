@@ -1137,7 +1137,6 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         ${JVMOPTS_RUNTESTCOMMAND} \
         -Xss2048k \
         -Dcts.tmp=$harness.temp.directory \
-        -Djava.protocol.handler.pkgs=javax.net.ssl \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
         -Djavax.net.ssl.trustStore=${s1as.domain}/${sjsas.instance.config.dir}/cacerts.jks \
@@ -1179,7 +1178,6 @@ command.testExecuteAppClient= \
         -Djava.security.policy=${javaee.home}/lib/appclient/client.policy \
         -Dcts.tmp=$harness.temp.directory \
         -Djava.security.auth.login.config=${javaee.home}/lib/appclient/appclientlogin.conf \
-        -Djava.protocol.handler.pkgs=javax.net.ssl \
         -Dcom.sun.enterprise.home=${javaee.home} \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
@@ -1272,7 +1270,6 @@ command.testExecuteAppClient2= \
         -Djava.security.policy=${javaee.home.ri}/lib/appclient/client.policy \
         -Dcts.tmp=$harness.temp.directory \
 	-Djava.security.auth.login.config=${javaee.home.ri}/lib/appclient/appclientlogin.conf \
-        -Djava.protocol.handler.pkgs=javax.net.ssl \
 	-Dcom.sun.enterprise.home=${javaee.home.ri} \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
@@ -1333,7 +1330,6 @@ command.testExecute2=com.sun.ts.lib.harness.ExecTSTestCmd \
         ${RI_JAVA_HOME}/bin/java \
         ${JVMOPTS_RUNTESTCOMMAND} \
         -Dcts.tmp=$harness.temp.directory \
-        -Djava.protocol.handler.pkgs=javax.net.ssl \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
         -Djavax.net.ssl.trustStore=${ri.domain}/${ri.instance.config.dir}/cacerts.jks \
