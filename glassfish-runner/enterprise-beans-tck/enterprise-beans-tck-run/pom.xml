@@ -182,7 +182,7 @@
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-reporting</artifactId>
-            <version>1.13.0-M3</version>
+            <version>1.13.0-RC1</version>
         </dependency>
 
         <dependency>
