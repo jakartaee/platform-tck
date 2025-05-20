@@ -42,9 +42,9 @@
         <glassfish.version>8.0.0-JDK17-M10</glassfish.version>
         <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
 
-        <jakarta.tck.arquillian.version>11.0.8</jakarta.tck.arquillian.version>
-        <jakarta.tck.common.version>11.0.2</jakarta.tck.common.version>
-        <tck.test.persistence.version>11.0.0</tck.test.persistence.version>
+        <jakarta.tck.arquillian.version>11.0.10</jakarta.tck.arquillian.version>
+        <jakarta.tck.common.version>11.0.8</jakarta.tck.common.version>
+        <tck.test.persistence.version>11.0.1-M5</tck.test.persistence.version>
         
         <ts.home>./jakartaeetck</ts.home>
     </properties>
@@ -437,6 +437,9 @@
                                 </goals>
                                 <configuration>
                                     <includes>
+                                        <!--
+                                        <include>ee.jakarta.tck.persistence.ee.packaging.appclient.annotation.ClientTest</include>
+                                        -->
                                         <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                                     </includes>
                                     <!-- Should this not just be tck-appclient ? -->
