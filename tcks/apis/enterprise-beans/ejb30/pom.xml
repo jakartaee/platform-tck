@@ -27,7 +27,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>ejb30</artifactId>
-    <version>11.0.1-SNAPSHOT</version>
+    <version>11.0.1-M5</version>
     <packaging>jar</packaging>
 
     <name>ejb30</name>
