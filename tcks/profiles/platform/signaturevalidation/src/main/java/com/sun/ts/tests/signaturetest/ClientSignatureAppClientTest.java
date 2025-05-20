@@ -34,7 +34,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -110,20 +109,10 @@ public class ClientSignatureAppClientTest extends JakartaEESigTest implements Se
             } else {
                 throw new IllegalStateException("missing " + signatureMapFile);
             }
-            // add jakarta.tck:sigtest-maven-plugin jar to the war
-            // Import Maven runtime dependencies
-            String profiles = System.getProperty("active.profiles", "");
-            String[] activeMavenProfiles = !profiles.isEmpty() ? profiles.split(",") : new String[]{};
-            File[] files = Maven.resolver()
-                    .loadPomFromFile("pom.xml", activeMavenProfiles)
-                    .resolve("jakarta.tck:sigtest-maven-plugin", "jakarta.tck:signaturetest")
-                    .withoutTransitivity()
-                    .asFile();
-
-            // add signature test artifacts
-            ear.addAsLibraries(files);
         }
         ear.addAsModule(archive);
+        archiveProcessor.processEarArchive(ear, ClientSignatureAppClientTest.class, appClientUrl);
+
         return ear;
     }
 

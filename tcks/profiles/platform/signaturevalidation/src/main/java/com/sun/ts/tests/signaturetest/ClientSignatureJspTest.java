@@ -34,7 +34,6 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.ByteArrayAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -168,19 +167,6 @@ public class ClientSignatureJspTest extends JakartaEESigTest implements Serializ
             }
 
         }
-
-
-        // add jakarta.tck:sigtest-maven-plugin jar to the war
-        // Import Maven runtime dependencies
-        String profiles = System.getProperty("active.profiles", "");
-        String[] activeMavenProfiles = !profiles.isEmpty() ? profiles.split(",") : new String[] {};
-        File[] files = Maven.resolver()
-                .loadPomFromFile("pom.xml", activeMavenProfiles)
-                .resolve("jakarta.tck:sigtest-maven-plugin", "jakarta.tck:signaturetest")
-                .withoutTransitivity()
-                .asFile();
-        // add signature test artifacts
-        signaturetest_jsp_vehicle_web.addAsLibraries(files);
 
         // Call the archive processor
         archiveProcessor.processWebArchive(signaturetest_jsp_vehicle_web, ClientSignatureJspTest.class, warResURL);
