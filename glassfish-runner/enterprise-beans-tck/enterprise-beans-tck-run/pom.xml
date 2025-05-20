@@ -1164,11 +1164,10 @@
                                     <groups>tck-appclient</groups>
                                     <includes>
                                         <!--
-                                        <include>com.sun.ts.tests.ejb30.**.*Test</include>
-                                        <include>com.sun.ts.tests.ejb32.**.*Test</include>
                                         <include>com.sun.ts.tests.ejb30.assembly.initorder.appclientejb.ClientTest</include>
                                         -->
-                                        <include>com.sun.ts.tests.ejb32.mdb.modernconnector.ClientTest</include>
+                                        <include>com.sun.ts.tests.ejb30.**.*Test</include>
+                                        <include>com.sun.ts.tests.ejb32.**.*Test</include>
                                     </includes>
                                 </configuration>
                             </execution>
