@@ -27,7 +27,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>el-platform-tck</artifactId>
-    <version>11.0.1-M5</version>
+    <version>11.0.1-SNAPSHOT</version>
 
     <name>el</name>
     <description>Expression Language EE Tests</description>
