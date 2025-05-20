@@ -14,10 +14,11 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package org.glassfish.messaging.tck;
+package org.glassfish.signature.tck;
 
 import java.net.URL;
 import java.util.logging.Logger;
+import java.io.File;
 
 import org.jboss.arquillian.config.descriptor.api.ArquillianDescriptor;
 import org.jboss.arquillian.core.api.annotation.Observes;
@@ -26,6 +27,10 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
 import tck.arquillian.porting.lib.spi.AbstractTestArchiveProcessor;
+
+import org.jboss.arquillian.container.test.spi.client.deployment.ApplicationArchiveProcessor;
+import org.jboss.arquillian.test.spi.TestClass;
+import org.jboss.shrinkwrap.api.Archive;
 
 public class GlassfishTestArchiveProcessor extends AbstractTestArchiveProcessor {
 
@@ -45,8 +50,12 @@ public class GlassfishTestArchiveProcessor extends AbstractTestArchiveProcessor 
     }
 
     @Override
-    public void processWebArchive(WebArchive webArchive, Class<?> testClass, URL sunXmlURL) {
-        String name = webArchive.getName();
+    public void processWebArchive(WebArchive archive, Class<?> testClass, URL sunXmlURL) {
+        String name = archive.getName();
+        WebArchive webArchive = (WebArchive) archive;;
+        webArchive.addAsLibrary(new File("target/lib", "sigtest-maven-plugin.jar"), "sigtest-maven-plugin.jar");
+        webArchive.addAsLibrary(new File("target/lib", "signaturetest.jar"), "signaturetest.jar");
+
     }
 
     @Override
@@ -62,6 +71,10 @@ public class GlassfishTestArchiveProcessor extends AbstractTestArchiveProcessor 
     @Override
     public void processEarArchive(EnterpriseArchive earArchive, Class<?> testClass, URL sunXmlURL) {
         String name = earArchive.getName();
+        EnterpriseArchive ear = (EnterpriseArchive) earArchive;
+        ear.addAsLibrary(new File("target/lib", "sigtest-maven-plugin.jar"), "sigtest-maven-plugin.jar");
+        ear.addAsLibrary(new File("target/lib", "signaturetest.jar"), "signaturetest.jar");
+
     }
 
     @Override
