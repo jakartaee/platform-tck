@@ -48,7 +48,9 @@
               <property name="clientEnvString">PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
                   APPCPATH=${clientEarLibClasspath}:${glassfish.home}/glassfish/modules/security.jar</property>
               <property name="clientDir">${project.basedir}</property>
-              <property name="clientStubsCmdLine">${glassfish.home}/glassfish/bin/asadmin \
+                <property name="clientStubsCmdLine">${env.JAVA_HOME}/bin/java \
+                    -jar \
+                    ${glassfish.home}/glassfish/modules/admin-cli.jar \
                   get-client-stubs \
                   --appName \
                   ${deploymentName} \
