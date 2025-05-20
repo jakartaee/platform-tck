@@ -317,6 +317,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         SYSTEMROOT=${SYSTEMROOT} \
         PATH="${connector.home}/nativelib" \
         ${JAVA_HOME}/bin/java \
+        --module-path ${J2EE_HOME}/lib/bootstrap --add-modules ALL-MODULE-PATH \
         -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=9008 \
         -Dcts.tmp=$harness.temp.directory \
         -DnoSecurityManager=true \
