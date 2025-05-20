@@ -438,9 +438,9 @@
                                 <configuration>
                                     <includes>
                                         <!--
-                                        <include>ee/jakarta/tck/persistence/**/*Test.java</include>
-                                        -->
                                         <include>ee.jakarta.tck.persistence.ee.packaging.appclient.annotation.ClientTest</include>
+                                        -->
+                                        <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                                     </includes>
                                     <!-- Should this not just be tck-appclient ? -->
                                     <groups>${includeGroups}</groups>
