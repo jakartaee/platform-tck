@@ -48,10 +48,11 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.datasource.twojars.C
                 com.sun.ts.tests.ejb30.misc.datasource.twojars.DataSource2Bean.class
 
         );
-        URL ejbResURL = com.sun.ts.tests.ejb30.assembly.appres.appclientejb.Client.class.getResource("/com/sun/ts/tests/ejb30/misc/datasource/twojars/two_standalone_component_ejb.jar.sun-ejb-jar.xml");
-        if(ejbResURL != null) {
-            ejb3_2standalone_component_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
-        }
+
+        URL ejbResURL = Client.class.getResource("two_standalone_component_ejb.xml");
+        ejb3_2standalone_component_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+        ejbResURL = Client.class.getResource("two_standalone_component_ejb.jar.sun-ejb-jar.xml");
+        ejb3_2standalone_component_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
         archiveProcessor.processEjbArchive(ejb3_2standalone_component_ejb, Client.class, ejbResURL);
 
         return ejb3_2standalone_component_ejb;
@@ -90,8 +91,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.datasource.twojars.C
             URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/datasource/twojars/ejb3_misc_datasource_twojars_client.xml");
             ejb3_misc_datasource_twojars_client.addAsManifestResource(resURL, "application-client.xml");
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/datasource/twojars/ejb3_misc_datasource_twojars_client.jar.sun-application-client.xml");
-            ejb3_misc_datasource_twojars_client.addAsManifestResource(resURL, "sun-application-client.xml");
+            //resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/datasource/twojars/ejb3_misc_datasource_twojars_client.jar.sun-application-client.xml");
+            //ejb3_misc_datasource_twojars_client.addAsManifestResource(resURL, "sun-application-client.xml");
             ejb3_misc_datasource_twojars_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(ejb3_misc_datasource_twojars_client, Client.class, resURL);

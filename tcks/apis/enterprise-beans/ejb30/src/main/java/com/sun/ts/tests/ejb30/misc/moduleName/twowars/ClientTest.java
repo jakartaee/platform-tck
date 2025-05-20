@@ -33,7 +33,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.Client {
 
-    @Deployment(name = "two_standalone_component_web", order = 2, testable = false)
+    @Deployment(name = "two_standalone_component_web", order = 1, testable = false)
     public static WebArchive createCommonDeployment() {
         WebArchive two_standalone_component_web = ShrinkWrap.create(WebArchive.class, "two_standalone_component_web.war");
         // The class files
@@ -54,6 +54,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.C
         two_standalone_component_web.addAsWebInfResource(warResURL, "web.xml");
         warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/twowars/two_standalone_component_web.war.sun-web.xml");
         two_standalone_component_web.addAsWebInfResource(warResURL, "sun-web.xml");
+        warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/twowars/two_standalone_component_web.war.sun-ejb-jar.xml");
+        two_standalone_component_web.addAsWebInfResource(warResURL, "sun-ejb-jar.xml");
 
         return two_standalone_component_web;
     }
@@ -72,7 +74,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.C
         */
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
-        @Deployment(name = "ejb3_misc_moduleName_twowars", order = 1)
+        @Deployment(name = "ejb3_misc_moduleName_twowars", order = 2)
         public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name

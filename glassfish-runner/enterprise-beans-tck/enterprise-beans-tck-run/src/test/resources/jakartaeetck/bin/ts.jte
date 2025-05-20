@@ -1120,7 +1120,7 @@ optional.tech.packages.to.ignore=jakarta.xml.bind
 ########################################################################
 harness.temp.directory=${ts.home}/tmp
 harness.log.port=2000
-harness.log.traceflag=false
+harness.log.traceflag=true
 harness.executeMode=0
 harness.socket.retry.count=10
 harness.log.delayseconds=1

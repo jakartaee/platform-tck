@@ -67,15 +67,9 @@ public class ClientTest extends com.sun.ts.tests.ejb32.relaxedclientview.statefu
             com.sun.ts.tests.ejb32.relaxedclientview.stateful.Client.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb32/relaxedclientview/stateful/stateful_relaxed_client_view_client.xml");
-            if(resURL != null) {
-              stateful_relaxed_client_view_client.addAsManifestResource(resURL, "application-client.xml");
-            }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/ejb32/relaxedclientview/stateful/stateful_relaxed_client_view_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              stateful_relaxed_client_view_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb32/relaxedclientview/stateful/stateful_relaxed_client_view_client.jar.sun-application-client.xml");
+            stateful_relaxed_client_view_client.addAsManifestResource(resURL, "sun-application-client.xml");
             stateful_relaxed_client_view_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(stateful_relaxed_client_view_client, Client.class, resURL);

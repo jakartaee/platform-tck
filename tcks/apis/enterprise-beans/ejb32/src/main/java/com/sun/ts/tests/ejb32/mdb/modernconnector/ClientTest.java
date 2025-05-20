@@ -14,6 +14,7 @@ import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.impl.base.path.BasicPath;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -62,15 +63,7 @@ public class ClientTest extends com.sun.ts.tests.ejb32.mdb.modernconnector.Clien
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb32/mdb/modernconnector/ejb32_mdb_modernconnector_client.xml");
-            if(resURL != null) {
-              ejb32_mdb_modernconnector_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/ejb32/mdb/modernconnector/ejb32_mdb_modernconnector_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              ejb32_mdb_modernconnector_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            URL resURL = null;
             ejb32_mdb_modernconnector_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(ejb32_mdb_modernconnector_client, Client.class, resURL);
@@ -87,15 +80,7 @@ public class ClientTest extends com.sun.ts.tests.ejb32.mdb.modernconnector.Clien
                 com.sun.ts.tests.ejb32.mdb.modernconnector.ejb.EventLoggerBean.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/mdb/modernconnector/ejb32_mdb_modernconnector_ejb.xml");
-            if(ejbResURL != null) {
-              ejb32_mdb_modernconnector_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
-            }
-            // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/mdb/modernconnector/ejb32_mdb_modernconnector_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              ejb32_mdb_modernconnector_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
-            }
+            URL ejbResURL = null;
             // Call the archive processor
             archiveProcessor.processEjbArchive(ejb32_mdb_modernconnector_ejb, Client.class, ejbResURL);
 
@@ -110,17 +95,12 @@ public class ClientTest extends com.sun.ts.tests.ejb32.mdb.modernconnector.Clien
                  com.sun.ts.tests.ejb32.mdb.modernconnector.connector.EventMonitor.class
             );
             JavaArchive ejb32_mdb_modernconnector_ra = ShrinkWrap.create(JavaArchive.class, "ejb32_mdb_modernconnector_ra.rar");
-            ejb32_mdb_modernconnector_ra.add(ejb32_mdb_modernconnector_ra_jar, ejb32_mdb_modernconnector_ra_jar.getName(), ZipExporter.class);
+            ejb32_mdb_modernconnector_ra.add(ejb32_mdb_modernconnector_ra_jar, new BasicPath("/"), ZipExporter.class);
             // The ra-jar.xml descriptor
             URL raResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/mdb/modernconnector/connector/META-INF/ra.xml");
-            if(raResURL != null) {
-              ejb32_mdb_modernconnector_ra.addAsManifestResource(raResURL, "ra.xml");
-            }
+            ejb32_mdb_modernconnector_ra.addAsManifestResource(raResURL, "ra.xml");
             // The sun-ra.xml file
-            raResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/mdb/modernconnector/connector/META-INF/ra.jar.sun-ra.xml");
-            if(raResURL != null) {
-              ejb32_mdb_modernconnector_ra.addAsManifestResource(raResURL, "sun-ra.xml");
-            }
+            raResURL = null;
             // Call the archive processor
             archiveProcessor.processRarArchive(ejb32_mdb_modernconnector_ra, Client.class, raResURL);
 
