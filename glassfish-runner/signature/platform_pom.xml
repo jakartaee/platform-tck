@@ -47,9 +47,10 @@
         <!-- Note that currently, this must have src as the first directory as it is hard-coded in the test -->
         <signature.file.dir>${base.tck.dir}/src</signature.file.dir>
         
-        <jakarta.tck.arquillian.version>11.0.7</jakarta.tck.arquillian.version>
-        <version.jakarta.tck>11.0.1-SNAPSHOT</version.jakarta.tck>
+        <jakarta.tck.arquillian.version>11.0.9</jakarta.tck.arquillian.version>
         <version.jakarta.tck.sigtest-maven-plugin>2.6</version.jakarta.tck.sigtest-maven-plugin>
+        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        <tck.signaturetest.version>11.0.0</tck.signaturetest.version>
     </properties>
     
     <!-- Import the tck relevant boms -->
@@ -65,7 +66,7 @@
             <dependency>
                 <groupId>jakarta.tck</groupId>
                 <artifactId>artifacts-bom</artifactId>
-                <version>${version.jakarta.tck}</version>
+                <version>${tck.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -77,11 +78,13 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>signaturevalidation</artifactId>
+            <version>${tck.version}</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>signaturetest</artifactId>
+            <version>${tck.signaturetest.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
@@ -94,20 +97,24 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
+            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
+            <version>1.9.4.Final</version>
         </dependency>
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
@@ -118,6 +125,7 @@
         <dependency>
             <groupId>org.jboss.shrinkwrap</groupId>
             <artifactId>shrinkwrap-api</artifactId>
+            <version>1.2.6</version>
         </dependency>
 
     </dependencies>
@@ -179,7 +187,7 @@
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
                                     <artifactId>signaturevalidation</artifactId>
-                                    <version>${version.jakarta.tck}</version>
+                                    <version>${tck.version}</version>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${base.tck.dir}</outputDirectory>
                                     <includes>**/sig-test.map,**/sig-test-pkg-list.txt</includes>
@@ -187,7 +195,7 @@
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
                                     <artifactId>signaturevalidation</artifactId>
-                                    <version>${version.jakarta.tck}</version>
+                                    <version>${tck.version}</version>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${signature.file.dir}</outputDirectory>
                                     <includes>**/*.sig</includes>
@@ -284,4 +292,29 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>full</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <testGroups>platform</testGroups>
+                <tck.profile>${testGroups}</tck.profile>
+                <javaee.level>platform</javaee.level>
+            </properties>
+        </profile>
+        <profile>
+            <id>web</id>
+            <properties>
+                <glassfish-artifact-id>web</glassfish-artifact-id>
+                <testGroups>web</testGroups>
+                <tck.profile>${testGroups}</tck.profile>
+                <javaee.level>web</javaee.level>
+                <optional.tech.packages.to.ignore>jakarta.resource,jakarta.resource.cci,jakarta.resource.spi,jakarta.resource.spi.work,jakarta.resource.spi.endpoint,jakarta.resource.spi.security,jakarta.mail,jakarta.mail.event,jakarta.mail,jakarta.mail.event,jakarta.mail.internet,jakarta.mail.search,jakarta.mail.util,jakarta.security.jacc,jakarta.security.auth.message,jakarta.security.auth.message.callback,jakarta.security.auth.message.config,jakarta.security.auth.message.module</optional.tech.packages.to.ignore>
+            </properties>
+        </profile>
+    </profiles>
 </project>
