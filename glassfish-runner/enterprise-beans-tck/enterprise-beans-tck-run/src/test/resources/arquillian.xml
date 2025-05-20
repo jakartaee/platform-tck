@@ -29,7 +29,7 @@
         <container qualifier="tck-javatest" default="true">
             <configuration>
                 <property name="allowConnectingToRunningServer">true</property>
-                <property name="debug">false</property>
+                <property name="debug">true</property>
                 <property name="suspend">false</property>
             </configuration>
             <protocol type="javatest">
@@ -41,6 +41,56 @@
         </container>
 
         <container qualifier="tck-appclient">
+            <configuration>
+                <property name="allowConnectingToRunningServer">false</property>
+                <property name="debug">false</property>
+                <property name="suspend">false</property>
+            </configuration>
+
+            <protocol type="appclient">
+                <property name="runClient">true</property>
+                <property name="runAsVehicle">true</property>
+                <property name="clientEarDir">target/appclient</property>
+                <property name="unpackClientEar">true</property>
+                <!-- Need to populate from ts.jte command.testExecuteAppClient setting for glassfish -->
+                <property name="clientCmdLineString">${env.JAVA_HOME}/bin/java \
+                    --add-opens \
+                    java.base/java.lang=ALL-UNNAMED \
+                    -cp \
+                    ${glassfish.home}/glassfish/lib/gf-client.jar:${clientStubJar} \
+                    -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader \
+                    -Dcom.sun.aas.configRoot=${glassfish.home}/glassfish/config \
+                    -Dcts.tmp=${ts.home}/tmp \
+                    -Doracle.jdbc.J2EE13Compliant=true \
+                    -Doracle.jdbc.mapDateToTimestamp \
+                    -Dlog.file.location=${glassfish.home}/glassfish/domains/domain1/logs \
+                    -Dri.log.file.location=${glassfish.home}/glassfish/domains/domain1/logs \
+                    -DwebServerHost.2=localhost \
+                    -DwebServerPort.2=8080 \
+                    -javaagent:${glassfish.home}/glassfish/lib/gf-client.jar=arg=-configxml,arg=${glassfish.home}/glassfish/domains/domain1/config/glassfish-acc.xml,client=jar=${clientStubJar},arg=-name,arg=${clientAppArchiveName} \
+                    org.glassfish.appclient.client.AppClientGroupFacade
+                </property>
+                <property name="cmdLineArgSeparator">\\</property>
+                <!-- Pass ENV vars here -->
+                <property name="clientEnvString">PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
+                    APPCPATH=${clientEarLibClasspath}:${glassfish.home}/glassfish/modules/security.jar</property>
+                <property name="clientDir">${project.basedir}</property>
+                <property name="clientStubsCmdLine">${glassfish.home}/glassfish/bin/asadmin \
+                    get-client-stubs \
+                    --appName \
+                    ${deploymentName} \
+                    target
+                </property>
+                <property name="clientStubsJarSuffix">Client</property>
+                <property name="workDir">${ts.home}/tmp</property>
+                <property name="tsJteFile">${ts.home}/bin/ts.jte</property>
+                <property name="tsSqlStmtFile">${ts.home}/bin/tssql.stmt</property>
+                <property name="trace">true</property>
+                <property name="clientTimeout">20000</property>
+            </protocol>
+        </container>
+
+        <container qualifier="tck-appclient-nostubs">
             <configuration>
                 <property name="allowConnectingToRunningServer">false</property>
                 <property name="debug">true</property>

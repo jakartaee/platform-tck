@@ -33,17 +33,14 @@
 
     <resourceadapter id="CommandResourceAdapter">
 
-        <resourceadapter-class>com.sun.ts.tests.ejb32.mdb.modernconnector.connector.EventMonitorAdapter
-        </resourceadapter-class>
+        <resourceadapter-class>com.sun.ts.tests.ejb32.mdb.modernconnector.connector.EventMonitorAdapter</resourceadapter-class>
 
         <inbound-resourceadapter>
             <messageadapter>
                 <messagelistener>
-                    <messagelistener-type>com.sun.ts.tests.ejb32.mdb.modernconnector.connector.NoUseListener
-                    </messagelistener-type>
+                    <messagelistener-type>com.sun.ts.tests.ejb32.mdb.modernconnector.connector.NoUseListener</messagelistener-type>
                     <activationspec>
-                        <activationspec-class>com.sun.ts.tests.ejb32.mdb.modernconnector.connector.EventMonitorConfig
-                        </activationspec-class>
+                        <activationspec-class>com.sun.ts.tests.ejb32.mdb.modernconnector.connector.EventMonitorConfig</activationspec-class>
                     </activationspec>
                 </messagelistener>
             </messageadapter>

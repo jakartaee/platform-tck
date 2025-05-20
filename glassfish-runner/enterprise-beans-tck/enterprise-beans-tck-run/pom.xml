@@ -70,7 +70,6 @@
         <version.jakarta.servlet>6.1.0</version.jakarta.servlet>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <version.surefire>3.5.3</version.surefire>
-        <jakarta.tck.arquillian.version>11.0.9</jakarta.tck.arquillian.version>
         <arquillian.core.version>1.9.4.Final</arquillian.core.version>
         <junit.version>5.10.2</junit.version>
 
@@ -159,17 +158,14 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
 
         <!-- Junit5 -->
@@ -253,7 +249,6 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
     </dependencies>
 
@@ -435,13 +430,7 @@
                                     <dependenciesToScan>jakarta.tck:ejb30</dependenciesToScan>
                                     <groups>${groups}</groups>
                                     <excludes>
-                                        <!-- These tests for various reasons fail -->
-                                        <exclude>com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjblitejspTest</exclude>
-                                        <exclude>com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjbliteservlet2Test</exclude>
-                                        <exclude>com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjbliteservletTest</exclude>
-                                        <exclude>com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant.ClientTest</exclude>
-
-                                        <!-- These take about 1 hour each: look at reducing timeout settings -->
+                                        <!-- These take about 1 hour each: look at reducing timeout settings. They are pickup in the timeout profiles -->
                                         <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.timeout.annotated.ClientEjblitejspTest</exclude>
                                         <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.timeout.descriptor.ClientEjblitejspTest</exclude>
                                         <exclude>com.sun.ts.tests.ejb30.lite.stateful.timeout.annotated.ClientEjblitejspTest</exclude>
@@ -613,7 +602,7 @@
                                 <include>com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.invocationcontext.ClientTest</include>
                                 <include>com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor.ClientTest</include>
                                 -->
-                                    <include>com.sun.ts.tests.ejb30.misc.moduleName.twowars.ClientTest</include>
+                                <include>com.sun.ts.tests.ejb30.bb.**.*Test</include>
                             </includes>
                             <groups>${groups}</groups>
                         </configuration>
@@ -1102,14 +1091,14 @@
                         <version>${version.surefire}</version>
                         <configuration>
                             <groups>${groups}</groups>
-                            <test>com.sun.ts.tests.ejb30.assembly.initorder.warejb.ClientTest,
+                            <test>
+                                <!-- https://github.com/jakartaee/platform-tck/issues/2317 -->
                                 com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjblitejspTest,
                                 com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjbliteservlet2Test,
                                 com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjbliteservletTest,
-                                com.sun.ts.tests.ejb30.misc.datasource.twowars.ClientTest,
-                                com.sun.ts.tests.ejb30.misc.moduleName.twowars.ClientTest,
-                                com.sun.ts.tests.ejb30.misc.moduleName.conflict.ClientTest,
-                                com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant.ClientTest</test>
+                                <!-- https://github.com/jakartaee/platform-tck/issues/2316 -->
+                                com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant.ClientTest
+                            </test>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -1158,6 +1147,36 @@
             <properties>
                 <groups>tck-appclient</groups>
             </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${version.surefire}</version>
+                        <executions>
+                            <execution>
+                                <id>001-ejb-30-javatest</id>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <phase>test</phase>
+                                <configuration>
+                                    <dependenciesToScan>jakarta.tck:ejb30,jakarta.tck:ejb32</dependenciesToScan>
+                                    <groups>tck-appclient</groups>
+                                    <includes>
+                                        <!--
+                                        <include>com.sun.ts.tests.ejb30.**.*Test</include>
+                                        <include>com.sun.ts.tests.ejb32.**.*Test</include>
+                                        <include>com.sun.ts.tests.ejb30.assembly.initorder.appclientejb.ClientTest</include>
+                                        -->
+                                        <include>com.sun.ts.tests.ejb32.mdb.modernconnector.ClientTest</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+
         </profile>
     </profiles>
 

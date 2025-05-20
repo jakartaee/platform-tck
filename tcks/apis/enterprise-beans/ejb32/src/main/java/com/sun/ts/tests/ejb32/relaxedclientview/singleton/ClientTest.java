@@ -67,15 +67,9 @@ public class ClientTest extends com.sun.ts.tests.ejb32.relaxedclientview.singlet
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/ejb32/relaxedclientview/singleton/singleton_relaxed_client_view_client.xml");
-            if(resURL != null) {
-              singleton_relaxed_client_view_client.addAsManifestResource(resURL, "application-client.xml");
-            }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/ejb32/relaxedclientview/singleton/singleton_relaxed_client_view_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              singleton_relaxed_client_view_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb32/relaxedclientview/singleton/singleton_relaxed_client_view_client.jar.sun-application-client.xml");
+            singleton_relaxed_client_view_client.addAsManifestResource(resURL, "sun-application-client.xml");
             singleton_relaxed_client_view_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(singleton_relaxed_client_view_client, Client.class, resURL);
@@ -105,14 +99,7 @@ public class ClientTest extends com.sun.ts.tests.ejb32.relaxedclientview.singlet
             );
             // The ejb-jar.xml descriptor
             URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/relaxedclientview/singleton/singleton_relaxed_client_view_ejb.xml");
-            if(ejbResURL != null) {
-              singleton_relaxed_client_view_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
-            }
-            // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/relaxedclientview/singleton/singleton_relaxed_client_view_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              singleton_relaxed_client_view_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
-            }
+            singleton_relaxed_client_view_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             // Call the archive processor
             archiveProcessor.processEjbArchive(singleton_relaxed_client_view_ejb, Client.class, ejbResURL);
 
@@ -128,17 +115,8 @@ public class ClientTest extends com.sun.ts.tests.ejb32.relaxedclientview.singlet
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/relaxedclientview/singleton/application.xml");
-            if(earResURL != null) {
-              singleton_relaxed_client_view_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/relaxedclientview/singleton/application.ear.sun-application.xml");
-            if(earResURL != null) {
-              singleton_relaxed_client_view_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
             // Call the archive processor
-            archiveProcessor.processEarArchive(singleton_relaxed_client_view_ear, Client.class, earResURL);
+            archiveProcessor.processEarArchive(singleton_relaxed_client_view_ear, Client.class, null);
         return singleton_relaxed_client_view_ear;
         }
 

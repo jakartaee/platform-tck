@@ -102,7 +102,7 @@ public class ClientBase extends EJBLiteClientBase {
     for (String inter : INTERCEPTORS) {
       concurrentWrites(b, "addLockedFromInterceptor", inter);
       long actual = b.getAndResetLockedSumFromInterceptor(inter);
-      assertEquals(null, CORRECT_SUM, actual);
+      assertEquals(inter, CORRECT_SUM, actual);
     }
   }
 
