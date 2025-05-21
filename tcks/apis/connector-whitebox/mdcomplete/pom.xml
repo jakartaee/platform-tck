@@ -4,7 +4,7 @@
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>connector-whitebox</artifactId>
-        <version>11.0.1-M6</version>
+        <version>11.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
