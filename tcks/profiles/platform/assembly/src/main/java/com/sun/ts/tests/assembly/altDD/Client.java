@@ -41,6 +41,7 @@ import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.impl.base.path.BasicPath;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -98,11 +99,9 @@ public class Client extends EETest {
   }
 
 
-  static final String VEHICLE_ARCHIVE = "assembly_altDD_client";
-
   @TargetsContainer("tck-appclient")
   @OverProtocol("appclient")
-  @Deployment(name = VEHICLE_ARCHIVE, order = 2)
+  @Deployment(name = "assembly_altDD", order = 2)
   public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
     JavaArchive assembly_altDD_client = ShrinkWrap.create(JavaArchive.class, "assembly_altDD_client.jar");
     assembly_altDD_client.addClasses(
@@ -150,16 +149,14 @@ public class Client extends EETest {
     assembly_altDD_ear.addAsModule(assembly_altDD_ejb);
 
     URL earResURL = Client.class.getResource("altDD_client.xml");
-    assembly_altDD_ear.add(new UrlAsset(earResURL), "altDD_client.xml");
+    assembly_altDD_ear.add(new UrlAsset(earResURL), new BasicPath("/altDD_client.xml"));
     earResURL = Client.class.getResource("altDD_ejb.xml");
-    assembly_altDD_ear.add(new UrlAsset(earResURL), "altDD_ejb.xml");
+    assembly_altDD_ear.add(new UrlAsset(earResURL), new BasicPath("/altDD_ejb.xml"));
 
     earResURL = Client.class.getResource("application.xml");
-    if (earResURL != null) {
-      assembly_altDD_ear.addAsManifestResource(earResURL, "application.xml");
-    }
+    assembly_altDD_ear.addAsManifestResource(earResURL, "application.xml");
 
-    archiveProcessor.processEarArchive(assembly_altDD_ear, Client.class, earResURL);
+    archiveProcessor.processEarArchive(assembly_altDD_ear, Client.class, null);
 
     return assembly_altDD_ear;
   }
