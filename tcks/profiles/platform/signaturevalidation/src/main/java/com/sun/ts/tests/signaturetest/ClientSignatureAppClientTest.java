@@ -77,7 +77,6 @@ public class ClientSignatureAppClientTest extends JakartaEESigTest implements Se
         String[] signatureMapFiles = {
                 "jakarta.annotation.sig",
                 "jakarta.batch.sig",
-                "jakarta.data.sig",
                 "jakarta.ejb.sig",
                 "jakarta.el.sig",
                 "jakarta.enterprise.concurrent.sig",
