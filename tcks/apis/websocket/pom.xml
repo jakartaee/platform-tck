@@ -27,7 +27,7 @@
     <artifactId>websocket-tck-platform-tests</artifactId>
     <packaging>jar</packaging>
     <name>Jakarta Websocket TCK Platform Tests</name>
-    <version>11.0.1-SNAPSHOT</version>
+    <version>11.0.1-M7</version>
     
 
     <dependencies>

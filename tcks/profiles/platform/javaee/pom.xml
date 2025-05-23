@@ -27,7 +27,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>javaee-tck</artifactId>
-    <version>11.0.1-SNAPSHOT</version>
+    <version>11.0.1-M7</version>
 
     <name>javaee</name>
     <description>javaee</description>

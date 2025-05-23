@@ -22,12 +22,12 @@
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>project</artifactId>
-        <version>11.0.1-SNAPSHOT</version>
+        <version>11.0.1-M7</version>
         <relativePath>../../../pom.xml</relativePath>
     </parent>
     
     <artifactId>connector-whitebox</artifactId>
-    <version>11.0.1-SNAPSHOT</version>
+    <version>11.0.1-M7</version>
     <packaging>pom</packaging>
 
     <name>Jakarta Connector Whitebox RARs</name>
