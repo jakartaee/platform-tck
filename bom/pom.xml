@@ -36,7 +36,7 @@
   <properties>
     <!-- Arquillian -->
     <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
-    <arquillian.version>1.9.3.Final</arquillian.version>
+    <arquillian.version>1.9.4.Final</arquillian.version>
     <!-- The version of the jakarta platform api bom -->
     <jakarta.jakartaee-bom.version>11.0.0</jakarta.jakartaee-bom.version>
     <!-- Jakarta TCK Tools version from the independently released tools submodule -->
@@ -64,7 +64,14 @@
       <dependency>
         <groupId>org.jboss.arquillian</groupId>
         <artifactId>arquillian-bom</artifactId>
-        <version>1.9.3.Final</version>
+        <version>${arquillian.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.arquillian.jakarta</groupId>
+        <artifactId>arquillian-jakarta-bom</artifactId>
+        <version>10.0.0.Final</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>

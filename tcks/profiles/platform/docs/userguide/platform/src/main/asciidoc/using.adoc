@@ -69,47 +69,19 @@ This runs all tests in the current directory and any subdirectories.
 
 [[runner-maven-dependencies]]
 ==== Maven Dependencies
-Your runner configuration should have a dependencyManagement section that imports the Junit5 and Arquillian and Jakarta EE API and Jakarta TCK test artifact bom dependencies:
+Your runner configuration should have a dependencyManagement section that imports the Junit5 and Arquillian and Jakarta EE API and Jakarta TCK test artifact bom dependencies. There is a jakarta.tck:artifacts-bom that contains the Jakarta EE {tck_version} TCK test artifacts and their dependencies.
 
 .Maven `dependencyManagement` Section
 [[maven-dependency-management]]
 [source,xml,subs="attributes+"]
 ----
-    <!-- Import project BOMs to simplify dependency versions -->
+    <!-- Import jakarta.tck:artifacts-bom BOM to simplify dependency versions -->
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>{junit_version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>{arquillian_version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.platform</groupId>
-                <artifactId>jakarta.jakartaee-api</artifactId>
-                <version>{jakartaee_api_version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
+             <dependency>
                 <groupId>jakarta.tck</groupId>
                 <artifactId>artifacts-bom</artifactId>
                 <version>{jakartaee_tck_version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-               <groupId>org.jboss.arquillian.jakarta</groupId>
-               <artifactId>arquillian-jakarta-bom</artifactId>
-                <version>10.0.0.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -117,7 +89,7 @@ Your runner configuration should have a dependencyManagement section that import
     </dependencyManagement>
 ----
 
-You then need to define the specific dependencies for the test runner without the version information:
+You then need to define the specific dependencies for the test runner without the version information, for example, this would be applicable to the Jakarta Enterprise Beans tests:
 
 .Maven `dependencies` Section
 [[maven-dependencies]]
@@ -169,11 +141,13 @@ You then need to define the specific dependencies for the test runner without th
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.7</version>
+            <version>1.8</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 ----
+
+You are allowed to update the dependencies to the latest version of the Jakarta EE API and Jakarta TCK test dependencies, but the jakarta.tck:* test artifact version should be the same as the version of the TCK you are running.
 
 [[available-tck-test-artifacts]]
 ==== Available TCK Test Artifacts
@@ -252,7 +226,7 @@ The configuration will depend on the container you are using, but you will need 
 </arquillian>
 ----
 <1> This is the managed container specific config, here for {glassfish_version}.
-<2> This is the appclient protocol configuration.
+<2> This is the javatest protocol configuration.
 * `tsJteFile` property is the path to the ts.jte file that contains the configuration for the test run.
 * `tsSqlStmtFile` property is the path to the SQL file that contains the DML statements for the test run.
 * the `trace` property is used to enable additional logging for the test run.
@@ -388,7 +362,7 @@ And finally, you need to configure a surefire/failsafe plugin execution to use t
 
 [[arquillian-container-appclient]]
 ===== Arquillian Container Configuration (appclient Protocol) (Full Platform Only)
-Full platform tests make use of the Application Client container. These tests require a special Arquillian protocol that is used to run the tests in the Application Client container. Thus, full platforrm TCK tests will require a test plugin configuration that setups the appclient protocol.
+Full platform tests make use of the Application Client container. These tests require a special Arquillian protocol that is used to run the tests in the Application Client container. Thus, full platforrm TCK tests will require a test plugin configuration that enables the appclient protocol.
 
 .Maven `appclient-arquillian.xml` appclient Protocol Configuration
 [source,xml]
@@ -403,60 +377,55 @@ Full platform tests make use of the Application Client container. These tests re
   </engine>
 
   <extension qualifier="glassfish-descriptors">
-    <property name="descriptorDir">target</property>
+    <property name="descriptorDir">target/</property>
   </extension>
 
   <group qualifier="glassfish-servers" default="true">
     <container qualifier="tck-appclient" default="true">
         <configuration> <1>
             <property name="glassFishHome">target/glassfish8</property>
-            <property name="allowConnectingToRunningServer">true</property>
-            <property name="debug">false</property>
-            <property name="suspend">false</property>
         </configuration>
         <protocol type="appclient"> <2>
             <property name="runClient">true</property>
             <property name="runAsVehicle">true</property>
             <property name="clientEarDir">target/appclient</property>
             <property name="unpackClientEar">true</property>
-            <!-- Need to populate from ts.jte command.testExecuteAppClient setting for glassfish -->
-            <property name="clientCmdLineString">${glassfish.home}/glassfish/bin/appclient \
-                -Djdk.tls.client.enableSessionTicketExtension=false \
-                -Djdk.tls.server.enableSessionTicketExtension=false \
-                -Djava.security.policy=${glassfish.home}/glassfish/lib/appclient/client.policy \
+            <property name="clientCmdLineString">${env.JAVA_HOME}/bin/java \
+                --add-opens \
+                java.base/java.lang=ALL-UNNAMED \
+                -cp \
+                ${glassfish.home}/glassfish/lib/gf-client.jar:${clientStubJar}:target/lib/tck-porting-lib.jar \
+                -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader \
+                -Dcom.sun.aas.configRoot=${glassfish.home}/glassfish/config \
                 -Dcts.tmp=${ts.home}/tmp \
-                -Djava.security.auth.login.config=${glassfish.home}/glassfish/lib/appclient/appclientlogin.conf \
-                -Djava.protocol.handler.pkgs=javax.net.ssl \
-                -Djavax.net.ssl.keyStore=${ts.home}/bin/certificates/clientcert.jks \
-                -Djavax.net.ssl.keyStorePassword=changeit \
-                -Djavax.net.ssl.trustStore=${glassfish.home}/glassfish/domains/domain1/config/cacerts.jks \
-                -Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl \
-                -Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl \
-                -Djavax.xml.transform.TransformerFactory=com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl \
-                -Dorg.xml.sax.driver=com.sun.org.apache.xerces.internal.parsers.SAXParser \
-                -Dorg.xml.sax.parser=org.xml.sax.helpers.XMLReaderAdapter \
                 -Doracle.jdbc.J2EE13Compliant=true \
                 -Doracle.jdbc.mapDateToTimestamp \
-                -Dstartup.login=false \
-                -Dauth.gui=false \
                 -Dlog.file.location=${glassfish.home}/glassfish/domains/domain1/logs \
                 -Dri.log.file.location=${glassfish.home}/glassfish/domains/domain1/logs \
                 -DwebServerHost.2=localhost \
                 -DwebServerPort.2=8080 \
-                -Ddeliverable.class=com.sun.ts.lib.deliverable.cts.CTSDeliverable \
-                -jar \
-                ${clientEarDir}/${clientAppArchive}
+                -javaagent:${glassfish.home}/glassfish/lib/gf-client.jar=arg=-configxml,arg=${glassfish.home}/glassfish/domains/domain1/config/glassfish-acc.xml,client=jar=${clientStubJar},arg=-name,arg=${clientAppArchiveName} \
+                org.glassfish.appclient.client.AppClientGroupFacade
             </property>
             <property name="cmdLineArgSeparator">\\</property>
             <!-- Pass ENV vars here -->
-            <property name="clientEnvString">AS_JAVA=${env.JAVA_HOME};PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
-                APPCPATH=target/appclient/lib/arquillian-protocol-lib.jar</property>
+            <property name="clientEnvString">PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
+                APPCPATH=${clientEarLibClasspath}:${glassfish.home}/glassfish/modules/security.jar</property>
             <property name="clientDir">${project.basedir}</property>
-            <property name="clientTimeout">20000</property>
+            <property name="clientStubsCmdLine">${env.JAVA_HOME}/bin/java \
+                -jar \
+                ${glassfish.home}/glassfish/modules/admin-cli.jar \
+                get-client-stubs \
+                --appName \
+                ${deploymentName} \
+                target
+            </property>
+            <property name="clientStubsJarSuffix">Client</property>
             <property name="workDir">/tmp</property>
             <property name="tsJteFile">jakartaeetck/bin/ts.jte</property>
             <property name="tsSqlStmtFile">sql/derby/derby.dml.sql</property>
             <property name="trace">true</property>
+            <property name="clientTimeout">20000</property>
         </protocol>
     </container>
   </group>
@@ -469,13 +438,21 @@ Full platform tests make use of the Application Client container. These tests re
 * `runAsVehicle` - should be true for platform TCK
 * `clientEarDir` - the directory where the client EAR test artifact will be created
 * `unpackClientEar` - if true, the client EAR will be unpacked. If the VI appclient container does not support a path to the client jar inside of an EAR, then this should be set to true.
-* `clientCmdLineString` - the command line the VI uses to launch and application client. This should be a space separated list of arguments, but long command lines can be broken up using a separator character that can be specified using the `cmdLineArgSeparator` property. There are two special properties that can be used in the command line:
+* `clientCmdLineString` - the command line the VI uses to launch and application client. This should be a space separated list of arguments, but long command lines can be broken up using a separator character that can be specified using the `cmdLineArgSeparator` property. There are special properties that can be used in the command line:
 ** `${clientEarDir}` : this will be replaced with the clientEarDir property value as an absolute path.
 ** `${clientAppArchive}` - this is the client app archive that contains the appclient main class. It is a relative path to the clientEarDir property.
+** `${{clientAppArchiveName}}` - this is the client app archive minus the .jar extension.
+** `${clientEarLibClasspath}` - this is the classpath for the client EAR lib directory. It is a colon separated list of jars in the clientEarDir/lib directory.
+** `${deploymentName}` - the name of the deployment that is being tested. This is the name of the EAR file that is being deployed to the server and would reflect renaming of a deployment by the ear application.xml.
+** `${clientStubJar}` - this is the client stub jar that is created by the appclient container if the clientStubsCmdLine property is set.
+** `${vehicleArchiveName}` - the name of the archive in the ear deployment that contains the legacy javatest vehicle invocation target.
 * `cmdLineArgSeparator` - the character used to split command line arguments into multiple lines. Each line should be a single argument and the last line should not end with the separator character. Each line will be trimmed of leading and trailing whitespace.
 * `clientEnvString` - any environment variables that need to be set for the appclient process. This is a semicolon separated list of environment variables in the form VAR=VALUE. You can pass through runner environment variables if you have the xml file as a resource and have resource filtering on. Use the maven syntax of `${env.VARNAME}` to access the runner VARNAME envrionment variable.
 * `clientDir` - the working directory of the appclient container process.
 * `clientTimeout` - a timeout in milliseconds for the appclient process to finish. The appclient process will be terminated if it does not finish in this time.
+* `clientStubsCmdLine` - the command line to run to create the appclient stubs if needed. It supports property replacement for:
+** `${deploymentName}` - the name of the deployment that is being tested. This is the name of the EAR file that is being deployed to the server and would reflect renaming of a deployment by the ear application.xml.
+* `clientStubsJarSuffix` - the suffix that the appclient container uses to create the client stub jar by appending this value to the `${clientStubJar}`. This is used to create the `clientStubsJar` property.
 * `tsJteFile` property is the path to the ts.jte file that contains the configuration for the test run.
 * `tsSqlStmtFile` property is the path to the SQL file that contains the DML statements for the test run.
 * the `trace` property is used to enable additional logging for the test run.
@@ -500,7 +477,7 @@ Full platform tests make use of the Application Client container. These tests re
                         <includes>
                             <include>...</include>
                         </includes>
-                        <groups>platform</groups> <1>
+                        <groups>platform&amp;tck-applient</groups> <1>
                         <excludedGroups>tck-javatest,arq-servlet</excludedGroups> <2>
 
                         <systemPropertyVariables>
@@ -512,7 +489,7 @@ Full platform tests make use of the Application Client container. These tests re
             </executions>
         </plugin>
 ----
-<1> Restrict the tests run to only those in the `platform` group, which is the group of tests required by the Full Platform. Only the Full Platform supports the appclient container.
+<1> Restrict the tests run to only those tagged with both `platform` and `tck-appclient`, which is the group of tests required by the Full Platform that use an application client container. Only the Full Platform supports the appclient container.
 <2> Exclude the protocol types other than tck-appclient.
 <3> Set the `arquillian.xml` property to the `appclient-arquillian.xml` file example above.
 
@@ -579,13 +556,6 @@ To run the Jakarta EE {tck_version} Platform TCK signature tests, configure a ru
    <!-- Import the tck relevant boms -->
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.9.3.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <dependency>
                 <groupId>jakarta.tck</groupId>
                 <artifactId>artifacts-bom</artifactId>
