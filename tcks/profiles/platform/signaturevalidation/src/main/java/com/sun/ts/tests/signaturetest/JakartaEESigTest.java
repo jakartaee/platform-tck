@@ -140,6 +140,7 @@ public class JakartaEESigTest extends SigTestEE {
         "jakarta.json.bind.serializer", "jakarta.json.bind.spi" });
 
     EJB_MAP.putAll(APPCLIENT_MAP);
+    EJB_MAP.put("data", new String[] {"jakarta.data"});
     EJB_MAP.put("connector",
         new String[] { "jakarta.resource", "jakarta.resource.cci",
             "jakarta.resource.spi", "jakarta.resource.spi.work",
