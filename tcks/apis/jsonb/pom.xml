@@ -27,7 +27,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>jsonb-platform-tck</artifactId>
-    <version>11.0.1-M7</version>
+    <version>11.0.1-SNAPSHOT</version>
 
     <name>Jakarta JSON Binding</name>
     <description>Jakarta JSON Binding extra platform tests</description>
