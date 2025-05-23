@@ -24,6 +24,9 @@ import jakarta.enterprise.inject.spi.Bean;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.enterprise.inject.spi.el.ELAwareBeanManager;
 
+import static org.jboss.cdi.tck.TestGroups.JAVAEE_FULL;
+
+@Test(groups = JAVAEE_FULL)
 @SpecVersion(spec = "cdi", version = "4.1")
 public class ELAwareBeanManagerTest extends AbstractTest {
 
