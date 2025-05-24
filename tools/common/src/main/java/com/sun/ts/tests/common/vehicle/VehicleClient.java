@@ -21,7 +21,7 @@
 package com.sun.ts.tests.common.vehicle;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 
 /**
  * Class used as a client of all vehicle tests.
