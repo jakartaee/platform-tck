@@ -39,7 +39,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         
-        <jakarta.tck.common.version>11.0.0-RC5</jakarta.tck.common.version>
+        <jakarta.tck.common.version>11.1.0</jakarta.tck.common.version>
     </properties>
 
     <dependencies>
