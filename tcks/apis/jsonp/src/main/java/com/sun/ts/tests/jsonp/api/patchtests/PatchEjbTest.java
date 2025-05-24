@@ -16,18 +16,14 @@
 
 package com.sun.ts.tests.jsonp.api.patchtests;
 
-import java.util.stream.Collectors;
-import java.nio.charset.StandardCharsets;
-import java.io.InputStreamReader;
-import java.io.InputStream;
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.StringReader;
 import java.util.Properties;
 import java.net.URL;
-import com.sun.ts.tests.jsonp.api.common.JsonPTest;
+
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.lib.harness.Status;
 
 import jakarta.json.JsonPatch;
@@ -35,7 +31,6 @@ import jakarta.json.JsonPatch;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
@@ -48,7 +43,6 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import tck.arquillian.protocol.common.TargetVehicle;
 import org.jboss.arquillian.container.test.api.OverProtocol;
@@ -104,10 +98,10 @@ public class PatchEjbTest extends ServiceEETest {
         com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.lib.harness.ServiceEETest.class,
+        EETest.class,
+        Fault.class,
+        SetupException.class,
+        ServiceEETest.class,
         com.sun.ts.tests.jsonp.api.common.ArrayBuilder.class,
         com.sun.ts.tests.jsonp.api.common.JsonAssert.class,
         com.sun.ts.tests.jsonp.api.common.JsonIO.class,
@@ -144,10 +138,10 @@ public class PatchEjbTest extends ServiceEETest {
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.ServiceEETest.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
+        EETest.class,
+        Fault.class,
+        ServiceEETest.class,
+        SetupException.class,
         com.sun.ts.tests.jsonp.api.common.ArrayBuilder.class,
         com.sun.ts.tests.jsonp.api.common.JsonAssert.class,
         com.sun.ts.tests.jsonp.api.common.JsonIO.class,

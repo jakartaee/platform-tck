@@ -21,17 +21,10 @@ import java.net.URLConnection;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
-import jakarta.enterprise.context.Dependent;
-import jakarta.enterprise.inject.Instance;
-import jakarta.inject.Inject;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Client extends EETest {
 

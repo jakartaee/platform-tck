@@ -1,7 +1,9 @@
 package ee.jakarta.tck.persistence.jpa.ee.packaging.jar;
 
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.tests.common.base.ServiceEETest;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.tests.common.vehicle.VehicleClient;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 import com.sun.ts.tests.common.vehicle.VehicleRunnerFactory;

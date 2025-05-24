@@ -1,15 +1,18 @@
 package com.sun.ts.tests.connector.localTx.lifecycle;
 
 import java.net.URL;
+
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
@@ -66,12 +69,12 @@ public class lifecycleClient1ServletTest extends com.sun.ts.tests.connector.loca
             com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.connector.util.DBSupport.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            EETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.connector.localTx.lifecycle.lifecycleClient1.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor

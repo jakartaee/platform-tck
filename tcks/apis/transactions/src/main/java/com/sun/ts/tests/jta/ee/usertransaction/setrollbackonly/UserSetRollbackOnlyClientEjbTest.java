@@ -3,6 +3,10 @@ package com.sun.ts.tests.jta.ee.usertransaction.setrollbackonly;
 import java.lang.System.Logger;
 import java.net.URL;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -57,9 +61,9 @@ public class UserSetRollbackOnlyClientEjbTest extends com.sun.ts.tests.jta.ee.us
         JavaArchive setrollbackonly_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "setrollbackonly_ejb_vehicle_client.jar");
         setrollbackonly_ejb_vehicle_client.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-                com.sun.ts.lib.harness.EETest.Fault.class, com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
-                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class, com.sun.ts.lib.harness.EETest.class,
-                com.sun.ts.lib.harness.ServiceEETest.class, com.sun.ts.lib.harness.EETest.SetupException.class,
+                Fault.class, com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
+                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class, EETest.class,
+                ServiceEETest.class, SetupException.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class, com.sun.ts.tests.jta.ee.common.Transact.class,
                 com.sun.ts.tests.jta.ee.common.TransactionStatus.class, com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
                 com.sun.ts.tests.jta.ee.common.InitFailedException.class, UserSetRollbackOnlyClient.class,
@@ -80,13 +84,13 @@ public class UserSetRollbackOnlyClientEjbTest extends com.sun.ts.tests.jta.ee.us
 
         JavaArchive setrollbackonly_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "setrollbackonly_ejb_vehicle_ejb.jar");
         setrollbackonly_ejb_vehicle_ejb.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-                com.sun.ts.lib.harness.EETest.Fault.class, com.sun.ts.tests.jta.ee.common.Transact.class,
+                Fault.class, com.sun.ts.tests.jta.ee.common.Transact.class,
                 com.sun.ts.tests.jta.ee.common.InvalidStatusException.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
                 com.sun.ts.tests.jta.ee.common.InitFailedException.class, com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
                 com.sun.ts.tests.jta.ee.usertransaction.setrollbackonly.UserSetRollbackOnlyClient.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-                com.sun.ts.lib.harness.EETest.class, com.sun.ts.lib.harness.ServiceEETest.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
+                EETest.class, ServiceEETest.class,
+                SetupException.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 UserSetRollbackOnlyClientEjbTest.class);
         // The ejb-jar.xml descriptor
         URL ejbResURL = UserSetRollbackOnlyClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_ejb.xml");

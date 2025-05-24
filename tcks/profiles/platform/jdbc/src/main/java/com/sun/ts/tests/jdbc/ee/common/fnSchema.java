@@ -27,7 +27,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 
 /**

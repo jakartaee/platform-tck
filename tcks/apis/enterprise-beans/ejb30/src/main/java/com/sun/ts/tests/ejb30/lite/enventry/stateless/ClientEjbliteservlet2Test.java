@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.enventry.stateless;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -53,7 +57,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.enven
             ejblite_enventry_stateless_ejbliteservlet2_vehicle_web.addClasses(
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.lite.enventry.stateless.EnvEntryBean.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.ReasonableStatus.class,
             com.sun.ts.tests.ejb30.lite.enventry.common.EnvEntryBeanBase.class,
@@ -67,11 +71,11 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.enven
             com.sun.ts.tests.ejb30.lite.enventry.common.JsfClientBase.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.lite.enventry.stateless.JsfClient.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.ejb30.lite.enventry.stateless.EJBLiteServlet2Filter.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class
             );

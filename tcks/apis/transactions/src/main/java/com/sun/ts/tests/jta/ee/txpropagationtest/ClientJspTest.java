@@ -3,6 +3,10 @@ package com.sun.ts.tests.jta.ee.txpropagationtest;
 import java.lang.System.Logger;
 import java.net.URL;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -57,11 +61,11 @@ public class ClientJspTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
 
         WebArchive jta_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "jta_jsp_vehicle_web.war");
         jta_jsp_vehicle_web.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-                com.sun.ts.lib.harness.EETest.Fault.class, com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class,
+                Fault.class, com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class,
                 com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanEJB.class, com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.jta.ee.txpropagationtest.Client.class, com.sun.ts.tests.jta.ee.txpropagationtest.DBSupport.class,
-                com.sun.ts.lib.harness.EETest.class, com.sun.ts.lib.harness.ServiceEETest.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
+                EETest.class, ServiceEETest.class,
+                SetupException.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.jta.ee.txpropagationtest.DBSupport.class, ClientJspTest.class);
         // The web.xml descriptor
         URL warResURL = ClientJspTest.class.getClassLoader().getResource(packagePath + "/jsp_vehicle_web.xml");

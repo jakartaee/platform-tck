@@ -3,6 +3,10 @@ package com.sun.ts.tests.jta.ee.usertransaction.begin;
 import java.lang.System.Logger;
 import java.net.URL;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -55,12 +59,12 @@ public class UserBeginClientServletTest extends com.sun.ts.tests.jta.ee.usertran
     public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         WebArchive begin_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "begin_servlet_vehicle_web.war");
         begin_servlet_vehicle_web.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-                com.sun.ts.lib.harness.EETest.Fault.class, com.sun.ts.tests.jta.ee.common.Transact.class,
+                Fault.class, com.sun.ts.tests.jta.ee.common.Transact.class,
                 com.sun.ts.tests.jta.ee.common.InvalidStatusException.class, com.sun.ts.tests.jta.ee.common.InitFailedException.class,
                 com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class, com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
                 com.sun.ts.tests.jta.ee.usertransaction.begin.UserBeginClient.class, com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-                com.sun.ts.lib.harness.EETest.class, com.sun.ts.lib.harness.ServiceEETest.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
+                EETest.class, ServiceEETest.class,
+                SetupException.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 UserBeginClientServletTest.class);
         // The web.xml descriptor
         URL warResURL = UserBeginClientServletTest.class.getClassLoader().getResource(packagePath + "/servlet_vehicle_web.xml");

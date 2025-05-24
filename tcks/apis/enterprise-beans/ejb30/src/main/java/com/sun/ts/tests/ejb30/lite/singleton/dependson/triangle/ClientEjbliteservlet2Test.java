@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -52,7 +56,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.singl
             // The class files
             ejblite_singleton_dependson_triangle_ejbliteservlet2_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle.Client.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle.CSingletonBean.class,
             com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle.BSingletonBean.class,
             com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle.JsfClient.class,
@@ -60,9 +64,9 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.singl
             com.sun.ts.tests.ejb30.common.helper.Helper.class,
             com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle.EJBLiteServlet2Filter.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle.HttpServletDelegate.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
@@ -76,7 +80,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.singl
             com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle.YSingletonBean.class,
             com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle.ZSingletonBean.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase.class
             );
             // The web.xml descriptor

@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -37,7 +39,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.assembly.util.shared.resref.scope.QueueCode;
@@ -67,7 +69,7 @@ public class Client extends EETest {
     public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
             throws IOException {
         JavaArchive ejbClient1 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_scope_another_client.jar");
-        ejbClient1.addClasses(Client.class, EETest.class, EETest.Fault.class, EETest.SetupException.class, QueueCode.class, TopicCode.class);
+        ejbClient1.addClasses(Client.class, EETest.class, Fault.class, SetupException.class, QueueCode.class, TopicCode.class);
 
         // The appclient-client descriptor
         URL appClientUrl = Client.class.getResource("appclient_dep_resref_scope_another_client.xml");
@@ -81,7 +83,7 @@ public class Client extends EETest {
                 "MANIFEST.MF");
 
         JavaArchive ejbClient2 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_scope_client.jar");
-        ejbClient2.addClasses(Client.class, EETest.class, EETest.Fault.class, EETest.SetupException.class, QueueCode.class);
+        ejbClient2.addClasses(Client.class, EETest.class, Fault.class, SetupException.class, QueueCode.class);
 
         URL resURL = Client.class.getResource("appclient_dep_resref_scope_client.xml");
         ejbClient2.addAsManifestResource(resURL, "application-client.xml");

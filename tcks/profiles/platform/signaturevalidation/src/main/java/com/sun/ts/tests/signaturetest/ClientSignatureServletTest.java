@@ -21,10 +21,13 @@
 
 package com.sun.ts.tests.signaturetest;
 
-import java.io.File;
 import java.io.Serializable;
 import java.net.URL;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -100,10 +103,10 @@ public class ClientSignatureServletTest extends JakartaEESigTest implements Seri
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
                 com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
 
-                com.sun.ts.lib.harness.EETest.class,
-                com.sun.ts.lib.harness.EETest.Fault.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class,
-                com.sun.ts.lib.harness.ServiceEETest.class,
+                EETest.class,
+                Fault.class,
+                SetupException.class,
+                ServiceEETest.class,
                 com.sun.ts.lib.harness.Status.class,
                 com.sun.ts.lib.util.TestUtil.class
 

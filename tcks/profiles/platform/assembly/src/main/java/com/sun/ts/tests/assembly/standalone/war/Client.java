@@ -24,12 +24,13 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
-import java.net.URL;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
@@ -38,8 +39,6 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.asset.UrlAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -47,7 +46,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-import tck.arquillian.protocol.common.TargetVehicle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
@@ -116,9 +114,9 @@ public class Client extends EETest {
     JavaArchive assembly_standalone_war_client = ShrinkWrap.create(JavaArchive.class,
         "assembly_standalone_war_client.jar");
         assembly_standalone_war_client.addClasses(
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
+        Fault.class,
+        EETest.class,
+        SetupException.class,
         com.sun.ts.tests.assembly.standalone.war.Client.class);
     // The application-client.xml descriptor
     URL resURL = Client.class.getResource("assembly_standalone_war_client.xml");

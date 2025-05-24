@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jta.ee.usertransaction.settransactiontimeout;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 // Common Utilities
 import com.sun.ts.tests.jta.ee.common.Transact;
 

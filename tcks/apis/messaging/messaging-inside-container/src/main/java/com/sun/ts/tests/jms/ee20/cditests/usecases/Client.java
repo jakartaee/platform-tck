@@ -21,15 +21,8 @@ import java.net.URLConnection;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.util.TestUtil;
-import java.lang.reflect.Proxy;
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.Dependent;
-import jakarta.enterprise.inject.Instance;
-
-import java.util.logging.Logger;
-import jakarta.inject.Inject;
 
 import jakarta.ejb.EJB;
 

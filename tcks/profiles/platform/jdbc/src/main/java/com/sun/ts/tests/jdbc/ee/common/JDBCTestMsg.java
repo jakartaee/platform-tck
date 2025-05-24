@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 
 /**

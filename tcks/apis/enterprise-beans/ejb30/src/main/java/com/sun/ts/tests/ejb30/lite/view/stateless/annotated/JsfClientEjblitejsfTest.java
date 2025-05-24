@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.view.stateless.annotated;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -53,7 +57,7 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb30.lite.view.st
             ejblite_view_stateless_annotated_ejblitejsf_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.lite.view.common.SuperclassBean.class,
             com.sun.ts.tests.ejb30.lite.view.stateless.annotated.Client.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.lite.view.stateless.annotated.HttpServletDelegate.class,
             com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2.class,
             com.sun.ts.tests.ejb30.common.busiface.SessionBeanLocalBeanBase.class,
@@ -70,9 +74,9 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb30.lite.view.st
             com.sun.ts.tests.ejb30.lite.view.common.SuperclassBeanBase.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
             com.sun.ts.tests.ejb30.lite.view.stateless.annotated.LocalAndNoInterfaceBean.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.ejb30.lite.view.stateless.annotated.JsfClient.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
@@ -87,7 +91,7 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb30.lite.view.st
             com.sun.ts.tests.ejb30.lite.view.stateless.annotated.BusinessBean.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.lite.view.stateless.annotated.SubclassExtendsPOJOBean.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            SetupException.class
             );
             // The web.xml descriptor
             URL warResURL = JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle_web.xml");

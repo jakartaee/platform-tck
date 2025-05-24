@@ -1,27 +1,26 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.annotated;
 
-import com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.annotated.Client;
+import com.sun.ts.lib.harness.Fault;
+
 import java.net.URL;
+
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-import tck.arquillian.protocol.common.TargetVehicle;
-
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -57,7 +56,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateless.sess
             // The class files
             stateless_sessioncontext_annotated_client.addClasses(
             com.sun.ts.tests.ejb30.common.helper.TestFailedException.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.annotated.Client.class,
             com.sun.ts.tests.ejb30.common.sessioncontext.Constants.class,
             com.sun.ts.tests.ejb30.common.sessioncontext.ClientBase.class,
@@ -68,9 +67,9 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateless.sess
             com.sun.ts.tests.ejb30.common.sessioncontext.AcceptIF.class,
             com.sun.ts.tests.ejb30.common.sessioncontext.TestIF.class,
             com.sun.ts.tests.ejb30.common.sessioncontext.Three1IF.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.ejb30.common.helper.TLogger.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            SetupException.class
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateless/sessioncontext/annotated/stateless_sessioncontext_annotated_client.xml");

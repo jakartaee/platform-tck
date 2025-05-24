@@ -22,7 +22,7 @@ package com.sun.ts.tests.jms.core20.runtimeexceptiontests;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 
 public class Client extends ServiceEETest {

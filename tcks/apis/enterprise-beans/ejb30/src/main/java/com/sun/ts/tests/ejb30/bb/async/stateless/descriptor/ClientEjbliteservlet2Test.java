@@ -1,18 +1,18 @@
 package com.sun.ts.tests.ejb30.bb.async.stateless.descriptor;
 
-import com.sun.ts.tests.ejb30.bb.async.stateless.descriptor.Client;
+import com.sun.ts.lib.harness.Fault;
+
 import java.net.URL;
+
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
@@ -56,7 +56,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.bb.async.s
             WebArchive ejbbb_async_stateless_descriptor_ejbliteservlet2_vehicle_web = ShrinkWrap.create(WebArchive.class, "ejbbb_async_stateless_descriptor_ejbliteservlet2_vehicle_web.war");
             // The class files
             ejbbb_async_stateless_descriptor_ejbliteservlet2_vehicle_web.addClasses(
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.bb.async.common.descriptor.Descriptor2IF.class,
             com.sun.ts.tests.ejb30.bb.async.common.descriptor.DescriptorRemoteIF.class,
             com.sun.ts.tests.ejb30.bb.async.common.descriptor.DescriptorJsfClientBase.class,
@@ -65,9 +65,9 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.bb.async.s
             com.sun.ts.tests.ejb30.common.helper.Helper.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
             com.sun.ts.tests.ejb30.bb.async.common.descriptor.DescriptorIF.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.ejb30.bb.async.stateless.descriptor.HttpServletDelegate.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
@@ -81,7 +81,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.bb.async.s
             com.sun.ts.tests.ejb30.bb.async.common.descriptor.DescriptorBean.class,
             com.sun.ts.tests.ejb30.bb.async.stateless.descriptor.Client.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            SetupException.class
             );
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("ejbliteservlet2_vehicle_web.xml");

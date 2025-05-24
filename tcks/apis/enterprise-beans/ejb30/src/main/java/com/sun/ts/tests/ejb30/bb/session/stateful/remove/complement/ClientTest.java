@@ -1,27 +1,26 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement;
 
-import com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.Client;
+import com.sun.ts.lib.harness.Fault;
+
 import java.net.URL;
+
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-import tck.arquillian.protocol.common.TargetVehicle;
-
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -60,16 +59,16 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.session.stateful.remov
             com.sun.ts.tests.ejb30.common.helper.TestFailedException.class,
             com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF.class,
             com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainIF.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException.class,
             com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteIF.class,
             com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException.class,
             com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.Remove2IF.class,
             com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.Client.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.ClientBase.class,
             com.sun.ts.tests.ejb30.common.helper.TLogger.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.TestIF.class
             );
             // The application-client.xml descriptor

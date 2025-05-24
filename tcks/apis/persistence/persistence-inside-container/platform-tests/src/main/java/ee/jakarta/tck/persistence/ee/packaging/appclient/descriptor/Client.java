@@ -23,7 +23,7 @@ package ee.jakarta.tck.persistence.ee.packaging.appclient.descriptor;
 
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import jakarta.persistence.EntityManager;

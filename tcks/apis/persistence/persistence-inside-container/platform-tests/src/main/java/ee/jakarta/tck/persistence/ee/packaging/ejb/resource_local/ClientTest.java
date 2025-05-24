@@ -1,6 +1,8 @@
 package ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local;
 
-import com.sun.ts.tests.common.vehicle.servlet.ServletVehicle;
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -57,10 +59,10 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.reso
             JavaArchive jpa_ee_packaging_ejb_resource_local_client = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_ejb_resource_local_client.jar");
             // The class files
             jpa_ee_packaging_ejb_resource_local_client.addClasses(
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local.Stateless3IF.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            EETest.class,
+            SetupException.class,
             Stateless3IFProxy.class,
             Client.class
             );

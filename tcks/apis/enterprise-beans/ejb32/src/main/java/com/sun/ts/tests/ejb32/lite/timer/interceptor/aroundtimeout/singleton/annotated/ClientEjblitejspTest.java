@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.annotated;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -48,7 +52,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb32.lite.timer.inte
             // The class files
             ejb32_lite_timer_interceptor_aroundtimeout_singleton_annotated_ejblitejsp_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor4.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.annotated.AroundTimeoutExceptionBean.class,
             com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor6.class,
             com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.annotated.MethodOverrideBean.class,
@@ -67,8 +71,8 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb32.lite.timer.inte
             com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.ClientBase.class,
             com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod.class,
             com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.MethodOverrideBeanBase.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            EETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
@@ -93,7 +97,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb32.lite.timer.inte
             com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.class,
             com.sun.ts.tests.ejb30.timer.common.TimerUtil.class,
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.annotated.InvocationContextMethodsBean.class
             );
             // The web.xml descriptor

@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.common.sessioncontext;
 
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 

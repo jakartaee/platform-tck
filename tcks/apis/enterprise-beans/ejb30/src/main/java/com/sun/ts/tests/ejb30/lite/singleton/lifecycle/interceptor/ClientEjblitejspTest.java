@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -51,7 +55,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.singleton.
             // The class files
             ejblite_singleton_lifecycle_interceptor_ejblitejsp_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor.Interceptor0.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor.HttpServletDelegate.class,
             com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor.CSingletonIF.class,
             com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor.ASingletonBean.class,
@@ -63,9 +67,9 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.singleton.
             com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor.CommonSingletonIF.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
             com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor.C2SingletonIF.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor.BeanBase.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor.Client.class,
@@ -79,7 +83,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.singleton.
             com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor.InterceptorBase.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor.Interceptor3.class
             );
 

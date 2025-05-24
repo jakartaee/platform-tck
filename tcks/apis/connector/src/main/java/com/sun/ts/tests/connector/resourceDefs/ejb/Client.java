@@ -25,7 +25,7 @@ import java.net.URL;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.BASE64Encoder;
 import com.sun.ts.lib.util.TestUtil;

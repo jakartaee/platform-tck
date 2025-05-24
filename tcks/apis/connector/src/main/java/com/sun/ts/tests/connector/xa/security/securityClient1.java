@@ -24,7 +24,7 @@ import java.io.Serializable;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;

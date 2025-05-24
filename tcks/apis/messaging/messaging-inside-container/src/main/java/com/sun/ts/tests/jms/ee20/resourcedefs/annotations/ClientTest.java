@@ -1,16 +1,18 @@
 package com.sun.ts.tests.jms.ee20.resourcedefs.annotations;
 
-import com.sun.ts.tests.jms.ee20.resourcedefs.annotations.Client;
+import com.sun.ts.lib.harness.Fault;
+
 import java.net.URL;
+
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -21,7 +23,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @Disabled("https://github.com/jakartaee/platform-tck/issues/2231")
@@ -93,11 +94,11 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.resourcedefs.annotatio
             JavaArchive resourcedefs_annotations_client = ShrinkWrap.create(JavaArchive.class, "resourcedefs_annotations_client.jar");
             // The class files
             resourcedefs_annotations_client.addClasses(
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.jms.ee20.resourcedefs.annotations.Client.class,
             com.sun.ts.tests.jms.ee20.resourcedefs.annotations.EjbClientIF.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            EETest.class,
+            SetupException.class
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("application-client.xml");

@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.view.equals;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -53,7 +57,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.view.
             ejblite_view_equals_ejbliteservlet2_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.lite.view.equals.HttpServletDelegate.class,
             com.sun.ts.tests.ejb30.lite.view.equals.StatefulEqualsBean.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2.class,
             com.sun.ts.tests.ejb30.lite.view.equals.SingletonEqualsBean.class,
             com.sun.ts.tests.ejb30.common.busiface.AnnotatedLocalBusinessInterface1.class,
@@ -61,8 +65,8 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.view.
             com.sun.ts.tests.ejb30.common.helper.Helper.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
             com.sun.ts.tests.ejb30.lite.view.equals.EJBLiteServlet2Filter.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            EETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
@@ -75,7 +79,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.view.
             com.sun.ts.tests.ejb30.lite.view.equals.StatelessEqualsBean.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            SetupException.class
             );
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("ejbliteservlet2_vehicle_web.xml");

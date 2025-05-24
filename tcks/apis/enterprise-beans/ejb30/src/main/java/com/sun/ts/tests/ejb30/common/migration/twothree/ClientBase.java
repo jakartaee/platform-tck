@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.common.migration.twothree;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 

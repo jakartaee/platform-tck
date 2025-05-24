@@ -1,5 +1,8 @@
 package ee.jakarta.tck.persistence.ee.packaging.appclient.annotation;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -46,12 +49,12 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.appclien
             JavaArchive jpa_ee_packaging_appclient_annotation_client = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_appclient_annotation_client.jar");
             // The class files
             jpa_ee_packaging_appclient_annotation_client.addClasses(
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             ee.jakarta.tck.persistence.ee.packaging.appclient.annotation.Coffee.class,
             ee.jakarta.tck.persistence.ee.packaging.appclient.annotation.Client.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.lib.util.TestUtil.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.lib.harness.Status.class
             );
             // The application-client.xml descriptor

@@ -21,9 +21,6 @@ import java.io.File;
 import java.net.URLClassLoader;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.IOException;
-import java.io.BufferedReader;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -32,12 +29,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.ServiceLoader;
-import java.util.stream.Collectors;
-import java.nio.charset.StandardCharsets;
 import java.net.URL;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.jsonp.common.JSONP_Util;
 import com.sun.ts.tests.jsonp.provider.MyJsonGenerator;
 import com.sun.ts.tests.jsonp.provider.MyJsonProvider;
@@ -60,8 +58,6 @@ import jakarta.json.stream.JsonParserFactory;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -167,10 +163,10 @@ public class ClientEjbTest extends ServiceEETest {
         com.sun.ts.tests.common.vehicle.VehicleClient.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.lib.harness.ServiceEETest.class,
+        EETest.class,
+        Fault.class,
+        SetupException.class,
+        ServiceEETest.class,
         com.sun.ts.tests.jsonp.provider.MyJsonProvider.class,
         com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class,
         com.sun.ts.tests.jsonp.common.JSONP_Util.class,
@@ -196,10 +192,10 @@ public class ClientEjbTest extends ServiceEETest {
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
         com.sun.ts.tests.common.vehicle.VehicleClient.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.lib.harness.ServiceEETest.class,
+        EETest.class,
+        Fault.class,
+        SetupException.class,
+        ServiceEETest.class,
         com.sun.ts.tests.jsonp.common.JSONP_Data.class,
         com.sun.ts.tests.jsonp.common.JSONP_Util.class,
         com.sun.ts.tests.jsonp.common.MyBufferedInputStream.class,

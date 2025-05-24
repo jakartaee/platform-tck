@@ -22,8 +22,10 @@ package com.sun.ts.tests.assembly.compat.standalone.jar.compat9_10;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 
 import java.net.URL;
@@ -35,16 +37,12 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.asset.UrlAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-import tck.arquillian.protocol.common.TargetVehicle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
@@ -115,9 +113,9 @@ public class Client extends EETest {
     JavaArchive assembly_compat_standalone_jar_compat9_10_client = ShrinkWrap.create(JavaArchive.class,
         "assembly_compat_standalone_jar_compat9_10_client.jar");
         assembly_compat_standalone_jar_compat9_10_client.addClasses(
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
+        Fault.class,
+        EETest.class,
+        SetupException.class,
         com.sun.ts.tests.assembly.compat.standalone.jar.compat9_10.TestBean.class,
         com.sun.ts.tests.assembly.compat.standalone.jar.compat9_10.TestBeanEJB.class,
         com.sun.ts.tests.assembly.compat.standalone.jar.compat9_10.Client.class);

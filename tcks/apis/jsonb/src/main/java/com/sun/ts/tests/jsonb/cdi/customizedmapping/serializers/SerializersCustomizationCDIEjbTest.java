@@ -20,11 +20,15 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
 
 import java.lang.System.Logger;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -87,9 +91,9 @@ public class SerializersCustomizationCDIEjbTest extends SerializersCustomization
         jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client.addClasses(com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class, com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class, com.sun.ts.lib.harness.EETest.class,
-                com.sun.ts.lib.harness.EETest.Fault.class, com.sun.ts.lib.harness.EETest.SetupException.class,
-                com.sun.ts.lib.harness.ServiceEETest.class,
+                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class, EETest.class,
+                Fault.class, SetupException.class,
+                ServiceEETest.class,
                 com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalSerializer.class,
                 com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListSerializer.class,
                 com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListDeserializerInjected.class,
@@ -123,8 +127,8 @@ public class SerializersCustomizationCDIEjbTest extends SerializersCustomization
         jsonb_cdi_customizedmapping_serializers_ejb_vehicle_ejb.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
-                com.sun.ts.lib.harness.EETest.class, com.sun.ts.lib.harness.EETest.Fault.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class, com.sun.ts.lib.harness.ServiceEETest.class,
+                EETest.class, Fault.class,
+                SetupException.class, ServiceEETest.class,
                 com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalSerializer.class,
                 com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListSerializer.class,
                 com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListDeserializerInjected.class,

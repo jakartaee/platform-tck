@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb32.lite.timer.basic.concurrency;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -49,14 +53,14 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb32.lite.timer.
             // The class files
             ejb32_lite_timer_basic_concurrency_ejbliteservlet_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.common.helper.TestFailedException.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb32.lite.timer.basic.concurrency.WriteSingletonTimerBean.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.ejb32.lite.timer.basic.concurrency.Client.class,
             com.sun.ts.tests.ejb30.common.helper.Helper.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            EETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.ejb32.lite.timer.basic.concurrency.HttpServletDelegate.class,
@@ -74,7 +78,7 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb32.lite.timer.
             com.sun.ts.tests.ejb30.timer.common.TimerUtil.class,
             com.sun.ts.tests.ejb32.lite.timer.basic.concurrency.EJBLiteServletVehicle.class,
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            SetupException.class
             );
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("ejbliteservlet_vehicle_web.xml");

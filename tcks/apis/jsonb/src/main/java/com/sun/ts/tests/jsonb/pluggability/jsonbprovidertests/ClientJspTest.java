@@ -19,8 +19,11 @@
  */
 package com.sun.ts.tests.jsonb.pluggability.jsonbprovidertests;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.tests.common.base.ServiceEETest;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.jsonb.provider.MyJsonbBuilder;
 import com.sun.ts.tests.jsonb.provider.MyJsonbProvider;
 
@@ -98,9 +101,9 @@ public class ClientJspTest extends ServiceEETest {
         warArchive.addClass(ClientJspTest.class).addClass(com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class)
                 .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
                 .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
-                .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class).addClass(com.sun.ts.lib.harness.EETest.class)
-                .addClass(com.sun.ts.lib.harness.EETest.Fault.class).addClass(com.sun.ts.lib.harness.EETest.SetupException.class)
-                .addClass(com.sun.ts.lib.harness.ServiceEETest.class)
+                .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class).addClass(EETest.class)
+                .addClass(Fault.class).addClass(SetupException.class)
+                .addClass(ServiceEETest.class)
                 .setWebXML(ClientJspTest.class.getClassLoader().getResource(packagePath + "/jsp_vehicle_web.xml"));
 
         warArchive.addAsLibrary(jarArchive);

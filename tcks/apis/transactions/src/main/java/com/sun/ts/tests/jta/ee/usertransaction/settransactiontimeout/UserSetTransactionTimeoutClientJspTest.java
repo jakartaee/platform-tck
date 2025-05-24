@@ -3,6 +3,10 @@ package com.sun.ts.tests.jta.ee.usertransaction.settransactiontimeout;
 import java.lang.System.Logger;
 import java.net.URL;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -56,14 +60,14 @@ public class UserSetTransactionTimeoutClientJspTest
     public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         WebArchive settransactiontimeout_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "settransactiontimeout_jsp_vehicle_web.war");
         settransactiontimeout_jsp_vehicle_web.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-                com.sun.ts.lib.harness.EETest.Fault.class, com.sun.ts.tests.jta.ee.common.Transact.class,
+                Fault.class, com.sun.ts.tests.jta.ee.common.Transact.class,
                 com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
                 com.sun.ts.tests.jta.ee.usertransaction.settransactiontimeout.UserSetTransactionTimeoutClient.class,
                 com.sun.ts.tests.jta.ee.common.InitFailedException.class, com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class, com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-                com.sun.ts.tests.jta.ee.common.InitFailedException.class, com.sun.ts.lib.harness.EETest.class,
-                com.sun.ts.lib.harness.ServiceEETest.class, com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
+                com.sun.ts.tests.jta.ee.common.InitFailedException.class, EETest.class,
+                ServiceEETest.class, com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+                SetupException.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 UserSetTransactionTimeoutClientJspTest.class);
         // The web.xml descriptor
         URL warResURL = UserSetTransactionTimeoutClientJspTest.class.getClassLoader().getResource(packagePath + "/jsp_vehicle_web.xml");

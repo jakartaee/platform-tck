@@ -21,10 +21,11 @@
 
 package com.sun.ts.tests.signaturetest;
 
-import java.io.File;
 import java.io.Serializable;
 import java.net.URL;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;

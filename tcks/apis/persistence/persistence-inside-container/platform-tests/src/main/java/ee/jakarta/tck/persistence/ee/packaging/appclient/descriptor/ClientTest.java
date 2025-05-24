@@ -1,5 +1,8 @@
 package ee.jakarta.tck.persistence.ee.packaging.appclient.descriptor;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -48,12 +51,12 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.appclien
             // The class files
             jpa_ee_packaging_appclient_descriptor_client.addClasses(
             ee.jakarta.tck.persistence.ee.packaging.appclient.descriptor.Coffee.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
-            com.sun.ts.lib.harness.EETest.class,
+            Fault.class,
+            EETest.class,
             com.sun.ts.lib.util.TestUtil.class,
             com.sun.ts.lib.harness.Status.class,
             ee.jakarta.tck.persistence.ee.packaging.appclient.descriptor.Client.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            SetupException.class
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/appclient/descriptor/jpa_ee_packaging_appclient_descriptor_client.xml");

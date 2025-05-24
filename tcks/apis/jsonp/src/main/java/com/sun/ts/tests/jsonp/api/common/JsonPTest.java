@@ -18,9 +18,8 @@ package com.sun.ts.tests.jsonp.api.common;
 
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.tests.common.base.ServiceEETest;
 
 // $Id$
 /**
@@ -44,7 +43,7 @@ public class JsonPTest extends ServiceEETest {
    *          Test properties.
    * @throws Exception
    */
-  public void setup(String[] args, Properties p) throws EETest.Fault {
+  public void setup(String[] args, Properties p) throws Fault {
     // logMsg("setup ok");
   }
 
@@ -53,7 +52,7 @@ public class JsonPTest extends ServiceEETest {
    * 
    * @throws Exception
    */
-  public void cleanup() throws EETest.Fault {
+  public void cleanup() throws Fault {
     // logMsg("cleanup ok");
   }
 

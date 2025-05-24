@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateless.inheritance;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -53,7 +57,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.tx.cm.stat
             com.sun.ts.tests.ejb30.common.helper.TestFailedException.class,
             com.sun.ts.tests.ejb30.tx.common.session.inheritance.TxBeanBase.class,
             com.sun.ts.tests.ejb30.lite.tx.cm.stateless.inheritance.EJBLiteJSPTag.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.tx.common.session.inheritance.CBeanBase.class,
             com.sun.ts.tests.ejb30.tx.common.session.inheritance.TestLogic.class,
             com.sun.ts.tests.ejb30.tx.common.session.inheritance.EBeanBase.class,
@@ -67,9 +71,9 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.tx.cm.stat
             com.sun.ts.tests.ejb30.lite.tx.cm.common.InheritanceJsfClientBase.class,
             com.sun.ts.tests.ejb30.lite.tx.cm.stateless.inheritance.ABean.class,
             com.sun.ts.tests.ejb30.lite.tx.cm.stateless.inheritance.FBean.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.ejb30.lite.tx.cm.stateless.inheritance.HttpServletDelegate.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.ejb30.lite.tx.cm.stateless.inheritance.Client.class,
@@ -87,7 +91,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.tx.cm.stat
             com.sun.ts.tests.ejb30.tx.common.session.inheritance.TxRemoteIF.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.ejb30.lite.tx.cm.stateless.inheritance.EBean.class
             );
             // The web.xml descriptor

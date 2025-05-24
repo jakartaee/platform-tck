@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb32.lite.timer.schedule.tz;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -48,7 +52,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb32.lite.timer
             WebArchive ejb32_lite_timer_schedule_tz_ejbliteservlet2_vehicle_web = ShrinkWrap.create(WebArchive.class, "ejb32_lite_timer_schedule_tz_ejbliteservlet2_vehicle_web.war");
             // The class files
             ejb32_lite_timer_schedule_tz_ejbliteservlet2_vehicle_web.addClasses(
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb32.lite.timer.schedule.tz.TZScheduleBareBean.class,
             com.sun.ts.tests.ejb30.timer.common.JsfClientBase.class,
             com.sun.ts.tests.ejb32.lite.timer.schedule.tz.TZScheduleBean.class,
@@ -59,8 +63,8 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb32.lite.timer
             com.sun.ts.tests.ejb32.lite.timer.schedule.tz.EJBLiteServlet2Filter.class,
             com.sun.ts.tests.ejb30.timer.common.ClientBase.class,
             com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            EETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
@@ -73,7 +77,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb32.lite.timer
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.timer.common.TimerUtil.class,
             com.sun.ts.tests.ejb32.lite.timer.schedule.tz.Client.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            SetupException.class
             );
             // commons lang jar
             ejb32_lite_timer_schedule_tz_ejbliteservlet2_vehicle_web.addClasses(

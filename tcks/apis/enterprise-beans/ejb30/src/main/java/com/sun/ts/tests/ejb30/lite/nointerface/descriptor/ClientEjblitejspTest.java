@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.nointerface.descriptor;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -53,7 +57,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.nointerfac
             com.sun.ts.tests.ejb30.lite.nointerface.annotated.BeanBase.class,
             com.sun.ts.tests.ejb30.lite.nointerface.descriptor.JsfClient.class,
             com.sun.ts.tests.ejb30.lite.nointerface.annotated.HasInterface.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.lite.nointerface.annotated.ClientBase.class,
             com.sun.ts.tests.ejb30.lite.nointerface.descriptor.NoInterfaceStatefulBean.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
@@ -61,9 +65,9 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.nointerfac
             com.sun.ts.tests.ejb30.common.helper.Helper.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
             com.sun.ts.tests.ejb30.lite.nointerface.descriptor.HasInterfaceSingletonBean.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.ejb30.lite.nointerface.descriptor.NoInterfaceStatelessBean.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
@@ -76,7 +80,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.nointerfac
             com.sun.ts.tests.ejb30.lite.nointerface.descriptor.EJBLiteJSPTag.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            SetupException.class
             );
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("/vehicle/ejblitejsp/ejblitejsp_vehicle_web.xml");

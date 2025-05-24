@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.lookup.annotated;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -51,7 +55,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.looku
             WebArchive ejblite_lookup_annotated_ejbliteservlet2_vehicle_web = ShrinkWrap.create(WebArchive.class, "ejblite_lookup_annotated_ejbliteservlet2_vehicle_web.war");
             // The class files
             ejblite_lookup_annotated_ejbliteservlet2_vehicle_web.addClasses(
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.lite.lookup.common.LookupBeanBase.class,
             com.sun.ts.tests.ejb30.lite.lookup.annotated.Client.class,
             com.sun.ts.tests.ejb30.lite.lookup.annotated.EJBLiteServlet2Filter.class,
@@ -59,8 +63,8 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.looku
             com.sun.ts.tests.ejb30.common.helper.Helper.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
             com.sun.ts.tests.ejb30.lite.lookup.annotated.Lookup2Bean.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            EETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
@@ -75,7 +79,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.looku
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.lite.lookup.annotated.JsfClient.class,
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.ejb30.lite.lookup.common.LookupBeanPlainBase.class
             );
             // The web.xml descriptor

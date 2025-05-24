@@ -1,5 +1,9 @@
 package ee.jakarta.tck.persistence.core.entityManager;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -98,19 +102,19 @@ public class Client2PuservletTest extends ee.jakarta.tck.persistence.core.entity
             com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager.class,
             com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareIF.class,
             com.sun.ts.tests.common.vehicle.puservlet.PUServletVehicle.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,
             com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.lib.harness.Status.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.entityManager.Client2.class,
             ee.jakarta.tck.persistence.common.schema30.Util.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());

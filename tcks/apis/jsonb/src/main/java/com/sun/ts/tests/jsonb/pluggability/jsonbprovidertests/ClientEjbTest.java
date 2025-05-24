@@ -19,8 +19,11 @@
  */
 package com.sun.ts.tests.jsonb.pluggability.jsonbprovidertests;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.tests.common.base.ServiceEETest;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.jsonb.provider.MyJsonbBuilder;
 import com.sun.ts.tests.jsonb.provider.MyJsonbProvider;
 
@@ -106,9 +109,9 @@ public class ClientEjbTest extends ServiceEETest {
         jsonbprovidertests_ejb_vehicle_client.addClasses(com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class, com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class, com.sun.ts.lib.harness.EETest.class,
-                com.sun.ts.lib.harness.EETest.Fault.class, com.sun.ts.lib.harness.EETest.SetupException.class,
-                com.sun.ts.lib.harness.ServiceEETest.class, com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class,
+                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class, EETest.class,
+                Fault.class, SetupException.class,
+                ServiceEETest.class, com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class,
                 com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class, ClientEjbTest.class);
 
         URL resURL = ClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_client.xml");
@@ -129,8 +132,8 @@ public class ClientEjbTest extends ServiceEETest {
         jsonbprovidertests_ejb_vehicle_ejb.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
-                com.sun.ts.lib.harness.EETest.class, com.sun.ts.lib.harness.EETest.Fault.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class, com.sun.ts.lib.harness.ServiceEETest.class,
+                EETest.class, Fault.class,
+                SetupException.class, ServiceEETest.class,
                 com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class, com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class,
                 ClientEjbTest.class);
 

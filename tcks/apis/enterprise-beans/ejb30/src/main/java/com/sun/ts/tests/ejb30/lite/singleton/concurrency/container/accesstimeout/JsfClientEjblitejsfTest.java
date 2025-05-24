@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -53,7 +57,7 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb30.lite.singlet
             ejblite_singleton_concurrency_container_accesstimeout_ejblitejsf_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout.PlainAccessTimeoutBeanBase.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout.TimeUnitBean.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout.Client.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout.MethodLevelCallbackAccessTimeoutBean.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout.JsfClient.Read2Task.class,
@@ -65,9 +69,9 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb30.lite.singlet
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout.ClassLevelCallbackAccessTimeoutBean.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout.JsfClient.WriteTask.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout.Client.WriteTask.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
@@ -83,7 +87,7 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb30.lite.singlet
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout.CallbackAccessTimeoutBeanBase.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout.HttpServletDelegate.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout.AnnotatedAccessTimeoutBeanBase.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout.AccessTimeoutIF.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout.Client.ReadTask.class
             );

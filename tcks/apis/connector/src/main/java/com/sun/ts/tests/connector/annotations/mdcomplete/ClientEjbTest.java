@@ -3,8 +3,11 @@ package com.sun.ts.tests.connector.annotations.mdcomplete;
 import java.net.URL;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Fault;
 import com.sun.ts.lib.harness.RemoteStatus;
-import com.sun.ts.tests.connector.annotations.mdcomplete.proxy.ClientServletTarget;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.tests.connector.annotations.mdcomplete.proxy.IClient;
 import com.sun.ts.tests.connector.annotations.mdcomplete.proxy.IClientProxy;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -24,7 +27,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-import tck.arquillian.protocol.javatest.JavaTestProtocolConfiguration;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -74,11 +76,11 @@ public class ClientEjbTest extends com.sun.ts.tests.connector.annotations.mdcomp
             // non-vehicle appclientproxy invoker war
             WebArchive appclientproxy = ShrinkWrap.create(WebArchive.class, "appclientproxy.war");
             appclientproxy.addClasses(Client.class,
-                    com.sun.ts.lib.harness.EETest.Fault.class,
+                    Fault.class,
                     com.sun.ts.tests.connector.util.DBSupport.class,
-                    com.sun.ts.lib.harness.EETest.class,
-                    com.sun.ts.lib.harness.ServiceEETest.class,
-                    com.sun.ts.lib.harness.EETest.SetupException.class,
+                    EETest.class,
+                    ServiceEETest.class,
+                    SetupException.class,
                     com.sun.ts.tests.connector.annotations.mdcomplete.proxy.ClientServletTarget.class,
                     com.sun.ts.tests.common.vehicle.none.proxy.ServletNoVehicle.class
             );

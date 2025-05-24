@@ -1,7 +1,7 @@
 package ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local;
 
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
@@ -10,9 +10,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.BufferedInputStream;
+
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.ParameterizedType;

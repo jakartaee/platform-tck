@@ -26,7 +26,7 @@ import java.sql.Statement;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 
 /**

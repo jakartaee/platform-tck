@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -52,7 +56,7 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.lite.single
             // The class files
             ejblite_singleton_concurrency_container_inheritance_ejbliteservlet_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance.JsfClient.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ClientBase.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
@@ -60,8 +64,8 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.lite.single
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance.HttpServletDelegate.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.JsfClientBase.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            EETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
@@ -74,7 +78,7 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.lite.single
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance.Client.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance.ReadLockBeanBase.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance.DefaultLockBeanBase.class
             );
 

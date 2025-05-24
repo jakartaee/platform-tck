@@ -21,7 +21,7 @@
 package ee.jakarta.tck.persistence.ee.packaging.appclient.annotation;
 
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.harness.Status;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

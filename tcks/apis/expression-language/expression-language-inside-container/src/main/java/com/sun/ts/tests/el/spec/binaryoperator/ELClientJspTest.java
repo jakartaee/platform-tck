@@ -20,9 +20,12 @@
 
 package com.sun.ts.tests.el.spec.binaryoperator;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.tests.common.base.ServiceEETest;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.TestNum;
 import com.sun.ts.tests.el.common.util.Validator;
@@ -95,10 +98,10 @@ public class ELClientJspTest extends ServiceEETest {
     WebArchive jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "binaryoperator_jsp_vehicle_web.war");
   
     jsp_vehicle_web.addClasses(
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.ServiceEETest.class,
+        Fault.class,
+        SetupException.class,
+        EETest.class,
+        ServiceEETest.class,
         com.sun.ts.tests.common.vehicle.VehicleClient.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,

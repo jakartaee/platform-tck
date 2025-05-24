@@ -21,6 +21,7 @@
 
 package com.sun.ts.tests.el.common.util;
 
+import com.sun.ts.lib.harness.Fault;
 import com.sun.ts.lib.util.TestUtil;
 import jakarta.el.ELProcessor;
 
@@ -53,7 +54,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   public static void testBigDecimal(BigDecimal testVal, Object expectedVal,
       String operator) throws Exception {
@@ -137,7 +138,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   public static void testFloat(Float testVal, Object expectedVal,
       String operator) throws Exception {
@@ -239,7 +240,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   public static void testDouble(Double testVal, Object expectedVal,
       String operator) throws Exception {
@@ -342,7 +343,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   public static void testNumericString(String testVal, Double expectedVal,
       String operator) throws Exception {
@@ -438,7 +439,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   public static void testBigInteger(BigInteger testVal, Object expectedVal,
       String operator) throws Exception {
@@ -536,7 +537,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   public static void testLong(Long testVal, Object expectedVal, String operator)
       throws Exception {
@@ -632,7 +633,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   public static void testInteger(Integer testVal, Object expectedVal,
       String operator) throws Exception {
@@ -730,7 +731,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   public static void testShort(Short testVal, Object expectedVal,
       String operator) throws Exception {
@@ -824,7 +825,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   public static void testByte(Byte testVal, Object expectedVal, String operator)
       throws Exception {
@@ -919,7 +920,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   public static void testBoolean(boolean testValOne, Object testValTwo,
       Object expectedVal, String operator) throws Exception {
