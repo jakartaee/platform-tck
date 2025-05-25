@@ -37,6 +37,7 @@
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
         <glassfish.runner.version>11.0.1</glassfish.runner.version>
+        <glassfish.version>8.0.0-M11</glassfish.version>
         <tck.artifactId>assembly-tck</tck.artifactId>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <ts.home>./jakartaeetck</ts.home>
@@ -143,11 +144,6 @@
             <artifactId>derbytools</artifactId>
             <version>10.15.2.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.main.distributions</groupId>
-            <artifactId>glassfish</artifactId>
-            <type>zip</type>
-        </dependency>
     </dependencies>
 
     <build>
@@ -174,6 +170,7 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>glassfish</artifactId>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>

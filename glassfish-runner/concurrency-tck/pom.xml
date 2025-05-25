@@ -35,6 +35,7 @@
 
     <properties>
         <glassfish.runner.version>11.0.1</glassfish.runner.version>
+        <glassfish.version>8.0.0-M11</glassfish.version>
         <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -113,11 +114,6 @@
             <artifactId>sigtest-maven-plugin</artifactId>
             <version>2.6</version>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.main.distributions</groupId>
-            <artifactId>${glassfish-artifact-id}</artifactId>
-            <type>zip</type>
-        </dependency>
 
     </dependencies>
 
@@ -146,6 +142,7 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${glassfish.root}</outputDirectory>

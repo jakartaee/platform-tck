@@ -36,6 +36,7 @@
         <maven.compiler.release>17</maven.compiler.release>
 
         <glassfish.runner.version>11.0.1</glassfish.runner.version>
+        <glassfish.version>8.0.0-M11</glassfish.version>
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
@@ -134,17 +135,6 @@
             <artifactId>arquillian-junit5-container</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.main.distributions</groupId>
-            <artifactId>glassfish</artifactId>
-            <type>zip</type>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.main.distributions</groupId>
-            <artifactId>web</artifactId>
-            <type>zip</type>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -165,6 +155,7 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>

@@ -64,6 +64,7 @@
         <mailboxFolder1>${project.build.directory}/../mailboxes</mailboxFolder1>
         <smtp.port>1025</smtp.port>
 
+        <glassfish.version>8.0.0-M11</glassfish.version>
         <glassfish.runner.version>11.0.1</glassfish.runner.version>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
     </properties>
@@ -161,17 +162,7 @@
             <groupId>org.jboss.shrinkwrap</groupId>
             <artifactId>shrinkwrap-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.main.distributions</groupId>
-            <artifactId>glassfish</artifactId>
-            <type>zip</type>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.main.distributions</groupId>
-            <artifactId>web</artifactId>
-            <type>zip</type>
-        </dependency>
-    </dependencies>
+     </dependencies>
 
     <build>
         <plugins>
@@ -197,6 +188,7 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>

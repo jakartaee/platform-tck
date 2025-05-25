@@ -39,6 +39,7 @@
         <tck.version>11.0.0</tck.version>
 
         <glassfish.runner.version>11.0.1</glassfish.runner.version>
+        <glassfish.version>8.0.0-M11</glassfish.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
 
         <maven.build.cache.enabled>false</maven.build.cache.enabled>
@@ -240,16 +241,6 @@
             <artifactId>arquillian-testng-container</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-            <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.main.distributions</groupId>
-            <artifactId>${glassfish-artifact-id}</artifactId>
-            <type>zip</type>
-        </dependency>
         <!--
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
@@ -348,6 +339,7 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${glassfish.root}</outputDirectory>

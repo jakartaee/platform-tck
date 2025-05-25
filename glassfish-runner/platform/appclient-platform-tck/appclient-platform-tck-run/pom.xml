@@ -64,6 +64,7 @@
         <jndi.fs.dir>/tmp/ri_admin_objects</jndi.fs.dir>
         <jndi.provider.url>java.naming.provider.url=file:///${jndi.fs.dir}</jndi.provider.url>
 
+        <glassfish.version>8.0.0-M11</glassfish.version>
         <glassfish.runner.version>11.0.1</glassfish.runner.version>
         <jakarta.tck.version>11.0.1-SNAPSHOT</jakarta.tck.version>
     </properties>
@@ -154,11 +155,6 @@
             <groupId>org.jboss.shrinkwrap</groupId>
             <artifactId>shrinkwrap-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.main.distributions</groupId>
-            <artifactId>glassfish</artifactId>
-            <type>zip</type>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -178,6 +174,7 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>glassfish</artifactId>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>

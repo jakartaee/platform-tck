@@ -81,12 +81,12 @@
         <restype>javax.sql.DataSource</restype>
         <sql.directory>./sql</sql.directory>
         <tck.artifactId>integration</tck.artifactId>
+        <glassfish.version>8.0.0-M11</glassfish.version>
         <glassfish.runner.version>11.0.1</glassfish.runner.version>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <ts.home>./jakartaeetck/</ts.home>
         <user1>cts1</user1>
         <user2>cts1</user2>
-        <jakarta.tck.common.version>11.0.3</jakarta.tck.common.version>
         <maven.compiler.release>17</maven.compiler.release>
     </properties>
 
@@ -197,11 +197,6 @@
             <artifactId>derbytools</artifactId>
             <version>10.15.2.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.main.distributions</groupId>
-            <artifactId>glassfish</artifactId>
-            <type>zip</type>
-        </dependency>
     </dependencies>
 
     <build>
@@ -222,6 +217,7 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
