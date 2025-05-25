@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package com.sun.ts.lib.harness;
+package com.sun.ts.tests.common.base;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -26,6 +26,7 @@ import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 import com.sun.ts.tests.common.vehicle.VehicleRunnerFactory;

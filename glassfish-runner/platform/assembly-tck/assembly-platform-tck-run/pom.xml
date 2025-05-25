@@ -34,14 +34,9 @@
         <arquillian.junit>1.9.1.Final</arquillian.junit>
         <exec.asadmin>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</exec.asadmin>
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-        <!-- Use JDK21 to run with GF 8.0.0-M5 -->
-        <!-- <glassfish.version>8.0.0-M5</glassfish.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
-        <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
-        <glassfish.version>8.0.0-JDK17-M10</glassfish.version>
         <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
-        <jakarta.tck.arquillian.version>11.0.5</jakarta.tck.arquillian.version>
-        <junit.jupiter.version>5.10.2</junit.jupiter.version>
+        <glassfish.runner.version>11.0.1</glassfish.runner.version>
         <tck.artifactId>assembly-tck</tck.artifactId>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <ts.home>./jakartaeetck</ts.home>
@@ -51,8 +46,8 @@
         <dependencies>
             <dependency>
                 <groupId>jakarta.tck</groupId>
-                <artifactId>artifacts-bom</artifactId>
-                <version>${tck.version}</version>
+                <artifactId>glassfish-runner-bom</artifactId>
+                <version>${glassfish.runner.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -148,6 +143,11 @@
             <artifactId>derbytools</artifactId>
             <version>10.15.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.distributions</groupId>
+            <artifactId>glassfish</artifactId>
+            <type>zip</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -173,8 +173,7 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
-                                    <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.version}</version>
+                                    <artifactId>glassfish</artifactId>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
@@ -330,7 +329,7 @@
                                 <!-- <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/gf-client.jar</additionalClasspathElement> -->
                             </additionalClasspathElements>
                             <includes>
-                                <include>com/sun/ts/tests/assembly/altDD/Client.java</include>
+                                <include>com/sun/ts/tests/assembly/**/Client.java</include>
                             </includes>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
@@ -363,12 +362,6 @@
             </activation>
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>web</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
             </properties>
         </profile>
     </profiles>

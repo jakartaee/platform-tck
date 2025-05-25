@@ -26,37 +26,28 @@ package com.sun.ts.tests.assembly.classpath.appclient;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.assembly.classpath.util.ClassPathUtil;
 
 import java.net.URL;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.asset.UrlAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-import tck.arquillian.protocol.common.TargetVehicle;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.TestInfo;
-
-
-import java.lang.System.Logger;
 
 @Tag("assembly")
 @Tag("platform")
@@ -100,10 +91,7 @@ public class Client extends EETest {
     direct_classpath_util.addClasses(com.sun.ts.tests.assembly.classpath.util.ClassPathUtil.class,
     Client.class);
     URL resURL = Client.class.getResource("/util/META-INF/ejb-jar.xml");
-    if (resURL != null) {
-      direct_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
-    }
-    direct_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    direct_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
     // archiveProcessor.processEjbArchive(direct_classpath_util, Client.class, resURL);
 
 
@@ -111,24 +99,19 @@ public class Client extends EETest {
     indirect_classpath_util.addClasses(com.sun.ts.tests.assembly.classpath.util.IndirectClassPathUtil.class,
     Client.class);
     resURL = Client.class.getResource("/util/META-INF/ejb-jar.xml");
-    if (resURL != null) {
-      indirect_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
-    }
-    indirect_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    indirect_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
     // archiveProcessor.processEjbArchive(indirect_classpath_util, Client.class, resURL);
 
     JavaArchive assembly_classpath_appclient_client = ShrinkWrap.create(JavaArchive.class,
         "assembly_classpath_appclient_client.jar");
     assembly_classpath_appclient_client.addClasses(
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
+        Fault.class,
+        EETest.class,
+        SetupException.class,
         com.sun.ts.tests.assembly.classpath.appclient.Client.class);
     // The application-client.xml descriptor
     resURL = Client.class.getResource("assembly_classpath_appclient_client.xml");
-    if (resURL != null) {
-      assembly_classpath_appclient_client.addAsManifestResource(resURL, "application-client.xml");
-    }
+    assembly_classpath_appclient_client.addAsManifestResource(resURL, "application-client.xml");
     assembly_classpath_appclient_client
         .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n" + "Class-Path: libs/direct_classpath_util.jar"+ "\n"), "MANIFEST.MF");
     archiveProcessor.processClientArchive(assembly_classpath_appclient_client, Client.class, resURL);
@@ -139,13 +122,9 @@ public class Client extends EETest {
     assembly_classpath_appclient_ear.addAsLibrary(direct_classpath_util);
     assembly_classpath_appclient_ear.addAsLibrary(indirect_classpath_util);
     assembly_classpath_appclient_ear.addAsModule(assembly_classpath_appclient_client);
-    assembly_classpath_appclient_ear.addAsModule(indirect_classpath_util);
-    assembly_classpath_appclient_ear.addAsModule(direct_classpath_util);
 
     URL earResURL = Client.class.getResource("application.xml");
-    if (earResURL != null) {
-      assembly_classpath_appclient_ear.addAsManifestResource(earResURL, "application.xml");
-    }
+    assembly_classpath_appclient_ear.addAsManifestResource(earResURL, "application.xml");
     archiveProcessor.processEarArchive(assembly_classpath_appclient_ear, Client.class, earResURL);
 
     return assembly_classpath_appclient_ear;

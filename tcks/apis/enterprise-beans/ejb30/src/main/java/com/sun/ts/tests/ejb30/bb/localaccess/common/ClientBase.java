@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.bb.localaccess.common;
 
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 
 public abstract class ClientBase extends EETest implements Constants {

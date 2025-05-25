@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -50,7 +54,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.tx.cm.stat
             WebArchive ejblite_tx_cm_stateful_sessionsync_ejblitejsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "ejblite_tx_cm_stateful_sessionsync_ejblitejsp_vehicle_web.war");
             // The class files
             ejblite_tx_cm_stateful_sessionsync_ejblitejsp_vehicle_web.addClasses(
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.EJBLiteJSPTag.class,
             com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.Client.class,
             com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.HttpServletDelegate.class,
@@ -58,8 +62,8 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.tx.cm.stat
             com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF.class,
             com.sun.ts.tests.ejb30.common.helper.Helper.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            EETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
@@ -76,7 +80,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.tx.cm.stat
             com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean.class,
             com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncBeanBase.class,
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.RollbackBean.class
             );
             // The web.xml descriptor

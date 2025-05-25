@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.interceptor.singleton.lifecycle.annotated;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -51,7 +55,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.inter
             WebArchive ejblite_interceptor_singleton_lifecycle_annotated_ejbliteservlet2_vehicle_web = ShrinkWrap.create(WebArchive.class, "ejblite_interceptor_singleton_lifecycle_annotated_ejbliteservlet2_vehicle_web.war");
             // The class files
             ejblite_interceptor_singleton_lifecycle_annotated_ejbliteservlet2_vehicle_web.addClasses(
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor3.class,
             com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase.class,
             com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor5.class,
@@ -66,8 +70,8 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.inter
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.ejb30.common.helper.Helper.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            EETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor6.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
@@ -89,7 +93,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.inter
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF.class,
             com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor2.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.JsfClientBase.class
             );
             // The web.xml descriptor

@@ -1,5 +1,9 @@
 package com.sun.ts.tests.jta.ee.transactional;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import jakarta.interceptor.Interceptor;
 
 import java.lang.System.Logger;
@@ -63,9 +67,9 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.jta.ee.transactio
                 com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
                 com.sun.ts.tests.common.vehicle.ejbliteshare.ReasonableStatus.class, com.sun.ts.tests.ejb30.common.lite.NumberEnum.class,
                 com.sun.ts.tests.ejb30.common.helper.Helper.class, com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
-                com.sun.ts.tests.ejb30.common.lite.NumberIF.class, com.sun.ts.lib.harness.EETest.Fault.class,
-                com.sun.ts.lib.harness.EETest.class, com.sun.ts.lib.harness.EETest.SetupException.class,
-                com.sun.ts.lib.harness.ServiceEETest.class, com.sun.ts.tests.jta.ee.transactional.OneManagedQualifier.class,
+                com.sun.ts.tests.ejb30.common.lite.NumberIF.class, Fault.class,
+                EETest.class, SetupException.class,
+                ServiceEETest.class, com.sun.ts.tests.jta.ee.transactional.OneManagedQualifier.class,
                 com.sun.ts.tests.jta.ee.transactional.TwoManagedQualifier.class, com.sun.ts.tests.jta.ee.transactional.TwoManagedBean.class,
                 com.sun.ts.tests.jta.ee.transactional.CTSRollbackException.class,
                 com.sun.ts.tests.jta.ee.transactional.TransactionScopedBean.class, com.sun.ts.tests.jta.ee.transactional.Helper.class,

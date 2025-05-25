@@ -30,11 +30,12 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import com.sun.ts.lib.harness.Fault;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;

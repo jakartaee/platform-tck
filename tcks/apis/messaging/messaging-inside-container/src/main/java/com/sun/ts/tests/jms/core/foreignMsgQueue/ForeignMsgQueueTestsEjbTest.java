@@ -1,19 +1,21 @@
 package com.sun.ts.tests.jms.core.foreignMsgQueue;
 
-import com.sun.ts.tests.jms.core.foreignMsgQueue.ForeignMsgQueueTests;
+import com.sun.ts.lib.harness.Fault;
+
 import java.net.URL;
+
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -70,7 +72,7 @@ public class ForeignMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.forei
             foreignMsgQueue_ejb_vehicle_client.addClasses(
                                 com.sun.ts.tests.jms.common.StreamMessageTestImpl.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
                                 com.sun.ts.tests.jms.common.ObjectMessageTestImpl.class,
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
                                 com.sun.ts.tests.jms.common.JmsTool.class,
@@ -81,9 +83,9 @@ public class ForeignMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.forei
                                 com.sun.ts.tests.jms.common.MapMessageTestImpl.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
                                 com.sun.ts.tests.jms.common.TextMessageTestImpl.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            EETest.class,
+            ServiceEETest.class,
+            SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.jms.core.foreignMsgQueue.ForeignMsgQueueTests.class
             );
@@ -110,7 +112,7 @@ public class ForeignMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.forei
                                     com.sun.ts.tests.jms.common.StreamMessageTestImpl.class,
                 com.sun.ts.tests.jms.common.TextMessageTestImpl.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-                com.sun.ts.lib.harness.EETest.Fault.class,
+                Fault.class,
                                     com.sun.ts.tests.jms.common.ObjectMessageTestImpl.class,
                 com.sun.ts.tests.jms.core.foreignMsgQueue.ForeignMsgQueueTests.class,
                 com.sun.ts.tests.jms.common.MessageTestImpl.class,
@@ -126,10 +128,10 @@ public class ForeignMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.forei
                 com.sun.ts.tests.jms.common.MapMessageTestImpl.class,
                                     com.sun.ts.tests.jms.common.MapMessageTestImpl.class,
                                     com.sun.ts.tests.jms.common.TextMessageTestImpl.class,
-                com.sun.ts.lib.harness.EETest.class,
+                EETest.class,
                 com.sun.ts.tests.jms.common.BytesMessageTestImpl.class,
-                com.sun.ts.lib.harness.ServiceEETest.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class,
+                ServiceEETest.class,
+                SetupException.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The ejb-jar.xml descriptor

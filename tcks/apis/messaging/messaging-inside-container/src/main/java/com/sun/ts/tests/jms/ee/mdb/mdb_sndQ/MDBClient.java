@@ -22,7 +22,7 @@ package com.sun.ts.tests.jms.ee.mdb.mdb_sndQ;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.ejb.EJB;

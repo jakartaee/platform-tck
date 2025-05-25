@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -55,7 +57,7 @@ public class ClientJSP extends Client implements Serializable {
         jspVehicleArchive.addPackages(false, "com.sun.ts.tests.common.vehicle");
         jspVehicleArchive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
         jspVehicleArchive.addPackages(true, "com.sun.ts.lib.harness");
-        jspVehicleArchive.addClasses(ClientServlet.class, Client.class);
+        jspVehicleArchive.addClasses(ClientServlet.class, Client.class, ServiceEETest.class, EETest.class);
         InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
                 .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
         jspVehicleArchive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
@@ -71,7 +73,7 @@ public class ClientJSP extends Client implements Serializable {
         javaAchive.addPackages(false, "com.sun.ts.tests.common.util");
         javaAchive.addPackages(false, "com.sun.ts.tests.common.whitebox");
         javaAchive.addPackages(true, "com.sun.ts.lib.harness");
-        javaAchive.addClasses(ClientServlet.class, Client.class);
+        javaAchive.addClasses(Client.class, ServiceEETest.class, EETest.class);
         javaAchive.addClasses(Ejb1Test.class, Ejb1TestEJB.class, Ejb2Test.class, Ejb2TestEJB.class);
         javaAchive.addAsManifestResource(ClientServlet.class.getPackage(), "xa_resXcomp3_ee_txpropagate3_ejb.xml", "ejb-jar.xml");
         javaAchive.addAsManifestResource(ClientServlet.class.getPackage(), "xa_resXcomp3_ee_txpropagate3_ejb.jar.sun-ejb-jar.xml",

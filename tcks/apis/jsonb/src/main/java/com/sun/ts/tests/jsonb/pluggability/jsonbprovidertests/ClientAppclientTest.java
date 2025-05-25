@@ -19,8 +19,11 @@
  */
 package com.sun.ts.tests.jsonb.pluggability.jsonbprovidertests;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.tests.common.base.ServiceEETest;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.jsonb.provider.MyJsonbProvider;
 
 import jakarta.json.bind.JsonbBuilder;
@@ -104,9 +107,9 @@ public class ClientAppclientTest extends ServiceEETest {
                 "jsonbprovidertests_appclient_vehicle_client.jar");
         jsonbprovidertests_appclient_vehicle_client.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
-                com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class, com.sun.ts.lib.harness.EETest.class,
-                com.sun.ts.lib.harness.EETest.Fault.class, com.sun.ts.lib.harness.EETest.SetupException.class,
-                com.sun.ts.lib.harness.ServiceEETest.class, ClientAppclientTest.class);
+                com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class, EETest.class,
+                Fault.class, SetupException.class,
+                ServiceEETest.class, ClientAppclientTest.class);
 
         URL resURL = ClientAppclientTest.class.getClassLoader().getResource(packagePath + "/appclient_vehicle_client.xml");
         if (resURL != null) {

@@ -27,6 +27,8 @@ package com.sun.ts.tests.xa.ee.resXcomp1;
 import java.io.IOException;
 import java.io.Serializable;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -54,7 +56,7 @@ public class ClientServletTest extends Client implements Serializable {
         servletVehicleArchive.addPackages(false, "com.sun.ts.tests.common.vehicle");
         servletVehicleArchive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
         servletVehicleArchive.addPackages(true, "com.sun.ts.lib.harness");
-        servletVehicleArchive.addClasses(ClientServletTest.class, Client.class);
+        servletVehicleArchive.addClasses(Client.class, ServiceEETest.class, EETest.class);
         servletVehicleArchive.addAsWebInfResource(ClientServletTest.class.getPackage(), "servlet_vehicle_web.xml", "web.xml");
         servletVehicleArchive.addAsWebInfResource(ClientServletTest.class.getPackage(), "xa_resXcomp1_servlet_vehicle_web.war.sun-web.xml",
                 "sun-web.xml");
@@ -64,7 +66,7 @@ public class ClientServletTest extends Client implements Serializable {
         javaAchive.addPackages(false, "com.sun.ts.tests.common.whitebox");
         javaAchive.addPackages(true, "com.sun.ts.lib.harness");
         javaAchive.addClasses(TxBean.class, TxBeanEJB.class);
-        javaAchive.addClasses(ClientServletTest.class, Client.class);
+        javaAchive.addClasses(Client.class, ServiceEETest.class, EETest.class);
 
         javaAchive.addAsManifestResource(ClientServletTest.class.getPackage(), "xa_resXcomp1_ee_txpropagate2_ejb.xml", "ejb-jar.xml");
         javaAchive.addAsManifestResource(ClientServletTest.class.getPackage(), "xa_resXcomp1_ee_txpropagate2_ejb.jar.sun-ejb-jar.xml",

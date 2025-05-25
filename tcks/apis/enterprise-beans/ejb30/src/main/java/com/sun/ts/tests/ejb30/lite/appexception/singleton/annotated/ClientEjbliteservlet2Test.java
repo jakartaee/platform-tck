@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.appexception.singleton.annotated;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -52,7 +56,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.appex
             // The class files
             ejblite_appexception_singleton_annotated_ejbliteservlet2_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.common.helper.TestFailedException.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.common.appexception.AtCheckedRollbackAppException.class,
             com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException.class,
             com.sun.ts.tests.ejb30.common.appexception.CheckedAppException.class,
@@ -64,9 +68,9 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.appex
             com.sun.ts.tests.ejb30.lite.appexception.singleton.annotated.RollbackBean.class,
             com.sun.ts.tests.ejb30.common.helper.Helper.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.ejb30.common.appexception.AtUncheckedRollbackAppException.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.lite.appexception.singleton.annotated.HttpServletDelegate.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
@@ -87,7 +91,7 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.appex
             com.sun.ts.tests.ejb30.lite.appexception.singleton.annotated.JsfClient.class,
             com.sun.ts.tests.ejb30.common.appexception.RollbackBeanBase.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.ejb30.lite.appexception.singleton.annotated.EJBLiteServlet2Filter.class
             );
             // The web.xml descriptor

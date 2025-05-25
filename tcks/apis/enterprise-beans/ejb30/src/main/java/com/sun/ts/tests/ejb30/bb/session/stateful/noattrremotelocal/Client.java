@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.noattrremotelocal;
 
+import com.sun.ts.lib.harness.Fault;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessIF2;
@@ -39,7 +40,7 @@ public class Client extends ClientBase {
   @EJB(name = "testBean")
   private static TestIF testBean;
 
-  public void cleanup() throws com.sun.ts.lib.harness.EETest.Fault {
+  public void cleanup() throws Fault {
     remove();
     if (testBean != null) {
       try {

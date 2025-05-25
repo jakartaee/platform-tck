@@ -1,18 +1,18 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated;
 
-import com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.JsfClient;
+import com.sun.ts.lib.harness.Fault;
+
 import java.net.URL;
+
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
@@ -58,7 +58,7 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb30.bb.session.s
             bb_stateful_concurrency_metadata_annotated_ejblitejsf_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.JsfClientBase.class,
             com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.JsfClient.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.Pinger.class,
             com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.ContainerConcurrencyBean.class,
             com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.NotAllowedConcurrencyBean.class,
@@ -67,9 +67,9 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb30.bb.session.s
             com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.class,
             com.sun.ts.tests.ejb30.common.helper.Helper.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.HttpServletDelegate.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.StatefulConcurrencyBeanBase.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
@@ -85,7 +85,7 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb30.bb.session.s
             com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.DefaultConcurrencyBean.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            SetupException.class
             );
             // The web.xml descriptor
             URL warResURL = JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle_web.xml");

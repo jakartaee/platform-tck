@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.assembly.util.shared.ejbref.single.TestCode;
@@ -69,7 +69,7 @@ public class Client extends EETest {
     public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
             throws IOException {
         JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_single_client.jar");
-        ejbClient.addClasses(Client.class, TestCode.class);
+        ejbClient.addClasses(Client.class, EETest.class, TestCode.class);
         ejbClient.addPackages(true, "com.sun.ts.lib.harness");
         ejbClient.addPackages(true, "com.sun.ts.tests.assembly.util.refbean");
         ejbClient.addPackages(true, "com.sun.ts.tests.common.dao.coffee");

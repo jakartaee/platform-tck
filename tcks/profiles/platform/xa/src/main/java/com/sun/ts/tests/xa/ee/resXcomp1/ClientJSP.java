@@ -27,7 +27,10 @@ package com.sun.ts.tests.xa.ee.resXcomp1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -56,7 +59,7 @@ public class ClientJSP extends Client implements Serializable {
         jspVehicleArchive.addPackages(false, "com.sun.ts.tests.common.vehicle");
         jspVehicleArchive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
         jspVehicleArchive.addPackages(true, "com.sun.ts.lib.harness");
-        jspVehicleArchive.addClasses(ClientServletTest.class, Client.class);
+        jspVehicleArchive.addClasses(Client.class, ServiceEETest.class, EETest.class);
         InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
                 .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
         jspVehicleArchive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
@@ -64,23 +67,29 @@ public class ClientJSP extends Client implements Serializable {
                 .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
         jspVehicleArchive.add(new ByteArrayAsset(clientHtml), "client.html");
 
-        jspVehicleArchive.addAsWebInfResource(ClientJSP.class.getPackage(), "jsp_vehicle_web.xml", "web.xml");
-        jspVehicleArchive.addAsWebInfResource(ClientJSP.class.getPackage(), "xa_resXcomp1_jsp_vehicle_web.war.sun-web.xml", "sun-web.xml");
+        URL resURL = ClientJSP.class.getResource("jsp_vehicle_web.xml");
+        jspVehicleArchive.addAsWebInfResource(resURL, "web.xml");
+        resURL = ClientJSP.class.getResource("xa_resXcomp1_jsp_vehicle_web.war.sun-web.xml");
+        jspVehicleArchive.addAsWebInfResource(resURL, "sun-web.xml");
+        archiveProcessor.processWebArchive(jspVehicleArchive, Client.class, resURL);
 
         JavaArchive javaAchive = ShrinkWrap.create(JavaArchive.class, "xa_resXcomp1_ee_txpropagate3_ejb.jar");
         javaAchive.addPackages(false, "com.sun.ts.tests.common.util");
         javaAchive.addPackages(false, "com.sun.ts.tests.common.whitebox");
         javaAchive.addPackages(true, "com.sun.ts.lib.harness");
         javaAchive.addClasses(TxBean.class, TxBeanEJB.class);
-        javaAchive.addClasses(ClientServletTest.class, Client.class);
+        javaAchive.addClasses(Client.class, ServiceEETest.class, EETest.class);
 
-        javaAchive.addAsManifestResource(ClientJSP.class.getPackage(), "xa_resXcomp1_ee_txpropagate3_ejb.xml", "ejb-jar.xml");
-        javaAchive.addAsManifestResource(ClientJSP.class.getPackage(), "xa_resXcomp1_ee_txpropagate3_ejb.jar.sun-ejb-jar.xml",
-                "sun-ejb-jar.xml");
+        resURL = ClientJSP.class.getResource("xa_resXcomp1_ee_txpropagate3_ejb.xml");
+        javaAchive.addAsManifestResource(resURL, "ejb-jar.xml");
+        resURL = ClientJSP.class.getResource("xa_resXcomp1_ee_txpropagate3_ejb.jar.sun-ejb-jar.xml");
+        javaAchive.addAsManifestResource(resURL, "sun-ejb-jar.xml");
+        archiveProcessor.processEjbArchive(javaAchive, Client.class, resURL);
 
         EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "xa_resXcomp1_jsp_vehicle.ear");
         ear.addAsModule(jspVehicleArchive);
         ear.addAsModule(javaAchive);
+        archiveProcessor.processEarArchive(ear, Client.class, null);
 
         return ear;
     };

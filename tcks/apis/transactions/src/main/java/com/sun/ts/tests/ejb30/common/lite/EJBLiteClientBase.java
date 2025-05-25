@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.common.lite;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;

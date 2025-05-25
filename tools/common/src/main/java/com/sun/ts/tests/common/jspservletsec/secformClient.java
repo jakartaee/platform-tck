@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.WebUtil;

@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -62,7 +64,7 @@ public class callStmtClient12AppClient extends callStmtClient12 implements Seria
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		archive.addClasses(callStmtClient12AppClient.class, callStmtClient12.class);
+		archive.addClasses(callStmtClient12AppClient.class, callStmtClient12.class, ServiceEETest.class, EETest.class);
 
 		// The appclient-client descriptor
 		URL appClientUrl = callStmtClient12AppClient.class

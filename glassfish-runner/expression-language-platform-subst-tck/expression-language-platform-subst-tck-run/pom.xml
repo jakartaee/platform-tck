@@ -29,11 +29,10 @@
     <packaging>jar</packaging>
 
     <properties>
-        <arquillian.junit>1.9.3.Final</arquillian.junit>
+        <glassfish.runner.version>11.0.1</glassfish.runner.version>
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
-        <glassfish.version>8.0.0-M10</glassfish.version>
-        
+
         <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <ts.home>./jakartaeetck</ts.home>
@@ -43,8 +42,8 @@
         <dependencies>
             <dependency>
                 <groupId>jakarta.tck</groupId>
-                <artifactId>artifacts-bom</artifactId>
-                <version>${tck.version}</version>
+                <artifactId>glassfish-runner-bom</artifactId>
+                <version>${glassfish.runner.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -96,7 +95,6 @@
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.8</version>
             <scope>test</scope>
         </dependency>
         

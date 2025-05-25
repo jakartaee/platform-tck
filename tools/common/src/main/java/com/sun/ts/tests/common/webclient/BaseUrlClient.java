@@ -25,8 +25,7 @@ import java.util.Properties;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.util.TestUtil;
 import org.apache.commons.httpclient.HttpState;
 

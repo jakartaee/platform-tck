@@ -20,9 +20,12 @@
 
 package com.sun.ts.tests.el.spec.relationaloperator;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.tests.common.base.ServiceEETest;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
 import com.sun.ts.tests.el.common.util.TestNum;
@@ -94,10 +97,10 @@ public class ELClientServletTest extends ServiceEETest {
     WebArchive servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "relationaloperator_servlet_vehicle_web.war");
   
     servlet_vehicle_web.addClasses(
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.ServiceEETest.class,
+        Fault.class,
+        SetupException.class,
+        EETest.class,
+        ServiceEETest.class,
         com.sun.ts.tests.common.vehicle.VehicleClient.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
@@ -1964,7 +1967,7 @@ public class ELClientServletTest extends ServiceEETest {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   private void testOperatorBoolean(BigDecimal testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -2025,7 +2028,7 @@ public class ELClientServletTest extends ServiceEETest {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. >, >=, <,
    *          <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   private void testOperatorBoolean(BigInteger testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -2094,7 +2097,7 @@ public class ELClientServletTest extends ServiceEETest {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   private void testOperatorBoolean(Float testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -2162,7 +2165,7 @@ public class ELClientServletTest extends ServiceEETest {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   private void testOperatorBoolean(Double testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -2230,7 +2233,7 @@ public class ELClientServletTest extends ServiceEETest {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   private void testOperatorBoolean(Long testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -2299,7 +2302,7 @@ public class ELClientServletTest extends ServiceEETest {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   private void testOperatorBoolean(Integer testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -2369,7 +2372,7 @@ public class ELClientServletTest extends ServiceEETest {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   private void testOperatorBoolean(Short testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -2433,7 +2436,7 @@ public class ELClientServletTest extends ServiceEETest {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. >, >=, <,
    *          <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   private void testOperatorBoolean(Byte testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -2497,7 +2500,7 @@ public class ELClientServletTest extends ServiceEETest {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
+   * @throws Fault
    */
   private void testOperatorBoolean(Object testValOne, Object testValTwo,
       Boolean expectedVal, String booleanOperator) throws Exception {

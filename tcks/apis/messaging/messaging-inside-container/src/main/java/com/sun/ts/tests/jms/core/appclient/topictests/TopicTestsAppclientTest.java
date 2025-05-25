@@ -1,19 +1,21 @@
 package com.sun.ts.tests.jms.core.appclient.topictests;
 
-import com.sun.ts.tests.jms.core.appclient.topictests.TopicTests;
+import com.sun.ts.lib.harness.Fault;
+
 import java.net.URL;
+
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -67,7 +69,7 @@ public class TopicTestsAppclientTest extends com.sun.ts.tests.jms.core.appclient
             com.sun.ts.tests.jms.core.appclient.topictests.TopicTests.class,
                                           com.sun.ts.tests.jms.common.DoneLatch.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.jms.core.appclient.topictests.TopicTests.RequestorMsgListener.class,
                                           com.sun.ts.tests.jms.common.SessionThread.class,
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
@@ -77,9 +79,9 @@ public class TopicTestsAppclientTest extends com.sun.ts.tests.jms.core.appclient
             com.sun.ts.tests.jms.core.appclient.topictests.TopicTests.AutoAckMsgListener.class,
             com.sun.ts.tests.jms.common.TestMessageListener.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            EETest.class,
+            ServiceEETest.class,
+            SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.jms.common.DoneLatch.class,
             com.sun.ts.tests.jms.common.SessionThread.class,

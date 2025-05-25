@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
@@ -82,6 +82,7 @@ public class Client extends EETest {
 		EnterpriseArchive ear = null;
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_path_client.jar");
 		ejbClient.addPackages(false, "com.sun.ts.tests.appclient.deploy.ejblink.path");
+		ejbClient.addClass(EETest.class);
 
 		// The appclient-client descriptor
 		URL appClientUrl = Client.class.getResource("appclient_dep_ejblink_path_client.xml");

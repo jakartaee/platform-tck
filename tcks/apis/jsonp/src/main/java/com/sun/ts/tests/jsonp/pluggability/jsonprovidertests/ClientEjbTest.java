@@ -17,80 +17,38 @@
 
 package com.sun.ts.tests.jsonp.pluggability.jsonprovidertests;
 
-import java.io.File;
-import java.net.URLClassLoader;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
-import java.util.ServiceLoader;
-import java.util.stream.Collectors;
-import java.nio.charset.StandardCharsets;
-import java.net.URL;
-
-import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.tests.jsonp.common.JSONP_Util;
-import com.sun.ts.tests.jsonp.provider.MyJsonGenerator;
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.tests.jsonp.provider.MyJsonProvider;
-
-import jakarta.json.Json;
-import jakarta.json.JsonArrayBuilder;
-import jakarta.json.JsonBuilderFactory;
-import jakarta.json.JsonException;
-import jakarta.json.JsonObjectBuilder;
-import jakarta.json.JsonReader;
-import jakarta.json.JsonReaderFactory;
-import jakarta.json.JsonWriter;
-import jakarta.json.JsonWriterFactory;
-import jakarta.json.spi.JsonProvider;
-import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonGeneratorFactory;
-import jakarta.json.stream.JsonParser;
-import jakarta.json.stream.JsonParserFactory;
-
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.asset.UrlAsset;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.TestInfo;
-import org.junit.jupiter.api.extension.ExtendWith;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import tck.arquillian.protocol.common.TargetVehicle;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
 
 import java.lang.System.Logger;
+import java.net.URL;
 
 @Tag("tck-appclient")
 @Tag("platform")
 @Tag("jsonp")
 @ExtendWith(ArquillianExtension.class)
-public class ClientEjbTest extends ServiceEETest {
-
-  private static final Logger logger = System.getLogger(ClientEjbTest.class.getName());
+public class ClientEjbTest extends Client {
 
   private static String packagePath = ClientEjbTest.class.getPackageName().replace(".", "/");
 
@@ -114,14 +72,6 @@ public class ClientEjbTest extends ServiceEETest {
       logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
   }
 
-  @AfterEach
-  public void cleanup() throws Exception {
-    // removeProviderJarFromCP();
-    MyJsonProvider.clearCalls();
-    MyJsonGenerator.clearCalls();
-    logger.log(Logger.Level.INFO, "cleanup ok");
-
-  }
 
   static final String VEHICLE_ARCHIVE = "jsonprovidertests_ejb_vehicle";
   
@@ -142,22 +92,10 @@ public class ClientEjbTest extends ServiceEETest {
       com.sun.ts.tests.jsonp.provider.MyJsonReaderFactory.class,
       com.sun.ts.tests.jsonp.provider.MyJsonWriter.class,
       com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class,
-      com.sun.ts.tests.jsonp.common.JSONP_Util.class,
-      ClientEjbTest.class) 
+      com.sun.ts.tests.jsonp.common.JSONP_Util.class
+       )
       .addAsResource(new UrlAsset(MyJsonProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.spi.JsonProvider")), "META-INF/services/jakarta.json.spi.JsonProvider");
-    jsonp_alternate_provider.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
 
-
-    jsonp_alternate_provider.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + "jsonp_alternate_provider.jar"), true);
-
-    ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
-    URLClassLoader urlClassLoader = new URLClassLoader(
-        new URL[] { new File(TEMP_DIR + File.separator + "jsonp_alternate_provider.jar").toURL() },
-        currentThreadClassLoader);
-    Thread.currentThread().setContextClassLoader(urlClassLoader);
-    providerJarDeployed = true;
-  
-  
 
     JavaArchive jsonprovidertests_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jsonprovidertests_ejb_vehicle_client.jar");
     jsonprovidertests_ejb_vehicle_client.addClasses(
@@ -167,21 +105,19 @@ public class ClientEjbTest extends ServiceEETest {
         com.sun.ts.tests.common.vehicle.VehicleClient.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.lib.harness.ServiceEETest.class,
+        EETest.class,
+        ServiceEETest.class,
         com.sun.ts.tests.jsonp.provider.MyJsonProvider.class,
         com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class,
         com.sun.ts.tests.jsonp.common.JSONP_Util.class,
-        ClientEjbTest.class
+        Client.class
     );
 
     URL resURL = ClientEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.xml");
     if(resURL != null) {
       jsonprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
     }
-    jsonprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+    jsonprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     resURL = ClientEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.jar.sun-application-client.xml");
     if(resURL != null) {
       jsonprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
@@ -196,10 +132,10 @@ public class ClientEjbTest extends ServiceEETest {
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
         com.sun.ts.tests.common.vehicle.VehicleClient.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.lib.harness.ServiceEETest.class,
+        EETest.class,
+        Fault.class,
+        SetupException.class,
+        ServiceEETest.class,
         com.sun.ts.tests.jsonp.common.JSONP_Data.class,
         com.sun.ts.tests.jsonp.common.JSONP_Util.class,
         com.sun.ts.tests.jsonp.common.MyBufferedInputStream.class,
@@ -208,7 +144,7 @@ public class ClientEjbTest extends ServiceEETest {
         com.sun.ts.tests.jsonp.common.MyJsonLocation.class,
         com.sun.ts.tests.jsonp.provider.MyJsonProvider.class,
         com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class,
-        ClientEjbTest.class
+            Client.class
     );
     // The ejb-jar.xml descriptor
     URL ejbResURL = ClientEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.xml");
@@ -233,570 +169,104 @@ public class ClientEjbTest extends ServiceEETest {
     jsonprovidertests_ejb_vehicle_client_ear.addAsModule(jsonprovidertests_ejb_vehicle_ejb);
     jsonprovidertests_ejb_vehicle_client_ear.addAsModule(jsonp_alternate_provider);
     jsonprovidertests_ejb_vehicle_client_ear.addAsLibrary(jsonp_alternate_provider);
-    jsonprovidertests_ejb_vehicle_client_ear.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
 
     return jsonprovidertests_ejb_vehicle_client_ear;
 
   }
 
-  public void removeProviderJarFromCP() throws Exception {
-		if (providerJarDeployed) {
-			URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
-			Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
-			currentThreadClassLoader.close();
-			// providerJarDeployed = false;
-		}
-	}
-
-	public void createProviderJar() throws Exception {
-
-    String providerPackagePath = MyJsonProvider.class.getPackageName().replace(".", "/");
-
-    JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonp_alternate_provider.jar")
-      .addClasses(com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class,
-      com.sun.ts.tests.jsonp.provider.MyJsonGeneratorFactory.class,
-      com.sun.ts.tests.jsonp.provider.MyJsonParser.class,
-      com.sun.ts.tests.jsonp.provider.MyJsonParserFactory.class,
-      com.sun.ts.tests.jsonp.provider.MyJsonProvider.class,
-      com.sun.ts.tests.jsonp.provider.MyJsonReader.class,
-      com.sun.ts.tests.jsonp.provider.MyJsonReaderFactory.class,
-      com.sun.ts.tests.jsonp.provider.MyJsonWriter.class,
-      com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class)
-      .addAsResource(new UrlAsset(MyJsonProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.spi.JsonProvider")), "META-INF/services/jakarta.json.spi.JsonProvider");
-
-    jarArchive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + "jsonp_alternate_provider.jar"), true);
-
-		ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
-		URLClassLoader urlClassLoader = new URLClassLoader(
-				new URL[] { new File(TEMP_DIR + File.separator + "jsonp_alternate_provider.jar").toURL() },
-				currentThreadClassLoader);
-		Thread.currentThread().setContextClassLoader(urlClassLoader);
-
-		providerJarDeployed = true;
-
-	}
-
-  private static final String MY_JSONPROVIDER_CLASS = "com.sun.ts.tests.jsonp.provider.MyJsonProvider";
-
-  private String providerPath = null;
-
-  public static void main(String[] args) {
-    ClientEjbTest theTests = new ClientEjbTest();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup */
-
-  /*
-    * @class.setup_props:
-    * This is needed by the vehicle base classes
-    */
-  public void setup(String[] args, Properties p) throws Exception {
-    // createProviderJar();
-    logger.log(Logger.Level.INFO, "setup ok");
-  }
-
   /* Tests */
 
-  /*
-   * @testName: jsonProviderTest1
-   * 
-   * @assertion_ids: JSONP:JAVADOC:152;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * static JsonProvider provider()
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest1() throws Exception {
-    boolean pass = true;
-    try {
-      // Load my provider
-      JsonProvider provider = JsonProvider.provider();
-      String providerClass = provider.getClass().getName();
-      logger.log(Logger.Level.INFO, "provider class=" + providerClass);
-      if (providerClass.equals(MY_JSONPROVIDER_CLASS))
-        logger.log(Logger.Level.INFO, "Current provider is my provider - expected.");
-      else {
-        logger.log(Logger.Level.ERROR, "Current provider is not my provider - unexpected.");
-        pass = false;
-        ServiceLoader<JsonProvider> loader = ServiceLoader.load(JsonProvider.class);
-        Iterator<JsonProvider> it = loader.iterator();
-        List<JsonProvider> providers = new ArrayList<>();
-        while(it.hasNext()) {
-            providers.add(it.next());
-        }
-        logger.log(Logger.Level.INFO, "Providers: "+providers);
-      }
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest1 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest1 Failed");
+    super.jsonProviderTest1();
   }
-
-  /*
-   * @testName: jsonProviderTest2
-   * 
-   * @assertion_ids: JSONP:JAVADOC:144;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonGenerator createGenerator(Writer)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest2() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonGenerator createGenerator(Writer)";
-    String expString2 = "public JsonGenerator writeStartArray()";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonGenerator generator = Json.createGenerator(new StringWriter());
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-      generator.writeStartArray();
-      String actString2 = MyJsonGenerator.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI generator method was called: " + expString2);
-      pass = JSONP_Util.assertEquals(expString2, actString2);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest2 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest2 Failed");
+    super.jsonProviderTest2();
   }
-
-  /*
-   * @testName: jsonProviderTest3
-   * 
-   * @assertion_ids: JSONP:JAVADOC:192;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonGenerator createGenerator(OutputStream)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest3() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonGenerator createGenerator(OutputStream)";
-    String expString2 = "public JsonGenerator writeStartObject()";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonGenerator generator = Json
-          .createGenerator(new ByteArrayOutputStream());
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-      generator.writeStartObject();
-      String actString2 = MyJsonGenerator.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI generator method was called: " + expString2);
-      pass = JSONP_Util.assertEquals(expString2, actString2);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest3 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest3 Failed");
+    super.jsonProviderTest3();
   }
-
-  /*
-   * @testName: jsonProviderTest4
-   * 
-   * @assertion_ids: JSONP:JAVADOC:146;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonParser createParser(Reader)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest4() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonParser createParser(Reader)";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonParser parser = Json.createParser(new StringReader("{}"));
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest4 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest4 Failed");
+    super.jsonProviderTest4();
   }
-
-  /*
-   * @testName: jsonProviderTest5
-   * 
-   * @assertion_ids: JSONP:JAVADOC:196;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonParser createParser(InputStream)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest5() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonParser createParser(InputStream)";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonParser parser = Json
-          .createParser(JSONP_Util.getInputStreamFromString("{}"));
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest5 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest5 Failed");
+    super.jsonProviderTest5();
   }
-
-  /*
-   * @testName: jsonProviderTest6
-   * 
-   * @assertion_ids: JSONP:JAVADOC:465;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonParserFactory createParserFactory(Map<String, ?>)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest6() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonParserFactory createParserFactory(Map<String, ?>)";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonParserFactory parserFactory = Json
-          .createParserFactory(JSONP_Util.getEmptyConfig());
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest6 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest6 Failed");
+    super.jsonProviderTest6();
   }
-
-  /*
-   * @testName: jsonProviderTest7
-   * 
-   * @assertion_ids: JSONP:JAVADOC:426;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonParserFactory createParserFactory(Map<String, ?>)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest7() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonParserFactory createParserFactory(Map<String, ?>)";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonParserFactory parserFactory = Json
-          .createParserFactory(new HashMap<String, Object>());
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest7 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest7 Failed");
+    super.jsonProviderTest7();
   }
-
-  /*
-   * @testName: jsonProviderTest8
-   * 
-   * @assertion_ids: JSONP:JAVADOC:425;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonGeneratorFactory createGeneratorFactory(Map<String, ?>)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest8() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonGeneratorFactory createGeneratorFactory(Map<String, ?>)";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonGeneratorFactory generatorFactory = Json
-          .createGeneratorFactory(new HashMap<String, Object>());
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest8 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest8 Failed");
+    super.jsonProviderTest8();
   }
-
-  /*
-   * @testName: jsonProviderTest9
-   * 
-   * @assertion_ids: JSONP:JAVADOC:472;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonWriterFactory createWriterFactory(Map<String, ?>)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest9() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonWriterFactory createWriterFactory(Map<String, ?>)";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonWriterFactory factory = Json
-          .createWriterFactory(JSONP_Util.getEmptyConfig());
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest9 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest9 Failed");
+    super.jsonProviderTest9();
   }
-
-  /*
-   * @testName: jsonProviderTest10
-   * 
-   * @assertion_ids: JSONP:JAVADOC:223;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonParser createParser(InputStream) Tests the case where a JsonException
-   * can be thrown. An InputStream of null will cause MyJsonProvider to throw
-   * JsonException.
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest10() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonParser createParser(InputStream)";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      InputStream in = null;
-      JsonParser parser = Json.createParser(in);
-      pass = false;
-    } catch (JsonException e) {
-      logger.log(Logger.Level.INFO, "Caught expected JsonException: " + e);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest10 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest10 Failed");
+    super.jsonProviderTest10();
   }
-
-  /*
-   * @testName: jsonProviderTest11
-   * 
-   * @assertion_ids: JSONP:JAVADOC:464;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonArrayBuilder createArrayBuilder()
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest11() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonArrayBuilder createArrayBuilder()";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest11 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest11 Failed");
+    super.jsonProviderTest11();
   }
-
-  /*
-   * @testName: jsonProviderTest12
-   * 
-   * @assertion_ids: JSONP:JAVADOC:466;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonObjectBuilder createObjectBuilder()
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest12() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonObjectBuilder createObjectBuilder()";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest12 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest12 Failed");
+    super.jsonProviderTest12();
   }
-
-  /*
-   * @testName: jsonProviderTest13
-   * 
-   * @assertion_ids: JSONP:JAVADOC:465;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonBuilderFactory createBuilderFactory(Map<String, ?>)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest13() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonBuilderFactory createBuilderFactory(Map<String, ?>)";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonBuilderFactory objectBuilder = Json
-          .createBuilderFactory(JSONP_Util.getEmptyConfig());
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest13 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest13 Failed");
+    super.jsonProviderTest13();
   }
-
-  /*
-   * @testName: jsonProviderTest14
-   * 
-   * @assertion_ids: JSONP:JAVADOC:467;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonReader createReader(Reader)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest14() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonReader createReader(Reader)";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonReader reader = Json.createReader(new StringReader("{}"));
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest14 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest14 Failed");
+    super.jsonProviderTest14();
   }
-
-  /*
-   * @testName: jsonProviderTest15
-   * 
-   * @assertion_ids: JSONP:JAVADOC:468;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonReader createReader(InputStream)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest15() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonReader createReader(InputStream)";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonReader reader = Json
-          .createReader(JSONP_Util.getInputStreamFromString("{}"));
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest15 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest15 Failed");
+    super.jsonProviderTest15();
   }
 
-  /*
-   * @testName: jsonProviderTest16
-   * 
-   * @assertion_ids: JSONP:JAVADOC:470;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonWriter createWriter(Writer)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest16() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonWriter createWriter(Writer)";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonWriter writer = Json.createWriter(new StringWriter());
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest16 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest16 Failed");
+    super.jsonProviderTest16();
   }
 
-  /*
-   * @testName: jsonProviderTest17
-   * 
-   * @assertion_ids: JSONP:JAVADOC:471;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonWriter createWriter(OutputStream)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest17() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonWriter createWriter(OutputStream)";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonWriter writer = Json.createWriter(new ByteArrayOutputStream());
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest17 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest17 Failed");
+    super.jsonProviderTest17();
   }
 
-  /*
-   * @testName: jsonProviderTest18
-   * 
-   * @assertion_ids: JSONP:JAVADOC:469;
-   * 
-   * @test_Strategy: Test call of SPI provider method with signature: o public
-   * JsonReaderFactory createReaderFactory(Map<String, ?>)
-   */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest18() throws Exception {
-    boolean pass = true;
-    String expString = "public JsonReaderFactory createReaderFactory(Map<String, ?>)";
-    try {
-      logger.log(Logger.Level.INFO, "Calling SPI provider method: " + expString);
-      JsonReaderFactory factory = Json
-          .createReaderFactory(JSONP_Util.getEmptyConfig());
-      String actString = MyJsonProvider.getCalls();
-      logger.log(Logger.Level.INFO, "Verify SPI provider method was called: " + expString);
-      pass = JSONP_Util.assertEquals(expString, actString);
-    } catch (Exception e) {
-      throw new Exception("jsonProviderTest18 Failed: ", e);
-    }
-    if (!pass)
-      throw new Exception("jsonProviderTest18 Failed");
+    super.jsonProviderTest18();
   }
 }

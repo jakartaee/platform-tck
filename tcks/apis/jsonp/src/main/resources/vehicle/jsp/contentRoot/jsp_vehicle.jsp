@@ -23,6 +23,7 @@
 <%@ page import="com.sun.ts.lib.util.*" %>
 <%@ page import="com.sun.ts.lib.harness.*" %>
 <%@ page import="com.sun.ts.lib.harness.Status" %>
+<%@ page import="com.sun.ts.tests.common.base.EETest" %>
 <%@ page session="false" %>
 
 <%! Properties properties = null;

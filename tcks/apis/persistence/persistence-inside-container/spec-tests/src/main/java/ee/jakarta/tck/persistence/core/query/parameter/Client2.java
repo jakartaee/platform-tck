@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.CleanupMethod;
+import com.sun.ts.lib.harness.Fault;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;

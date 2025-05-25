@@ -20,12 +20,16 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
 
 import java.io.IOException;
 import java.lang.System.Logger;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -89,9 +93,9 @@ public class AdaptersCustomizationCDIJspTest extends AdaptersCustomizationCDITes
         jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web.addClass(AdaptersCustomizationCDIJspTest.class)
                 .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
                 .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
-                .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class).addClass(com.sun.ts.lib.harness.EETest.class)
-                .addClass(com.sun.ts.lib.harness.EETest.SetupException.class).addClass(com.sun.ts.lib.harness.EETest.Fault.class)
-                .addClass(com.sun.ts.lib.harness.Status.class).addClass(com.sun.ts.lib.harness.ServiceEETest.class)
+                .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class).addClass(EETest.class)
+                .addClass(SetupException.class).addClass(Fault.class)
+                .addClass(com.sun.ts.lib.harness.Status.class).addClass(ServiceEETest.class)
                 .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalIdentifier.class)
                 .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.class)
                 .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.class)

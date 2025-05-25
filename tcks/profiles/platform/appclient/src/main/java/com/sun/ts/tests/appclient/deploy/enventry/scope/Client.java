@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.assembly.util.shared.enventry.scope.TestCode;
@@ -73,7 +73,7 @@ public class Client extends EETest {
 			throws IOException {
 		JavaArchive ejbClient1 = ShrinkWrap.create(JavaArchive.class,
 				"appclient_dep_enventry_scope_another_client.jar");
-		ejbClient1.addClasses(Client.class, TestCode.class);
+		ejbClient1.addClasses(Client.class, EETest.class, TestCode.class);
 		ejbClient1.addPackages(true, "com.sun.ts.lib.harness");
 
 		// The appclient-client descriptor
@@ -88,7 +88,7 @@ public class Client extends EETest {
 				"MANIFEST.MF");
 
 		JavaArchive ejbClient2 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_enventry_scope_client.jar");
-		ejbClient2.addClasses(Client.class, TestCode.class);
+		ejbClient2.addClasses(Client.class, EETest.class, TestCode.class);
 		ejbClient2.addPackages(true, "com.sun.ts.lib.harness");
 
 		URL resURL = Client.class.getResource(

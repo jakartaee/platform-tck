@@ -27,7 +27,7 @@ import java.util.Properties;
  * jms message to a message driven bean for a queue and a topic 
  */
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.ejb.EJB;

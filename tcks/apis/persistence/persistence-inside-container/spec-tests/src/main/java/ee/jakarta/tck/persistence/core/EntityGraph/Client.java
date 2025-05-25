@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Fault;
 import com.sun.ts.lib.harness.Status;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;

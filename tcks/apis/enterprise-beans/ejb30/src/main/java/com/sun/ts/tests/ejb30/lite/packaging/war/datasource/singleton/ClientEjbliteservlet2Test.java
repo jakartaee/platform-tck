@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.packaging.war.datasource.singleton;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -63,10 +67,10 @@ public class ClientEjbliteservlet2Test extends Client {
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceIF.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             EJBLiteServlet2Filter.class,
             HttpServletDelegate.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
             SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,

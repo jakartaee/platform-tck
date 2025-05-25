@@ -34,7 +34,7 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jdbc.ee.common.DataSourceConnection;
@@ -57,7 +57,6 @@ import com.sun.ts.tests.jdbc.ee.common.rsSchema;
 @ExtendWith(ArquillianExtension.class)
 @Tag("jdbc")
 @Tag("platform")
-
 public class callStmtClient12 extends ServiceEETest implements Serializable {
 	private static final String testName = "jdbc.ee.callStmt.callStmt12";
 

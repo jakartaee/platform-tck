@@ -28,7 +28,7 @@ import java.net.URL;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.porting.TSHttpsURLConnection;
 import com.sun.ts.lib.porting.TSLoginContext;
 import com.sun.ts.lib.porting.TSURL;

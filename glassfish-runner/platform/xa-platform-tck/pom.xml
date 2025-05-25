@@ -30,7 +30,6 @@
     <version>11.0.0</version>
     <packaging>jar</packaging>
     <properties>
-        <arquillian.core.version>1.9.1.Final</arquillian.core.version>
         <connectionpoolid>cts-derby-pool</connectionpoolid>
         <db.delimiter>;</db.delimiter>
 
@@ -46,8 +45,6 @@
         <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
-        <!-- Use JDK17 to run with GF-8.0.0-JDK17-M10 -->
-        <glassfish.version>8.0.0-JDK17-M10</glassfish.version>
 
 
         <!-- JDBC properties -->
@@ -61,11 +58,11 @@
         <jdbc.url>jdbc:derby://localhost:1527/derbyDB;create=true</jdbc.url>
         <jdbc.user>cts1</jdbc.user>
 
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <rapassword1>cts1</rapassword1>
         <rauser1>cts1</rauser1>
         <sql.directory>./sql</sql.directory>
 
+        <glassfish.runner.version>11.0.1</glassfish.runner.version>
         <tck.artifactId>jakarta.tck.jdbc</tck.artifactId>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
 
@@ -86,13 +83,14 @@
         <dependencies>
             <dependency>
                 <groupId>jakarta.tck</groupId>
-                <artifactId>artifacts-bom</artifactId>
-                <version>${tck.version}</version>
+                <artifactId>glassfish-runner-bom</artifactId>
+                <version>${glassfish.runner.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -139,7 +137,6 @@
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.8</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -160,6 +157,11 @@
             <groupId>org.apache.derby</groupId>
             <artifactId>derbytools</artifactId>
             <version>10.15.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.distributions</groupId>
+            <artifactId>glassfish</artifactId>
+            <type>zip</type>
         </dependency>
     </dependencies>
     <build>

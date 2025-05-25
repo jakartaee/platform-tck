@@ -23,7 +23,7 @@ package com.sun.ts.tests.jms.commonee;
 import java.util.Enumeration;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;

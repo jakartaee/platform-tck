@@ -1,10 +1,14 @@
 package com.sun.ts.tests.jta.ee.txpropagationtest;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
 
 import java.lang.System.Logger;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -66,9 +70,9 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
         jta_ejb_vehicle_client.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class, com.sun.ts.lib.harness.EETest.Fault.class,
-                com.sun.ts.lib.harness.EETest.class, com.sun.ts.lib.harness.ServiceEETest.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class, com.sun.ts.tests.jta.ee.txpropagationtest.Client.class,
+                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class, Fault.class,
+                EETest.class, ServiceEETest.class,
+                SetupException.class, com.sun.ts.tests.jta.ee.txpropagationtest.Client.class,
                 com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class, com.sun.ts.tests.jta.ee.txpropagationtest.DBSupport.class,
                 ClientEjbTest.class);
         URL resURL = ClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_client.xml");
@@ -89,8 +93,8 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
                 com.sun.ts.tests.jta.ee.txpropagationtest.Client.class, com.sun.ts.tests.jta.ee.txpropagationtest.DBSupport.class,
                 com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class, com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanEJB.class,
-                com.sun.ts.lib.harness.EETest.class, com.sun.ts.lib.harness.EETest.Fault.class, com.sun.ts.lib.harness.ServiceEETest.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class, ClientEjbTest.class);
+                EETest.class, Fault.class, ServiceEETest.class,
+                SetupException.class, ClientEjbTest.class);
         // The ejb-jar.xml descriptor
         URL ejbResURL = ClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_ejb.xml");
         if (ejbResURL != null) {

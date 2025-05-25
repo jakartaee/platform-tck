@@ -1,27 +1,26 @@
 package com.sun.ts.tests.jms.ee20.ra.activationconfig.topic.selectorautociddurable.descriptor;
 
-import com.sun.ts.tests.jms.ee20.ra.activationconfig.topic.selectorautociddurable.descriptor.Client;
+import com.sun.ts.lib.harness.Fault;
+
 import java.net.URL;
+
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-import tck.arquillian.protocol.common.TargetVehicle;
-
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -61,14 +60,14 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.ra.activationconfig.to
             topic_selectorautociddurable_descriptor_client.addClasses(
             com.sun.ts.tests.jms.commonee.Client.class,
             com.sun.ts.tests.jms.ee20.ra.activationconfig.topic.selectorautociddurable.descriptor.Client.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.jms.ee20.ra.activationconfig.common.TopicClientBase.class,
             com.sun.ts.tests.jms.ee20.ra.common.messaging.QueueClientBase.class,
             com.sun.ts.tests.jms.ee20.ra.common.messaging.TopicClientBase.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.jms.ee20.ra.common.messaging.TLogger.class,
             com.sun.ts.tests.jms.ee20.ra.common.messaging.Constants.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            SetupException.class
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("topic_selectorautociddurable_descriptor_client.xml");

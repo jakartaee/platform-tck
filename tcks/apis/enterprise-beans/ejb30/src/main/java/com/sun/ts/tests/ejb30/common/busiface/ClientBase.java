@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.common.busiface;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 
 abstract public class ClientBase extends EETest {

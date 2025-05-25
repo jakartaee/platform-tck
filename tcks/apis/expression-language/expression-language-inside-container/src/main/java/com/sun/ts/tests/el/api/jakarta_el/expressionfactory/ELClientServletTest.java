@@ -21,9 +21,12 @@
 
 package com.sun.ts.tests.el.api.jakarta_el.expressionfactory;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.tests.common.base.ServiceEETest;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
@@ -97,10 +100,10 @@ public class ELClientServletTest extends ServiceEETest {
     WebArchive servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "expressionfactory_servlet_vehicle_web.war");
   
     servlet_vehicle_web.addClasses(
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.ServiceEETest.class,
+        Fault.class,
+        SetupException.class,
+        EETest.class,
+        ServiceEETest.class,
         com.sun.ts.tests.common.vehicle.VehicleClient.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,

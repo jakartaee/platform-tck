@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
@@ -81,6 +81,7 @@ public class Client extends EETest {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_casesens_client.jar");
 		ejbClient.addPackages(true, Client.class.getPackage());
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
+		ejbClient.addClass(EETest.class);
 
 		// The appclient-client descriptor
 		URL appClientUrl = Client.class.getResource("appclient_dep_ejbref_casesens_client.xml");

@@ -20,8 +20,10 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters;
 
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.tests.common.base.ServiceEETest;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.common.vehicle.EmptyVehicleRunner;
 import com.sun.ts.tests.common.vehicle.VehicleClient;

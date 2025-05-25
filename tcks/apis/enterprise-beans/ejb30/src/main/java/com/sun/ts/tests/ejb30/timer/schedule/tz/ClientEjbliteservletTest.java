@@ -1,6 +1,11 @@
 package com.sun.ts.tests.ejb30.timer.schedule.tz;
 
 import java.net.URL;
+
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -52,7 +57,7 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.sched
             com.sun.ts.tests.ejb30.timer.schedule.tz.EJBLiteServletVehicle.class,
             com.sun.ts.tests.ejb30.timer.common.TimerInfo.class,
             com.sun.ts.tests.ejb30.timer.schedule.tz.TZScheduleBean.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.timer.schedule.tz.TZScheduleBareBean.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.ReasonableStatus.class,
             com.sun.ts.tests.ejb30.timer.common.TimeoutStatusBean.class,
@@ -66,9 +71,9 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.sched
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod.class,
             com.sun.ts.tests.ejb30.timer.common.TimerUtil.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            EETest.class,
+            ServiceEETest.class,
+            SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class
             );

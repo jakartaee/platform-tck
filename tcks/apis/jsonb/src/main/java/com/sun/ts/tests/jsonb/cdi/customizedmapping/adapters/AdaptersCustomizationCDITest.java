@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Animal;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.AnimalShelterInjectedAdapter;

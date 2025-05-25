@@ -1,3 +1,19 @@
+* The bom directory contains the Maven BOM for the TCK runners in this directory. It is
+referened in the runner pom using a dependencyManagement section like this:
+```xml
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>glassfish-runner-bom</artifactId>
+                <version>${glassfish.runner.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+```
+You can update the bom locally and install it, or run the https://ci.eclipse.org/jakartaee-tck/job/11/job/stage-artifacts/job/glassfish-runner-bom in the CI environment to stage the bom. Pass in -Dglassfish.runner.version=X to the job to get the version of dependenies you wish to run with.
 * Directories containing the keyword `extra` are runners for tests
   that must be run in addition to that component tck.
   

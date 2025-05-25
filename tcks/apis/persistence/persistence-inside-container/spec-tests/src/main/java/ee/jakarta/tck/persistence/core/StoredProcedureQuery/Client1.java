@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
+import com.sun.ts.lib.harness.Fault;
 import com.sun.ts.lib.harness.Status;
 
 

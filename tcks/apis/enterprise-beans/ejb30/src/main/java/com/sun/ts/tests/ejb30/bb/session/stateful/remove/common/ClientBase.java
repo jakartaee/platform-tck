@@ -24,14 +24,13 @@ import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException;
 import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 import jakarta.ejb.NoSuchEJBException;
-import jakarta.ejb.RemoveException;
 
 abstract public class ClientBase extends EETest {
   protected Properties props;

@@ -16,17 +16,12 @@
 
 package com.sun.ts.tests.jsonp.api.patchtests;
 
-import java.util.stream.Collectors;
-import java.nio.charset.StandardCharsets;
-import java.io.InputStreamReader;
-import java.io.InputStream;
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.StringReader;
 import java.util.Properties;
-import com.sun.ts.tests.jsonp.api.common.JsonPTest;
+
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import jakarta.json.JsonPatch;
 import java.net.URL;
 
@@ -34,8 +29,6 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,8 +38,6 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
-import org.jboss.arquillian.test.api.ArquillianResource;
 import tck.arquillian.protocol.common.TargetVehicle;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -100,10 +91,10 @@ public class PatchServletTest extends ServiceEETest {
     .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
     .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
     .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
-    .addClass(com.sun.ts.lib.harness.EETest.class)
+    .addClass(EETest.class)
     .addClass(com.sun.ts.lib.harness.RemoteStatus.class)
     .addClass(com.sun.ts.lib.harness.Status.class)
-    .addClass(com.sun.ts.lib.harness.ServiceEETest.class)
+    .addClass(ServiceEETest.class)
     .addClass(com.sun.ts.tests.jsonp.api.common.ArrayBuilder.class)
     .addClass(com.sun.ts.tests.jsonp.api.common.JsonAssert.class)
     .addClass(com.sun.ts.tests.jsonp.api.common.JsonIO.class)

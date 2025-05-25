@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Fault;
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.common.schema30.Util;

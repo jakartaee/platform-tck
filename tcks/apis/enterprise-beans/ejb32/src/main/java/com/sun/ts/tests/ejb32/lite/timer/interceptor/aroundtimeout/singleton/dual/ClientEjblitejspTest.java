@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.dual;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -48,7 +52,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb32.lite.timer.inte
             // The class files
             ejb32_lite_timer_interceptor_aroundtimeout_singleton_dual_ejblitejsp_vehicle_web.addClasses(
             com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.dual.Client.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.dual.Interceptor1.class,
             com.sun.ts.tests.ejb30.timer.common.JsfClientBase.class,
             com.sun.ts.tests.ejb30.timer.common.TimerBeanBase.class,
@@ -58,8 +62,8 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb32.lite.timer.inte
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
             com.sun.ts.tests.ejb30.timer.common.ClientBase.class,
             com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            EETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
@@ -76,7 +80,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb32.lite.timer.inte
             com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.class,
             com.sun.ts.tests.ejb30.timer.common.TimerUtil.class,
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            SetupException.class
             );
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("/vehicle/ejblitejsp/ejblitejsp_vehicle_web.xml");

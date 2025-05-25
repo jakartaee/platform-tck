@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.lib.harness.Status;
 
 import java.util.Properties;

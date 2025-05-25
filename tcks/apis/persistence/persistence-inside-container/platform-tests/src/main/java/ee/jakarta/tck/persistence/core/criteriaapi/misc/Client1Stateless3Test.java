@@ -1,6 +1,10 @@
 package ee.jakarta.tck.persistence.core.criteriaapi.misc;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -72,7 +76,7 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.crite
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager.class,
             com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareIF.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,
@@ -80,12 +84,12 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.crite
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
             com.sun.ts.tests.common.vehicle.stateless3.Stateless3VehicleIF.class,
-            com.sun.ts.lib.harness.EETest.class,
+            EETest.class,
             com.sun.ts.tests.common.vehicle.stateless3.Stateless3VehicleRunner.class,
             com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.criteriaapi.misc.Client1.class,
@@ -114,7 +118,7 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.crite
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareIF.class,
-                com.sun.ts.lib.harness.EETest.Fault.class,
+                Fault.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
                 ee.jakarta.tck.persistence.common.PMClientBase.class,
                 ee.jakarta.tck.persistence.common.schema30.Util.class,
@@ -122,11 +126,11 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.crite
                 com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
                 com.sun.ts.tests.common.vehicle.stateless3.Stateless3VehicleBean.class,
                 com.sun.ts.tests.common.vehicle.stateless3.Stateless3VehicleIF.class,
-                com.sun.ts.lib.harness.EETest.class,
-                com.sun.ts.lib.harness.ServiceEETest.class,
+                EETest.class,
+                ServiceEETest.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
                 ee.jakarta.tck.persistence.core.criteriaapi.misc.Client1.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class,
+                SetupException.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());

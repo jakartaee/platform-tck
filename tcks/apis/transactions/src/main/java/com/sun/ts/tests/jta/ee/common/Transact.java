@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jta.ee.common;
 
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 // TS Specific Utils
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;

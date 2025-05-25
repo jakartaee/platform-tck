@@ -3,6 +3,10 @@ package com.sun.ts.tests.jta.ee.usertransaction.commit;
 import java.lang.System.Logger;
 import java.net.URL;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -60,9 +64,9 @@ public class UserCommitClientEjbTest extends com.sun.ts.tests.jta.ee.usertransac
         // The class files
         commit_ejb_vehicle_client.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-                com.sun.ts.lib.harness.EETest.Fault.class, com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
-                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class, com.sun.ts.lib.harness.EETest.class,
-                com.sun.ts.lib.harness.ServiceEETest.class, com.sun.ts.lib.harness.EETest.SetupException.class,
+                Fault.class, com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
+                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class, EETest.class,
+                ServiceEETest.class, SetupException.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class, com.sun.ts.tests.jta.ee.common.Transact.class,
                 com.sun.ts.tests.jta.ee.common.TransactionStatus.class, com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
                 com.sun.ts.tests.jta.ee.common.InitFailedException.class, UserCommitClient.class, UserCommitClientEjbTest.class);
@@ -83,14 +87,14 @@ public class UserCommitClientEjbTest extends com.sun.ts.tests.jta.ee.usertransac
         JavaArchive commit_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "commit_ejb_vehicle_ejb.jar");
         // The class files
         commit_ejb_vehicle_ejb.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-                com.sun.ts.lib.harness.EETest.Fault.class, com.sun.ts.tests.jta.ee.common.Transact.class,
+                Fault.class, com.sun.ts.tests.jta.ee.common.Transact.class,
                 com.sun.ts.tests.jta.ee.common.InvalidStatusException.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
                 com.sun.ts.tests.jta.ee.common.InitFailedException.class, com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
                 com.sun.ts.tests.jta.ee.usertransaction.commit.UserCommitClient.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
                 com.sun.ts.tests.jta.ee.common.InvalidStatusException.class, com.sun.ts.tests.jta.ee.common.InitFailedException.class,
-                com.sun.ts.lib.harness.EETest.class, com.sun.ts.lib.harness.ServiceEETest.class,
-                com.sun.ts.tests.jta.ee.common.TransactionStatus.class, com.sun.ts.lib.harness.EETest.SetupException.class,
+                EETest.class, ServiceEETest.class,
+                com.sun.ts.tests.jta.ee.common.TransactionStatus.class, SetupException.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class, UserCommitClientEjbTest.class);
         // The ejb-jar.xml descriptor
         URL ejbResURL = UserCommitClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_ejb.xml");

@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -55,26 +57,23 @@ public class ClientEJB extends Client implements Serializable {
         ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
         ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
         ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-        ejbClient.addClasses(ClientEJB.class, Client.class);
+        ejbClient.addClasses(Client.class, ServiceEETest.class, EETest.class);
         URL resURL = ClientEJB.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
-        if (resURL != null) {
-            ejbClient.addAsManifestResource(resURL, "application-client.xml");
-        }
+        ejbClient.addAsManifestResource(resURL, "application-client.xml");
 
         resURL = ClientEJB.class
                 .getResource("/com/sun/ts/tests/xa/ee/resXcomp2/xa_resXcomp2_ejb_vehicle_client.jar.sun-application-client.xml");
-        if (resURL != null) {
-            ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
-        }
+        ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 
         ejbClient.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
+        archiveProcessor.processClientArchive(ejbClient, Client.class, resURL);
 
         JavaArchive ejbVehicle = ShrinkWrap.create(JavaArchive.class, "xa_resXcomp2_ejb_vehicle_ejb.jar");
         ejbVehicle.addPackages(false, "com.sun.ts.tests.common.vehicle");
         ejbVehicle.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
         ejbVehicle.addPackages(true, "com.sun.ts.lib.harness");
         ejbVehicle.addClasses(Ejb1Test.class, Ejb1TestEJB.class, Ejb2Test.class, Ejb2TestEJB.class);
-        ejbVehicle.addClasses(ClientEJB.class, Client.class);
+        ejbVehicle.addClasses(Client.class, ServiceEETest.class, EETest.class);
         resURL = ClientEJB.class.getResource("/com/sun/ts/tests/xa/ee/resXcomp2/ejb_vehicle_ejb.xml");
         if (resURL != null) {
             ejbVehicle.addAsManifestResource(resURL, "ejb-jar.xml");

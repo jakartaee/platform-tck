@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.common.callback;
 import java.util.List;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.common.base.EETest;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 

@@ -20,11 +20,15 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
 import com.sun.ts.lib.harness.Status;
 
 import java.lang.System.Logger;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -83,9 +87,9 @@ public class SerializersCustomizationCDIJspTest extends SerializersCustomization
                 "jsonb_cdi_customizedmapping_serializers_jsp_vehicle_web.war");
         jsonb_cdi_customizedmapping_serializers_jsp_vehicle.addClasses(SerializersCustomizationCDIJspTest.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class, com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-                com.sun.ts.tests.common.vehicle.VehicleClient.class, com.sun.ts.lib.harness.EETest.class,
-                com.sun.ts.lib.harness.EETest.SetupException.class, com.sun.ts.lib.harness.EETest.Fault.class,
-                com.sun.ts.lib.harness.ServiceEETest.class,
+                com.sun.ts.tests.common.vehicle.VehicleClient.class, EETest.class,
+                SetupException.class, Fault.class,
+                ServiceEETest.class,
                 com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.class,
                 com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.class,
                 com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalDeserializer.class,

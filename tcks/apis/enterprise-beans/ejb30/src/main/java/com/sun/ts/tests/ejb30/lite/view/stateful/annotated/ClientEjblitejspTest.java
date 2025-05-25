@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb30.lite.view.stateful.annotated;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -51,7 +55,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.view.state
             // The class files
             ejblite_view_stateful_annotated_ejblitejsp_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.lite.view.common.SuperclassBean.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.lite.view.stateful.annotated.SessionBeanLocalBean.class,
             com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2.class,
             com.sun.ts.tests.ejb30.common.busiface.SessionBeanLocalBeanBase.class,
@@ -67,8 +71,8 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.view.state
             com.sun.ts.tests.ejb30.lite.view.common.SuperclassBeanBase.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
             com.sun.ts.tests.ejb30.lite.view.stateful.annotated.ExternalizableLocalBean.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            EETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
@@ -86,7 +90,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.view.state
             com.sun.ts.tests.ejb30.lite.view.stateful.annotated.SerializableLocalBean.class,
             com.sun.ts.tests.ejb30.lite.view.stateful.annotated.Client.class,
             com.sun.ts.tests.ejb30.lite.view.stateful.annotated.SubclassExtendsBeanBean.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.ejb30.lite.view.stateful.annotated.HttpServletDelegate.class
             );
             // The web.xml descriptor

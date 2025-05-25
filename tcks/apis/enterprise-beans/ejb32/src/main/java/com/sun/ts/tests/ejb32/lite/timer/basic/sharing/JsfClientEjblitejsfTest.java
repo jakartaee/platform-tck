@@ -1,5 +1,9 @@
 package com.sun.ts.tests.ejb32.lite.timer.basic.sharing;
 
+import com.sun.ts.lib.harness.Fault;
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -50,7 +54,7 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb32.lite.timer.b
             ejb32_lite_timer_basic_sharing_ejblitejsf_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.common.helper.TestFailedException.class,
             com.sun.ts.tests.ejb32.lite.timer.basic.sharing.StatelessTimerBean.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.timer.common.JsfClientBase.class,
             com.sun.ts.tests.ejb32.lite.timer.basic.sharing.JsfClient.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
@@ -59,8 +63,8 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb32.lite.timer.b
             com.sun.ts.tests.ejb32.lite.timer.basic.sharing.SingletonTimerBean.class,
             com.sun.ts.tests.ejb30.timer.common.ClientBase.class,
             com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            EETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.ejb32.lite.timer.basic.sharing.HttpServletDelegate.class,
@@ -74,7 +78,7 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb32.lite.timer.b
             com.sun.ts.tests.ejb32.lite.timer.basic.sharing.Client.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.timer.common.TimerUtil.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
+            SetupException.class,
             com.sun.ts.tests.ejb32.lite.timer.basic.sharing.TimerIF.class
             );
 

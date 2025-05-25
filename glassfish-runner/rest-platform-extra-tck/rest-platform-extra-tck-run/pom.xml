@@ -38,11 +38,9 @@
     </description>
 
     <properties>
-        <!-- Use JDK21 to run with GF-8.0.0-M9 -->
-        <!-- <glassfish.version>8.0.0-M9</glassfish.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
-        <!-- Use JDK17 to run with GF-8.0.0-JDK17-M7 -->
-        <glassfish.version>8.0.0-JDK17-M9</glassfish.version>
+        <glassfish.runner.version>11.0.1</glassfish.runner.version>
+
         <tck.version>11.0.1-SNAPSHOT</tck.version>
     </properties>
 
@@ -50,16 +48,9 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>5.11.4</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.9.3.Final</version>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>glassfish-runner-bom</artifactId>
+                <version>${glassfish.runner.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -101,7 +92,6 @@
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.7</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -109,6 +99,16 @@
             <artifactId>glassfish-client-ee11</artifactId>
             <version>1.7.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.distributions</groupId>
+            <artifactId>glassfish</artifactId>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.distributions</groupId>
+            <artifactId>web</artifactId>
+            <type>zip</type>
         </dependency>
     </dependencies>
 
@@ -129,7 +129,6 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>

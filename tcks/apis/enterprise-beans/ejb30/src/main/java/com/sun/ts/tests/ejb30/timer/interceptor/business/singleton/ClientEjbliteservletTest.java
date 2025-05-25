@@ -1,18 +1,18 @@
 package com.sun.ts.tests.ejb30.timer.interceptor.business.singleton;
 
-import com.sun.ts.tests.ejb30.timer.interceptor.business.singleton.Client;
+import com.sun.ts.lib.harness.Fault;
+
 import java.net.URL;
+
+import com.sun.ts.lib.harness.SetupException;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
@@ -54,7 +54,7 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.inter
             // The class files
             ejb30_timer_interceptor_business_singleton_ejbliteservlet_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.timer.interceptor.business.common.Interceptor3.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
+            Fault.class,
             com.sun.ts.tests.ejb30.timer.interceptor.business.common.Interceptor1.class,
             com.sun.ts.tests.ejb30.timer.common.TimerBeanBase.class,
             com.sun.ts.tests.ejb30.timer.interceptor.business.singleton.Client.class,
@@ -64,8 +64,8 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.inter
             com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
             com.sun.ts.tests.ejb30.timer.common.ClientBase.class,
             com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
+            EETest.class,
+            ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
             com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
@@ -82,7 +82,7 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.inter
             com.sun.ts.tests.ejb30.timer.interceptor.business.singleton.EJBLiteServletVehicle.class,
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.timer.common.TimerUtil.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
+            SetupException.class
             );
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("ejbliteservlet_vehicle_web.xml");
