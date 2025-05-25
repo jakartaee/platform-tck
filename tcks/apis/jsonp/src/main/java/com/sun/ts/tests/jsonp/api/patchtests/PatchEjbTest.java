@@ -43,11 +43,9 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import org.jboss.arquillian.test.api.ArquillianResource;
 import tck.arquillian.protocol.common.TargetVehicle;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 
 
 import java.lang.System.Logger;
@@ -88,7 +86,7 @@ public class PatchEjbTest extends ServiceEETest {
   @TargetsContainer("tck-appclient")
   @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createEjbDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) throws Exception {
+  public static EnterpriseArchive createEjbDeployment() throws Exception {
 
     JavaArchive patchtests_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "patchtests_ejb_vehicle_client.jar");
     patchtests_ejb_vehicle_client.addClasses(
@@ -127,8 +125,6 @@ public class PatchEjbTest extends ServiceEETest {
       patchtests_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
     }
     patchtests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + PatchEjbTest.class.getName() + "\n"), "MANIFEST.MF");
-    archiveProcessor.processClientArchive(patchtests_ejb_vehicle_client, PatchEjbTest.class, resURL);
-
 
 
     JavaArchive patchtests_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "patchtests_ejb_vehicle_ejb.jar");
@@ -169,7 +165,6 @@ public class PatchEjbTest extends ServiceEETest {
     if(ejbResURL != null) {
       patchtests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
     }
-    archiveProcessor.processEjbArchive(patchtests_ejb_vehicle_ejb, PatchEjbTest.class, ejbResURL);
 
 
     EnterpriseArchive patchtests_ejb_vehicle_client_ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_ejb_vehicle.ear");
