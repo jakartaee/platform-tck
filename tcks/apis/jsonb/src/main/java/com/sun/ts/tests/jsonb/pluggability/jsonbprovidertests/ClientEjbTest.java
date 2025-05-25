@@ -65,7 +65,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("jsonb")
 @Tag("platform")
 @ExtendWith(ArquillianExtension.class)
-public class ClientEjbTest extends ServiceEETest {
+public class ClientEjbTest extends Client {
 
     private static final Logger logger = System.getLogger(ClientEjbTest.class.getName());
 
@@ -95,14 +95,11 @@ public class ClientEjbTest extends ServiceEETest {
     public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
         JavaArchive jsonb_alternate_provider = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar")
-                .addClasses(com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class, com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class,
-                        ClientEjbTest.class)
+                .addClasses(com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class, com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class)
                 .addAsResource(
                         new UrlAsset(com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class.getClassLoader()
                                 .getResource(providerPackagePath + "/META-INF/services/jakarta.json.bind.spi.JsonbProvider")),
                         "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
-        jsonb_alternate_provider.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"),
-                "MANIFEST.MF");
 
         JavaArchive jsonbprovidertests_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class,
                 "jsonbprovidertests_ejb_vehicle_client.jar");
@@ -110,15 +107,14 @@ public class ClientEjbTest extends ServiceEETest {
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class, com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class, EETest.class,
-                Fault.class, SetupException.class,
                 ServiceEETest.class, com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class,
-                com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class, ClientEjbTest.class);
+                com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class, Client.class);
 
         URL resURL = ClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_client.xml");
         if (resURL != null) {
             jsonbprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
         }
-        jsonbprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"),
+        jsonbprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
                 "MANIFEST.MF");
 
         resURL = ClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_client.jar.sun-application-client.xml");
@@ -132,10 +128,9 @@ public class ClientEjbTest extends ServiceEETest {
         jsonbprovidertests_ejb_vehicle_ejb.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
-                EETest.class, Fault.class,
-                SetupException.class, ServiceEETest.class,
+                EETest.class, ServiceEETest.class,
                 com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class, com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class,
-                ClientEjbTest.class);
+                Client.class);
 
         // The ejb-jar.xml descriptor
         URL ejbResURL = ClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_ejb.xml");
@@ -159,147 +154,24 @@ public class ClientEjbTest extends ServiceEETest {
         return jsonbprovidertests_ejb_vehicle_ear;
 
     }
-
-    public void removeProviderJarFromCP() throws Exception {
-        if (providerJarDeployed) {
-            URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
-            Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
-            currentThreadClassLoader.close();
-            providerJarDeployed = false;
-        }
-    }
-
-    public void createProviderJar() throws Exception {
-
-        JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar").addClass(MyJsonbBuilder.class)
-                .addClass(MyJsonbProvider.class).addAsResource(
-                        new UrlAsset(MyJsonbProvider.class.getClassLoader()
-                                .getResource(providerPackagePath + "/META-INF/services/jakarta.json.bind.spi.JsonbProvider")),
-                        "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
-
-        jarArchive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + "jsonb_alternate_provider.jar"), true);
-
-        ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
-        URLClassLoader urlClassLoader = new URLClassLoader(
-                new URL[] { new File(TEMP_DIR + File.separator + "jsonb_alternate_provider.jar").toURL() }, currentThreadClassLoader);
-        Thread.currentThread().setContextClassLoader(urlClassLoader);
-
-        providerJarDeployed = true;
-
-    }
-
-    private static final String MY_JSONBROVIDER_CLASS = "com.sun.ts.tests.jsonb.provider.MyJsonbProvider";
-    private static final String MY_JSONBBUILDER_CLASS = "com.sun.ts.tests.jsonb.provider.MyJsonbBuilder";
-
-    public static void main(String[] args) {
-        ClientEjbTest theTests = new ClientEjbTest();
-        Status s = theTests.run(args, System.out, System.err);
-        s.exit();
-    }
-
-    /* Test setup */
-
-    /*
-     * @class.setup_props:
-     */
-
-    /*
-     * @class.setup_props: This is needed by the vehicle base classes
-     */
-    public void setup(String[] args, Properties p) throws Exception {
-    }
-
-    @BeforeEach
-    public void setup() throws Exception {
-        createProviderJar();
-        logger.log(Logger.Level.INFO, "setup ok");
-    }
-
-    @AfterEach
-    public void cleanup() throws Exception {
-        removeProviderJarFromCP();
-        logger.log(Logger.Level.INFO, "cleanup ok");
-    }
-
-    /* Tests */
-
-    /*
-     * @testName: jsonbProviderTest1
-     *
-     * @test_Strategy: Test call of SPI provider method with signature: o public static JsonbProvider provider()
-     */
+    @Override
     @Test
-    @TargetVehicle("ejb")
+    @TargetVehicle("appclient")
     public void jsonbProviderTest1() throws Exception {
-        try {
-            // Load any provider
-            JsonbProvider provider = JsonbProvider.provider();
-            String providerClass = provider.getClass().getName();
-            logger.log(Logger.Level.INFO, "provider class=" + providerClass);
-        } catch (Exception e) {
-            throw new Exception("jsonbProviderTest1 Failed: ", e);
-        }
+        super.jsonbProviderTest1();
     }
 
-    /*
-     * @testName: jsonbProviderTest2
-     *
-     * @test_Strategy: Test call of SPI provider method with signature: o public static JsonbProvider provider(String
-     * provider)
-     */
+    @Override
     @Test
-    @TargetVehicle("ejb")
+    @TargetVehicle("appclient")
     public void jsonbProviderTest2() throws Exception {
-        boolean pass = true;
-        try {
-            // Load my provider
-            JsonbProvider provider = JsonbProvider.provider(MY_JSONBROVIDER_CLASS);
-            String providerClass = provider.getClass().getName();
-            logger.log(Logger.Level.INFO, "provider class=" + providerClass);
-            if (providerClass.equals(MY_JSONBROVIDER_CLASS)) {
-                logger.log(Logger.Level.INFO, "Current provider is my provider - expected.");
-            } else {
-                logger.log(Logger.Level.ERROR, "Current provider is not my provider - unexpected.");
-                pass = false;
-                ServiceLoader<JsonbProvider> loader = ServiceLoader.load(JsonbProvider.class);
-                Iterator<JsonbProvider> it = loader.iterator();
-                List<JsonbProvider> providers = new ArrayList<>();
-                while (it.hasNext()) {
-                    providers.add(it.next());
-                }
-                logger.log(Logger.Level.INFO, "Providers: " + providers);
-            }
-        } catch (Exception e) {
-            throw new Exception("jsonbProviderTest2 Failed: ", e);
-        }
-        if (!pass) {
-            throw new Exception("jsonbProviderTest2 Failed");
-        }
+        super.jsonbProviderTest2();
     }
 
-    /*
-     * @testName: jsonbProviderTest3
-     *
-     * @test_Strategy: Test call of provider method with signature: o public JsonbBuilder create()
-     */
+    @Override
     @Test
-    @TargetVehicle("ejb")
+    @TargetVehicle("appclient")
     public void jsonbProviderTest3() throws Exception {
-        try {
-            // Load my provider
-            JsonbBuilder builder = JsonbProvider.provider(MY_JSONBROVIDER_CLASS).create();
-            String providerClass = builder.getClass().getName();
-            logger.log(Logger.Level.INFO, "jsonb builder class=" + providerClass);
-
-            if (providerClass.equals(MY_JSONBBUILDER_CLASS)) {
-                logger.log(Logger.Level.INFO, "Current jsonb builder is my builder - expected.");
-            } else {
-                logger.log(Logger.Level.ERROR, "Current jsonb builder is not my builder - unexpected.");
-                throw new Exception("jsonbProviderTest3 Failed");
-            }
-        } catch (Exception e) {
-            throw new Exception("jsonbProviderTest3 Failed: ", e);
-        }
+        super.jsonbProviderTest3();
     }
-
 }
