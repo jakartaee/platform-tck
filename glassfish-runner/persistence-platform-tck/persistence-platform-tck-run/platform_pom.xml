@@ -41,6 +41,7 @@
         <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
 
         <glassfish.runner.version>11.0.1</glassfish.runner.version>
+        <glassfish.version>8.0.0-M11</glassfish.version>
         <tck.test.persistence.version>11.0.1-SNAPSHOT</tck.test.persistence.version>
         
         <ts.home>./jakartaeetck</ts.home>
@@ -182,11 +183,13 @@
             <groupId>org.glassfish.main.distributions</groupId>
             <artifactId>glassfish</artifactId>
             <type>zip</type>
+            <version>${glassfish.version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.main.distributions</groupId>
             <artifactId>web</artifactId>
             <type>zip</type>
+            <version>${glassfish.version}</version>
         </dependency>
     </dependencies>
 
