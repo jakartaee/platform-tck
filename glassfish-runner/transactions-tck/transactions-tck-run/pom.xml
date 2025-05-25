@@ -107,7 +107,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.common.version}</version>
         </dependency>
 
         <!--
