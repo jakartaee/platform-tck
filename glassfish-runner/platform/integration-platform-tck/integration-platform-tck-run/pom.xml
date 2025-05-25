@@ -54,15 +54,12 @@
         <derby.user>cts1</derby.user>
         <exec.asadmin>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</exec.asadmin>
         <ftable>ctstable2</ftable>
-        <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
-        <glassfish.version>8.0.0-JDK17-M7</glassfish.version>
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <!-- Use JDK21 to run with GF 8.0.0-M5 -->
         <!-- <glassfish.version>8.0.0-M5</glassfish.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
-        <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
         <jdbc.classpath>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyshared.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</jdbc.classpath>
         <jdbc.db>derby</jdbc.db>
@@ -84,6 +81,7 @@
         <restype>javax.sql.DataSource</restype>
         <sql.directory>./sql</sql.directory>
         <tck.artifactId>integration</tck.artifactId>
+        <glassfish.runner.version>11.0.1</glassfish.runner.version>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <ts.home>./jakartaeetck/</ts.home>
         <user1>cts1</user1>
@@ -95,16 +93,9 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>${junit.jupiter.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.9.1.Final</version>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>glassfish-runner-bom</artifactId>
+                <version>${glassfish.runner.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -115,12 +106,10 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>${junit.jupiter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
-            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -129,125 +118,62 @@
             <version>${tck.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>${jakarta.platform.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-test-spi</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-spi</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.core</groupId>
             <artifactId>arquillian-core-spi</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.test</groupId>
             <artifactId>arquillian-test-impl-base</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-core</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-core</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.6</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-api</artifactId>
-            <version>3.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-            <version>3.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-api-maven</artifactId>
-            <version>3.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-spi-maven</artifactId>
-            <version>3.2.0</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-api</artifactId>
-                    <!-- <version>3.1.4</version> -->
-                </exclusion>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-                    <!-- <version>3.1.4</version> -->
-                </exclusion>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-api-maven</artifactId>
-                    <!-- <version>3.1.4</version> -->
-                </exclusion>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-spi-maven</artifactId>
-                    <!-- <version>3.1.4</version> -->
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.common.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
@@ -271,6 +197,11 @@
             <artifactId>derbytools</artifactId>
             <version>10.15.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.distributions</groupId>
+            <artifactId>glassfish</artifactId>
+            <type>zip</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -291,7 +222,6 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>

@@ -64,7 +64,7 @@ public class Client extends EETest {
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_single_client.jar");
-		ejbClient.addClass(Client.class);
+		ejbClient.addClasses(Client.class, EETest.class);
 		ejbClient.addPackages(true, Client.class.getPackage());
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
 		ejbClient.addPackages(true, "com.sun.ts.tests.assembly.util.refbean");

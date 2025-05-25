@@ -24,9 +24,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -35,6 +38,7 @@ import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
 
+import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
@@ -61,18 +65,13 @@ public class callStmtClient12Servlet extends callStmtClient12 implements Seriali
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		archive.addClasses(callStmtClient12Servlet.class, callStmtClient12.class);
-		archive.addAsWebInfResource(callStmtClient12Servlet.class.getPackage(), "servlet_vehicle_web.xml", "web.xml");
+		archive.addClasses(callStmtClient12.class, ServiceEETest.class, EETest.class);
 		// The servlet descriptor
 		URL servletUrl = callStmtClient12Servlet.class.getResource("servlet_vehicle_web.xml");
-		if (servletUrl != null) {
-			archive.addAsWebInfResource(servletUrl, "web.xml");
-		}
+  	    archive.addAsWebInfResource(servletUrl, "web.xml");
 		// The sun servlet descriptor
 		URL sunServletUrl = callStmtClient12Servlet.class.getResource("callStmt12_servlet_vehicle_web.war.sun-web.xml");
-		if (sunServletUrl != null) {
-			archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
-		}
+		archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
 		// Call the archive processor
 		archiveProcessor.processWebArchive(archive, callStmtClient12Servlet.class, sunServletUrl);
 

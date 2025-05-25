@@ -50,7 +50,6 @@
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <glassfish.module.dir>${glassfish.home}/glassfish/modules</glassfish.module.dir>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
-        <glassfish.version>8.0.0-JDK17-M10</glassfish.version>
 
 
         <!-- mail connection properties -->
@@ -65,14 +64,15 @@
         <jndi.fs.dir>/tmp/ri_admin_objects</jndi.fs.dir>
         <jndi.provider.url>java.naming.provider.url=file:///${jndi.fs.dir}</jndi.provider.url>
 
+        <glassfish.runner.version>11.0.1</glassfish.runner.version>
         <jakarta.tck.version>11.0.1-SNAPSHOT</jakarta.tck.version>
     </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>jakarta.tck</groupId>
-                <artifactId>artifacts-bom</artifactId>
-                <version>${jakarta.tck.version}</version>
+                <artifactId>glassfish-runner-bom</artifactId>
+                <version>${glassfish.runner.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -154,6 +154,11 @@
             <groupId>org.jboss.shrinkwrap</groupId>
             <artifactId>shrinkwrap-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.distributions</groupId>
+            <artifactId>glassfish</artifactId>
+            <type>zip</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -172,8 +177,7 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
-                                    <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.version}</version>
+                                    <artifactId>glassfish</artifactId>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
@@ -555,9 +559,10 @@
                             <includes>
                                 <!--
                                 <include>**/Client</include>
-                                -->
+                                <include>com.sun.ts.tests.appclient.deploy.ejblink.**.Client</include>
                                 <include>com.sun.ts.tests.appclient.**.Client</include>
-                                <!-- <include>com.sun.ts.tests.appclient.deploy.ejblink.path.Client</include> -->
+                                -->
+                                <include>com.sun.ts.tests.appclient.deploy.enventry.scope.Client</include>
                             </includes>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${glassfish.module.dir}/angus-mail.jar</additionalClasspathElement>
@@ -597,12 +602,6 @@
             </activation>
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>web</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
             </properties>
         </profile>
     </profiles>

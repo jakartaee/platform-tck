@@ -33,9 +33,10 @@
     <packaging>jar</packaging>
 
     <properties>
+        <glassfish.runner.version>11.0.1</glassfish.runner.version>
+
         <!-- glassfish properties -->
         <glassfish.major>8</glassfish.major>
-        <glassfish.version>8.0.0-M11</glassfish.version>
         <glassfish.home>${project.build.directory}/glassfish${glassfish.major}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
 
@@ -48,8 +49,8 @@
         <dependencies>
             <dependency>
                 <groupId>jakarta.tck</groupId>
-                <artifactId>artifacts-bom</artifactId>
-                <version>${tck.version}</version>
+                <artifactId>glassfish-runner-bom</artifactId>
+                <version>${glassfish.runner.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -73,7 +74,6 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>11.0.5</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
@@ -112,8 +112,12 @@
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.7</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.distributions</groupId>
+            <artifactId>glassfish</artifactId>
+            <type>zip</type>
         </dependency>
     </dependencies>
 
@@ -134,8 +138,7 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
-                                    <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.version}</version>
+                                    <artifactId>glassfish</artifactId>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
@@ -159,7 +162,7 @@
                                     <outputDirectory>${glassfish.lib.dir}</outputDirectory>
                                     <destFileName>arquillian-protocol-lib.jar</destFileName>
                                 </artifactItem>
-                                <!-- 
+                                <!--
                                     AppClientDeploymentPackager & JavaTestDeploymentPackager needs this on the Eclipse CI since 
                                     it can't fully resolve jakarta.tck.arquillian:arquillian-protocol-lib in code for some reason.
                                 -->
@@ -376,12 +379,11 @@
                                     <groups>tck-javatest</groups>
                                     <includes>
                                         <!--
+                                        <include>com.sun.ts.tests.connector.resourceDefs.servlet.ClientTest</include>
+                                        -->
                                         <include>**/ClientTest.*</include>
                                         <include>**/*Servlet*.*</include>
                                         <include>**/*Jsp**.*</include>
-                                        -->
-                                        <include>com.sun.ts.tests.connector.resourceDefs.servlet.ClientTest</include>
-
                                     </includes>
                                     
                                     <systemPropertyVariables>
@@ -407,7 +409,6 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-lib</artifactId>
-                    <version>11.0.5</version>
                 </dependency>
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
@@ -442,7 +443,7 @@
                                             <groupId>jakarta.tck.arquillian</groupId>
                                             <artifactId>arquillian-protocol-lib</artifactId>
                                             <overWrite>true</overWrite>
-                                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                                            <outputDirectory>${glassfish.lib.dir}</outputDirectory>
                                             <destFileName>arquillian-protocol-lib.jar</destFileName>
                                         </artifactItem>
 
@@ -465,6 +466,9 @@
                                 <configuration>
                                     <groups>tck-appclient</groups>
                                     <includes>
+                                        <!--
+                                        <include>com.sun.ts.tests.connector.annotations.anno.annotationClientEjbTest</include>
+                                        -->
                                         <include>**/ClientTest.*</include>
                                         <include>**/*EjbTest.*</include>
                                     </includes>
@@ -480,21 +484,5 @@
             </build>
         </profile>
    
-   
-        <profile>
-            <id>full</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>web</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
-            </properties>
-        </profile>
     </profiles>
 </project>

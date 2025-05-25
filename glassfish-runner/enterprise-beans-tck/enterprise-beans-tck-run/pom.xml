@@ -64,14 +64,9 @@
         <!-- TCK Paths -->
         <ts.home>${basedir}/src/test/resources/jakartaeetck</ts.home>
 
-        <version.jakarta.ejb>4.0.1</version.jakarta.ejb>
-        <version.jakarta.enterprise>4.1.0</version.jakarta.enterprise>
-        <version.jakarta.inject>2.0.1</version.jakarta.inject>
-        <version.jakarta.servlet>6.1.0</version.jakarta.servlet>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
+        <glassfish.runner.version>11.0.1</glassfish.runner.version>
         <version.surefire>3.5.3</version.surefire>
-        <arquillian.core.version>1.9.4.Final</arquillian.core.version>
-        <junit.version>5.10.2</junit.version>
 
         <whitebox.directory>target/whiteboxes</whitebox.directory>
 
@@ -86,8 +81,8 @@
         <dependencies>
             <dependency>
                 <groupId>jakarta.tck</groupId>
-                <artifactId>artifacts-bom</artifactId>
-                <version>${tck.version}</version>
+                <artifactId>glassfish-runner-bom</artifactId>
+                <version>${glassfish.runner.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -102,42 +97,23 @@
     <dependencies>
         <!-- Jakarta EE APIs -->
         <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>11.0.0-RC1</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>jakarta.ejb</groupId>
             <artifactId>jakarta.ejb-api</artifactId>
-            <version>${version.jakarta.ejb}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
-            <version>${version.jakarta.enterprise}</version>
-            <scope>test</scope>
-            <!-- CDI references wrong version of annotations -->
-            <exclusions>
-                <exclusion>
-                    <groupId>jakarta.annotation</groupId>
-                    <artifactId>jakarta.annotation-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
-            <version>${version.jakarta.inject}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <version>${version.jakarta.servlet}</version>
             <scope>test</scope>
         </dependency>
 
@@ -145,13 +121,11 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>ejb30</artifactId>
-            <version>${tck.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>ejb32</artifactId>
-            <version>${tck.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -172,32 +146,27 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-reporting</artifactId>
-            <version>1.13.0-RC1</version>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>${arquillian.core.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-spi</artifactId>
-            <version>${arquillian.core.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.shrinkwrap.descriptors</groupId>
             <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
-            <version>2.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -210,7 +179,6 @@
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.8</version>
             <scope>test</scope>
         </dependency>
 
@@ -250,6 +218,17 @@
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.distributions</groupId>
+            <artifactId>glassfish</artifactId>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.distributions</groupId>
+            <artifactId>web</artifactId>
+            <type>zip</type>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -296,7 +275,6 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${glassfish.root}</outputDirectory>

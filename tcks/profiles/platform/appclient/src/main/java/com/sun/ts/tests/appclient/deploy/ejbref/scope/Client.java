@@ -81,6 +81,7 @@ public class Client extends EETest {
         JavaArchive ejbClient1 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_scope_client.jar");
         ejbClient1.addPackages(true, Client.class.getPackage());
         ejbClient1.addPackages(true, "com.sun.ts.lib.harness");
+        ejbClient1.addClass(EETest.class);
 
         // The appclient-client descriptor
         URL appClientUrl = Client.class.getResource("appclient_dep_ejbref_scope_client.xml");
@@ -96,6 +97,7 @@ public class Client extends EETest {
         JavaArchive ejbClient2 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_scope_client_another.jar");
         ejbClient2.addPackages(true, Client.class.getPackage());
         ejbClient2.addPackages(true, "com.sun.ts.lib.harness");
+        ejbClient2.addClass(EETest.class);
 
         // The appclient-client descriptor
         appClientUrl = Client.class.getResource("appclient_dep_ejbref_scope_another_client.xml");

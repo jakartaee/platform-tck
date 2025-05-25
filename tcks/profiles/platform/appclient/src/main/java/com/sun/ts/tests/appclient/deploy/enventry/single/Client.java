@@ -67,7 +67,7 @@ public class Client extends EETest {
 			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_enventry_single_client.jar");
 		ejbClient.addPackages(true, Client.class.getPackage());
-		ejbClient.addClasses(Client.class, TestCode.class);
+		ejbClient.addClasses(Client.class, EETest.class, TestCode.class);
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
 
 		// The appclient-client descriptor

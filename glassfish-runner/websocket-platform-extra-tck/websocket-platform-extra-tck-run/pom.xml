@@ -38,7 +38,7 @@
     
         <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>8.0.0-M9</glassfish.version>
+        <glassfish.runner.version>11.0.1</glassfish.runner.version>
 
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <jakarta.tck.websocket.version>2.2.0</jakarta.tck.websocket.version>
@@ -49,16 +49,9 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.9.3.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>5.10.2</version>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>glassfish-runner-bom</artifactId>
+                <version>${glassfish.runner.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -85,20 +78,17 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>websocket-tck-platform-tests</artifactId>
-            <version>${tck.test.websocket.extra.version}</version>
         </dependency>
         
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>11.0.0</version>
         </dependency>
 
         <!-- The Arquillian connector that starts GlassFish and deploys archives to it. -->
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.7</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -119,6 +109,16 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.distributions</groupId>
+            <artifactId>glassfish</artifactId>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.distributions</groupId>
+            <artifactId>web</artifactId>
+            <type>zip</type>
         </dependency>
     </dependencies>
 
@@ -158,7 +158,6 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${glassfish.root}</outputDirectory>

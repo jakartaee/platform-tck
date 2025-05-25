@@ -67,7 +67,7 @@ public class Client extends EETest {
 	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
 			throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_casesens_client.jar");
-		ejbClient.addClasses(Client.class, TestCode.class);
+		ejbClient.addClasses(Client.class, EETest.class, TestCode.class);
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
 
 		// The appclient-client descriptor

@@ -82,6 +82,7 @@ public class Client extends EETest {
 		EnterpriseArchive ear = null;
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_path_client.jar");
 		ejbClient.addPackages(false, "com.sun.ts.tests.appclient.deploy.ejblink.path");
+		ejbClient.addClass(EETest.class);
 
 		// The appclient-client descriptor
 		URL appClientUrl = Client.class.getResource("appclient_dep_ejblink_path_client.xml");

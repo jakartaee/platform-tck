@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -59,16 +61,13 @@ public class ClientEJB extends Client implements Serializable {
         ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
         ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
         ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-        ejbClient.addClasses(ClientEJB.class, Client.class);
+        ejbClient.addClasses(Client.class, ServiceEETest.class, EETest.class);
         URL resURL = ClientEJB.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
-        if (resURL != null) {
-            ejbClient.addAsManifestResource(resURL, "application-client.xml");
-        }
+        ejbClient.addAsManifestResource(resURL, "application-client.xml");
 
         resURL = ClientEJB.class.getResource("/com/sun/ts/tests/xa/ee/resXcomp1/xa_resXcomp1_ejb_vehicle_client.jar.sun-application-client.xml");
-        if (resURL != null) {
-            ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
-        }
+        ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
+        archiveProcessor.processClientArchive(ejbClient, Client.class, resURL);
 
         ejbClient.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
 
@@ -80,16 +79,12 @@ public class ClientEJB extends Client implements Serializable {
         ejbVehicle.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
         ejbVehicle.addPackages(true, "com.sun.ts.lib.harness");
         ejbVehicle.addClasses(TxBean.class, TxBeanEJB.class);
-        ejbVehicle.addClasses(ClientEJB.class, Client.class);
+        ejbVehicle.addClasses(Client.class, ServiceEETest.class, EETest.class);
         resURL = ClientEJB.class.getResource("/com/sun/ts/tests/xa/ee/resXcomp1/ejb_vehicle_ejb.xml");
-        if (resURL != null) {
-            ejbVehicle.addAsManifestResource(resURL, "ejb-jar.xml");
-        }
-
+        ejbVehicle.addAsManifestResource(resURL, "ejb-jar.xml");
         resURL = ClientEJB.class.getResource("/com/sun/ts/tests/xa/ee/resXcomp1/xa_resXcomp1_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
-        if (resURL != null) {
-            ejbVehicle.addAsManifestResource(resURL, "sun-ejb-jar.xml");
-        }
+        ejbVehicle.addAsManifestResource(resURL, "sun-ejb-jar.xml");
+        archiveProcessor.processEjbArchive(ejbVehicle, Client.class, resURL);
 
         JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "xa_resXcomp1_ee_txpropagate1_ejb.jar");
         ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
@@ -98,19 +93,13 @@ public class ClientEJB extends Client implements Serializable {
         ejb.addPackages(false, "com.sun.ts.tests.common.whitebox");
         ejb.addPackages(true, "com.sun.ts.lib.harness");
         ejb.addClasses(TxBean.class, TxBeanEJB.class);
-        ejb.addClasses(ClientEJB.class, Client.class);
-
-        resURL = ClientEJB.class.getResource("/com/sun/ts/tests/xa/ee/resXcomp1/xa_resXcomp1_ee_txpropagate1_ejb.jar.sun-ejb-jar.xml");
-
-        if (resURL != null) {
-            ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
-        }
+        ejb.addClasses(Client.class, ServiceEETest.class, EETest.class);
 
         resURL = ClientEJB.class.getResource("/com/sun/ts/tests/xa/ee/resXcomp1/xa_resXcomp1_ee_txpropagate1_ejb.xml");
-
-        if (resURL != null) {
-            ejb.addAsManifestResource(resURL, "ejb-jar.xml");
-        }
+        ejb.addAsManifestResource(resURL, "ejb-jar.xml");
+        resURL = ClientEJB.class.getResource("/com/sun/ts/tests/xa/ee/resXcomp1/xa_resXcomp1_ee_txpropagate1_ejb.jar.sun-ejb-jar.xml");
+        ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
+        archiveProcessor.processEjbArchive(ejb, Client.class, resURL);
 
         EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "xa_resXcomp1_ejb_vehicle.ear");
         ear.addAsModule(ejbClient);

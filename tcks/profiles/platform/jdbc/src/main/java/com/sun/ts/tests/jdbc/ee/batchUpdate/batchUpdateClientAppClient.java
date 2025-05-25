@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -63,7 +65,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		archive.addClasses(batchUpdateClient.class);
+		archive.addClasses(batchUpdateClient.class, ServiceEETest.class, EETest.class);
 
 		// The appclient-client descriptor
 		URL appClientUrl = batchUpdateClientAppClient.class

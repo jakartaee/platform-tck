@@ -80,6 +80,7 @@ public class Client extends EETest {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_casesens_client.jar");
 		ejbClient.addPackages(true, Client.class.getPackage());
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
+		ejbClient.addClass(EETest.class);
 
 		// The appclient-client descriptor
 		URL appClientUrl = Client.class.getResource(

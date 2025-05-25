@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -66,7 +68,7 @@ public class callStmtClient12EJB extends callStmtClient12 implements Serializabl
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addClasses(callStmtClient12EJB.class, callStmtClient12.class);
+		ejbClient.addClasses(callStmtClient12EJB.class, callStmtClient12.class, ServiceEETest.class, EETest.class);
 
 		URL resURL = callStmtClient12EJB.class
 				.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");

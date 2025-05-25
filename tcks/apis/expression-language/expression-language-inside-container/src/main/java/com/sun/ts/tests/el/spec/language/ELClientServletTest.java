@@ -106,6 +106,7 @@ public class ELClientServletTest extends ServiceEETest {
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
         com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
         com.sun.ts.tests.common.el.api.expression.ExpressionTest.class,
+        com.sun.ts.tests.common.el.spec.Book.class,
         com.sun.ts.tests.el.common.elresolver.EmployeeELResolver.class,
         com.sun.ts.tests.el.common.elresolver.FunctionELResolver.class,
         com.sun.ts.tests.el.common.elresolver.VariableELResolver.class,

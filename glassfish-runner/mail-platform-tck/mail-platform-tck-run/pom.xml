@@ -63,18 +63,17 @@
         <mail.user>user01</mail.user>
         <mailboxFolder1>${project.build.directory}/../mailboxes</mailboxFolder1>
         <smtp.port>1025</smtp.port>
+
+        <glassfish.runner.version>11.0.1</glassfish.runner.version>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
-        <arquillian.core.version>1.9.4.Final</arquillian.core.version>
-        <jakarta.tck.arquillian.version>11.0.8</jakarta.tck.arquillian.version>
-        <jakarta.tck.common.version>11.0.7</jakarta.tck.common.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>5.11.4</version>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>glassfish-runner-bom</artifactId>
+                <version>${glassfish.runner.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -84,7 +83,6 @@
         <dependency>
             <groupId>jakarta.mail</groupId>
             <artifactId>jakarta.mail-api</artifactId>
-            <version>2.1.3</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -94,7 +92,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.tck.common.version}</version>
         </dependency>
 
         <dependency>
@@ -111,12 +108,10 @@
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-test-spi</artifactId>
-            <version>${arquillian.core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>${arquillian.core.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -127,7 +122,6 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
@@ -137,43 +131,45 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.7</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-spi</artifactId>
-            <version>${arquillian.core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.core</groupId>
             <artifactId>arquillian-core-spi</artifactId>
-            <version>${arquillian.core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.test</groupId>
             <artifactId>arquillian-test-impl-base</artifactId>
-            <version>${arquillian.core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap</groupId>
             <artifactId>shrinkwrap-api</artifactId>
-            <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.distributions</groupId>
+            <artifactId>glassfish</artifactId>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.distributions</groupId>
+            <artifactId>web</artifactId>
+            <type>zip</type>
         </dependency>
     </dependencies>
 
@@ -201,7 +197,6 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
