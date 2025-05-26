@@ -51,6 +51,8 @@ public class mimemessageAppClient_Test extends mimemessage_Test implements Seria
 		archive.addPackages(true, "com.sun.ts.tests.javamail.ee");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
+		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
+		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		archive.addClasses(mimemessageAppClient_Test.class, mimemessage_Test.class);
 		
 		archive.addAsManifestResource(

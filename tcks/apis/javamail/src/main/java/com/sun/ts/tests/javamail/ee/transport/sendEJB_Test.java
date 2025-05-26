@@ -52,6 +52,8 @@ public class sendEJB_Test extends send_Test implements Serializable {
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
+		ejbClient.addClass(com.sun.ts.tests.common.base.EETest.class);
+		ejbClient.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		ejbClient.addClasses(sendEJB_Test.class, send_Test.class);
 
 		URL resURL = sendEJB_Test.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
