@@ -53,12 +53,18 @@ public class multipartJSP_Test extends multipart_Test implements Serializable {
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClasses(multipartJSP_Test.class, multipart_Test.class);
-		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
+
+    URL jspVehicle = multipartJSP_Test.class.getResource
+                ("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+    if(jspVehicle != null) {
+      archive.addAsWebResource(jspVehicle, "/jsp_vehicle.jsp");
+    }
+    URL clientHtml = multipartJSP_Test.class.getResource
+                ("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+    if(clientHtml != null) {
+      archive.addAsWebResource(clientHtml, "/client.html");
+    }
+
 		
 		// The jsp descriptor
         URL jspUrl = multipartJSP_Test.class.getResource("jsp_vehicle_web.xml");

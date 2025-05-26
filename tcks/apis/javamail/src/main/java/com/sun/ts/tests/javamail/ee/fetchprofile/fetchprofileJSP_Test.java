@@ -49,12 +49,18 @@ public class fetchprofileJSP_Test extends fetchprofile_Test implements Serializa
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
+
+		URL jspVehicle = fetchprofileJSP_Test.class.getResource
+			("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+		if(jspVehicle != null) {
+			archive.addAsWebResource(jspVehicle, "/jsp_vehicle.jsp");
+		}
+		URL clientHtml = fetchprofileJSP_Test.class.getResource
+					("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+		if(clientHtml != null) {
+			archive.addAsWebResource(clientHtml, "/client.html");
+		}
+
 		archive.addClasses(fetchprofileJSP_Test.class, fetchprofile_Test.class);
 		
         // The jsp descriptor

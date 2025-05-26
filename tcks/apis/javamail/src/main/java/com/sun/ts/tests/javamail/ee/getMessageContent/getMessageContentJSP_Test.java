@@ -48,12 +48,19 @@ public class getMessageContentJSP_Test extends getMessageContent_Test {
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
+
+    URL jspVehicle = getMessageContentJSP_Test.class.getResource
+                ("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+    if(jspVehicle != null) {
+      archive.addAsWebResource(jspVehicle, "/jsp_vehicle.jsp");
+    }
+    URL clientHtml = getMessageContentJSP_Test.class.getResource
+                ("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+    if(clientHtml != null) {
+      archive.addAsWebResource(clientHtml, "/client.html");
+    }
+
+
 		archive.addClasses(getMessageContentJSP_Test.class, getMessageContent_Test.class);
 
 		// The jsp descriptor

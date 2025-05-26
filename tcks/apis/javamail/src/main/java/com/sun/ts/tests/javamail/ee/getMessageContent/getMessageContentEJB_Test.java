@@ -49,6 +49,8 @@ public class getMessageContentEJB_Test extends getMessageContent_Test {
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
+		ejbClient.addClass(com.sun.ts.tests.common.base.EETest.class);
+		ejbClient.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		ejbClient.addClasses(getMessageContentEJB_Test.class, getMessageContent_Test.class);
 
 		URL resURL = getMessageContentEJB_Test.class
