@@ -90,7 +90,7 @@ public class Client extends EETest {
     JavaArchive direct_classpath_util = ShrinkWrap.create(JavaArchive.class, "direct_classpath_util.jar");
     direct_classpath_util.addClasses(com.sun.ts.tests.assembly.classpath.util.ClassPathUtil.class,
     Client.class);
-    URL resURL = Client.class.getResource("/util/META-INF/ejb-jar.xml");
+    URL resURL = Client.class.getResource("/com/sun/ts/tests/assembly/classpath/util/META-INF/ejb-jar.xml");
     direct_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
     // archiveProcessor.processEjbArchive(direct_classpath_util, Client.class, resURL);
 
@@ -98,7 +98,7 @@ public class Client extends EETest {
     JavaArchive indirect_classpath_util = ShrinkWrap.create(JavaArchive.class, "indirect_classpath_util.jar");
     indirect_classpath_util.addClasses(com.sun.ts.tests.assembly.classpath.util.IndirectClassPathUtil.class,
     Client.class);
-    resURL = Client.class.getResource("/util/META-INF/ejb-jar.xml");
+    resURL = Client.class.getResource("/com/sun/ts/tests/assembly/classpath/util/META-INF/ejb-jar.xml");
     indirect_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
     // archiveProcessor.processEjbArchive(indirect_classpath_util, Client.class, resURL);
 

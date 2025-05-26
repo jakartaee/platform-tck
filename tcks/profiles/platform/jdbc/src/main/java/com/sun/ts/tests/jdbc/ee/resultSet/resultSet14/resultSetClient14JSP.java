@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -73,7 +73,7 @@ public class resultSetClient14JSP extends resultSetClient14 implements Serializa
 				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
 		archive.add(new ByteArrayAsset(clientHtml), "client.html");
 
-		archive.addClasses(resultSetClient14JSP.class, resultSetClient14.class);
+		archive.addClasses(resultSetClient14.class, ServiceEETest.class, EETest.class);
 
 		// The jsp descriptor
 		URL jspUrl = resultSetClient14JSP.class.getResource("jsp_vehicle_web.xml");

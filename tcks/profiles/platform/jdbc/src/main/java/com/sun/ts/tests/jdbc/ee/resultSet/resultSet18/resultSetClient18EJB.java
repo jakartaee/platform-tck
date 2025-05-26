@@ -36,6 +36,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import com.sun.ts.tests.jdbc.ee.resultSet.resultSet1.resultSetClient1EJB;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
@@ -67,7 +69,7 @@ public class resultSetClient18EJB extends resultSetClient18 implements Serializa
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addClasses(resultSetClient18EJB.class, resultSetClient18.class);
+		ejbClient.addClasses(resultSetClient18.class, ServiceEETest.class, EETest.class);
 
 		URL resURL = resultSetClient18EJB.class
 				.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
@@ -89,7 +91,7 @@ public class resultSetClient18EJB extends resultSetClient18 implements Serializa
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
-		ejb.addClasses(resultSetClient18EJB.class, resultSetClient18.class);
+		ejb.addClasses(resultSetClient18.class, ServiceEETest.class, EETest.class);
 
 		resURL = resultSetClient18EJB.class.getResource(
 				"/com/sun/ts/tests/jdbc/ee/resultSet/resultSet18/resultSet18_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");

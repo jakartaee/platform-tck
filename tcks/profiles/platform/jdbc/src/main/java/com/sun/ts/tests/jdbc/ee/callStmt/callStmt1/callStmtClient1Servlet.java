@@ -34,6 +34,12 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
+
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
+
 import com.sun.ts.tests.jdbc.ee.batchUpdate.batchUpdateClientServlet;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
@@ -59,7 +65,7 @@ public class callStmtClient1Servlet extends callStmtClient1 implements Serializa
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		archive.addClasses(callStmtClient1Servlet.class, callStmtClient1.class);
+		archive.addClasses(callStmtClient1.class, ServiceEETest.class, EETest.class);
 		// The servlet descriptor
 		URL servletUrl = callStmtClient1Servlet.class.getResource("servlet_vehicle_web.xml");
 		if (servletUrl != null) {

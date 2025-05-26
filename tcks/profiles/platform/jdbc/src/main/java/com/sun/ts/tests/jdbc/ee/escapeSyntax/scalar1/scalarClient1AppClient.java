@@ -35,8 +35,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -64,7 +64,7 @@ public class scalarClient1AppClient extends scalarClient1 {
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		archive.addClasses(scalarClient1AppClient.class, scalarClient1.class);
+		archive.addClasses(scalarClient1.class, ServiceEETest.class, EETest.class);
 		// The appclient-client descriptor
 		URL appClientUrl = scalarClient1AppClient.class
 				.getResource("/com/sun/ts/tests/jdbc/ee/escapeSyntax/scalar1/appclient_vehicle_client.xml");

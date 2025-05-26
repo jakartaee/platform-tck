@@ -36,6 +36,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
+
 import com.sun.ts.tests.jdbc.ee.batchUpdate.batchUpdateClientJSP;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
@@ -88,7 +91,7 @@ public class resultSetClient49JSP extends resultSetClient49 implements Serializa
 		// Call the archive processor
 		archiveProcessor.processWebArchive(archive, batchUpdateClientJSP.class, sunJSPUrl);
 
-		archive.addClasses(resultSetClient49JSP.class, resultSetClient49.class);
+		archive.addClasses(resultSetClient49.class, ServiceEETest.class, EETest.class);
 
 		return archive;
 	};

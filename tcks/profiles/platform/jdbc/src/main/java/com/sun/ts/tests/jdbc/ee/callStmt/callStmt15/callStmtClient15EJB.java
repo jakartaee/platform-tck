@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -67,7 +67,7 @@ public class callStmtClient15EJB extends callStmtClient15 implements Serializabl
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addClasses(callStmtClient15EJB.class, callStmtClient15.class);
+		ejbClient.addClasses(callStmtClient15.class, ServiceEETest.class, EETest.class);
 
 		URL resURL = callStmtClient15EJB.class
 				.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
@@ -88,7 +88,7 @@ public class callStmtClient15EJB extends callStmtClient15 implements Serializabl
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
-		ejb.addClasses(callStmtClient15EJB.class, callStmtClient15.class);
+		ejb.addClasses(callStmtClient15.class, ServiceEETest.class, EETest.class);
 
 		resURL = callStmtClient15EJB.class.getResource(
 				"/com/sun/ts/tests/jdbc/ee/callStmt/callStmt15/callStmt15_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");

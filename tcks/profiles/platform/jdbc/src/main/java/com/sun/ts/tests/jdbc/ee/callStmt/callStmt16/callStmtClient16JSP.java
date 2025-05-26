@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -67,7 +67,7 @@ public class callStmtClient16JSP extends callStmtClient16 implements Serializabl
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		archive.addClasses(callStmtClient16JSP.class, callStmtClient16.class);
+		archive.addClasses(callStmtClient16.class, ServiceEETest.class, EETest.class);
 		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
 				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
 		archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");

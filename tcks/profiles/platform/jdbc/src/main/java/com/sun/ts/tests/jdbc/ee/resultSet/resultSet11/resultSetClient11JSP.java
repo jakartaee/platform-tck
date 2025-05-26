@@ -36,6 +36,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
+
 import com.sun.ts.tests.jdbc.ee.batchUpdate.batchUpdateClientJSP;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
@@ -67,7 +70,7 @@ public class resultSetClient11JSP extends resultSetClient11 implements Serializa
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		archive.addClasses(resultSetClient11JSP.class, resultSetClient11.class);
+		archive.addClasses(resultSetClient11.class, ServiceEETest.class, EETest.class);
 		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
 				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
 		archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");

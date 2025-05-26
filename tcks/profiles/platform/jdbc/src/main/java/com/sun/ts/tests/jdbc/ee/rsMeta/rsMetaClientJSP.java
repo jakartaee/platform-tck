@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -87,7 +87,7 @@ public class rsMetaClientJSP extends rsMetaClient implements Serializable {
 		// Call the archive processor
 		archiveProcessor.processWebArchive(archive, rsMetaClientJSP.class, sunJSPUrl);
 
-		archive.addClasses(rsMetaClientJSP.class, rsMetaClient.class);
+		archive.addClasses(rsMetaClient.class, ServiceEETest.class, EETest.class);
 
 		return archive;
 	};

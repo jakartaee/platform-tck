@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -35,8 +37,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 /**
@@ -62,7 +64,7 @@ public class callStmtClient3EJB extends callStmtClient3 implements Serializable 
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addClasses(callStmtClient3EJB.class, callStmtClient3.class);
+		ejbClient.addClasses(callStmtClient3.class, ServiceEETest.class, EETest.class);
 
 		URL resURL = callStmtClient3EJB.class
 				.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
@@ -83,7 +85,7 @@ public class callStmtClient3EJB extends callStmtClient3 implements Serializable 
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
-		ejb.addClasses(callStmtClient3EJB.class, callStmtClient3.class);
+		ejb.addClasses(callStmtClient3.class, ServiceEETest.class, EETest.class);
 
 		resURL = callStmtClient3EJB.class.getResource(
 				"/com/sun/ts/tests/jdbc/ee/callStmt/callStmt3/callStmt3_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");

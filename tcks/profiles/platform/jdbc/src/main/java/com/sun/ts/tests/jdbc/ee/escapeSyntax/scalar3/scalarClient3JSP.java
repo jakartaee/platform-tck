@@ -35,8 +35,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -72,7 +72,7 @@ public class scalarClient3JSP extends scalarClient3 {
 				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
 		archive.add(new ByteArrayAsset(clientHtml), "client.html");
 
-		archive.addClasses(scalarClient3JSP.class, scalarClient3.class);
+		archive.addClasses(scalarClient3.class, ServiceEETest.class, EETest.class);
 
 		// The jsp descriptor
 		URL jspUrl = scalarClient3JSP.class.getResource("jsp_vehicle_web.xml");

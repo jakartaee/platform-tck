@@ -35,8 +35,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -65,7 +65,7 @@ public class scalarClient2EJB extends scalarClient2 {
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addClasses(scalarClient2EJB.class, scalarClient2.class);
+		ejbClient.addClasses(scalarClient2.class, ServiceEETest.class, EETest.class);
 
 		URL resURL = scalarClient2EJB.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
 		if (resURL != null) {
@@ -85,7 +85,7 @@ public class scalarClient2EJB extends scalarClient2 {
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
-		ejb.addClasses(scalarClient2EJB.class, scalarClient2.class);
+		ejb.addClasses(scalarClient2.class, ServiceEETest.class, EETest.class);
 
 		resURL = scalarClient2EJB.class.getResource(
 				"/com/sun/ts/tests/jdbc/ee/escapeSyntax/scalar2/scalar2_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");

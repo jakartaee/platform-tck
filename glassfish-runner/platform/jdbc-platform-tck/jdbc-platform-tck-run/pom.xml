@@ -273,8 +273,10 @@ CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS
                                 <!--
                                 <include>**/*EJB*.*</include>
                                 <include>**/*AppClient*.*</include>
-                                -->
                                 <include>com.sun.ts.tests.jdbc.ee.batchUpdate.batchUpdateClientAppClient</include>
+                                -->
+                                <include>**/*EJB*.*</include>
+                                <include>**/*AppClient*.*</include>
                             </includes>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
@@ -310,7 +312,8 @@ CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS
                                 <include>**/*Servlet*.*</include>
                                 <include>**/*JSP*.*</include>
                                 -->
-                                <include>com.sun.ts.tests.jdbc.ee.callStmt.callStmt12.callStmtClient12JSP</include>
+                                <include>**/*Servlet*.*</include>
+                                <include>**/*JSP*.*</include>
                             </includes>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>

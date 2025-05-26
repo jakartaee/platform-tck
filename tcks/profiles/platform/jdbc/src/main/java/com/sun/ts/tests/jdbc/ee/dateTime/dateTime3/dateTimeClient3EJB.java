@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -65,7 +65,7 @@ public class dateTimeClient3EJB extends dateTimeClient3 implements Serializable 
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addClasses(dateTimeClient3EJB.class, dateTimeClient3.class);
+		ejbClient.addClasses(dateTimeClient3.class, ServiceEETest.class, EETest.class);
 
 		URL resURL = dateTimeClient3EJB.class
 				.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
@@ -86,7 +86,7 @@ public class dateTimeClient3EJB extends dateTimeClient3 implements Serializable 
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
-		ejb.addClasses(dateTimeClient3EJB.class, dateTimeClient3.class);
+		ejb.addClasses(dateTimeClient3.class, ServiceEETest.class, EETest.class);
 
 		resURL = dateTimeClient3EJB.class.getResource(
 				"/com/sun/ts/tests/jdbc/ee/dateTime/dateTime3/dateTime3_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");

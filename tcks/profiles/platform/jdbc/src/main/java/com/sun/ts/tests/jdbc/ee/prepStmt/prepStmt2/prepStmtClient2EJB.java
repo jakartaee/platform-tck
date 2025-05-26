@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 /**
@@ -63,7 +63,7 @@ public class prepStmtClient2EJB extends prepStmtClient2 implements Serializable 
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addClasses(prepStmtClient2EJB.class, prepStmtClient2.class);
+		ejbClient.addClasses(prepStmtClient2.class, ServiceEETest.class, EETest.class);
 
 		URL resURL = prepStmtClient2EJB.class
 				.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
@@ -85,7 +85,7 @@ public class prepStmtClient2EJB extends prepStmtClient2 implements Serializable 
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
-		ejb.addClasses(prepStmtClient2EJB.class, prepStmtClient2.class);
+		ejb.addClasses(prepStmtClient2.class, ServiceEETest.class, EETest.class);
 
 		resURL = prepStmtClient2EJB.class.getResource(
 				"/com/sun/ts/tests/jdbc/ee/prepStmt/prepStmt2/prepStmt2_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");

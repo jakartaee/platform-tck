@@ -36,7 +36,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
@@ -65,7 +66,7 @@ public class dateTimeClient3JSP extends dateTimeClient3 implements Serializable 
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		archive.addClasses(dateTimeClient3JSP.class, dateTimeClient3.class);
+		archive.addClasses(dateTimeClient3.class, ServiceEETest.class, EETest.class);
 		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
 				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
 		archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");

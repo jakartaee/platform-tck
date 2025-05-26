@@ -40,8 +40,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -69,7 +69,7 @@ public class callStmtClient11AppClient extends callStmtClient11 implements Seria
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		archive.addClasses(callStmtClient11AppClient.class, callStmtClient11.class);
+		archive.addClasses(callStmtClient11.class, ServiceEETest.class, EETest.class);
 		// The appclient-client descriptor
 		URL appClientUrl = callStmtClient11AppClient.class
 				.getResource("/com/sun/ts/tests/jdbc/ee/callStmt/callStmt11/appclient_vehicle_client.xml");
@@ -78,7 +78,7 @@ public class callStmtClient11AppClient extends callStmtClient11 implements Seria
 		}
 		// The sun appclient-client descriptor
 		URL sunAppClientUrl = callStmtClient11AppClient.class.getResource(
-				"//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+				"/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
 		if (sunAppClientUrl != null) {
 			archive.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
 		}

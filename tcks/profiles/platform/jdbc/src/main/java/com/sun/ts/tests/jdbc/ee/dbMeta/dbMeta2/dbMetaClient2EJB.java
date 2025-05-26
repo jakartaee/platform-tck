@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -66,7 +66,7 @@ public class dbMetaClient2EJB extends dbMetaClient2 implements Serializable {
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addClasses(dbMetaClient2EJB.class, dbMetaClient2.class);
+		ejbClient.addClasses(dbMetaClient2.class, ServiceEETest.class, EETest.class);
 
 		URL resURL = dbMetaClient2EJB.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
 		if (resURL != null) {
@@ -86,7 +86,7 @@ public class dbMetaClient2EJB extends dbMetaClient2 implements Serializable {
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
-		ejb.addClasses(dbMetaClient2EJB.class, dbMetaClient2.class);
+		ejb.addClasses(dbMetaClient2.class, ServiceEETest.class, EETest.class);
 
 		resURL = dbMetaClient2EJB.class
 				.getResource("/com/sun/ts/tests/jdbc/ee/dbMeta/dbMeta2/dbMeta2_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");

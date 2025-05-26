@@ -25,6 +25,9 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -71,7 +74,7 @@ public class callStmtClient9JSP extends callStmtClient9 implements Serializable 
 				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
 		archive.add(new ByteArrayAsset(clientHtml), "client.html");
 
-		archive.addClasses(callStmtClient9JSP.class, callStmtClient9.class);
+		archive.addClasses(callStmtClient9.class, ServiceEETest.class, EETest.class);
 
 		// The jsp descriptor
 		URL jspUrl = callStmtClient9JSP.class.getResource("jsp_vehicle_web.xml");

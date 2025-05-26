@@ -31,6 +31,9 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -74,7 +77,7 @@ public class callStmtClient9Servlet extends callStmtClient9 implements Serializa
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		archive.addClasses(callStmtClient9Servlet.class, callStmtClient9.class);
+		archive.addClasses(callStmtClient9.class, ServiceEETest.class, EETest.class);
 		// The servlet descriptor
 		URL servletUrl = callStmtClient9Servlet.class.getResource("servlet_vehicle_web.xml");
 		if (servletUrl != null) {

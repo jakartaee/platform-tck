@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -63,7 +65,7 @@ public class callStmtClient9AppClient extends callStmtClient9 implements Seriali
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		archive.addClasses(callStmtClient9AppClient.class, callStmtClient9.class);
+		archive.addClasses(callStmtClient9.class, ServiceEETest.class, EETest.class);
 		// The appclient-client descriptor
 		URL appClientUrl = callStmtClient9AppClient.class
 				.getResource("/com/sun/ts/tests/jdbc/ee/callStmt/callStmt9/appclient_vehicle_client.xml");

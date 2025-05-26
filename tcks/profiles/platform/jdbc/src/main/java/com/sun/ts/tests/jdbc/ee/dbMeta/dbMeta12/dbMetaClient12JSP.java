@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 /**
@@ -70,7 +70,7 @@ public class dbMetaClient12JSP extends dbMetaClient12 implements Serializable {
 				.getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
 		archive.add(new ByteArrayAsset(clientHtml), "client.html");
 
-		archive.addClasses(dbMetaClient12JSP.class, dbMetaClient12.class);
+		archive.addClasses(dbMetaClient12.class, ServiceEETest.class, EETest.class);
 
 		// The jsp descriptor
 		URL jspUrl = dbMetaClient12JSP.class.getResource("jsp_vehicle_web.xml");

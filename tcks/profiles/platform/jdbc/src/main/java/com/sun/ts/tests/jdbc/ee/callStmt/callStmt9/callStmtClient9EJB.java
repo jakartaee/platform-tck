@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -64,7 +66,7 @@ public class callStmtClient9EJB extends callStmtClient9 implements Serializable 
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addClasses(callStmtClient9EJB.class, callStmtClient9.class);
+		ejbClient.addClasses(callStmtClient9.class, ServiceEETest.class, EETest.class);
 
 		URL resURL = callStmtClient9EJB.class
 				.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
@@ -85,7 +87,7 @@ public class callStmtClient9EJB extends callStmtClient9 implements Serializable 
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
-		ejb.addClasses(callStmtClient9EJB.class, callStmtClient9.class);
+		ejb.addClasses(callStmtClient9.class, ServiceEETest.class, EETest.class);
 
 		resURL = callStmtClient9EJB.class.getResource(
 				"/com/sun/ts/tests/jdbc/ee/callStmt/callStmt9/callStmt9_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");

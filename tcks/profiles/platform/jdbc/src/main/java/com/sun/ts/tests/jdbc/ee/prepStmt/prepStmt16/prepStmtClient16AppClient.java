@@ -40,8 +40,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 /**
@@ -66,7 +66,7 @@ public class prepStmtClient16AppClient extends prepStmtClient16 implements Seria
 		archive.addPackages(true, "com.sun.ts.tests.jdbc.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		archive.addClasses(prepStmtClient16AppClient.class, prepStmtClient16.class);
+		archive.addClasses(prepStmtClient16.class, ServiceEETest.class, EETest.class);
 		// The appclient-client descriptor
 		URL appClientUrl = prepStmtClient16AppClient.class
 				.getResource("/com/sun/ts/tests/jdbc/ee/prepStmt/prepStmt16/appclient_vehicle_client.xml");

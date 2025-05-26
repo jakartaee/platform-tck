@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -66,7 +66,7 @@ public class batUpdExceptClientEJB extends batUpdExceptClient implements Seriali
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addClasses(batUpdExceptClientEJB.class, batUpdExceptClient.class);
+		ejbClient.addClasses(batUpdExceptClient.class, ServiceEETest.class, EETest.class);
 
 		URL resURL = batUpdExceptClientEJB.class
 				.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
@@ -87,7 +87,7 @@ public class batUpdExceptClientEJB extends batUpdExceptClient implements Seriali
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
-		ejb.addClasses(batUpdExceptClientEJB.class, batUpdExceptClient.class);
+		ejb.addClasses(batUpdExceptClient.class, ServiceEETest.class, EETest.class);
 
 		resURL = batUpdExceptClientEJB.class.getResource(
 				"/com/sun/ts/tests/jdbc/ee/exception/batUpdExcept/batUpdExcept_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");

@@ -38,8 +38,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -68,7 +68,7 @@ public class callStmtClient12EJB extends callStmtClient12 implements Serializabl
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addClasses(callStmtClient12EJB.class, callStmtClient12.class, ServiceEETest.class, EETest.class);
+		ejbClient.addClasses(callStmtClient12.class, ServiceEETest.class, EETest.class);
 
 		URL resURL = callStmtClient12EJB.class
 				.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
@@ -89,7 +89,7 @@ public class callStmtClient12EJB extends callStmtClient12 implements Serializabl
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
-		ejb.addClasses(callStmtClient12EJB.class, callStmtClient12.class);
+		ejb.addClasses(callStmtClient12.class, ServiceEETest.class, EETest.class);
 
 		resURL = callStmtClient12EJB.class.getResource(
 				"/com/sun/ts/tests/jdbc/ee/callStmt/callStmt12/callStmt12_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");

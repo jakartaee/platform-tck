@@ -34,8 +34,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -64,7 +64,7 @@ public class resultSetClient10Servlet extends resultSetClient10 implements Seria
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
-		archive.addClasses(resultSetClient10Servlet.class, resultSetClient10.class);
+		archive.addClasses(resultSetClient10.class, ServiceEETest.class, EETest.class);
 		// The servlet descriptor
 		URL servletUrl = resultSetClient10Servlet.class.getResource("servlet_vehicle_web.xml");
 		if (servletUrl != null) {

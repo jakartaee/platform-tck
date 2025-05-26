@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -65,7 +65,7 @@ public class resultSetClient45EJB extends resultSetClient45 implements Serializa
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addClasses(resultSetClient45EJB.class, resultSetClient45.class);
+		ejbClient.addClasses(resultSetClient45.class, ServiceEETest.class, EETest.class);
 
 		URL resURL = resultSetClient45EJB.class
 				.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
@@ -87,7 +87,7 @@ public class resultSetClient45EJB extends resultSetClient45 implements Serializa
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
-		ejb.addClasses(resultSetClient45EJB.class, resultSetClient45.class);
+		ejb.addClasses(resultSetClient45.class, ServiceEETest.class, EETest.class);
 
 		resURL = resultSetClient45EJB.class.getResource(
 				"/com/sun/ts/tests/jdbc/ee/resultSet/resultSet45/resultSet45_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");

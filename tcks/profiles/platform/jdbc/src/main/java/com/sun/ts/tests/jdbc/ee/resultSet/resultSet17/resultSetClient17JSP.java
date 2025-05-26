@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import com.sun.ts.tests.common.base.EETest;
+import com.sun.ts.tests.common.base.ServiceEETest;import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 // Merant DataSource class
@@ -86,7 +86,7 @@ public class resultSetClient17JSP extends resultSetClient17 implements Serializa
 		// Call the archive processor
 		archiveProcessor.processWebArchive(archive, resultSetClient17JSP.class, sunJSPUrl);
 
-		archive.addClasses(resultSetClient17JSP.class, resultSetClient17.class);
+		archive.addClasses(resultSetClient17.class, ServiceEETest.class, EETest.class);
 
 		return archive;
 	};
