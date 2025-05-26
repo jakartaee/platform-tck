@@ -72,6 +72,8 @@ public class getMessageContentEJB_Test extends getMessageContent_Test {
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
+		ejb.addClass(com.sun.ts.tests.common.base.EETest.class);
+		ejb.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		ejb.addClasses(getMessageContentEJB_Test.class, getMessageContent_Test.class);
 
 		

@@ -55,12 +55,12 @@ public class internetaddressServlet_Test extends internetaddress_Test
 		archive.addClasses(internetaddressServlet_Test.class, internetaddress_Test.class);
 		
 		// The Servlet descriptor
-        URL jspUrl = getMessageContentJSP_Test.class.getResource("servlet_vehicle_web.xml");
+        URL jspUrl = internetaddressServlet_Test.class.getResource("servlet_vehicle_web.xml");
         if(jspUrl != null) {
         	archive.addAsWebInfResource(jspUrl, "web.xml");
         }
         // The sun Servlet descriptor
-        URL sunJSPUrl = getMessageContentJSP_Test.class.getResource("internetaddress_servlet_vehicle_web.war.sun-web.xml");
+        URL sunJSPUrl = internetaddressServlet_Test.class.getResource("internetaddress_servlet_vehicle_web.war.sun-web.xml");
         if(sunJSPUrl != null) {
         	archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
         }
