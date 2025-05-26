@@ -70,6 +70,8 @@ public class internetMimeMultipartEJB_Test extends internetMimeMultipart_Test {
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
+		ejb.addClass(com.sun.ts.tests.common.base.EETest.class);
+		ejb.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		ejb.addClasses(internetMimeMultipartEJB_Test.class, internetMimeMultipart_Test.class);
 
 		
