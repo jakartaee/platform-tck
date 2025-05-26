@@ -50,6 +50,8 @@ public class mimemessageServlet_Test extends mimemessage_Test implements Seriali
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
+		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
+		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		archive.addClasses(mimemessageServlet_Test.class, mimemessage_Test.class);
 		
 		// The servlet descriptor

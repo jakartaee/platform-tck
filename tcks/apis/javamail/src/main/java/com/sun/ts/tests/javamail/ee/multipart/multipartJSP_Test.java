@@ -52,15 +52,15 @@ public class multipartJSP_Test extends multipart_Test implements Serializable {
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
+		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
+		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		archive.addClasses(multipartJSP_Test.class, multipart_Test.class);
 
-    URL jspVehicle = multipartJSP_Test.class.getResource
-                ("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+    URL jspVehicle = multipartJSP_Test.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
     if(jspVehicle != null) {
       archive.addAsWebResource(jspVehicle, "/jsp_vehicle.jsp");
     }
-    URL clientHtml = multipartJSP_Test.class.getResource
-                ("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+    URL clientHtml = multipartJSP_Test.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
     if(clientHtml != null) {
       archive.addAsWebResource(clientHtml, "/client.html");
     }

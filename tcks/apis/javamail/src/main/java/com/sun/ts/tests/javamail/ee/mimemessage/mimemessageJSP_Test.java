@@ -51,14 +51,19 @@ public class mimemessageJSP_Test extends mimemessage_Test implements Serializabl
 		archive.addPackages(true, "com.sun.ts.tests.javamail.ee");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
-				archive.addPackages(true, "com.sun.ts.lib.harness");
+		archive.addPackages(true, "com.sun.ts.lib.harness");
+		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
+		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		archive.addClasses(mimemessageJSP_Test.class, mimemessage_Test.class);
-		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
+    
+		URL jspVehicle = mimemessageJSP_Test.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+		if(jspVehicle != null) {
+			archive.addAsWebResource(jspVehicle, "/jsp_vehicle.jsp");
+		}
+		URL clientHtml = mimemessageJSP_Test.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+		if(clientHtml != null) {
+			archive.addAsWebResource(clientHtml, "/client.html");
+		}
 
 		// The jsp descriptor
         URL jspUrl = mimemessageJSP_Test.class.getResource("jsp_vehicle_web.xml");

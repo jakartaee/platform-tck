@@ -44,6 +44,8 @@ public class internetMimeMultipartServlet_Test extends internetMimeMultipart_Tes
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
+		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
+		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		archive.addPackages(false, "com.sun.ts.tests.javamail.ee.internetMimeMultipart");
 		archive.addClasses(internetMimeMultipartServlet_Test.class, internetMimeMultipart_Test.class);
 		
