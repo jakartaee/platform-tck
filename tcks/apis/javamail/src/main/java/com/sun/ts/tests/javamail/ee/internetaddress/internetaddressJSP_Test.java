@@ -54,21 +54,26 @@ public class internetaddressJSP_Test extends internetaddress_Test
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
+		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
+		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		archive.addClasses(internetaddressJSP_Test.class, internetaddress_Test.class);
-		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
+
+		URL jspVehicle = internetaddressJSP_Test.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+		if(jspVehicle != null) {
+			archive.addAsWebResource(jspVehicle, "/jsp_vehicle.jsp");
+		}
+		URL clientHtml = internetaddressJSP_Test.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+		if(clientHtml != null) {
+			archive.addAsWebResource(clientHtml, "/client.html");
+		}
         
 		// The jsp descriptor
-        URL jspUrl = getMessageContentJSP_Test.class.getResource("jsp_vehicle_client.xml");
+        URL jspUrl = internetaddressJSP_Test.class.getResource("jsp_vehicle_client.xml");
         if(jspUrl != null) {
         	archive.addAsWebInfResource(jspUrl, "web.xml");
         }
         // The sun jsp descriptor
-        URL sunJSPUrl = getMessageContentJSP_Test.class.getResource("internetaddress_jsp_vehicle_web.war.sun-web.xml");
+        URL sunJSPUrl = internetaddressJSP_Test.class.getResource("internetaddress_jsp_vehicle_web.war.sun-web.xml");
         if(sunJSPUrl != null) {
         	archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
         }

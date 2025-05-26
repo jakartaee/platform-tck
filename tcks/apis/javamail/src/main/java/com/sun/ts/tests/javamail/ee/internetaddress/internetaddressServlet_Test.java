@@ -51,7 +51,9 @@ public class internetaddressServlet_Test extends internetaddress_Test
 		archive.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
-				archive.addPackages(true, "com.sun.ts.lib.harness");
+		archive.addPackages(true, "com.sun.ts.lib.harness");
+		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
+		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		archive.addClasses(internetaddressServlet_Test.class, internetaddress_Test.class);
 		
 		// The Servlet descriptor

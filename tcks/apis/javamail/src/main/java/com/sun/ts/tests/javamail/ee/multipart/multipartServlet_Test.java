@@ -50,6 +50,8 @@ public class multipartServlet_Test extends multipart_Test implements Serializabl
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
+		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
+		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		archive.addClasses(multipartServlet_Test.class, multipart_Test.class);
 		
 		// The servlet descriptor

@@ -49,6 +49,9 @@ public class fetchprofileJSP_Test extends fetchprofile_Test implements Serializa
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
+		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
+		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
+
 
 		URL jspVehicle = fetchprofileJSP_Test.class.getResource
 			("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");

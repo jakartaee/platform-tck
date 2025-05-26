@@ -47,6 +47,8 @@ public class fetchprofileServlet_Test extends fetchprofile_Test implements Seria
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
+		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
+		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		archive.addClasses(fetchprofileServlet_Test.class, fetchprofile_Test.class);
 		
 	       // The servlet descriptor
