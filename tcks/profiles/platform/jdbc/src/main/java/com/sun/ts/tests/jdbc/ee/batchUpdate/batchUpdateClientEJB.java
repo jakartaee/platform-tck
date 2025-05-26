@@ -84,7 +84,7 @@ public class batchUpdateClientEJB extends batchUpdateClient implements Serializa
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
-		ejb.addClasses(batchUpdateClient.class);
+		ejb.addClasses(batchUpdateClient.class, ServiceEETest.class, EETest.class);
 
 		resURL = batchUpdateClientEJB.class
 				.getResource("/com/sun/ts/tests/jdbc/ee/batchUpdate/batchUpdate_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");

@@ -159,15 +159,13 @@
                                     <outputDirectory>${glassfish.lib.dir}</outputDirectory>
                                     <destFileName>tck-porting-lib.jar</destFileName>
                                 </artifactItem>
-                                <!--
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
                                     <artifactId>jdbc-platform-tck</artifactId>
                                     <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/jdbc-tck</outputDirectory>
                                     <destFileName>jdbc-platform-tck.jar</destFileName>
                                 </artifactItem>
-                                -->
                                 <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
                                     <artifactId>arquillian-protocol-lib</artifactId>
@@ -251,7 +249,7 @@
                                 <srcFile>${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.sprocs.sql</srcFile>
                             </srcFiles>
                             <sqlCommand>CREATE SCHEMA CTS1 AUTHORIZATION CTS1;
-CALL sqlj.install_jar('${glassfish.lib.dir}/jdbc-platform-tck.jar', 'CTS1.CS_Procs', 0);
+CALL sqlj.install_jar('${project.build.directory}/jdbc-tck/jdbc-platform-tck.jar', 'CTS1.CS_Procs', 0);
 CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS_Procs');</sqlCommand>
                         </configuration>
                     </execution>
