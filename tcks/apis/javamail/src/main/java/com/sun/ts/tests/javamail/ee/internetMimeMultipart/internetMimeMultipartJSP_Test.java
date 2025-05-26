@@ -47,12 +47,12 @@ public class internetMimeMultipartJSP_Test extends internetMimeMultipart_Test {
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.jsp");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 
-		InputStream jspVehicle = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-        archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
-        InputStream clientHtml = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-        archive.add(new ByteArrayAsset(clientHtml), "client.html");
+		InputStream jspVehicle = internetMimeMultipartJSP_Test.class.getResource
+                ("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+    archive.add(new ByteArrayAsset(jspVehicle), "jsp_vehicle.jsp");
+    InputStream clientHtml = internetMimeMultipartJSP_Test.class.getResource
+                ("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+    archive.add(new ByteArrayAsset(clientHtml), "client.html");
 		archive.addClasses(internetMimeMultipartJSP_Test.class, internetMimeMultipart_Test.class);
 		
 		// The jsp descriptor
