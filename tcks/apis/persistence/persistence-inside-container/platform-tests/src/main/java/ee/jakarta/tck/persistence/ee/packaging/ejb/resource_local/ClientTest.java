@@ -99,7 +99,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.reso
 
             // non-vehicle appclientproxy invoker war
             WebArchive appclientproxy = ShrinkWrap.create(WebArchive.class, "appclientproxy.war");
-            appclientproxy.addClasses(Client.class, StatelessServletTarget.class, ServletNoVehicle.class);
+            appclientproxy.addClasses(Client.class, EETest.class, StatelessServletTarget.class, ServletNoVehicle.class);
             appclientproxy.addAsWebInfResource(new StringAsset(""), "beans.xml");
 
         // Ear
