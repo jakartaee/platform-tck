@@ -418,7 +418,7 @@
 
             <plugin>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>3.5.2</version>
+                <version>3.5.3</version>
                 <configuration>
                     <reportsDirectories>${project.build.directory}/failsafe-reports/junitreports</reportsDirectories>
                     <outputDirectory>${project.build.directory}/surefire-reports</outputDirectory>
