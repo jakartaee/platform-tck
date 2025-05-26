@@ -198,7 +198,7 @@
         <profile>
             <id>mysql</id>
             <properties>
-                <mysql.jdbc.version>9.2.0</mysql.jdbc.version>
+                <mysql.jdbc.version>9.3.0</mysql.jdbc.version>
             </properties>
             <dependencies>
                 <dependency>
