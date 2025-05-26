@@ -52,6 +52,8 @@ public class mimemessageEJB_Test extends mimemessage_Test implements Serializabl
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
+		ejbClient.addClass(com.sun.ts.tests.common.base.EETest.class);
+		ejbClient.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		ejbClient.addClasses(mimemessageEJB_Test.class, mimemessage_Test.class);
 
 		URL resURL = mimemessageEJB_Test.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");

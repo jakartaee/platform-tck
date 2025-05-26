@@ -48,6 +48,8 @@ public class internetMimeMultipartAppClient_Test extends internetMimeMultipart_T
 		archive.addPackages(true, "com.sun.ts.tests.javamail.ee");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
+		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
+		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		archive.addClasses(internetMimeMultipartAppClient_Test.class, internetMimeMultipart_Test.class);
 		archive.addAsManifestResource(
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.common.vehicle.VehicleClient" + "\n"),

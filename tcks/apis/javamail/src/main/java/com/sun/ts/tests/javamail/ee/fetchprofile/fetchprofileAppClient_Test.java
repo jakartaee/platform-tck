@@ -51,7 +51,8 @@ public class fetchprofileAppClient_Test extends fetchprofile_Test implements Ser
 		appclientArchive.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
 		appclientArchive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		appclientArchive.addPackages(true, "com.sun.ts.lib.harness");
-		appclientArchive.addClasses(fetchprofile_Test.class);
+		appclientArchive.addClass(com.sun.ts.tests.common.base.EETest.class);
+		appclientArchive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		// The appclient-client descriptor
 		URL appClientUrl = fetchprofileAppClient_Test.class
 				.getResource("/com/sun/ts/tests/javamail/ee/fetchprofile/appclient_vehicle_client.xml");

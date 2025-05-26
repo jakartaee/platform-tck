@@ -47,6 +47,9 @@ public class getMessageContentAppClient_Test extends getMessageContent_Test {
 		archive.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
+    archive.addClass(com.sun.ts.tests.common.base.EETest.class);
+		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
+
 		archive.addClasses(getMessageContentAppClient_Test.class, getMessageContent_Test.class);
 		
         // The appclient-client descriptor

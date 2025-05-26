@@ -50,6 +50,8 @@ public class fetchprofileEJB_Test extends fetchprofile_Test implements Serializa
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
 		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee");
+		ejbClient.addClass(com.sun.ts.tests.common.base.EETest.class);
+		ejbClient.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		ejbClient.addClasses(fetchprofileEJB_Test.class, fetchprofile_Test.class);
 
 		URL resURL = fetchprofileEJB_Test.class

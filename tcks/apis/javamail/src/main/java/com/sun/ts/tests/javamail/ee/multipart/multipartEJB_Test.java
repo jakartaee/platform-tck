@@ -52,6 +52,8 @@ public class multipartEJB_Test extends multipart_Test implements Serializable {
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
+		ejbClient.addClass(com.sun.ts.tests.common.base.EETest.class);
+		ejbClient.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		ejbClient.addClasses(multipartEJB_Test.class, multipart_Test.class);
 
 		URL resURL = multipartEJB_Test.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
