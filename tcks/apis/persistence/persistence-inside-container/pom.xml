@@ -27,7 +27,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>persistence-platform-tck</artifactId>
-    <version>11.0.1-SNAPSHOT</version>
+    <version>11.0.1-RC1</version>
     <packaging>pom</packaging>
 
     <name>Jakarta Persistence Platform TCK</name>
