@@ -554,12 +554,7 @@
                         <configuration>
                             <dependenciesToScan>jakarta.tck:appclient</dependenciesToScan>
                             <includes>
-                                <!--
-                                <include>**/Client</include>
-                                <include>com.sun.ts.tests.appclient.deploy.ejblink.**.Client</include>
                                 <include>com.sun.ts.tests.appclient.**.Client</include>
-                                -->
-                                <include>com.sun.ts.tests.appclient.deploy.enventry.scope.Client</include>
                             </includes>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${glassfish.module.dir}/angus-mail.jar</additionalClasspathElement>
