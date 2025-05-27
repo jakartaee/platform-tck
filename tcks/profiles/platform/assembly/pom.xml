@@ -28,7 +28,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>assembly-tck</artifactId>
-    <version>11.0.1-SNAPSHOT</version>
+    <version>11.0.1</version>
 
     <name>assembly-tck</name>
     <description>ASSEMBLY</description>
