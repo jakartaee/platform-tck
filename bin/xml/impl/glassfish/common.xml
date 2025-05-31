@@ -72,15 +72,8 @@
            <property name="exec.imqusermgr.part2" value="" />
            <property name="cert.file" value="${bin.dir}/certificates/cts_cert"/>
            <property name="server.config.dir.path" value="${server.domain}/${server.config.dir}" />
-           <property name="cacerts.jks" value="${server.config.dir.path}/cacerts.jks"/>
-           <property name="keystore.jks" value="${server.config.dir.path}/keystore.jks"/>
-           <property name="cert8.db" value="${server.config.dir.path}/cert8.db"/>
-           <property name="key3.db" value="${server.config.dir.path}/key3.db"/>
-           <property name="secmod.db" value="${server.config.dir.path}/secmod.db"/>
            <property name="exec.keytool" value= "${java.home}/bin/keytool" />
            <property name="exec.keytool.part2" value= "" />
-           <property name="exec.certutil" value= "${server.home}/lib/certutil" />
-           <property name="exec.certutil.part2" value= "" />
            <property name="password.file.template"
                      value="${common.bin.dir}/xml/impl/glassfish/templates/password.template"/>
            <property name="password.file" value="${bin.dir}/password.txt"/>
@@ -106,15 +99,11 @@
            <property name="exec.imqusermgr.part2" value="/c ${imqbin.loc}\imqusermgr" />
            <property name="cert.file" value="${ts.home}\bin\certificates\cts_cert"/>
            <property name="server.config.dir.path" value="${server.domain}\${server.config.dir}" />
-           <property name="cacerts.jks" value="${server.config.dir.path}\cacerts.jks"/>
-           <property name="keystore.jks" value="${server.config.dir.path}\keystore.jks"/>
            <property name="cert8.db" value="${server.config.dir.path}\cert8.db"/>
            <property name="key3.db" value="${server.config.dir.path}\key3.db"/>
            <property name="secmod.db" value="${server.config.dir.path}\secmod.db"/>
            <property name="exec.keytool" value="cmd.exe" />
            <property name="exec.keytool.part2" value= " /c ${java.home}\bin\keytool" />
-           <property name="exec.certutil" value= "${server.home}\lib\certutil" />
-           <property name="exec.certutil.part2" value= " /c ${server.home}/lib/certutil" />
            <property name="password.file.template"
                      value="${ts.home}\bin\xml\impl\glassfish\templates\password.template"/>
            <property name="password.file" value="${ts.home}\bin\password.txt"/>
@@ -132,21 +121,38 @@
         <available file="${server.home}/lib/appclient/${client.policy.orig}"
            type="file" property="found.client.policy.orig"/>
 
-         <condition property="java.keystore.generated" >
-           <and>
-             <available  file="${keystore.jks}" type="file" />
-             <available  file="${cacerts.jks}" type="file" />
-           </and>
-         </condition>
+        <condition property="server.keystore" value="${server.config.dir.path}/keystore.jks">
+          <available file="${server.config.dir.path}/keystore.jks" />
+        </condition>
+        <condition property="server.keystore" value="${server.config.dir.path}/keystore.p12">
+          <available file="${server.config.dir.path}/keystore.p12" />
+        </condition>
+        <condition property="server.truststore" value="${server.config.dir.path}/cacerts.jks">
+          <available file="${server.config.dir.path}/cacerts.jks" />
+        </condition>
+        <condition property="server.truststore" value="${server.config.dir.path}/cacerts.p12">
+          <available file="${server.config.dir.path}/cacerts.p12" />
+        </condition>
 
-         <condition property="found.nss.databases" >
-           <and>
-             <available  file="${cert8.db}" type="file" />
-             <available  file="${key3.db}" type="file" />
-             <available  file="${secmod.db}" type="file" />
-           </and>
-         </condition>
+        <condition property="ri.server.keystore" value="${ri.domain.dir}/${ri.domain.name}/config/keystore.jks">
+          <available file="${ri.domain.dir}/${ri.domain.name}/config/keystore.jks" />
+        </condition>
+        <condition property="ri.server.keystore" value="${ri.domain.dir}/${ri.domain.name}/config/keystore.p12">
+          <available file="${ri.domain.dir}/${ri.domain.name}/config/keystore.p12" />
+        </condition>
+        <condition property="ri.server.truststore" value="${ri.domain.dir}/${ri.domain.name}/config/cacerts.jks">
+          <available file="${ri.domain.dir}/${ri.domain.name}/config/cacerts.jks" />
+        </condition>
+        <condition property="ri.server.truststore" value="${ri.domain.dir}/${ri.domain.name}/config/cacerts.p12">
+          <available file="${ri.domain.dir}/${ri.domain.name}/config/cacerts.p12" />
+        </condition>
 
+        <condition property="java.keystore.generated" >
+          <and>
+            <available  file="${server.keystore}" type="file" />
+            <available  file="${server.truststore}" type="file" />
+          </and>
+        </condition>
     </target>
 
     <target name="setNSSConfigDir" >
@@ -799,7 +805,7 @@
      <!--
        Add the certificate needed for csiv2
      -->
-     <target name="import.cert" depends="configPlatform,checkForFiles,generate.certs" >
+     <target name="import.cert" depends="configPlatform,checkForFiles" >
         <exec executable="${exec.keytool}" >
             <env key="JAVA_HOME" value="${java.home}" />
             <arg line=" ${exec.keytool.part2}" />
@@ -816,7 +822,7 @@
      </target>
 
 
-     <target name="export.cert" depends="configPlatform,checkForFiles,generate.certs" >
+     <target name="export.cert" depends="configPlatform,checkForFiles" >
         <exec executable="${exec.keytool}" >
             <env key="JAVA_HOME" value="${java.home}" />
             <arg line=" ${exec.keytool.part2}" />
@@ -848,58 +854,6 @@
             <arg line=" -keystore ${trustStore}"/>
         </exec>
      </target>
-
-
-     <!--
-       This target is only used for SE/EE it generates the jks files from the 
-       NSS database.  This is needed by appclient on SE/EE.
-     -->
-     <target name="generate.certs"  unless="java.keystore.generated" >
-        <echo message="***Exporting certificate from NSS database" />
-        <exec executable="${exec.certutil}" 
-              output="${server.config.dir.path}/${server.cert.alias}.cert" >
-            <env key="JAVA_HOME" value="${java.home}" />
-            <arg line=" ${exec.certutil.part2}" />
-            <arg line=" -L" />
-            <arg line=" -n" />
-            <arg line=" ${server.cert.alias}" />
-            <arg line=" -d" />
-            <arg line=" ${server.config.dir.path}" />
-            <arg line=" -a" />
-        </exec>
-
-        <echo message="***Generating Java Keystore from generated certificate "/>
-        <exec executable="${exec.keytool}" >
-            <env key="JAVA_HOME" value="${java.home}" />
-            <arg line=" ${exec.keytool.part2}" />
-            <arg line=" -import" />
-            <arg line=" -v" />
-            <arg line=" -noprompt" />
-            <arg line=" -alias ${server.cert.alias}" />
-            <arg line=" -file" />
-            <arg line="${server.config.dir.path}/${server.cert.alias}.cert" />
-            <arg line=" -keypass   ${keystore.password}" />
-            <arg line=" -keystore  ${keystore.jks}" />
-            <arg line=" -storepass ${keystore.password}" />
-        </exec>
-
-        <echo message="***Generating Java trust store from generated certificate "/>
-        <exec executable="${exec.keytool}" >
-            <env key="JAVA_HOME" value="${java.home}" />
-            <arg line=" ${exec.keytool.part2}" />
-            <arg line=" -import" />
-            <arg line=" -v" />
-            <arg line=" -noprompt" />
-            <arg line=" -trustcacerts" />
-            <arg line=" -alias ${server.cert.alias}" />
-            <arg line=" -file" />
-            <arg line="${server.config.dir.path}/${server.cert.alias}.cert" />
-            <arg line=" -keypass   ${keystore.password}" />
-            <arg line=" -keystore  ${cacerts.jks}" />
-            <arg line=" -storepass ${keystore.password}" />
-        </exec>
-     </target>
-
 
      <!--
           targets to stop and start Derby
@@ -1507,38 +1461,6 @@
          </filterset>
        </copy>
      </target>
-
-     <!--
-         For Appserver EE: Import RI's server certificate into EE's 
-         certificate database using certutil
-     -->
-     <target name="import.into.nss.databases" if="found.nss.databases" >
-          <echo message="Importing RI's server certificate into NSS database" />
-          <exec executable="${exec.certutil}">
-            <env key="JAVA_HOME" value="${java.home}" />
-            <arg line=" ${exec.certutil.part2}" />
-            <arg line=" -A" />
-            <arg line=" -a" />
-            <arg line=" -n" />
-            <arg line=" ricert" />
-            <arg line=" -t" />
-            <arg line=" CTP,CTP,CTP" />
-            <arg line=" -d" />
-            <arg line=" ${NSSConfigDir}" />
-            <arg line=" -i" />
-            <arg line=" ${ts.home}/tmp/ri_server_cert.file" />
-          </exec>
-     </target>
-
-<!-- Please remove if the new version of SE fixes this issue, see start.javadb above for details.
-     <target name="set.fileSyncTransactionLogValue.mac" if="isMac">
-       <property name="fileSyncTransactionLogValue" value="true"/>
-     </target>
-
-     <target name="set.fileSyncTransactionLogValue.non.mac" unless="isMac">
-       <property name="fileSyncTransactionLogValue" value="false"/>       
-     </target>
--->
 
 
 	<!-- 

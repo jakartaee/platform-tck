@@ -269,8 +269,8 @@ printf  "
 
 if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
   echo "Using higher JVM memory for EJB Lite suites to avoid OOM errors"
-  sed -i.bak 's/-Xmx512m/-Xmx4096m/g' ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/config/domain.xml
-  sed -i.bak 's/-Xmx1024m/-Xmx4096m/g' ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/config/domain.xml
+  sed -i.bak 's/-Xmx512m/-Xmx4096m/g' ${CTS_HOME}/vi/${GF_VI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/domain.xml
+  sed -i.bak 's/-Xmx1024m/-Xmx4096m/g' ${CTS_HOME}/vi/${GF_VI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/domain.xml
   sed -i.bak 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/domain.xml
   sed -i.bak 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/domain.xml
 
@@ -342,6 +342,13 @@ sed -i.bak "s/^imap.port=.*/imap.port=${IMAP_PORT}/g" ts.jte
 
 sed -i.bak 's/^s1as.admin.passwd=.*/s1as.admin.passwd=adminadmin/g' ts.jte
 sed -i.bak 's/^ri.admin.passwd=.*/ri.admin.passwd=adminadmin/g' ts.jte
+
+if [ -f "${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/cacerts.p12" ]; then
+  sed -i.bak "s#^ri.truststore=.*#ri.truststore=\${ri.domain}/config/cacerts.p12#g" ts.jte
+fi
+if [ -f "${CTS_HOME}/vi/${GF_VI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/cacerts.p12" ]; then
+  sed -i.bak "s#^s1as.truststore=.*#s1as.truststore=\${s1as.domain}/config/cacerts.p12#g" ts.jte
+fi
 
 sed -i.bak 's/^jdbc.maxpoolsize=.*/jdbc.maxpoolsize=30/g' ts.jte
 sed -i.bak 's/^jdbc.steadypoolsize=.*/jdbc.steadypoolsize=5/g' ts.jte

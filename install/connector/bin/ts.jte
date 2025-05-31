@@ -171,6 +171,7 @@ s1as.domain=${s1as.domain.dir}/${s1as.domain.name}
 s1as.asenv.loc=${connector.home}/config
 s1as.imqbin.loc=${connector.home}/imq/bin
 s1as.imq.share.lib=${connector.home}/imq/lib
+s1as.truststore=${s1as.domain}/config/cacerts.jks
 s1as.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}
 s1as.java.endorsed.dirs=${endorsed.dirs}
 s1as.applicationRoot=c:
@@ -324,7 +325,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         -Djava.protocol.handler.pkgs=javax.net.ssl \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
-        -Djavax.net.ssl.trustStore=${s1as.domain}/${sjsas.instance.config.dir}/cacerts.jks \
+        -Djavax.net.ssl.trustStore=${s1as.truststore} \
         -Dcom.sun.aas.installRoot=${connector.home} \
         -Dcom.sun.aas.configRoot=${connector.home}/config \
         -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \

@@ -100,7 +100,8 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
                     -Dbytecheck=true \
                     -Djavax.net.ssl.keyStorePassword=changeit \
                     -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
-                    -Djavax.net.ssl.trustStore=${web.home}/domains/domain1/config/cacerts.jks \
+                    -Djavax.net.ssl.trustStore=${s1as.truststore} \
+                    -Djavax.net.ssl.trustStorePassword=changeit \
                     ${JAVA_OPTIONS} $testExecuteClass $testExecuteArgs
 
 ########################################################################
@@ -352,6 +353,7 @@ s1as.domain.name=domain1
 s1as.domain=${s1as.domain.dir}/${s1as.domain.name}
 s1as.admin.host=${glassfish.admin.host}
 s1as.admin.port=${glassfish.admin.port}
+s1as.truststore=${s1as.domain}/config/cacerts.jks
 
 ###############################################################
 # @extension.dir - The extension directory of RI. 
