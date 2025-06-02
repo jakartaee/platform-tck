@@ -413,7 +413,7 @@
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
                 <eclipselink.asm.version>9.7.0</eclipselink.asm.version>
-                <eclipselink.version>5.0.0-B07</eclipselink.version>
+                <eclipselink.version>5.0.0-B08</eclipselink.version>
                 <jakarta.persistence.provider>org.eclipse.persistence.jpa.PersistenceProvider</jakarta.persistence.provider>
                 <jpa.provider.implementation.specific.properties>eclipselink.logging.level=OFF${jpa.provider.implementation.specific.additional.properties}</jpa.provider.implementation.specific.properties>
             </properties>
