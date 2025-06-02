@@ -238,7 +238,7 @@
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.2</version>
+                <version>3.5.3</version>
                 <configuration>
                     <argLine>-Duser.language=en 
                           -Duser.country=US 
