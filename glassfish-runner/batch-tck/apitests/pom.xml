@@ -31,7 +31,7 @@ Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
 
     <properties>
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-        <version.org.junit.jupiter>5.10.2</version.org.junit.jupiter>
+        <version.org.junit.jupiter>5.13.0</version.org.junit.jupiter>
         <version.org.junit.platform>1.10.2</version.org.junit.platform>
     </properties>
     
