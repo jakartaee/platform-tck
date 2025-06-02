@@ -21,7 +21,7 @@
         <glassfish.root>${project.build.directory}</glassfish.root>
         <glassfish.version>8.0.0-M10</glassfish.version>
         <maven.compiler.release>17</maven.compiler.release>
-        <weld.version>6.0.1.Final</weld.version>
+        <weld.version>6.0.3.Final</weld.version>
 
     </properties>
 
