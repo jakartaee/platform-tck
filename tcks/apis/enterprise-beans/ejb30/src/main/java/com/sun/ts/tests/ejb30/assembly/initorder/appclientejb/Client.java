@@ -95,7 +95,7 @@ public class Client extends EETest {
           TestUtil.logTrace("+ Context(%s) bindings: ".formatted(ctx.getNameInNamespace()));
             NamingEnumeration<Binding> ctxBindings = ctx.listBindings("");
             while (ctxBindings.hasMore()) {
-              Binding b2 = bindings.next();
+              Binding b2 = ctxBindings.next();
               String name2 = b2.getName();
               Object obj2 = b2.getObject();
               TestUtil.logTrace("++ %s entry: %s(%s)".formatted(name2, obj2, b2.getClassName()));
