@@ -406,7 +406,7 @@
 
 		<!-- If one user installs the RI and a different user installs the VI the   -->
 		<!-- config directories need to have their permissions loosened so at       -->
-		<!-- runtime, the appclient container may access the cacerts.jks file in    -->
+		<!-- runtime, the appclient container may access the truststore file in    -->
 		<!-- both the RI and VI.  It also allows one user to config both the RI     -->
 		<!-- and VI.                                                                -->
 		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="ri.perms"/>
@@ -439,7 +439,7 @@
 
 		<!-- If one user installs the RI and a different user installs the VI the   -->
 		<!-- config directories need to have their permissions loosened so at       -->
-		<!-- runtime, the appclient container may access the cacerts.jks file in    -->
+		<!-- runtime, the appclient container may access the truststore file in    -->
 		<!-- both the RI and VI.  It also allows one user to config both the RI     -->
 		<!-- and VI.                                                                -->
 		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="vi.perms"/>

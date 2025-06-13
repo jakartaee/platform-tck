@@ -30,7 +30,7 @@
     <property name="sjsas.internal.compat"         value="NULL"/>
     <property name="cts.internal.comment"          value=""/>
     <property name="deliverable.version"           value="10.0"/>
-    <property name="deliverable.tck.version"           value="10.0.6"/>
+    <property name="deliverable.tck.version"           value="10.0.7"/>
 
 	<property name="the.excludes" value="**/internal/**/*,
 	     **/jaxm/**/*, **/jaxm1.0.1/**/*,
