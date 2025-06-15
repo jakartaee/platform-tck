@@ -112,6 +112,7 @@ s1as.admin=${javaee.home}/bin/asadmin
 s1as.domain.dir=${web.home}/domains
 s1as.domain.name=domain1
 s1as.domain=${web.home}/domains/domain1
+s1as.truststore=${s1as.domain}/config/cacerts.jks
 s1as.asenv.loc=${javaee.home}/config
 
 ###############################################################
@@ -174,7 +175,8 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
                     -Djava.protocol.handler.pkgs=javax.net.ssl \
                     -Djavax.net.ssl.keyStore=${ts.home}/bin/certificates/clientcert.jks \
                     -Djavax.net.ssl.keyStorePassword=changeit \
-                    -Djavax.net.ssl.trustStore=${web.home}/domains/domain1/config/cacerts.jks \
+                    -Djavax.net.ssl.trustStore=${s1as.truststore} \
+                    -Djavax.net.ssl.trustStorePassword=changeit \
                     ${JAVA_OPTIONS} $testExecuteClass $testExecuteArgs
 
 ########################################################################

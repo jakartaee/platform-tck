@@ -128,6 +128,7 @@ s1as.asenv.loc=${jacc.home}/config
 s1as.imqbin.loc=${jacc.home}/imq/bin
 s1as.lib=${jacc.home}/lib
 s1as.imq.share.lib=${jacc.home}/imq/lib
+s1as.truststore=${s1as.domain}/config/cacerts.jks
 s1as.jvm.options=-Doracle.jdbc.J2EE13Compliant=true
 s1as.java.endorsed.dirs=${endorsed.dirs}
 s1as.applicationRoot=c:
@@ -310,7 +311,8 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         -Djava.protocol.handler.pkgs=javax.net.ssl \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
-        -Djavax.net.ssl.trustStore=${jacc.home}/domains/domain1/config/cacerts.jks \
+        -Djavax.net.ssl.trustStore=${s1as.truststore} \
+        -Djavax.net.ssl.trustStorePassword=changeit \
         -Ddeliverable.class=${deliverable.class} $testExecuteClass $testExecuteArgs
 
 

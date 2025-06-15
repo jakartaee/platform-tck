@@ -299,7 +299,7 @@
 
     <!-- If one user installs the RI and a different user installs the VI the   -->
     <!-- config directories need to have their permissions loosened so at       -->
-    <!-- runtime, the appclient container may access the cacerts.jks file in    -->
+    <!-- runtime, the appclient container may access the truststore file in    -->
     <!-- both the RI and VI.  It also allows one user to config both the RI     -->
     <!-- and VI.                                                                -->
     <target name="vi.perms">

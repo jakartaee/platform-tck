@@ -450,7 +450,7 @@
 
       <!-- If one user installs the RI and a different user installs the VI the   -->
       <!-- config directories need to have their permissions loosened so at       -->
-      <!-- runtime, the appclient container may access the cacerts.jks file in    -->
+      <!-- runtime, the appclient container may access the truststore file in    -->
       <!-- both the RI and VI.  It also allows one user to config both the RI     -->
       <!-- and VI.                                                                -->
       <target name="ri.perms">
@@ -465,15 +465,13 @@
 
           <antcall target="delete.cert" >
              <param name="cert.alias" value="${client.cert.alias}" />
-             <param name="trustStore" 
-                    value="${ri.domain.dir}/${ri.domain.name}/config/cacerts.jks"/>
+             <param name="trustStore" value="${ri.server.truststore}"/>
              <param name="trustStore.password" value="${keystore.password}" />
           </antcall>
 
           <antcall target="delete.cert" >
              <param name="cert.alias" value="VI_CERT" />
-             <param name="trustStore"
-                value="${ri.domain.dir}/${ri.domain.name}/config/cacerts.jks"/>
+             <param name="trustStore" value="${ri.server.truststore}"/>
              <param name="trustStore.password" value="${keystore.password}" />
           </antcall>
         </target>
@@ -481,17 +479,15 @@
      <!--
        Add cts certificate to the RI
      -->
-     <target name="add.cert" depends="configPlatform,checkForFiles,generate.certs" >
+     <target name="add.cert" depends="configPlatform,checkForFiles" >
         <antcall target="import.cert" >
             <param name="cert.alias" value="${client.cert.alias}" />
             <param name="cert.file" value="${cert.file}" />
+            <param name="trustStore" value="${ri.server.truststore}"/>
             <param name="trustStore.password" value="${keystore.password}" />
-            <param name="trustStore"
-                   value="${ri.domain.dir}/${ri.domain.name}/config/cacerts.jks"/>
         </antcall>
 
      </target>
-     
      <target name="modify.ri.ports" depends="configPlatform" >
          
          <!-- Change default iiop-listener SSL port from 3820 to 3821   -->
