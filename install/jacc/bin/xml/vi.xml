@@ -127,15 +127,14 @@
     </target>
 
      <!--
-       Add cts certificate to truststore 
+       Add cts certificate to truststore
      -->
     <target name="add.cert" depends="configPlatform,checkForFiles" >
         <antcall target="import.cert" >
             <param name="cert.alias" value="${client.cert.alias}" />
             <param name="cert.file" value="${cert.file}" />
             <param name="trustStore.password" value="${keystore.password}" />
-            <param name="trustStore"
-                   value="${s1as.domain.dir}/${s1as.domain.name}/config/cacerts.jks"/>
+            <param name="trustStore" value="${server.truststore}"/>
         </antcall>
     </target>
     <target name="import.cert" depends="configPlatform,checkForFiles" >
@@ -153,14 +152,13 @@
     </target>
 
     <!--
-      checkForFiles determines if the following files exist:
-      keystore.jks, cacerts.jks
+      checkForFiles determines if the following keystore and truststore files exist:
     -->
     <target name="checkForFiles">
         <condition property="java.keystore.generated" >
             <and>
-                <available  file="${keystore.jks}" type="file" />
-                <available  file="${cacerts.jks}" type="file" />
+                <available file="${server.keystore}" type="file" />
+                <available file="${server.truststore}" type="file" />
             </and>
         </condition>
     </target>

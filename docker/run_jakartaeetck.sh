@@ -269,8 +269,8 @@ printf  "
 
 if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
   echo "Using higher JVM memory for EJB Lite suites to avoid OOM errors"
-  sed -i.bak 's/-Xmx512m/-Xmx4096m/g' ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/config/domain.xml
-  sed -i.bak 's/-Xmx1024m/-Xmx4096m/g' ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/config/domain.xml
+  sed -i.bak 's/-Xmx512m/-Xmx4096m/g' ${CTS_HOME}/vi/${GF_VI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/domain.xml
+  sed -i.bak 's/-Xmx1024m/-Xmx4096m/g' ${CTS_HOME}/vi/${GF_VI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/domain.xml
   sed -i.bak 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/domain.xml
   sed -i.bak 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/domain.xml
 
@@ -279,13 +279,15 @@ if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
 fi
 
 # do ts.jte parameter substitution here of ${JVMOPTS_RUNTESTCOMMAND}
-if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
-  echo "update ts.jte for GlassFish to use --add-opens options for Java SE 17"
-  search="..JVMOPTS_RUNTESTCOMMAND."
-  replace="--add-opens=java.base\\/java.io=ALL-UNNAMED --add-opens=java.base\\/java.lang=ALL-UNNAMED --add-opens=java.base\\/java.util=ALL-UNNAMED --add-opens=java.base\\/sun.net.www.protocol.jrt=ALL-UNNAMED --add-opens=java.naming\\/javax.naming.spi=ALL-UNNAMED --add-opens=java.rmi\\/sun.rmi.transport=ALL-UNNAMED --add-opens=jdk.management\\/com.sun.management.internal=ALL-UNNAMED --add-exports=java.naming\\/com.sun.jndi.ldap=ALL-UNNAMED"
-  sed -i.bak "s/$search/$replace/" ${TS_HOME}/bin/ts.jte
-  echo "updated ts.jte to use -add-opens for Java SE 17 "
-fi
+# JPMS_NAMED targets later glassfish versions, but doesn't break anything if set for older too.'
+JPMS_NAMED="--add-opens=java.naming\\/javax.naming.spi=org.glassfish.main.jdke"
+JPMS_ADD_OPENS="--add-opens=java.base\\/java.io=ALL-UNNAMED --add-opens=java.base\\/java.lang=ALL-UNNAMED --add-opens=java.base\\/java.util=ALL-UNNAMED --add-opens=java.base\\/sun.net.www.protocol.jrt=ALL-UNNAMED --add-opens=java.naming\\/javax.naming.spi=ALL-UNNAMED --add-opens=java.rmi\\/sun.rmi.transport=ALL-UNNAMED --add-opens=jdk.management\\/com.sun.management.internal=ALL-UNNAMED"
+JPMS_ADD_EXPORTS="--add-exports=java.naming\\/com.sun.jndi.ldap=ALL-UNNAMED"
+echo "update ts.jte for GlassFish to use --add-opens options for JPMS"
+search="..JVMOPTS_RUNTESTCOMMAND."
+replace="$JPMS_NAMED $ADD_OPENS $ADD_EXPORTS"
+sed -i.bak "s/$search/$replace/" ${TS_HOME}/bin/ts.jte
+echo "updated ts.jte to use --add-opens"
 
 echo "Configuring VI domain at ${CTS_HOME}/ri/${GF_VI_TOPLEVEL_DIR}/glassfish/domains/domain1"
 if [ -n "$GF_LOGGING_CFG_VI" ]; then
@@ -342,6 +344,13 @@ sed -i.bak "s/^imap.port=.*/imap.port=${IMAP_PORT}/g" ts.jte
 
 sed -i.bak 's/^s1as.admin.passwd=.*/s1as.admin.passwd=adminadmin/g' ts.jte
 sed -i.bak 's/^ri.admin.passwd=.*/ri.admin.passwd=adminadmin/g' ts.jte
+
+if [ -f "${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/cacerts.p12" ]; then
+  sed -i.bak "s#^ri.truststore=.*#ri.truststore=\${ri.domain}/config/cacerts.p12#g" ts.jte
+fi
+if [ -f "${CTS_HOME}/vi/${GF_VI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/cacerts.p12" ]; then
+  sed -i.bak "s#^s1as.truststore=.*#s1as.truststore=\${s1as.domain}/config/cacerts.p12#g" ts.jte
+fi
 
 sed -i.bak 's/^jdbc.maxpoolsize=.*/jdbc.maxpoolsize=30/g' ts.jte
 sed -i.bak 's/^jdbc.steadypoolsize=.*/jdbc.steadypoolsize=5/g' ts.jte

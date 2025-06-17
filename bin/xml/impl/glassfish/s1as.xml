@@ -1109,14 +1109,13 @@
        
        <antcall target="delete.cert" >
           <param name="cert.alias" value="${client.cert.alias}" />
-          <param name="trustStore" value="${s1as.domain.dir}/${s1as.domain.name}/config/cacerts.jks"/>
+          <param name="trustStore" value="${server.truststore}"/>
           <param name="trustStore.password" value="${keystore.password}" />
        </antcall>
 
        <antcall target="delete.cert" >
           <param name="cert.alias" value="RI_CERT" />
-          <param name="trustStore" 
-             value="${s1as.domain.dir}/${s1as.domain.name}/config/cacerts.jks"/>
+          <param name="trustStore" value="${server.truststore}"/>
           <param name="trustStore.password" value="${keystore.password}" />
        </antcall>
      </target>
@@ -1124,42 +1123,21 @@
     <!--
        Add cts certificate to SJSAS
      -->
-     <target name="add.cert" depends="configPlatform,checkForFiles,generate.certs" >
+     <target name="add.cert" depends="configPlatform,checkForFiles" >
         <antcall target="import.cert" >
             <param name="cert.alias" value="${client.cert.alias}" />
             <param name="cert.file" value="${cert.file}" />
+            <param name="trustStore" value="${server.truststore}"/>
             <param name="trustStore.password" value="${keystore.password}" />
-            <param name="trustStore" 
-                   value="${s1as.domain.dir}/${s1as.domain.name}/config/cacerts.jks"/>
         </antcall>
 
-         <antcall target="add.cts.cert.into.nss.databases"/>
-
-     </target>
-
-     <target name="add.cts.cert.into.nss.databases" if="found.nss.databases" >
-          <echo message="Importing cts certificate into NSS database" />
-          <exec executable="${exec.certutil}">
-            <env key="JAVA_HOME" value="${java.home}" />
-            <arg line=" ${exec.certutil.part2}" />
-            <arg line=" -A" />
-            <arg line=" -a" />
-            <arg line=" -n" />
-            <arg line=" cts" />
-            <arg line=" -t" />
-            <arg line=" CTP,CTP,CTP" />
-            <arg line=" -d" />
-            <arg line=" ${NSSConfigDir}" />
-            <arg line=" -i" />
-            <arg line=" ${bin.dir}/certificates/cts_cert" />
-          </exec>
      </target>
 
 
      <!--
         Add the certificates needed for running the interop tests
      -->
-     <target name="add.interop.certs" depends="configPlatform,checkForFiles,generate.certs" >
+     <target name="add.interop.certs" depends="configPlatform,checkForFiles" >
 
         <!--
              Next add the RI server certificate into the SJAS truststore
@@ -1167,17 +1145,15 @@
         <antcall target="export.cert" >
             <param name="cert.alias" value="${server.cert.alias}" />
             <param name="cert.file" value="${ts.home}/tmp/ri_server_cert.file" />
-            <param name="trustStore"
-                  value="${ri.domain.dir}/${ri.domain.name}/config/keystore.jks"/>
+            <param name="trustStore" value="${ri.server.keystore}"/>
             <param name="trustStore.password" value="${keystore.password}" />
         </antcall>
 
         <antcall target="import.cert" >
             <param name="cert.alias" value="RI_CERT" />
             <param name="cert.file" value="${ts.home}/tmp/ri_server_cert.file" />
+            <param name="trustStore" value="${server.truststore}"/>
             <param name="trustStore.password" value="${keystore.password}" />
-            <param name="trustStore"
-                   value="${s1as.domain.dir}/${s1as.domain.name}/config/cacerts.jks"/>
          </antcall>
 
          <!--
@@ -1186,17 +1162,15 @@
         <antcall target="export.cert" >
             <param name="cert.alias" value="${server.cert.alias}" />
             <param name="cert.file" value="${ts.home}/tmp/vi_server_cert.file" />
-            <param name="trustStore"
-                  value="${s1as.domain.dir}/${s1as.domain.name}/config/keystore.jks"/>
+            <param name="trustStore" value="${server.keystore}"/>
             <param name="trustStore.password" value="${keystore.password}" />
         </antcall>
 
         <antcall target="import.cert" >
             <param name="cert.alias" value="VI_CERT" />
             <param name="cert.file" value="${ts.home}/tmp/vi_server_cert.file" />
+            <param name="trustStore" value="${ri.server.truststore}"/>
             <param name="trustStore.password" value="${keystore.password}" />
-            <param name="trustStore"
-                   value="${ri.domain.dir}/${ri.domain.name}/config/cacerts.jks"/>
          </antcall>
 
          <antcall target="import.into.nss.databases" />
