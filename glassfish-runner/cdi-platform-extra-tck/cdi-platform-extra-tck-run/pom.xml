@@ -45,7 +45,7 @@
         <maven.build.cache.enabled>false</maven.build.cache.enabled>
 
         <!-- Weld uses 2 versions numbers. Some artefact use one version, other the second. -->
-        <weld.version>6.0.1.Final</weld.version>
+        <weld.version>6.0.3.Final</weld.version>
         <weld.version2>6.0.Final</weld.version2>
     </properties>
 
