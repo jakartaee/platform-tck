@@ -1,0 +1,2 @@
+org.jboss.arquillian.junit5.ArquillianExtension
+org.glassfish.jsonb.tck.TestInvocationInterceptor
