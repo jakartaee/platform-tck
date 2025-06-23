@@ -37,7 +37,7 @@
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
         <maven.site.skip>true</maven.site.skip>
         <asciidoctorj.version>2.5.13</asciidoctorj.version>
-        <asciidoctorj.diagram.version>2.3.2</asciidoctorj.diagram.version>
+        <asciidoctorj.diagram.version>3.0.1</asciidoctorj.diagram.version>
         <asciidoctorj.maven.plugin.version>3.1.0</asciidoctorj.maven.plugin.version>
         <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
         <jbake.maven.plugin.version>2.7.0-rc.7</jbake.maven.plugin.version>
