@@ -212,7 +212,7 @@
         <profile>
             <id>oracle</id>
             <properties>
-                <oracle.jdbc.version>23.7.0.25.01</oracle.jdbc.version>
+                <oracle.jdbc.version>23.8.0.25.04</oracle.jdbc.version>
             </properties>
             <dependencies>
                 <dependency>
