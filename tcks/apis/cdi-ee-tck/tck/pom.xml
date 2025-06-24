@@ -191,7 +191,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-support</artifactId>
-            <version>4.24.0</version>
+            <version>4.33.0</version>
         </dependency>
         
         <dependency>
