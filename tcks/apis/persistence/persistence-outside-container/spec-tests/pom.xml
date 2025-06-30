@@ -184,7 +184,7 @@
         <profile>
             <id>mssqlserver</id>
             <properties>
-                <mssqlserver.jdbc.version>12.4.2.jre11</mssqlserver.jdbc.version>
+                <mssqlserver.jdbc.version>12.10.1.jre11</mssqlserver.jdbc.version>
             </properties>
             <dependencies>
                 <dependency>
