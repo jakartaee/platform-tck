@@ -83,7 +83,7 @@
     </ciManagement>
 
     <properties>
-        <arquillian.version>1.9.3.Final</arquillian.version>
+        <arquillian.version>1.10.0.Final</arquillian.version>
         <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
 
         <!-- Jakarta EE APIs Core -->
