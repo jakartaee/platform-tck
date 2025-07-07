@@ -17,22 +17,23 @@
   ~ SPDX-License-Identifier: Apache-2.0
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
 
     <groupId>jakarta.data</groupId>
     <artifactId>jakarta.data-tools</artifactId>
     <version>1.0.0</version>
+
     <name>Jakarta Data Tools</name>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.release>17</maven.compiler.release>
+        
         <antlr.version>4.13.1</antlr.version>
         <arquillian.version>1.8.0.Final</arquillian.version>
         <junit.version>5.10.2</junit.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
@@ -53,13 +54,12 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
+    
     <dependencies>
-
         <dependency>
             <groupId>jakarta.data</groupId>
             <artifactId>jakarta.data-api</artifactId>
-            <version>1.0.0-RC1</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>jakarta.persistence</groupId>
@@ -101,6 +101,11 @@
 
     <build>
         <plugins>
+             <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.0</version>
+            </plugin>
+            
             <plugin>
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-maven-plugin</artifactId>
