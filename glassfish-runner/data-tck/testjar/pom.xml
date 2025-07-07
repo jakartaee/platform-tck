@@ -16,14 +16,19 @@
   ~
   ~ SPDX-License-Identifier: Apache-2.0
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.hibernate</groupId>
     <artifactId>hibernate-data-tck-tests</artifactId>
     <version>1.0</version>
+
     <name>Hibernate Jakarta Data TCK Test Jar</name>
+
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        
         <maven.dep.plugin.version>3.3.0</maven.dep.plugin.version>
         <maven.comp.plugin.version>3.10.1</maven.comp.plugin.version>
         <maven.source.plugin.version>3.3.0</maven.source.plugin.version>
@@ -36,7 +41,7 @@
         <junit.version>5.9.0</junit.version>
         <cdi.version>4.1.0</cdi.version>
         <servlet.version>6.0.0</servlet.version>
-        <hibernate.data.version>6.6.0.Alpha1</hibernate.data.version>
+        <hibernate.data.version>6.6.20.Final</hibernate.data.version>
     </properties>
 
     <!-- The Junit5 test frameworks -->
@@ -58,7 +63,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <!-- Runtime Dependencies -->
     <dependencies>
         <!-- The TCK -->
@@ -112,17 +116,17 @@
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.1.0-M2</version>
+            <version>6.1.0</version>
         </dependency>
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
-            <version>4.1.0.RC1</version>
+            <version>4.1.0</version>
         </dependency>
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
-            <version>3.1.0-M2</version>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>jakarta.transaction</groupId>
@@ -208,8 +212,8 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>

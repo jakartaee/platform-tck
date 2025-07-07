@@ -8,17 +8,4 @@
         <property name="deploymentExportPath">target/deployments</property>
     </engine>
 
-    <container qualifier="glassfish" default="true">
-        <configuration>
-            <property name="glassFishHome">target/glassfish8</property>
-            <property name="adminHost">localhost</property>
-            <property name="adminPort">4848</property>
-            <property name="enableDerby">${enableDerby:true}</property>
-            <property name="httpPort">8081</property>
-            <property name="outputToConsole">true</property>
-            <property name="debug">true</property>
-            <property name="suspend">false</property>
-        </configuration>
-    </container>
-
 </arquillian>
