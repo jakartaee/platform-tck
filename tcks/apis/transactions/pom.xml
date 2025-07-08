@@ -94,6 +94,14 @@
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>connector</artifactId>
+        </dependency>
         
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
