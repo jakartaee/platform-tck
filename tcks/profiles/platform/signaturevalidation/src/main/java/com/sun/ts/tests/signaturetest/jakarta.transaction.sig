@@ -17,36 +17,42 @@ intf java.lang.annotation.Annotation
 CLSS public jakarta.transaction.HeuristicCommitException
 cons public init()
 cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public jakarta.transaction.HeuristicMixedException
 cons public init()
 cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public jakarta.transaction.HeuristicRollbackException
 cons public init()
 cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public jakarta.transaction.InvalidTransactionException
 cons public init()
 cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
 supr java.rmi.RemoteException
 hfds serialVersionUID
 
 CLSS public jakarta.transaction.NotSupportedException
 cons public init()
 cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public jakarta.transaction.RollbackException
 cons public init()
 cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
@@ -70,6 +76,7 @@ CLSS public jakarta.transaction.SystemException
 cons public init()
 cons public init(int)
 cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
 fld public int errorCode
 supr java.lang.Exception
 hfds serialVersionUID
@@ -97,12 +104,14 @@ meth public abstract void setTransactionTimeout(int) throws jakarta.transaction.
 CLSS public jakarta.transaction.TransactionRequiredException
 cons public init()
 cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
 supr java.rmi.RemoteException
 hfds serialVersionUID
 
 CLSS public jakarta.transaction.TransactionRolledbackException
 cons public init()
 cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
 supr java.rmi.RemoteException
 hfds serialVersionUID
 
