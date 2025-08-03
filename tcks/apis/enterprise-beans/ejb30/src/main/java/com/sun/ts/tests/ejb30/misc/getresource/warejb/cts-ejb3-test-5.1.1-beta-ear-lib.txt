@@ -1,1 +1,0 @@
-cts-ejb3-test-5.1.1-beta-ear-lib.txt
