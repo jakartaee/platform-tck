@@ -45,10 +45,6 @@
         <module>tcks/apis/connector</module>
         <module>tcks/apis/connector/docs</module>
         <module>tcks/apis/connector-whitebox</module>
-        <module>tcks/apis/enterprise-beans/ejb30</module>
-        <!-- PENDING: Additional action necessary to expurgate WebServices content. -->
-        <!-- https://github.com/jakartaee/platform-tck/issues/1387 -->
-        <module>tcks/apis/enterprise-beans/ejb32</module>
         <module>tcks/apis/expression-language/expression-language-inside-container</module>
         <module>tcks/apis/expression-language/expression-language-inside-container/docs/userguide</module>
         <module>tcks/apis/javamail</module>
