@@ -162,11 +162,6 @@
       </dependency>
       <dependency>
         <groupId>jakarta.tck</groupId>
-        <artifactId>ejb32</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>jakarta.tck</groupId>
         <artifactId>xa</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -188,11 +183,6 @@
       <dependency>
         <groupId>jakarta.tck</groupId>
         <artifactId>persistence-platform-tck</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>jakarta.tck</groupId>
-        <artifactId>ejb30</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
