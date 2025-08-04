@@ -111,7 +111,7 @@
 
         <!-- Test tools/dependencies -->
         <testng.version>7.10.2</testng.version>
-        <shrinkwrap.version>3.3.3</shrinkwrap.version>
+        <shrinkwrap.version>3.3.4</shrinkwrap.version>
         <weld.version>6.0.0.Beta4</weld.version>
     </properties>
 
