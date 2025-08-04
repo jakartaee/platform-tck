@@ -56,6 +56,8 @@
         <glassfish.version>8.0.0-M11</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
         <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+        
+        <tck.test.ejb.version>11.0.1</tck.test.ejb.version>
 
         <!-- Require at least Java 17 to compile -->
         <maven.compiler.release>17</maven.compiler.release>
@@ -121,11 +123,13 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>ejb30</artifactId>
+            <version>${tck.test.ejb.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>ejb32</artifactId>
+            <version>${tck.test.ejb.version}</version>
             <scope>test</scope>
         </dependency>
 

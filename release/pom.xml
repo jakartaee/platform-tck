@@ -94,26 +94,6 @@
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
-            <artifactId>ejb30</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>ejb30</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>ejb32</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>ejb32</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
             <artifactId>el-platform-tck</artifactId>
         </dependency>
         <dependency>
