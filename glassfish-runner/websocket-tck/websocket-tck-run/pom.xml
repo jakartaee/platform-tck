@@ -31,7 +31,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <arquillian.version>1.9.3.Final</arquillian.version>
+        <arquillian.version>1.10.0.Final</arquillian.version>
         <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
 
