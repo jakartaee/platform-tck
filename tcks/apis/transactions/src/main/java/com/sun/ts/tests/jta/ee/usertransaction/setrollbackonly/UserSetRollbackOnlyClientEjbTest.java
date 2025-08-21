@@ -79,7 +79,7 @@ public class UserSetRollbackOnlyClientEjbTest extends com.sun.ts.tests.jta.ee.us
             setrollbackonly_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
         }
         setrollbackonly_ejb_vehicle_client.addAsManifestResource(
-                new StringAsset("Main-Class: " + UserSetRollbackOnlyClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+                new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
         archiveProcessor.processClientArchive(setrollbackonly_ejb_vehicle_client, UserSetRollbackOnlyClientEjbTest.class, resURL);
 
         JavaArchive setrollbackonly_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "setrollbackonly_ejb_vehicle_ejb.jar");
