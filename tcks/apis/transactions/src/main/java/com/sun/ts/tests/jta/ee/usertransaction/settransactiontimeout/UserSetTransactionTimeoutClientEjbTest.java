@@ -81,7 +81,7 @@ public class UserSetTransactionTimeoutClientEjbTest
             settransactiontimeout_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
         }
         settransactiontimeout_ejb_vehicle_client.addAsManifestResource(
-                new StringAsset("Main-Class: " + UserSetTransactionTimeoutClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+                new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
         archiveProcessor.processClientArchive(settransactiontimeout_ejb_vehicle_client, UserSetTransactionTimeoutClientEjbTest.class,
                 resURL);
 

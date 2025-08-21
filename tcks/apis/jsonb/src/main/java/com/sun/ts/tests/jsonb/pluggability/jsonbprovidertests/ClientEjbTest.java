@@ -114,7 +114,7 @@ public class ClientEjbTest extends Client {
         if (resURL != null) {
             jsonbprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
         }
-        jsonbprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+        jsonbprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"),
                 "MANIFEST.MF");
 
         resURL = ClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_client.jar.sun-application-client.xml");
@@ -156,21 +156,21 @@ public class ClientEjbTest extends Client {
     }
     @Override
     @Test
-    @TargetVehicle("appclient")
+    @TargetVehicle("ejb")
     public void jsonbProviderTest1() throws Exception {
         super.jsonbProviderTest1();
     }
 
     @Override
     @Test
-    @TargetVehicle("appclient")
+    @TargetVehicle("ejb")
     public void jsonbProviderTest2() throws Exception {
         super.jsonbProviderTest2();
     }
 
     @Override
     @Test
-    @TargetVehicle("appclient")
+    @TargetVehicle("ejb")
     public void jsonbProviderTest3() throws Exception {
         super.jsonbProviderTest3();
     }

@@ -117,7 +117,7 @@ public class ClientEjbTest extends Client {
     if(resURL != null) {
       jsonprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
     }
-    jsonprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    jsonprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
     resURL = ClientEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.jar.sun-application-client.xml");
     if(resURL != null) {
       jsonprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
@@ -177,95 +177,95 @@ public class ClientEjbTest extends Client {
   /* Tests */
 
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest1() throws Exception {
     super.jsonProviderTest1();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest2() throws Exception {
     super.jsonProviderTest2();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest3() throws Exception {
     super.jsonProviderTest3();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest4() throws Exception {
     super.jsonProviderTest4();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest5() throws Exception {
     super.jsonProviderTest5();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest6() throws Exception {
     super.jsonProviderTest6();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest7() throws Exception {
     super.jsonProviderTest7();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest8() throws Exception {
     super.jsonProviderTest8();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest9() throws Exception {
     super.jsonProviderTest9();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest10() throws Exception {
     super.jsonProviderTest10();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest11() throws Exception {
     super.jsonProviderTest11();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest12() throws Exception {
     super.jsonProviderTest12();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest13() throws Exception {
     super.jsonProviderTest13();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest14() throws Exception {
     super.jsonProviderTest14();
   }
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest15() throws Exception {
     super.jsonProviderTest15();
   }
 
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest16() throws Exception {
     super.jsonProviderTest16();
   }
 
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest17() throws Exception {
     super.jsonProviderTest17();
   }
 
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("ejb")
   public void jsonProviderTest18() throws Exception {
     super.jsonProviderTest18();
   }

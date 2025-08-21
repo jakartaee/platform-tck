@@ -78,7 +78,7 @@ public class UserBeginClientEjbTest extends com.sun.ts.tests.jta.ee.usertransact
         if (resURL != null) {
             begin_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
         }
-        begin_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + UserBeginClientEjbTest.class.getName() + "\n"),
+        begin_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"),
                 "MANIFEST.MF");
         archiveProcessor.processClientArchive(begin_ejb_vehicle_client, UserBeginClientEjbTest.class, resURL);
 
