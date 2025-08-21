@@ -285,7 +285,7 @@ JPMS_ADD_OPENS="--add-opens=java.base\\/java.io=ALL-UNNAMED --add-opens=java.bas
 JPMS_ADD_EXPORTS="--add-exports=java.naming\\/com.sun.jndi.ldap=ALL-UNNAMED"
 echo "update ts.jte for GlassFish to use --add-opens options for JPMS"
 search="..JVMOPTS_RUNTESTCOMMAND."
-replace="$JPMS_NAMED $ADD_OPENS $ADD_EXPORTS"
+replace="$JPMS_NAMED $JPMS_ADD_OPENS $JPMS_ADD_EXPORTS"
 sed -i.bak "s/$search/$replace/" ${TS_HOME}/bin/ts.jte
 echo "updated ts.jte to use --add-opens"
 
