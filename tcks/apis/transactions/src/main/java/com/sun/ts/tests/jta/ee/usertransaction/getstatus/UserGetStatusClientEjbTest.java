@@ -93,7 +93,7 @@ public class UserGetStatusClientEjbTest extends com.sun.ts.tests.jta.ee.usertran
                 EETest.class, Fault.class,
                 SetupException.class, ServiceEETest.class,
                 com.sun.ts.tests.jta.ee.common.TransactionStatus.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
-                UserGetStatusClientEjbTest.class);
+                com.sun.ts.tests.jta.ee.usertransaction.getstatus.UserGetStatusClient.class, UserGetStatusClientEjbTest.class);
         // The ejb-jar.xml descriptor
         URL ejbResURL = UserGetStatusClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_ejb.xml");
         if (ejbResURL != null) {
