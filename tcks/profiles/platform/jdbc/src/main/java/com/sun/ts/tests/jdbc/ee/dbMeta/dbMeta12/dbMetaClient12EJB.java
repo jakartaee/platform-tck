@@ -123,7 +123,7 @@ public class dbMetaClient12EJB extends dbMetaClient12 implements Serializable {
 	 * 
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testGetSQLStateType() throws Exception {
 		super.testGetSQLStateType();
 	}
@@ -140,7 +140,7 @@ public class dbMetaClient12EJB extends dbMetaClient12 implements Serializable {
 	 * 
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testGetDatabaseMinorVersion() throws Exception {
 		super.testGetDatabaseMinorVersion();
 	}
@@ -158,7 +158,7 @@ public class dbMetaClient12EJB extends dbMetaClient12 implements Serializable {
 	 * 
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testGetDatabaseMajorVersion() throws Exception {
 		super.testGetDatabaseMajorVersion();
 	}
@@ -175,7 +175,7 @@ public class dbMetaClient12EJB extends dbMetaClient12 implements Serializable {
 	 * 
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testGetJDBCMinorVersion() throws Exception {
 		super.testGetJDBCMinorVersion();
 	}
@@ -192,7 +192,7 @@ public class dbMetaClient12EJB extends dbMetaClient12 implements Serializable {
 	 * 
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testGetJDBCMajorVersion() throws Exception {
 		super.testGetJDBCMajorVersion();
 	}
@@ -209,7 +209,7 @@ public class dbMetaClient12EJB extends dbMetaClient12 implements Serializable {
 	 *
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testSupportsSavepoints() throws Exception {
 		super.testSupportsSavepoints();
 	}
@@ -226,7 +226,7 @@ public class dbMetaClient12EJB extends dbMetaClient12 implements Serializable {
 	 *
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testSupportsNamedParameters() throws Exception {
 		super.testSupportsNamedParameters();
 	}
@@ -243,7 +243,7 @@ public class dbMetaClient12EJB extends dbMetaClient12 implements Serializable {
 	 *
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testSupportsMultipleOpenResults() throws Exception {
 		super.testSupportsMultipleOpenResults();
 	}
@@ -260,7 +260,7 @@ public class dbMetaClient12EJB extends dbMetaClient12 implements Serializable {
 	 *
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testSupportsGetGeneratedKeys() throws Exception {
 		super.testSupportsGetGeneratedKeys();
 	}
@@ -277,7 +277,7 @@ public class dbMetaClient12EJB extends dbMetaClient12 implements Serializable {
 	 *
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testSupportsResultSetHoldability01() throws Exception {
 		super.testSupportsResultSetHoldability01();
 	}
@@ -294,7 +294,7 @@ public class dbMetaClient12EJB extends dbMetaClient12 implements Serializable {
 	 *
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testSupportsResultSetHoldability02() throws Exception {
 		super.testSupportsResultSetHoldability02();
 	}
@@ -311,7 +311,7 @@ public class dbMetaClient12EJB extends dbMetaClient12 implements Serializable {
 	 *
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testGetResultSetHoldability() throws Exception {
 		super.testGetResultSetHoldability();
 	}
