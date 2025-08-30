@@ -116,19 +116,18 @@ Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
         <!-- GlassFish Batch TCK dependencies -->
 
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.7</version>
+            <version>2.1.1</version>
             <scope>test</scope>
         </dependency>
         
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>glassfish-client-ee11</artifactId>
-            <version>1.8</version>
+            <version>2.1.1</version>
             <scope>test</scope>
         </dependency>
-        
     </dependencies>
 
     <build>
@@ -176,6 +175,8 @@ Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
                 <configuration>
                     <systemPropertyVariables>
                         <glassfish.home>${glassfish.home}</glassfish.home>
+                        <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
+                        
                         <arquillian.extensions.jakarta.batch.groupPrefixesToIgnore>org.glassfish</arquillian.extensions.jakarta.batch.groupPrefixesToIgnore>
                         <glassfish.enableDerby>true</glassfish.enableDerby>
                         <glassfish.derbyDatabaseName>${glassfish.home}/glassfish/domains/domain1/config/batch;create=true</glassfish.derbyDatabaseName>
@@ -183,10 +184,12 @@ Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
                         <glassfish.derbyUser>batch</glassfish.derbyUser>
                         <glassfish.derbyPasswordFile>${basedir}/src/test/resources/password.txt</glassfish.derbyPasswordFile>
 
-                        <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                        <glassfish.postBootCommands>
+                            set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
                             create-jdbc-connection-pool --resType=javax.sql.DataSource --datasourceClassname=org.apache.derby.jdbc.ClientDataSource40 --property databaseName=${glassfish.home}/glassfish/domains/domain1/config/batch:serverName=localhost:PortNumber=1527:User=batch:Password=batch batchtck
                             create-jdbc-resource --poolName=batchtck jdbc/orderDB
-                            list-jdbc-resources</glassfish.postBootCommands>
+                            list-jdbc-resources
+                        </glassfish.postBootCommands>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
