@@ -392,7 +392,6 @@
                             <systemPropertyVariables>
                                 <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
                                 <glassfish.enableDerby>true</glassfish.enableDerby>
-                                <glassfish.maxHeapSize>8192m</glassfish.maxHeapSize>
                                 <glassfish.enableAssertions>:org.jboss.cdi.tck...</glassfish.enableAssertions>
                                 <glassfish.systemProperties>
                                     cdiTckExcludeDummy=true
