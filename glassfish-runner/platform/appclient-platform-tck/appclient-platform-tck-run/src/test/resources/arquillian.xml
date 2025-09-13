@@ -26,6 +26,7 @@
             <property name="runAsVehicle">true</property>
             <property name="clientEarDir">target/appclient</property>
             <property name="unpackClientEar">true</property>
+            
             <!-- Need to populate from ts.jte command.testExecuteAppClient setting for glassfish -->
             <property name="clientCmdLineString">${glassfish.home}/glassfish/bin/appclient \
                 -Djdk.tls.client.enableSessionTicketExtension=false \
@@ -54,10 +55,13 @@
                 -jar \
                 ${clientEarDir}/${clientAppArchive}
             </property>
+            
             <property name="cmdLineArgSeparator">\\</property>
             <!-- Pass ENV vars here -->
+            
             <property name="clientEnvString">PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
                 AS_JAVA=${env.JAVA_HOME};APPCPATH=${glassfish.home}/glassfish/lib/arquillian-protocol-lib.jar:${glassfish.home}/glassfish/lib/tck-porting-lib.jar:target/appclient/lib/arquillian-core.jar:target/appclient/lib/arquillian-junit5.jar:${glassfish.home}/glassfish/modules/security.jar</property>
+            
             <property name="clientDir">${project.basedir}</property>
             <property name="workDir">${ts.home}/tmp</property>
             <property name="tsJteFile">${ts.home}/bin/ts.jte</property>
