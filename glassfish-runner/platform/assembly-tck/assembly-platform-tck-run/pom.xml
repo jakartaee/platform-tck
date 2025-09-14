@@ -35,9 +35,9 @@
         <exec.asadmin>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</exec.asadmin>
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
-        <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <glassfish.version>8.0.0-M11</glassfish.version>
+        <jakarta.platform.version>11.0.0</jakarta.platform.version>
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+        <glassfish.version>8.0.0-M12</glassfish.version>
         <tck.artifactId>assembly-tck</tck.artifactId>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <ts.home>./jakartaeetck</ts.home>
@@ -52,10 +52,32 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-bom</artifactId>
+                <version>3.2.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>${jakarta.platform.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>${tck.artifactId}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+    
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -65,20 +87,8 @@
             <artifactId>junit-vintage-engine</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>${tck.artifactId}</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>${jakarta.platform.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-container-test-spi</artifactId>
-        </dependency>
+        
+        
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
@@ -91,9 +101,14 @@
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
         </dependency>
+         <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-javatest</artifactId>
+        </dependency>
+        
         <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>common</artifactId>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-test-spi</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
@@ -108,32 +123,16 @@
             <artifactId>arquillian-junit5-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.8</version>
             <scope>test</scope>
         </dependency>
+        
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
             <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-javatest</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-lib</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>tck-porting-lib</artifactId>
-        </dependency>
+        
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyclient</artifactId>
@@ -153,11 +152,12 @@
                 <directory>src/test/resources</directory>
             </testResource>
         </testResources>
+        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.6.1</version>
                 <executions>
                     <execution>
                         <id>001-unpack</id>
@@ -178,31 +178,6 @@
                             </artifactItems>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <id>002-asadmin-permission</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <target>
-                                <chmod dir="target/glassfish8/glassfish/bin/asadmin" perm="777"></chmod>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.6.1</version>
-                <executions>
                     <execution>
                         <id>003-copy-protocol-lib</id>
                         <goals>
@@ -278,6 +253,7 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.1.0</version>
@@ -321,22 +297,21 @@
                         </goals>
                         <configuration>
                             <groups>tck-appclient</groups>
-                            <additionalClasspathElements>
-                                <!-- <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement> -->
-                                <!-- <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/gf-client.jar</additionalClasspathElement> -->
-                            </additionalClasspathElements>
                             <includes>
                                 <include>com/sun/ts/tests/assembly/**/Client.java</include>
                             </includes>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
+                            
                             <systemPropertyVariables>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                                create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
-                                create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
-                                list-file-users</glassfish.postBootCommands>
-                                <!-- <java.naming.factory.initial>foo</java.naming.factory.initial> -->
-                                <!-- <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial> -->
+                                
+                                <glassfish.postBootCommands>
+                                    set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                                    --passwordfile ${project.basedir}/javajoe.pass create-file-user --groups guest javajoe
+                                    --passwordfile ${project.basedir}/j2ee.pass create-file-user --groups staff:mgr j2ee
+                                    list-file-users
+                                </glassfish.postBootCommands>
+
                                 <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>

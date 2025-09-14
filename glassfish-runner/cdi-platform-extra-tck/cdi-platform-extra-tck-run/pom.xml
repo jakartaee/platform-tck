@@ -36,10 +36,10 @@
     <properties>
         <cdi.tck-4-1.version>4.1.0</cdi.tck-4-1.version>
         <!-- The CDI EE Platform Integration TCK Version -->
-        <tck.version>11.0.0</tck.version>
+        <tck.version>11.0.1</tck.version>
 
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <glassfish.version>8.0.0-M11</glassfish.version>
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+        <glassfish.version>8.0.0-M12</glassfish.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
 
         <maven.build.cache.enabled>false</maven.build.cache.enabled>
@@ -245,7 +245,7 @@
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <scope>test</scope>
         </dependency>
@@ -392,7 +392,6 @@
                             <systemPropertyVariables>
                                 <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
                                 <glassfish.enableDerby>true</glassfish.enableDerby>
-                                <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
                                 <glassfish.enableAssertions>:org.jboss.cdi.tck...</glassfish.enableAssertions>
                                 <glassfish.systemProperties>
                                     cdiTckExcludeDummy=true
@@ -402,9 +401,9 @@
                                     create-jms-resource --restype jakarta.jms.Queue --property Name=queue_test queue_test
                                     create-jms-resource --restype jakarta.jms.Topic --property Name=topic_test topic_test
                                     set configs.config.server-config.cdi-service.enable-implicit-cdi=true
-                                    create-file-user --groups student --passwordfile ${project.build.directory}/test-classes/password.txt student
-                                    create-file-user --groups printer --passwordfile ${project.build.directory}/test-classes/password.txt printer
-                                    create-file-user --groups student:alarm --passwordfile ${project.build.directory}/test-classes/password.txt alarm
+                                    --passwordfile ${project.build.directory}/test-classes/password.txt create-file-user --groups student student
+                                    --passwordfile ${project.build.directory}/test-classes/password.txt create-file-user --groups printer printer
+                                    --passwordfile ${project.build.directory}/test-classes/password.txt create-file-user --groups student:alarm alarm
                                 </glassfish.postBootCommands>
                                 
                                 <libPath>${project.build.outputDirectory}</libPath>

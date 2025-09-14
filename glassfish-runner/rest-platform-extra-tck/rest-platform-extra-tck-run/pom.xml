@@ -39,10 +39,11 @@
 
     <properties>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
-        <glassfish.version>8.0.0-M11</glassfish.version>
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
+        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
 
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        <tck.version>11.0.1</tck.version>
     </properties>
 
     <!-- The Junit5 test frameworks -->
@@ -62,7 +63,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>rest-platform-tck</artifactId>
-            <version>${tck.version}</version>
             <scope>test</scope>
         </dependency>
         
@@ -91,14 +91,14 @@
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>glassfish-client-ee11</artifactId>
-            <version>1.8</version>
+            <version>2.1.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -146,11 +146,12 @@
                             <groups>${testGroups}</groups>
                             
                             <systemPropertyVariables>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
                                 <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
+                                
                                 <glassfish.postBootCommands>
-                                    create-file-user --groups staff:mgr:DIRECTOR --passwordfile ${project.build.directory}/../j2ee.pass j2ee
-                                    create-file-user --groups guest:OTHERROLE --passwordfile ${project.build.directory}/../javajoe.pass javajoe
+                                    --passwordfile ${project.basedir}/j2ee.pass create-file-user --groups staff:mgr:DIRECTOR  j2ee
+                                    --passwordfile ${project.basedir}/javajoe.pass create-file-user --groups guest:OTHERROLE javajoe
                                     set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
                                 </glassfish.postBootCommands>
                                 
