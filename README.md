@@ -2,7 +2,7 @@
 
 ## Building
 
-From the root folder, try:
+From the root folder, try: 
 ```
 mvn clean install -Dmaven.compiler.failOnError=false > /tmp/build.txt
 ```
