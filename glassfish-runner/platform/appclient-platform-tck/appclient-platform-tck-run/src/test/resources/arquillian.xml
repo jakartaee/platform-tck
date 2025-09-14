@@ -34,10 +34,9 @@
                 -Djava.security.policy=${glassfish.home}/glassfish/lib/appclient/client.policy \
                 -Dcts.tmp=${ts.home}/tmp \
                 -Djava.security.auth.login.config=${glassfish.home}/glassfish/lib/appclient/appclientlogin.conf \
-                -Djava.protocol.handler.pkgs=javax.net.ssl \
                 -Djavax.net.ssl.keyStore=${ts.home}/bin/certificates/clientcert.jks \
                 -Djavax.net.ssl.keyStorePassword=changeit \
-                -Djavax.net.ssl.trustStore=${glassfish.home}/glassfish/domains/domain1/config/cacerts.jks \
+                -Djavax.net.ssl.trustStore=${glassfish.home}/glassfish/domains/domain1/config/cacerts.p12 \
                 -Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl \
                 -Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl \
                 -Djavax.xml.transform.TransformerFactory=com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl \
