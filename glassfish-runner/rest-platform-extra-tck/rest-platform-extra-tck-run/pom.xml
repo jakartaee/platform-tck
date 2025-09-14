@@ -150,7 +150,7 @@
                                 <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
                                 
                                 <glassfish.postBootCommands>
-                                    --passwordfile ${project.basedir}/j2ee.pass create-file-user --groups staff:mgr:DIRECTOR  j2ee
+                                    --passwordfile ${project.basedir}/j2ee.pass create-file-user --groups staff:mgr:DIRECTOR j2ee
                                     --passwordfile ${project.basedir}/javajoe.pass create-file-user --groups guest:OTHERROLE javajoe
                                     set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
                                 </glassfish.postBootCommands>
