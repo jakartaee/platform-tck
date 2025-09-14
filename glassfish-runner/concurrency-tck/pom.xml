@@ -34,12 +34,13 @@
     <description>Aggregates dependencies and runs the Concurrency TCK on GlassFish</description>
 
     <properties>
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <glassfish.version>8.0.0-M11</glassfish.version>
-        <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
-        <glassfish.root>${project.build.directory}</glassfish.root>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
+        <glassfish.root>${project.build.directory}</glassfish.root>
     </properties>
     
     <dependencyManagement>
@@ -82,7 +83,7 @@
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <scope>test</scope>
         </dependency>
@@ -155,7 +156,7 @@
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.3</version>
+                <version>3.5.4</version>
 
                 <configuration>
                     <argLine>-Xmx768m</argLine>
@@ -165,8 +166,6 @@
                     </dependenciesToScan>
 
                     <systemPropertyVariables>
-                        <arquillian.xml>${project.basedir}/arquillian.xml</arquillian.xml>
-                    
                         <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
                         <glassfish.enableDerby>true</glassfish.enableDerby>
                         <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
@@ -174,10 +173,11 @@
                         <glassfish.systemProperties>jimage.dir=${project.build.directory}/jimage</glassfish.systemProperties>
 
                         <glassfish.postBootCommands>
-                            create-file-user --groups staff:mgr --passwordfile ${project.build.directory}/test-classes/j2ee.pass j2ee
-                            create-file-user --groups Manager --passwordfile ${project.build.directory}/test-classes/javajoe.pass javajoe
+                            --passwordfile ${project.build.directory}/test-classes/j2ee.pass create-file-user --groups staff:mgr j2ee
+                            --passwordfile ${project.build.directory}/test-classes/javajoe.pass create-file-user --groups Manager javajoe
                         </glassfish.postBootCommands>
 
+                        <arquillian.xml>${project.basedir}/arquillian.xml</arquillian.xml>
                         <jimage.dir>${project.build.directory}/jimage</jimage.dir>
                     </systemPropertyVariables>
 
