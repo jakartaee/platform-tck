@@ -36,14 +36,15 @@
         <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>8.0.0-M11</glassfish.version>
+        <glassfish.version>8.0.0-M12</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
+        <glassfish-artifact-id>glassfish</glassfish-artifact-id>
 
-        <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
+        <jakarta.platform.version>11.0.0</jakarta.platform.version>
         <ts.home>${basedir}/jakartaeetck</ts.home>
 
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+        <tck.version>11.0.1</tck.version>
         <jakarta.tck.transactions.version>${tck.version}</jakarta.tck.transactions.version>
     </properties>
 
@@ -63,7 +64,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>transactions-tck</artifactId>
-            <version>${jakarta.tck.transactions.version}</version>
         </dependency>
 
         <!-- Junit5 -->
@@ -90,7 +90,7 @@
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <scope>test</scope>
         </dependency>
@@ -101,7 +101,6 @@
         <dependency>
             <groupId>org.jboss.shrinkwrap.descriptors</groupId>
             <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
-            <version>2.0.0</version>
         </dependency>
         
         <dependency>
@@ -188,20 +187,18 @@
                             </includes>
 
                             <systemPropertyVariables>
-                                <glassfish.enableDerby>true</glassfish.enableDerby>
-                                <glassfish.derbyDatabaseName>${glassfish.home}/glassfish/domains/domain1/config/derbyDB;create=true</glassfish.derbyDatabaseName>
-                                <glassfish.derbySQLFile>${basedir}/sql/derby/derby.ddl.sql</glassfish.derbySQLFile>
-                                <glassfish.derbyUser>cts1</glassfish.derbyUser>
-                                <glassfish.derbyPasswordFile>${basedir}/sql/derby/password.txt</glassfish.derbyPasswordFile>
-
                                 <glassfish.home>${glassfish.home}</glassfish.home>
+                                <glassfish.enableDerby>true</glassfish.enableDerby>
 
-                                <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                                create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
-                                create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
-                                list-jdbc-connection-pools
-                                list-jdbc-resources
-                                list-file-users</glassfish.postBootCommands>
+                                <glassfish.postBootCommands>
+                                    set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                                    create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1:connectionAttributes="create=true" --steadypoolsize 32 --maxpoolsize 64 --resourceNames jdbc/DB1 cts-derby-pool
+                                    execute-jdbc-sql --sqlFileName ${basedir}/sql/derby/derby.ddl.sql jdbc/DB1
+                                    list-jdbc-connection-pools
+                                    list-jdbc-resources
+                                    list-file-users
+                                </glassfish.postBootCommands>
+                                
                                 <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>
@@ -302,21 +299,20 @@
                                     </includes>
         
                                     <systemPropertyVariables>
-                                        <ts.home>${ts.home}</ts.home>
-        
-                                        <glassfish.enableDerby>true</glassfish.enableDerby>
-                                        <glassfish.derbyDatabaseName>${glassfish.home}/glassfish/domains/domain1/config/derbyDB;create=true</glassfish.derbyDatabaseName>
-                                        <glassfish.derbySQLFile>${basedir}/sql/derby/derby.ddl.sql</glassfish.derbySQLFile>
-                                        <glassfish.derbyUser>cts1</glassfish.derbyUser>
-                                        <glassfish.derbyPasswordFile>${basedir}/sql/derby/password.txt</glassfish.derbyPasswordFile>
-        
+                                       
                                         <glassfish.home>${glassfish.home}</glassfish.home>
-                                        <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                                        create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
-                                        create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
-                                        list-jdbc-connection-pools
-                                        list-jdbc-resources
-                                        list-file-users</glassfish.postBootCommands>
+                                        <glassfish.enableDerby>true</glassfish.enableDerby>
+                                        
+                                        <glassfish.postBootCommands>
+                                            set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                                            create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 --steadypoolsize 32 --maxpoolsize 64 --resourceNames jdbc/DB1 cts-derby-pool
+                                            execute-jdbc-sql --sqlFileName ${basedir}/sql/derby/derby.ddl.sql jdbc/DB1
+                                            list-jdbc-connection-pools
+                                            list-jdbc-resources
+                                            list-file-users
+                                        </glassfish.postBootCommands>
+                                        
+                                        <ts.home>${ts.home}</ts.home>
                                         <harness.log.traceflag>true</harness.log.traceflag>
                                         <cts.harness.debug>true</cts.harness.debug>
                                         <project.basedir>${project.basedir}</project.basedir>
