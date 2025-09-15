@@ -38,11 +38,11 @@
         <!-- Use JDK21 to run with GF 8.0.0-M9 -->
         <!-- <glassfish.version>8.0.0-M9</glassfish.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
-        <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
+        <jakarta.platform.version>11.0.0</jakarta.platform.version>
 
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <glassfish.version>8.0.0-M11</glassfish.version>
-        <tck.test.persistence.version>11.0.1-SNAPSHOT</tck.test.persistence.version>
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+        <glassfish.version>8.0.0-M12</glassfish.version>
+        <tck.test.persistence.version>11.0.1</tck.test.persistence.version>
         
         <ts.home>./jakartaeetck</ts.home>
     </properties>
@@ -75,7 +75,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-common</artifactId>
-            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -87,13 +86,11 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-tests</artifactId>
-            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-dbprocedures</artifactId>
-            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -151,14 +148,14 @@
         </dependency>
 
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>glassfish-client-ee11</artifactId>
-            <version>1.7.1</version>
+            <version>2.1.1</version>
             <scope>test</scope>
         </dependency>
 
@@ -261,8 +258,8 @@
                         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                         <glassfish.postBootCommands>
                             set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                            create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
-                            create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
+                            --passwordfile ${project.basedir}/javajoe.pass create-file-user --groups guest javajoe
+                            --passwordfile ${project.basedir}/j2ee.pass create-file-user --groups staff:mgr j2ee
                             create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
                             create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool_no_tx
                             create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
@@ -308,11 +305,6 @@
                         </goals>
                         <configuration>
                             <includes>
-                                <!--
-                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
-                                <include>ee/jakarta/tck/persistence/core/annotations/basic/*Test.java</include>
-                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
-                                -->
                                 <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                             </includes>
                             <groups>${includeGroups}&amp;tck-javatest</groups>
@@ -349,6 +341,7 @@
             </plugin>
         </plugins>
     </build>
+
     <profiles>
         <profile>
             <id>ee</id>
@@ -363,10 +356,10 @@
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -398,6 +391,7 @@
                 </plugins>
             </build>
         </profile>
+
         <profile>
             <id>entitytest</id>
             <activation>
@@ -410,13 +404,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -448,6 +440,7 @@
                 </plugins>
             </build>
         </profile>
+
         <profile>
             <id>jpa</id>
             <activation>
@@ -460,13 +453,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -498,6 +489,7 @@
                 </plugins>
             </build>
         </profile>
+
         <profile>
             <id>jpa22</id>
             <activation>
@@ -510,13 +502,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -548,6 +538,7 @@
                 </plugins>
             </build>
         </profile>
+
         <profile>
             <id>coreannotations</id>
             <activation>
@@ -560,13 +551,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -584,7 +573,6 @@
                                 <configuration>
                                     <includes>
                                         <include>ee/jakarta/tck/persistence/core/annotations/**/*Test.java</include>
-
                                     </includes>
                                     <groups>platform</groups>
                                     <excludedGroups>web</excludedGroups>
@@ -599,6 +587,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>corebasic</id>
             <activation>
@@ -611,13 +600,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -635,7 +622,6 @@
                                 <configuration>
                                     <includes>
                                         <include>ee/jakarta/tck/persistence/core/basic/**/*Test.java</include>
-
                                     </includes>
                                     <groups>platform</groups>
                                     <excludedGroups>web</excludedGroups>
@@ -650,6 +636,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>corecache</id>
             <activation>
@@ -662,13 +649,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -701,6 +686,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>corecallback</id>
             <activation>
@@ -713,13 +699,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -737,7 +721,6 @@
                                 <configuration>
                                     <includes>
                                         <include>ee/jakarta/tck/persistence/core/callback/**/*Test.java</include>
-
                                     </includes>
                                     <groups>platform</groups>
                                     <excludedGroups>web</excludedGroups>
@@ -752,6 +735,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>corecriteriaapi</id>
             <activation>
@@ -764,13 +748,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -803,6 +785,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>corederivedid</id>
             <activation>
@@ -815,13 +798,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -854,6 +835,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coreEntityGraph</id>
             <activation>
@@ -866,13 +848,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -905,6 +885,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coreentityManager</id>
             <activation>
@@ -917,13 +898,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -955,6 +934,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coreentityManager2</id>
             <activation>
@@ -967,13 +947,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -1005,6 +983,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coreentityManagerFactory</id>
             <activation>
@@ -1017,13 +996,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -1055,6 +1032,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coreentityManagerFactoryCloseExceptions</id>
             <activation>
@@ -1067,13 +1045,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -1105,6 +1081,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coreentitytest</id>
             <activation>
@@ -1117,13 +1094,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -1155,6 +1130,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coreentityTransaction</id>
             <activation>
@@ -1167,13 +1143,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -1205,6 +1179,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coreenums</id>
             <activation>
@@ -1217,13 +1192,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
 
             <build>
@@ -1255,6 +1228,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coreexceptions</id>
             <activation>
@@ -1267,13 +1241,13 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
+
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+
+                </dependency>
             </dependencies>
 
             <build>
@@ -1305,6 +1279,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coreinheritance</id>
             <activation>
@@ -1317,13 +1292,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -1354,6 +1327,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>corelock</id>
             <activation>
@@ -1366,13 +1340,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -1403,6 +1375,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coremetamodelapi</id>
             <activation>
@@ -1415,13 +1388,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -1452,6 +1423,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>corenestedembedding</id>
             <activation>
@@ -1464,13 +1436,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -1501,6 +1471,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coreoverride</id>
             <activation>
@@ -1513,13 +1484,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -1550,6 +1519,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>corepersistenceUnitUtil</id>
             <activation>
@@ -1562,13 +1532,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -1599,6 +1567,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>corepersistenceUtil</id>
             <activation>
@@ -1611,13 +1580,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -1648,6 +1615,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>corequery</id>
             <activation>
@@ -1660,13 +1628,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -1697,6 +1663,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>corerelationship</id>
             <activation>
@@ -1709,13 +1676,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -1746,6 +1711,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coreStoredProcedureQuery</id>
             <activation>
@@ -1758,13 +1724,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -1795,6 +1759,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coretypes</id>
             <activation>
@@ -1807,13 +1772,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -1844,6 +1807,7 @@
                 </plugins>
             </build>
         </profile>
+        
         <profile>
             <id>coreversioning</id>
             <activation>
@@ -1856,13 +1820,11 @@
                 <dependency>
                     <groupId>jakarta.tck.arquillian</groupId>
                     <artifactId>arquillian-protocol-appclient</artifactId>
-                    
                 </dependency>
-            <dependency>
-                <groupId>jakarta.tck.arquillian</groupId>
-                <artifactId>arquillian-protocol-lib</artifactId>
-                
-            </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
