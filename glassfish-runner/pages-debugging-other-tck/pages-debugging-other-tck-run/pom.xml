@@ -42,7 +42,7 @@
         <tck.home>${project.build.directory}</tck.home>
 
         <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
-        <glassfish.version>8.0.0-M10</glassfish.version>
+        <glassfish.version>8.0.0-M12</glassfish.version>
         <glassfish.asadmin>${glassfish.home}/glassfish/bin/asadmin</glassfish.asadmin>
 
         <jacoco.includes>org/glassfish/**\:com/sun/enterprise/**</jacoco.includes>
