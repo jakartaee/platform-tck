@@ -30,11 +30,13 @@
 
     <properties>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
-        <glassfish.version>8.0.0-M10</glassfish.version>
-        <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
+        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+        
+        <jakarta.platform.version>11.0.0</jakarta.platform.version>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <tck.artifactId>pages-platform-tck</tck.artifactId>
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        <tck.version>11.0.1</tck.version>
     </properties>
 
     <!-- The Junit5 test frameworks -->
@@ -50,7 +52,7 @@
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.9.3.Final</version>
+                <version>1.10.0.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -103,18 +105,24 @@
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.7</version>
+            <version>2.1.1</version>
             <scope>test</scope>
         </dependency>
-        
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.0</version>
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+            
+            <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.8.1</version>
                 <executions>
@@ -142,7 +150,7 @@
 
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.5.2</version>
+                <version>3.5.4</version>
                 <executions>
                     <execution>
                         <id>gf-tests</id>
@@ -154,28 +162,33 @@
                             <groups>${testGroups}</groups>
                             <dependenciesToScan>jakarta.tck:pages-platform-tck</dependenciesToScan>
                             <systemPropertyVariables>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
                                 <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
-                                <glassfish.postBootCommands>create-file-user --groups staff:mgr:DIRECTOR --passwordfile ${project.build.directory}/../j2ee.pass j2ee
-                                create-file-user --groups guest:OTHERROLE --passwordfile ${project.build.directory}/../javajoe.pass javajoe
-                                set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                                create-mail-resource --mailuser "user01@james.local" --fromaddress "user01@james.local" --mailhost localhost --debug true mail/Session
-                                create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=myQueue MY_QUEUE
-                                create-jms-resource --restype jakarta.jms.Topic --property imqDestinationName=myTopic MY_TOPIC
-                                create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
-                                create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
-                                create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
-                                create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/TopicConnectionFactory
-                                create-jms-resource --restype jakarta.jms.ConnectionFactory --property name=cFactory jms/ConnectionFactory
-                                list-jndi-entries</glassfish.postBootCommands>
+                                <glassfish.postBootCommands>
+                                    --passwordfile ${project.basedir}/j2ee.pass create-file-user --groups staff:mgr:DIRECTOR j2ee
+                                    --passwordfile ${project.basedir}/javajoe.pass create-file-user --groups guest:OTHERROLE javajoe
+                                    set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                                    create-mail-resource --mailuser "user01@james.local" --fromaddress "user01@james.local" --mailhost localhost --debug true mail/Session
+                                    create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=myQueue MY_QUEUE
+                                    create-jms-resource --restype jakarta.jms.Topic --property imqDestinationName=myTopic MY_TOPIC
+                                    create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
+                                    create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
+                                    create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
+                                    create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/TopicConnectionFactory
+                                    create-jms-resource --restype jakarta.jms.ConnectionFactory --property name=cFactory jms/ConnectionFactory
+                                    list-jndi-entries
+                                </glassfish.postBootCommands>
+                                
                                 <webServerHome>${project.build.directory}/${glassfish.toplevel.dir}/glassfish</webServerHome>
                                 <webServerHost>localhost</webServerHost>
                                 <webServerPort>8080</webServerPort>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                <junit.log.traceflag>true</junit.log.traceflag>
+                                
                                 <user>j2ee</user>
                                 <password>j2ee</password>
                                 <authuser>javajoe</authuser>
                                 <authpassword>javajoe</authpassword>
+                                
+                                <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>
                                 <porting.ts.url.class.1>ee.jakarta.tck.pages.lib.implementation.sun.common.SunRIURL</porting.ts.url.class.1>
