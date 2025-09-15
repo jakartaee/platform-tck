@@ -38,11 +38,11 @@
         <!-- Use JDK21 to run with GF 8.0.0-M9 -->
         <!-- <glassfish.version>8.0.0-M9</glassfish.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
-        <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
+        <jakarta.platform.version>11.0.0</jakarta.platform.version>
 
-        <glassfish.version>8.0.0-M11</glassfish.version>
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <tck.test.persistence.version>11.0.1-SNAPSHOT</tck.test.persistence.version>
+        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+        <tck.test.persistence.version>11.0.1</tck.test.persistence.version>
         
         <ts.home>./jakartaeetck</ts.home>
     </properties>
@@ -75,7 +75,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-common</artifactId>
-            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -87,13 +86,11 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-tests</artifactId>
-            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-dbprocedures</artifactId>
-            <version>${tck.test.persistence.version}</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -151,14 +148,14 @@
         </dependency>
 
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>glassfish-client-ee11</artifactId>
-            <version>1.8</version>
+            <version>2.1.1</version>
             <scope>test</scope>
         </dependency>
 
@@ -263,8 +260,8 @@
                         
                         <glassfish.postBootCommands>
                             set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                            create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
-                            create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
+                            --passwordfile ${project.basedir}/javajoe.pass create-file-user --groups guest javajoe
+                            --passwordfile ${project.basedir}/j2ee.pass create-file-user --groups staff:mgr j2ee
                             create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
                             create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool_no_tx
                             create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
