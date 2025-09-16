@@ -28,20 +28,21 @@
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jsonp-platform-tck</artifactId>
     <version>11.0.1</version>
-    <packaging>jar</packaging>
+    <name>TCK: Run Jakarta JSON-P Extra TCK</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.release>17</maven.compiler.release>
     
+        <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
-        <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
 
-        <glassfish.version>8.0.0-M11</glassfish.version>
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+        <tck.version>11.0.1</tck.version>
+        
         <ts.home>./jakartaeetck</ts.home>
     </properties>
 
@@ -78,7 +79,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>jsonp-platform-tck</artifactId>
-            <version>${tck.version}</version>
         </dependency>
         
         <!-- Jakarta TCK tools dependencies -->
@@ -119,7 +119,7 @@
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <scope>test</scope>
         </dependency>
@@ -160,7 +160,7 @@
             
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.5.2</version>
+                <version>3.5.4</version>
 
                 <executions>
                     <execution>
@@ -180,7 +180,7 @@
                             </includes>
                         
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.home}/glassfish/modules/parsson.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             
                             <systemPropertyVariables>
@@ -245,6 +245,9 @@
 
         <profile>
             <id>appclient</id>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+            </properties>
 
             <dependencies>
                 <dependency>
@@ -331,20 +334,18 @@
                                 </goals>
                                 <configuration>
                                     <additionalClasspathElements>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
+                                        <additionalClasspathElement>${glassfish.home}/glassfish/modules/parsson.jar</additionalClasspathElement>
                                     </additionalClasspathElements>
-                                    <includes>
-                                        <include>
-                                            com/sun/ts/tests/jsonp/api/patchtests/*Test*.java</include>
-                                    </includes>
+                                    
+                                    <dependenciesToScan>jakarta.tck:jsonp-platform-tck</dependenciesToScan>
                                     <!-- Select the @Tag("tck-appclient") tests -->
                                     <groups>tck-appclient</groups>
-                                    <dependenciesToScan>
-                                        jakarta.tck:jsonp-platform-tck</dependenciesToScan>
+                                    <includes>
+                                        <include>com/sun/ts/tests/jsonp/api/patchtests/*Test*.java</include>
+                                    </includes>
+                                    
                                     <systemPropertyVariables>
-                                        <glassfish.home>
-                                            ${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                        <glassfish.home>${glassfish.home}</glassfish.home>
                                         <junit.log.traceflag>true</junit.log.traceflag>
                                         <harness.log.traceflag>true</harness.log.traceflag>
                                         <cts.harness.debug>true</cts.harness.debug>
@@ -364,20 +365,18 @@
                                 </goals>
                                 <configuration>
                                     <additionalClasspathElements>
-                                        <additionalClasspathElement>
-                                            ${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
+                                        <additionalClasspathElement>${glassfish.home}/glassfish/modules/parsson.jar</additionalClasspathElement>
                                     </additionalClasspathElements>
-                                    <includes>
-                                        <include>
-                                            com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/**Test.java</include>
-                                    </includes>
+                                    
+                                    <dependenciesToScan>jakarta.tck:jsonp-platform-tck</dependenciesToScan>
                                     <!-- Select the @Tag("tck-appclient") tests -->
                                     <groups>tck-appclient</groups>
-                                    <dependenciesToScan>
-                                        jakarta.tck:jsonp-platform-tck</dependenciesToScan>
+                                    <includes>
+                                        <include>com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/**Test.java</include>
+                                    </includes>
+                                    
                                     <systemPropertyVariables>
-                                        <glassfish.home>
-                                            ${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                        <glassfish.home>${glassfish.home}</glassfish.home>
                                         <junit.log.traceflag>true</junit.log.traceflag>
                                         <harness.log.traceflag>true</harness.log.traceflag>
                                         <cts.harness.debug>true</cts.harness.debug>

@@ -29,12 +29,12 @@
     <packaging>jar</packaging>
 
     <properties>
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
-        <glassfish.version>8.0.0-JDK17-M10</glassfish.version>
-        <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        <glassfish.version>8.0.0-JDK17-M12</glassfish.version>
+        
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+        <tck.version>11.0.1</tck.version>
         <ts.home>./jakartaeetck</ts.home>
     </properties>
 
@@ -93,7 +93,7 @@
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <scope>test</scope>
         </dependency>
@@ -146,13 +146,6 @@
                             </artifactItems>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <version>3.8.1</version>
-                <executions>
                     <execution>
                         <id>002-copy-lib</id>
                         <goals>
@@ -173,6 +166,7 @@
                     </execution>
                 </executions>
             </plugin>
+
 
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>

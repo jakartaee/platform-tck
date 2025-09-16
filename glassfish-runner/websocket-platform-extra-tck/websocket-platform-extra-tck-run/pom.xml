@@ -36,12 +36,12 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.release>17</maven.compiler.release>
     
-        <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <glassfish.version>8.0.0-M11</glassfish.version>
+        <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
+        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
 
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        <tck.version>11.0.1</tck.version>
         <jakarta.tck.websocket.version>2.2.0</jakarta.tck.websocket.version>
         <tck.test.websocket.extra.version>${tck.version}</tck.test.websocket.extra.version>
         
@@ -68,7 +68,6 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>websocket-tck-common</artifactId>
-            <version>${jakarta.tck.websocket.version}</version>
         </dependency>
         <!-- Contains com.sun.ts.tests.websocket.lib.implementation.sun.common.SunRIURL, but probably should not. -->
         <dependency>
@@ -88,7 +87,7 @@
 
         <!-- The Arquillian connector that starts GlassFish and deploys archives to it. -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <scope>test</scope>
         </dependency>
@@ -100,9 +99,9 @@
 
         <!-- Client libs for doing HTTP requests, specifically done via the REST Client -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>glassfish-client-ee11</artifactId>
-            <version>1.8</version>
+            <version>2.1.1</version>
             <scope>test</scope>
         </dependency>
 
@@ -163,7 +162,7 @@
             <!-- Configuring and running the TCK -->
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.5.2</version>
+                <version>3.5.4</version>
                 <executions>
                     <execution>
                         <id>gf-tests</id>
@@ -177,7 +176,8 @@
                                 -Djava.protocol.handler.pkgs=javax.net.ssl
                                 -Djavax.net.ssl.keyStore=${project.build.directory}/certificates/clientcert.jks
                                 -Djavax.net.ssl.keyStorePassword=changeit
-                                -Djavax.net.ssl.trustStore=${glassfish.home}/glassfish/domains/domain1/config/cacerts.jks
+                                -Djavax.net.ssl.trustStore=${glassfish.home}/glassfish/domains/domain1/config/cacerts.p12
+                                -Djavax.net.ssl.trustStorePassword=changeit
                             </argLine>
                             
                             <dependenciesToScan>jakarta.tck:websocket-tck-platform-tests</dependenciesToScan>
@@ -186,8 +186,8 @@
                             <systemPropertyVariables>
                                 <glassfish.home>${glassfish.home}</glassfish.home>
                                 <glassfish.postBootCommands>
-                                    create-file-user --groups staff:mgr --passwordfile j2ee.pass j2ee
-                                    create-file-user --groups guest --passwordfile javajoe.pass javajoe
+                                    --passwordfile j2ee.pass create-file-user --groups staff:mgr j2ee
+                                    --passwordfile javajoe.pass create-file-user --groups guest javajoe
                                 </glassfish.postBootCommands>
 
                                 <user>j2ee</user>
