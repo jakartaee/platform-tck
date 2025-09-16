@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2023, 2024 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2023, 2025 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,20 +29,21 @@
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jdbc-platform-tck</artifactId>
     <version>11.0.1</version>
-    <packaging>jar</packaging>
+    
     <properties>
-        <arquillian.core.version>1.9.1.Final</arquillian.core.version>
-        <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
+        <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
+        
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+        <glassfish.version>8.0.0-M12</glassfish.version>
+        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        
+        <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
         <jdbc.db>derby</jdbc.db>
         <ts.home>./jakartaeetck</ts.home>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <sql.directory>./sql</sql.directory>
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <glassfish.version>8.0.0-M11</glassfish.version>
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
-        <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
     </properties>
 
     <dependencyManagement>
@@ -56,20 +57,27 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    
     <dependencies>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>jdbc-platform-tck</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
         </dependency>
+    
         <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>jdbc-platform-tck</artifactId>
-            <version>${tck.version}</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+       
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-test-spi</artifactId>
@@ -79,9 +87,10 @@
             <artifactId>arquillian-junit5-container</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
+       
+       <dependency>
+            <groupId>ee.omnifish.arquillian</groupId>
+            <artifactId>arquillian-glassfish-server-managed</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -104,19 +113,14 @@
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
-            <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <scope>test</scope>
-        </dependency>
+        
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.8.1</version>
                 <executions>
                     <execution>
                         <id>1-unpack</id>
@@ -178,9 +182,11 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.1</version>
                 <executions>
                     <execution>
                         <id>1-stop-domain</id>
@@ -210,6 +216,7 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>sql-maven-plugin</artifactId>
@@ -255,47 +262,10 @@ CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
-                <executions>
-                    <execution>
-                        <id>jdbc-tests-appclient</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <dependenciesToScan>jakarta.tck:jdbc-platform-tck</dependenciesToScan>
-                            <includes>
-                                <!--
-                                <include>**/*EJB*.*</include>
-                                <include>**/*AppClient*.*</include>
-                                <include>com.sun.ts.tests.jdbc.ee.batchUpdate.batchUpdateClientAppClient</include>
-                                -->
-                                <include>**/*EJB*.*</include>
-                                <include>**/*AppClient*.*</include>
-                            </includes>
-                            <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
-                            </additionalClasspathElements>
-                            <systemPropertyVariables>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
-                                <ts.home>${project.basedir}/jakartaeetck</ts.home>
-                                <project.basedir>${project.basedir}</project.basedir>
-                                <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>3.5.4</version>
                 <executions>
                     <execution>
                         <id>jdbc-tests-javatest</id>
@@ -306,10 +276,6 @@ CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS
                         <configuration>
                             <dependenciesToScan>jakarta.tck:jdbc-platform-tck</dependenciesToScan>
                             <includes>
-                                <!--
-                                <include>**/*Servlet*.*</include>
-                                <include>**/*JSP*.*</include>
-                                -->
                                 <include>**/*Servlet*.*</include>
                                 <include>**/*JSP*.*</include>
                             </includes>
@@ -319,8 +285,10 @@ CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
                             </additionalClasspathElements>
+                            
                             <systemPropertyVariables>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                
                                 <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
                                 <ts.home>${project.basedir}/jakartaeetck</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
@@ -328,10 +296,42 @@ CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
+                
+                    <execution>
+                        <id>jdbc-tests-appclient</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <dependenciesToScan>jakarta.tck:jdbc-platform-tck</dependenciesToScan>
+                            <includes>
+                                <include>**/*EJB*.*</include>
+                                <include>**/*AppClient*.*</include>
+                            </includes>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            
+                            <systemPropertyVariables>
+                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                
+                                <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
+                                <ts.home>${project.basedir}/jakartaeetck</ts.home>
+                                <project.basedir>${project.basedir}</project.basedir>
+                                <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
+            
         </plugins>
     </build>
+    
     <profiles>
         <profile>
             <id>full</id>

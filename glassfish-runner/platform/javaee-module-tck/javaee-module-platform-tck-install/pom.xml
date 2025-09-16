@@ -36,7 +36,7 @@
         <tck.test.javaee.module.file>jakartaeetck-${tck.test.javaee.module.version}-dist.zip</tck.test.javaee.module.file>
         <tck.test.javaee.module.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.javaee.module.file}</tck.test.javaee.module.url>
         
-        <tck.test.javaee.module.version>11.0.1-SNAPSHOT</tck.test.javaee.module.version>
+        <tck.test.javaee.module.version>11.0.1</tck.test.javaee.module.version>
     </properties>
 
     <build>
@@ -63,6 +63,7 @@
             
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.4</version>
                 <executions>
 
                     <execution>
