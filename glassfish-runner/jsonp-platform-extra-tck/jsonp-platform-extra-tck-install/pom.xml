@@ -36,7 +36,7 @@
         <tck.test.jsonp.extra.file>jakartaeetck-${tck.test.jsonp.version}-dist.zip</tck.test.jsonp.extra.file>
         <tck.test.jsonp.extra.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.jsonp.extra.file}</tck.test.jsonp.extra.url>
         
-        <tck.test.jsonp.version>11.0.1-SNAPSHOT</tck.test.jsonp.version>
+        <tck.test.jsonp.version>11.0.1</tck.test.jsonp.version>
     </properties>
 
     <build>
@@ -63,6 +63,7 @@
             
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.4</version>
                 <executions>
 
                     <execution>
@@ -82,7 +83,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    Copyright (c) 2024 Contributors to the Eclipse Foundation.
+    Copyright (c) 2024, 2025 Contributors to the Eclipse Foundation.
     Copyright (c) 2023 Oracle and/or its affiliates. All rights reserved.
+    
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
     http://www.eclipse.org/legal/epl-2.0.
@@ -30,10 +31,11 @@
     <properties>
         <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>8.0.0-M10</glassfish.version>
+        <glassfish.version>8.0.0-M12</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
-        <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        
+        <jakarta.platform.version>11.0.0</jakarta.platform.version>
+        <tck.version>11.0.1</tck.version>
         <jakarta.tck.tags.version>${tck.version}</jakarta.tck.tags.version>
     </properties>
 
@@ -69,13 +71,13 @@
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>1.9.4.Final</version>
+            <version>1.10.0.Final</version>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-test-spi</artifactId>
-            <version>1.9.4.Final</version>
+            <version>1.10.0.Final</version>
         </dependency>
 
         <dependency>
@@ -88,9 +90,9 @@
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.7</version>
+            <version>2.1.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -124,7 +126,7 @@
 
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.5.2</version>
+                <version>3.5.4</version>
                 <executions>
                     <execution>
                         <id>gf-tests</id>
@@ -150,12 +152,12 @@
                                     create-jvm-options -Djavax.xml.accessExternalSchema=all
                                     create-jvm-options -Djavax.xml.accessExternalDTD=file,http
                                     restart-domain
-                                    create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
-                                    create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
+                                    --passwordfile ${project.basedir}/j2ee.pass create-file-user --groups staff:mgr j2ee
+                                    --passwordfile ${project.basedir}/javajoe.pass create-file-user --groups guest javajoe
                                     list-file-users
                                 </glassfish.postBootCommands>
 
-                                <junit.log.traceflag>true</junit.log.traceflag>
+                                
                                 <jstl.db.name>${glassfish.home}/glassfish/domains/domain1/config/derbyDB</jstl.db.name>
                                 <jstl.db.server>localhost</jstl.db.server>
                                 <jstl.db.port>1527</jstl.db.port>
@@ -163,6 +165,8 @@
                                 <jstl.db.driver>org.apache.derby.jdbc.ClientDriver</jstl.db.driver>
                                 <jstl.db.user>cts1</jstl.db.user>
                                 <jstl.db.password>cts1</jstl.db.password>
+                                
+                                <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>
                             </systemPropertyVariables>

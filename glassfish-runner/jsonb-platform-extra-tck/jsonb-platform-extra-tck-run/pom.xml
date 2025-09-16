@@ -34,12 +34,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.release>17</maven.compiler.release>
-
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <glassfish.version>8.0.0-M11</glassfish.version>
+        
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
+        <glassfish.version>8.0.0-M11</glassfish.version>
+        
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
 
         <tck.artifactId>jsonb-platform-tck</tck.artifactId>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
@@ -120,14 +121,14 @@
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>glassfish-client-ee11</artifactId>
-            <version>1.8</version>
+            <version>2.1.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -165,19 +166,20 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.5.4</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                        <glassfish.home>${glassfish.home}</glassfish.home>
+                        
                         <junit.log.traceflag>true</junit.log.traceflag>
                         <harness.log.traceflag>true</harness.log.traceflag>
                         <cts.harness.debug>true</cts.harness.debug>
                     </systemPropertyVariables>
                 </configuration>
                 <executions>
-
                     <execution>
                         <id>cdi-tests-javatest</id>
                         <goals>
@@ -225,6 +227,7 @@
                 <javatest-testGroups>tck-javatest</javatest-testGroups>
             </properties>
         </profile>
+        
         <profile>
             <id>web</id>
             <properties>
@@ -232,8 +235,12 @@
                 <javatest-testGroups>web</javatest-testGroups>
             </properties>
         </profile>
+        
         <profile>
             <id>appclient</id>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+            </properties>
 
             <dependencies>
                 <dependency>
@@ -324,14 +331,17 @@
                                         <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/yasson.jar</additionalClasspathElement>
                                         <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
                                     </additionalClasspathElements>
+                                    
+                                    <dependenciesToScan>jakarta.tck:jsonb-platform-tck</dependenciesToScan>
+                                    <!-- Select the @Tag("tck-appclient") tests -->
+                                    <groups>tck-appclient</groups>
                                     <includes>
                                         <include>com/sun/ts/tests/jsonb/cdi/**/*Ejb*.java</include>
                                     </includes>
-                                    <!-- Select the @Tag("tck-appclient") tests -->
-                                    <groups>tck-appclient</groups>
-                                    <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
+                                    
                                     <systemPropertyVariables>
-                                        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                        <glassfish.home>${glassfish.home}</glassfish.home>
+                                        
                                         <junit.log.traceflag>true</junit.log.traceflag>
                                         <harness.log.traceflag>true</harness.log.traceflag>
                                         <cts.harness.debug>true</cts.harness.debug>
@@ -342,6 +352,7 @@
                                     </systemPropertyVariables>
                                 </configuration>
                             </execution>
+                            
                             <execution>
                                 <id>pluggability-tests-appclient</id>
                                 <goals>
@@ -353,15 +364,18 @@
                                         <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/yasson.jar</additionalClasspathElement>
                                         <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
                                     </additionalClasspathElements>
+                                    
+                                    <dependenciesToScan>jakarta.tck:jsonb-platform-tck</dependenciesToScan>
+                                    <!-- Select the @Tag("tck-appclient") tests -->
+                                    <groups>tck-appclient</groups>
                                     <includes>
                                         <include>com/sun/ts/tests/jsonb/pluggability/jsonbprovidertests/*Appclient*.java</include>
                                         <include>com/sun/ts/tests/jsonb/pluggability/jsonbprovidertests/*Ejb*.java</include>
                                     </includes>
-                                    <!-- Select the @Tag("tck-appclient") tests -->
-                                    <groups>tck-appclient</groups>
-                                    <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
+                                    
                                     <systemPropertyVariables>
-                                        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                        <glassfish.home>${glassfish.home}</glassfish.home>
+                                        
                                         <junit.log.traceflag>true</junit.log.traceflag>
                                         <harness.log.traceflag>true</harness.log.traceflag>
                                         <cts.harness.debug>true</cts.harness.debug>
@@ -372,7 +386,6 @@
                                     </systemPropertyVariables>
                                 </configuration>
                             </execution>
-
                         </executions>
                     </plugin>
                 </plugins>

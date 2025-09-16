@@ -27,9 +27,11 @@
     </parent>
 
     <groupId>jakarta.tck</groupId>
-    <artifactId>jsonb-platform-extra-tck</artifactId>
+    <artifactId>jsonp-platform-extra-tck</artifactId>
     <version>11.0.1</version>
     <packaging>pom</packaging>
+    
+    <name>TCK: Jakarta JSON-P Extra TCK parent</name>
 
     <modules>
         <module>jsonp-platform-extra-tck-install</module>
