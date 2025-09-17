@@ -23,7 +23,6 @@ import java.util.List;
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 
-import org.junit.jupiter.api.Disabled;
 
 
 import com.sun.ts.lib.harness.SetupMethod;
@@ -49,7 +48,6 @@ public class Client6 extends Util {
 	 * d.lastNameEmployees WHERE d.id = 1
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-		@Disabled
 	public void resultContainsFetchReference() throws Exception {
 		boolean pass = false;
 		List<Department> result;

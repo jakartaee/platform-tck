@@ -27,11 +27,6 @@ import java.util.Set;
 
 import com.sun.ts.lib.harness.Status;
 
-
-
-import org.junit.jupiter.api.Disabled;
-
-
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.metamodel.Attribute;
 import jakarta.persistence.metamodel.CollectionAttribute;
@@ -2015,7 +2010,6 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-		@Disabled
 	public void getDeclaredSingularAttributes() throws Exception {
 		boolean pass = false;
 

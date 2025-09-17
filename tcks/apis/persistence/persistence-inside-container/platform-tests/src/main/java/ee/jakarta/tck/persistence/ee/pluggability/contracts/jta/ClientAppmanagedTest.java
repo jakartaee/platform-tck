@@ -13,7 +13,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,7 +27,6 @@ import java.net.URL;
 @Tag("platform")
 @Tag("tck-appclient")
 
-@Disabled("https://github.com/jakartaee/platform-tck/issues/2338")
 public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.ee.pluggability.contracts.jta.Client {
     static final String VEHICLE_ARCHIVE = "jpa_ee_pluggability_contracts_jta_appmanaged_vehicle";
 
