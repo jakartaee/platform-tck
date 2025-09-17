@@ -33,10 +33,10 @@
                 -Djava.security.policy=${glassfish.home}/glassfish/lib/appclient/client.policy \
                 -Dcts.tmp=${ts.home}/tmp \
                 -Djava.security.auth.login.config=${glassfish.home}/glassfish/lib/appclient/appclientlogin.conf \
-                -Djava.protocol.handler.pkgs=javax.net.ssl \
                 -Djavax.net.ssl.keyStore=${ts.home}/bin/certificates/clientcert.jks \
                 -Djavax.net.ssl.keyStorePassword=changeit \
-                -Djavax.net.ssl.trustStore=${glassfish.home}/glassfish/domains/domain1/config/cacerts.jks \
+                -Djavax.net.ssl.trustStore=${glassfish.home}/glassfish/domains/domain1/config/cacerts.p12 \
+                -Djavax.net.ssl.trustStorePassword=changeit \
                 -Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl \
                 -Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl \
                 -Djavax.xml.transform.TransformerFactory=com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl \
@@ -54,10 +54,15 @@
                 -jar \
                 ${clientEarDir}/${clientAppArchive}
             </property>
+            
             <property name="cmdLineArgSeparator">\\</property>
+            
             <!-- Pass ENV vars here -->
-            <property name="clientEnvString">PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
-                APPCPATH=${glassfish.home}/glassfish/lib/arquillian-protocol-lib.jar:target/appclient/lib/arquillian-core.jar:target/appclient/lib/arquillian-junit5.jar:${glassfish.home}/glassfish/modules/security.jar</property>
+            <property name="clientEnvString">
+                PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
+                APPCPATH=${glassfish.home}/glassfish/lib/arquillian-protocol-lib.jar:target/appclient/lib/arquillian-core.jar:target/appclient/lib/arquillian-junit5.jar:${glassfish.home}/glassfish/modules/security.jar
+            </property>
+            
             <property name="clientDir">${project.basedir}</property>
             <property name="workDir">${ts.home}/tmp</property>
             <property name="tsJteFile">${ts.home}/bin/ts.jte</property>
