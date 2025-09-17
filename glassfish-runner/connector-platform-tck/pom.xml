@@ -33,14 +33,13 @@
     <packaging>jar</packaging>
 
     <properties>
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-
         <!-- glassfish properties -->
         <glassfish.major>8</glassfish.major>
         <glassfish.home>${project.build.directory}/glassfish${glassfish.major}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
-
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+        <tck.version>11.0.1</tck.version>
 
         <whitebox.directory>target/whiteboxes</whitebox.directory>
     </properties>
@@ -110,7 +109,7 @@
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <scope>test</scope>
         </dependency>
@@ -119,7 +118,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.2.0</version>
                 <executions>
@@ -293,8 +291,8 @@
                         </glassfish.systemProperties>
                         
                         <glassfish.postBootCommands>
-                            create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
-                            create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
+                            --passwordfile ${project.basedir}/j2ee.pass create-file-user --groups staff:mgr j2ee
+                            --passwordfile ${project.basedir}/javajoe.pass create-file-user --groups guest javajoe
                             create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1:createDatabase=create cts-derby-pool
                             create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
                             create-jdbc-connection-pool --restype javax.sql.XADataSource --datasourceclassname org.apache.derby.jdbc.ClientXADataSource --property serverName=localhost:portNumber=1527:user=cts1:password=cts1:DatabaseName=derbyDB:connectionAttributes=";create\=true;" --steadypoolsize 32 --maxpoolsize 64 cts-derby-XA-pool   
@@ -363,7 +361,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>3.5.3</version>
+                        <version>3.5.4</version>
                         <executions>
                             <execution>
                                 <id>connector-tests-javatest</id>
@@ -374,9 +372,6 @@
                                 <configuration>
                                     <groups>tck-javatest</groups>
                                     <includes>
-                                        <!--
-                                        <include>com.sun.ts.tests.connector.resourceDefs.servlet.ClientTest</include>
-                                        -->
                                         <include>**/ClientTest.*</include>
                                         <include>**/*Servlet*.*</include>
                                         <include>**/*Jsp**.*</include>
@@ -415,9 +410,8 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
-                        <version>3.6.1</version>
+                        <version>3.8.1</version>
                         <executions>
                             <execution>
                                 <id>2-copy-lib</id>
@@ -451,7 +445,7 @@
                 
                     <plugin>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>3.5.3</version>
+                        <version>3.5.4</version>
                         <executions>
                             <execution>
                                 <id>connector-tests-appclient</id>
@@ -462,9 +456,6 @@
                                 <configuration>
                                     <groups>tck-appclient</groups>
                                     <includes>
-                                        <!--
-                                        <include>com.sun.ts.tests.connector.annotations.anno.annotationClientEjbTest</include>
-                                        -->
                                         <include>**/ClientTest.*</include>
                                         <include>**/*EjbTest.*</include>
                                     </includes>
