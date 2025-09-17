@@ -31,6 +31,8 @@
     <version>11.0.1</version>
     
     <properties>
+        <maven.compiler.release>17</maven.compiler.release>
+           
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
@@ -71,6 +73,10 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
         </dependency>
         <dependency>
             <groupId>org.junit.vintage</groupId>
@@ -220,6 +226,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>sql-maven-plugin</artifactId>
+                <version>3.0.0</version>
                 <!-- common configuration shared by all executions -->
                 <configuration>
                     <driver>org.apache.derby.jdbc.ClientDriver</driver>
@@ -262,73 +269,6 @@ CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS
                     </execution>
                 </executions>
             </plugin>
-            
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.5.4</version>
-                <executions>
-                    <execution>
-                        <id>jdbc-tests-javatest</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <dependenciesToScan>jakarta.tck:jdbc-platform-tck</dependenciesToScan>
-                            <includes>
-                                <include>**/*Servlet*.*</include>
-                                <include>**/*JSP*.*</include>
-                            </includes>
-                            <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
-                            </additionalClasspathElements>
-                            
-                            <systemPropertyVariables>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                
-                                <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
-                                <ts.home>${project.basedir}/jakartaeetck</ts.home>
-                                <project.basedir>${project.basedir}</project.basedir>
-                                <arquillian.xml>arquillian.xml</arquillian.xml>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </execution>
-                
-                    <execution>
-                        <id>jdbc-tests-appclient</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <dependenciesToScan>jakarta.tck:jdbc-platform-tck</dependenciesToScan>
-                            <includes>
-                                <include>**/*EJB*.*</include>
-                                <include>**/*AppClient*.*</include>
-                            </includes>
-                            <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
-                            </additionalClasspathElements>
-                            
-                            <systemPropertyVariables>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                
-                                <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
-                                <ts.home>${project.basedir}/jakartaeetck</ts.home>
-                                <project.basedir>${project.basedir}</project.basedir>
-                                <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            
         </plugins>
     </build>
     
@@ -341,12 +281,140 @@ CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
             </properties>
+            
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>3.5.4</version>
+                        <executions>
+                            <execution>
+                                <id>jdbc-tests-javatest</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <dependenciesToScan>jakarta.tck:jdbc-platform-tck</dependenciesToScan>
+                                    <includes>
+                                        <include>**/*Servlet*.*</include>
+                                        <include>**/*JSP*.*</include>
+                                    </includes>
+                                    <additionalClasspathElements>
+                                        <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
+                                        <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
+                                        <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
+                                        <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
+                                    </additionalClasspathElements>
+                                    
+                                    <systemPropertyVariables>
+                                        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                        
+                                        <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
+                                        <ts.home>${project.basedir}/jakartaeetck</ts.home>
+                                        <project.basedir>${project.basedir}</project.basedir>
+                                        <arquillian.xml>arquillian.xml</arquillian.xml>
+                                    </systemPropertyVariables>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
+        
         <profile>
             <id>web</id>
             <properties>
                 <glassfish-artifact-id>web</glassfish-artifact-id>
             </properties>
+            
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>3.5.4</version>
+                        <executions>
+                            <execution>
+                                <id>jdbc-tests-javatest</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <dependenciesToScan>jakarta.tck:jdbc-platform-tck</dependenciesToScan>
+                                    <includes>
+                                        <include>**/*Servlet*.*</include>
+                                        <include>**/*JSP*.*</include>
+                                    </includes>
+                                    <additionalClasspathElements>
+                                        <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
+                                        <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
+                                        <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
+                                        <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
+                                    </additionalClasspathElements>
+                                    
+                                    <systemPropertyVariables>
+                                        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                        
+                                        <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
+                                        <ts.home>${project.basedir}/jakartaeetck</ts.home>
+                                        <project.basedir>${project.basedir}</project.basedir>
+                                        <arquillian.xml>arquillian.xml</arquillian.xml>
+                                    </systemPropertyVariables>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <profile>
+            <id>appclient</id>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+            </properties>
+            
+            <build>
+                <plugins>
+                    <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>jdbc-tests-appclient</id>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                            <configuration>
+                                <dependenciesToScan>jakarta.tck:jdbc-platform-tck</dependenciesToScan>
+                                <includes>
+                                    <include>**/*EJB*.*</include>
+                                    <include>**/*AppClient*.*</include>
+                                </includes>
+                                
+                                <additionalClasspathElements>
+                                    <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
+                                    <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
+                                </additionalClasspathElements>
+                                
+                                <systemPropertyVariables>
+                                    <glassfish.home>${glassfish.home}</glassfish.home>
+                                    
+                                    <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
+                                    <ts.home>${project.basedir}/jakartaeetck</ts.home>
+                                    <project.basedir>${project.basedir}</project.basedir>
+                                    <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                </systemPropertyVariables>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>

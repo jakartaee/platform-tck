@@ -25,6 +25,7 @@
             <property name="runAsVehicle">true</property>
             <property name="clientEarDir">target/appclient</property>
             <property name="unpackClientEar">true</property>
+            
             <!-- Need to populate from ts.jte command.testExecuteAppClient setting for glassfish -->
             <property name="clientCmdLineString">${glassfish.home}/glassfish/bin/appclient \
                 -Djdk.tls.client.enableSessionTicketExtension=false \
