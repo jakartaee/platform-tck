@@ -25,26 +25,24 @@
         <version>1.0.9</version>
         <relativePath/>
     </parent>
+    
     <groupId>jakarta</groupId>
     <artifactId>glassfish.xa-platform-tck</artifactId>
     <version>11.0.0</version>
-    <packaging>jar</packaging>
+    
     <properties>
-        <connectionpoolid>cts-derby-pool</connectionpoolid>
-        <db.delimiter>;</db.delimiter>
-
-        <!--- derby properties -->
-        <derby.dbName>derbyDB</derby.dbName>
-        <derby.passwd>cts1</derby.passwd>
-        <derby.port>1527</derby.port>
-        <derby.server>localhost</derby.server>
-        <derby.user>cts1</derby.user>
-
+        <maven.compiler.release>17</maven.compiler.release>
+        
         <!-- glassfish properties -->
         <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
         <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
+        
+        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+        <tck.artifactId>jakarta.tck.jdbc</tck.artifactId>
+        <tck.version>11.0.1</tck.version>
 
 
         <!-- JDBC properties -->
@@ -62,10 +60,16 @@
         <rauser1>cts1</rauser1>
         <sql.directory>./sql</sql.directory>
 
-        <glassfish.version>8.0.0-M11</glassfish.version>
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <tck.artifactId>jakarta.tck.jdbc</tck.artifactId>
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        <connectionpoolid>cts-derby-pool</connectionpoolid>
+        <db.delimiter>;</db.delimiter>
+
+        <!--- derby properties -->
+        <derby.dbName>derbyDB</derby.dbName>
+        <derby.passwd>cts1</derby.passwd>
+        <derby.port>1527</derby.port>
+        <derby.server>localhost</derby.server>
+        <derby.user>cts1</derby.user>
+        
 
         <whitebox.directory>target/whiteboxes</whitebox.directory>
 
@@ -94,8 +98,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>mdcomplete</artifactId>
+            <type>rar</type>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
@@ -104,6 +113,22 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>xa</artifactId>
+        </dependency>
+    
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+        </dependency>
+        
+        
+        <dependency>
+            <groupId>ee.omnifish.arquillian</groupId>
+            <artifactId>arquillian-glassfish-server-managed</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
@@ -114,11 +139,7 @@
             <artifactId>arquillian-junit5-container</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
+        
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
@@ -135,20 +156,7 @@
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
-            <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>whitebox</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>mdcomplete</artifactId>
-            <type>rar</type>
-        </dependency>
+        
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyclient</artifactId>
@@ -160,6 +168,7 @@
             <version>10.15.2.0</version>
         </dependency>
     </dependencies>
+    
     <build>
         <plugins>
             <plugin>
@@ -745,9 +754,10 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>3.5.4</version>
                 <executions>
                     <execution>
                         <id>xa-javatest-tests</id>
@@ -785,9 +795,10 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>3.5.4</version>
                 <executions>
                     <execution>
                         <id>xa-appclient-tests</id>
@@ -828,6 +839,7 @@
             </plugin>
         </plugins>
     </build>
+    
     <profiles>
         <profile>
             <id>full</id>
