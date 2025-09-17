@@ -13,7 +13,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -206,7 +205,6 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.entityt
             super.cascadeAllMX1Test1();
         }
 
-        @Disabled("https://github.com/jakartaee/platform-tck/issues/2111")
         @Test
         @Override
         @TargetVehicle("stateful3")
