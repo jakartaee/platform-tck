@@ -1,5 +1,8 @@
 package arquillian;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -39,11 +42,18 @@ public class ProgressListener implements TestExecutionListener {
     public void testPlanExecutionStarted(TestPlan testPlan) {
         this.plan = testPlan;
 
+        Set<String> testClasses = new LinkedHashSet<>();
+
         testPlan.accept(new TestPlan.Visitor() {
             @Override public void visit(TestIdentifier id) {
                 if (id.isTest()) {
                     owningClassName(testPlan, id).ifPresent(
-                        className -> {totalPerClass.merge(className, 1, Integer::sum); totalTests++;}
+                        className -> {
+                            totalTests++;
+
+                            totalPerClass.merge(className, 1, Integer::sum);
+                            testClasses.add(className);
+                        }
                     );
                 }
             }
@@ -59,6 +69,14 @@ public class ProgressListener implements TestExecutionListener {
             ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> \n" +
 
             RESET + "\n");
+
+        System.out.println("Running the following test classes: \n");
+
+        int i = 0;
+        for (String testClass : testClasses ) {
+            System.out.println(BOLD_BLUE + (i++) + ") " + testClass + RESET);
+        }
+
     }
 
     @Override
