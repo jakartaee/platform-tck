@@ -75,12 +75,12 @@ public class JavaEESigTest extends SigTestEE {
             + " cdi di beanval persistence jaxb saaj jaxws connector"
             + " jacc jaspic jsonp jta el servlet jsf jaxrs websocket batch concurrency jsonb securityapi";
 
-    public static final String KEYWORD_WEB = "caj ejb persistence el jsf jsonp jsp servlet jta jaxrs cdi di beanval interceptors websocket concurrency jsonb securityapi";
+    public static final String KEYWORD_WEB = "caj ejb persistence el jaspic jsf jsonp jsp servlet jta jaxrs cdi di beanval interceptors websocket concurrency jsonb securityapi";
 
     public static final ArrayList<String> KEYWORD_JAVAEE_FULL_OPTIONAL_TECHS = new ArrayList<String>();
 
     public static final ArrayList<String> KEYWORD_WEB_FULL_OPTIONAL_TECHS = new ArrayList<String>(
-            Arrays.asList("batch", "connector", "jaxws", "jaxb", "jms", "javamail", "jacc", "jaspic", "wsmd"));
+            Arrays.asList("batch", "connector", "jaxws", "jaxb", "jms", "javamail", "jacc", "wsmd"));
 
     public enum Containers {
         ejb, servlet, jsp, appclient
