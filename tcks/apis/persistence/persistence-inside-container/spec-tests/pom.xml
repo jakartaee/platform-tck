@@ -201,7 +201,7 @@
         <profile>
             <id>postgresql</id>
             <properties>
-                <postgresql.jdbc.version>42.7.5</postgresql.jdbc.version>
+                <postgresql.jdbc.version>42.7.7</postgresql.jdbc.version>
             </properties>
             <dependencies>
                 <dependency>
