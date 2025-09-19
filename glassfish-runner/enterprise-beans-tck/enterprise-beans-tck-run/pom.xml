@@ -47,26 +47,25 @@
     </licenses>
 
     <properties>
+        <!-- Require at least Java 17 to compile -->
+        <maven.compiler.release>17</maven.compiler.release>
 
         <!-- Release properties -->
-        <derby.lib>${glassfish.home}/javadb/lib</derby.lib>
-        <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
+        <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
-        <glassfish.version>8.0.0-M11</glassfish.version>
+        <glassfish.version>8.0.0-M12</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
         <glassfish-artifact-id>glassfish</glassfish-artifact-id>
 
-        <!-- Require at least Java 17 to compile -->
-        <maven.compiler.release>17</maven.compiler.release>
         <tck.jte.path>${ts.home}/bin/ts.jte</tck.jte.path>
 
         <!-- TCK Paths -->
         <ts.home>${basedir}/src/test/resources/jakartaeetck</ts.home>
 
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <version.surefire>3.5.3</version.surefire>
+        <tck.version>11.0.1</tck.version>
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+        <version.surefire>3.5.4</version.surefire>
 
         <whitebox.directory>target/whiteboxes</whitebox.directory>
 
@@ -89,7 +88,7 @@
             <dependency>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${version.surefire}</version>
+                <version>3.5.4</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -128,6 +127,15 @@
             <artifactId>ejb32</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox-tx</artifactId>
+            <type>rar</type>
+        </dependency>
 
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
@@ -141,6 +149,10 @@
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
         </dependency>
+         <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-lib</artifactId>
+        </dependency>
 
         <!-- Junit5 -->
         <dependency>
@@ -150,7 +162,20 @@
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-reporting</artifactId>
+        </dependency>
+        
+        <!--
+            The Arquillian connector that starts GlassFish and deploys archives to it.
+        -->
+        <dependency>
+            <groupId>ee.omnifish.arquillian</groupId>
+            <artifactId>arquillian-glassfish-server-managed</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -173,15 +198,6 @@
             <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
         </dependency>
 
-        <!--
-            The Arquillian connector that starts GlassFish and deploys archives to it.
-        -->
-        <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
-            <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
@@ -201,22 +217,6 @@
             <artifactId>commons-httpclient</artifactId>
             <version>3.1</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>whitebox</artifactId>
-            <version>${tck.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>whitebox-tx</artifactId>
-            <version>${tck.version}</version>
-            <type>rar</type>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-lib</artifactId>
         </dependency>
     </dependencies>
 
@@ -316,7 +316,6 @@
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${version.surefire}</version>
                 <configuration>
                     <includes>
                         <include>**/*Test.java</include>
@@ -336,7 +335,8 @@
                         <glassfish.derbyUser>cts1</glassfish.derbyUser>
                         <glassfish.derbyPasswordFile>${project.build.directory}/test-classes/password.txt</glassfish.derbyPasswordFile>
 
-                        <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                        <glassfish.postBootCommands>
+                            set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
                             create-jdbc-connection-pool --restype javax.sql.XADataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 cts-derby-XA-pool
                             create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 cts-derby-pool
                             create-jdbc-resource --connectionpoolid cts-derby-XA-pool jdbc/DBTimer
@@ -359,7 +359,8 @@
                             create-custom-resource --restype java.net.URL --factoryclass org.glassfish.resources.custom.factory.URLObjectFactory --property spec=http\://localhost\:8080 webServerURL
                             create-custom-resource --restype java.net.URL --factoryclass org.glassfish.resources.custom.factory.URLObjectFactory --property spec=http\://localhost\:8080/mdbdest/TestServlet webServerMdbtestURL
                             list-jndi-resources
-                            list-jdbc-resources</glassfish.postBootCommands>
+                            list-jdbc-resources
+                        </glassfish.postBootCommands>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
