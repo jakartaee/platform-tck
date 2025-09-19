@@ -34,19 +34,19 @@ import jakarta.ejb.EJB;
  */
 
 public class Client extends ClientBase {
-  @EJB(name = "CallbackBean")
+  @EJB(beanName = "CallbackBean")
   private static CallbackIF bean;
 
-  @EJB(name = "Callback2Bean")
+  @EJB(beanName = "Callback2Bean")
   private static Callback2IF bean2;
 
-  @EJB(name = "Callback3Bean")
+  @EJB(beanName = "Callback3Bean")
   private static Callback2IF bean3;
 
-  @EJB(name = "Callback4Bean")
+  @EJB(beanName = "Callback4Bean")
   private static Callback2IF bean4;
 
-  @EJB(name = "singleDefaultInterceptorBean")
+  @EJB(beanName = "singleDefaultInterceptorBean")
   private static Callback2IF singleDefaultInterceptorBean;
 
   protected Callback2IF getSingleDefaultInterceptorBean() {

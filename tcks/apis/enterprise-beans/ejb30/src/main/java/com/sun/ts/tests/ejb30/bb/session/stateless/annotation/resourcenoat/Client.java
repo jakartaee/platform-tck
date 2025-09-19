@@ -29,10 +29,10 @@ import com.sun.ts.tests.ejb30.common.annotation.resource.UserTransactionNegative
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB(name = "ResourceSetterBean")
+  @EJB(beanName = "ResourceSetterBean")
   private static ResourceIF resourceSetterBean;
 
-  @EJB(name = "ResourceFieldBean")
+  @EJB(beanName = "ResourceFieldBean")
   private static ResourceIF resourceFieldBean;
 
   private ResourceIF resourceTypeBean = new ResourceNoop();
