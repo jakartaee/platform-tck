@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2025 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -60,6 +60,9 @@ public class TSXaTransaction {
     /** Field storing the status values **/
     private int status = 0;
 
+    /** Field storing the read-only value **/
+    private boolean readOnly = false;
+
     /** Connections involved in one transaction branch. Specifications doesnt **/
     /** stop from having more than one connection in global transaction **/
     private Hashtable connections = new Hashtable();
@@ -110,6 +113,24 @@ public class TSXaTransaction {
      */
     public int getStatus() {
         return this.status;
+    }
+
+    /**
+     * Get the read-only value of the transaction.
+     *
+     * @return Read-only value of the transaction.
+     */
+    public boolean isReadOnly() {
+        return readOnly;
+    }
+
+    /**
+     * Sets the read-only value of the transaction.
+     *
+     * @param readOnly of the transaction
+     */
+    public void setReadOnly(boolean readOnly) {
+        this.readOnly = readOnly;
     }
 
     /**
