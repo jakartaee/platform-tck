@@ -30,6 +30,7 @@
     <artifactId>mail-tck-install</artifactId>
     <version>11.0.1</version>
     <packaging>pom</packaging>
+
     <name>TCK: Install Jakarta Mail TCK</name>
 
     <properties>
@@ -85,5 +86,4 @@
 
         </plugins>
     </build>
-
 </project>
