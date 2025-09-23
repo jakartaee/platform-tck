@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
+    Copyright (c) 2025 Contributors to the Eclipse Foundation.
     Copyright (c) 2023, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -15,10 +16,19 @@
 
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     
-    **********************************
-    TODO: THIS POM NEEDS MAJOR CLEANUP
-    **********************************
+-->
 
+<!-- 
+
+    Note, on the Eclipse CI a mail server is started by the CI pipeline, using K8 / Jenkins.
+    
+    The same mailserver with the same init commands is also available in a profile in this pom for local usage or for 
+    pipelines that supports docker in docker.
+    
+    Run with e.g.
+    
+    mvn clean install -Pfull,mailserver-docker -Dglassfish.version=8.0.0-SNAPSHOT    
+    
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -36,15 +46,18 @@
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
-        <arquillian.core.version>1.9.4.Final</arquillian.core.version>
-        <arquillian.junit>1.9.3.Final</arquillian.junit>
-        <destinationURL>imap://${escaped.javamail.username}:${javamail.password}@${javamail.server}:${imap.port}</destinationURL>
-        <escaped.javamail.username>user01%40james.local</escaped.javamail.username>
-        <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
+    
         <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <glassfish.module.dir>${glassfish.home}/glassfish/modules</glassfish.module.dir>
-        <glassfish.version>8.0.0-JDK17-M10</glassfish.version>
+        
+        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+        <tck.version>11.0.1</tck.version>
+        
+        <destinationURL>imap://${escaped.javamail.username}:${javamail.password}@${javamail.server}:${imap.port}</destinationURL>
+        <escaped.javamail.username>user01%40james.local</escaped.javamail.username>
+        <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
         
         <imap.port>1143</imap.port>
         <jakarta.tck.arquillian.version>11.0.0</jakarta.tck.arquillian.version>
@@ -56,17 +69,13 @@
         <javamail.server>localhost</javamail.server>
         <javamail.username>user01@james.local</javamail.username>
         <jndiName>mail/Session</jndiName>
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        
         <mail.from>user01@james.local</mail.from>
         <mail.host>localhost</mail.host>
         <mail.password>1234</mail.password>
         <mail.user>user01</mail.user>
         <mailboxFolder1>${project.build.directory}/../mailboxes</mailboxFolder1>
         <smtp.port>1025</smtp.port>
-
-        <glassfish.version>8.0.0-M11</glassfish.version>
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
     </properties>
 
     <dependencyManagement>
@@ -80,46 +89,22 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    
     <dependencies>
         <dependency>
             <groupId>jakarta.mail</groupId>
             <artifactId>jakarta.mail-api</artifactId>
         </dependency>
+    
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>javamail</artifactId>
         </dependency>
-        
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>javamail</artifactId>
-            <version>${tck.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.angus</groupId>
-            <artifactId>angus-mail</artifactId>
-            <version>2.0.3</version>
-        </dependency>
        
-        <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-container-test-spi</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.junit5</groupId>
-            <artifactId>arquillian-junit5-container</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
@@ -127,7 +112,6 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>${jakarta.tck.arquillian.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
@@ -141,9 +125,33 @@
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
         </dependency>
+        
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-test-spi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -162,6 +170,12 @@
             <groupId>org.jboss.shrinkwrap</groupId>
             <artifactId>shrinkwrap-api</artifactId>
         </dependency>
+        
+         <dependency>
+            <groupId>org.eclipse.angus</groupId>
+            <artifactId>angus-mail</artifactId>
+            <version>2.0.3</version>
+        </dependency>
      </dependencies>
 
     <build>
@@ -173,6 +187,7 @@
                     <release>17</release>
                 </configuration>
             </plugin>
+            
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.8.1</version>
@@ -351,6 +366,7 @@
                                 <additionalClasspathElement>${glassfish.module.dir}/glassfish-naming.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${glassfish.module.dir}/javamail.jar</additionalClasspathElement>
                             </additionalClasspathElements>
+                            
                             <systemPropertyVariables>
                                 <glassfish.home>${glassfish.home}</glassfish.home>
                                 <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
@@ -382,6 +398,7 @@
                                 <additionalClasspathElement>${glassfish.module.dir}/glassfish-naming.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${glassfish.module.dir}/javamail.jar</additionalClasspathElement>
                             </additionalClasspathElements>
+                            
                             <systemPropertyVariables>
                                 <glassfish.home>${glassfish.home}</glassfish.home>
                                 <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
@@ -413,5 +430,91 @@
                 <glassfish-artifact-id>web</glassfish-artifact-id>
             </properties>
         </profile>
+        
+        <profile>
+            <id>mailserver-docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>0.44.0</version>
+
+                        <configuration>
+                            <!-- optional: mimic k8s Always -->
+                            <imagePullPolicy>Always</imagePullPolicy>
+                                        
+                            <images>
+                                <image>
+                                    <name>jakartaee/cts-mailserver:0.1</name>
+                                    <alias>mail</alias>
+                                    <run>
+                                        <platform>linux/amd64</platform>
+                                        
+                                        <ports>
+                                            <port>1025:1025</port>
+                                            <port>1143:1143</port>
+                                        </ports>
+                                        
+                                        <memory>2147483648</memory> <!-- 2Gi -->
+                                        <cpus>0.5</cpus>
+                                        
+                                        <!-- wait until setup finished -->
+                                        <wait>
+                                            <log>Mail server setup complete</log>
+                                            <time>180000</time>
+                                        </wait>
+
+                                        <log>
+                                            <file>${project.build.directory}/mailserver-container.log</file>
+                                            <prefix>mail: </prefix>
+                                            <date>DEFAULT</date>
+                                        </log>
+
+                                        <!-- do the Jenkins sequence here -->
+                                        <workingDir>/root</workingDir>
+                                        
+                                        <entrypoint>
+                                            <exec>
+                                                <arg>/bin/bash</arg>
+                                                <arg>-lc</arg>
+                                            </exec>
+                                        </entrypoint>
+                                        <cmd>
+                                            <exec>
+                                                <arg>
+                                                    (/root/startup.sh | tee /root/mailserver.log &amp;) \
+                                                      &amp;&amp; sleep 120 \
+                                                      &amp;&amp; bash -x /root/create_users.sh 2&gt;&amp;1 | tee /root/create_users.log \
+                                                      &amp;&amp; echo 'Mail server setup complete' \
+                                                      &amp;&amp; tail -f /dev/null
+                                                </arg>
+                                            </exec>
+                                        </cmd>
+                                    </run>
+                                </image>
+                            </images>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>start-mailserver</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>stop-mailserver</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
     </profiles>
 </project>
