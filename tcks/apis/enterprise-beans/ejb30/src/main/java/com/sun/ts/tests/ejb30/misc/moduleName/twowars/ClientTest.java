@@ -34,7 +34,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.Client {
 
     @Deployment(name = "two_standalone_component_web", order = 1, testable = false)
-    public static WebArchive createCommonDeployment() {
+    public static WebArchive createCommonDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         WebArchive two_standalone_component_web = ShrinkWrap.create(WebArchive.class, "two_standalone_component_web.war");
         // The class files
         two_standalone_component_web.addClasses(
@@ -57,12 +57,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.C
         warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/twowars/two_standalone_component_web.war.sun-ejb-jar.xml");
         two_standalone_component_web.addAsWebInfResource(warResURL, "sun-ejb-jar.xml");
 
+        archiveProcessor.processWebArchive(two_standalone_component_web, Client.class, warResURL);
+
         return two_standalone_component_web;
     }
 
     /**
         EE10 Deployment Descriptors:
-        ejb3_misc_moduleName_twowars: 
+        ejb3_misc_moduleName_twowars:
         ejb3_misc_moduleName_twowars_web: WEB-INF/web.xml,war.sun-ejb-jar.xml
 
         Found Descriptors:
