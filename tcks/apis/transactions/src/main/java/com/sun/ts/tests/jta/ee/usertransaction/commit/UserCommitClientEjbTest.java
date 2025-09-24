@@ -80,7 +80,7 @@ public class UserCommitClientEjbTest extends com.sun.ts.tests.jta.ee.usertransac
         if (resURL != null) {
             commit_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
         }
-        commit_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + UserCommitClientEjbTest.class.getName() + "\n"),
+        commit_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"),
                 "MANIFEST.MF");
         archiveProcessor.processClientArchive(commit_ejb_vehicle_client, UserCommitClientEjbTest.class, resURL);
 

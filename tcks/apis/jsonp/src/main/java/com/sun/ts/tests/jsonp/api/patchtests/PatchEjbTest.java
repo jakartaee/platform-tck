@@ -124,7 +124,7 @@ public class PatchEjbTest extends ServiceEETest {
     if(resURL != null) {
       patchtests_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
     }
-    patchtests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + PatchEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+    patchtests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
 
 
     JavaArchive patchtests_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "patchtests_ejb_vehicle_ejb.jar");

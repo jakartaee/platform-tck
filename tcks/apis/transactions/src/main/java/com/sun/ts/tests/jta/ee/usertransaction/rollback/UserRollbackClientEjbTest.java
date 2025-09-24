@@ -81,7 +81,7 @@ public class UserRollbackClientEjbTest extends com.sun.ts.tests.jta.ee.usertrans
             rollback_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
         }
         rollback_ejb_vehicle_client
-                .addAsManifestResource(new StringAsset("Main-Class: " + UserRollbackClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+                .addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
         archiveProcessor.processClientArchive(rollback_ejb_vehicle_client, UserRollbackClientEjbTest.class, resURL);
 
         // Ejb
