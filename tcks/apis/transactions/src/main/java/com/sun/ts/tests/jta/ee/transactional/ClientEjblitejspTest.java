@@ -91,33 +91,6 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.jta.ee.transactional.
         return transactional_ejblitejsp_vehicle_web;
     }
 
-    @Test
-    @Override
-    @TargetVehicle("ejblitejsp")
-    public void txTypeRequiredReadOnly_withoutTransaction() throws Exception {
-        super.txTypeRequiredReadOnly_withoutTransaction();
-    }
-
-    @Test
-    @Override
-    @TargetVehicle("ejblitejsp")
-    public void txTypeRequiredReadOnly_withReadOnlyTransaction() throws Exception {
-        super.txTypeRequiredReadOnly_withReadOnlyTransaction();
-    }
-    @Test
-    @Override
-    @TargetVehicle("ejblitejsp")
-    public void txTypeRequiredReadOnly_withNonReadOnlyTransaction() throws Exception {
-        super.txTypeRequiredReadOnly_withNonReadOnlyTransaction();
-    }
-
-    @Test
-    @Override
-    @TargetVehicle("ejblitejsp")
-    public void txTypeRequiresNewReadOnly_withNonReadOnlyTransaction() throws Exception {
-        super.txTypeRequiresNewReadOnly_withNonReadOnlyTransaction();
-    }
-
     /*
      * @testName: txTypeRequired_withoutTransaction
      *

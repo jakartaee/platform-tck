@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2025 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -67,14 +67,6 @@ public class TSResourceManager {
         association.clear();
     }
 
-    public void setReadOnly(Xid xid) throws XAException {
-        sanityCheck(xid, XAResource.TMNOFLAGS, "setReadOnly");
-
-        TSXaTransaction txn = new TSXaTransaction(xid);
-        txn.setReadOnly(true);
-        association.put(xid, txn);
-    }
-
     /**
      * Starts the new Global Transaction branch. transaction can be started in three ways.
      *
@@ -97,9 +89,7 @@ public class TSResourceManager {
         sanityCheck(xid, flags, "start");
 
         if (flags == XAResource.TMNOFLAGS) {
-            TSXaTransaction txn = (TSXaTransaction) association.get(xid);
-            if (txn == null)
-                txn = new TSXaTransaction(xid);
+            TSXaTransaction txn = new TSXaTransaction(xid);
             txn.setStatus(TSXaTransaction.STARTED);
             if (con != null)
                 txn.addConnection(con);
@@ -239,28 +229,6 @@ public class TSResourceManager {
     }
 
     /**
-     * Get the Transaction read-only value of a Connection.
-     *
-     * @param con Connection involved.
-     */
-    boolean isTransactionReadOnly(TSConnection con) {
-        Enumeration e = association.keys();
-        while (e.hasMoreElements()) {
-            Xid id = (Xid) e.nextElement();
-            TSXaTransaction txn = (TSXaTransaction) association.get(id);
-            Hashtable connections = txn.getConnections();
-            Enumeration e1 = connections.keys();
-            while (e1.hasMoreElements()) {
-                TSConnection temp = (TSConnection) e1.nextElement();
-                if (con == temp) {
-                    return txn.isReadOnly();
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
      * Reads a particular key in a distributed transaction.
      *
      * @param key Key to be read.
@@ -289,15 +257,6 @@ public class TSResourceManager {
      * @throws XAExcpetion In case of an invalid XA protocol.
      */
     private void sanityCheck(Xid xid, int flags, String operation) throws XAException {
-        if ((operation != null) && (operation.equals("setReadOnly"))) {
-            if (!(flags == XAResource.TMNOFLAGS)) {
-                throw new XAException(XAException.XAER_INVAL);
-            }
-
-            if (association.containsKey(xid)) {
-                throw new XAException(XAException.XAER_DUPID);
-            }
-        }
         // Sanity checks for the xa_start operation.
         if ((operation != null) && (operation.equals("start"))) {
 
@@ -307,8 +266,7 @@ public class TSResourceManager {
 
             // For TMNOFLAGS xid should not be known to RM.
             if (flags == XAResource.TMNOFLAGS) {
-                TSXaTransaction txn = (TSXaTransaction) association.get(xid);
-                if (txn != null && txn.getStatus() != TSXaTransaction.NOTRANSACTION) {
+                if (association.containsKey(xid)) {
                     throw new XAException(XAException.XAER_DUPID);
                 }
             }

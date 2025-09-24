@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2025 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,9 +27,8 @@ import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
 
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-import jakarta.transaction.xa.ExtendedXAResource;
 
-public class XAResourceImpl implements ExtendedXAResource {
+public class XAResourceImpl implements XAResource {
 
     private TSManagedConnection mc;
 
@@ -51,24 +50,6 @@ public class XAResourceImpl implements ExtendedXAResource {
         XAException xae = new XAException(ex.toString());
         xae.errorCode = XAException.XAER_RMERR;
         throw xae;
-    }
-
-    @Override
-    public boolean setReadOnly(Xid xid) throws XAException {
-        try {
-            ConnectorStatus.getConnectorStatus().logAPI("ExtendedXAResource.setReadOnly", "", "");
-            if (ConnectorStatus.getConnectorStatus().isSupportReadOnly()) {
-                TSeis.getTSeis().getResourceManager().setReadOnly(xid);
-                return true;
-            } else {
-                return false;
-            }
-        } catch (XAException xe) {
-            throw xe;
-        } catch (Exception ex) {
-            handleResourceException(ex);
-            return false;
-        }
     }
 
     public void commit(Xid xid, boolean onePhase) throws XAException {
