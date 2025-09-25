@@ -373,7 +373,7 @@ public class callStmtClient1EJB extends callStmtClient1 implements Serializable 
 	 * method to retrieve the null value. Check if it returns null
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testGetInt03() throws Exception {
 		super.testGetInt03();
 	}
@@ -393,7 +393,7 @@ public class callStmtClient1EJB extends callStmtClient1 implements Serializable 
 	 * equal.
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testGetBoolean01() throws Exception {
 		super.testGetBoolean01();
 	}
@@ -413,7 +413,7 @@ public class callStmtClient1EJB extends callStmtClient1 implements Serializable 
 	 * equal.
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testGetBoolean02() throws Exception {
 		super.testGetBoolean02();
 	}
@@ -432,7 +432,7 @@ public class callStmtClient1EJB extends callStmtClient1 implements Serializable 
 	 * returned by the getLong(int parameterIndex). Both the values should be equal.
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testGetLong01() throws Exception {
 		super.testGetLong01();
 	}
@@ -451,7 +451,7 @@ public class callStmtClient1EJB extends callStmtClient1 implements Serializable 
 	 * returned by the getLong(int parameterIndex) Both the values should be equal.
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testGetLong02() throws Exception {
 		super.testGetLong02();
 	}
@@ -469,7 +469,7 @@ public class callStmtClient1EJB extends callStmtClient1 implements Serializable 
 	 * it returns null
 	 */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
 	public void testGetLong03() throws Exception {
 		super.testGetLong03();
 	}

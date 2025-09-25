@@ -63,7 +63,7 @@ public class callStmtClient1AppClient extends callStmtClient1 implements Seriali
 		archive.addClasses(callStmtClient1.class, ServiceEETest.class, EETest.class);
 		// The appclient-client descriptor
 		URL appClientUrl = callStmtClient1AppClient.class
-				.getResource("/com/sun/ts/tests/jdbc/ee/callStmt1/appclient_vehicle_client.xml");
+				.getResource("/com/sun/ts/tests/jdbc/ee/callStmt/callStmt1/appclient_vehicle_client.xml");
 		if (appClientUrl != null) {
 			archive.addAsManifestResource(appClientUrl, "application-client.xml");
 		}
