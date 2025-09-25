@@ -79,7 +79,7 @@ public class UserGetStatusClientEjbTest extends com.sun.ts.tests.jta.ee.usertran
             getstatus_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
         }
         getstatus_ejb_vehicle_client
-                .addAsManifestResource(new StringAsset("Main-Class: " + UserGetStatusClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+                .addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
         archiveProcessor.processClientArchive(getstatus_ejb_vehicle_client, UserGetStatusClientEjbTest.class, resURL);
 
         JavaArchive getstatus_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "getstatus_ejb_vehicle_ejb.jar");
@@ -93,7 +93,7 @@ public class UserGetStatusClientEjbTest extends com.sun.ts.tests.jta.ee.usertran
                 EETest.class, Fault.class,
                 SetupException.class, ServiceEETest.class,
                 com.sun.ts.tests.jta.ee.common.TransactionStatus.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
-                UserGetStatusClientEjbTest.class);
+                com.sun.ts.tests.jta.ee.usertransaction.getstatus.UserGetStatusClient.class, UserGetStatusClientEjbTest.class);
         // The ejb-jar.xml descriptor
         URL ejbResURL = UserGetStatusClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_ejb.xml");
         if (ejbResURL != null) {
