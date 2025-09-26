@@ -68,7 +68,7 @@ public class callStmtClient10AppClient extends callStmtClient10 implements Seria
 
 		// The appclient-client descriptor
 		URL appClientUrl = callStmtClient10AppClient.class
-				.getResource("/com/sun/ts/tests/jdbc/ee/callStmt10/appclient_vehicle_client.xml");
+				.getResource("/com/sun/ts/tests/jdbc/ee/callStmt/callStmt10/appclient_vehicle_client.xml");
 		if (appClientUrl != null) {
 			archive.addAsManifestResource(appClientUrl, "application-client.xml");
 		}
