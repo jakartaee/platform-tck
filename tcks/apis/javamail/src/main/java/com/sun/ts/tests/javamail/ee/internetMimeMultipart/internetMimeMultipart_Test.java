@@ -36,7 +36,6 @@ import jakarta.mail.Folder;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
 import jakarta.mail.Session;
-import jakarta.mail.Store;
 import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
@@ -50,12 +49,6 @@ public class internetMimeMultipart_Test extends ServiceEETest {
   private int errors = 0; // number of unit test errors
 
   private MailTestUtil mailTestUtil;
-
-  private Folder folder;
-
-  private Message[] msgs;
-
-  private Store store;
 
   private Status status;
 
@@ -74,8 +67,7 @@ public class internetMimeMultipart_Test extends ServiceEETest {
    * smtp.port; imap.port;
    */
   public void setup(String[] args, Properties props) throws Exception {
-    try {
-
+      try {
     	  String protocol = TestUtil.getProperty("javamail.protocol");
           String host = TestUtil.getProperty("javamail.server");
           String user = TestUtil.getProperty("javamail.username");
@@ -91,26 +83,14 @@ public class internetMimeMultipart_Test extends ServiceEETest {
           int imapPort = Integer.parseInt(imapPortStr);
           TestUtil.logTrace("IMAP Port = " + imapPort);
 
-      mailTestUtil = new MailTestUtil();
-      store = mailTestUtil.connect2host(protocol, host, imapPort, user,
-          password);
-      session = mailTestUtil.getSession();
-
-      // Get a Folder object
-      Folder root = mailTestUtil.getRootFolder(store);
-      folder = root.getFolder(mailbox);
-
-      if (folder == null) {
-        throw new Exception("Invalid folder object!");
+          mailTestUtil = new MailTestUtil();
+          session = mailTestUtil.createSession(host, smtpPortStr, user, password);
+      } catch (Exception e) {
+          e.printStackTrace();
+          logErr("Exception : " + e.getMessage());
+          logErr("Setup Failed!");
+          TestUtil.printStackTrace(e);
       }
-      folder.open(Folder.READ_ONLY);
-
-    } catch (Exception e) {
-    e.printStackTrace();
-      logErr("Exception : " + e.getMessage());
-      logErr("Setup Failed!");
-      TestUtil.printStackTrace(e);
-    }
   }
 
   /*
