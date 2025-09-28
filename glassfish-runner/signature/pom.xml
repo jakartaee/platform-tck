@@ -32,7 +32,7 @@
     <properties>
         <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>8.0.0-M10</glassfish.version>
+        <glassfish.version>8.0.0-M12</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
         <glassfish-artifact-id>glassfish</glassfish-artifact-id>
         
@@ -47,7 +47,9 @@
         <!-- Note that currently, this must have src as the first directory as it is hard-coded in the test -->
         <signature.file.dir>${base.tck.dir}/src</signature.file.dir>
         
-        <version.jakarta.tck>11.0.1-SNAPSHOT</version.jakarta.tck>
+        <tck.version>11.0.1</tck.version>
+        
+        <version.jakarta.tck>11.0.1</version.jakarta.tck>
         <version.jakarta.tck.sigtest-maven-plugin>2.6</version.jakarta.tck.sigtest-maven-plugin>
     </properties>
     
@@ -105,9 +107,9 @@
             <artifactId>arquillian-junit5-container</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.8</version>
+            <version>2.1.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
