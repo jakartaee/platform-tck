@@ -19,21 +19,269 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.hibernate</groupId>
-    <artifactId>hiberate-data-tck-runner-parent</artifactId>
+    <parent>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.9</version>
+        <relativePath />
+    </parent>
+
+    <groupId>jakarta.tck</groupId>
+    <artifactId>glassfish-data-tck-web-glassfish-runner</artifactId>
     <version>1.0</version>
-    <packaging>pom</packaging>
-    <name>Hibernate Jakarta Data TCK Runner Parent</name>
+
+    <name>Jakarta Data TCK Web Runner for GlassFish</name>
 
     <properties>
-        <h2.version>2.1.214</h2.version>
+        <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
+        <glassfish.root>${project.build.directory}</glassfish.root>
+        <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
+        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version.main>8</glassfish.version.main>
+        <glassfish.runner.version>11.0.2</glassfish.runner.version>
+
+        <!-- Require at least Java 17 to compile -->
+        <maven.compiler.release>17</maven.compiler.release>
+
+        <jakarta.data.version>1.0.0</jakarta.data.version>
+
+        <sigtest.version>2.3</sigtest.version>
+        <weld.version>6.0.3.Final</weld.version>
     </properties>
 
-    <modules>
-        <module>tools</module>
-        <module>testjar</module>
-        <module>runner-web</module>
-        <module>osgi</module>
-    </modules>
+    <!-- The Junit5 test frameworks -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>glassfish-runner-bom</artifactId>
+                <version>${glassfish.runner.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
+    <!-- Runtime Dependencies -->
+    <dependencies>
+        <!-- The TCK -->
+        <dependency>
+            <groupId>jakarta.data</groupId>
+            <artifactId>jakarta.data-tck</artifactId>
+            <version>1.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- The API -->
+        <dependency>
+            <groupId>jakarta.data</groupId>
+            <artifactId>jakarta.data-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
+        </dependency>
+
+        <!-- Junit5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+        </dependency>
+
+        <!-- Signature Test Plugin -->
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>sigtest-maven-plugin</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <!-- APIs referenced by TCK that do not require implementations for standalone
+         tests -->
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.5.3</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.0</version>
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.8.1</version>
+                <executions>
+                    <execution>
+                        <id>unpack-glassfish</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <phase>test-compile</phase>
+                        <configuration>
+                            <markersDirectory>${glassfish.root}/dependency-maven-plugin-markers</markersDirectory>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.glassfish.main.distributions</groupId>
+                                    <artifactId>${glassfish-artifact-id}</artifactId>
+                                    <version>${glassfish.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${glassfish.root}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Surefire plugin - Entrypoint for Junit5 -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <dependenciesToScan>
+                        <dependency>jakarta.data:jakarta.data-tck</dependency>
+                    </dependenciesToScan>
+                    <groups><![CDATA[web & persistence]]></groups>
+
+                    <!-- If running back-to-back tests at different levels
+                     use this to distinguish the results -->
+                    <reportNameSuffix>core</reportNameSuffix>
+
+                    <systemPropertyVariables>
+                        <glassfish.home>${glassfish.home}</glassfish.home>
+
+                        <jakarta.tck.profile>core</jakarta.tck.profile>
+                        <jakarta.tck.skip.deployment>false</jakarta.tck.skip.deployment>
+
+                        <glassfish.postBootCommands>
+                            create-jdbc-connection-pool --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527 DerbyPool
+                            create-jdbc-resource --connectionpoolid DerbyPool jdbc/DataTCK
+                            list resources.jdbc-connection-pool.*
+                        </glassfish.postBootCommands>
+                        <glassfish.systemProperties>junit.jupiter.extensions.autodetection.enabled=true</glassfish.systemProperties>
+
+                        <jimage.dir>target/jimage</jimage.dir>
+                        <signature.sigTestClasspath>${glassfish.home}/glassfish/modules/jakarta.data-api.jar</signature.sigTestClasspath>
+                        <java.util.logging.config.file>target/test-classes/logging.properties</java.util.logging.config.file>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>full-managed</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <groups>platform,tck-javatest</groups>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>ee.omnifish.arquillian</groupId>
+                    <artifactId>arquillian-glassfish-server-managed</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>in-global-transaction</id>
+            <!-- An alternative way of running the TCK with each test wrapped in a global transaction
+                 (except those that don't support it)
+            -->
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <configuration>
+                                <systemPropertyVariables>
+                                    <org.glassfish.data.tck.global-transaction>true</org.glassfish.data.tck.global-transaction>
+                                </systemPropertyVariables>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <profile>
+            <id>full</id>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <groups>platform,tck-javatest</groups>
+            </properties>
+        </profile>
+        <profile>
+            <id>web</id>
+            <properties>
+                <glassfish-artifact-id>web</glassfish-artifact-id>
+                <groups>web,tck-javatest</groups>
+            </properties>
+        </profile>
+        <profile>
+            <id>arquillian-managed</id>
+            <dependencies>
+                <dependency>
+                    <groupId>ee.omnifish.arquillian</groupId>
+                    <artifactId>arquillian-glassfish-server-managed</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>arquillian-remote</id>
+            <!-- For this profile, ensure that the server is running with the following system property:
+                    junit.jupiter.extensions.autodetection.enabled=true
+            -->
+            <dependencies>
+                <dependency>
+                    <groupId>ee.omnifish.arquillian</groupId>
+                    <artifactId>arquillian-glassfish-server-remote</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 </project>
