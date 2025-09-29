@@ -112,6 +112,10 @@
             <artifactId>junit-jupiter</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
             <scope>test</scope>
@@ -736,13 +740,18 @@
             </build>
         </profile>
         
+        <!-- 
+            620 tests
+         -->
         <profile>
-            <id>corecriteriaapi</id>
+            <id>corecriteriaapi1</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <cdi.skip>true</cdi.skip>
+                <javatest.skip>true</javatest.skip>
             </properties>
             <dependencies>
                 <dependency>
@@ -769,9 +778,238 @@
                                 </goals>
                                 <configuration>
                                     <includes>
-                                        <include>ee/jakarta/tck/persistence/core/criteriaapi/**/*Test.java</include>
+                                        <include>ee/jakarta/tck/persistence/core/criteriaapi/CriteriaBuilder/**/*Test.java</include>
 
                                     </includes>
+                                    <groups>platform</groups>
+                                    <excludedGroups>web</excludedGroups>
+                                    <systemPropertyVariables>
+                                        <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                        <ts.home>${ts.home}</ts.home>
+                                    </systemPropertyVariables>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <!-- 
+            220 tests
+            08:27 min execution time
+         -->
+        <profile>
+            <id>corecriteriaapi2</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <cdi.skip>true</cdi.skip>
+                <javatest.skip>true</javatest.skip>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-appclient</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>3.5.0</version>
+                        <executions>
+                            <execution>
+                                <id>jpa-tests-appclient</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <includes>
+                                        <include>ee/jakarta/tck/persistence/core/criteriaapi/CriteriaDelete/**/*Test.java</include>
+                                        <include>ee/jakarta/tck/persistence/core/criteriaapi/CriteriaQuery/**/*Test.java</include>
+                                        <include>ee/jakarta/tck/persistence/core/criteriaapi/CriteriaUpdate/**/*Test.java</include>
+                                    </includes>
+                                    <groups>platform</groups>
+                                    <excludedGroups>web</excludedGroups>
+                                    <systemPropertyVariables>
+                                        <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                        <ts.home>${ts.home}</ts.home>
+                                    </systemPropertyVariables>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <!-- 
+            360 tests 
+            12:56 min execution
+         -->
+        <profile>
+            <id>corecriteriaapi3</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <cdi.skip>true</cdi.skip>
+                <javatest.skip>true</javatest.skip>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-appclient</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>3.5.0</version>
+                        <executions>
+                            <execution>
+                                <id>jpa-tests-appclient</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <includes>
+                                        <include>ee/jakarta/tck/persistence/core/criteriaapi/From/**/*Test.java</include>
+                                        <include>ee/jakarta/tck/persistence/core/criteriaapi/Join/**/*Test.java</include>
+                                        <include>ee/jakarta/tck/persistence/core/criteriaapi/Root/**/*Test.java</include>
+
+                                    </includes>
+                                    <groups>platform</groups>
+                                    <excludedGroups>web</excludedGroups>
+                                    <systemPropertyVariables>
+                                        <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                        <ts.home>${ts.home}</ts.home>
+                                    </systemPropertyVariables>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <!-- 
+            604 tests
+            20:21 min execution
+         -->
+        <profile>
+            <id>corecriteriaapi4</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <cdi.skip>true</cdi.skip>
+                <javatest.skip>true</javatest.skip>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-appclient</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>3.5.0</version>
+                        <executions>
+                            <execution>
+                                <id>jpa-tests-appclient</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <includes>
+                                        <include>ee/jakarta/tck/persistence/core/criteriaapi/metamodelquery/**/*Test.java</include>
+
+                                    </includes>
+                                    <groups>platform</groups>
+                                    <excludedGroups>web</excludedGroups>
+                                    <systemPropertyVariables>
+                                        <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                        <ts.home>${ts.home}</ts.home>
+                                    </systemPropertyVariables>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <!-- 
+            680 tests
+         -->
+        <profile>
+            <id>corecriteriaapi5</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <cdi.skip>true</cdi.skip>
+                <javatest.skip>true</javatest.skip>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-appclient</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>jakarta.tck.arquillian</groupId>
+                    <artifactId>arquillian-protocol-lib</artifactId>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>3.5.0</version>
+                        <executions>
+                            <execution>
+                                <id>jpa-tests-appclient</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <includes>
+                                        <include>ee/jakarta/tck/persistence/core/criteriaapi/misc/**/*Test.java</include>
+                                        <include>ee/jakarta/tck/persistence/core/criteriaapi/parameter/**/*Test.java</include>
+                                        <include>ee/jakarta/tck/persistence/core/criteriaapi/strquery/**/*Test.java</include>
+
+                                    </includes>
+                                    
                                     <groups>platform</groups>
                                     <excludedGroups>web</excludedGroups>
                                     <systemPropertyVariables>
