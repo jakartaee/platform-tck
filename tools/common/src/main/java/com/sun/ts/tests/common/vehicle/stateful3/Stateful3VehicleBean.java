@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2025 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -37,8 +37,6 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceUnit;
-import jakarta.transaction.Transaction;
-import jakarta.transaction.Transactional;
 
 @Stateful(name = "Stateful3VehicleBean")
 public class Stateful3VehicleBean extends EJB3ShareBaseBean
@@ -69,7 +67,6 @@ public class Stateful3VehicleBean extends EJB3ShareBaseBean
 
     // ================== business methods ====================================
     @Remove
-    @Transactional(Transactional.TxType.REQUIRED)
     public RemoteStatus runTest(String[] args, Properties props) {
         RemoteStatus retValue;
         props.put("persistence.unit.name", "CTS-EM");
