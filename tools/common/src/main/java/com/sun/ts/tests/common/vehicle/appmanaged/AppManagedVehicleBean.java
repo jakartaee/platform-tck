@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2025 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,14 +28,13 @@ import com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean;
 import com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper;
 
 import jakarta.annotation.Resource;
+import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceUnit;
-import jakarta.transaction.Transaction;
-import jakarta.transaction.Transactional;
 
 @Stateful(name = "AppManagedVehicleBean")
 public class AppManagedVehicleBean extends EJB3ShareBaseBean
@@ -52,7 +51,7 @@ public class AppManagedVehicleBean extends EJB3ShareBaseBean
     private EntityManagerFactory emf;
 
     // ================== business methods ====================================
-    @Transactional(Transactional.TxType.REQUIRED)
+    @Remove
     public RemoteStatus runTest(String[] args, Properties props) {
         props.put("persistence.unit.name", "CTS-EM");
         try {
