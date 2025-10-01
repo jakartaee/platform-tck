@@ -74,12 +74,12 @@ public class JakartaEESigTest extends SigTestEE {
       + " cdi data beanval persistence connector"
       + " jacc jaspic jsonp jta el servlet jsf jaxrs websocket batch concurrency jsonb securityapi";
 
-  public static final String KEYWORD_WEB = "caj ejb persistence el jsf jsonp jsp servlet jta jaxrs cdi data beanval interceptors websocket concurrency jsonb securityapi";
+  public static final String KEYWORD_WEB = "caj ejb persistence el jaspic jsf jsonp jsp servlet jta jaxrs cdi data beanval interceptors websocket concurrency jsonb securityapi";
 
   public static final ArrayList<String> KEYWORD_JAVAEE_FULL_OPTIONAL_TECHS = new ArrayList<String>();
 
   public static final ArrayList<String> KEYWORD_WEB_FULL_OPTIONAL_TECHS = new ArrayList<String>(
-      Arrays.asList("batch", "connector", "jms", "javamail", "jacc", "jaspic"));
+      Arrays.asList("batch", "connector", "jms", "javamail", "jacc"));
 
   enum Containers {
     ejb, servlet, jsp, appclient 
