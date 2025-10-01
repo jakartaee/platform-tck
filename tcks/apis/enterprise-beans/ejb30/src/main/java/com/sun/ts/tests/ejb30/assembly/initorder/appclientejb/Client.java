@@ -80,39 +80,6 @@ public class Client extends EETest {
    * default app-name.
    */
   public void appName() {
-
-    TestUtil.logTrace("appName(), java:app entries:");
-    try {
-      InitialContext c = new InitialContext();
-      NamingEnumeration<Binding> bindings = c.listBindings("java:app");
-      while (bindings.hasMore()) {
-        Binding b = bindings.next();
-        String name = b.getName();
-        Object obj = b.getObject();
-        TestUtil.logTrace("java:app/%s entry: %s(%s)".formatted(name, obj, b.getClassName()));
-        if(obj instanceof Context) {
-          Context ctx = (Context) obj;
-          TestUtil.logTrace("+ Context(%s) bindings: ".formatted(ctx.getNameInNamespace()));
-            NamingEnumeration<Binding> ctxBindings = ctx.listBindings("");
-            while (ctxBindings.hasMore()) {
-              Binding b2 = ctxBindings.next();
-              String name2 = b2.getName();
-              Object obj2 = b2.getObject();
-              TestUtil.logTrace("++ %s entry: %s(%s)".formatted(name2, obj2, b2.getClassName()));
-            }
-        }
-      }
-      NamingEnumeration<NameClassPair> listings = c.list("java:app");
-        while (listings.hasMore()) {
-            NameClassPair ncp = listings.next();
-            String name = ncp.getName();
-            String className = ncp.getClassName();
-            TestUtil.logTrace("java:app/%s list: %s".formatted(name, className));
-        }
-    } catch (NamingException e) {
-      TestUtil.logMsg("java:app listBindings failed", e);
-    }
-
     String expected = "renamed2";
     String lookup = "java:app/AppName";
     String actual = (String) ServiceLocator.lookupNoTry(lookup);
