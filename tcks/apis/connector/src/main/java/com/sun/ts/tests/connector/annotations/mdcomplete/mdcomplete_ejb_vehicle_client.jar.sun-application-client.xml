@@ -21,6 +21,6 @@
 <sun-application-client>
   <ejb-ref>
     <ejb-ref-name>ejb/EJBVehicle</ejb-ref-name>
-    <jndi-name>corbaname:iiop:localhost:3700#mdcomplete_ejb_vehicle</jndi-name>
+    <jndi-name>mdcomplete_ejb_vehicle</jndi-name>
   </ejb-ref>
 </sun-application-client>
