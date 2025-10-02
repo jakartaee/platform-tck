@@ -22,13 +22,13 @@
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>project</artifactId>
-        <version>11.0.2-SNAPSHOT</version>
+        <version>12.0.0-SNAPSHOT</version>
         <relativePath>../../../../pom.xml</relativePath>
     </parent>
 
     <groupId>jakarta.tck</groupId>
     <artifactId>signaturevalidation</artifactId>
-    <version>11.0.2-SNAPSHOT</version>
+    <version>12.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>signaturevalidation</name>
