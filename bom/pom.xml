@@ -41,7 +41,7 @@
     <jakarta.jakartaee-bom.version>11.0.0</jakarta.jakartaee-bom.version>
     <!-- Jakarta TCK Tools version from the independently released tools submodule -->
     <!-- The Arquillian protocol artifacts -->
-    <jakarta.tck.arquillian.version>11.1.0</jakarta.tck.arquillian.version>
+    <jakarta.tck.arquillian.version>11.1.2</jakarta.tck.arquillian.version>
     <!-- The released version of tools/common -->
     <jakarta.tck.common.version>11.1.0</jakarta.tck.common.version>
     <!-- The released version of tools/signaturetest -->
