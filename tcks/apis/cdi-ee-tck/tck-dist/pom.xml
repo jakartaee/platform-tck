@@ -5,7 +5,7 @@
    <parent>
       <groupId>jakarta.tck</groupId>
       <artifactId>cdi-tck-ee-parent</artifactId>
-      <version>11.0.0-SNAPSHOT</version>
+      <version>12.0.0-SNAPSHOT</version>
       <relativePath>../pom.xml</relativePath>
    </parent>
 
@@ -21,7 +21,7 @@
       <asciidoctor.maven.plugin.version>2.2.2</asciidoctor.maven.plugin.version>
       <asciidoctorj.pdf.version>1.6.2</asciidoctorj.pdf.version>
       <pdf.name>cdi-tck-reference-guide.pdf</pdf.name>
-      <revnumber>11.0.0-SNAPSHOT</revnumber>
+      <revnumber>12.0.0-SNAPSHOT</revnumber>
    </properties>
 
    <dependencies>

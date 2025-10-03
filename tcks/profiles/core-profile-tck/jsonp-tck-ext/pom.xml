@@ -14,7 +14,7 @@
     <parent>
         <groupId>jakarta.tck.coreprofile</groupId>
         <artifactId>core-tck-parent</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
+        <version>12.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>core-tck-jsonp-extension</artifactId>
