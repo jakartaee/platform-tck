@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.0-SNAPSHOT</version>
         <relativePath />
     </parent>
 
     <groupId>jakarta.tck</groupId>
     <artifactId>cdi-tck-ee-parent</artifactId>
-    <version>11.0.0-SNAPSHOT</version>
+    <version>12.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>CDI EE Integration TCK Parent</name>
@@ -25,6 +25,6 @@
         <connection>scm:git:git@github.com:jakartaee/platform-tck.git</connection>
         <developerConnection>scm:git:git@github.com:jakartaee/platform-tck.git</developerConnection>
         <url>https://github.com/jakartaee/platform-tck</url>
-        <tag>11.0.0-SNAPSHOT</tag>
+        <tag>12.0.0-SNAPSHOT</tag>
     </scm>
 </project>
