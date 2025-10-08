@@ -82,6 +82,8 @@ public class Client extends EETest {
                 new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
                 "MANIFEST.MF");
 
+        archiveProcessor.processClientArchive(ejbClient1, Client.class, appClientUrl);
+
         JavaArchive ejbClient2 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_resref_scope_client.jar");
         ejbClient2.addClasses(Client.class, EETest.class, Fault.class, SetupException.class, QueueCode.class);
 
@@ -93,6 +95,8 @@ public class Client extends EETest {
         ejbClient2.addAsManifestResource(
                 new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
                 "MANIFEST.MF");
+
+        archiveProcessor.processClientArchive(ejbClient2, Client.class, resURL);
 
         EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_resref_scope.ear");
         ear.addAsModule(ejbClient1);
