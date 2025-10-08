@@ -69,7 +69,6 @@ public class Client extends EETest {
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
 		ejbClient.addPackages(true, "com.sun.ts.tests.assembly.util.refbean");
 		ejbClient.addPackages(true, "com.sun.ts.tests.assembly.util.shared");
-		ejbClient.addPackages(true, "com.sun.ts.tests.common.dao.coffee");
 
 		// The appclient-client descriptor
 		URL appClientUrl = Client.class.getResource(
@@ -92,7 +91,7 @@ public class Client extends EETest {
 		ejb.addPackages(true, "com.sun.ts.tests.assembly.util.shared.ejbref.common");
 		ejb.addPackages(true, "com.sun.ts.tests.assembly.util.refbean");
 		ejb.addPackages(true, "com.sun.ts.tests.assembly.util.shared");
-		ejb.addPackages(true, "com.sun.ts.tests.common.dao.coffee");
+		ejb.addPackages(true, "com.sun.ts.tests.common.ejb.wrappers");
 
 		URL resURL = Client.class.getResource(
 				"/com/sun/ts/tests/appclient/deploy/ejblink/single/appclient_dep_ejblink_single_ejb.jar.sun-ejb-jar.xml");
