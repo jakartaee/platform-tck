@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2025 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -35,7 +35,9 @@ import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.ArchiveAsset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Tag;
@@ -88,32 +90,28 @@ public class Client extends EETest {
   public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
     JavaArchive direct_classpath_util = ShrinkWrap.create(JavaArchive.class, "direct_classpath_util.jar");
-    direct_classpath_util.addClasses(com.sun.ts.tests.assembly.classpath.util.ClassPathUtil.class,
-    Client.class);
-    URL resURL = Client.class.getResource("/util/META-INF/ejb-jar.xml");
+    direct_classpath_util.addClasses(com.sun.ts.tests.assembly.classpath.util.ClassPathUtil.class);
+    URL resURL = Client.class.getResource("/com/sun/ts/tests/assembly/classpath/util/META-INF/ejb-jar.xml");
     if (resURL != null) {
       direct_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
     }
-    // archiveProcessor.processEjbArchive(direct_classpath_util, Client.class, resURL);
+    direct_classpath_util.addAsManifestResource(new StringAsset("Class-Path: indirect_classpath_util.jar" + "\n"), "MANIFEST.MF");
+
 
     JavaArchive indirect_classpath_util = ShrinkWrap.create(JavaArchive.class, "indirect_classpath_util.jar");
-    indirect_classpath_util.addClasses(com.sun.ts.tests.assembly.classpath.util.IndirectClassPathUtil.class,
-    Client.class);
-    resURL = Client.class.getResource("/util/META-INF/ejb-jar.xml");
+    indirect_classpath_util.addClasses(com.sun.ts.tests.assembly.classpath.util.IndirectClassPathUtil.class);
+    resURL = Client.class.getResource("/com/sun/ts/tests/assembly/classpath/util/META-INF/ejb-jar.xml");
     if (resURL != null) {
       indirect_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
     }
-    // archiveProcessor.processEjbArchive(indirect_classpath_util, Client.class, resURL);
 
 
-    JavaArchive assembly_classpath_ejb_client = ShrinkWrap.create(JavaArchive.class,
-        "assembly_classpath_ejb_client.jar");
-        assembly_classpath_ejb_client.addClasses(
+    JavaArchive assembly_classpath_ejb_client = ShrinkWrap.create(JavaArchive.class,"assembly_classpath_ejb_client.jar");
+    assembly_classpath_ejb_client.addClasses(
         Fault.class,
         EETest.class,
         SetupException.class,
         com.sun.ts.tests.assembly.classpath.ejb.TestBean.class,
-        com.sun.ts.tests.assembly.classpath.ejb.TestBeanEJB.class,
         com.sun.ts.tests.assembly.classpath.ejb.Client.class);
     resURL = Client.class.getResource("assembly_classpath_ejb_client.xml");
     if (resURL != null) {
@@ -128,12 +126,10 @@ public class Client extends EETest {
     archiveProcessor.processClientArchive(assembly_classpath_ejb_client, Client.class, resURL);
 
 
-    JavaArchive assembly_classpath_ejb_ejb = ShrinkWrap.create(JavaArchive.class,
-        "assembly_classpath_ejb_ejb.jar");
+    JavaArchive assembly_classpath_ejb_ejb = ShrinkWrap.create(JavaArchive.class, "assembly_classpath_ejb_ejb.jar");
         assembly_classpath_ejb_ejb.addClasses(
         com.sun.ts.tests.assembly.classpath.ejb.TestBean.class,
         com.sun.ts.tests.assembly.classpath.ejb.TestBeanEJB.class,
-        com.sun.ts.lib.util.RemoteLoggingInitException.class,
         com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class
         );
     URL ejbResURL = Client.class.getResource("assembly_classpath_ejb_ejb.xml");
@@ -144,17 +140,14 @@ public class Client extends EETest {
     if(ejbResURL != null) {
       assembly_classpath_ejb_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
     }
+    assembly_classpath_ejb_ejb.addAsManifestResource(new StringAsset("Class-Path: libs/direct_classpath_util.jar" + "\n"), "MANIFEST.MF");
     archiveProcessor.processEjbArchive(assembly_classpath_ejb_ejb, Client.class, ejbResURL);
 
-    EnterpriseArchive assembly_classpath_ejb_ear = ShrinkWrap.create(EnterpriseArchive.class,
-        "assembly_classpath_ejb.ear");
-        assembly_classpath_ejb_ear.addAsLibrary(direct_classpath_util);
-        assembly_classpath_ejb_ear.addAsLibrary(indirect_classpath_util);
-        assembly_classpath_ejb_ear.addAsModule(assembly_classpath_ejb_client);
-        assembly_classpath_ejb_ear.addAsModule(assembly_classpath_ejb_ejb);
-        assembly_classpath_ejb_ear.addAsModule(indirect_classpath_util);
-        assembly_classpath_ejb_ear.addAsModule(direct_classpath_util);
-    
+    EnterpriseArchive assembly_classpath_ejb_ear = ShrinkWrap.create(EnterpriseArchive.class, "assembly_classpath_ejb.ear");
+    assembly_classpath_ejb_ear.addAsModule(assembly_classpath_ejb_client);
+    assembly_classpath_ejb_ear.addAsModule(assembly_classpath_ejb_ejb);
+    assembly_classpath_ejb_ear.add(new ArchiveAsset(direct_classpath_util, ZipExporter.class), "libs/direct_classpath_util.jar");
+    assembly_classpath_ejb_ear.add(new ArchiveAsset(indirect_classpath_util, ZipExporter.class), "libs/indirect_classpath_util.jar");
 
     URL earResURL = Client.class.getResource("application.xml");
     if (earResURL != null) {
