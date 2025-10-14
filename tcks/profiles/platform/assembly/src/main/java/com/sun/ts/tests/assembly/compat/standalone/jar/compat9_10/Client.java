@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2025 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -118,7 +118,8 @@ public class Client extends EETest {
         SetupException.class,
         com.sun.ts.tests.assembly.compat.standalone.jar.compat9_10.TestBean.class,
         com.sun.ts.tests.assembly.compat.standalone.jar.compat9_10.TestBeanEJB.class,
-        com.sun.ts.tests.assembly.compat.standalone.jar.compat9_10.Client.class);
+        com.sun.ts.tests.assembly.compat.standalone.jar.compat9_10.Client.class,
+        com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class);
     // The application-client.xml descriptor
     URL resURL = Client.class.getResource("application-client.xml");
     if (resURL != null) {
@@ -156,10 +157,10 @@ public class Client extends EETest {
         com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class,
         com.sun.ts.lib.util.RemoteLoggingInitException.class,
         com.sun.ts.lib.util.TSNamingContext.class,
-        com.sun.ts.lib.util.TestUtil.class,
+        com.sun.ts.lib.util.TSNamingContextInterface.class,
         com.sun.ts.lib.util.TestReportInfo.class,
-        com.sun.ts.tests.assembly.compat.standalone.jar.compat9_10.Client.class);
-    // The application-client.xml descriptor
+        com.sun.ts.lib.util.TestUtil.class);
+    // The ejb-jar.xml descriptor
     URL resURL = Client.class.getResource("ejb-jar.xml");
     if (resURL != null) {
       assembly_compat_standalone_jar_compat9_10_component_ejb.addAsManifestResource(resURL, "ejb-jar.xml");
