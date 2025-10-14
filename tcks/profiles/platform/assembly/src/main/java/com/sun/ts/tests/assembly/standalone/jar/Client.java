@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2025 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -91,8 +91,7 @@ public class Client extends EETest {
   @Deployment(name = VEHICLE_ARCHIVE, order = 2)
   public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
-    JavaArchive assembly_standalone_jar_client = ShrinkWrap.create(JavaArchive.class,
-        "assembly_standalone_jar_client.jar");
+    JavaArchive assembly_standalone_jar_client = ShrinkWrap.create(JavaArchive.class, "assembly_standalone_jar_client.jar");
         assembly_standalone_jar_client.addClasses(
         Fault.class,
         EETest.class,
@@ -113,36 +112,26 @@ public class Client extends EETest {
     archiveProcessor.processClientArchive(assembly_standalone_jar_client, Client.class, resURL);
 
 
-    EnterpriseArchive assembly_standalone_jar_ear = ShrinkWrap.create(EnterpriseArchive.class,
-        "assembly_standalone_jar_ear.ear");
+    EnterpriseArchive assembly_standalone_jar_ear = ShrinkWrap.create(EnterpriseArchive.class, "assembly_standalone_jar_ear.ear");
         assembly_standalone_jar_ear.addAsModule(assembly_standalone_jar_client);
     
-    // URL earResURL = Client.class.getResource("application.xml");
-    // if (earResURL != null) {
-    //   assembly_standalone_jar_ear.addAsManifestResource(earResURL, "application.xml");
-    // }
-    // assembly_standalone_jar_ear
-    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
-    // archiveProcessor.processEarArchive(assembly_standalone_jar_ear, Client.class, earResURL);
-
     return assembly_standalone_jar_ear;
   }
 
   @Deployment(name = "assembly_standalone_jar_component_ejb", order = 1, testable = false)
   public static JavaArchive createEjbDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
-    JavaArchive assembly_standalone_jar_component_ejb = ShrinkWrap.create(JavaArchive.class,
-        "assembly_standalone_jar_component_ejb.jar");
+    JavaArchive assembly_standalone_jar_component_ejb = ShrinkWrap.create(JavaArchive.class, "assembly_standalone_jar_component_ejb.jar");
         assembly_standalone_jar_component_ejb.addClasses(
         com.sun.ts.tests.assembly.standalone.jar.TestBean.class,
         com.sun.ts.tests.assembly.standalone.jar.TestBeanEJB.class,
         com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class,
         com.sun.ts.lib.util.RemoteLoggingInitException.class,
         com.sun.ts.lib.util.TSNamingContext.class,
-        com.sun.ts.lib.util.TestUtil.class,
+        com.sun.ts.lib.util.TSNamingContextInterface.class,
         com.sun.ts.lib.util.TestReportInfo.class,
-        com.sun.ts.tests.assembly.standalone.jar.Client.class);
-    // The application-client.xml descriptor
+        com.sun.ts.lib.util.TestUtil.class);
+    // The ejb-jar.xml descriptor
     URL resURL = Client.class.getResource("assembly_standalone_jar_component_ejb.xml");
     if (resURL != null) {
       assembly_standalone_jar_component_ejb.addAsManifestResource(resURL, "ejb-jar.xml");
@@ -151,9 +140,7 @@ public class Client extends EETest {
     if(resURL != null) {
       assembly_standalone_jar_component_ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
     }
-    // assembly_standalone_jar_component_ejb
-    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
-    archiveProcessor.processClientArchive(assembly_standalone_jar_component_ejb, Client.class, resURL);
+    archiveProcessor.processEjbArchive(assembly_standalone_jar_component_ejb, Client.class, resURL);
 
     return assembly_standalone_jar_component_ejb;
   }
