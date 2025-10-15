@@ -2006,6 +2006,7 @@ public class Client extends PMClientBase {
 	 * @testName: getDeclaredSingularAttributes
 	 * 
 	 * @assertion_ids: PERSISTENCE:JAVADOC:1342;
+	 * Updated for https://github.com/jakartaee/platform-tck/issues/2497
 	 *
 	 * @test_Strategy:
 	 *
@@ -2016,7 +2017,6 @@ public class Client extends PMClientBase {
 		List<String> expected = new ArrayList<String>();
 
 		expected.add("id");
-		expected.add("name");
 		expected.add("value");
 		Collections.sort(expected);
 
@@ -2038,9 +2038,7 @@ public class Client extends PMClientBase {
 						}
 						Collections.sort(actual);
 
-						if (expected.containsAll(actual) && actual.containsAll(expected)
-								&& expected.size() == actual.size()) {
-
+						if (actual.containsAll(expected)) {
 							logTrace( "Received expected attributes");
 							for (String attribName : expected) {
 								logTrace( "attrib:" + attribName);
