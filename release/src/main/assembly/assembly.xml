@@ -124,8 +124,6 @@
                 <include>${project.groupId}:common</include>
                 <include>${project.groupId}:cdi-tck-ee-impl</include>
                 <include>${project.groupId}:connector</include>
-                <include>${project.groupId}:ejb30</include>
-                <include>${project.groupId}:ejb32</include>
                 <include>${project.groupId}:el-platform-tck</include>
                 <include>${project.groupId}:integration</include>
                 <include>${project.groupId}:javaee-tck</include>

@@ -120,36 +120,6 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-ejb30</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>ejb30</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>ejb30-${project.version}.jar</file>
-                            <generatePom>false</generatePom>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>install-ejb32</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>ejb32</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>ejb32-${project.version}.jar</file>
-                            <generatePom>false</generatePom>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>install-el-platform-tck</id>
                         <phase>package</phase>
                         <goals>
