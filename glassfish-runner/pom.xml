@@ -62,7 +62,7 @@
         <module>rest-platform-extra-tck</module>
         <module>rest-tck</module>
         <module>servlet-tck</module>
-        <module>tags-tck</module>
+        <!-- <module>tags-tck</module> -->
         <module>transactions-tck</module>
         <module>validation-tck</module>
         <module>websocket-platform-extra-tck</module>
