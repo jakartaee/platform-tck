@@ -97,7 +97,7 @@
         <!-- The Arquillian protocol artifacts -->
         <jakarta.tck.arquillian.version>11.1.2</jakarta.tck.arquillian.version>
         <!-- The released version of tools/common -->
-        <jakarta.tck.common.version>11.1.0</jakarta.tck.common.version>
+        <jakarta.tck.common.version>11.1.1-SNAPSHOT</jakarta.tck.common.version>
         <!-- The released version of tools/signaturetest -->
         <jakarta.tck.sigtest.version>11.1.0</jakarta.tck.sigtest.version>
     </properties>
