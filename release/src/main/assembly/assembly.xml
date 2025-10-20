@@ -176,7 +176,7 @@
         </dependencySet>
         <dependencySet>
             <includes>
-                <include>jakarta.tck:common:jar</include>
+                <include>jakarta.tck:common:jar:javadoc</include>
             </includes>
             <useTransitiveDependencies>false</useTransitiveDependencies>
             <outputDirectory>/javadoc/common</outputDirectory>
