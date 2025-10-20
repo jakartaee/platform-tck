@@ -72,6 +72,18 @@
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
+            <artifactId>common</artifactId>
+            <version>${jakarta.tck.common.version}</version>
+            <classifier>javadoc</classifier>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>common</artifactId>
+            <version>${jakarta.tck.common.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
             <artifactId>cdi-tck-ee-impl</artifactId>
         </dependency>
         <dependency>
