@@ -21,6 +21,7 @@ import jakarta.annotation.Resource;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.enterprise.inject.spi.InterceptionType;
 import jakarta.inject.Inject;
+import jakarta.transaction.TransactionSynchronizationRegistry;
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;
 import jakarta.transaction.UserTransaction;
@@ -38,6 +39,9 @@ public class OneManagedBean {
     @Resource(lookup = "java:comp/UserTransaction")
     private UserTransaction ut2;
 
+    @Resource
+    private TransactionSynchronizationRegistry tsr;
+
     @Inject
     BeanManager beanManager;
 
@@ -52,6 +56,42 @@ public class OneManagedBean {
     }
 
     public OneManagedBean() {
+    }
+
+    @Transactional(value = TxType.REQUIRED, readOnly = true)
+    public String txTypeRequiredReadOnly() {
+        String result = "not readOnly";
+        if (tsr.isReadOnly()) {
+            result = "readOnly";
+        }
+        return result;
+    }
+
+    @Transactional(value = TxType.REQUIRES_NEW, readOnly = true)
+    public String txTypeRequiresNewReadOnly() {
+        String result = "not readOnly";
+        if (tsr.isReadOnly()) {
+            result = "readOnly";
+        }
+        return result;
+    }
+
+    @Transactional(value = TxType.REQUIRED)
+    public String txTypeRequiredNonReadOnly() {
+        String result = "not readOnly";
+        if (tsr.isReadOnly()) {
+            result = "readOnly";
+        }
+        return result;
+    }
+
+    @Transactional(value = TxType.REQUIRES_NEW)
+    public String txTypeRequiresNewNonReadOnly() {
+        String result = "not readOnly";
+        if (tsr.isReadOnly()) {
+            result = "readOnly";
+        }
+        return result;
     }
 
     @Transactional(value = TxType.REQUIRED)
