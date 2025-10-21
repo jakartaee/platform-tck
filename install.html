@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Installation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/96c4d89611.js"></script>
+  </head>
+  <body>
+<table id="doc-title" cellspacing="0" cellpadding="0">
+  <tr>
+  <td align="left" valign="top">
+  <b>Installation</b><br />
+  </td>
+  </tr>
+</table>
+<hr />
+
+<table width="90%" id="top-nav" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="12%"/>
+		<col width="12%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>
+		<td align="left">
+		<a href="rules.html">
+			<span class="vector-font"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Previous</span>
+		</a>
+		</td>
+
+		<td align="left">
+		<a href="config.html">
+			<span class=" vector-font"><i class="fa fa-arrow-circle-right vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Next</span>
+		</a>
+		</td>
+
+		<td align="right">
+		<a href="toc.html">
+			<span class=" vector-font"><i class="fa fa-list vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Contents</span>
+		</a>
+		</td>
+	</tr>
+</table>
+
+
+<div class="sect1">
+<h2 id="installation">3 Installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This chapter explains how to install the Jakarta Expression Language TCK software.</p>
+</div>
+<div class="paragraph">
+<p>After installing the software according to the instructions in this
+chapter, proceed to <a href="config.html#GBFVV">Chapter 4, "Setup and
+Configuration,"</a> for instructions on configuring your test environment.</p>
+</div>
+<div class="paragraph">
+<p><a id="GBFUD"></a><a id="obtaining-the-reference-implementation"></a></p>
+</div>
+<div class="sect2">
+<h3 id="_3_1_obtaining_a_compatible_implementation">3.1 Obtaining a Compatible Implementation</h3>
+<div class="paragraph">
+<p>Each compatible implementation (CI) will provide instructions for obtaining
+their implementation.
+Eclipse GlassFish 7.0 is a compatible implementation which may be obtained
+from <a href="https://projects.eclipse.org/projects/ee4j.glassfish" class="bare">https://projects.eclipse.org/projects/ee4j.glassfish</a></p>
+</div>
+<div class="paragraph">
+<p><a id="GBFTS"></a><a id="installing-the-software"></a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_2_installing_the_software">3.2 Installing the Software</h3>
+<div class="paragraph">
+<p>Before you can run the Expression Language TCK tests, you must
+install and set up the following software components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A Jakarta EE 10 Compatible Implementation</p>
+</li>
+<li>
+<p>Java SE 11</p>
+</li>
+<li>
+<p>Apache Ant 1.10.0+</p>
+</li>
+<li>
+<p>A CI for Expression Language 5.0, one example is Eclipse GlassFish 7.0</p>
+</li>
+<li>
+<p>Expression Language TCK version 5.0, which includes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>JDOM 1.1.3</p>
+</li>
+<li>
+<p>Apache Commons HTTP Client 3.1</p>
+</li>
+<li>
+<p>Apache Commons Logging 1.1.3</p>
+</li>
+<li>
+<p>Apache Commons Codec 1.9</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The Expression Language 5.0 Vendor Implementation (VI)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Follow these steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install the Java SE 11 software, if it is not already installed.<br>
+Download and install the Java SE 11 software from
+<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" class="bare">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>.
+Refer to the installation instructions that accompany the software for
+additional information.</p>
+</li>
+<li>
+<p>Install the Apache Ant 1.10.0+ software, if it is not already installed.<br>
+Download and install Apache Ant 1.10.0+ software from Apache Ant
+Project. For complete information about Ant, refer to the extensive documentation
+on the Apache Ant Project site. The Apache Ant Manual is available at
+<code>http://ant.apache.org/manual/index.html</code>.
+Apache Ant is protected under the Apache Software, License 2.0, which is
+is available on the Apache Ant Project license page at
+<code>http://ant.apache.org/license.html</code>.</p>
+</li>
+<li>
+<p>Install the Expression Language TCK 5.0 software.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>Copy or download the Expression Language TCK software to your
+local system.<br>
+You can obtain the Expression Language TCK software from the
+Jakarta EE site <a href="https://jakarta.ee/specifications/expression-language/5.0/" class="bare">https://jakarta.ee/specifications/expression-language/5.0/</a>.</p>
+</li>
+<li>
+<p>Use the <code>unzip</code> command to extract the bundle in the directory of
+your choice:<br>
+<code>unzip jakarta-expression-language-tck-5.0.0.zip</code><br>
+This creates the TCK directory. The TCK is the test suite home,
+<code>&lt;TS_HOME&gt;</code>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Install a Expression Language 5.0 Compatible
+Implementation.<br>
+A Compatible Implementation is used to validate your initial
+configuration and setup of the Expression Language TCK
+5.0 tests, which are explained further in
+<a href="config.html#GBFVV">Chapter 4, "Setup and Configuration."</a><br>
+The Compatible Implementations for Expression Language are listed on
+the Jakarta EE Specifications web site: <a href="https://jakarta.ee/specifications/expression-language/5.0/" class="bare">https://jakarta.ee/specifications/expression-language/5.0/</a>.</p>
+</li>
+<li>
+<p>Install the Expression Language VI to be tested.<br>
+Follow the installation instructions for the particular VI under test.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+<hr />
+
+<table width="90%" id="bottom-nav" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="12%"/>
+		<col width="12%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>		
+		<td align="left">
+		<a href="rules.html">
+			<span class=" vector-font"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Previous</span>
+		</a>
+		</td>
+
+		<td align="left">
+		<a href="config.html">
+			<span class="vector-font"><i class="fa fa-arrow-circle-right vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Next</span>
+		</a>
+		</td>
+
+		<td align="right">
+		<a href="toc.html">
+			<span class="vector-font"><i class="fa fa-list vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Contents</span>
+		</a>
+		</td>
+	</tr>
+</table>
+
+<span id="copyright">
+		<img src="img/eclipse_foundation_logo_tiny.png" height="20px" alt="Eclipse Foundation Logo" align="top"/>&nbsp;			
+		<span >Copyright&nbsp;&copy;&nbsp;2017,&nbsp;2021&nbsp;Oracle&nbsp;and/or&nbsp;its&nbsp;affiliates.&nbsp;All&nbsp;rights&nbsp;reserved.</span>
+</span>
+
+</body>
+</html>

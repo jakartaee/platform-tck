@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>TCK User&apos;s Guide for Technology Implementors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/96c4d89611.js"></script>
+  </head>
+  <body>
+<table id="doc-title" cellspacing="0" cellpadding="0">
+  <tr>
+  <td align="left" valign="top">
+  <b>TCK User's Guide for Technology Implementors</b><br />
+  </td>
+  </tr>
+</table>
+<hr />
+
+<table width="90%" id="top-nav" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="12%"/>
+		<col width="12%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>
+
+		<td align="left">
+		<a href="title.html">
+			<span class=" vector-font"><i class="fa fa-arrow-circle-right vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Next</span>
+		</a>
+		</td>
+
+		<td align="right">
+		<a href="toc.html">
+			<span class=" vector-font"><i class="fa fa-list vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Contents</span>
+		</a>
+		</td>
+	</tr>
+</table>
+
+
+<div class="sect1">
+<h2 id="contents">Contents</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="title.html#eclipse-foundation">Eclipse Foundation</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_preface"><a href="preface.html#GBFTI">Preface</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="preface.html#GBFUS">Who Should Use This Book</a></p>
+</li>
+<li>
+<p><a href="preface.html#GBFPO">Before You Read This Book</a></p>
+</li>
+<li>
+<p><a href="preface.html#GBFWF">Typographic Conventions</a></p>
+</li>
+<li>
+<p><a href="preface.html#FWBSD">Shell Prompts in Command Examples</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_introduction"><a href="intro.html#GBFOW">1 Introduction</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="intro.html#GBFTK">1.1 Compatibility Testing</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="intro.html#GBFQN">1.1.1 Why Compatibility Testing is Important</a></p>
+</li>
+<li>
+<p><a href="intro.html#GBFPR">1.1.2 TCK Compatibility Rules</a></p>
+</li>
+<li>
+<p><a href="intro.html#GBFPW">1.1.3 TCK Overview</a></p>
+</li>
+<li>
+<p><a href="intro.html#GBFPB">1.1.4 Jakarta EE Specification Process (JESP) Program and Compatibility Testing</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="intro.html#GBFQR">1.2 About the TCK</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="intro.html#GBFQV">1.2.1 TCK Specifications and Requirements</a></p>
+</li>
+<li>
+<p><a href="intro.html#GBFSQ">1.2.2 TCK Components</a></p>
+</li>
+<li>
+<p><a href="intro.html#GBFSA">1.2.3 JavaTest Harness</a></p>
+</li>
+<li>
+<p><a href="intro.html#GBFRA">1.2.4 TCK Compatibility Test Suite</a></p>
+</li>
+<li>
+<p><a href="intro.html#GBFSH">1.2.5 Exclude Lists</a></p>
+</li>
+<li>
+<p><a href="intro.html#GBFRR">1.2.6 TCK Configuration</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="intro.html#GBFQW">1.3 Getting Started With the TCK</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="procedure-for-certification"><a href="rules.html#GBFSN">2 Procedure for Certification</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="rules.html#CJAFFDGI">2.1 Certification Overview</a></p>
+</li>
+<li>
+<p><a href="rules.html#CJAFGIGG">2.2 Compatibility Requirements</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="rules.html#definitions">2.2.1 Definitions</a></p>
+</li>
+<li>
+<p><a href="rules.html#sthref7">2.2.2 Rules for Jakarta Expression Language Products</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="rules.html#CJAIIBDJ">2.3 Test Appeals Process</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="rules.html#">2.3.1 Valid Challenges</a></p>
+</li>
+<li>
+<p><a href="rules.html#">2.3.2 Invalid Challenges</a></p>
+</li>
+<li>
+<p><a href="rules.html#CJAJEAEI">2.3.3 TCK Test Appeals Steps</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="rules.html#CJAJECIE">2.4 Specifications for Jakarta Expression Language</a></p>
+</li>
+<li>
+<p><a href="rules.html#CJABAHGI">2.5 Libraries for Jakarta Expression Language</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_installation"><a href="install.html#GBFTP">3 Installation</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="install.html#GBFUD">3.1 Obtaining a Compatible Implementation</a></p>
+</li>
+<li>
+<p><a href="install.html#GBFTS">3.2 Installing the Software</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setup-and-configuration"><a href="config.html#GBFVV">4 Setup and Configuration</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="config.html#GHGDH">4.4 Custom Configuration Handlers</a></p>
+</li>
+<li>
+<p><a href="config.html#GBFWG">4.5 Custom Deployment Handlers</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="config.html#GBFVA">4.5.1 To Create a Custom Deployment Handler</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="config.html#GBFUY">4.6 Using the JavaTest Harness Software</a></p>
+</li>
+<li>
+<p><a href="config.html#GBFWG">4.7 Using the JavaTest Harness Configuration GUI</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="config.html#GBFVA">4.7.1 Configuration GUI Overview</a></p>
+</li>
+<li>
+<p><a href="config.html#GBFVD">4.7.2 Starting the Configuration GUI</a></p>
+</li>
+<li>
+<p><a href="config.html#GBFVX">4.7.3 To Configure the JavaTest Harness to Run the TCK Tests</a></p>
+</li>
+<li>
+<p><a href="config.html#GBFUU">4.7.4 Modifying the Default Test Configuration</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="executing-tests"><a href="using.html#GBFWO">5 Executing Tests</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="using.html#GBFUZ">5.1 Starting JavaTest</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="using.html#GBFWH">5.1.1 To Start JavaTest in GUI Mode</a></p>
+</li>
+<li>
+<p><a href="using.html#GBFVW">5.1.2 To Start JavaTest in Command-Line Mode</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="using.html#GBFWM">5.2 Running a Subset of the Tests</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="using.html#GBFVT">5.2.1 To Run a Subset of Tests in GUI Mode</a></p>
+</li>
+<li>
+<p><a href="using.html#GBFWK">5.2.2 To Run a Subset of Tests in Command-Line Mode</a></p>
+</li>
+<li>
+<p><a href="using.html#GBFVL">5.2.3 To Run a Subset of Tests in Batch Mode Based on Prior Result Status</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="using.html#GCLRR">5.3 Running the TCK Against another CI</a></p>
+</li>
+<li>
+<p><a href="using.html#GCLRZ">5.4 Running the TCK Against a Vendor&#8217;s Implementation</a></p>
+</li>
+<li>
+<p><a href="using.html#GBFVK">5.5 Test Reports</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="using.html#GBFWD">5.5.1 Creating Test Reports</a></p>
+</li>
+<li>
+<p><a href="using.html#GBFVB">5.5.2 Viewing an Existing Test Report</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="debugging-test-problems"><a href="debug.html#GBFUV">6 Debugging Test Problems</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="debug.html#GBFYP">6.1 Overview</a></p>
+</li>
+<li>
+<p><a href="debug.html#GBFVF">6.2 Test Tree</a></p>
+</li>
+<li>
+<p><a href="debug.html#GBFWI">6.3 Folder Information</a></p>
+</li>
+<li>
+<p><a href="debug.html#GBFVP">6.4 Test Information</a></p>
+</li>
+<li>
+<p><a href="debug.html#GBFVZ">6.5 Report Files</a></p>
+</li>
+<li>
+<p><a href="debug.html#GBFYF">6.6 Configuration Failures</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="faq.html#GBFYD">A Frequently Asked Questions</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="faq.html#GBFYQ">A.1 Where do I start to debug a test failure?</a></p>
+</li>
+<li>
+<p><a href="faq.html#GBFYR">A.2 How do I restart a crashed test run?</a></p>
+</li>
+<li>
+<p><a href="faq.html#GBFWU">A.3 What would cause tests be added to the exclude list?</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<hr />
+
+<table width="90%" id="bottom-nav" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="12%"/>
+		<col width="12%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>		
+
+		<td align="left">
+		<a href="title.html">
+			<span class="vector-font"><i class="fa fa-arrow-circle-right vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Next</span>
+		</a>
+		</td>
+
+		<td align="right">
+		<a href="toc.html">
+			<span class="vector-font"><i class="fa fa-list vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Contents</span>
+		</a>
+		</td>
+	</tr>
+</table>
+
+<span id="copyright">
+		<img src="img/eclipse_foundation_logo_tiny.png" height="20px" alt="Eclipse Foundation Logo" align="top"/>&nbsp;			
+		<span >Copyright&nbsp;&copy;&nbsp;2017,&nbsp;2021&nbsp;Oracle&nbsp;and/or&nbsp;its&nbsp;affiliates.&nbsp;All&nbsp;rights&nbsp;reserved.</span>
+</span>
+
+</body>
+</html>

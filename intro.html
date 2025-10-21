@@ -1,0 +1,628 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Introduction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/96c4d89611.js"></script>
+  </head>
+  <body>
+<table id="doc-title" cellspacing="0" cellpadding="0">
+  <tr>
+  <td align="left" valign="top">
+  <b>Introduction</b><br />
+  </td>
+  </tr>
+</table>
+<hr />
+
+<table width="90%" id="top-nav" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="12%"/>
+		<col width="12%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>
+		<td align="left">
+		<a href="preface.html">
+			<span class="vector-font"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Previous</span>
+		</a>
+		</td>
+
+		<td align="left">
+		<a href="rules.html">
+			<span class=" vector-font"><i class="fa fa-arrow-circle-right vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Next</span>
+		</a>
+		</td>
+
+		<td align="right">
+		<a href="toc.html">
+			<span class=" vector-font"><i class="fa fa-list vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Contents</span>
+		</a>
+		</td>
+	</tr>
+</table>
+
+
+<div class="sect1">
+<h2 id="introduction">1 Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This chapter provides an overview of the principles that apply
+generally to all Technology Compatibility Kits (TCKs) and describes the
+Jakarta Expression Language TCK (Expression Language 5.0 TCK).
+It also includes a high level listing
+of what is needed to get up and running with the Expression Language
+TCK.</p>
+</div>
+<div class="paragraph">
+<p>This chapter includes the following topics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#GBFTK">Compatibility Testing</a></p>
+</li>
+<li>
+<p><a href="#GBFQR">About the TCK</a></p>
+</li>
+<li>
+<p><a href="#GBFQW">Getting Started With the TCK</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a id="GBFTK"></a><a id="compatibility-testing"></a></p>
+</div>
+<div class="sect2">
+<h3 id="_1_1_compatibility_testing">1.1 Compatibility Testing</h3>
+<div class="paragraph">
+<p>Compatibility testing differs from traditional product testing in a
+number of ways. The focus of compatibility testing is to test those
+features and areas of an implementation that are likely to differ across
+other implementations, such as those features that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Rely on hardware or operating system-specific behavior</p>
+</li>
+<li>
+<p>Are difficult to port</p>
+</li>
+<li>
+<p>Mask or abstract hardware or operating system behavior</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Compatibility test development for a given feature relies on a complete
+specification and compatible implementation (CI) for that feature.
+Compatibility testing is not primarily concerned with robustness,
+performance, nor ease of use.</p>
+</div>
+<div class="paragraph">
+<p><a id="GBFQN"></a><a id="why-compatibility-testing-is-important"></a></p>
+</div>
+<div class="sect3">
+<h4 id="_1_1_1_why_compatibility_testing_is_important">1.1.1 Why Compatibility Testing is Important</h4>
+<div class="paragraph">
+<p>Jakarta platform compatibility is important to different groups involved
+with Jakarta technologies for different reasons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Compatibility testing ensures that the Jakarta platform does not become
+fragmented as it is ported to different operating systems and hardware
+environments.</p>
+</li>
+<li>
+<p>Compatibility testing benefits developers working in the Jakarta
+programming language, allowing them to write applications once and then
+to deploy them across heterogeneous computing environments without
+porting.</p>
+</li>
+<li>
+<p>Compatibility testing allows application users to obtain applications
+from disparate sources and deploy them with confidence.</p>
+</li>
+<li>
+<p>Conformance testing benefits Jakarta platform implementors by ensuring a
+level playing field for all Jakarta platform ports.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a id="GBFPR"></a><a id="tck-compatibility-rules"></a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_1_2_tck_compatibility_rules">1.1.2 TCK Compatibility Rules</h4>
+<div class="paragraph">
+<p>Compatibility criteria for all technology implementations are embodied
+in the TCK Compatibility Rules that apply to a specified technology.
+Each TCK tests for adherence to these Rules as described in
+<a href="rules.html#GBFSN">Chapter 2, "Procedure for Certification."</a></p>
+</div>
+<div class="paragraph">
+<p><a id="GBFPW"></a><a id="tck-overview"></a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_1_3_tck_overview">1.1.3 TCK Overview</h4>
+<div class="paragraph">
+<p>A TCK is a set of tools and tests used to verify that a vendor&#8217;s compatible
+implementation of a Jakarta EE technology conforms to the applicable
+specification. All tests in the TCK are based on the written
+specifications for the Jakarta EE platform. A TCK tests compatibility of a
+vendor&#8217;s compatible implementation of the technology to the applicable
+specification of the technology. Compatibility testing is a means of
+ensuring correctness, completeness, and consistency across all
+implementations developed by technology licensees.</p>
+</div>
+<div class="paragraph">
+<p>The set of tests included with each TCK is called the test suite. Most
+tests in a TCK&#8217;s test suite are self-checking, but some tests may
+require tester interaction. Most tests return either a Pass or Fail
+status. For a given platform to be certified, all of the required tests
+must pass. The definition of required tests may change from platform to
+platform.</p>
+</div>
+<div class="paragraph">
+<p>The definition of required tests will change over time. Before your
+final certification test pass, be sure to download the latest version
+of this TCK.</p>
+</div>
+<div class="paragraph">
+<p><a id="GBFPB"></a><a id="java-community-process-jcp-program-and-compatibility-testing"></a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_1_4_jakarta_ee_specification_process_jesp_program_and_compatibility_testing">1.1.4 Jakarta EE Specification Process (JESP) Program and Compatibility Testing</h4>
+<div class="paragraph">
+<p>The Jakarta EE Specification Process (JESP) program is the formalization of the
+open process that has been used since 2019 to develop and revise Jakarta EE
+technology specifications in cooperation with the international Jakarta EE
+community. The JESP program specifies that the following three major
+components must be included as deliverables in a final Jakarta EE technology
+release under the direction of the responsible Expert Group:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Technology Specification</p>
+</li>
+<li>
+<p>Compatible Implementation (CI)</p>
+</li>
+<li>
+<p>Technology Compatibility Kit (TCK)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For further information about the JESP program, go to Jakarta EE Specification
+Process community page <a href="https://jakarta.ee/specifications" class="bare">https://jakarta.ee/specifications</a>.</p>
+</div>
+<div class="paragraph">
+<p><a id="GBFQR"></a><a id="about-the-tck"></a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_2_about_the_tck">1.2 About the TCK</h3>
+<div class="paragraph">
+<p>The Expression Language TCK 5.0 is designed as a
+portable, configurable, automated test suite for verifying the
+compatibility of a vendor&#8217;s implementation of the
+Expression Language 5.0 Specification.</p>
+</div>
+<div class="paragraph">
+<p><a id="GBFQV"></a><a id="tck-specifications-and-requirements"></a></p>
+</div>
+<div class="sect3">
+<h4 id="_1_2_1_tck_specifications_and_requirements">1.2.1 TCK Specifications and Requirements</h4>
+<div class="paragraph">
+<p>This section lists the applicable requirements and specifications.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Specification Requirements: Software requirements for a
+Expression Language implementation are described in detail in the
+Expression Language 5.0 Specification.  Links to the
+Expression Language specification and other product information can
+be found at <a href="https://jakarta.ee/specifications/expression-language/5.0/" class="bare">https://jakarta.ee/specifications/expression-language/5.0/</a>.</p>
+</li>
+<li>
+<p>Expression Language Version: The Expression Language 5.0 TCK
+is based on the Expression Language
+Specification, Version 5.0.</p>
+</li>
+<li>
+<p>Compatible Implementation: One Expression Language
+5.0 Compatible Implementation, Eclipse GlassFish 7.0 is
+available from the Eclipse EE4J project
+(<a href="https://projects.eclipse.org/projects/ee4j" class="bare">https://projects.eclipse.org/projects/ee4j</a>). See the CI documentation page at
+<a href="https://projects.eclipse.org/projects/ee4j.glassfish" class="bare">https://projects.eclipse.org/projects/ee4j.glassfish</a> for more information.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>See the Expression Language TCK Release Notes for more specific
+information about Java SE version requirements, supported platforms,
+restrictions, and so on.</p>
+</div>
+<div class="paragraph">
+<p><a id="GBFSQ"></a><a id="tck-components"></a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_2_2_tck_components">1.2.2 TCK Components</h4>
+<div class="paragraph">
+<p>The Expression Language TCK 5.0 includes the
+following components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>JavaTest harness version 5.0 and related documentation. See
+<a href="https://wiki.openjdk.java.net/display/CodeTools/JT+Harness">JT Harness web site</a>
+for additional information.</p>
+</li>
+<li>
+<p>Expression Language TCK signature tests; check that all public APIs
+are supported and/or defined as specified in the Expression Language
+Version 5.0 implementation under test.</p>
+</li>
+<li>
+<p>If applicable, an exclude list, which provides a list of tests that your
+implementation is not required to pass.</p>
+</li>
+<li>
+<p>API tests for all of the Expression Language API in all related packages:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>jakarta.el</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Expression Language TCK tests run on the following platforms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CentOS Linux 7</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a id="GBFSA"></a><a id="javatest-harness"></a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_2_3_javatest_harness">1.2.3 JavaTest Harness</h4>
+<div class="paragraph">
+<p>The JavaTest harness version 5.0 is a set of tools
+designed to run and manage test suites on different Java platforms.
+To JavaTest, Jakarta EE can be considered another platform.
+The JavaTest harness can be described as both a Java application and a set
+of compatibility testing tools. It can run tests on different kinds of
+Java platforms and it allows the results to be browsed online within
+the JavaTest GUI, or offline in the HTML reports that the JavaTest
+harness generates.</p>
+</div>
+<div class="paragraph">
+<p>The JavaTest harness includes the applications and tools that are used
+for test execution and test suite management. It supports the following
+features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Sequencing of tests, allowing them to be loaded and executed automatically</p>
+</li>
+<li>
+<p>Graphic user interface (GUI) for ease of use</p>
+</li>
+<li>
+<p>Automated reporting capability to minimize manual errors</p>
+</li>
+<li>
+<p>Failure analysis</p>
+</li>
+<li>
+<p>Test result auditing and auditable test specification framework</p>
+</li>
+<li>
+<p>Distributed testing environment support</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To run tests using the JavaTest harness, you specify which tests in the
+test suite to run, how to run them, and where to put the results as
+described in <a href="config.html#GBFVV">Chapter 4, "Setup and
+Configuration."</a></p>
+</div>
+<div class="paragraph">
+<p><a id="GBFRA"></a><a id="tck-compatibility-test-suite"></a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_2_4_tck_compatibility_test_suite">1.2.4 TCK Compatibility Test Suite</h4>
+<div class="paragraph">
+<p>The test suite is the collection of tests used by the JavaTest harness
+to test a particular technology implementation. In this case, it is the
+collection of tests used by the Expression Language TCK
+5.0 to test a Expression Language 5.0
+implementation. The tests are designed to verify that a vendor&#8217;s
+runtime implementation of the technology complies with the appropriate
+specification. The individual tests correspond to assertions of the
+specification.</p>
+</div>
+<div class="paragraph">
+<p>The tests that make up the TCK compatibility test suite are precompiled
+and indexed within the TCK test directory structure. When a test run is
+started, the JavaTest harness scans through the set of tests that are
+located under the directories that have been selected. While scanning,
+the JavaTest harness selects the appropriate tests according to any
+matches with the filters you are using and queues them up for execution.</p>
+</div>
+<div class="paragraph">
+<p><a id="GBFSH"></a><a id="exclude-lists"></a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_2_5_exclude_lists">1.2.5 Exclude Lists</h4>
+<div class="paragraph">
+<p>Each version of a TCK includes an Exclude List contained in a <code>.jtx</code>
+file.
+This is a list of test file URLs that identify tests which do not
+have to be run for the specific version of the TCK being used.
+Whenever tests are run, the JavaTest harness automatically excludes
+any test on the Exclude List from being executed.</p>
+</div>
+<div class="paragraph">
+<p>A vendor&#8217;s compatible implementation is not required to pass or run any test on the Exclude List.
+The Exclude List file, <code>&lt;TS_HOME&gt;/bin/ts.jtx</code>, is included in the
+Expression Language TCK.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>From time to time, updates to the Exclude List are made available.
+The exclude list is included in the Jakarta TCK ZIP archive.
+Each time an update is approved and released, the version number
+will be incremented.
+You should always make sure you are using an up-to-date copy of the
+Exclude List before running the Expression Language TCK to verify your
+implementation.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A test might be in the Exclude List for reasons such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>An error in an underlying implementation API has been discovered which
+does not allow the test to execute properly.</p>
+</li>
+<li>
+<p>An error in the specification that was used as the basis of the test
+has been discovered.</p>
+</li>
+<li>
+<p>An error in the test itself has been discovered.</p>
+</li>
+<li>
+<p>The test fails due to a bug in the tools (such as the JavaTest
+harness, for example).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition, all tests are run against the compatible implementations.
+Any tests that fail when run on a compatible Jakarta platform are put on the
+Exclude List. Any test that is not specification-based, or for which the
+specification is vague, may be excluded. Any test that is found to be
+implementation dependent (based on a particular thread scheduling model,
+based on a particular file system behavior, and so on) may be excluded.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Vendors are not permitted to alter or modify Exclude Lists. Changes to
+an Exclude List can only be made by using the procedure described in
+<a href="rules.html#CJAJEAEI">Section 2.3.1, "TCK Test Appeals Steps."</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><a id="GBFRR"></a><a id="tck-configuration"></a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1_2_6_tck_configuration">1.2.6 TCK Configuration</h4>
+<div class="paragraph">
+<p>You need to set several variables in your test environment, modify
+properties in the <code>&lt;TS_HOME&gt;/bin/ts.jte</code> file, and then use the JavaTest
+harness to configure and run the Expression Language tests, as described in
+<a href="config.html#GBFVV">Chapter 4, "Setup and Configuration."</a></p>
+</div>
+<div class="paragraph">
+<p><a id="GBFQW"></a><a id="getting-started-with-the-tck"></a></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Jakarta EE Specification Process support multiple compatible implementations.
+These instructions explain how to get started with the Eclipse GlassFish 7.0 CI.
+If you are using another compatible implementation, refer to material provided
+by that implementation for specific instructions and procedures.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_3_getting_started_with_the_tck">1.3 Getting Started With the TCK</h3>
+<div class="paragraph">
+<p>This section provides an general overview of what needs to be done to
+install, set up, test, and use the Expression Language TCK. These
+steps are explained in more detail in subsequent chapters of this
+guide.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure that the following software has been correctly installed
+on the system hosting the JavaTest harness:</p>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A Jakarta EE 10 Compatible Implementation</p>
+</li>
+<li>
+<p>Java SE 11</p>
+</li>
+<li>
+<p>Apache Ant 1.10.0+</p>
+</li>
+<li>
+<p>A CI for Expression Language 5.0. One example is Eclipse GlassFish 7.0.</p>
+</li>
+<li>
+<p>Expression Language TCK version 5.0, which includes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>JDOM 1.1.3</p>
+</li>
+<li>
+<p>Apache Commons HTTP Client 3.1</p>
+</li>
+<li>
+<p>Apache Commons Logging 1.1.3</p>
+</li>
+<li>
+<p>Apache Commons Codec 1.9</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The Expression Language 5.0 Vendor Implementation (VI)<br>
+See the documentation for each of these software applications for
+installation instructions. See <a href="install.html#GBFTP">Chapter 3,
+"Installation,"</a> for instructions on installing the Expression Language TCK.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up the Expression Language TCK software.<br>
+See <a href="config.html#GBFVV">Chapter 4, "Setup and Configuration,"</a> for
+details about the following steps.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>Set up your shell environment.</p>
+</li>
+<li>
+<p>Modify the required properties in the <code>&lt;TS_HOME&gt;/bin/ts.jte</code> file.</p>
+</li>
+<li>
+<p>Configure the JavaTest harness.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test the Expression Language 5.0 implementation.<br>
+Test the Expression Language implementation installation by running
+the test suite.  See <a href="using.html#GBFWO">Chapter 5, "Executing Tests."</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<hr />
+
+<table width="90%" id="bottom-nav" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="12%"/>
+		<col width="12%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>		
+		<td align="left">
+		<a href="preface.html">
+			<span class=" vector-font"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Previous</span>
+		</a>
+		</td>
+
+		<td align="left">
+		<a href="rules.html">
+			<span class="vector-font"><i class="fa fa-arrow-circle-right vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Next</span>
+		</a>
+		</td>
+
+		<td align="right">
+		<a href="toc.html">
+			<span class="vector-font"><i class="fa fa-list vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Contents</span>
+		</a>
+		</td>
+	</tr>
+</table>
+
+<span id="copyright">
+		<img src="img/eclipse_foundation_logo_tiny.png" height="20px" alt="Eclipse Foundation Logo" align="top"/>&nbsp;			
+		<span >Copyright&nbsp;&copy;&nbsp;2017,&nbsp;2021&nbsp;Oracle&nbsp;and/or&nbsp;its&nbsp;affiliates.&nbsp;All&nbsp;rights&nbsp;reserved.</span>
+</span>
+
+</body>
+</html>

@@ -1,12 +1,14 @@
 remote_theme: jakartaee/jekyll-theme-jakarta-ee
-#theme: jekyll-theme-jakarta-ee
 
-title: [Jakarta EE TCK]
-description: [Source code and resources to build and run the Jakarta EE TCK suite]
+title: [tck_uml_v3_0]
+description: [Oracle Technology Compatibility Kit User's Guide for Expression Language 5.0 for Technology Licensees, Release 5.0]
 
+# sidebar links url
 links:
-  source: https://github.com/eclipse-ee4j/jakartaee-tck
-  download: https://download.eclipse.org/ee4j/jakartaee-tck
-  faq: https://eclipse-ee4j.github.io/jakartaee-tck/wiki
-  Jakarta EE 9.1: https://eclipse-ee4j.github.io/jakartaee-tck/wiki/9.1.x
-  mailinglist: https://accounts.eclipse.org/mailing-list/jakartaee-tck-dev
+  source: https://github.com/javaee/tck_uml_v3_0
+  download: https://github.com/javaee/tck_uml_v3_0/releases
+  #mailinglist: https://javaee.groups.io/g/tck_uml_v3_0
+  #javadocs:
+  docs: https://javaee.github.io/tck_uml_v3_0
+  #faq:
+

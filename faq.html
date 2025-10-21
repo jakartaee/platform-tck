@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Appendix A: Frequently Asked Questions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/96c4d89611.js"></script>
+  </head>
+  <body>
+<table id="doc-title" cellspacing="0" cellpadding="0">
+  <tr>
+  <td align="left" valign="top">
+  <b>Appendix A: Frequently Asked Questions</b><br />
+  </td>
+  </tr>
+</table>
+<hr />
+
+<table width="90%" id="top-nav" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="12%"/>
+		<col width="12%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>
+		<td align="left">
+		<a href="debug.html">
+			<span class="vector-font"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Previous</span>
+		</a>
+		</td>
+
+		<td align="left">
+		<a href="rebuild.html">
+			<span class=" vector-font"><i class="fa fa-arrow-circle-right vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Next</span>
+		</a>
+		</td>
+
+		<td align="right">
+		<a href="toc.html">
+			<span class=" vector-font"><i class="fa fa-list vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Contents</span>
+		</a>
+		</td>
+	</tr>
+</table>
+
+
+<div class="sect1">
+<h2 id="a-frequently-asked-questions">A Frequently Asked Questions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This appendix contains the following questions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#GBFYQ">Where do I start to debug a test failure?</a></p>
+</li>
+<li>
+<p><a href="#GBFYR">How do I restart a crashed test run?</a></p>
+</li>
+<li>
+<p><a href="#GBFWU">What would cause tests be added to the exclude list?</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a id="GBFYQ"></a><a id="a.1-where-do-i-start-to-debug-a-test-failure"></a></p>
+</div>
+<div class="sect2">
+<h3 id="_a_1_where_do_i_start_to_debug_a_test_failure">A.1 Where do I start to debug a test failure?</h3>
+<div class="paragraph">
+<p>From the JavaTest GUI, you can view recently run tests using the Test
+Results Summary, by selecting the red Failed tab or the blue Error tab.
+See <a href="debug.html#GBFUV">Chapter 6, "Debugging Test Problems,"</a> for more
+information.</p>
+</div>
+<div class="paragraph">
+<p><a id="GBFYR"></a><a id="a.2-how-do-i-restart-a-crashed-test-run"></a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_a_2_how_do_i_restart_a_crashed_test_run">A.2 How do I restart a crashed test run?</h3>
+<div class="paragraph">
+<p>If you need to restart a test run, you can figure out which test crashed
+the test suite by looking at the <code>harness.trace</code> file. The
+<code>harness.trace</code> file is in the report directory that you supplied to the
+JavaTest GUI or parameter file. Examine this trace file, then change the
+JavaTest GUI initial files to that location or to a directory location
+below that file, and restart. This will overwrite only <code>.jtr</code> files that
+you rerun. As long as you do not change the value of the GUI work
+directory, you can continue testing and then later compile a complete
+report to include results from all such partial runs.</p>
+</div>
+<div class="paragraph">
+<p><a id="GBFWU"></a><a id="a.3-what-would-cause-tests-be-added-to-the-exclude-list"></a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_a_3_what_would_cause_tests_be_added_to_the_exclude_list">A.3 What would cause tests be added to the exclude list?</h3>
+<div class="paragraph">
+<p>The JavaTest exclude file (<code>&lt;TS_HOME&gt;/bin/ts.jtx</code>) contains all tests that are not
+required to be run. The following is a list of reasons for a test to be
+included in the Exclude List:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>An error in a Compatible Implementation that does not allow the test to
+execute properly has been discovered.</p>
+</li>
+<li>
+<p>An error in the specification that was used as the basis of the test
+has been discovered.</p>
+</li>
+<li>
+<p>An error in the test has been discovered.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<hr />
+
+<table width="90%" id="bottom-nav" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="12%"/>
+		<col width="12%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>		
+		<td align="left">
+		<a href="debug.html">
+			<span class=" vector-font"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Previous</span>
+		</a>
+		</td>
+
+		<td align="left">
+		<a href="rebuild.html">
+			<span class="vector-font"><i class="fa fa-arrow-circle-right vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Next</span>
+		</a>
+		</td>
+
+		<td align="right">
+		<a href="toc.html">
+			<span class="vector-font"><i class="fa fa-list vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Contents</span>
+		</a>
+		</td>
+	</tr>
+</table>
+
+<span id="copyright">
+		<img src="img/eclipse_foundation_logo_tiny.png" height="20px" alt="Eclipse Foundation Logo" align="top"/>&nbsp;			
+		<span >Copyright&nbsp;&copy;&nbsp;2017,&nbsp;2021&nbsp;Oracle&nbsp;and/or&nbsp;its&nbsp;affiliates.&nbsp;All&nbsp;rights&nbsp;reserved.</span>
+</span>
+
+</body>
+</html>

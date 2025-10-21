@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Procedure for Certification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/96c4d89611.js"></script>
+  </head>
+  <body>
+<table id="doc-title" cellspacing="0" cellpadding="0">
+  <tr>
+  <td align="left" valign="top">
+  <b>Procedure for Certification</b><br />
+  </td>
+  </tr>
+</table>
+<hr />
+
+<table width="90%" id="top-nav" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="12%"/>
+		<col width="12%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>
+		<td align="left">
+		<a href="intro.html">
+			<span class="vector-font"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Previous</span>
+		</a>
+		</td>
+
+		<td align="left">
+		<a href="install.html">
+			<span class=" vector-font"><i class="fa fa-arrow-circle-right vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Next</span>
+		</a>
+		</td>
+
+		<td align="right">
+		<a href="toc.html">
+			<span class=" vector-font"><i class="fa fa-list vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Contents</span>
+		</a>
+		</td>
+	</tr>
+</table>
+
+
+<div class="sect1">
+<h2 id="procedure-for-certification">2 Procedure for Certification</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This chapter describes the compatibility testing procedure and
+compatibility requirements for Jakarta Expression Language.
+This chapter contains the following sections:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#CJAFFDGI">Certification Overview</a></p>
+</li>
+<li>
+<p><a href="#CJAFGIGG">Compatibility Requirements</a></p>
+</li>
+<li>
+<p><a href="#CJAIIBDJ">Test Appeals Process</a></p>
+</li>
+<li>
+<p><a href="#CJAJECIE">Specifications for Jakarta Expression Language</a></p>
+</li>
+<li>
+<p><a href="#CJABAHGI">Libraries for Jakarta Expression Language</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a id="CJAFFDGI"></a><a id="certification-overview"></a></p>
+</div>
+<div class="sect2">
+<h3 id="_2_1_certification_overview">2.1 Certification Overview</h3>
+<div class="paragraph">
+<p>The certification process for Expression Language 5.0
+consists of the following activities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Install the appropriate version of the Technology Compatibility Kit
+(TCK) and execute it in accordance with the instructions in this User&#8217;s
+Guide.</p>
+</li>
+<li>
+<p>Ensure that you meet the requirements outlined in
+<a href="#CJAFGIGG">Compatibility Requirements</a> below.</p>
+</li>
+<li>
+<p>Certify to the Eclipse Foundation that you have finished
+testing and that you meet all of the compatibility requirements,
+as required by the Eclipse Foundation TCK License.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a id="CJAFGIGG"></a><a id="compatibility-requirements"></a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_2_compatibility_requirements">2.2 Compatibility Requirements</h3>
+<div class="paragraph">
+<p>The compatibility requirements for Expression Language
+5.0 consist of meeting the requirements set forth by
+the rules and associated definitions contained in this section.</p>
+</div>
+<div class="paragraph">
+<p><a id="sthref4"></a><a id="definitions"></a></p>
+</div>
+<div class="sect3">
+<h4 id="_2_2_1_definitions">2.2.1 Definitions</h4>
+<div class="paragraph">
+<p>These definitions are for use only with these compatibility requirements
+and are not intended for any other purpose.</p>
+</div>
+<div class="paragraph">
+<p><a id="sthref5"></a><a id="sthref6"></a></p>
+</div>
+<div class="paragraph">
+<p>Table 2-1 Definitions </p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Term</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API Definition Product</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A Product for which the only Java class files
+contained in the product are those corresponding to the application
+programming interfaces defined by the Specifications, and which is
+intended only as a means for formally specifying the application
+programming interfaces defined by the Specifications.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Computational Resource</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A piece of hardware or software that may vary in quantity, existence, or
+version, which may be required to exist in a minimum quantity and/or at
+a specific or minimum revision level so as to satisfy the requirements
+of the Test Suite.</p>
+</div>
+<div class="paragraph">
+<p>Examples of computational resources that may vary in quantity are RAM
+and file descriptors.</p>
+</div>
+<div class="paragraph">
+<p>Examples of computational resources that may vary in existence (that is,
+may or may not exist) are graphics cards and device drivers.</p>
+</div>
+<div class="paragraph">
+<p>Examples of computational resources that may vary in version are
+operating systems and device drivers.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration Descriptor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any file whose format is well defined by a
+specification and which contains configuration information for a set of
+Java classes, archive, or other feature defined in the specification.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conformance Tests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All tests in the Test Suite for an indicated
+Technology Under Test, as released and distributed by the
+Eclipse Foundation, excluding those tests on the
+published Exclude List for the Technology Under Test.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Container</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An implementation of the associated Libraries, as specified
+in the Specifications, and a version of a Java Platform, Standard
+Edition Runtime Product, as specified in the Specifications, or a later
+version of a Java Platform, Standard Edition Runtime Product that also
+meets these compatibility requirements.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documented</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Made technically accessible and made known to users,
+typically by means such as marketing materials, product documentation,
+usage messages, or developer support programs.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exclude List</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The most current list of tests, released and distributed by the
+Eclipse Foundation, that are not required to be passed to certify
+conformance. The Jakarta EE Specification Committee may add to the Exclude List for that
+Test Suite as needed at any time, in which case the updated TCK version
+supplants any previous Exclude Lists for that Test Suite.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Libraries</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The class libraries, as specified through the Jakarta EE Specification Process
+(JESP), for the Technology Under Test.</p>
+</div>
+<div class="paragraph">
+<p>The Libraries for Jakarta Expression Language are listed at the end of this chapter.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Location Resource</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A location of classes or native libraries that are components of the
+test tools or tests, such that these classes or libraries may be
+required to exist in a certain location in order to satisfy the
+requirements of the test suite.</p>
+</div>
+<div class="paragraph">
+<p>For example, classes may be required to exist in directories named in a
+CLASSPATH variable, or native libraries may be required to exist in
+directories named in a PATH variable.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maintenance Lead</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The corresponding Jakarta EE Specification Project
+is responsible for maintaining the Specification, and the TCK for the
+Technology.  The Specification Project Team will propose revisions and
+updates to the Jakarta EE Specification Committee which will approve
+and release new versions of the specification and TCK.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operating Mode</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Any Documented option of a Product that can be changed by a user in
+order to modify the behavior of the Product.</p>
+</div>
+<div class="paragraph">
+<p>For example, an Operating Mode can be binary (enable/disable
+optimization), an enumeration (select from a list of protocols), or a
+range (set the maximum number of active threads).</p>
+</div>
+<div class="paragraph">
+<p>Note that an Operating Mode may be selected by a command line switch, an
+environment variable, a GUI user interface element, a configuration or
+control file, etc.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Product</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A vendor&#8217;s product in which the Technology Under Test is
+implemented or incorporated, and that is subject to compatibility
+testing.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Product Configuration</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A specific setting or instantiation of an Operating Mode.</p>
+</div>
+<div class="paragraph">
+<p>For example, a Product supporting an Operating Mode that permits user
+selection of an external encryption package may have a Product
+Configuration that links the Product to that encryption package.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rebuildable Tests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tests that must be built using an
+implementation-specific mechanism. This mechanism must produce
+specification-defined artifacts. Rebuilding and running these tests
+against a known compatible implementation verifies that the mechanism generates
+compatible artifacts.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resource</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A Computational Resource, a Location Resource, or a Security
+Resource.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rules</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">These definitions and rules in this Compatibility Requirements
+section of this User&#8217;s Guide.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runtime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Containers specified in the Specifications.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security Resource</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A security privilege or policy necessary for the proper execution of the
+Test Suite.</p>
+</div>
+<div class="paragraph">
+<p>For example, the user executing the Test Suite will need the privilege
+to access the files and network resources necessary for use of the
+Product.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifications</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The documents produced through the Jakarta EE Specification Process (JESP)
+that define a particular Version of a Technology.</p>
+</div>
+<div class="paragraph">
+<p>The Specifications for the Technology Under Test are referenced later in
+this chapter.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Technology</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifications and one or more compatible implementations produced
+through the Jakarta EE Specification Process (JESP).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Technology Under Test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifications and a compatible implementation
+for Jakarta Expression Language Version 5.0.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test Suite</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The requirements, tests, and testing tools distributed by
+the Maintenance Lead as applicable to a given Version of the Technology.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A release of the Technology, as produced through the
+Jakarta EE Specification Process (JESP).</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><a id="sthref7"></a><a id="rules-for-products"></a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2_2_2_rules_for_jakarta_expression_language_products">2.2.2 Rules for Jakarta Expression Language Products</h4>
+<div class="paragraph">
+<p>The following rules apply for each version of an operating system,
+software component, and hardware platform Documented as supporting the
+Product:</p>
+</div>
+<div class="paragraph">
+<p><strong>ExpressionLanguage1</strong> The Product must be able to satisfy all applicable compatibility
+requirements, including passing all Conformance Tests, in every Product
+Configuration and in every combination of Product Configurations, except
+only as specifically exempted by these Rules.</p>
+</div>
+<div class="paragraph">
+<p>For example, if a Product provides distinct Operating Modes to optimize
+performance, then that Product must satisfy all applicable compatibility
+requirements for a Product in each Product Configuration, and
+combination of Product Configurations, of those Operating Modes.</p>
+</div>
+<div class="paragraph">
+<p><strong>ExpressionLanguage1.1</strong> If an Operating Mode controls a Resource necessary for the
+basic execution of the Test Suite, testing may always use a Product
+Configuration of that Operating Mode providing that Resource, even if
+other Product Configurations do not provide that Resource.
+Notwithstanding such exceptions, each Product must have at least one set
+of Product Configurations of such Operating Modes that is able to pass
+all the Conformance Tests.</p>
+</div>
+<div class="paragraph">
+<p>For example, a Product with an Operating Mode that controls a security
+policy (i.e., Security Resource) which has one or more Product
+Configurations that cause Conformance Tests to fail may be tested using
+a Product Configuration that allows all Conformance Tests to pass.</p>
+</div>
+<div class="paragraph">
+<p><strong>ExpressionLanguage1.2</strong> A Product Configuration of an Operating Mode that causes the
+Product to report only version, usage, or diagnostic information is
+exempted from these compatibility rules.</p>
+</div>
+<div class="paragraph">
+<p><strong>ExpressionLanguage1.3</strong> An API Definition Product is exempt from all functional
+testing requirements defined here, except the signature tests.</p>
+</div>
+<div class="paragraph">
+<p><strong>ExpressionLanguage2</strong> Some Conformance Tests may have properties that may be changed.
+Properties that can be changed are identified in the configuration
+interview. Properties that can be changed are identified in the JavaTest
+Environment (.jte) files in the Test Suite
+installation. Apart from changing such properties and other allowed
+modifications described in this User&#8217;s Guide (if any), no source or
+binary code for a Conformance Test may be altered in any way without
+prior written permission. Any such allowed alterations to the
+Conformance Tests will be provided via the Jakarta EE Specification Project
+website and apply to all vendor compatible implementations.</p>
+</div>
+<div class="paragraph">
+<p><strong>ExpressionLanguage3</strong> The testing tools supplied as part of the Test Suite or as
+updated by the Maintenance Lead must be used to certify compliance.</p>
+</div>
+<div class="paragraph">
+<p><strong>ExpressionLanguage4</strong> The Exclude List associated with the Test Suite cannot be
+modified.</p>
+</div>
+<div class="paragraph">
+<p><strong>ExpressionLanguage5</strong> The Maintenance Lead can define exceptions to these Rules. Such
+exceptions would be made available as above, and will apply to all vendor implementations.</p>
+</div>
+<div class="paragraph">
+<p><strong>ExpressionLanguage6</strong> All hardware and software component additions, deletions, and
+modifications to a Documented supporting hardware/software platform,
+that are not part of the Product but required for the Product to satisfy
+the compatibility requirements, must be Documented and available to
+users of the Product.</p>
+</div>
+<div class="paragraph">
+<p>For example, if a patch to a particular version of a supporting
+operating system is required for the Product to pass the Conformance
+Tests, that patch must be Documented and available to users of the
+Product.</p>
+</div>
+<div class="paragraph">
+<p><strong>ExpressionLanguage7</strong> The Product must contain the full set of public and protected
+classes and interfaces for all the Libraries. Those classes and
+interfaces must contain exactly the set of public and protected methods,
+constructors, and fields defined by the Specifications for those
+Libraries. No subsetting, supersetting, or modifications of the public
+and protected API of the Libraries are allowed except only as
+specifically exempted by these Rules.</p>
+</div>
+<div class="paragraph">
+<p><strong>ExpressionLanguage7.1</strong> If a Product includes Technologies in addition to the
+Technology Under Test, then it must contain the full set of combined
+public and protected classes and interfaces. The API of the Product
+must contain the union of the included Technologies. No further
+modifications to the APIs of the included Technologies are allowed.</p>
+</div>
+<div class="paragraph">
+<p><strong>ExpressionLanguage8</strong> Except for tests specifically required by this TCK to be rebuilt
+(if any), the binary Conformance Tests supplied as part of the Test
+Suite or as updated by the Maintenance Lead must be used to certify
+compliance.</p>
+</div>
+<div class="paragraph">
+<p><strong>ExpressionLanguage9</strong> The functional programmatic behavior of any binary class or
+interface must be that defined by the Specifications.</p>
+</div>
+<div class="paragraph">
+<p><a id="CJAIIBDJ"></a><a id="test-appeals-process"></a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_3_test_appeals_process">2.3 Test Appeals Process</h3>
+<div class="paragraph">
+<p>Jakarta has a well established process for managing challenges to its
+TCKs. Any implementor may submit a challenge to one or more tests in the
+Expression Language TCK as it relates to their implementation.  Implementor
+means the entity as a whole in charge of producing the final certified release.
+<strong>Challenges filed should represent the consensus of that entity</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_2_3_1_valid_challenges">2.3.1 Valid Challenges</h4>
+<div class="paragraph">
+<p>Any test case (e.g., test class, @Test method), test case configuration (e.g., deployment descriptor), test beans, annotations, and other resources considered part of the TCK may be challenged.</p>
+</div>
+<div class="paragraph">
+<p>The following scenarios are considered in scope for test challenges:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Claims that a test assertion conflicts with the specification.</p>
+</li>
+<li>
+<p>Claims that a test asserts requirements over and above that of the specification.</p>
+</li>
+<li>
+<p>Claims that an assertion of the specification is not sufficiently implementable.</p>
+</li>
+<li>
+<p>Claims that a test is not portable or depends on a particular implementation.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2_3_2_invalid_challenges">2.3.2 Invalid Challenges</h4>
+<div class="paragraph">
+<p>The following scenarios are considered out of scope for test challenges and will be immediately closed if filed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Challenging an implementation’s claim of passing a test.  Certification is an honor system and these issues must be raised directly with the implementation.</p>
+</li>
+<li>
+<p>Challenging the usefulness of a specification requirement.  The challenge process cannot be used to bypass the specification process and raise in question the need or relevance of a specification requirement.</p>
+</li>
+<li>
+<p>Claims the TCK is inadequate or missing assertions required by the specification.  See the Improvement section, which is outside the scope of test challenges.</p>
+</li>
+<li>
+<p>Challenges that do not represent a consensus of the implementing community will be closed until such time that the community does agree or agreement cannot be made.  The test challenge process is not the place for implementations to initiate their own internal discussions.</p>
+</li>
+<li>
+<p>Challenges to tests that are already excluded for any reason.</p>
+</li>
+<li>
+<p>Challenges that an excluded test should not have been excluded and should be re-added should be opened as a new enhancement request</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Test challenges must be made in writing via the Expression Language specification project issue tracker
+as described in <a href="#CJAJEAEI">Section 2.3.3, "TCK Test Appeals Steps."</a></p>
+</div>
+<div class="paragraph">
+<p>All tests found to be invalid will be placed on the Exclude List
+for that version of the Expression Language TCK.</p>
+</div>
+<div class="paragraph">
+<p><a id="CJAJEAEI"></a><a id="tck-test-appeals-steps"></a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2_3_3_tck_test_appeals_steps">2.3.3 TCK Test Appeals Steps</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Challenges should be filed via the Jakarta Expression Language specification project’s issue tracker using the label <code>challenge</code> and include the following information:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The relevant specification version and section number(s)</p>
+</li>
+<li>
+<p>The coordinates of the challenged test(s)</p>
+</li>
+<li>
+<p>The exact TCK and exclude list versions</p>
+</li>
+<li>
+<p>The implementation being tested, including name and company</p>
+</li>
+<li>
+<p>The full test name</p>
+</li>
+<li>
+<p>A full description of why the test is invalid and what the correct behavior is believed to be</p>
+</li>
+<li>
+<p>Any supporting material; debug logs, test output, test logs, run scripts, etc.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Specification project evaluates the challenge.<br>
+Challenges can be resolved by a specification project lead, or a project challenge triage team, after a consensus of the specification project committers is reached or attempts to gain consensus fails.
+Specification projects may exercise lazy consensus, voting or any practice that follows the principles of Eclipse Foundation Development Process.
+The expected timeframe for a response is two weeks or less.
+If consensus cannot be reached by the specification project for a prolonged period of time, the default recommendation is to exclude the tests and address the dispute in a future revision of the specification.</p>
+</li>
+<li>
+<p>Accepted Challenges.<br>
+A consensus that a test produces invalid results will result in the exclusion of that test from certification requirements, and an immediate update and release of an official distribution of the TCK including the new exclude list. The associated <code>challenge</code> issue must be closed with an <code>accepted</code> label to indicate it has been resolved.</p>
+</li>
+<li>
+<p>Rejected Challenges and Remedy.<br>
+When a`challenge` issue is rejected, it must be closed with a label of <code>invalid</code> to indicate it has been rejected.
+There appeal process for challenges rejected on technical terms is outlined in Escalation Appeal.
+If, however, an implementer feels the TCK challenge process was not followed, an appeal issue should be filed with specification project’s TCK issue tracker using the label <code>challenge-appeal</code>.
+A project lead should escalate the issue with the Jakarta EE Specification Committee via email (<a href="mailto:jakarta.ee-spec@eclipse.org">jakarta.ee-spec@eclipse.org</a>).
+The committee will evaluate the matter purely in terms of due process.
+If the appeal is accepted, the original TCK challenge issue will be reopened and a label of <code>appealed-challenge</code> added, along with a discussion of the appeal decision, and the <code>challenge-appeal</code> issue with be closed.
+If the appeal is rejected, the <code>challenge-appeal</code> issue should closed with a label of <code>invalid</code>.</p>
+</li>
+<li>
+<p>Escalation Appeal.<br>
+If there is a concern that a TCK process issue has not been resolved satisfactorily, the
+<a href="https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling">Eclipse Development Process Grievance Handling</a> procedure should be followed to escalate the resolution. Note that this is not a mechanism to attempt to handle implementation specific issues.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a id="CJAJECIE"></a><a id="specifications-for-technology"></a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_4_specifications_for_jakarta_expression_language">2.4 Specifications for Jakarta Expression Language</h3>
+<div class="paragraph">
+<p>The Jakarta Expression Language specification is available from the specification
+project web-site: <a href="https://jakarta.ee/specifications/expression-language/5.0/" class="bare">https://jakarta.ee/specifications/expression-language/5.0/</a>.</p>
+</div>
+<div class="paragraph">
+<p><a id="CJABAHGI"></a><a id="libraries-for-technology"></a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_5_libraries_for_jakarta_expression_language">2.5 Libraries for Jakarta Expression Language</h3>
+<div class="paragraph">
+<p>The following is a list of the packages comprising the required class
+libraries for Expression Language 5.0:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>jakarta.el</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For the latest list of packages, also see:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://jakarta.ee/specifications/expression-language/5.0/" class="bare">https://jakarta.ee/specifications/expression-language/5.0/</a></p>
+</div>
+</div>
+</div>
+</div>
+
+<hr />
+
+<table width="90%" id="bottom-nav" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="12%"/>
+		<col width="12%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>		
+		<td align="left">
+		<a href="intro.html">
+			<span class=" vector-font"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Previous</span>
+		</a>
+		</td>
+
+		<td align="left">
+		<a href="install.html">
+			<span class="vector-font"><i class="fa fa-arrow-circle-right vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Next</span>
+		</a>
+		</td>
+
+		<td align="right">
+		<a href="toc.html">
+			<span class="vector-font"><i class="fa fa-list vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Contents</span>
+		</a>
+		</td>
+	</tr>
+</table>
+
+<span id="copyright">
+		<img src="img/eclipse_foundation_logo_tiny.png" height="20px" alt="Eclipse Foundation Logo" align="top"/>&nbsp;			
+		<span >Copyright&nbsp;&copy;&nbsp;2017,&nbsp;2021&nbsp;Oracle&nbsp;and/or&nbsp;its&nbsp;affiliates.&nbsp;All&nbsp;rights&nbsp;reserved.</span>
+</span>
+
+</body>
+</html>

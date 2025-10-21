@@ -1,0 +1,620 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Executing Tests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/96c4d89611.js"></script>
+  </head>
+  <body>
+<table id="doc-title" cellspacing="0" cellpadding="0">
+  <tr>
+  <td align="left" valign="top">
+  <b>Executing Tests</b><br />
+  </td>
+  </tr>
+</table>
+<hr />
+
+<table width="90%" id="top-nav" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="12%"/>
+		<col width="12%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>
+		<td align="left">
+		<a href="config.html">
+			<span class="vector-font"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Previous</span>
+		</a>
+		</td>
+
+		<td align="left">
+		<a href="debug.html">
+			<span class=" vector-font"><i class="fa fa-arrow-circle-right vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Next</span>
+		</a>
+		</td>
+
+		<td align="right">
+		<a href="toc.html">
+			<span class=" vector-font"><i class="fa fa-list vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Contents</span>
+		</a>
+		</td>
+	</tr>
+</table>
+
+
+<div class="sect1">
+<h2 id="executing-tests">5 Executing Tests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Expression Language TCK uses the JavaTest harness to execute the
+tests in the test suite. For detailed instructions that explain how to
+run and use JavaTest, see the JavaTest User&#8217;s Guide and Reference in
+the documentation bundle.</p>
+</div>
+<div class="paragraph">
+<p>This chapter includes the following topics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#GBFUZ">Starting JavaTest</a></p>
+</li>
+<li>
+<p><a href="#GBFWM">Running a Subset of the Tests</a></p>
+</li>
+<li>
+<p><a href="#GCLRR">Running the TCK Against your selected CI</a></p>
+</li>
+<li>
+<p><a href="#GCLRZ">Running the TCK Against a Vendor&#8217;s Implementation</a></p>
+</li>
+<li>
+<p><a href="#GBFVK">Test Reports</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The instructions in this chapter assume that you have installed and
+configured your test environment as described in
+<a href="install.html#GBFTP">Chapter 3, "Installation,"</a> and
+<a href="config.html#GBFVV">Chapter 4, "Setup and Configuration,"</a>,
+respectively.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><a id="GBFUZ"></a><a id="starting-javatest"></a></p>
+</div>
+<div class="sect2">
+<h3 id="_5_1_starting_javatest">5.1 Starting JavaTest</h3>
+<div class="paragraph">
+<p>There are two general ways to run the Expression Language TCK using
+the JavaTest harness software:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Through the JavaTest GUI</p>
+</li>
+<li>
+<p>From the command line in your shell environment</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>ant</code> command referenced in the following
+two procedures and elsewhere in this guide is the Apache Ant
+build tool, which will need to be downloaded separately.
+The <code>build.xml</code> file in <code>&lt;TS_HOME&gt;/bin</code> contains the various Ant
+targets for the Expression Language TCK test suite.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><a id="GBFWH"></a><a id="to-start-javatest-in-gui-mode"></a></p>
+</div>
+<div class="sect3">
+<h4 id="_5_1_1_to_start_javatest_in_gui_mode">5.1.1 To Start JavaTest in GUI Mode</h4>
+<div class="paragraph">
+<p>Execute the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="oac_no_warn">cd &lt;TS_HOME&gt;/bin
+ant gui</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a id="GBFVW"></a><a id="to-start-javatest-in-command-line-mode"></a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_1_2_to_start_javatest_in_command_line_mode">5.1.2 To Start JavaTest in Command-Line Mode</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Change to any subdirectory under <code>&lt;TS_HOME&gt;/src/com/sun/ts/tests</code>.</p>
+</li>
+<li>
+<p>Start JavaTest using the following command:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="oac_no_warn">ant runclient</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div id="GCMCU" class="paragraph">
+<p>Example 5-1 Expression Language TCK Signature Tests</p>
+</div>
+<div class="paragraph">
+<p>To run the Expression Language TCK signature tests, enter the
+following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>cd &lt;TS_HOME&gt;/src/com/sun/ts/tests/signaturetest/el
+ant runclient</code></pre>
+</div>
+</div>
+<div id="GCMBV" class="paragraph">
+<p>Example 5-2 Single Test Directory</p>
+</div>
+<div class="paragraph">
+<p>To run a single test directory, enter the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>cd &lt;TS_HOME&gt;/src/com/sun/ts/tests/el/api/client
+ant runclient</code></pre>
+</div>
+</div>
+<div id="GCMCA" class="paragraph">
+<p>Example 5-3 Subset of Test Directories</p>
+</div>
+<div class="paragraph">
+<p>To run a subset of test directories, enter the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>cd &lt;TS_HOME&gt;/src/com/sun/ts/tests/el/api
+ant runclient</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a id="GBFWM"></a><a id="running-a-subset-of-the-tests"></a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_2_running_a_subset_of_the_tests">5.2 Running a Subset of the Tests</h3>
+<div class="paragraph">
+<p>Use the following modes to run a subset of the tests:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#GBFVT">Section 5.2.1, "To Run a Subset of Tests in GUI Mode"</a></p>
+</li>
+<li>
+<p><a href="#GBFWK">Section 5.2.2, "To Run a Subset of Tests in Command-Line Mode"</a></p>
+</li>
+<li>
+<p><a href="#GBFVL">Section 5.2.3, "To Run a Subset of Tests in Batch Mode
+Based on Prior Result Status"</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a id="GBFVT"></a><a id="to-run-a-subset-of-tests-in-gui-mode"></a></p>
+</div>
+<div class="sect3">
+<h4 id="_5_2_1_to_run_a_subset_of_tests_in_gui_mode">5.2.1 To Run a Subset of Tests in GUI Mode</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the JavaTest main menu, click <strong>Configure</strong>, then click <strong>Change
+Configuration</strong>, and then click <strong>Tests to Run</strong>.<br>
+The tabbed Configuration Editor dialog box is displayed.</p>
+</li>
+<li>
+<p>Click <strong>Specify</strong> from the option list on the left.</p>
+</li>
+<li>
+<p>Select the tests you want to run from the displayed test tree, and
+then click <strong>Done</strong>.<br>
+You can select entire branches of the test tree, or use <code>Ctrl+Click</code> or
+<code>Shift+Click</code> to select multiple tests or ranges of tests, respectively,
+or select just a single test.</p>
+</li>
+<li>
+<p>Click <strong>Save File</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Run Tests</strong>, and then click <strong>Start</strong> to run the tests you selected.<br>
+Alternatively, you can <code>right-click</code> the test you want from the test tree
+in the left section of the JavaTest main window, and choose <strong>Execute
+These Tests</strong> from the menu.</p>
+</li>
+<li>
+<p>Click <strong>Report</strong>, and then click <strong>Create Report</strong>.</p>
+</li>
+<li>
+<p>Specify the directory in which the JavaTest test harness will write
+the report, and then click <strong>OK</strong><br>
+A report is created, and you are asked whether you want to view it.</p>
+</li>
+<li>
+<p>Click <strong>Yes</strong> to view the report.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a id="GBFWK"></a><a id="to-run-a-subset-of-tests-in-command-line-mode"></a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_2_2_to_run_a_subset_of_tests_in_command_line_mode">5.2.2 To Run a Subset of Tests in Command-Line Mode</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Change to the directory containing the tests you want to run.</p>
+</li>
+<li>
+<p>Start the test run by executing the following command:<br></p>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>ant runclient</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The tests in the directory and its subdirectories are run.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a id="GBFVL"></a><a id="to-run-a-subset-of-tests-in-batch-mode-based-on-prior-result-status"></a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_2_3_to_run_a_subset_of_tests_in_batch_mode_based_on_prior_result_status">5.2.3 To Run a Subset of Tests in Batch Mode Based on Prior Result Status</h4>
+<div class="paragraph">
+<p>You can run certain tests in batch mode based on the test&#8217;s prior run
+status by specifying the <code>priorStatus</code> system property when invoking
+<code>ant</code></p>
+</div>
+<div class="paragraph">
+<p>Invoke <code>ant</code> with the <code>priorStatus</code> property.</p>
+</div>
+<div class="paragraph">
+<p>The accepted values for the <code>priorStatus</code> property are any combination
+of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>fail</code></p>
+</li>
+<li>
+<p><code>pass</code></p>
+</li>
+<li>
+<p><code>error</code></p>
+</li>
+<li>
+<p><code>notRun</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, you could run all the Expression Language tests with a
+status of failed and error by invoking the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="oac_no_warn">ant -DpriorStatus="fail,error" runclient</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that multiple <code>priorStatus</code> values must be separated by commas.</p>
+</div>
+<div class="paragraph">
+<p><a id="GCLRR"></a><a id="running-the-tck-against-the-ri"></a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_3_running_the_tck_against_another_ci">5.3 Running the TCK Against another CI</h3>
+<div class="paragraph">
+<p>Some test scenarios are designed to ensure that the configuration and deployment of
+all the prebuilt Expression Language TCK tests against one Compatible
+Implementation are successful operating with other compatible implementations, and that the TCK is ready for
+compatibility testing against the Vendor and Compatible Implementations.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Verify that you have followed the configuration instructions in
+<a href="config.html#GBFVU">Section 4.1, "Configuring Your Environment to Run
+the TCK Against the Compatible Implementation."</a></p>
+</li>
+<li>
+<p>If required, verify that you have completed the steps in
+<a href="config.html#GCLIW">Section 4.3.2, "Deploying the Prebuilt Archives."</a></p>
+</li>
+<li>
+<p>Run the tests, as described in <a href="#GBFUZ">Section 5.1, "Starting
+JavaTest,"</a> and, if desired, <a href="#GBFWM">Section 5.2, "Running a Subset
+of the Tests."</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a id="GCLRZ"></a><a id="running-the-tck-against-a-vendors-implementation"></a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_4_running_the_tck_against_a_vendors_implementation">5.4 Running the TCK Against a Vendor&#8217;s Implementation</h3>
+<div class="paragraph">
+<p>This test scenario is one of the compatibility test phases that all
+Vendors must pass.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Verify that you have followed the configuration instructions in
+<a href="config.html#GCLHU">Section 4.2, "Configuring Your Environment to
+Repackage and Run the TCK Against the Vendor Implementation."</a></p>
+</li>
+<li>
+<p>If required, verify that you have completed the steps in
+<a href="config.html#GCLIL">Section 4.3.3, "Deploying the
+Test Applications Against the Vendor Implementation."</a></p>
+</li>
+<li>
+<p>Run the tests, as described in <a href="#GBFUZ">Section 5.1, "Starting
+JavaTest,"</a> and, if desired, <a href="#GBFWM">Section 5.2, "Running a Subset
+of the Tests."</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a id="GBFVK"></a><a id="test-reports"></a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_5_test_reports">5.5 Test Reports</h3>
+<div class="paragraph">
+<p>A set of report files is created for every test run. These report files
+can be found in the report directory you specify. After a test run is
+completed, the JavaTest harness writes HTML reports for the test run.
+You can view these files in the JavaTest ReportBrowser when running in
+GUI mode, or in the web browser of your choice outside the JavaTest
+interface.</p>
+</div>
+<div class="paragraph">
+<p>To see all of the HTML report files, enter the URL of the <code>report.html</code>
+file. This file is the root file that links to all of the other HTML
+reports.</p>
+</div>
+<div class="paragraph">
+<p>The JavaTest harness also creates a <code>summary.txt</code> file in the report
+directory that you can open in any text editor. The <code>summary.txt</code> file
+contains a list of all tests that were run, their test results, and
+their status messages.</p>
+</div>
+<div class="paragraph">
+<p><a id="GBFWD"></a><a id="creating-test-reports"></a></p>
+</div>
+<div class="sect3">
+<h4 id="_5_5_1_creating_test_reports">5.5.1 Creating Test Reports</h4>
+<div class="paragraph">
+<p>Use the following modes to create test reports:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#GBFVH">Section 5.5.1.1, "To Create a Test Report in GUI Mode"</a></p>
+</li>
+<li>
+<p><a href="#GBFVC">Section 5.5.1.2, "To Create a Test Report in Command-Line Mode"</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a id="GBFVH"></a><a id="to-create-a-test-report-in-gui-mode"></a></p>
+</div>
+<div class="sect4">
+<h5 id="_5_5_1_1_to_create_a_test_report_in_gui_mode">5.5.1.1 To Create a Test Report in GUI Mode</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the JavaTest main menu, click <strong>Report</strong>, then click <strong>Create Report</strong>.<br>
+You are prompted to specify a directory to use for your test reports.</p>
+</li>
+<li>
+<p>Specify the directory you want to use for your reports, and then
+click <strong>OK</strong>.<br>
+Use the Filter list to specify whether you want to generate reports for
+the current configuration, all tests, or a custom set of tests.<br>
+You are asked whether you want to view report now.</p>
+</li>
+<li>
+<p>Click <strong>Yes</strong> to display the new report in the JavaTest ReportBrowser.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a id="GBFVC"></a><a id="to-create-a-test-report-in-command-line-mode"></a></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_5_5_1_2_to_create_a_test_report_in_command_line_mode">5.5.1.2 To Create a Test Report in Command-Line Mode</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Specify where you want to create the test report.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>To specify the report directory from the command line at runtime,
+use:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>ant -Dreport.dir="report_dir"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Reports are written for the last test run to the directory you specify.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To specify the default report directory, set the <code>report.dir</code>
+property in <code>&lt;TS_HOME&gt;/bin/ts.jte</code>.<br>
+For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>report.dir="/home/josephine/reports"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To disable reporting, set the <code>report.dir</code> property to <code>"none"</code>,
+either on the command line or in <code>&lt;TS_HOME&gt;/bin/ts.jte</code>.<br>
+For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>ant -Dreport.dir="none"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a id="GBFVB"></a><a id="viewing-an-existing-test-report"></a></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_5_2_viewing_an_existing_test_report">5.5.2 Viewing an Existing Test Report</h4>
+<div class="paragraph">
+<p>Use the following modes to view an existing test report:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#GBFVO">Section 5.5.2.1, "To View an Existing Report in GUI Mode"</a></p>
+</li>
+<li>
+<p><a href="#GBFWB">Section 5.5.2.2, "To View an Existing Report in
+Command-Line Mode"</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a id="GBFVO"></a><a id="to-view-an-existing-report-in-gui-mode"></a></p>
+</div>
+<div class="sect4">
+<h5 id="_5_5_2_1_to_view_an_existing_report_in_gui_mode">5.5.2.1 To View an Existing Report in GUI Mode</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the JavaTest main menu, click <strong>Report</strong>, then click <strong>Open Report</strong>.<br>
+You are prompted to specify the directory containing the report you want
+to open.</p>
+</li>
+<li>
+<p>Select the report directory you want to open, and then click <strong>Open</strong>.<br>
+The selected report set is opened in the JavaTest ReportBrowser.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a id="GBFWB"></a><a id="to-view-an-existing-report-in-command-line-mode"></a></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_5_5_2_2_to_view_an_existing_report_in_command_line_mode">5.5.2.2 To View an Existing Report in Command-Line Mode</h5>
+<div class="paragraph">
+<p>Use the Web browser of your choice to view the <code>report.html</code> file in the
+report directory you specified from the command line or in <code>&lt;TS_HOME&gt;/bin/ts.jte</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<hr />
+
+<table width="90%" id="bottom-nav" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="12%"/>
+		<col width="12%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>		
+		<td align="left">
+		<a href="config.html">
+			<span class=" vector-font"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Previous</span>
+		</a>
+		</td>
+
+		<td align="left">
+		<a href="debug.html">
+			<span class="vector-font"><i class="fa fa-arrow-circle-right vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Next</span>
+		</a>
+		</td>
+
+		<td align="right">
+		<a href="toc.html">
+			<span class="vector-font"><i class="fa fa-list vector-font" aria-hidden="true"></i></span>
+			<span style="position:relative;top:-2px;">Contents</span>
+		</a>
+		</td>
+	</tr>
+</table>
+
+<span id="copyright">
+		<img src="img/eclipse_foundation_logo_tiny.png" height="20px" alt="Eclipse Foundation Logo" align="top"/>&nbsp;			
+		<span >Copyright&nbsp;&copy;&nbsp;2017,&nbsp;2021&nbsp;Oracle&nbsp;and/or&nbsp;its&nbsp;affiliates.&nbsp;All&nbsp;rights&nbsp;reserved.</span>
+</span>
+
+</body>
+</html>
