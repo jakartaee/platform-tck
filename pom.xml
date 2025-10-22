@@ -319,10 +319,6 @@
                     <autoPublish>true</autoPublish>
                     <waitUntil>published</waitUntil>
                     <centralSnapshotsUrl>https://central.sonatype.com/repository/maven-snapshots/</centralSnapshotsUrl>
-                    <excludeArtifacts>
-                        <!-- skip deploy of the standalone Persistence 3.2 TCK https://github.com/jakartaee/platform-tck/issues/2514  --> 
-                        <exclude>jakarta.tck:persistence-tck</exclude>
-                    </excludeArtifacts>
                 </configuration>
             </plugin>
 
