@@ -59,7 +59,9 @@
         <module>tcks/apis/messaging/messaging-outside-container</module>
         <module>tcks/apis/pages</module>
         <module>tcks/apis/persistence/persistence-inside-container</module>
-        <module>tcks/apis/persistence/persistence-outside-container</module>
+        <!-- skip deploy of the standalone Persistence 3.2 TCK https://github.com/jakartaee/platform-tck/issues/2514   
+           <module>tcks/apis/persistence/persistence-outside-container</module>
+        -->
         <module>tcks/apis/rest</module>
         <module>tcks/apis/tags</module>
         <module>tcks/apis/tags/docs</module>
