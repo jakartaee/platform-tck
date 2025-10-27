@@ -318,6 +318,12 @@
                     <publishingServerId>central</publishingServerId>
                     <autoPublish>true</autoPublish>
                     <waitUntil>published</waitUntil>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>smoke-tests</artifactId>
+                        </exclusion>
+                    </exclusions>
                     <centralSnapshotsUrl>https://central.sonatype.com/repository/maven-snapshots/</centralSnapshotsUrl>
                 </configuration>
             </plugin>
