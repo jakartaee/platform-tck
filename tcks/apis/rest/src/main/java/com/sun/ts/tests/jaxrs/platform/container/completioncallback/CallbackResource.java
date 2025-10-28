@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -68,6 +68,9 @@ public class CallbackResource extends com.sun.ts.tests.jaxrs.platform.container.
             SettingCompletionCallback callback = null;
             async.register(callback);
         } catch (NullPointerException e) {
+            try {
+                async.cancel();
+            } catch (Exception ignore) {}
             return TRUE;
         } catch (Exception e) {
             return "Threw " + e.getClass().getName();
@@ -83,6 +86,9 @@ public class CallbackResource extends com.sun.ts.tests.jaxrs.platform.container.
             Class<SettingCompletionCallback> callback = null;
             async.register(callback);
         } catch (NullPointerException e) {
+            try {
+                async.cancel();
+            } catch (Exception ignore) {}
             return TRUE;
         } catch (Exception e) {
             return "Threw " + e.getClass().getName();
@@ -98,6 +104,9 @@ public class CallbackResource extends com.sun.ts.tests.jaxrs.platform.container.
             SettingCompletionCallback callback = null;
             async.register(callback, new SecondSettingCompletionCallback());
         } catch (NullPointerException e) {
+            try {
+                async.cancel();
+            } catch (Exception ignore) {}
             return TRUE;
         } catch (Exception e) {
             return "Threw " + e.getClass().getName();
@@ -113,6 +122,9 @@ public class CallbackResource extends com.sun.ts.tests.jaxrs.platform.container.
             SecondSettingCompletionCallback callback = null;
             async.register(new SettingCompletionCallback(), callback);
         } catch (NullPointerException e) {
+            try {
+                async.cancel();
+            } catch (Exception ignore) {}
             return TRUE;
         } catch (Exception e) {
             return "Threw " + e.getClass().getName();
@@ -128,6 +140,9 @@ public class CallbackResource extends com.sun.ts.tests.jaxrs.platform.container.
             Class<SettingCompletionCallback> callback = null;
             async.register(callback, SecondSettingCompletionCallback.class);
         } catch (NullPointerException e) {
+            try {
+                async.cancel();
+            } catch (Exception ignore) {}
             return TRUE;
         } catch (Exception e) {
             return "Threw " + e.getClass().getName();
@@ -143,6 +158,9 @@ public class CallbackResource extends com.sun.ts.tests.jaxrs.platform.container.
             Class<SecondSettingCompletionCallback> callback = null;
             async.register(SettingCompletionCallback.class, callback);
         } catch (NullPointerException e) {
+            try {
+                async.cancel();
+            } catch (Exception ignore) {}
             return TRUE;
         } catch (Exception e) {
             return "Threw " + e.getClass().getName();
