@@ -87,6 +87,8 @@ public class Client extends EETest {
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.resref.casesens.Client" + "\n"),
 				"MANIFEST.MF");
 
+                archiveProcessor.processClientArchive(ejbClient, Client.class, appClientUrl);
+
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_resref_casesens.ear");
 		ear.addAsModule(ejbClient);
 		return ear;

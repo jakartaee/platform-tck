@@ -96,6 +96,9 @@ public class Client extends EETest {
 		ejbClient.addAsManifestResource(
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.resref.single.Client" + "\n"),
 				"MANIFEST.MF");
+
+                archiveProcessor.processClientArchive(ejbClient, Client.class, appClientUrl);
+
 		WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "appclient_dep_resref_single_jsp_web.war");
 		InputStream testJSP = Thread.currentThread().getContextClassLoader()
 				.getResourceAsStream("com/sun/ts/tests/appclient/deploy/resref/single/contentRoot/test.jsp");
