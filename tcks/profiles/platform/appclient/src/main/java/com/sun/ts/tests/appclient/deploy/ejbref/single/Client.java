@@ -72,7 +72,6 @@ public class Client extends EETest {
         ejbClient.addClasses(Client.class, EETest.class, TestCode.class);
         ejbClient.addPackages(true, "com.sun.ts.lib.harness");
         ejbClient.addPackages(true, "com.sun.ts.tests.assembly.util.refbean");
-        ejbClient.addPackages(true, "com.sun.ts.tests.common.dao.coffee");
 
         // The appclient-client descriptor
         URL appClientUrl = Client.class.getResource("appclient_dep_ejbref_single_client.xml");
@@ -92,8 +91,8 @@ public class Client extends EETest {
                 com.sun.ts.tests.assembly.util.refbean.StatelessExternal.class,
                 com.sun.ts.tests.assembly.util.refbean.StatelessExternalEJB.class,
                 com.sun.ts.tests.common.ejb.wrappers.MDBWrapper.class,
-                com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper.class,
-                com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper.class,
+                com.sun.ts.tests.common.ejb.wrappers.Stateful3xWrapper.class,
+                com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class,
                 com.sun.ts.tests.jms.common.JmsUtil.class,
                 com.sun.ts.tests.jms.commonee.ParentMsgBean.class
         );

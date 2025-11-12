@@ -100,7 +100,7 @@ public class Client extends EETest {
 				com.sun.ts.tests.appclient.deploy.ejblink.path.ReferencedBean.class,
 				com.sun.ts.tests.appclient.deploy.ejblink.path.ReferencedBeanEJB.class,
 				com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode.class,
-				com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper.class
+				com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class
 		);
 
 		URL resURL = Client.class.getResource("appclient_dep_ejblink_path_jar1_ejb.jar.sun-ejb-jar.xml");
@@ -114,7 +114,7 @@ public class Client extends EETest {
 				com.sun.ts.tests.appclient.deploy.ejblink.path.ReferencedBean2.class,
 				com.sun.ts.tests.appclient.deploy.ejblink.path.ReferencedBean2EJB.class,
 				com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode.class,
-				com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper.class
+				com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class
 		);
 
 		resURL = Client.class.getResource("appclient_dep_ejblink_path_jar2_ejb.jar.sun-ejb-jar.xml");
