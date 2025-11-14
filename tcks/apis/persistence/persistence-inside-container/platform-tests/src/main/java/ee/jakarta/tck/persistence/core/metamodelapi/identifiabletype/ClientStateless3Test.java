@@ -14,6 +14,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -517,6 +518,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.metamo
             super.getDeclaredSingularAttributeStringIllegalArgumentException();
         }
 
+        @Disabled("https://github.com/jakartaee/platform-tck/issues/2497")
         @Test
         @Override
         @TargetVehicle("stateless3")
