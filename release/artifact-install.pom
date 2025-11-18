@@ -346,6 +346,8 @@
                             <generatePom>false</generatePom>
                         </configuration>
                     </execution>
+
+                    <!-- remove Tags TCK from the EE 12 release since it moved to the Jakarta Tags repository.
                     <execution>
                         <id>install-tags-tck</id>
                         <phase>package</phase>
@@ -361,6 +363,7 @@
                             <generatePom>false</generatePom>
                         </configuration>
                     </execution>
+                    -->
 
                     <execution>
                         <id>install-signaturetest</id>
