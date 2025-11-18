@@ -43,7 +43,7 @@
             <source>../tcks/profiles/platform/docs/userguide/platform/target/generated-docs/Jakarta-Platform-TCK-Users-Guide.pdf</source>
         </file>
         <!--  https://github.com/jakartaee/platform-tck/issues/2043 only include the Platform TCK user guide in the release.  
-              The below TCK user guides are not using when testing EE 11 compatibility.
+              The below TCK user guides are not being released for EE 12.
         <file>
             <outputDirectory>guides</outputDirectory>
             <source>../tcks/apis/transactions/docs/userguide/target/generated-docs/Jakarta-Transactions-TCK-Users-Guide.pdf</source>

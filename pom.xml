@@ -52,10 +52,10 @@
         <module>tcks/apis/jsonp</module>
         <module>tcks/apis/messaging/messaging-inside-container</module>
         <module>tcks/apis/messaging/messaging-inside-container/docs</module>
-        <module>tcks/apis/messaging/messaging-outside-container</module>
+        <!-- <module>tcks/apis/messaging/messaging-outside-container</module> -->
         <module>tcks/apis/pages</module>
         <module>tcks/apis/persistence/persistence-inside-container</module>
-        <module>tcks/apis/persistence/persistence-outside-container</module>
+        <!-- <module>tcks/apis/persistence/persistence-outside-container</module>  -->
         <module>tcks/apis/rest</module>
         <!-- <module>tcks/apis/tags</module>
         <module>tcks/apis/tags/docs</module> -->
