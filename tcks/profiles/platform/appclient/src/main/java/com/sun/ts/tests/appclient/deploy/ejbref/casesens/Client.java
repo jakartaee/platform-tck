@@ -99,7 +99,7 @@ public class Client extends EETest {
 				com.sun.ts.tests.appclient.deploy.ejbref.casesens.ReferencedBean.class,
 				com.sun.ts.tests.appclient.deploy.ejbref.casesens.ReferencedBeanEJB.class,
 				com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode.class,
-				com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper.class
+				com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class
 		);
 
 		URL resURL = Client.class.getResource("appclient_dep_ejbref_casesens_ejb.jar.sun-ejb-jar.xml");
