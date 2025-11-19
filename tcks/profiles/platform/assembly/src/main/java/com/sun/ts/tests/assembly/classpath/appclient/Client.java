@@ -44,6 +44,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -53,6 +54,7 @@ import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 @Tag("platform")
 @Tag("tck-appclient")
 @ExtendWith(ArquillianExtension.class)
+@Disabled("https://github.com/jakartaee/platform-tck/issues/2493")
 public class Client extends EETest {
 
   private TSNamingContext nctx = null;
