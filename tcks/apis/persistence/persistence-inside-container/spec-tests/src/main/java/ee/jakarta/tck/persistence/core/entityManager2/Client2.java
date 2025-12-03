@@ -92,6 +92,8 @@ public class Client2 extends PMClientBase {
 	 * 
 	 * @assertion_ids: PERSISTENCE:JAVADOC:491; PERSISTENCE:JAVADOC:492;
 	 * PERSISTENCE:JAVADOC:498; PERSISTENCE:JAVADOC:499
+	 * IllegalArgumentException may also be thrown by lock method as per
+	 * jakarta.ee/specifications/persistence/3.2/apidocs/jakarta.persistence/jakarta/persistence/entitymanager#lock(java.lang.Object,jakarta.persistence.LockModeType)
 	 * 
 	 * @test_Strategy: Call EntityManager.lock() method
 	 */
@@ -111,6 +113,9 @@ public class Client2 extends PMClientBase {
 		} catch (TransactionRequiredException e) {
 			logTrace( "TransactionRequiredException Caught as Expected.");
 			pass1 = true;
+		} catch (IllegalArgumentException e) {
+			logTrace( "IllegalArgumentException caught which can also be thrown from lock call.");
+			pass1 = true;
 		} catch (Exception e) {
 			logErr( "Unexpected exception occurred", e);
 		}
@@ -122,6 +127,9 @@ public class Client2 extends PMClientBase {
 			logErr( "TransactionRequiredException not thrown");
 		} catch (TransactionRequiredException e) {
 			logTrace( "TransactionRequiredException Caught as Expected.");
+			pass2 = true;
+		} catch (IllegalArgumentException e) {
+			logTrace( "IllegalArgumentException caught which can also be thrown from lock call.");
 			pass2 = true;
 		} catch (Exception e) {
 			logErr( "Unexpected exception occurred", e);
@@ -200,6 +208,8 @@ public class Client2 extends PMClientBase {
 	 * @testName: lockTransactionRequiredException2Test
 	 * 
 	 * @assertion_ids: PERSISTENCE:SPEC:1313;
+	 * IllegalArgumentException may also be thrown by lock method as per
+	 * jakarta.ee/specifications/persistence/3.2/apidocs/jakarta.persistence/jakarta/persistence/entitymanager#lock(java.lang.Object,jakarta.persistence.LockModeType)
 	 *
 	 * @test_Strategy: Call EntityManager.lock() method without a transaction
 	 */
@@ -217,6 +227,9 @@ public class Client2 extends PMClientBase {
 			logErr( "TransactionRequiredException not thrown");
 		} catch (TransactionRequiredException tre) {
 			logTrace( "TransactionRequiredException Caught as Expected.");
+			pass1 = true;
+		} catch (IllegalArgumentException e) {
+			logTrace( "IllegalArgumentException caught which can also be thrown from lock call.");
 			pass1 = true;
 		} catch (Exception e) {
 			logErr( "Unexpected exception occurred", e);
@@ -241,6 +254,9 @@ public class Client2 extends PMClientBase {
 			logErr( "TransactionRequiredException not thrown");
 		} catch (TransactionRequiredException tre) {
 			logTrace( "TransactionRequiredException Caught as Expected.");
+			pass2 = true;
+		} catch (IllegalArgumentException e) {
+			logTrace( "IllegalArgumentException caught which can also be thrown from lock call.");
 			pass2 = true;
 		} catch (Exception e) {
 			logErr( "Unexpected exception occurred", e);
