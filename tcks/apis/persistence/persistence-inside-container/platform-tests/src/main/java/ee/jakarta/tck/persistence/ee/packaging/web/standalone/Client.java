@@ -30,7 +30,7 @@ public class Client extends AbstractUrlClient {
 
 	public static final String SERVLET_NAME = "ServletTest";
 
-	public static final String CONTEXT_ROOT = "/jpa_ee_packaging_web_standalone";
+	public static final String CONTEXT_ROOT = "/jpa_ee_packaging_web_standalone_component_web";
 
 	/*
 	 * @class.setup_props: webServerHost; webServerPort;
