@@ -302,7 +302,9 @@ public final class TestUtil {
     public static void flushStream() {
         synchronized (socketMutex) {
             try {
-                objectOutputStream.flush();
+                if (objectOutputStream != null) {
+                    objectOutputStream.flush();
+                }
             } catch (Throwable t) {
                 // Ignore
                 // System.out.println("EXCEPTION WHILE FLUSHING");
