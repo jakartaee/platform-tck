@@ -12,6 +12,7 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -181,6 +182,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.annotat
         @Test
         @Override
         @TargetVehicle("pmservlet")
+        @Disabled("https://github.com/jakartaee/platform-tck/issues/2593")
         public void elementCollectionTest() throws java.lang.Exception {
             super.elementCollectionTest();
         }
