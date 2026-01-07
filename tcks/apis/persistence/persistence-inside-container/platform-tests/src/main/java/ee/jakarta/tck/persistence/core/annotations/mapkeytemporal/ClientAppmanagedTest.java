@@ -13,6 +13,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -223,6 +224,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.annota
         @Test
         @Override
         @TargetVehicle("appmanaged")
+        @Disabled("https://github.com/jakartaee/platform-tck/issues/2593")
         public void elementCollectionTest() throws java.lang.Exception {
             super.elementCollectionTest();
         }
