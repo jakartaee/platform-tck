@@ -19,6 +19,6 @@
 -->
 
 <sun-web-app>
-    <context-root>jpa_ee_packaging_web_scope</context-root>
+    <context-root>jpa_ee_packaging_web_scope_web</context-root>
     <class-loader delegate="true"/>
 </sun-web-app>
