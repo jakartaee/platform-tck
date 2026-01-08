@@ -35,6 +35,8 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.stan
         War:
 
         /com/sun/ts/tests/jpa/ee/packaging/web/standalone/jpa_ee_packaging_web_standalone_component_web.xml
+        /com/sun/ts/tests/jpa/ee/packaging/web/standalone/jpa_ee_packaging_web_standalone_component_web.war.sun-web.xml
+        /com/sun/ts/tests/jpa/ee/packaging/web/standalone/jpa_ee_packaging_web_standalone_component_web.war.sun-web.xml
         */
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
@@ -53,6 +55,9 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.stan
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/web/standalone/jpa_ee_packaging_web_standalone_component_web.xml");
             jpa_ee_packaging_web_standalone_component_web.addAsWebInfResource(warResURL, "web.xml");
+            // The sun-web.xml descriptor
+            warResURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/web/standalone/jpa_ee_packaging_web_standalone_component_web.war.sun-web.xml");
+            jpa_ee_packaging_web_standalone_component_web.addAsWebInfResource(warResURL, "sun-web.xml");
 
             // Any libraries added to the war
 
