@@ -36,6 +36,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.scop
         War:
 
         /com/sun/ts/tests/jpa/ee/packaging/web/scope/jpa_ee_packaging_web_scope_web.xml
+        /com/sun/ts/tests/jpa/ee/packaging/web/scope/jpa_ee_packaging_web_scope_web.war.sun-web.xml
         Ear:
 
         /com/sun/ts/tests/jpa/ee/packaging/web/scope/application.xml
@@ -57,6 +58,9 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.scop
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/web/scope/jpa_ee_packaging_web_scope_web.xml");
             jpa_ee_packaging_web_scope_web.addAsWebInfResource(warResURL, "web.xml");
+            // The sun-web.xml descriptor
+            warResURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/web/scope/jpa_ee_packaging_web_scope_web.war.sun-web.xml");
+            jpa_ee_packaging_web_scope_web.addAsWebInfResource(warResURL, "sun-web.xml");
 
             // Any libraries added to the war
 
