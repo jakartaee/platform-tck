@@ -519,10 +519,14 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
 
     public static ExtendedWebDriver stdInit() {
         Locale.setDefault(new Locale("en", "US"));
-        WebDriverManager.chromedriver().setup();
         initCDPVersionMessageFilter();
 
         ChromeOptions options = new ChromeOptions();
+
+        String chromedriverVersion = System.getProperty("chromedriver.version");
+        if (chromedriverVersion != null && !chromedriverVersion.isEmpty()) {
+            options.setBrowserVersion(chromedriverVersion);
+        }
 
         // we can turn on a visual browser by
         // adding chromedriver.headless = false to our properties
