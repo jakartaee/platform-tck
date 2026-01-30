@@ -109,6 +109,36 @@
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
+                    
+                    <execution>
+                        <id>install-whitebox-tx</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <file>${project.build.directory}/jakartaeetck/artifacts/whitebox-tx-${tck.test.enterprise-beans.version}.rar</file>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>whitebox-tx</artifactId>
+                            <version>${tck.test.enterprise-beans.version}</version>
+                            <packaging>rar</packaging>
+                        </configuration>
+                    </execution>
+                    
+                    <execution>
+                        <id>install-whitebox</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <file>${project.build.directory}/jakartaeetck/artifacts/whitebox-${tck.test.enterprise-beans.version}.jar</file>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>whitebox</artifactId>
+                            <version>${tck.test.enterprise-beans.version}</version>
+                            <packaging>jar</packaging>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
