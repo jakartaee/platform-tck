@@ -19,7 +19,7 @@
         <cdi.tck-4-0.version>4.1.0</cdi.tck-4-0.version>
         <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0-M15</glassfish.version>
         <maven.compiler.release>17</maven.compiler.release>
         <weld.version>6.0.3.Final</weld.version>
 
@@ -125,17 +125,10 @@
         <dependency>
             <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>2.1.1</version>
+            <version>2.1.2</version>
         </dependency>
-
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>jakarta-snapshots</id>
-            <url>https://jakarta.oss.sonatype.org/content/repositories/staging/</url>
-        </repository>
-    </repositories>
 
     <build>
         <plugins>

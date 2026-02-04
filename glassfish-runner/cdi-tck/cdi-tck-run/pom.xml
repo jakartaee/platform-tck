@@ -38,8 +38,7 @@
         <cdi.tck-4-1.version>4.1.0</cdi.tck-4-1.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
 
-        <!-- Note M6 still has some failures, future M7 passes all -->
-        <glassfish.version>8.0.0-M9</glassfish.version>
+        <glassfish.version>8.0.0-M15</glassfish.version>
 
         <!-- This matches the htmlunit version in TCK -->
         <htmlunit.version>2.50.0</htmlunit.version>
@@ -240,7 +239,7 @@
         <dependency>
             <groupId>org.glassfish.expressly</groupId>
             <artifactId>expressly</artifactId>
-            <version>6.0.0-M1</version>
+            <version>6.0.0</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -285,13 +284,14 @@
             <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
             <scope>test</scope>
         </dependency>
+        
         <!--
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.7</version>
+            <version>2.1.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -306,6 +306,7 @@
                     <testCompilerArgument>-proc:none</testCompilerArgument>
                 </configuration>
             </plugin>
+
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <executions>
@@ -324,6 +325,7 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
@@ -408,6 +410,7 @@
                 <version>3.3.0</version>
                 <configuration>
                     <argLine>-Xmx768m</argLine>
+                    
                     <!-- Surefire / TestNG Properties -->
                     <!-- The suite, the exclude and the test dependencies together determine which tests are being run -->
                     <suiteXmlFiles>
@@ -417,6 +420,7 @@
                     <dependenciesToScan>
                         <dependency>jakarta.enterprise:cdi-tck-core-impl</dependency>
                     </dependenciesToScan>
+                    
                     <properties>
                         <property>
                             <name>surefire.testng.verbose</name>
@@ -425,20 +429,26 @@
                     </properties>
                     <forkCount>1</forkCount>
                     <reuseForks>true</reuseForks>
+                    
                     <!-- System Properties -->
                     <systemPropertyVariables>
                         <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
                         <glassfish.enableDerby>true</glassfish.enableDerby>
                         <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
                         <glassfish.enableAssertions>:org.jboss.cdi.tck...</glassfish.enableAssertions>
-                        <glassfish.systemProperties>cdiTckExcludeDummy=true
-                            glassfish.servlet.loadAllOnStartup=true</glassfish.systemProperties>
-                        <glassfish.postBootCommands>create-jms-resource --restype jakarta.jms.Queue --property Name=queue_test queue_test
+                        <glassfish.systemProperties>
+                            cdiTckExcludeDummy=true
+                            glassfish.servlet.loadAllOnStartup=true
+                        </glassfish.systemProperties>
+                        <glassfish.postBootCommands>
+                            create-jms-resource --restype jakarta.jms.Queue --property Name=queue_test queue_test
                             create-jms-resource --restype jakarta.jms.Topic --property Name=topic_test topic_test
                             set configs.config.server-config.cdi-service.enable-implicit-cdi=true
-                            create-file-user --groups student --passwordfile ${project.build.directory}/test-classes/password.txt student
-                            create-file-user --groups printer --passwordfile ${project.build.directory}/test-classes/password.txt printer
-                            create-file-user --groups student:alarm --passwordfile ${project.build.directory}/test-classes/password.txt alarm</glassfish.postBootCommands>
+                            --passwordfile ${project.build.directory}/test-classes/password.txt create-file-user --groups student student
+                            --passwordfile ${project.build.directory}/test-classes/password.txt create-file-user --groups printer printer
+                            --passwordfile ${project.build.directory}/test-classes/password.txt create-file-user --groups student:alarm alarm
+                        </glassfish.postBootCommands>
+                        
                         <libPath>${project.build.outputDirectory}</libPath>
                         <org.jboss.cdi.tck.libraryDirectory>${project.build.directory}/dependency/lib</org.jboss.cdi.tck.libraryDirectory>
                         <debugMode>true</debugMode>
@@ -456,6 +466,7 @@
                         <id>run tck</id>
                         <goals>
                             <goal>integration-test</goal>
+                            <goal>verify</goal>
                         </goals>
                         <phase>integration-test</phase>
                     </execution>
