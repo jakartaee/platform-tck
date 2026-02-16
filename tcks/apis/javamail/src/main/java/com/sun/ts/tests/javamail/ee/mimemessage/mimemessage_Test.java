@@ -34,12 +34,10 @@ import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
 
 import jakarta.mail.Address;
 import jakarta.mail.Flags;
-import jakarta.mail.Folder;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
 import jakarta.mail.Multipart;
 import jakarta.mail.Session;
-import jakarta.mail.Store;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
@@ -57,12 +55,6 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
   private transient MailTestUtil mailTestUtil;
 
   private transient Session session;
-
-  private Folder folder;
-
-  private Message[] msgs;
-
-  private Store store;
 
   private transient Status status;
 
@@ -90,8 +82,7 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
    * imap.port;
    */
   public void setup(String[] args, Properties props) throws Exception {
-    try {
-
+      try {
     	  mailTo = props.getProperty("mailuser1");
     	  String protocol = TestUtil.getProperty("javamail.protocol");
           String host = TestUtil.getProperty("javamail.server");
@@ -108,29 +99,13 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
           int imapPort = Integer.parseInt(imapPortStr);
           TestUtil.logTrace("IMAP Port = " + imapPort);
 
-      MailTestUtil mailTestUtil = new MailTestUtil();
-
-      store = mailTestUtil.connect2host(protocol, host, imapPort, user,
-          password);
-      session = mailTestUtil.getSession();
-
-      // Get a Folder object
-      Folder root = mailTestUtil.getRootFolder(store);
-      folder = root.getFolder(mailbox);
-
-      if (folder == null) {
-        throw new Exception("Invalid folder object!");
+          mailTestUtil = new MailTestUtil();
+          session = mailTestUtil.createSession(host, smtpPortStr, user, password);
+      } catch (Exception e) {
+          logErr("Exception : " + e.getMessage());
+          logErr("Setup Failed!");
+          TestUtil.printStackTrace(e);
       }
-      folder.open(Folder.READ_ONLY);
-
-      // Get all the messages
-      msgs = folder.getMessages();
-
-    } catch (Exception e) {
-      logErr("Exception : " + e.getMessage());
-      logErr("Setup Failed!");
-      TestUtil.printStackTrace(e);
-    }
   }
 
   /*
@@ -562,9 +537,6 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
   public void cleanup() throws Exception {
     try {
       logMsg("Cleanup ;");
-      if (store != null) {
-        store = null;
-      }
       if (session != null) {
         session = null;
       }
