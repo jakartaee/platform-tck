@@ -26,5 +26,5 @@ For an example of an existing TCK challenge, see https://github.com/eclipse-ee4j
 **Additional context**
 Add any other context about the problem here.
 
-** Note that the source for this page is contained in https://github.com/eclipse-ee4j/jakartaee-tck/tree/master/.github/ISSUE_TEMPLATE, pull requests are welcome to improve!  
+** Note that the source for this page is contained in https://github.com/eclipse-ee4j/jakartaee-tck/tree/main/.github/ISSUE_TEMPLATE, pull requests are welcome to improve!  
 I'm also sharing this link so other projects see how they can specify an ISSUE_TEMPLATE for new issues. :-)
