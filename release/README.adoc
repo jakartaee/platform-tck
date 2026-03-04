@@ -25,6 +25,35 @@ The Jakarta EE TCK release has been ported to use Arquillian and Junit 5 as the 
 
 === 11.0.2
 * Update jakarta.tck.arquillian.* to 11.1.2
+* Upgrade the parent POM from 2.0.0-M1 to 2.0.0.
+* Switch to use jakarta.tck:common:11.1.1-M2
+* Allow the Chrome driver to be overridden with a system property
+* Update sun-web.xml files to have the new context roots
+* Fix non-portable context root in web scope and standalone ClientTest
+* Fix non-portable context root in ClientTest
+* Address Platform TCK challenge for ee.jakarta.tck.persistence.core.annotations.mapkeyenumerated.ClientPmservletTest.elementCollectionTest
+* use jakarta.tck:common:11.1.1-M2
+* Address Platform TCK challenge for lockTransactionRequiredException tests in ee.jakarta.tck.persistence.core.entityManager2
+* [jakartaee/persistence#714] TCK should not try declare generator with same name multiple times
+* Correct conditions checked for in WebVehicleRunner when producing test failure message
+* TCK Challenge: com.sun.ts.tests.assembly.classpath tests are invalid -- no longer testing intended function
+* Address TCK challenge 2497 by excluding ee.jakarta.tck.persistence.core.metamodelapi.identifiabletype.Client*#getDeclaredSingularAttributes()
+* Cancel async work in NPE test scenarios
+* Reapply "https://github.com/jakartaee/platform-tck/issues/2523 exclude jakarta.tck:smoke-tests from being deployed to sonatype"
+* Convert EJB vehicle test from proxy to standard
+* Fixes for ejb30 bb.session porting errors
+* Fix Assembly app construction issues
+* Allow bindings to be added to appclient jars
+* Fix EJB wrappers for AppClient Tests
+* Add Missing Class to persistence.ee.packaging.ejb.resource_local war module
+* Remove @Transactional from Persistence Vehicles
+* Remove fragile debug code from ejb30.assembly.initorder.appclientejb.Client
+* Move Authentication (jaspic) from KEYWORD_WEB_FULL_OPTIONAL_TECHS to KEYWORD_WEB as Authentication is required for Web Profile
+* TCK Challenge: EJB Vehicle tests aren't running in EJBs #2411
+* Fix for ejb30.misc.moduleName.twowars
+* Fixes for JDBC Challenge - 2414
+* Fixes for ejb30 bb.session porting errors
+* [2372] Use the correct NamingEnumeration in the loop when printing the java:app namespace. 
 
 === 11.0.0
 * Add web/platform tags to WebSocket and CDI/Persistence tests
