@@ -97,8 +97,6 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.En
             SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             ee.jakarta.tck.persistence.core.EntityGraph.Client.class,
-            ee.jakarta.tck.persistence.core.EntityGraph.Employee3.class,
-            ee.jakarta.tck.persistence.core.EntityGraph.Department.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ClientAppmanagednotxTest.class
             );
@@ -132,8 +130,6 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.En
                 com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
                 ee.jakarta.tck.persistence.common.PMClientBase.class,
                 ee.jakarta.tck.persistence.core.EntityGraph.Client.class,
-                ee.jakarta.tck.persistence.core.EntityGraph.Employee3.class,
-                ee.jakarta.tck.persistence.core.EntityGraph.Department.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
                 EETest.class,
