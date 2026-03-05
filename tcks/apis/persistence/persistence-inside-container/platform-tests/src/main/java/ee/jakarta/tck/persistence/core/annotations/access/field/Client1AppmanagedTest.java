@@ -137,7 +137,6 @@ public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.annot
                 SetupException.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-                ee.jakarta.tck.persistence.core.annotations.access.field.DataTypes.class,
                 ee.jakarta.tck.persistence.core.annotations.access.field.Client1.class,
                 ee.jakarta.tck.persistence.core.annotations.access.field.Client.class
             );
