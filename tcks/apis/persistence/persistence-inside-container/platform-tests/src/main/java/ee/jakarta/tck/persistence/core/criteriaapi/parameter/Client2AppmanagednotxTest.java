@@ -87,7 +87,6 @@ public class Client2AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class,
-            ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class,
             Client2.class,
             Client2AppmanagednotxTest.class
             );
@@ -150,7 +149,7 @@ public class Client2AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
             // The class files
             jpa_core_criteriaapi_parameter.addClasses(
                 ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The persistence.xml descriptor
             URL parURL = Client2.class.getResource("persistence.xml");
             if(parURL != null) {
