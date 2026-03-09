@@ -156,7 +156,7 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.q
                 ee.jakarta.tck.persistence.core.query.apitests.Department.class,
                 ee.jakarta.tck.persistence.core.query.apitests.DataTypes2.class,
                 ee.jakarta.tck.persistence.core.query.apitests.Insurance.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The persistence.xml descriptor
             URL parURL = Client1.class.getResource("persistence.xml");
             if(parURL != null) {
