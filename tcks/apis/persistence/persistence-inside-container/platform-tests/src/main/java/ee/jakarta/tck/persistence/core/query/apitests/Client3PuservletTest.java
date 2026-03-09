@@ -116,7 +116,7 @@ public class Client3PuservletTest extends ee.jakarta.tck.persistence.core.query.
                 ee.jakarta.tck.persistence.core.query.apitests.Department.class,
                 ee.jakarta.tck.persistence.core.query.apitests.DataTypes2.class,
                 ee.jakarta.tck.persistence.core.query.apitests.Insurance.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The persistence.xml descriptor
             URL parURL = Client3.class.getResource("persistence.xml");
             if(parURL != null) {
