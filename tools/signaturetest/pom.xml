@@ -27,7 +27,7 @@
 
     <groupId>jakarta.tck</groupId>  
     <artifactId>signaturetest</artifactId>
-    <version>11.0.2</version>
+    <version>11.1.1</version>
     <packaging>jar</packaging>
 
     <name>signaturetest</name>

@@ -98,7 +98,7 @@
         <!-- The released version of tools/common -->
         <jakarta.tck.common.version>11.1.1-M2</jakarta.tck.common.version>
         <!-- The released version of tools/signaturetest -->
-        <jakarta.tck.sigtest.version>11.1.0</jakarta.tck.sigtest.version>
+        <jakarta.tck.sigtest.version>11.1.1</jakarta.tck.sigtest.version>
     </properties>
 
     <dependencyManagement>
