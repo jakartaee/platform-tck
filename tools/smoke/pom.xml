@@ -28,7 +28,7 @@
     <groupId>jakarta.tck</groupId>
     <artifactId>smoke-tests</artifactId>
     <packaging>jar</packaging>
-    <version>11.0.2</version>
+    <version>11.0.3-SNAPSHOT</version>
 
     <name>Smoke Tests</name>
     <description>Basic Smoke Tests</description>
