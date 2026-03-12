@@ -99,7 +99,7 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             Client1.class,
             Client1AppmanagednotxTest.class
-            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
+            );
             // The application-client.xml descriptor
             URL resURL = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
             if(resURL != null) {
@@ -139,7 +139,7 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
                 com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleBean.class,
                 com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner.class
-            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
+            );
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
             if(ejbResURL1 != null) {
@@ -158,43 +158,7 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
             // the jar with the correct archive name
             JavaArchive jpa_core_criteriaapi_strquery = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_strquery.jar");
             // The class files
-            jpa_core_criteriaapi_strquery.addClasses(
-                ee.jakarta.tck.persistence.common.schema30.Department.class,
-                ee.jakarta.tck.persistence.common.schema30.Address_.class,
-                ee.jakarta.tck.persistence.common.schema30.Department_.class,
-                ee.jakarta.tck.persistence.common.schema30.CreditCard.class,
-                ee.jakarta.tck.persistence.common.schema30.Info.class,
-                ee.jakarta.tck.persistence.common.schema30.LineItem_.class,
-                ee.jakarta.tck.persistence.common.schema30.Phone.class,
-                ee.jakarta.tck.persistence.common.schema30.Customer_.class,
-                ee.jakarta.tck.persistence.common.schema30.Employee_.class,
-                ee.jakarta.tck.persistence.common.schema30.Trim_.class,
-                ee.jakarta.tck.persistence.common.schema30.Order_.class,
-                ee.jakarta.tck.persistence.common.schema30.ShelfLife_.class,
-                ee.jakarta.tck.persistence.common.schema30.ShelfLife.class,
-                ee.jakarta.tck.persistence.common.schema30.Phone_.class,
-                ee.jakarta.tck.persistence.common.schema30.Address.class,
-                ee.jakarta.tck.persistence.common.schema30.Info_.class,
-                ee.jakarta.tck.persistence.common.schema30.HardwareProduct.class,
-                ee.jakarta.tck.persistence.common.schema30.Country_.class,
-                ee.jakarta.tck.persistence.common.schema30.Alias_.class,
-                ee.jakarta.tck.persistence.common.schema30.Trim.class,
-                ee.jakarta.tck.persistence.common.schema30.HardwareProduct_.class,
-                ee.jakarta.tck.persistence.common.schema30.CreditCard_.class,
-                ee.jakarta.tck.persistence.common.schema30.SoftwareProduct.class,
-                ee.jakarta.tck.persistence.common.schema30.Product.class,
-                ee.jakarta.tck.persistence.common.schema30.Spouse.class,
-                ee.jakarta.tck.persistence.common.schema30.SoftwareProduct_.class,
-                ee.jakarta.tck.persistence.common.schema30.Spouse_.class,
-                ee.jakarta.tck.persistence.common.schema30.LineItem.class,
-                ee.jakarta.tck.persistence.common.schema30.Employee.class,
-                ee.jakarta.tck.persistence.common.schema30.Product_.class,
-                ee.jakarta.tck.persistence.common.schema30.Customer.class,
-                ee.jakarta.tck.persistence.common.schema30.Alias.class,
-                ee.jakarta.tck.persistence.common.schema30.Order.class,
-                ee.jakarta.tck.persistence.common.schema30.LineItemException.class,
-                ee.jakarta.tck.persistence.common.schema30.Country.class
-            );
+            jpa_core_criteriaapi_strquery.addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The persistence.xml descriptor
             URL parURL = Client1.class.getResource("persistence.xml");
             if(parURL != null) {

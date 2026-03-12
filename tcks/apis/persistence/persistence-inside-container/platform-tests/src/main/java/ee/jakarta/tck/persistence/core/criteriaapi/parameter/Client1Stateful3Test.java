@@ -87,7 +87,6 @@ public class Client1Stateful3Test extends ee.jakarta.tck.persistence.core.criter
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class,
             ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client1.class,
-            ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class,
             Client1Stateful3Test.class
             );
             // The application-client.xml descriptor
@@ -149,7 +148,7 @@ public class Client1Stateful3Test extends ee.jakarta.tck.persistence.core.criter
             // The class files
             jpa_core_criteriaapi_parameter.addClasses(
                 ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The persistence.xml descriptor
             URL parURL = Client1.class.getResource("persistence.xml");
             if(parURL != null) {

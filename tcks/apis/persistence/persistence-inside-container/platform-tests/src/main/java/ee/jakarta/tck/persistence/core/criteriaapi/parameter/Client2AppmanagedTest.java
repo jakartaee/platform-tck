@@ -99,7 +99,6 @@ public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class,
             ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client2.class,
-            ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class,
             Client2AppmanagedTest.class
             );
             // The application-client.xml descriptor
@@ -161,7 +160,7 @@ public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             // The class files
             jpa_core_criteriaapi_parameter.addClasses(
                 ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The persistence.xml descriptor
             URL parURL = Client2.class.getResource("persistence.xml");
             if(parURL != null) {

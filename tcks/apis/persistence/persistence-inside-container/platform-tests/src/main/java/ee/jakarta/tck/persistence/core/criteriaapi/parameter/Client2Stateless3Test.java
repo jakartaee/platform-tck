@@ -98,10 +98,9 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class,
-            ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class,
             Client2.class,
             Client2Stateless3Test.class
-            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());;
+            );
             // The application-client.xml descriptor
             URL resURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.xml");
             if(resURL != null) {
@@ -141,7 +140,7 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
                 ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class
-            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
+            );
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.xml");
             if(ejbResURL1 != null) {
@@ -162,7 +161,7 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
             // The class files
             jpa_core_criteriaapi_parameter.addClasses(
                 ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The persistence.xml descriptor
             URL parURL = Client2.class.getResource("persistence.xml");
             if(parURL != null) {
