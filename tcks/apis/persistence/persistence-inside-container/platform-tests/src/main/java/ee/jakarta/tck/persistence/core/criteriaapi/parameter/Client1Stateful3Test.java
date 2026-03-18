@@ -148,7 +148,7 @@ public class Client1Stateful3Test extends ee.jakarta.tck.persistence.core.criter
             // The class files
             jpa_core_criteriaapi_parameter.addClasses(
                 ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class
-            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
+            );
             // The persistence.xml descriptor
             URL parURL = Client1.class.getResource("persistence.xml");
             if(parURL != null) {

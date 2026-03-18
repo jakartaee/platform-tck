@@ -133,7 +133,6 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
                 com.sun.ts.tests.common.vehicle.stateless3.Stateless3VehicleBean.class,
                 com.sun.ts.tests.common.vehicle.stateless3.Stateless3VehicleIF.class,
                 EETest.class,
-                com.sun.ts.lib.harness.Status.class,
                 ServiceEETest.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
                 SetupException.class,
@@ -161,7 +160,7 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
             // The class files
             jpa_core_criteriaapi_parameter.addClasses(
                 ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class
-            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
+            );
             // The persistence.xml descriptor
             URL parURL = Client2.class.getResource("persistence.xml");
             if(parURL != null) {

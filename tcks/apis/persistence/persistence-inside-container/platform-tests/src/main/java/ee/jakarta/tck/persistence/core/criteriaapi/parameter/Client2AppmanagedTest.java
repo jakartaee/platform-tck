@@ -160,7 +160,7 @@ public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             // The class files
             jpa_core_criteriaapi_parameter.addClasses(
                 ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class
-            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
+            );
             // The persistence.xml descriptor
             URL parURL = Client2.class.getResource("persistence.xml");
             if(parURL != null) {
