@@ -89,7 +89,7 @@ public class Client6AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             Client6.class,
             Client6AppmanagedTest.class
-            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
+            );
             // The application-client.xml descriptor
             URL resURL = Client6.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
             if(resURL != null) {
@@ -128,7 +128,7 @@ public class Client6AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
                 SetupException.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
-            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
+            );
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = Client6.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
             if(ejbResURL1 != null) {
