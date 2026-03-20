@@ -43,13 +43,14 @@ public class internetMimeMultipartEJB_Test extends internetMimeMultipart_Test {
 	@Deployment(name = "ejb", testable = true)
 	public static EnterpriseArchive createDeploymentEjb(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "internetMimeMultipart_ejb_vehicle_client.jar");
-		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee");
+		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee.util");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
 		ejbClient.addClass(com.sun.ts.tests.common.base.EETest.class);
 		ejbClient.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
-		ejbClient.addClasses(internetMimeMultipartEJB_Test.class, internetMimeMultipart_Test.class);
+		ejbClient.addClasses(internetMimeMultipartEJB_Test.class, internetMimeMultipart_Test.class, NullOutputStream.class, MyMimeMultipart.class);
 
 		URL resURL = internetMimeMultipartEJB_Test.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
 		if (resURL != null) {
@@ -67,13 +68,14 @@ public class internetMimeMultipartEJB_Test extends internetMimeMultipart_Test {
 
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "internetMimeMultipart_ejb_vehicle_ejb.jar");
-		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee");
+		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee.util");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
 		ejb.addClass(com.sun.ts.tests.common.base.EETest.class);
 		ejb.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
-		ejb.addClasses(internetMimeMultipartEJB_Test.class, internetMimeMultipart_Test.class);
+		ejb.addClasses(internetMimeMultipartEJB_Test.class, internetMimeMultipart_Test.class, NullOutputStream.class, MyMimeMultipart.class);
 
 		
 		resURL = internetMimeMultipartEJB_Test.class.getResource(

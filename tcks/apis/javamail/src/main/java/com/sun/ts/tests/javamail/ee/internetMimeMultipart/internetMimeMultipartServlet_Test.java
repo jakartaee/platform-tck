@@ -40,14 +40,15 @@ public class internetMimeMultipartServlet_Test extends internetMimeMultipart_Tes
 	@Deployment(name = "servlet", testable = true)
 	public static WebArchive createDeploymentServlet(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "internetMimeMultipart_servlet_vehicle_web.war");
-		archive.addPackages(true, "com.sun.ts.tests.javamail.ee");
+		archive.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		archive.addPackages(true, "com.sun.ts.tests.javamail.ee.util");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
 		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		archive.addPackages(false, "com.sun.ts.tests.javamail.ee.internetMimeMultipart");
-		archive.addClasses(internetMimeMultipartServlet_Test.class, internetMimeMultipart_Test.class);
+		archive.addClasses(internetMimeMultipartServlet_Test.class, internetMimeMultipart_Test.class, NullOutputStream.class, MyMimeMultipart.class);
 		
 		
 		// The servlet descriptor

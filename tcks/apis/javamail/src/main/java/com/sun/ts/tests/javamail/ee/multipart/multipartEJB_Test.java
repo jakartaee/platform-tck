@@ -48,7 +48,8 @@ public class multipartEJB_Test extends multipart_Test implements Serializable {
 	@Deployment(name = "ejb", testable = true)
 	public static EnterpriseArchive createDeploymentEJB(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "multipart_ejb_vehicle_client.jar");
-		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee");
+		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee.util");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
@@ -72,7 +73,8 @@ public class multipartEJB_Test extends multipart_Test implements Serializable {
 
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "multipart_ejb_vehicle_ejb.jar");
-		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee");
+		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee.util");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
