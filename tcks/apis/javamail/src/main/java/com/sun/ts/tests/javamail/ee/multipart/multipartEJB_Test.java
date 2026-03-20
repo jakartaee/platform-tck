@@ -68,6 +68,7 @@ public class multipartEJB_Test extends multipart_Test implements Serializable {
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
+		archiveProcessor.processClientArchive(ejbClient, multipartEJB_Test.class, resURL);
 
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "multipart_ejb_vehicle_ejb.jar");
@@ -91,10 +92,12 @@ public class multipartEJB_Test extends multipart_Test implements Serializable {
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
 		}
+		archiveProcessor.processEjbArchive(ejb, multipartEJB_Test.class, resURL);
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "multipart_ejb_vehicle.ear");
 		ear.addAsModule(ejbClient);
 		ear.addAsModule(ejb);
+		archiveProcessor.processEarArchive(ear, multipartEJB_Test.class, null);
 		return ear;
 	};
 

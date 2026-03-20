@@ -65,6 +65,7 @@ public class fetchprofileEJB_Test extends fetchprofile_Test implements Serializa
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
+		archiveProcessor.processClientArchive(ejbClient, fetchprofileEJB_Test.class, resURL);
 
 		ejbClient.addAsManifestResource(
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.common.vehicle.VehicleClient" + "\n"),
@@ -91,10 +92,12 @@ public class fetchprofileEJB_Test extends fetchprofile_Test implements Serializa
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
 		}
+		archiveProcessor.processEjbArchive(ejb, fetchprofileEJB_Test.class, resURL);
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "fetchprofile_ejb_vehicle.ear");
 		ear.addAsModule(ejbClient);
 		ear.addAsModule(ejb);
+		archiveProcessor.processEarArchive(ear, fetchprofileEJB_Test.class, null);
 		return ear;
 
 	};

@@ -68,6 +68,7 @@ public class mimemessageEJB_Test extends mimemessage_Test implements Serializabl
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
+		archiveProcessor.processClientArchive(ejbClient, mimemessageEJB_Test.class, resURL);
 
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "mimemessage_ejb_vehicle_ejb.jar");
@@ -91,10 +92,12 @@ public class mimemessageEJB_Test extends mimemessage_Test implements Serializabl
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
 		}
+		archiveProcessor.processEjbArchive(ejb, mimemessageEJB_Test.class, resURL);
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "mimemessage_ejb_vehicle.ear");
 		ear.addAsModule(ejbClient);
 		ear.addAsModule(ejb);
+		archiveProcessor.processEarArchive(ear, mimemessageEJB_Test.class, null);
 		return ear;
 	};
 

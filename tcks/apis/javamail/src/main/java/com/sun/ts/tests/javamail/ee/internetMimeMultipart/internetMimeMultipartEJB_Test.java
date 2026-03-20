@@ -63,6 +63,7 @@ public class internetMimeMultipartEJB_Test extends internetMimeMultipart_Test {
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
+		archiveProcessor.processClientArchive(ejbClient, internetMimeMultipartEJB_Test.class, resURL);
 
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "internetMimeMultipart_ejb_vehicle_ejb.jar");
@@ -87,10 +88,12 @@ public class internetMimeMultipartEJB_Test extends internetMimeMultipart_Test {
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
 		}
+		archiveProcessor.processClientArchive(ejb, internetMimeMultipartEJB_Test.class, resURL);
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "internetMimeMultipart_ejb_vehicle.ear");
 		ear.addAsModule(ejbClient);
 		ear.addAsModule(ejb);
+		archiveProcessor.processEarArchive(ear, internetMimeMultipartEJB_Test.class, null);
 		return ear;
 	};
 

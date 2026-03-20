@@ -66,6 +66,7 @@ public class getMessageContentEJB_Test extends getMessageContent_Test {
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
+		archiveProcessor.processClientArchive(ejbClient, getMessageContentEJB_Test.class, resURL);
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "getMessageContent_ejb_vehicle_ejb.jar");
 		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee");
@@ -89,11 +90,13 @@ public class getMessageContentEJB_Test extends getMessageContent_Test {
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
 		}
+		archiveProcessor.processEjbArchive(ejb, getMessageContentEJB_Test.class, resURL);
 
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "getMessageContent_ejb_vehicle.ear");
 		ear.addAsModule(ejbClient);
 		ear.addAsModule(ejb);
+		archiveProcessor.processEarArchive(ear, getMessageContentEJB_Test.class, null);
 		return ear;
 	};
 
