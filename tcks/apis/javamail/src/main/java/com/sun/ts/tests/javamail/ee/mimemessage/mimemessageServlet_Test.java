@@ -46,13 +46,14 @@ public class mimemessageServlet_Test extends mimemessage_Test implements Seriali
 	@Deployment(name = "servlet", testable = true)
 	public static WebArchive createDeploymentServlet(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "mimemessage_servlet_vehicle_web.war");
-		archive.addPackages(true, "com.sun.ts.tests.javamail.ee");
+		archive.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		archive.addPackages(true, "com.sun.ts.tests.javamail.ee.util");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle.servlet");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
 		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
-		archive.addClasses(mimemessageServlet_Test.class, mimemessage_Test.class);
+		archive.addClasses(mimemessageServlet_Test.class, mimemessage_Test.class, MyMimeMessage.class, MyReplyMimeMessage.class);
 		
 		// The servlet descriptor
         URL jspUrl = mimemessageServlet_Test.class.getResource("servlet_vehicle_web.xml");

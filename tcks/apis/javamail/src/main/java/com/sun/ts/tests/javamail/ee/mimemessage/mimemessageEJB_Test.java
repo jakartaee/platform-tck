@@ -48,13 +48,14 @@ public class mimemessageEJB_Test extends mimemessage_Test implements Serializabl
 	@Deployment(name = "ejb", testable = true)
 	public static EnterpriseArchive createDeploymentEJB(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
 		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "mimemessage_ejb_vehicle_client.jar");
-		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee");
+		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee.util");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
 		ejbClient.addClass(com.sun.ts.tests.common.base.EETest.class);
 		ejbClient.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
-		ejbClient.addClasses(mimemessageEJB_Test.class, mimemessage_Test.class);
+		ejbClient.addClasses(mimemessageEJB_Test.class, mimemessage_Test.class, MyMimeMessage.class, MyReplyMimeMessage.class);
 
 		URL resURL = mimemessageEJB_Test.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
 		if (resURL != null) {
@@ -68,16 +69,18 @@ public class mimemessageEJB_Test extends mimemessage_Test implements Serializabl
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
+		archiveProcessor.processClientArchive(ejbClient, mimemessageEJB_Test.class, resURL);
 
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "mimemessage_ejb_vehicle_ejb.jar");
-		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee");
+		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee.util");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
 		ejb.addClass(com.sun.ts.tests.common.base.EETest.class);
 		ejb.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
-		ejb.addClasses(mimemessageEJB_Test.class, mimemessage_Test.class);
+		ejb.addClasses(mimemessageEJB_Test.class, mimemessage_Test.class, MyMimeMessage.class, MyReplyMimeMessage.class);
 
 		resURL = mimemessageEJB_Test.class.getResource(
 				"/com/sun/ts/tests/javamail/ee/mimemessage/mimemessage_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
@@ -91,10 +94,12 @@ public class mimemessageEJB_Test extends mimemessage_Test implements Serializabl
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
 		}
+		archiveProcessor.processEjbArchive(ejb, mimemessageEJB_Test.class, resURL);
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "mimemessage_ejb_vehicle.ear");
 		ear.addAsModule(ejbClient);
 		ear.addAsModule(ejb);
+		archiveProcessor.processEarArchive(ear, mimemessageEJB_Test.class, null);
 		return ear;
 	};
 

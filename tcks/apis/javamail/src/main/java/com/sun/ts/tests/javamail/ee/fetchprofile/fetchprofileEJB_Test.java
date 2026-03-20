@@ -49,7 +49,8 @@ public class fetchprofileEJB_Test extends fetchprofile_Test implements Serializa
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejbClient.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
-		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee");
+		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		ejbClient.addPackages(true, "com.sun.ts.tests.javamail.ee.util");
 		ejbClient.addClass(com.sun.ts.tests.common.base.EETest.class);
 		ejbClient.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
 		ejbClient.addClasses(fetchprofileEJB_Test.class, fetchprofile_Test.class);
@@ -65,13 +66,15 @@ public class fetchprofileEJB_Test extends fetchprofile_Test implements Serializa
 		if (resURL != null) {
 			ejbClient.addAsManifestResource(resURL, "sun-application-client.xml");
 		}
+		archiveProcessor.processClientArchive(ejbClient, fetchprofileEJB_Test.class, resURL);
 
 		ejbClient.addAsManifestResource(
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.common.vehicle.VehicleClient" + "\n"),
 				"MANIFEST.MF");
 
 		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "fetchprofile_ejb_vehicle_ejb.jar");
-		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee");
+		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		ejb.addPackages(true, "com.sun.ts.tests.javamail.ee.util");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		ejb.addPackages(false, "com.sun.ts.tests.common.vehicle.ejb");
 		ejb.addPackages(true, "com.sun.ts.lib.harness");
@@ -91,10 +94,12 @@ public class fetchprofileEJB_Test extends fetchprofile_Test implements Serializa
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
 		}
+		archiveProcessor.processEjbArchive(ejb, fetchprofileEJB_Test.class, resURL);
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "fetchprofile_ejb_vehicle.ear");
 		ear.addAsModule(ejbClient);
 		ear.addAsModule(ejb);
+		archiveProcessor.processEarArchive(ear, fetchprofileEJB_Test.class, null);
 		return ear;
 
 	};
