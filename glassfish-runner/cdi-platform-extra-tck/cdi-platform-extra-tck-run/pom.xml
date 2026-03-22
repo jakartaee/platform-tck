@@ -36,10 +36,10 @@
     <properties>
         <cdi.tck-4-1.version>4.1.0</cdi.tck-4-1.version>
         <!-- The CDI EE Platform Integration TCK Version -->
-        <tck.version>11.0.1</tck.version>
+        <tck.version>11.0.2</tck.version>
 
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
 
         <maven.build.cache.enabled>false</maven.build.cache.enabled>

@@ -25,17 +25,17 @@
 
     <groupId>jakarta</groupId>
     <artifactId>glassfish.integration-platform-tck-run</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.2</version>
     <packaging>jar</packaging>
 
     <properties>
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
-        <tck.version>11.0.1</tck.version>
+        <tck.version>11.0.2</tck.version>
         <maven.compiler.release>17</maven.compiler.release>
     </properties>
 

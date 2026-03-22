@@ -40,9 +40,9 @@
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <jakarta.platform.version>11.0.0</jakarta.platform.version>
 
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
-        <tck.test.persistence.version>11.0.1</tck.test.persistence.version>
+        <tck.test.persistence.version>11.0.2</tck.test.persistence.version>
         
         <ts.home>./jakartaeetck</ts.home>
     </properties>

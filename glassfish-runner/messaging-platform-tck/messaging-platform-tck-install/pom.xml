@@ -28,14 +28,14 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>messaging-tck-install</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.2</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta Messaging Platform TCK</name>
 
     <properties>
         <tck.test.messaging.platform.file>jakartaeetck-${tck.test.messaging.version}-dist.zip</tck.test.messaging.platform.file>
-        <tck.test.messaging.platform.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.messaging.platform.file}</tck.test.messaging.platform.url>
-        <tck.test.messaging.version>11.0.1-SNAPSHOT</tck.test.messaging.version>
+        <tck.test.messaging.platform.url>https://download.eclipse.org/ee4j/jakartaee-platform/jakartaee11/staged/eftl/${tck.test.messaging.platform.file}</tck.test.messaging.platform.url>
+        <tck.test.messaging.version>11.0.2</tck.test.messaging.version>
     </properties>
 
     <build>
@@ -62,8 +62,8 @@
             
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.4</version>
                 <executions>
-
                     <execution>
                         <id>install-messaging-platform-tck-jar</id>
                         <goals>

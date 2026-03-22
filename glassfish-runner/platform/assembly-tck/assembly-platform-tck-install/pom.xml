@@ -28,15 +28,15 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>assembly-tck-install</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.2</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta Assembly TCK</name>
 
     <properties>
         <tck.test.assembly.file>jakartaeetck-${tck.test.assembly.version}-dist.zip</tck.test.assembly.file>
-        <tck.test.assembly.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.assembly.file}</tck.test.assembly.url>
+        <tck.test.assembly.url>https://download.eclipse.org/ee4j/jakartaee-platform/jakartaee11/staged/eftl/${tck.test.assembly.file}</tck.test.assembly.url>
         
-        <tck.test.assembly.version>11.0.1-SNAPSHOT</tck.test.assembly.version>
+        <tck.test.assembly.version>11.0.2</tck.test.assembly.version>
     </properties>
 
     <build>

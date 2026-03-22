@@ -64,9 +64,9 @@
         <jndi.fs.dir>/tmp/ri_admin_objects</jndi.fs.dir>
         <jndi.provider.url>java.naming.provider.url=file:///${jndi.fs.dir}</jndi.provider.url>
 
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
-        <jakarta.tck.version>11.0.1</jakarta.tck.version>
+        <jakarta.tck.version>11.0.2</jakarta.tck.version>
     </properties>
     
     <dependencyManagement>

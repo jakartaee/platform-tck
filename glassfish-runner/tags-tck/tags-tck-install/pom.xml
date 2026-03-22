@@ -27,14 +27,14 @@
     </parent>
 
     <artifactId>tags-tck-install</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.2</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta tags TCK</name>
 
     <properties>
         <tck.test.tags.file>jakartaeetck-${tck.test.tags.version}-dist.zip</tck.test.tags.file>
-        <tck.test.tags.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.tags.file}</tck.test.tags.url>
-        <tck.test.tags.version>11.0.1</tck.test.tags.version>
+        <tck.test.tags.url>https://download.eclipse.org/ee4j/jakartaee-platform/jakartaee11/staged/eftl/${tck.test.tags.file}</tck.test.tags.url>
+        <tck.test.tags.version>11.0.2</tck.test.tags.version>
     </properties>
 
     <build>

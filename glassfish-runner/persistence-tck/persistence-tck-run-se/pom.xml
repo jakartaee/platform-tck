@@ -33,7 +33,7 @@
 
     <properties>
         <!--Glassfish properties-->
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
         <glassfish.module.dir>${glassfish.home}/glassfish/modules</glassfish.module.dir>
         
@@ -130,7 +130,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>11.0.1</version>
+            <version>11.0.2</version>
             <scope>test</scope>
         </dependency>
         

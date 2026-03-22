@@ -29,7 +29,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>glassfish.connector-platform-tck</artifactId>
-    <version>11.0.1-SNAPSHOT</version>
+    <version>11.0.2</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -41,7 +41,7 @@
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
-        <tck.version>11.0.1</tck.version>
+        <tck.version>11.0.2</tck.version>
 
         <whitebox.directory>target/whiteboxes</whitebox.directory>
     </properties>

@@ -33,7 +33,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>enterprise-beans-tck-run</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.2</version>
     <packaging>jar</packaging>
     <name>enterprise-beans-tck</name>
     <description>Aggregates dependencies and runs the Enterprise Beans TCK on GlassFish</description>
@@ -54,7 +54,7 @@
         <glassfish.root>${project.build.directory}</glassfish.root>
         <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
         <glassfish-artifact-id>glassfish</glassfish-artifact-id>
 
@@ -63,7 +63,7 @@
         <!-- TCK Paths -->
         <ts.home>${basedir}/src/test/resources/jakartaeetck</ts.home>
 
-        <tck.version>11.0.1</tck.version>
+        <tck.version>11.0.2</tck.version>
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
         <version.surefire>3.5.4</version.surefire>
 
@@ -316,6 +316,7 @@
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.5</version>
                 <configuration>
                     <includes>
                         <include>**/*Test.java</include>

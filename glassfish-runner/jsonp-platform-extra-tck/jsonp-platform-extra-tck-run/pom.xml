@@ -27,7 +27,7 @@
     
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jsonp-platform-tck</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.2</version>
     <name>TCK: Run Jakarta JSON-P Extra TCK</name>
 
     <properties>
@@ -39,9 +39,9 @@
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
 
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
-        <tck.version>11.0.1</tck.version>
+        <tck.version>11.0.2</tck.version>
         
         <ts.home>./jakartaeetck</ts.home>
     </properties>

@@ -42,7 +42,7 @@
 
     <groupId>jakarta</groupId>
     <artifactId>glassfish.mail-platform-tck-run</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.2</version>
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
@@ -51,9 +51,9 @@
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <glassfish.module.dir>${glassfish.home}/glassfish/modules</glassfish.module.dir>
         
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
-        <tck.version>11.0.1</tck.version>
+        <tck.version>11.0.2</tck.version>
         
         <destinationURL>imap://${escaped.javamail.username}:${javamail.password}@${javamail.server}:${imap.port}</destinationURL>
         <escaped.javamail.username>user01%40james.local</escaped.javamail.username>
@@ -239,12 +239,13 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
                 <executions>
-                    <execution>
+                   <execution>
                         <id>1-stop-domain</id>
                         <goals>
                             <goal>exec</goal>
@@ -305,14 +306,14 @@
                             </arguments>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.5.0</version>
-                <configuration>
+                
+                    <execution>
+                        <id>1-populate-mailbox</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
                     <mainClass>com.sun.ts.tests.javamail.ee.util.fpopulate</mainClass>
                     <arguments>
                         <argument>-s</argument>
@@ -331,13 +332,6 @@
                         <argument>${javamail.protocol}</argument>
                     </arguments>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>1-populate-mailbox</id>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
                     </execution>
                 </executions>
             </plugin>
