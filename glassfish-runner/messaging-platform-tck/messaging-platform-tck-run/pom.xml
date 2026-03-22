@@ -25,7 +25,7 @@
 
    <groupId>jakarta.tck</groupId>
    <artifactId>messaging-platform-tck-run</artifactId>
-   <version>11.0.1</version>
+   <version>11.0.2</version>
    <packaging>jar</packaging>
 
    <properties>
@@ -37,8 +37,8 @@
         <glassfish-artifact-id>glassfish</glassfish-artifact-id>
 
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
-        <glassfish.version>8.0.0-M12</glassfish.version>
-        <tck.version>11.0.1</tck.version>
+        <glassfish.version>8.0.0</glassfish.version>
+        <tck.version>11.0.2</tck.version>
         <jakarta.platform.version>11.0.0</jakarta.platform.version>
 
         <admin.pass>admin</admin.pass>

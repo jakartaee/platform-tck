@@ -28,15 +28,15 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>integration-tck-install</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.2</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta Integration TCK</name>
 
     <properties>
         <tck.test.integration.file>jakartaeetck-${tck.test.integration.version}-dist.zip</tck.test.integration.file>
-        <tck.test.integration.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.integration.file}</tck.test.integration.url>
+        <tck.test.integration.url>https://download.eclipse.org/ee4j/jakartaee-platform/jakartaee11/staged/eftl/${tck.test.integration.file}</tck.test.integration.url>
         
-        <tck.test.integration.version>11.0.1-SNAPSHOT</tck.test.integration.version>
+        <tck.test.integration.version>11.0.2</tck.test.integration.version>
     </properties>
 
     <build>

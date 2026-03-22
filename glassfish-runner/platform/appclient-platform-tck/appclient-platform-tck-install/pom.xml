@@ -28,15 +28,15 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>appclient-tck-install</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.2</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta Appclient TCK</name>
 
     <properties>
         <tck.test.appclient.file>jakartaeetck-${tck.test.appclient.version}-dist.zip</tck.test.appclient.file>
-        <tck.test.appclient.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.appclient.file}</tck.test.appclient.url>
+        <tck.test.appclient.url>https://download.eclipse.org/ee4j/jakartaee-platform/jakartaee11/staged/eftl/${tck.test.appclient.file}</tck.test.appclient.url>
         
-        <tck.test.appclient.version>11.0.1-SNAPSHOT</tck.test.appclient.version>
+        <tck.test.appclient.version>11.0.2</tck.test.appclient.version>
     </properties>
 
     <build>

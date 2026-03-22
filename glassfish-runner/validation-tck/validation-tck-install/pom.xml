@@ -60,8 +60,8 @@
 
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.4</version>
                 <executions>
-
                     <execution>
                         <id>install-install-the-tests-jar</id>
                         <goals>

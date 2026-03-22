@@ -39,10 +39,10 @@
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
         
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
         <tck.artifactId>jakarta.tck.jdbc</tck.artifactId>
-        <tck.version>11.0.1</tck.version>
+        <tck.version>11.0.2</tck.version>
 
 
         <!-- JDBC properties -->

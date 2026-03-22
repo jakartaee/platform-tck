@@ -38,7 +38,7 @@
         <arquillian.version>1.10.0.Final</arquillian.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
         <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
 
         <tck.version>2.2.0</tck.version>
     </properties>

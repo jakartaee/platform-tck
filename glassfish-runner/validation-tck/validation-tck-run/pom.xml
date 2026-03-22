@@ -35,7 +35,7 @@
     
         <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
     </properties>
 
     <dependencyManagement>

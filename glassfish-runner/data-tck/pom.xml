@@ -36,7 +36,7 @@
         <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
 

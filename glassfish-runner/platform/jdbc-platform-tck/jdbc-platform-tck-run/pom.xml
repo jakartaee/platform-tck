@@ -28,7 +28,7 @@
 
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jdbc-platform-tck</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.2</version>
     
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
@@ -38,8 +38,8 @@
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
-        <glassfish.version>8.0.0-M12</glassfish.version>
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
+        <glassfish.version>8.0.0</glassfish.version>
+        <tck.version>11.0.2</tck.version>
         
         <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
         <jdbc.db>derby</jdbc.db>

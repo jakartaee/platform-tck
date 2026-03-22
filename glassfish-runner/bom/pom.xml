@@ -38,8 +38,8 @@
 
     <properties>
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
-        <tck.version>11.0.1</tck.version>
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <tck.version>11.0.2</tck.version>
+        <glassfish.version>8.0.0</glassfish.version>
     </properties>
 
     <dependencyManagement>

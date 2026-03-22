@@ -28,15 +28,15 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>javaee-module-tck-install</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.2</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta Javaee Module TCK</name>
 
     <properties>
         <tck.test.javaee.module.file>jakartaeetck-${tck.test.javaee.module.version}-dist.zip</tck.test.javaee.module.file>
-        <tck.test.javaee.module.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.javaee.module.file}</tck.test.javaee.module.url>
+        <tck.test.javaee.module.url>https://download.eclipse.org/ee4j/jakartaee-platform/jakartaee11/staged/eftl/${tck.test.javaee.module.file}</tck.test.javaee.module.url>
         
-        <tck.test.javaee.module.version>11.0.1</tck.test.javaee.module.version>
+        <tck.test.javaee.module.version>11.0.2</tck.test.javaee.module.version>
     </properties>
 
     <build>

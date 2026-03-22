@@ -38,7 +38,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
     </properties>

@@ -31,11 +31,11 @@
     <properties>
         <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
         
         <jakarta.platform.version>11.0.0</jakarta.platform.version>
-        <tck.version>11.0.1</tck.version>
+        <tck.version>11.0.2</tck.version>
         <jakarta.tck.tags.version>${tck.version}</jakarta.tck.tags.version>
     </properties>
 
