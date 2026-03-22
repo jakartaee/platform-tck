@@ -383,7 +383,7 @@
                                         <include>ee/jakarta/tck/persistence/ee/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -432,7 +432,7 @@
                                         <include>ee/jakarta/tck/persistence/entitytest/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -481,7 +481,7 @@
                                         <include>ee/jakarta/tck/persistence/jpa/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -530,7 +530,7 @@
                                         <include>ee/jakarta/tck/persistence/jpa22/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -579,7 +579,7 @@
                                         <include>ee/jakarta/tck/persistence/core/annotations/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -628,7 +628,7 @@
                                         <include>ee/jakarta/tck/persistence/core/basic/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -678,7 +678,7 @@
 
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -727,7 +727,7 @@
                                         <include>ee/jakarta/tck/persistence/core/callback/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -782,7 +782,7 @@
 
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -839,7 +839,7 @@
                                         <include>ee/jakarta/tck/persistence/core/criteriaapi/CriteriaUpdate/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -897,7 +897,7 @@
 
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -953,7 +953,7 @@
 
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1011,7 +1011,7 @@
                                     </includes>
                                     
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1061,7 +1061,7 @@
 
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1111,7 +1111,7 @@
 
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1160,7 +1160,7 @@
                                         <include>ee/jakarta/tck/persistence/core/entityManager/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1209,7 +1209,7 @@
                                         <include>ee/jakarta/tck/persistence/core/entityManager2/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1258,7 +1258,7 @@
                                         <include>ee/jakarta/tck/persistence/core/entityManagerFactory/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1307,7 +1307,7 @@
                                         <include>ee/jakarta/tck/persistence/core/entityManagerFactoryCloseExceptions/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1356,7 +1356,7 @@
                                         <include>ee/jakarta/tck/persistence/core/entitytest/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1405,7 +1405,7 @@
                                         <include>ee/jakarta/tck/persistence/core/entityTransaction/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1454,7 +1454,7 @@
                                         <include>ee/jakarta/tck/persistence/core/enums/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1505,7 +1505,7 @@
                                         <include>ee/jakarta/tck/persistence/core/exceptions/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1553,7 +1553,7 @@
                                         <include>ee/jakarta/tck/persistence/core/inheritance/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1601,7 +1601,7 @@
                                         <include>ee/jakarta/tck/persistence/core/lock/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1649,7 +1649,7 @@
                                         <include>ee/jakarta/tck/persistence/core/metamodelapi/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1697,7 +1697,7 @@
                                         <include>ee/jakarta/tck/persistence/core/nestedembedding/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1745,7 +1745,7 @@
                                         <include>ee/jakarta/tck/persistence/core/override/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1793,7 +1793,7 @@
                                         <include>ee/jakarta/tck/persistence/core/persistenceUnitUtil/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1841,7 +1841,7 @@
                                         <include>ee/jakarta/tck/persistence/core/persistenceUtil/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1889,7 +1889,7 @@
                                         <include>ee/jakarta/tck/persistence/core/query/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1937,7 +1937,7 @@
                                         <include>ee/jakarta/tck/persistence/core/relationship/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -1985,7 +1985,7 @@
                                         <include>ee/jakarta/tck/persistence/core/StoredProcedureQuery/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -2033,7 +2033,7 @@
                                         <include>ee/jakarta/tck/persistence/core/types/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
@@ -2081,7 +2081,7 @@
                                         <include>ee/jakarta/tck/persistence/core/versioning/**/*Test.java</include>
                                     </includes>
                                     <groups>platform</groups>
-                                    <excludedGroups>web</excludedGroups>
+                                    
                                     <systemPropertyVariables>
                                         <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                                         <ts.home>${ts.home}</ts.home>
