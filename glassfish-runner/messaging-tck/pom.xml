@@ -87,7 +87,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>jakarta.tck</groupId>

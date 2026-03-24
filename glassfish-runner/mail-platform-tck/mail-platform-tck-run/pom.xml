@@ -89,7 +89,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
     <dependencies>
         <dependency>
             <groupId>jakarta.mail</groupId>
@@ -433,7 +432,6 @@
                         <groupId>io.fabric8</groupId>
                         <artifactId>docker-maven-plugin</artifactId>
                         <version>0.44.0</version>
-
                         <configuration>
                             <!-- optional: mimic k8s Always -->
                             <imagePullPolicy>Always</imagePullPolicy>

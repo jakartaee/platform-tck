@@ -15,8 +15,8 @@
     
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
 
    <parent>
         <groupId>org.eclipse.ee4j</groupId>
@@ -24,11 +24,11 @@
         <version>1.0.9</version>
         <relativePath />
     </parent>
-    
-    <artifactId>glassfish.tags-tck</artifactId>
-    <version>11.0.0</version>
 
-    <properties>
+   <artifactId>glassfish.tags-tck</artifactId>
+   <version>11.0.0</version>
+
+   <properties>
         <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
         <glassfish.version>8.0.0</glassfish.version>
@@ -39,7 +39,7 @@
         <jakarta.tck.tags.version>${tck.version}</jakarta.tck.tags.version>
     </properties>
 
-    <dependencies>
+   <dependencies>
         <!-- Jakarta EE APIs -->
         <dependency>
             <groupId>jakarta.platform</groupId>
@@ -97,7 +97,7 @@
         </dependency>
     </dependencies>
 
-    <build>
+   <build>
         <plugins>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -177,7 +177,7 @@
         </plugins>
     </build>
 
-    <profiles>
+   <profiles>
         <profile>
             <id>full</id>
             <activation>

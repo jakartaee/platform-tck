@@ -30,6 +30,7 @@
     <artifactId>jsonb-tck-install</artifactId>
     <version>11.0.2</version>
     <packaging>pom</packaging>
+
     <name>TCK: Install Jakarta JSON-B Extra TCK</name>
 
     <properties>
@@ -42,9 +43,9 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <groupId>io.github.download-maven-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
+                <version>2.1.0</version>
                 <configuration>
                     <url>${tck.test.jsonb.extra.url}</url>
                     <unpack>true</unpack>
@@ -86,5 +87,4 @@
 
         </plugins>
     </build>
-
 </project>

@@ -58,7 +58,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <!-- Jakarta EE dependencies -->
         <dependency>
@@ -192,7 +191,6 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-
         <plugins>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>

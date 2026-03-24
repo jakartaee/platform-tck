@@ -34,7 +34,7 @@
 
     <properties>
         <tck.test.signature.platform.file>jakartaeetck-${tck.test.signaturevalidation.version}-dist.zip</tck.test.signature.platform.file>
-        <tck.test.signature.platform.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.signature.platform.file}</tck.test.signature.platform.url>
+        <tck.test.signature.platform.url>https://download.eclipse.org/ee4j/jakartaee-platform/jakartaee11/staged/eftl/${tck.test.signature.platform.file}</tck.test.signature.platform.url>
         <tck.test.signaturevalidation.version>11.0.1-M4</tck.test.signaturevalidation.version>
         <tck.test.signature.version>11.0.0</tck.test.signature.version>
     </properties>
@@ -42,9 +42,9 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <groupId>io.github.download-maven-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
+                <version>2.1.0</version>
                 <configuration>
                     <url>${tck.test.signature.platform.url}</url>
                     <unpack>true</unpack>

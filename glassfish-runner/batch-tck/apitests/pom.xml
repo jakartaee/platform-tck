@@ -17,8 +17,9 @@ Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
 
   SPDX-License-Identifier: Apache-2.0
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.glassfish</groupId>
         <artifactId>glassfish.batch-tck</artifactId>
@@ -27,6 +28,7 @@ Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
 
     <artifactId>glassfish.batch-tck.apitests</artifactId>
     <packaging>jar</packaging>
+
     <name>Jakarta Batch API TCK Runner for Glassfish</name>
 
     <properties>
@@ -34,7 +36,7 @@ Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
         <version.org.junit.jupiter>5.10.2</version.org.junit.jupiter>
         <version.org.junit.platform>1.10.2</version.org.junit.platform>
     </properties>
-    
+
     <!-- The Junit5 test frameworks -->
     <dependencyManagement>
         <dependencies>
@@ -71,7 +73,6 @@ Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
 
         <!-- Common Batch TCK dependencies -->
@@ -194,6 +195,5 @@ Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
                 </configuration>
             </plugin>
         </plugins>
-
     </build>
 </project>
