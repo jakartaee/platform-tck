@@ -86,8 +86,8 @@
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
                 <version>1.9.4.Final</version>
-                <scope>import</scope>
                 <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -101,7 +101,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
     <dependencies>
         <dependency>
             <groupId>jakarta.persistence</groupId>
@@ -218,7 +217,6 @@
                 <filtering>true</filtering>
             </testResource>
         </testResources>
-        
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -252,7 +250,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -336,7 +333,6 @@
             
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                
                 <configuration>
                     <argLine>-Xmx8192m</argLine>
                     <dependenciesToScan>${project.groupId}:persistence-tck-spec-tests</dependenciesToScan>

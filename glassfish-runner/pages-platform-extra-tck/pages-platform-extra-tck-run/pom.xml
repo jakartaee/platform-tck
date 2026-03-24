@@ -63,7 +63,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <!-- Jakarta EE APIs -->
         <dependency>

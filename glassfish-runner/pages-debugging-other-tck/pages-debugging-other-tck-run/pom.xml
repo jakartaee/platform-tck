@@ -34,7 +34,6 @@
     <name>TCK: Run Jakarta pages-debugging-other TCK</name>
     <description>Aggregates dependencies and runs the Pages Debugging Support (and theoretically other languages) TCK on GlassFish</description>
 
-
     <properties>
         <ant.home>${project.build.directory}/apache-ant-${ant.version}</ant.home>
         <ant.zip.url>https://archive.apache.org/dist/ant/binaries/apache-ant-${ant.version}-bin.zip</ant.zip.url>
@@ -80,9 +79,9 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <groupId>io.github.download-maven-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
+                <version>2.1.0</version>
                 <executions>
                     <execution>
                         <id>download-ant</id>
@@ -273,7 +272,7 @@
             </plugin>
         </plugins>
     </build>
-    
+
     <profiles>
         <profile>
             <id>full</id>

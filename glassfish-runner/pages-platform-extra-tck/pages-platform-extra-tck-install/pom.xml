@@ -17,7 +17,7 @@
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+   <modelVersion>4.0.0</modelVersion>
 
    <parent>
         <groupId>org.eclipse.ee4j</groupId>
@@ -26,24 +26,25 @@
         <relativePath />
     </parent>
 
-    <artifactId>pages-extra-tck-install</artifactId>
-    <version>11.0.2</version>
-    <packaging>pom</packaging>
-    <name>TCK: Install Jakarta Pages Platform Extra TCK</name>
+   <artifactId>pages-extra-tck-install</artifactId>
+   <version>11.0.2</version>
+   <packaging>pom</packaging>
 
-    <properties>
+   <name>TCK: Install Jakarta Pages Platform Extra TCK</name>
+
+   <properties>
         <tck.test.pages-extra.file>jakartaeetck-${tck.test.pages-extra.version}-dist.zip</tck.test.pages-extra.file>
         <tck.test.pages-extra.url>https://download.eclipse.org/ee4j/jakartaee-platform/jakartaee11/staged/eftl/${tck.test.pages-extra.file}</tck.test.pages-extra.url>
         <tck.test.pages-extra.version>11.0.2</tck.test.pages-extra.version>
 
     </properties>
 
-    <build>
+   <build>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <groupId>io.github.download-maven-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
+                <version>2.1.0</version>
                 <configuration>
                     <url>${tck.test.pages-extra.url}</url>
                     <unpack>true</unpack>
@@ -84,5 +85,4 @@
 
         </plugins>
     </build>
-
 </project>

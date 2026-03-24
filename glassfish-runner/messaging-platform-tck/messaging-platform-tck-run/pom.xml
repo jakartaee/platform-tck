@@ -90,7 +90,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
    <dependencies>
         <!-- The actual TCK containing the tests -->
         <dependency>
@@ -508,9 +507,7 @@
         </plugins>
     </build>
 
-
-
-    <profiles>
+   <profiles>
         <profile>
             <id>javatest</id>
 

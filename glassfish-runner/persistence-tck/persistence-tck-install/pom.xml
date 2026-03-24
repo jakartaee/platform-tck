@@ -16,8 +16,8 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
 
    <parent>
         <groupId>org.eclipse.ee4j</groupId>
@@ -26,24 +26,24 @@
         <relativePath />
     </parent>
 
-    <artifactId>persistence-tck-install</artifactId>
-    <packaging>pom</packaging>
+   <artifactId>persistence-tck-install</artifactId>
+   <packaging>pom</packaging>
 
-    <name>TCK: Install Jakarta persistence TCK</name>
+   <name>TCK: Install Jakarta persistence TCK</name>
 
-    <properties>
+   <properties>
         <tck.test.persistence.file>jakarta-persistence-tck-${tck.test.persistence.version}.zip</tck.test.persistence.file>
         <tck.test.persistence.main.version>3.2</tck.test.persistence.main.version>
         <tck.test.persistence.url>https://download.eclipse.org/jakartaee/persistence/${tck.test.persistence.main.version}/${tck.test.persistence.file}</tck.test.persistence.url>
         <tck.test.persistence.version>3.2.0</tck.test.persistence.version>
     </properties>
 
-    <build>
+   <build>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <groupId>io.github.download-maven-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
+                <version>2.1.0</version>
                 <configuration>
                     <url>${tck.test.persistence.url}</url>
                     <unpack>true</unpack>

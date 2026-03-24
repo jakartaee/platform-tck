@@ -35,16 +35,16 @@
     <properties>
         <tck.version>11.0.1-SNAPSHOT</tck.version>
         <tck.dist.file>jakartaeetck-${tck.version}-dist.zip</tck.dist.file>
-        <tck.dist.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.dist.file}</tck.dist.url>
+        <tck.dist.url>https://download.eclipse.org/ee4j/jakartaee-platform/jakartaee11/staged/eftl/${tck.dist.file}</tck.dist.url>
         <whitebox.directory>target/whiteboxes</whitebox.directory>
     </properties>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <groupId>io.github.download-maven-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
+                <version>2.1.0</version>
                 <configuration>
                     <url>${tck.dist.url}</url>
                     <skipCache>true</skipCache>

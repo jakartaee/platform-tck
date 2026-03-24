@@ -79,7 +79,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
     <dependencies>
         <dependency>
             <groupId>jakarta.persistence</groupId>
@@ -171,7 +170,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        
         <plugins>
             <plugin>
                 <artifactId>maven-enforcer-plugin</artifactId>
