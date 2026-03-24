@@ -28,15 +28,15 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>signature-tck-install</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.2</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta Signature Platform TCK</name>
 
     <properties>
         <tck.test.signature.platform.file>jakartaeetck-${tck.test.signaturevalidation.version}-dist.zip</tck.test.signature.platform.file>
         <tck.test.signature.platform.url>https://download.eclipse.org/ee4j/jakartaee-platform/jakartaee11/staged/eftl/${tck.test.signature.platform.file}</tck.test.signature.platform.url>
-        <tck.test.signaturevalidation.version>11.0.1-M4</tck.test.signaturevalidation.version>
-        <tck.test.signature.version>11.0.0</tck.test.signature.version>
+        <tck.test.signaturevalidation.version>11.0.2</tck.test.signaturevalidation.version>
+        <tck.test.signature.version>11.1.1</tck.test.signature.version>
     </properties>
 
     <build>

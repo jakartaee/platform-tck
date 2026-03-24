@@ -32,7 +32,7 @@
     <properties>
         <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>8.0.0-JDK17-M12</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
         <glassfish-artifact-id>glassfish</glassfish-artifact-id>
         
@@ -48,8 +48,8 @@
         <signature.file.dir>${base.tck.dir}/src</signature.file.dir>
         
         <version.jakarta.tck.sigtest-maven-plugin>2.6</version.jakarta.tck.sigtest-maven-plugin>
-        <tck.version>11.0.1</tck.version>
-        <tck.signaturetest.version>11.1.0</tck.signaturetest.version>
+        <tck.version>11.0.2</tck.version>
+        <tck.signaturetest.version>11.1.1</tck.signaturetest.version>
     </properties>
     
     <!-- Import the tck relevant boms -->
@@ -136,7 +136,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.14.0</version>
                 <configuration>
-                    <release>17</release>
+                    <release>21</release>
                 </configuration>
             </plugin>
             <plugin>
