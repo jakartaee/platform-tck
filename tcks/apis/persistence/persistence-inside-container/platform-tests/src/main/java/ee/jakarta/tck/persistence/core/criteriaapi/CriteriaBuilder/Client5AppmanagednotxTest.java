@@ -88,7 +88,7 @@ public class Client5AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             Client5.class,
             Client5AppmanagednotxTest.class
-            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
+            );
             // The application-client.xml descriptor
             URL resURL = Client5.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
             if(resURL != null) {
@@ -127,7 +127,7 @@ public class Client5AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
                 com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleBean.class
-            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
+            );
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = Client5.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
             if(ejbResURL1 != null) {
