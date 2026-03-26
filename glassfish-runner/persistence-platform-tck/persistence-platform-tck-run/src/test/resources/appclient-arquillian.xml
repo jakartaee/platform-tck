@@ -14,12 +14,6 @@
   <group qualifier="glassfish-servers" default="true">
 
       <container qualifier="tck-appclient" default="true">
-          <configuration>
-              <property name="allowConnectingToRunningServer">false</property>
-              <property name="debug">false</property>
-              <property name="suspend">false</property>
-          </configuration>
-
           <protocol type="appclient">
               <property name="runClient">true</property>
               <property name="runAsVehicle">true</property>
