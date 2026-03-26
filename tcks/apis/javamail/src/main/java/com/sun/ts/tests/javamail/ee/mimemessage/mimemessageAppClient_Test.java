@@ -48,12 +48,13 @@ public class mimemessageAppClient_Test extends mimemessage_Test implements Seria
 	@Deployment(name = "appclient", testable = true)
 	public static EnterpriseArchive createDeploymentAppclient(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
 		JavaArchive archive = ShrinkWrap.create(JavaArchive.class, "mimemessage_appclient_vehicle_client.jar");
-		archive.addPackages(true, "com.sun.ts.tests.javamail.ee");
+		archive.addPackages(true, "com.sun.ts.tests.javamail.ee.common");
+		archive.addPackages(true, "com.sun.ts.tests.javamail.ee.util");
 		archive.addPackages(false, "com.sun.ts.tests.common.vehicle");
 		archive.addPackages(true, "com.sun.ts.lib.harness");
 		archive.addClass(com.sun.ts.tests.common.base.EETest.class);
 		archive.addClass(com.sun.ts.tests.common.base.ServiceEETest.class);
-		archive.addClasses(mimemessageAppClient_Test.class, mimemessage_Test.class);
+		archive.addClasses(mimemessageAppClient_Test.class, mimemessage_Test.class, MyMimeMessage.class, MyReplyMimeMessage.class);
 		
 		archive.addAsManifestResource(
 				new StringAsset("Main-Class: " + "com.sun.ts.tests.common.vehicle.VehicleClient" + "\n"),
