@@ -229,18 +229,7 @@ public class AbstractUrlClient extends BaseUrlClient {
   }
 
   public boolean isJavaVersion20OrGreater() {
-    boolean isJavaVersion20OrGreater = false;
-
-    String version = System.getProperty("java.version");
-    int majorVersionDot = version.indexOf(".");
-
-    version = version.substring(0, majorVersionDot);
-
-    if (Integer.parseInt(version) >= 20) {
-        isJavaVersion20OrGreater = true;
-    }
-
-    return isJavaVersion20OrGreater;
+    return Runtime.version().feature() >= 20;
   }
 
 }
