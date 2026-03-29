@@ -135,7 +135,8 @@ public final class JmsUtil {
             while (e.hasMoreElements()) {
                 key = (String) e.nextElement();
                 TestUtil.logTrace("addProps: " + key);
-                if ((key.indexOf(notValid) == -1) && (key.indexOf("***") == -1) && !(key.startsWith("JMS"))) {
+                if ((key.indexOf("-") == -1) && (key.indexOf(notValid) == -1) && (key.indexOf("***") == -1)
+                        && !(key.startsWith("JMS"))) {
                     TestUtil.logTrace("addProps: add property " + key);
                     msg.setStringProperty(key, TestUtil.getProperty(p, key));
                 }
