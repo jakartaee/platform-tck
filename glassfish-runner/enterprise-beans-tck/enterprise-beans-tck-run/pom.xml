@@ -63,7 +63,7 @@
         <!-- TCK Paths -->
         <ts.home>${basedir}/src/test/resources/jakartaeetck</ts.home>
 
-        <tck.version>11.0.2</tck.version>
+        <tck.version>11.0.1</tck.version>
         <glassfish.runner.version>11.0.2</glassfish.runner.version>
         <version.surefire>3.5.4</version.surefire>
 
@@ -553,22 +553,6 @@
                                 <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.JsfClientEjblitejsfTest</exclude>
                             </excludes>
                             <includes>
-                                <!--
-                                <include>com.sun.ts.tests.ejb30.bb.localaccess.mdbclient.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.**.*Test</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.method.descriptor.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.one.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.basic.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.envsharing.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.override.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.listener.override.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateful.callback.listener.annotated.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.mdb.activationconfig.topic.selectordupsnondurable.complement.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.callback.defaultinterceptor.descriptor.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.invocationcontext.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor.ClientTest</include>
-                                -->
                                 <include>com.sun.ts.tests.ejb30.bb.**.*Test</include>
                             </includes>
                             <groups>${groups}</groups>

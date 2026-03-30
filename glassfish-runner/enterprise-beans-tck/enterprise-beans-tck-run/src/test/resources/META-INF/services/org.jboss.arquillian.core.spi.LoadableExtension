@@ -1,1 +1,1 @@
-wildfly.arquillian.JBossTckExtension
+arquillian.GlassFishTckExtension

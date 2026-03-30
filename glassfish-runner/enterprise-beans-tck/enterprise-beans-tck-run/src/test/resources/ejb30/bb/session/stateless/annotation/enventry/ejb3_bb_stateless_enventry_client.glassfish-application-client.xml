@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glassfish-application-client PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Java EE Application Client 6.0//EN" "http://glassfish.org/dtds/glassfish-application-client_6_0-1.dtd">
+<glassfish-application-client>
+    <ejb-ref>
+        <ejb-ref-name>EnvEntryFieldBean</ejb-ref-name>
+        <jndi-name>ejb3_bb_stateless_enventry_EnvEntryFieldBean</jndi-name>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>EnvEntrySetterBean</ejb-ref-name>
+        <jndi-name>ejb3_bb_stateless_enventry_EnvEntrySetterBean</jndi-name>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>EnvEntryTypeBean</ejb-ref-name>
+        <jndi-name>ejb3_bb_stateless_enventry_EnvEntryTypeBean</jndi-name>
+    </ejb-ref>
+</glassfish-application-client>
