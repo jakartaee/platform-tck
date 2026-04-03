@@ -60,7 +60,6 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.excl
             JavaArchive jpa_ee_packaging_ejb_exclude_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_ejb_exclude_ejb.jar");
             // The class files
             jpa_ee_packaging_ejb_exclude_ejb.addClasses(
-                ee.jakarta.tck.persistence.ee.packaging.ejb.exclude.Stateful3IF.class,
                 ee.jakarta.tck.persistence.ee.packaging.ejb.exclude.A.class,
                 ee.jakarta.tck.persistence.ee.packaging.ejb.exclude.Stateful3Bean.class,
                 ee.jakarta.tck.persistence.ee.packaging.ejb.exclude.B.class
@@ -76,11 +75,14 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.excl
 
             // non-vehicle appclientproxy invoker war
             WebArchive appclientproxy = ShrinkWrap.create(WebArchive.class, "appclientproxy.war");
-            appclientproxy.addClasses(Client.class, ClientServletTarget.class, ServletNoVehicle.class, Stateful3IF.class);
+            appclientproxy.addClasses(Client.class, ClientServletTarget.class, ServletNoVehicle.class);
             appclientproxy.addAsWebInfResource(new StringAsset(""), "beans.xml");
 
         // Ear
             EnterpriseArchive jpa_ee_packaging_ejb_exclude_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_packaging_ejb_exclude.ear");
+
+            JavaArchive libClasses = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_ejb_exclude_libclasses.jar");
+            libClasses.addClass(ee.jakarta.tck.persistence.ee.packaging.ejb.exclude.Stateful3IF.class);
 
             // Any libraries added to the ear
 
@@ -88,6 +90,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.excl
             jpa_ee_packaging_ejb_exclude_ear.addAsModule(jpa_ee_packaging_ejb_exclude_ejb);
             jpa_ee_packaging_ejb_exclude_ear.addAsModule(jpa_ee_packaging_ejb_exclude_client);
             jpa_ee_packaging_ejb_exclude_ear.addAsModule(appclientproxy);
+            jpa_ee_packaging_ejb_exclude_ear.addAsLibrary(libClasses);
 
             // The application.xml descriptor
             URL earResURL = null;

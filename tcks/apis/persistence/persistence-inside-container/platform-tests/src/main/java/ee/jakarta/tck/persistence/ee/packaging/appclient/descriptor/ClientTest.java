@@ -53,7 +53,6 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.appclien
             ee.jakarta.tck.persistence.ee.packaging.appclient.descriptor.Coffee.class,
             Fault.class,
             EETest.class,
-            com.sun.ts.lib.util.TestUtil.class,
             com.sun.ts.lib.harness.Status.class,
             ee.jakarta.tck.persistence.ee.packaging.appclient.descriptor.Client.class,
             SetupException.class
