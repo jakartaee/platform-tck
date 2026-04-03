@@ -92,6 +92,7 @@ public class Stateful3Bean implements Stateful3IF {
 	public void removeTestData() {
 		TestUtil.logTrace( "removeTestData");
 		try {
+			entityManager.clear();
 			entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
 			entityManager.createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
 		} catch (Exception e) {
