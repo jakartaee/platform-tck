@@ -29,10 +29,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapKeyEnumerated;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
 
 @Entity
 @Table(name = "DEPARTMENT2")
+@Access(AccessType.FIELD)
 public class Department4 implements java.io.Serializable {
 
 	private static final long serialVersionUID = 22L;
@@ -43,7 +45,11 @@ public class Department4 implements java.io.Serializable {
 
 	private String name;
 
-	@Transient
+	@ElementCollection(targetClass = EmbeddedEmployee.class)
+	@CollectionTable(name = "EMP_MAPKEYCOL2", joinColumns = @JoinColumn(name = "FK_DEPT5"))
+	@AttributeOverrides({ @AttributeOverride(name = "employeeId", column = @Column(name = "ID")),
+			@AttributeOverride(name = "employeeName", column = @Column(name = "LASTNAME")) })
+	@MapKeyEnumerated(EnumType.STRING)
 	private Map<Numbers, EmbeddedEmployee> lastNameEmployees;
 
 	public Department4() {
@@ -78,11 +84,6 @@ public class Department4 implements java.io.Serializable {
 	// ===========================================================
 	// getters and setters for the association fields
 
-	@ElementCollection(targetClass = EmbeddedEmployee.class)
-	@CollectionTable(name = "EMP_MAPKEYCOL2", joinColumns = @JoinColumn(name = "FK_DEPT5"))
-	@AttributeOverrides({ @AttributeOverride(name = "employeeId", column = @Column(name = "ID")),
-			@AttributeOverride(name = "employeeName", column = @Column(name = "LASTNAME")) })
-	@MapKeyEnumerated(EnumType.STRING)
 	public Map<Numbers, EmbeddedEmployee> getLastNameEmployees() {
 		return lastNameEmployees;
 	}
