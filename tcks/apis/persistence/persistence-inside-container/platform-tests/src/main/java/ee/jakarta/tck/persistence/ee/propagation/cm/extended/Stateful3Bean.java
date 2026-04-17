@@ -142,6 +142,7 @@ public class Stateful3Bean implements Stateful3IF {
 		boolean pass = false;
 
 		try {
+			removeTestData();
 			entityManager.getTransaction();
 		} catch (IllegalStateException ise) {
 			pass = true;
@@ -157,6 +158,7 @@ public class Stateful3Bean implements Stateful3IF {
 		boolean pass = false;
 
 		try {
+			removeTestData();
 			beanRef.removeTestData();
 			TestUtil.logTrace( "DEBUG:  createAccountData");
 			beanRef.createTestData();
@@ -246,6 +248,7 @@ public class Stateful3Bean implements Stateful3IF {
 		boolean pass = false;
 
 		try {
+			removeTestData();
 
 			TestUtil.logTrace( "find customerB");
 			B customerB = entityManager.find(B.class, "3");
@@ -266,6 +269,7 @@ public class Stateful3Bean implements Stateful3IF {
 		boolean pass = false;
 
 		try {
+			removeTestData();
 
 			TestUtil.logTrace( "verifyTest6:  find customerB");
 			B customerB = entityManager.find(B.class, "3");
