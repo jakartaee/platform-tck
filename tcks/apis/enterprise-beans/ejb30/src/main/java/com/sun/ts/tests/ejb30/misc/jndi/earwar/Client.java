@@ -23,12 +23,12 @@ package com.sun.ts.tests.ejb30.misc.jndi.earwar;
 import java.io.PrintWriter;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 
 public class Client extends AbstractUrlClient {
+  private static final String HTTP_CRLF = "\r\n";
   public static final String APP_MODULE_NAME_HEADER = "appName: misc_jndi_earwar"
-      + TestUtil.NEW_LINE + "moduleName: misc_jndi_earwar_web";
+      + HTTP_CRLF + "moduleName: misc_jndi_earwar_web";
 
   public static final String CONTEXT_ROOT = "/misc_jndi_earwar_web";
 
