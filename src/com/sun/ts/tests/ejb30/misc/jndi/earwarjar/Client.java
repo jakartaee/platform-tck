@@ -23,12 +23,12 @@ package com.sun.ts.tests.ejb30.misc.jndi.earwarjar;
 import java.io.PrintWriter;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 
 public class Client extends AbstractUrlClient {
+  private static final String HTTP_CRLF = "\r\n";
   public static final String APP_MODULE_NAME_HEADER = "appName: misc_jndi_earwarjar"
-      + TestUtil.NEW_LINE + "moduleName: misc_jndi_earwarjar_ejb";
+      + HTTP_CRLF + "moduleName: misc_jndi_earwarjar_ejb";
 
   public static final String CONTEXT_ROOT = "/misc_jndi_earwarjar_web";
 
