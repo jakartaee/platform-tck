@@ -78,7 +78,6 @@ public class Client2AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
             com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleRunner.class,
             com.sun.ts.tests.common.vehicle.web.AltWebVehicleRunner.class,
             ee.jakarta.tck.persistence.common.schema30.Util.class,
-            com.sun.ts.lib.harness.Status.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
             EETest.class,
