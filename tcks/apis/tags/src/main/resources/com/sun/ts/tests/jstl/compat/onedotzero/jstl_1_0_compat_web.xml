@@ -32,7 +32,6 @@
     </context-param>
     <filter>
         <filter-name>JstlDbFilter</filter-name>
-        <display-name>JstlDbFilter</display-name>
         <filter-class>com.sun.ts.tests.jstl.common.filters.JstlDbFilter</filter-class>
     </filter>
     <filter-mapping>
