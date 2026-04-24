@@ -21,10 +21,10 @@
 <body>
 
 <%-- EL Tags --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ taglib prefix="x" uri="http://java.sun.com/jstl/xml" %>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jstl/sql" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="x" uri="jakarta.tags.xml" %>
+<%@ taglib prefix="sql" uri="jakarta.tags.sql" %>
 
 <%-- RT Tags --%>
 <%@ taglib prefix="c_rt" uri="http://java.sun.com/jstl/core_rt" %>

@@ -16,8 +16,8 @@
 
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jstl/sql" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="sql" uri="jakarta.tags.sql" %>
 <%@ taglib prefix="sql_rt" uri="http://java.sun.com/jstl/sql_rt" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <%@ page import="javax.sql.*, java.util.*" %>
