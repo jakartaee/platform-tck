@@ -16,8 +16,8 @@
 
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib prefix="x" uri="http://java.sun.com/jstl/xml" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="x" uri="jakarta.tags.xml" %>
 <%@ taglib prefix="x_rt" uri="http://java.sun.com/jstl/xml_rt" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <tck:test testName="positiveXParamNameTest">
