@@ -21,7 +21,7 @@
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>persistence-platform-tck</artifactId>
-        <version>11.0.3-SNAPSHOT</version>
+        <version>11.0.3</version>
     </parent>
 
     <artifactId>persistence-platform-tck-tests</artifactId>
