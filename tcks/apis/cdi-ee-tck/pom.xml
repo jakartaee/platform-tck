@@ -11,7 +11,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>cdi-tck-ee-parent</artifactId>
-    <version>11.0.3-SNAPSHOT</version>
+    <version>11.0.3</version>
     <packaging>pom</packaging>
 
     <name>CDI EE Integration TCK Parent</name>
@@ -25,6 +25,6 @@
         <connection>scm:git:git@github.com:jakartaee/platform-tck.git</connection>
         <developerConnection>scm:git:git@github.com:jakartaee/platform-tck.git</developerConnection>
         <url>https://github.com/jakartaee/platform-tck</url>
-        <tag>11.0.3-SNAPSHOT</tag>
+        <tag>11.0.3</tag>
     </scm>
 </project>
