@@ -27,6 +27,7 @@ import jakarta.enterprise.util.AnnotationLiteral;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
+import org.jboss.cdi.tck.util.Assert;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.test.audit.annotations.SpecAssertion;
@@ -75,7 +76,7 @@ public class EjbInjectionTest extends AbstractTest {
         @SuppressWarnings("serial")
         Bean<BeanRemote> beanRemote = getBeans(BeanRemote.class, new Lazy.Literal()).iterator().next();
         assert beanRemote.getTypes().size() == 3;
-        assert typeSetMatches(beanRemote.getTypes(), BeanRemote.class, Object.class, AnotherInterface.class);
+        Assert.assertTypesMatch(beanRemote.getTypes(), BeanRemote.class, Object.class, AnotherInterface.class);
     }
 
 }

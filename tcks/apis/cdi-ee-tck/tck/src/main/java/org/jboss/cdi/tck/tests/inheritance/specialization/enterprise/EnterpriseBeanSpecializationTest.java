@@ -19,7 +19,6 @@ import static org.jboss.cdi.tck.TestGroups.INTEGRATION;
 import static org.jboss.cdi.tck.cdi.Sections.DIRECT_AND_INDIRECT_SPECIALIZATION_EE;
 import static org.jboss.cdi.tck.cdi.Sections.SPECIALIZE_SESSION_BEAN;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -32,6 +31,7 @@ import jakarta.inject.Named;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
+import org.jboss.cdi.tck.util.Assert;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.test.audit.annotations.SpecAssertion;
@@ -62,7 +62,7 @@ public class EnterpriseBeanSpecializationTest extends AbstractTest {
         // Types of specializing bean
         Set<Type> lazyFarmerBeanTypes = lazyFarmerBean.getTypes();
         assertEquals(lazyFarmerBeanTypes.size(), 3);
-        assertTrue(typeSetMatches(lazyFarmerBeanTypes, Object.class, FarmerLocal.class, LazyFarmerLocal.class));
+        Assert.assertTypesMatch(lazyFarmerBeanTypes, Object.class, FarmerLocal.class, LazyFarmerLocal.class);
     }
 
     @SuppressWarnings("unchecked")
@@ -74,7 +74,7 @@ public class EnterpriseBeanSpecializationTest extends AbstractTest {
         Bean<LazyFarmerLocal> lazyFarmerBean = farmerBeans.iterator().next();
         assertEquals(lazyFarmerBean.getQualifiers().size(), 4);
         // LazyFarmer inherits LandOwner and Named from Farmer
-        assertTrue(annotationSetMatches(lazyFarmerBean.getQualifiers(), Landowner.class, Lazy.class, Any.class, Named.class));
+        Assert.assertAnnotationsMatch(lazyFarmerBean.getQualifiers(), Landowner.class, Lazy.class, Any.class, Named.class);
     }
 
     @Test(groups = INTEGRATION)

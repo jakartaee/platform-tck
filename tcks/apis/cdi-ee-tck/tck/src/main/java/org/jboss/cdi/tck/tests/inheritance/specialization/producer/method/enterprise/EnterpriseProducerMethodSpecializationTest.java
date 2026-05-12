@@ -22,6 +22,8 @@ import static org.jboss.cdi.tck.cdi.Sections.PRODUCER_METHOD_EE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+import org.jboss.cdi.tck.util.Assert;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.Set;
@@ -70,12 +72,12 @@ public class EnterpriseProducerMethodSpecializationTest extends AbstractTest {
         // Check types of specializing bean
         Set<Type> expensiveNecklaceBeanTypes = expensiveNecklaceBean.getTypes();
         assertEquals(expensiveNecklaceBeanTypes.size(), 3);
-        assertTrue(typeSetMatches(expensiveNecklaceBeanTypes, Object.class, Product.class, Necklace.class));
+        Assert.assertTypesMatch(expensiveNecklaceBeanTypes, Object.class, Product.class, Necklace.class);
 
         // Check qualifiers of specializing bean
         Set<Annotation> expensiveNecklaceQualifiers = expensiveNecklaceBean.getQualifiers();
         assertEquals(expensiveNecklaceQualifiers.size(), 4);
-        assertTrue(annotationSetMatches(expensiveNecklaceQualifiers, Expensive.class, Sparkly.class, Any.class, Named.class));
+        Assert.assertAnnotationsMatch(expensiveNecklaceQualifiers, Expensive.class, Sparkly.class, Any.class, Named.class);
 
         // There is only one bean for type Necklace and qualifier Sparkly
         Set<Bean<Necklace>> sparklyNecklaceBeans = getBeans(Necklace.class, SPARKLY_LITERAL);

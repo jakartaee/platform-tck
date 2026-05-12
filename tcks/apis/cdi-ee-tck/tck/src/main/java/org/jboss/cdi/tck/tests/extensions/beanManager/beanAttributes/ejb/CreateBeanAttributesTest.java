@@ -27,6 +27,7 @@ import jakarta.enterprise.inject.spi.BeanAttributes;
 import jakarta.inject.Named;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
+import org.jboss.cdi.tck.util.Assert;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
 import org.jboss.cdi.tck.tests.full.extensions.beanManager.beanAttributes.Animal;
 import org.jboss.cdi.tck.tests.full.extensions.beanManager.beanAttributes.Fish;
@@ -76,9 +77,9 @@ public class CreateBeanAttributesTest extends AbstractTest {
         AnnotatedType<Lake> type = getCurrentManager().createAnnotatedType(Lake.class);
         BeanAttributes<Lake> attributes = getCurrentManager().createBeanAttributes(type);
 
-        assertTrue(typeSetMatches(attributes.getTypes(), LakeLocal.class, WaterBody.class, Landmark.class, Object.class));
-        assertTrue(typeSetMatches(attributes.getStereotypes(), TundraStereotype.class));
-        assertTrue(annotationSetMatches(attributes.getQualifiers(), Natural.class, Any.class));
+        Assert.assertTypesMatch(attributes.getTypes(), LakeLocal.class, WaterBody.class, Landmark.class, Object.class);
+        Assert.assertTypesMatch(attributes.getStereotypes(), TundraStereotype.class);
+        Assert.assertAnnotationsMatch(attributes.getQualifiers(), Natural.class, Any.class);
         assertEquals(attributes.getScope(), Dependent.class);
         assertEquals(attributes.getName(), "lake");
         assertTrue(attributes.isAlternative());
@@ -148,9 +149,9 @@ public class CreateBeanAttributesTest extends AbstractTest {
 
     @SuppressWarnings("unchecked")
     private void verifyLakeFish(BeanAttributes<?> attributes) {
-        assertTrue(typeSetMatches(attributes.getTypes(), Fish.class, Object.class));
-        assertTrue(typeSetMatches(attributes.getStereotypes(), TundraStereotype.class));
-        assertTrue(annotationSetMatches(attributes.getQualifiers(), Natural.class, Any.class, Named.class));
+        Assert.assertTypesMatch(attributes.getTypes(), Fish.class, Object.class);
+        Assert.assertTypesMatch(attributes.getStereotypes(), TundraStereotype.class);
+        Assert.assertAnnotationsMatch(attributes.getQualifiers(), Natural.class, Any.class, Named.class);
         assertEquals(attributes.getScope(), ApplicationScoped.class);
         assertEquals(attributes.getName(), "fish");
         assertTrue(attributes.isAlternative());
@@ -158,8 +159,8 @@ public class CreateBeanAttributesTest extends AbstractTest {
 
     @SuppressWarnings("unchecked")
     private void verifyDamFish(BeanAttributes<?> attributes) {
-        assertTrue(typeSetMatches(attributes.getTypes(), Fish.class, Animal.class, Object.class));
-        assertTrue(annotationSetMatches(attributes.getQualifiers(), Wild.class, Any.class));
+        Assert.assertTypesMatch(attributes.getTypes(), Fish.class, Animal.class, Object.class);
+        Assert.assertAnnotationsMatch(attributes.getQualifiers(), Wild.class, Any.class);
         assertTrue(attributes.getStereotypes().isEmpty());
         assertEquals(attributes.getScope(), Dependent.class);
         assertNull(attributes.getName());
@@ -168,8 +169,8 @@ public class CreateBeanAttributesTest extends AbstractTest {
 
     @SuppressWarnings("unchecked")
     private void verifyVolume(BeanAttributes<?> attributes) {
-        assertTrue(typeSetMatches(attributes.getTypes(), long.class, Object.class));
-        assertTrue(annotationSetMatches(attributes.getQualifiers(), Any.class, Default.class, Named.class));
+        Assert.assertTypesMatch(attributes.getTypes(), long.class, Object.class);
+        Assert.assertAnnotationsMatch(attributes.getQualifiers(), Any.class, Default.class, Named.class);
         assertTrue(attributes.getStereotypes().isEmpty());
         assertEquals(attributes.getScope(), Dependent.class);
         assertEquals(attributes.getName(), "volume");

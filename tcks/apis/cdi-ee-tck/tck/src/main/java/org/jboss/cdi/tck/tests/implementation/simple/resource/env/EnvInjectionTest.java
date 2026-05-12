@@ -20,8 +20,12 @@ import static org.jboss.cdi.tck.cdi.Sections.DECLARING_RESOURCE;
 import static org.jboss.cdi.tck.cdi.Sections.RESOURCE_LIFECYCLE;
 import static org.jboss.cdi.tck.cdi.Sections.RESOURCE_TYPES;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.enterprise.context.spi.CreationalContext;
 import jakarta.enterprise.inject.spi.Bean;
@@ -29,6 +33,7 @@ import jakarta.enterprise.util.AnnotationLiteral;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
+import org.jboss.cdi.tck.util.Assert;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.test.audit.annotations.SpecAssertion;
@@ -87,7 +92,14 @@ public class EnvInjectionTest extends AbstractTest {
         Class<?>[] expectedClasses = new Class[classes.size()];
         classes.toArray(expectedClasses);
 
-        assert check.getTypes().size() == expectedClasses.length : "Bean<Boolean> has "+expectedClasses.length+" types: "+check.getTypes();
-        assert rawTypeSetMatches(check.getTypes(), expectedClasses) : "Expected classes are: "+classes;
+        Set<Type> rawTypes = new HashSet<>();
+        for (Type type : check.getTypes()) {
+            if (type instanceof Class<?>) {
+                rawTypes.add(type);
+            } else if (type instanceof ParameterizedType) {
+                rawTypes.add(((ParameterizedType) type).getRawType());
+            }
+        }
+        Assert.assertTypesMatch(rawTypes, expectedClasses);
     }
 }

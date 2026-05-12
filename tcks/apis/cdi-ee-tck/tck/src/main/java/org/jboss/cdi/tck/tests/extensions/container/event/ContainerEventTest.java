@@ -34,6 +34,7 @@ import jakarta.enterprise.inject.spi.AnnotatedType;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
+import org.jboss.cdi.tck.util.Assert;
 import org.jboss.cdi.tck.shrinkwrap.ee.EnterpriseArchiveBuilder;
 import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
@@ -148,20 +149,20 @@ public class ContainerEventTest extends AbstractTest {
 
     private void validateStatelessSessionBean(Annotated type) {
         assert type.getBaseType().equals(Sheep.class);
-        assert typeSetMatches(type.getTypeClosure(), Sheep.class, SheepLocal.class, Object.class);
+        Assert.assertTypesMatch(type.getTypeClosure(), Sheep.class, SheepLocal.class, Object.class);
         assert type.getAnnotations().size() == 2;
-        assert annotationSetMatches(type.getAnnotations(), Tame.class, Stateless.class);
+        Assert.assertAnnotationsMatch(type.getAnnotations(), Tame.class, Stateless.class);
     }
 
     private void validateStatefulSessionBean(Annotated type) {
         assert type.getBaseType().equals(Cow.class);
-        assert typeSetMatches(type.getTypeClosure(), Cow.class, CowLocal.class, Object.class);
+        Assert.assertTypesMatch(type.getTypeClosure(), Cow.class, CowLocal.class, Object.class);
         assert type.getAnnotations().size() == 0;
     }
 
     private void validateSessionBeanInterceptor(AnnotatedType<SheepInterceptor> type) {
         assert type.getBaseType().equals(SheepInterceptor.class);
-        assert typeSetMatches(type.getTypeClosure(), SheepInterceptor.class, Object.class);
+        Assert.assertTypesMatch(type.getTypeClosure(), SheepInterceptor.class, Object.class);
         assert type.getAnnotations().size() == 0;
         assert type.getFields().size() == 0;
         assert type.getMethods().size() == 1;
@@ -169,7 +170,7 @@ public class ContainerEventTest extends AbstractTest {
 
     private void validateManagedBean(AnnotatedType<Farm> type) {
         assert type.getBaseType().equals(Farm.class);
-        assert typeSetMatches(type.getTypeClosure(), Farm.class, Object.class);
+        Assert.assertTypesMatch(type.getTypeClosure(), Farm.class, Object.class);
         assert type.getFields().size() == 1;
         assert type.getFields().iterator().next().isAnnotationPresent(Produces.class);
         assert type.getMethods().size() == 1;
