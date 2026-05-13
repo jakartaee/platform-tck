@@ -38,9 +38,9 @@
     <dependencies>
         <!-- Jakarta EE dependencies -->
         <dependency>
-            <groupId>jakarta.enterprise</groupId>
-            <artifactId>cdi-tck-core-impl</artifactId>
-            <version>4.1.0</version>
+            <groupId>jakarta.cdi</groupId>
+            <artifactId>jakarta.cdi-tck-core-impl</artifactId>
+            <version>5.0.0.Alpha5</version>
         </dependency>
 
         <dependency>

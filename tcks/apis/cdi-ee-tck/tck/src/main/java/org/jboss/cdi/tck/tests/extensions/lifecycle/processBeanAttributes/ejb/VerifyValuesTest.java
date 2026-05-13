@@ -29,6 +29,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
+import org.jboss.cdi.tck.util.Assert;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
 import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processBeanAttributes.Alpha;
 import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processBeanAttributes.Bravo;
@@ -107,9 +108,9 @@ public class VerifyValuesTest extends AbstractTest {
         verifyName(deltaAttributes, "delta");
         assertFalse(deltaAttributes.isAlternative());
 
-        assertTrue(typeSetMatches(deltaAttributes.getTypes(), Object.class, Delta.class));
+        Assert.assertTypesMatch(deltaAttributes.getTypes(), Object.class, Delta.class);
         assertTrue(deltaAttributes.getStereotypes().isEmpty());
-        assertTrue(annotationSetMatches(deltaAttributes.getQualifiers(), Named.class, Any.class, Default.class));
+        Assert.assertAnnotationsMatch(deltaAttributes.getQualifiers(), Named.class, Any.class, Default.class);
     }
 
     @Test
@@ -132,7 +133,7 @@ public class VerifyValuesTest extends AbstractTest {
         assertEquals(Dependent.class, attributes.getScope());
         assertFalse(attributes.isAlternative());
 
-        assertTrue(typeSetMatches(attributes.getTypes(), Object.class, BravoInterceptor.class));
+        Assert.assertTypesMatch(attributes.getTypes(), Object.class, BravoInterceptor.class);
         assertTrue(attributes.getStereotypes().isEmpty());
     }
 
@@ -144,7 +145,7 @@ public class VerifyValuesTest extends AbstractTest {
         assertEquals(Dependent.class, attributes.getScope());
         assertFalse(attributes.isAlternative());
 
-        assertTrue(typeSetMatches(attributes.getTypes(), Object.class, BravoDecorator.class, BravoInterface.class));
+        Assert.assertTypesMatch(attributes.getTypes(), Object.class, BravoDecorator.class, BravoInterface.class);
         assertTrue(attributes.getStereotypes().size() == 1);
         assertTrue(attributes.getStereotypes().iterator().next().equals(Decorator.class));
     }

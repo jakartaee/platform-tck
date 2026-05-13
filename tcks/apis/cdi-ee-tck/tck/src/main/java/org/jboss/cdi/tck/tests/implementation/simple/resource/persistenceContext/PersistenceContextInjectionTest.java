@@ -30,6 +30,7 @@ import jakarta.persistence.EntityManagerFactory;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
+import org.jboss.cdi.tck.util.Assert;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.test.audit.annotations.SpecAssertion;
@@ -101,9 +102,9 @@ public class PersistenceContextInjectionTest extends AbstractTest {
     public void testBeanTypesAndBindingTypesOfPersistenceContext() {
         Bean<EntityManager> manager = getBeans(EntityManager.class, new Database.Literal()).iterator().next();
         assert manager.getTypes().size() == 3;
-        assert typeSetMatches(manager.getTypes(), EntityManager.class, Object.class, AutoCloseable.class);
+        Assert.assertTypesMatch(manager.getTypes(), EntityManager.class, Object.class, AutoCloseable.class);
         assert manager.getQualifiers().size() == 2;
-        assert annotationSetMatches(manager.getQualifiers(), Any.class, Database.class);
+        Assert.assertAnnotationsMatch(manager.getQualifiers(), Any.class, Database.class);
     }
 
     @Test
@@ -111,6 +112,6 @@ public class PersistenceContextInjectionTest extends AbstractTest {
     public void testBeanTypesOfPersistenceUnit() {
         Bean<EntityManagerFactory> factory = getBeans(EntityManagerFactory.class, new Database.Literal()).iterator().next();
         assert factory.getTypes().size() == 3;
-        assert typeSetMatches(factory.getTypes(), EntityManagerFactory.class, Object.class, AutoCloseable.class);
+        Assert.assertTypesMatch(factory.getTypes(), EntityManagerFactory.class, Object.class, AutoCloseable.class);
     }
 }

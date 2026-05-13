@@ -43,6 +43,7 @@ import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
+import org.jboss.cdi.tck.util.Assert;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
 import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -149,16 +150,16 @@ public class ContainerEventTest extends AbstractTest {
 
     private void validateTagHandlerAnnotatedType(AnnotatedType<TestTagHandler> type) {
         assertEquals(type.getBaseType(), TestTagHandler.class);
-        assertTrue(typeSetMatches(type.getTypeClosure(), TestTagHandler.class, SimpleTagSupport.class, SimpleTag.class,
-                JspTag.class, Object.class));
+        Assert.assertTypesMatch(type.getTypeClosure(), TestTagHandler.class, SimpleTagSupport.class, SimpleTag.class,
+                JspTag.class, Object.class);
         assertEquals(type.getAnnotations().size(), 1);
         assertTrue(type.isAnnotationPresent(Any.class));
     }
 
     private void validateTagLibraryListenerAnnotatedType(AnnotatedType<TagLibraryListener> type) {
         assertEquals(type.getBaseType(), TagLibraryListener.class);
-        assertTrue(typeSetMatches(type.getTypeClosure(), TagLibraryListener.class, ServletContextListener.class,
-                EventListener.class, Object.class));
+        Assert.assertTypesMatch(type.getTypeClosure(), TagLibraryListener.class, ServletContextListener.class,
+                EventListener.class, Object.class);
         assertEquals(type.getFields().size(), 2);
         assertEquals(type.getConstructors().size(), 1);
         assertTrue(type.getMethods().stream().anyMatch(m -> m.getJavaMember().getName().equals("contextInitialized")));
@@ -166,14 +167,14 @@ public class ContainerEventTest extends AbstractTest {
 
     private void validateServletAnnotatedType(AnnotatedType<TestServlet> type) {
         assertEquals(type.getBaseType(), TestServlet.class);
-        assertTrue(typeSetMatches(type.getTypeClosure(), TestServlet.class, HttpServlet.class, GenericServlet.class,
-                Servlet.class, ServletConfig.class, Serializable.class, Object.class));
+        Assert.assertTypesMatch(type.getTypeClosure(), TestServlet.class, HttpServlet.class, GenericServlet.class,
+                Servlet.class, ServletConfig.class, Serializable.class, Object.class);
         assertTrue(type.getAnnotations().isEmpty());
     }
 
     private void validateFilterAnnotatedType(AnnotatedType<TestFilter> type) {
         assertEquals(type.getBaseType(), TestFilter.class);
-        assertTrue(typeSetMatches(type.getTypeClosure(), TestFilter.class, Filter.class, Object.class));
+        Assert.assertTypesMatch(type.getTypeClosure(), TestFilter.class, Filter.class, Object.class);
         assertEquals(type.getFields().size(), 12);
         assertEquals(type.getConstructors().size(), 1);
         assertTrue(type.getConstructors().iterator().next().getParameters().isEmpty());

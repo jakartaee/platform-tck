@@ -26,6 +26,7 @@ import jakarta.enterprise.inject.spi.Bean;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
+import org.jboss.cdi.tck.util.Assert;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.test.audit.annotations.SpecAssertion;
@@ -46,7 +47,7 @@ public class EnterpriseQualifierDefinitionTest extends AbstractTest {
     public void testQualifierDeclaredInheritedIsInherited() throws Exception {
         Set<? extends Annotation> qualifiers = getBeans(BorderCollieLocal.class, new HairyQualifier(false)).iterator().next()
                 .getQualifiers();
-        assert annotationSetMatches(qualifiers, Any.class, Hairy.class);
+        Assert.assertAnnotationsMatch(qualifiers, Any.class, Hairy.class);
     }
 
     @Test(groups = INTEGRATION)
@@ -60,7 +61,7 @@ public class EnterpriseQualifierDefinitionTest extends AbstractTest {
     public void testQualifierDeclaredInheritedIsIndirectlyInherited() {
         Set<? extends Annotation> qualifiers = getBeans(EnglishBorderCollieLocal.class, new HairyQualifier(false)).iterator()
                 .next().getQualifiers();
-        assert annotationSetMatches(qualifiers, Any.class, Hairy.class);
+        Assert.assertAnnotationsMatch(qualifiers, Any.class, Hairy.class);
     }
 
     @Test(groups = INTEGRATION)

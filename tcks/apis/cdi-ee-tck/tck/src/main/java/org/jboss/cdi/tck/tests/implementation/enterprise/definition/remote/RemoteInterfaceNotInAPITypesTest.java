@@ -17,7 +17,7 @@ package org.jboss.cdi.tck.tests.implementation.enterprise.definition.remote;
 
 import static org.jboss.cdi.tck.TestGroups.JAVAEE_FULL;
 import static org.jboss.cdi.tck.cdi.Sections.SESSION_BEAN_TYPES;
-import static org.jboss.cdi.tck.util.Assert.assertTypeSetMatches;
+import static org.jboss.cdi.tck.util.Assert.assertTypesMatch;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
@@ -52,13 +52,13 @@ public class RemoteInterfaceNotInAPITypesTest extends AbstractTest {
         // only remote view
         Bean<Object> collieBean = getUniqueBean(Object.class, new Tame.Literal());
         assertNotNull(collieBean);
-        assertTypeSetMatches(collieBean.getTypes(), Object.class);
+        assertTypesMatch(collieBean.getTypes(), Object.class);
 
         Bean<DogLocal> pitbullBean = getUniqueBean(DogLocal.class);
         assertNotNull(pitbullBean);
         // DogLocal, Bar, SuperBar, Object
         assertEquals(pitbullBean.getTypes().size(), 4);
-        assertTypeSetMatches(pitbullBean.getTypes(), Object.class, DogLocal.class, Bar.class, SuperBar.class);
+        assertTypesMatch(pitbullBean.getTypes(), Object.class, DogLocal.class, Bar.class, SuperBar.class);
     }
 
 }

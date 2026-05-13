@@ -18,7 +18,7 @@ package org.jboss.cdi.tck.tests.definition.bean.types.enterprise;
 
 import static org.jboss.cdi.tck.TestGroups.INTEGRATION;
 import static org.jboss.cdi.tck.cdi.Sections.SESSION_BEAN_TYPES;
-import static org.jboss.cdi.tck.util.Assert.assertTypeSetMatches;
+import static org.jboss.cdi.tck.util.Assert.assertTypesMatch;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
@@ -58,7 +58,7 @@ public class SessionBeanTypesTest extends AbstractTest {
         assertNotNull(vultureBean);
         // Object, Bird<Integer>, Vulture
         assertEquals(vultureBean.getTypes().size(), 3);
-        assertTypeSetMatches(vultureBean.getTypes(), Object.class, Vulture.class, new TypeLiteral<Bird<Integer>>() {
+        assertTypesMatch(vultureBean.getTypes(), Object.class, Vulture.class, new TypeLiteral<Bird<Integer>>() {
         }.getType());
 
         // Generic class inheritance with two interfaces
@@ -68,7 +68,7 @@ public class SessionBeanTypesTest extends AbstractTest {
         assertNotNull(tigerBean);
         // Object, Animal<String>, Mammal<String>
         assertEquals(tigerBean.getTypes().size(), 3);
-        assertTypeSetMatches(tigerBean.getTypes(), Object.class, new TypeLiteral<Animal<String>>() {
+        assertTypesMatch(tigerBean.getTypes(), Object.class, new TypeLiteral<Animal<String>>() {
         }.getType(), mammalLiteral.getType());
 
         // session bean with both local business interface and no-interface view
@@ -76,7 +76,7 @@ public class SessionBeanTypesTest extends AbstractTest {
         assertNotNull(creatureBean);
         // Object, LegendaryCreature, LegendaryLocal, Creature
         assertEquals(creatureBean.getTypes().size(), 4);
-        assertTypeSetMatches(creatureBean.getTypes(), Object.class, LegendaryCreature.class, LegendaryLocal.class,
+        assertTypesMatch(creatureBean.getTypes(), Object.class, LegendaryCreature.class, LegendaryLocal.class,
                 Creature.class);
     }
 
@@ -89,7 +89,7 @@ public class SessionBeanTypesTest extends AbstractTest {
         assertNotNull(creatureBean);
         // Object, LegendaryCreature, LegendaryLocal, Creature
         assertEquals(creatureBean.getTypes().size(), 4);
-        assertTypeSetMatches(creatureBean.getTypes(), Object.class, LegendaryCreature.class, LegendaryLocal.class,
+        assertTypesMatch(creatureBean.getTypes(), Object.class, LegendaryCreature.class, LegendaryLocal.class,
                 Creature.class);
     }
 
@@ -102,7 +102,7 @@ public class SessionBeanTypesTest extends AbstractTest {
         assertNotNull(loginBean);
         // MockLoginActionBean, LoginActionBean, Object
         assertEquals(loginBean.getTypes().size(), 3);
-        assertTypeSetMatches(loginBean.getTypes(), Object.class, LoginActionBean.class, MockLoginActionBean.class);
+        assertTypesMatch(loginBean.getTypes(), Object.class, LoginActionBean.class, MockLoginActionBean.class);
     }
     
     @Test(groups = INTEGRATION)
@@ -111,6 +111,6 @@ public class SessionBeanTypesTest extends AbstractTest {
         Bean<Cobra> cobraBean = getUniqueBean(Cobra.class);
         assertNotNull(cobraBean);
         assertEquals(cobraBean.getTypes().size(), 3);
-        assertTypeSetMatches(cobraBean.getTypes(), Object.class, Cobra.class, Snake.class);
+        assertTypesMatch(cobraBean.getTypes(), Object.class, Cobra.class, Snake.class);
     }
 }

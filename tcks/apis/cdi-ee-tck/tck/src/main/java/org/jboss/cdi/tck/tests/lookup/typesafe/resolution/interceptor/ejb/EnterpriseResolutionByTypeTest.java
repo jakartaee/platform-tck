@@ -22,6 +22,7 @@ import jakarta.enterprise.inject.spi.Bean;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
+import org.jboss.cdi.tck.util.Assert;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.test.audit.annotations.SpecAssertion;
@@ -46,7 +47,7 @@ public class EnterpriseResolutionByTypeTest extends AbstractTest {
         assert getBeans(CapercaillieLocal.class).size() == 1;
         assert getBeans(ScottishBirdLocal.class).isEmpty();
         Bean<CapercaillieLocal> bean = getUniqueBean(CapercaillieLocal.class);
-        assert typeSetMatches(bean.getTypes(), CapercaillieLocal.class, Object.class);
+        Assert.assertTypesMatch(bean.getTypes(), CapercaillieLocal.class, Object.class);
     }
 
 }
