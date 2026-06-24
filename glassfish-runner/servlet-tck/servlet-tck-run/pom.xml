@@ -51,7 +51,8 @@
         <gf.pool.portStride>100</gf.pool.portStride>
         <gf.pool.unpack.skip>false</gf.pool.unpack.skip>
         <gf.pool.restartOnRelease>false</gf.pool.restartOnRelease>
-        
+        <gf.pool.shareGroupSlot>true</gf.pool.shareGroupSlot> <!-- http+https are one server: share a single pool slot rather than two. -->
+
         <tck.test.servlet.version>6.1.0</tck.test.servlet.version>
     </properties>
 
@@ -312,6 +313,7 @@
                         <gf.pool.adminBase>${gf.pool.adminBase}</gf.pool.adminBase>
                         <gf.pool.portStride>${gf.pool.portStride}</gf.pool.portStride>
                         <gf.pool.restartOnRelease>${gf.pool.restartOnRelease}</gf.pool.restartOnRelease>
+                        <gf.pool.shareGroupSlot>${gf.pool.shareGroupSlot}</gf.pool.shareGroupSlot>
 
                         <arquillian.xml>${project.basedir}/arquillian.xml</arquillian.xml>
 
