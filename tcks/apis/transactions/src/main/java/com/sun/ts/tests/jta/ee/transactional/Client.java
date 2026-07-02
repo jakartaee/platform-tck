@@ -58,6 +58,106 @@ public class Client extends EJBLiteClientBase {
     TwoManagedBean two;
 
     /*
+     * @testName: txTypeRequiredReadOnly_withoutTransaction
+     *
+     * @test_Strategy: readOnly: If called inside a read-only transaction context, the managed bean method execution
+     *  must then continue inside this transaction context.
+     *  A read-only transaction may only run in a read-only transaction context, and similarly,
+     *  a non-read-only transaction may only run in a non-read-only transaction context. As defined by the semantics
+     *  of the configured {@code TxType}, a newly started transaction must be read-only if the {@code readOnly} element
+     *  is {@code true}, and be non-read-only if the {@code readOnly} element is {@code false}.
+     */
+    public void txTypeRequiredReadOnly_withoutTransaction() throws Exception {
+        Helper.assertEquals( "\n", "readOnly", one.txTypeRequiredReadOnly(), callRecords);
+        appendReason(Helper.compareResult("readOnly", one.txTypeRequiredReadOnly()));
+
+    }
+
+    /*
+     * @testName: txTypeRequiredReadOnly_withReadOnlyTransaction
+     *
+     * @test_Strategy: readOnly: If called inside a read-only transaction context, the managed bean method execution
+     *  must then continue inside this transaction context.
+     *  A read-only transaction may only run in a read-only transaction context, and similarly,
+     *  a non-read-only transaction may only run in a non-read-only transaction context. As defined by the semantics
+     *  of the configured {@code TxType}, a newly started transaction must be read-only if the {@code readOnly} element
+     *  is {@code true}, and be non-read-only if the {@code readOnly} element is {@code false}.
+     */
+    public void txTypeRequiredReadOnly_withReadOnlyTransaction() throws Exception {
+        try {
+            ut.setReadOnly(true);
+            ut.begin();
+            Helper.assertEquals( null, "readOnly", one.txTypeRequiredReadOnly(), callRecords);
+            appendReason(Helper.compareResult("readOnly", one.txTypeRequiredReadOnly()));
+            ut.commit();
+        } catch (Exception e) {
+            Helper.getLogger().log(INFO, null, e);
+            throw new Exception("txTypeRequiredReadOnly_withReadOnlyTransaction failed");
+        } finally {
+            ut.setReadOnly(false);
+        }
+    }
+
+    /*
+     * @testName: txTypeRequiredReadOnly_withNonReadOnlyTransaction
+     *
+     * @test_Strategy: readOnly: If called inside a read-only transaction context, the managed bean method execution
+     *  must then continue inside this transaction context.
+     *  A read-only transaction may only run in a read-only transaction context, and similarly,
+     *  a non-read-only transaction may only run in a non-read-only transaction context. As defined by the semantics
+     *  of the configured {@code TxType}, a newly started transaction must be read-only if the {@code readOnly} element
+     *  is {@code true}, and be non-read-only if the {@code readOnly} element is {@code false}.
+     */
+    public void txTypeRequiredReadOnly_withNonReadOnlyTransaction() throws Exception {
+        String result = "TransactionalException not received";
+
+        try {
+            ut.begin();
+            Helper.getLogger().info("Invoking OneManagedBean.txTypeRequiredReadOnly() with a non-read-only transaction Context");
+            one.txTypeRequiredReadOnly();
+        } catch (TransactionalException te) {
+            if (te.getCause() instanceof InvalidTransactionException) {
+                result = "Received expected TransactionalException with nested InvalidTransactionException";
+            } else {
+                throw new Exception("Received TransactionalException without nested InvalidTransactionException");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = "Received unexcepted Exception :" + e.getMessage();
+        }
+
+        if (result.equals("Received expected TransactionalException with nested InvalidTransactionException")) {
+            Helper.getLogger().log(INFO, result);
+            appendReason("Received expected TransactionalException with nested InvalidTransactionException");
+        } else {
+            throw new Exception(result);
+        }
+    }
+
+    /*
+     * @testName: txTypeRequiresNewReadOnly_withNonReadOnlyTransaction
+     *
+     * @test_Strategy: readOnly: If called inside a read-only transaction context, the managed bean method execution
+     *  must then continue inside this transaction context.
+     *  A read-only transaction may only run in a read-only transaction context, and similarly,
+     *  a non-read-only transaction may only run in a non-read-only transaction context. As defined by the semantics
+     *  of the configured {@code TxType}, a newly started transaction must be read-only if the {@code readOnly} element
+     *  is {@code true}, and be non-read-only if the {@code readOnly} element is {@code false}.
+     */
+    public void txTypeRequiresNewReadOnly_withNonReadOnlyTransaction() throws Exception {
+        try {
+            ut.begin();
+            Helper.assertEquals( null, "readOnly", one.txTypeRequiresNewReadOnly(), callRecords);
+            appendReason(Helper.compareResult("readOnly", one.txTypeRequiresNewReadOnly()));
+            ut.commit();
+        } catch (Exception e) {
+            Helper.getLogger().log(INFO, null, e);
+            throw new Exception("txTypeRequiresNewReadOnly_withNonReadOnlyTransaction failed");
+        }
+    }
+
+    /*
      * @testName: txTypeRequired_withoutTransaction
      *
      * @test_Strategy: TxType.REQUIRED: If called outside a transaction context, the interceptor must begin a new JTA
