@@ -139,7 +139,6 @@
                 <include>${project.groupId}:jsonb-platform-tck</include>
                 <include>${project.groupId}:jsonp-platform-tck</include>
                 <include>${project.groupId}:pages-platform-tck</include>
-                <include>${project.groupId}:transactions-tck</include>
                 <include>${project.groupId}:tags-tck</include>
                 <include>${project.groupId}:signaturetest</include>
                 <include>${project.groupId}:signaturevalidation</include>

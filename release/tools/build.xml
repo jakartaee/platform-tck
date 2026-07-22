@@ -453,12 +453,6 @@
         <antcall target="${the.target}"/>
     </target>
 
-    <target name="jta" depends="has.override, no.override" >
-        <property name="deliverable.name" value="JTA"/>
-        <property name="deliverable.tck.dir" value="transactions"/>
-        <antcall target="${the.target}"/>
-    </target>
-
     <target name="servlet" depends="has.override, no.override" >
         <property name="deliverable.name" value="SERVLET"/>
         <property name="deliverable.tck.dir" value="servlet"/>

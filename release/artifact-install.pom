@@ -331,22 +331,6 @@
                             <generatePom>false</generatePom>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>install-transactions-tck</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>transactions-tck</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>transactions-tck-${project.version}.jar</file>
-                            <generatePom>false</generatePom>
-                        </configuration>
-                    </execution>
-
                     <!-- remove Tags TCK from the EE 12 release since it moved to the Jakarta Tags repository.
                     <execution>
                         <id>install-tags-tck</id>
