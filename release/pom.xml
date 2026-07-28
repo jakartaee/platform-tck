@@ -194,16 +194,6 @@
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>transactions-tck</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>transactions-tck</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
         <!-- <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>tags-tck</artifactId>

@@ -59,8 +59,6 @@
         <module>tcks/apis/rest</module>
         <!-- <module>tcks/apis/tags</module>
         <module>tcks/apis/tags/docs</module> -->
-        <module>tcks/apis/transactions</module>
-        <module>tcks/apis/transactions/docs</module>
         <module>tcks/apis/websocket</module>
         
         <module>tcks/profiles/core-profile-tck</module>
