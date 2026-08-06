@@ -380,6 +380,7 @@ CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS
                 <plugins>
                     <plugin>
                     <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.5.6</version>
                     <executions>
                         <execution>
                             <id>jdbc-tests-appclient</id>
