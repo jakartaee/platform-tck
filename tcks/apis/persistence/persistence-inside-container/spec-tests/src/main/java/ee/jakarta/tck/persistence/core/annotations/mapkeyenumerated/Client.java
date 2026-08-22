@@ -356,9 +356,7 @@ public class Client extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			Employee4 emp = getEntityManager().find(Employee4.class, 8);
-			logTrace( "Name:" + emp.getLastName());
-			Department4 dept = emp.getDepartment();
+			Department4 dept = getEntityManager().find(Department4.class, 7);
 			logTrace( "Dept=" + dept.getName());
 			Map<Numbers, EmbeddedEmployee> emps = dept.getLastNameEmployees();
 			if (TestUtil.traceflag) {
@@ -553,13 +551,6 @@ public class Client extends PMClientBase {
 				}
 			}
 
-			logTrace( "Persist Employee4 ");
-			for (Employee4 emp : empRef4) {
-				if (emp != null) {
-					getEntityManager().persist(emp);
-					logTrace( "persisted Employee4 " + emp.getId());
-				}
-			}
 			// Merge Department
 			logTrace( "Merge Department ");
 			for (Department dept : deptRef) {
