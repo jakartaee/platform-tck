@@ -43,6 +43,15 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <junit.jupiter.execution.parallel.enabled>true</junit.jupiter.execution.parallel.enabled>
+        <junit.jupiter.execution.parallel.mode.default>same_thread</junit.jupiter.execution.parallel.mode.default>
+        <junit.jupiter.execution.parallel.mode.classes.default>concurrent</junit.jupiter.execution.parallel.mode.classes.default>
+        <!--    <junit.jupiter.execution.parallel.mode.default>concurrent</junit.jupiter.execution.parallel.mode.default>-->
+        <!--    <junit.jupiter.execution.parallel.mode.classes.default>same_thread</junit.jupiter.execution.parallel.mode.classes.default>-->
+        <junit.jupiter.execution.parallel.config.strategy>fixed</junit.jupiter.execution.parallel.config.strategy>
+        <junit.jupiter.execution.parallel.config.fixed.parallelism>2</junit.jupiter.execution.parallel.config.fixed.parallelism>
+        <junit.jupiter.extensions.autodetection.enabled>false</junit.jupiter.extensions.autodetection.enabled>
     </properties>
 
     <dependencyManagement>
@@ -136,12 +145,12 @@
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>junit</groupId>-->
+<!--            <artifactId>junit</artifactId>-->
+<!--            <version>4.13.2</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
 
         <!-- Dependency for the API signature test -->
         <dependency>
@@ -247,6 +256,17 @@
                     <dependenciesToScan>
                         <dependenciesToScan>jakarta.tck:servlet-tck-runtime</dependenciesToScan>
                     </dependenciesToScan>
+
+                    <properties>
+                        <configurationParameters>
+                            junit.jupiter.execution.parallel.enabled=${junit.jupiter.execution.parallel.enabled}
+                            junit.jupiter.execution.parallel.mode.default=${junit.jupiter.execution.parallel.mode.default}
+                            junit.jupiter.execution.parallel.mode.classes.default=${junit.jupiter.execution.parallel.mode.classes.default}
+                            junit.jupiter.execution.parallel.config.strategy=${junit.jupiter.execution.parallel.config.strategy}
+                            junit.jupiter.execution.parallel.config.fixed.parallelism=${junit.jupiter.execution.parallel.config.fixed.parallelism}
+                            junit.jupiter.extensions.autodetection.enabled=${junit.jupiter.extensions.autodetection.enabled}
+                        </configurationParameters>
+                    </properties>
 
                     <systemProperties>
                         <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
