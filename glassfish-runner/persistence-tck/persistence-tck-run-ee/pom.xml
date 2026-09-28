@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.3</version>
         <relativePath />
     </parent>
 
@@ -33,10 +33,10 @@
     <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>
     
         <!--Glassfish properties-->
-        <glassfish.version>8.0.0-M11</glassfish.version>
+        <glassfish.version>8.0.2</glassfish.version>
         <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
         <glassfish.module.dir>${glassfish.home}/glassfish/modules</glassfish.module.dir>
         
@@ -85,9 +85,9 @@
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.10.0.Final</version>
-                <scope>import</scope>
+                <version>1.9.4.Final</version>
                 <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -101,7 +101,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
     <dependencies>
         <dependency>
             <groupId>jakarta.persistence</groupId>
@@ -147,7 +146,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>signaturetest</artifactId>
-            <version>11.0.1</version>
+            <version>11.1.0</version>
         </dependency>
         
         <dependency>
@@ -179,14 +178,14 @@
             <artifactId>slf4j-jdk14</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.7</version>
+            <version>2.1.1</version>
         </dependency>
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>glassfish-client-ee11</artifactId>
-            <version>1.8</version>
+            <version>2.1.1</version>
         </dependency>
         
          <dependency>
@@ -218,7 +217,6 @@
                 <filtering>true</filtering>
             </testResource>
         </testResources>
-        
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -252,7 +250,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -336,7 +333,6 @@
             
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                
                 <configuration>
                     <argLine>-Xmx8192m</argLine>
                     <dependenciesToScan>${project.groupId}:persistence-tck-spec-tests</dependenciesToScan>

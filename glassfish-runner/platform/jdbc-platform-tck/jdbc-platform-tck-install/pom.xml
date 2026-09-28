@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation.
+    Copyright (c) 2021, 2025 Contributors to the Eclipse Foundation.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,7 @@
    <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.3</version>
         <relativePath />
     </parent>
 
@@ -32,17 +32,17 @@
     <name>TCK: Install Jakarta JDBC Platform Tests</name>
 
     <properties>
-        <tck.test.jdbc.file>jakartaeetck-${tck.test.jdbc.version}-dist.zip</tck.test.jdbc.file>
-        <tck.test.jdbc.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.jdbc.file}</tck.test.jdbc.url>
-        <tck.test.jdbc.version>11.0.1-SNAPSHOT</tck.test.jdbc.version>
+        <tck.test.jdbc.file>jakartaeetck-${tck.test.jdbc.version}.zip</tck.test.jdbc.file>
+        <tck.test.jdbc.url>https://download.eclipse.org/jakartaee/platform/11/${tck.test.jdbc.file}</tck.test.jdbc.url>
+        <tck.test.jdbc.version>11.0.3</tck.test.jdbc.version>
     </properties>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <groupId>io.github.download-maven-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.9.0</version>
+                <version>2.1.0</version>
                 <configuration>
                     <url>${tck.test.jdbc.url}</url>
                     <unpack>true</unpack>
@@ -61,6 +61,7 @@
 
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.4</version>
                 <executions>
 
                     <!-- JDBC Platform TCK -->

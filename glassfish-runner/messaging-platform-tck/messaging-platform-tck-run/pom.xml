@@ -19,13 +19,13 @@
    <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.3</version>
         <relativePath />
     </parent>
 
    <groupId>jakarta.tck</groupId>
    <artifactId>messaging-platform-tck-run</artifactId>
-   <version>11.0.1</version>
+   <version>11.0.3</version>
    <packaging>jar</packaging>
 
    <properties>
@@ -36,12 +36,10 @@
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <glassfish-artifact-id>glassfish</glassfish-artifact-id>
 
-       <glassfish.runner.version>11.0.1</glassfish.runner.version>
-       <glassfish.version>8.0.0-M11</glassfish.version>
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
-        <jakarta.platform.version>11.0.0-RC1</jakarta.platform.version>
-       <jakarta.tck.common.version>11.0.8</jakarta.tck.common.version>
-       <jakarta.tck.arquillian.version>11.0.9</jakarta.tck.arquillian.version>
+        <glassfish.runner.version>11.0.3</glassfish.runner.version>
+        <glassfish.version>8.0.2</glassfish.version>
+        <tck.version>11.0.3</tck.version>
+        <jakarta.platform.version>11.0.0</jakarta.platform.version>
 
         <admin.pass>admin</admin.pass>
         <admin.pass.file>${project.build.directory}/ripassword</admin.pass.file>
@@ -92,13 +90,11 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
    <dependencies>
         <!-- The actual TCK containing the tests -->
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>jms-platform-tck</artifactId>
-            <version>${tck.version}</version>
         </dependency>
         
         <dependency>
@@ -118,6 +114,10 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
         </dependency>
         <dependency>
             <groupId>org.junit.vintage</groupId>
@@ -141,7 +141,7 @@
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
         <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
+            <groupId>ee.omnifish.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <scope>test</scope>
         </dependency>
@@ -206,7 +206,6 @@
                                     <outputDirectory>${project.build.directory}/protocol</outputDirectory>
                                     <destFileName>protocol.jar</destFileName>
                                 </artifactItem>
-
                             </artifactItems>
                         </configuration>
                     </execution>
@@ -480,8 +479,8 @@
                         <glassfish.derbyPasswordFile>${project.build.directory}/test-classes/password.txt</glassfish.derbyPasswordFile>
                         
                         <glassfish.postBootCommands>
-                            create-file-user --groups staff:mgr:DIRECTOR --passwordfile ${project.build.directory}/../j2ee.pass j2ee
-                            create-file-user --groups guest:OTHERROLE --passwordfile ${project.build.directory}/../javajoe.pass javajoe
+                            --passwordfile ${project.basedir}/j2ee.pass create-file-user --groups staff:mgr:DIRECTOR j2ee
+                            --passwordfile ${project.basedir}/javajoe.pass create-file-user --groups guest:OTHERROLE javajoe
                             set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
                             create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=myQueue MY_QUEUE
                             create-jms-resource --restype jakarta.jms.Topic --property imqDestinationName=myTopic MY_TOPIC
@@ -508,9 +507,7 @@
         </plugins>
     </build>
 
-
-
-    <profiles>
+   <profiles>
         <profile>
             <id>javatest</id>
 

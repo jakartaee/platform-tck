@@ -17,31 +17,33 @@
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+   <modelVersion>4.0.0</modelVersion>
 
    <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.3</version>
         <relativePath />
     </parent>
 
-    <artifactId>pages-debugging-other-tck-install</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>TCK: Install Jakarta pages-debugging-other TCK</name>
+   <artifactId>pages-debugging-other-tck-install</artifactId>
+   <version>2.0.0-SNAPSHOT</version>
+   <packaging>pom</packaging>
 
-    <properties>
-        <tck.test.pages.file>jakarta-debugging-tck-2.0.0.zip</tck.test.pages.file>
-        <tck.test.pages.url>https://download.eclipse.org/jakartaee/debugging/2.0/${tck.test.pages.file}</tck.test.pages.url>
+   <name>TCK: Install Jakarta pages-debugging-other TCK</name>
+
+   <properties>
+        <tck.test.pages.debug.version>2.0.0</tck.test.pages.debug.version>
+        <tck.test.pages.debug.file>jakarta-debugging-tck-${tck.test.pages.debug.version}.zip</tck.test.pages.debug.file>
+        <tck.test.pages.debug.url>https://download.eclipse.org/jakartaee/debugging/2.0/${tck.test.pages.debug.file}</tck.test.pages.debug.url>
     </properties>
 
-    <build>
+   <build>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <groupId>io.github.download-maven-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
+                <version>2.1.0</version>
                 <executions>
                     <execution>
                         <id>download-pages-debugging-tck</id>
@@ -54,7 +56,7 @@
                 <configuration>
                     <skipCache>true</skipCache>
                     <overwrite>true</overwrite>
-                    <url>${tck.test.pages.url}</url>
+                    <url>${tck.test.pages.debug.url}</url>
                     <unpack>false</unpack>
                     <outputDirectory>${project.build.directory}</outputDirectory>
                 </configuration>
@@ -62,6 +64,7 @@
             
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.4</version>
                 <executions>
                     <execution>
                         <id>install-pages-debugging-tck</id>
@@ -70,7 +73,7 @@
                             <goal>install-file</goal>
                         </goals>
                         <configuration>
-                            <file>${project.build.directory}/${tck.test.pages.file}</file>
+                            <file>${project.build.directory}/${tck.test.pages.debug.file}</file>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>jakarta-pages-debugging-other-tck</artifactId>
                             <version>2.0.0</version>
@@ -82,5 +85,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

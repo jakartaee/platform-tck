@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2026 Contributors to the Eclipse Foundation.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>2.0.4</version>
+        <relativePath />
+    </parent>
+
+   <artifactId>annotations-tck-install</artifactId>
+   <version>3.0.0-SNAPSHOT</version>
+   <packaging>pom</packaging>
+
+   <name>TCK: Install Jakarta annotations TCK</name>
+
+   <properties>
+        <tck.test.annotations.version>3.0.0</tck.test.annotations.version>
+        <tck.test.annotations.file>jakarta-annotations-tck-${tck.test.annotations.version}.zip</tck.test.annotations.file>
+        <tck.test.annotations.url>https://download.eclipse.org/jakartaee/annotations/3.0/${tck.test.annotations.file}</tck.test.annotations.url>
+    </properties>
+
+   <build>
+        <plugins>
+            <plugin>
+                <groupId>io.github.download-maven-plugin</groupId>
+                <artifactId>download-maven-plugin</artifactId>
+                <version>2.1.0</version>
+                <configuration>
+                    <url>${tck.test.annotations.url}</url>
+                    <unpack>true</unpack>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>download-annotations-tck</id>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>install-annotations-tck</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <file>${project.build.directory}/annotations-tck/artifacts/jakarta-annotations-tck-${tck.test.annotations.version}.jar</file>
+                            <sources>${project.build.directory}/annotations-tck/artifacts/jakarta-annotations-tck-${tck.test.annotations.version}-sources.jar</sources>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>annotations-tck</artifactId>
+                            <version>${tck.test.annotations.version}</version>
+                            <packaging>jar</packaging>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>

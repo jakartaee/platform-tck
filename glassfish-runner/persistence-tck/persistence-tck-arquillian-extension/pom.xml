@@ -17,13 +17,13 @@
 
   SPDX-License-Identifier: Apache-2.0
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.3</version>
         <relativePath />
     </parent>
 
@@ -31,20 +31,20 @@
     <artifactId>persistence-tck-arquillian-extension</artifactId>
     <version>3.2.0</version>
     <packaging>jar</packaging>
+
     <name>Extension for running Persistence TCK in GlassFish</name>
-    
+
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.10.0.Final</version>
-                <scope>import</scope>
+                <version>1.9.4.Final</version>
                 <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -58,7 +58,7 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-container-test-spi</artifactId>   
+            <artifactId>arquillian-container-test-spi</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -89,7 +89,7 @@
             <version>2.6</version>
         </dependency>
     </dependencies>
-  
+
     <build>
         <plugins>
             <!-- Sets minimal Maven version to 3.8.6 -->
@@ -123,5 +123,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

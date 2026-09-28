@@ -22,29 +22,30 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.3</version>
         <relativePath />
     </parent>
 
     <groupId>jakarta.tck</groupId>
     <artifactId>jsonp-tck-install</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.3</version>
     <packaging>pom</packaging>
+
     <name>TCK: Install Jakarta JSON-P Extra TCK</name>
 
     <properties>
-        <tck.test.jsonp.extra.file>jakartaeetck-${tck.test.jsonp.version}-dist.zip</tck.test.jsonp.extra.file>
-        <tck.test.jsonp.extra.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.jsonp.extra.file}</tck.test.jsonp.extra.url>
+        <tck.test.jsonp.extra.file>jakartaeetck-${tck.test.jsonp.version}.zip</tck.test.jsonp.extra.file>
+        <tck.test.jsonp.extra.url>https://download.eclipse.org/jakartaee/platform/11/${tck.test.jsonp.extra.file}</tck.test.jsonp.extra.url>
         
-        <tck.test.jsonp.version>11.0.1-SNAPSHOT</tck.test.jsonp.version>
+        <tck.test.jsonp.version>11.0.3</tck.test.jsonp.version>
     </properties>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <groupId>io.github.download-maven-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
+                <version>2.1.0</version>
                 <configuration>
                     <url>${tck.test.jsonp.extra.url}</url>
                     <unpack>true</unpack>
@@ -63,6 +64,7 @@
             
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.4</version>
                 <executions>
 
                     <execution>
@@ -82,8 +84,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
-
 </project>

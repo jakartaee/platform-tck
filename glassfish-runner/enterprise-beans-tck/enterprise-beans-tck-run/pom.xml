@@ -12,32 +12,32 @@
   
   ejb30 lite env tests:
   
-  mvn clean install -Dglassfish.version=8.0.0-SNAPSHOT -Dmaven.build.cache.enabled=false -Pejb30,exclude-timeout,ejb30_lite_env
+  mvn clean install -Dglassfish.version=8.0.2-SNAPSHOT -Dmaven.build.cache.enabled=false -Pejb30,exclude-timeout,ejb30_lite_env
   
   ejb30 assembly, misc and tx tests:
   
-  mvn clean install -Dglassfish.version=8.0.0-SNAPSHOT -Dmaven.build.cache.enabled=false -Pejb30,exclude-timeout,ejb30_assembly_misc_tx
+  mvn clean install -Dglassfish.version=8.0.2-SNAPSHOT -Dmaven.build.cache.enabled=false -Pejb30,exclude-timeout,ejb30_assembly_misc_tx
   
   etc
   
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.3</version>
         <relativePath />
     </parent>
 
     <groupId>jakarta.tck</groupId>
     <artifactId>enterprise-beans-tck-run</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.3</version>
     <packaging>jar</packaging>
+
     <name>enterprise-beans-tck</name>
     <description>Aggregates dependencies and runs the Enterprise Beans TCK on GlassFish</description>
-
     <licenses>
         <license>
             <name>Apache License Version 2.0</name>
@@ -47,28 +47,25 @@
     </licenses>
 
     <properties>
-
-        <!-- Release properties -->
-        <derby.lib>${glassfish.home}/javadb/lib</derby.lib>
-        <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
-        <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
-        <glassfish.version>8.0.0-M11</glassfish.version>
-        <glassfish.version.main>8</glassfish.version.main>
-        <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-        
-        <tck.test.ejb.version>11.0.1</tck.test.ejb.version>
-
         <!-- Require at least Java 17 to compile -->
         <maven.compiler.release>17</maven.compiler.release>
+
+        <!-- Release properties -->
+        <glassfish.root>${project.build.directory}</glassfish.root>
+        <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
+        <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
+        <glassfish.version>8.0.2</glassfish.version>
+        <glassfish.version.main>8</glassfish.version.main>
+        <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+
         <tck.jte.path>${ts.home}/bin/ts.jte</tck.jte.path>
 
         <!-- TCK Paths -->
         <ts.home>${basedir}/src/test/resources/jakartaeetck</ts.home>
 
-        <tck.version>11.0.1-SNAPSHOT</tck.version>
-        <glassfish.runner.version>11.0.1</glassfish.runner.version>
-        <version.surefire>3.5.3</version.surefire>
+        <tck.version>11.0.1</tck.version>
+        <glassfish.runner.version>11.0.3</glassfish.runner.version>
+        <version.surefire>3.5.4</version.surefire>
 
         <whitebox.directory>target/whiteboxes</whitebox.directory>
 
@@ -91,11 +88,10 @@
             <dependency>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${version.surefire}</version>
+                <version>3.5.4</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <!-- Jakarta EE APIs -->
         <dependency>
@@ -123,14 +119,21 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>ejb30</artifactId>
-            <version>${tck.test.ejb.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>ejb32</artifactId>
-            <version>${tck.test.ejb.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>whitebox-tx</artifactId>
+            <type>rar</type>
         </dependency>
 
         <dependency>
@@ -145,6 +148,10 @@
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
         </dependency>
+         <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-lib</artifactId>
+        </dependency>
 
         <!-- Junit5 -->
         <dependency>
@@ -154,7 +161,20 @@
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-reporting</artifactId>
+        </dependency>
+        
+        <!--
+            The Arquillian connector that starts GlassFish and deploys archives to it.
+        -->
+        <dependency>
+            <groupId>ee.omnifish.arquillian</groupId>
+            <artifactId>arquillian-glassfish-server-managed</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -177,15 +197,6 @@
             <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
         </dependency>
 
-        <!--
-            The Arquillian connector that starts GlassFish and deploys archives to it.
-        -->
-        <dependency>
-            <groupId>org.omnifaces.arquillian</groupId>
-            <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
@@ -206,26 +217,9 @@
             <version>3.1</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>whitebox</artifactId>
-            <version>${tck.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>whitebox-tx</artifactId>
-            <version>${tck.version}</version>
-            <type>rar</type>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-lib</artifactId>
-        </dependency>
     </dependencies>
 
-    <build>
-        <!-- Filter test resources -->
+    <build><!-- Filter test resources -->
         <testResources>
             <testResource>
                 <filtering>true</filtering>
@@ -235,7 +229,6 @@
                 </excludes>
             </testResource>
         </testResources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -320,7 +313,7 @@
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${version.surefire}</version>
+                <version>3.5.5</version>
                 <configuration>
                     <includes>
                         <include>**/*Test.java</include>
@@ -340,7 +333,8 @@
                         <glassfish.derbyUser>cts1</glassfish.derbyUser>
                         <glassfish.derbyPasswordFile>${project.build.directory}/test-classes/password.txt</glassfish.derbyPasswordFile>
 
-                        <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                        <glassfish.postBootCommands>
+                            set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
                             create-jdbc-connection-pool --restype javax.sql.XADataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 cts-derby-XA-pool
                             create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 cts-derby-pool
                             create-jdbc-resource --connectionpoolid cts-derby-XA-pool jdbc/DBTimer
@@ -363,7 +357,8 @@
                             create-custom-resource --restype java.net.URL --factoryclass org.glassfish.resources.custom.factory.URLObjectFactory --property spec=http\://localhost\:8080 webServerURL
                             create-custom-resource --restype java.net.URL --factoryclass org.glassfish.resources.custom.factory.URLObjectFactory --property spec=http\://localhost\:8080/mdbdest/TestServlet webServerMdbtestURL
                             list-jndi-resources
-                            list-jdbc-resources</glassfish.postBootCommands>
+                            list-jdbc-resources
+                        </glassfish.postBootCommands>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
@@ -558,22 +553,6 @@
                                 <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.JsfClientEjblitejsfTest</exclude>
                             </excludes>
                             <includes>
-                                <!--
-                                <include>com.sun.ts.tests.ejb30.bb.localaccess.mdbclient.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.**.*Test</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.method.descriptor.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.one.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.basic.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.envsharing.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.override.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.listener.override.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateful.callback.listener.annotated.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.mdb.activationconfig.topic.selectordupsnondurable.complement.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.callback.defaultinterceptor.descriptor.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.invocationcontext.ClientTest</include>
-                                <include>com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor.ClientTest</include>
-                                -->
                                 <include>com.sun.ts.tests.ejb30.bb.**.*Test</include>
                             </includes>
                             <groups>${groups}</groups>
@@ -1150,5 +1129,4 @@
 
         </profile>
     </profiles>
-
 </project>

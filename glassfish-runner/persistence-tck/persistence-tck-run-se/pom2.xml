@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2024, 2025 Contributors to the Eclipse Foundation.
+    Copyright (c) 2024 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>2.0.3</version>
+        <relativePath />
+    </parent>
+
+    <groupId>jakarta.tck</groupId>
+    <artifactId>persistence-tck-run-se</artifactId>
+    <version>4.0.0-M6</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <!--Glassfish properties-->
+        <glassfish.version>9.0.0-SNAPSHOT</glassfish.version>
+        <!--
+            Which GlassFish distribution to unpack. Use -Dglassfish-artifact-id=web for the
+            web distribution. A plain property rather than the old full / web profiles,
+            because -P deactivates every activeByDefault profile and would take the test1
+            and test2 executions down with it.
+        -->
+        <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+        <glassfish.home>${project.build.directory}/glassfish9</glassfish.home>
+        <glassfish.module.dir>${glassfish.home}/glassfish/modules</glassfish.module.dir>
+        
+        
+        <!--TCK properties-->
+        <jpa.classes>${glassfish.module.dir}/jakarta.persistence-api.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.jar,${glassfish.module.dir}/jakarta.servlet-api.jar,${glassfish.module.dir}/jakarta.transaction-api.jar,${glassfish.module.dir}/jakarta.ejb-api.jar,${glassfish.module.dir}/org.eclipse.persistence.antlr.jar,${glassfish.module.dir}/org.eclipse.persistence.asm.jar,${glassfish.module.dir}/org.eclipse.persistence.core.jar,${glassfish.module.dir}/org.eclipse.persistence.dbws.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.jpql.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.modelgen.processor.jar,${glassfish.module.dir}/org.eclipse.persistence.moxy.jar,${glassfish.module.dir}/org.eclipse.persistence.oracle.jar,${glassfish.module.dir}/jboss-logging.jar,${glassfish.module.dir}/jakarta.el-api.jar,${glassfish.module.dir}/expressly.jar,${glassfish.module.dir}/classmate.jar,${glassfish.module.dir}/jakarta.validation-api.jar</jpa.classes>
+        <validator.classes>${glassfish.module.dir}/jakarta.validation-api.jar,${glassfish.module.dir}/hibernate-validator-cdi.jar,${glassfish.module.dir}/hibernate-validator.jar</validator.classes>
+        <jdbc.lib.classpath>${javadb.lib}/derbyclient.jar,${javadb.lib}/derbyshared.jar,${javadb.lib}/derbytools.jar</jdbc.lib.classpath>
+        <jdbc.driver.classes>${javadb.lib}/derbyclient.jar:${javadb.lib}/derbyshared.jar:${javadb.lib}/derbytools.jar</jdbc.driver.classes>
+        <jdbc.db>derby</jdbc.db>
+        <jakarta.persistence.provider>org.eclipse.persistence.jpa.PersistenceProvider</jakarta.persistence.provider>
+        <jakarta.persistence.jdbc.driver>org.apache.derby.jdbc.ClientDriver</jakarta.persistence.jdbc.driver>
+        <jakarta.persistence.jdbc.url>jdbc:derby://localhost:1527/derbyDB;create=true</jakarta.persistence.jdbc.url>
+        <jakarta.persistence.jdbc.user>cts1</jakarta.persistence.jdbc.user>
+        <jakarta.persistence.jdbc.password>cts1</jakarta.persistence.jdbc.password>
+        <jpa.provider.implementation.specific.properties>eclipselink.logging.level=OFF${jpa.provider.implementation.specific.additional.properties}</jpa.provider.implementation.specific.properties>
+        <jpa.provider.implementation.specific.additional.properties/>
+        <db.supports.sequence>true</db.supports.sequence>
+        <persistence.second.level.caching.supported>true</persistence.second.level.caching.supported>
+        
+        
+        <!--Dependencies version-->
+        <junit.jupiter.version>5.10.2</junit.jupiter.version>
+        <persistence.tck.version>4.0.0-M6</persistence.tck.version>
+        <persistence.api.version>4.0.0-M6</persistence.api.version>
+        <eclipselink.version>6.0.0-SNAPSHOT</eclipselink.version>
+        <eclipselink.asm.version>9.10.0</eclipselink.asm.version>
+        <derby.jdbc.version>10.15.2.0</derby.jdbc.version>
+        
+        
+        <!--
+            Default value for the failsafe "test" parameter of the persistence-tests-1
+            execution. Client2#createEntityManagerFactoryNoBeanValidatorTest needs a
+            classpath without the Bean Validation provider, so it runs separately in
+            persistence-tests-2.
+
+            This is a property rather than a <test> element in the execution because an
+            explicit <test> would win over the it.test user property, which stops
+            "mvn verify -Ptest1 -Dit.test=..." from selecting a single test. A
+            method-level <excludes> is not an option either: failsafe rejects those with
+            "Method filter prohibited in includes|excludes parameter".
+        -->
+        <it.test>!**/ee/jakarta/tck/persistence/se/entityManagerFactory/Client2#createEntityManagerFactoryNoBeanValidatorTest</it.test>
+
+        <!-- Starting / initializing and stopping database -->
+        <exec.asadmin>${glassfish.home}/bin/asadmin</exec.asadmin>
+        <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
+        <sql.directory>./sql</sql.directory>
+        <db.delimiter>;</db.delimiter>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.10.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>${persistence.api.version}</version>
+            <scope>test</scope>
+        </dependency>
+       
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>persistence-tck-common</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.persistence</groupId>
+                    <artifactId>jakarta.persistence-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>persistence-tck-spec-tests</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.persistence</groupId>
+                    <artifactId>jakarta.persistence-api</artifactId>
+                </exclusion>
+                <!--
+                    The 4.0 spec-tests pom carries the reference implementation's own runtime
+                    (Hibernate, H2, ShrinkWrap) and a JDBC driver per supported database. None of
+                    it is referenced by the TCK test classes themselves, and the Hibernate
+                    artifacts are declared without a version, so they only resolve when the
+                    Hibernate BOM is imported. Exclude them: EclipseLink is the provider under
+                    test, and a second provider on the classpath only invites the wrong one
+                    being selected. Derby comes from the GlassFish javadb directory instead,
+                    via jdbc.lib.classpath.
+                -->
+                <exclusion>
+                    <groupId>org.hibernate.orm</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.hibernate.models</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.smallrye</groupId>
+                    <artifactId>jandex</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.antlr</groupId>
+                    <artifactId>antlr4-runtime</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.bytebuddy</groupId>
+                    <artifactId>byte-buddy</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.ibm.db2</groupId>
+                    <artifactId>jcc</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.derby</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.microsoft.sqlserver</groupId>
+                    <artifactId>mssql-jdbc</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.mysql</groupId>
+                    <artifactId>mysql-connector-j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.oracle.database.jdbc</groupId>
+                    <artifactId>ojdbc11</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>persistence-tck-dbprocedures</artifactId>
+            <version>${persistence.tck.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.persistence</groupId>
+                    <artifactId>jakarta.persistence-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>common</artifactId>
+            <version>11.0.3</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <!--
+            PMClientBase builds deployment archives with ShrinkWrap. shrinkwrap-api
+            arrives via jakarta.tck:common, but the implementation does not: it is
+            located reflectively at runtime (ConfigurationBuilder ->
+            ServiceExtensionLoader), so nothing declares a compile dependency on it
+            and its absence only shows up as "Could not find extension loader impl
+            class" once a test runs. It used to be pulled in transitively by
+            shrinkwrap-resolver-depchain, which the spec-tests exclusions drop.
+        -->
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-impl-base</artifactId>
+            <version>1.2.6</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+            EclipseLink is the implementation under test. These are compile scope because
+            maven-dependency-plugin resolves them from the project dependencies to copy
+            them over the GlassFish modules directory (copy-eclipselink-lib).
+        -->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.core</artifactId>
+            <version>${eclipselink.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa</artifactId>
+            <version>${eclipselink.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa.jpql</artifactId>
+            <version>${eclipselink.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+            <version>${eclipselink.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.moxy</artifactId>
+            <version>${eclipselink.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.dbws</artifactId>
+            <version>${eclipselink.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.oracle</artifactId>
+            <version>${eclipselink.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.asm</artifactId>
+            <version>${eclipselink.asm.version}</version>
+        </dependency>
+        
+        <!-- Derby is the database under test; the server itself comes from GlassFish. -->
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>${derby.jdbc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbytools</artifactId>
+            <version>${derby.jdbc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!--
+            No test resources are needed: PMClientBase.createDeploymentJar builds the
+            persistence unit at runtime from the TCK's own template, writes it into a
+            ShrinkWrap jar as META-INF/persistence.xml and pushes that jar onto the
+            thread context classloader. A persistence.xml placed here would be visible
+            on the parent classloader at the same time and would compete with it.
+        -->
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.8.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.5.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-report-plugin</artifactId>
+                    <version>3.5.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>3.5.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.8.6</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.glassfish.main.distributions</groupId>
+                                    <artifactId>${glassfish-artifact-id}</artifactId>
+                                    <version>${glassfish.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    
+                    <execution>
+                        <id>copy-lib</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>jakarta.persistence</groupId>
+                                    <artifactId>persistence-tck-dbprocedures</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                    <destFileName>dbprocedures.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.persistence</groupId>
+                                    <artifactId>jakarta.persistence-api</artifactId>
+                                    <outputDirectory>${glassfish.module.dir}</outputDirectory>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>jakarta.persistence-api.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-eclipselink-lib</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${glassfish.module.dir}</outputDirectory>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.eclipse.persistence</groupId>
+                                    <artifactId>org.eclipse.persistence.core</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>org.eclipse.persistence.core.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.eclipse.persistence</groupId>
+                                    <artifactId>org.eclipse.persistence.jpa</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>org.eclipse.persistence.jpa.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.eclipse.persistence</groupId>
+                                    <artifactId>org.eclipse.persistence.jpa.jpql</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>org.eclipse.persistence.jpa.jpql.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.eclipse.persistence</groupId>
+                                    <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>org.eclipse.persistence.jpa.modelgen.processor.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.eclipse.persistence</groupId>
+                                    <artifactId>org.eclipse.persistence.moxy</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>org.eclipse.persistence.moxy.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.eclipse.persistence</groupId>
+                                    <artifactId>org.eclipse.persistence.dbws</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>org.eclipse.persistence.dbws.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.eclipse.persistence</groupId>
+                                    <artifactId>org.eclipse.persistence.oracle</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>org.eclipse.persistence.oracle.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.eclipse.persistence</groupId>
+                                    <artifactId>org.eclipse.persistence.asm</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>org.eclipse.persistence.asm.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!--
+                Starts and stops the Derby server that ships with GlassFish. This has to
+                stay declared before maven-antrun-plugin: start-database and initdb are
+                both bound to pre-integration-test, and executions in the same phase run
+                in the order their plugins are declared.
+            -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>stop-database-init</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>stop-database</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>start-database</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>start-database</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-database-final</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>stop-database</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>initdb</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <path id="jdbc.classpath">
+                                    <pathelement path="${jdbc.driver.classes}"/>
+                                    <path refid="maven.runtime.classpath"/>
+                                </path>
+
+                                <!--
+                                    The TCK DDL drops every object before creating it, so on a clean
+                                    database a few hundred drops fail with "does not exist". Those are
+                                    expected and drown out anything real, so run the DDL as a sub-build
+                                    with its output captured, then report only what matters.
+                                -->
+                                <property name="initdb.log" location="${project.build.directory}/initdb.log"/>
+
+                                <!--
+                                    Forked deliberately. <ant output="..."/> runs in this JVM, where
+                                    maven-antrun's listener still receives every log event, so the drop
+                                    failures reach the console regardless of the redirect. Only a
+                                    separate process gives <exec> real ownership of the streams.
+                                -->
+                                <pathconvert property="initdb.classpath" refid="maven.plugin.classpath"/>
+                                <!--
+                                    The forked build's basedir is the directory holding initdb.xml, so
+                                    the relative sql.directory would resolve against sql/ rather than
+                                    the module root. Pass it absolute.
+                                -->
+                                <property name="sql.directory.absolute" location="${sql.directory}"/>
+                                <exec executable="${java.home}/bin/java"
+                                      output="${initdb.log}" logError="false" failonerror="true">
+                                    <arg value="-cp"/>
+                                    <arg value="${initdb.classpath}${path.separator}${jdbc.driver.classes}"/>
+                                    <arg value="org.apache.tools.ant.Main"/>
+                                    <arg value="-f"/>
+                                    <arg value="${sql.directory}/initdb.xml"/>
+                                    <arg value="-Dsql.directory=${sql.directory.absolute}"/>
+                                    <arg value="-Djdbc.db=${jdbc.db}"/>
+                                    <arg value="-Ddb.delimiter=${db.delimiter}"/>
+                                    <arg value="-Djakarta.persistence.jdbc.driver=${jakarta.persistence.jdbc.driver}"/>
+                                    <arg value="-Djakarta.persistence.jdbc.url=${jakarta.persistence.jdbc.url}"/>
+                                    <arg value="-Djakarta.persistence.jdbc.user=${jakarta.persistence.jdbc.user}"/>
+                                    <arg value="-Djakarta.persistence.jdbc.password=${jakarta.persistence.jdbc.password}"/>
+                                    <arg value="initdb"/>
+                                </exec>
+
+                                <!--
+                                    Derby reports a missing object as 42Y55 and a missing schema as
+                                    42Y07. Every other failure is genuine and is echoed below.
+                                -->
+                                <loadfile property="initdb.real.errors" srcFile="${initdb.log}" quiet="true">
+                                    <filterchain>
+                                        <linecontainsregexp>
+                                            <regexp pattern="\[sql\].*(Exception|Error)"/>
+                                        </linecontainsregexp>
+                                        <linecontainsregexp negate="true">
+                                            <regexp pattern="SQLSyntaxErrorException: (42Y07|42Y55) "/>
+                                        </linecontainsregexp>
+                                        <tokenfilter>
+                                            <replaceregex pattern="^\s*\[sql\]\s*" replace=""/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </loadfile>
+
+                                <loadfile property="initdb.summary" srcFile="${initdb.log}" quiet="true">
+                                    <filterchain>
+                                        <linecontains>
+                                            <contains value="SQL statements executed successfully"/>
+                                        </linecontains>
+                                        <tokenfilter>
+                                            <replaceregex pattern="^\s*\[sql\]\s*" replace=""/>
+                                            <trim/>
+                                            <ignoreblank/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </loadfile>
+
+                                <resourcecount property="initdb.suppressed.count">
+                                    <tokens>
+                                        <concat>
+                                            <fileset file="${initdb.log}"/>
+                                            <filterchain>
+                                                <linecontainsregexp>
+                                                    <regexp pattern="SQLSyntaxErrorException: (42Y07|42Y55) "/>
+                                                </linecontainsregexp>
+                                            </filterchain>
+                                        </concat>
+                                    </tokens>
+                                </resourcecount>
+
+                                <echo message="initdb: ${initdb.summary}"/>
+                                <echo message="initdb: suppressed ${initdb.suppressed.count} expected &quot;object does not exist&quot; failures from the drop statements. Full log: ${initdb.log}"/>
+
+                                <!--
+                                    loadfile leaves the property unset when nothing matched, and Ant
+                                    properties are immutable, so this only takes effect when the DDL
+                                    produced no unexpected errors.
+                                -->
+                                <property name="initdb.real.errors" value="(none)"/>
+
+                                <!--
+                                    Reported rather than fatal, matching the onerror="continue"
+                                    behaviour this replaced. Change this echo to a <fail> to make an
+                                    unexpected DDL error stop the run.
+                                -->
+                                <echo level="warning" message="initdb: unexpected DDL errors: ${initdb.real.errors}"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install_java_procedures</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <!--
+                                    Same approach as initdb: the SQL runs in a forked Ant
+                                    process so its output can be captured, because an
+                                    in-process <ant output="..."/> still reaches
+                                    maven-antrun's logger. remove_jar always fails with
+                                    X0X13 on a clean database.
+                                -->
+                                <property name="procedures.log" location="${project.build.directory}/install-procedures.log"/>
+                                <property name="sql.directory.absolute" location="${sql.directory}"/>
+                                <pathconvert property="procedures.classpath" refid="maven.plugin.classpath"/>
+                                <exec executable="${java.home}/bin/java"
+                                      output="${procedures.log}" logError="false" failonerror="true">
+                                    <arg value="-cp"/>
+                                    <arg value="${procedures.classpath}${path.separator}${jdbc.driver.classes}"/>
+                                    <arg value="org.apache.tools.ant.Main"/>
+                                    <arg value="-f"/>
+                                    <arg value="${sql.directory.absolute}/initdb.xml"/>
+                                    <arg value="-Ddbprocedures.jar=${project.build.directory}/dbprocedures.jar"/>
+                                    <arg value="-Djakarta.persistence.jdbc.driver=${jakarta.persistence.jdbc.driver}"/>
+                                    <arg value="-Djakarta.persistence.jdbc.url=${jakarta.persistence.jdbc.url}"/>
+                                    <arg value="-Djakarta.persistence.jdbc.user=${jakarta.persistence.jdbc.user}"/>
+                                    <arg value="-Djakarta.persistence.jdbc.password=${jakarta.persistence.jdbc.password}"/>
+                                    <arg value="install-procedures"/>
+                                </exec>
+
+                                <!--
+                                    X0X13 is "jar does not exist in schema", which the
+                                    remove-before-install always produces on a clean run.
+                                -->
+                                <loadfile property="procedures.real.errors" srcFile="${procedures.log}" quiet="true">
+                                    <filterchain>
+                                        <linecontainsregexp>
+                                            <regexp pattern="\[sql\].*(Exception|Error)"/>
+                                        </linecontainsregexp>
+                                        <linecontainsregexp negate="true">
+                                            <regexp pattern="X0X13"/>
+                                        </linecontainsregexp>
+                                        <tokenfilter>
+                                            <replaceregex pattern="^\s*\[sql\]\s*" replace=""/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </loadfile>
+
+                                <loadfile property="procedures.summary" srcFile="${procedures.log}" quiet="true">
+                                    <filterchain>
+                                        <linecontains>
+                                            <contains value="SQL statements executed successfully"/>
+                                        </linecontains>
+                                        <tokenfilter>
+                                            <replaceregex pattern="^\s*\[sql\]\s*" replace=""/>
+                                            <trim/>
+                                            <ignoreblank/>
+                                        </tokenfilter>
+                                    </filterchain>
+                                </loadfile>
+
+                                <echo message="install_java_procedures: ${procedures.summary}"/>
+                                <property name="procedures.real.errors" value="(none)"/>
+                                <echo level="warning" message="install_java_procedures: unexpected errors: ${procedures.real.errors}"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <!--
+                    Everything the test1 and test2 profiles have in common. Each profile
+                    contributes only its own execution; Maven merges this configuration
+                    into it. additionalClasspathElements deliberately stays per execution,
+                    because test2 must run without the Bean Validation provider.
+                -->
+                <configuration>
+                    <dependenciesToScan>jakarta.persistence:persistence-tck-spec-tests</dependenciesToScan>
+                    <systemPropertyVariables>
+                        <platform.mode>standalone</platform.mode>
+                        <vehicle>standalone</vehicle>
+                        
+                        <persistence.unit.name>JPATCK</persistence.unit.name>
+                        <persistence.unit.name.2>JPATCK2</persistence.unit.name.2>
+                        <jakarta.persistence.provider>${jakarta.persistence.provider}</jakarta.persistence.provider>
+                        <jakarta.persistence.jdbc.driver>${jakarta.persistence.jdbc.driver}</jakarta.persistence.jdbc.driver>
+                        <jakarta.persistence.jdbc.url>${jakarta.persistence.jdbc.url}</jakarta.persistence.jdbc.url>
+                        <jakarta.persistence.jdbc.user>${jakarta.persistence.jdbc.user}</jakarta.persistence.jdbc.user>
+                        <jakarta.persistence.jdbc.password>${jakarta.persistence.jdbc.password}</jakarta.persistence.jdbc.password>
+                        <jpa.provider.implementation.specific.properties>${jpa.provider.implementation.specific.properties}</jpa.provider.implementation.specific.properties>
+                        <persistence.second.level.caching.supported>${persistence.second.level.caching.supported}</persistence.second.level.caching.supported>
+                        
+                        <user.dir>/tmp</user.dir>
+                        <log.file.location>/tmp</log.file.location>
+                        
+                        <db.supports.sequence>${db.supports.sequence}</db.supports.sequence>
+                        <Insert_Jpa_Purchase_Order>INSERT INTO PURCHASE_ORDER(ID, TOTAL, DESCRIPTION) VALUES(?, ?, null)</Insert_Jpa_Purchase_Order>
+                        <Select_Jpa_Purchase_Order>SELECT ID, TOTAL FROM PURCHASE_ORDER WHERE ID=?</Select_Jpa_Purchase_Order>
+                        <jdbc.db>${jdbc.db}</jdbc.db>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <configuration>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-failsafe-html-report</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>failsafe-report-only</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/test-reports</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!--
+        The two failsafe executions live in profiles so that a single test can be run
+        against one of them: "mvn clean install -Ptest1 -Dit.test=..." activates test1,
+        which as a side effect deactivates test2 and stops the full suite from running
+        after it. Both are active by default, so a plain "mvn clean install" still runs
+        everything. Nothing else in this pom is a profile any more, precisely because -P
+        would switch these two off.
+    -->
+    <profiles>
+        <profile>
+            <id>test1</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>persistence-tests-1</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <includes>
+                                        <include>**/*Client*.*</include>
+                                        <include>**/*JPASigTest*.*</include>
+                                    </includes>
+                                    <additionalClasspathElements>
+                                        <additionalClasspathElement>${jpa.classes}</additionalClasspathElement>
+                                        <additionalClasspathElement>${jdbc.lib.classpath}</additionalClasspathElement>
+                                        <additionalClasspathElement>${validator.classes}</additionalClasspathElement>
+                                    </additionalClasspathElements>
+                                    <systemPropertyVariables>
+                                        <sigTestClasspath>${glassfish.module.dir}/jakarta.persistence-api.jar${path.separator}${project.build.directory}/jdk11-bundle/java.base${path.separator}${project.build.directory}/jdk11-bundle/java.rmi${path.separator}${project.build.directory}/jdk11-bundle/java.sql${path.separator}${project.build.directory}/jdk11-bundle/java.naming
+                                        </sigTestClasspath>
+                                        <jimage.dir>${project.build.directory}/jdk11-bundle</jimage.dir>
+                                    </systemPropertyVariables>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <profile>
+            <id>test2</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>persistence-tests-2</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <test>**/ee/jakarta/tck/persistence/se/entityManagerFactory/Client2#createEntityManagerFactoryNoBeanValidatorTest</test>
+                                    <additionalClasspathElements>
+                                        <additionalClasspathElement>${jpa.classes}</additionalClasspathElement>
+                                        <additionalClasspathElement>${jdbc.lib.classpath}</additionalClasspathElement>
+                                    </additionalClasspathElements>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
