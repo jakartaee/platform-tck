@@ -13,17 +13,19 @@
 
   <group qualifier="glassfish-servers" default="true">
     <container qualifier="tck-appclient" default="true">
-        <configuration>
-            <property name="glassFishHome">target/glassfish8</property>
-        </configuration>
         <protocol type="appclient" default="true">
             <property name="runClient">true</property>
             <property name="runAsVehicle">true</property>
             <property name="clientEarDir">target/appclient</property>
             <property name="unpackClientEar">true</property>
+            
             <property name="clientCmdLineString">${env.JAVA_HOME}/bin/java \
+                --module-path \
+                  ${glassfish.home}/glassfish/lib/bootstrap \
+                --add-modules \
+                  ALL-MODULE-PATH \
                 --add-opens \
-                java.base/java.lang=ALL-UNNAMED \
+                  java.base/java.lang=ALL-UNNAMED \
                 -cp \
                 ${glassfish.home}/glassfish/lib/gf-client.jar:${clientStubJar} \
                 -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader \
@@ -38,23 +40,23 @@
                 -javaagent:${glassfish.home}/glassfish/lib/gf-client.jar=arg=-configxml,arg=${glassfish.home}/glassfish/domains/domain1/config/glassfish-acc.xml,client=jar=${clientStubJar},arg=-name,arg=${clientAppArchiveName} \
                 org.glassfish.appclient.client.AppClientGroupFacade
             </property>
+            
             <property name="cmdLineArgSeparator">\\</property>
+            
             <!-- Pass ENV vars here -->
             <property name="clientEnvString">PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
                 APPCPATH=${clientEarLibClasspath}:${glassfish.home}/glassfish/modules/security.jar</property>
             <property name="clientDir">${project.basedir}</property>
+            
             <property name="clientStubsCmdLine">${env.JAVA_HOME}/bin/java \
-                -jar \
-                ${glassfish.home}/glassfish/modules/admin-cli.jar \
-                get-client-stubs \
-                --appName \
+                ${project.basedir}/src/main/java/org/glassfish/jsonb/tck/Clientstubs.java \
+                ${glassfish.home}/glassfish/bin \
                 ${deploymentName} \
-                target
             </property>
+            
             <property name="clientStubsJarSuffix">Client</property>
             <property name="workDir">/tmp</property>
             <property name="tsJteFile">jakartaeetck/bin/ts.jte</property>
-            <!-- <property name="tsSqlStmtFile">sql/derby/derby.dml.sql</property> -->
             <property name="trace">true</property>
             <property name="clientTimeout">20000</property>
         </protocol>

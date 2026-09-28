@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.3</version>
         <relativePath />
     </parent>
 
@@ -34,7 +34,6 @@
     <name>TCK: Run Jakarta pages-debugging-other TCK</name>
     <description>Aggregates dependencies and runs the Pages Debugging Support (and theoretically other languages) TCK on GlassFish</description>
 
-
     <properties>
         <ant.home>${project.build.directory}/apache-ant-${ant.version}</ant.home>
         <ant.zip.url>https://archive.apache.org/dist/ant/binaries/apache-ant-${ant.version}-bin.zip</ant.zip.url>
@@ -42,7 +41,7 @@
         <tck.home>${project.build.directory}</tck.home>
 
         <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
-        <glassfish.version>8.0.0-M10</glassfish.version>
+        <glassfish.version>8.0.2</glassfish.version>
         <glassfish.asadmin>${glassfish.home}/glassfish/bin/asadmin</glassfish.asadmin>
 
         <jacoco.includes>org/glassfish/**\:com/sun/enterprise/**</jacoco.includes>
@@ -80,9 +79,9 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <groupId>io.github.download-maven-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
+                <version>2.1.0</version>
                 <executions>
                     <execution>
                         <id>download-ant</id>
@@ -273,7 +272,7 @@
             </plugin>
         </plugins>
     </build>
-    
+
     <profiles>
         <profile>
             <id>full</id>

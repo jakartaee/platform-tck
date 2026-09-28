@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.3</version>
         <relativePath/>
     </parent>
 
@@ -36,16 +36,16 @@
     <properties>
         <cdi.tck-4-1.version>4.1.0</cdi.tck-4-1.version>
         <!-- The CDI EE Platform Integration TCK Version -->
-        <tck.version>11.0.1</tck.version>
+        <tck.version>11.0.3</tck.version>
 
-        <glassfish.runner.version>11.0.2</glassfish.runner.version>
-        <glassfish.version>8.0.0-M12</glassfish.version>
+        <glassfish.runner.version>11.0.3</glassfish.runner.version>
+        <glassfish.version>8.0.2</glassfish.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
 
         <maven.build.cache.enabled>false</maven.build.cache.enabled>
 
-        <!-- Weld uses 2 versions numbers. Some artefact use one version, other the second. -->
-        <weld.version>6.0.4.Final</weld.version>
+        <!-- Weld uses 2 versions numbers. Some artefacts use one version, other the second. -->
+        <weld.version>6.0.3.Final</weld.version>
         <weld.version2>6.0.Final</weld.version2>
     </properties>
 

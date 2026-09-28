@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>2.0.3</version>
+        <relativePath />
+    </parent>
+
+    <groupId>jakarta</groupId>
+    <artifactId>glassfish.jpa-platform-tck-parent</artifactId>
+    <version>11.0.0</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <maven.compiler.release>21</maven.compiler.release>
+
+        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+        <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
+        <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
+        <jakarta.platform.version>11.0.0</jakarta.platform.version>
+
+        <glassfish.runner.version>11.0.3</glassfish.runner.version>
+        <glassfish.version>8.0.2</glassfish.version>
+        <tck.test.persistence.version>11.0.3</tck.test.persistence.version>
+
+        <ts.home>./jakartaeetck</ts.home>
+        
+        <includeGroups>platform</includeGroups>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>glassfish-runner-bom</artifactId>
+                <version>${glassfish.runner.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>persistence-platform-tck-common</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>persistence-platform-tck-spec-tests</artifactId>
+            <version>${tck.test.persistence.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>persistence-platform-tck-tests</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>persistence-platform-tck-dbprocedures</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.persistence</groupId>
+                    <artifactId>jakarta.persistence-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-test-spi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-spi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.core</groupId>
+            <artifactId>arquillian-core-spi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.test</groupId>
+            <artifactId>arquillian-test-impl-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ee.omnifish.arquillian</groupId>
+            <artifactId>arquillian-glassfish-server-managed</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ee.omnifish.arquillian</groupId>
+            <artifactId>glassfish-client-ee11</artifactId>
+            <version>2.1.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-javatest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-lib</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>tck-porting-lib</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <targetPath>${project.build.directory}/sql</targetPath>
+                <filtering>true</filtering>
+                <directory>${project.basedir}/sql/derby</directory>
+                <includes>
+                    <include>*.sql</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.8.1</version>
+                <executions>
+                    <execution>
+                        <id>001-unpack</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.glassfish.main.distributions</groupId>
+                                    <artifactId>glassfish</artifactId>
+                                    <version>${glassfish.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>004-copy-lib</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>persistence-platform-tck-dbprocedures</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                    <destFileName>dbprocedures.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <trimStackTrace>false</trimStackTrace>
+                    <dependenciesToScan>jakarta.tck:persistence-platform-tck-tests</dependenciesToScan>
+                    <excludes>
+                        <exclude>ee.jakarta.tck.persistence.core.relationship.bidironexone.ClientPmservletTest</exclude>
+                    </excludes>
+
+                    <systemPropertyVariables>
+                        <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
+                        <glassfish.enableDerby>true</glassfish.enableDerby>
+                        <glassfish.derbyDatabaseName>${glassfish.home}/glassfish/domains/domain1/config/derbyDB;create=true</glassfish.derbyDatabaseName>
+                        <glassfish.derbySQLFile>${project.build.directory}/sql/derby.ddl.sql</glassfish.derbySQLFile>
+                        <glassfish.derbyUser>cts1</glassfish.derbyUser>
+                        <glassfish.derbyPasswordFile>${basedir}/sql/derby/password.txt</glassfish.derbyPasswordFile>
+                        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                        <glassfish.postBootCommands>
+                            set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                            --passwordfile ${project.basedir}/javajoe.pass create-file-user --groups guest javajoe
+                            --passwordfile ${project.basedir}/j2ee.pass create-file-user --groups staff:mgr j2ee
+                            create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
+                            create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool_no_tx
+                            create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
+                            create-jdbc-resource --connectionpoolid cts-derby-pool_no_tx jdbc/DB_no_tx
+                            list-jdbc-connection-pools
+                            list-jdbc-resources
+                            list-file-users
+                        </glassfish.postBootCommands>
+
+                        <junit.log.traceflag>false</junit.log.traceflag>
+                        <harness.log.traceflag>false</harness.log.traceflag>
+                        <cts.harness.debug>false</cts.harness.debug>
+                        <project.basedir>${project.basedir}</project.basedir>
+                        <log.file.location>/tmp</log.file.location>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.5.2</version>
+                <configuration>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-failsafe-html-report</id>
+                        <goals>
+                            <goal>failsafe-report-only</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/test-reports</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>

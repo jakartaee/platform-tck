@@ -21,6 +21,7 @@
     <engine>
         <property name="deploymentExportPath">target/deployments</property>
     </engine>
+    
     <extension qualifier="jboss-descriptors">
         <property name="descriptorDir">${tck.descriptor.path}</property>
     </extension>
@@ -29,9 +30,8 @@
         <container qualifier="tck-javatest" default="true">
             <configuration>
                 <property name="allowConnectingToRunningServer">true</property>
-                <property name="debug">true</property>
-                <property name="suspend">false</property>
             </configuration>
+            
             <protocol type="javatest">
                 <property name="workDir">${ts.home}/tmp</property>
                 <property name="tsJteFile">${tck.jte.path}</property>
@@ -43,8 +43,6 @@
         <container qualifier="tck-appclient">
             <configuration>
                 <property name="allowConnectingToRunningServer">false</property>
-                <property name="debug">false</property>
-                <property name="suspend">false</property>
             </configuration>
 
             <protocol type="appclient">
@@ -52,10 +50,15 @@
                 <property name="runAsVehicle">true</property>
                 <property name="clientEarDir">target/appclient</property>
                 <property name="unpackClientEar">true</property>
+                
                 <!-- Need to populate from ts.jte command.testExecuteAppClient setting for glassfish -->
                 <property name="clientCmdLineString">${env.JAVA_HOME}/bin/java \
+                    --module-path \
+                        ${glassfish.home}/glassfish/lib/bootstrap \
+                    --add-modules \
+                        ALL-MODULE-PATH \
                     --add-opens \
-                    java.base/java.lang=ALL-UNNAMED \
+                        java.base/java.lang=ALL-UNNAMED \
                     -cp \
                     ${glassfish.home}/glassfish/lib/gf-client.jar:${clientStubJar} \
                     -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader \
@@ -70,19 +73,23 @@
                     -javaagent:${glassfish.home}/glassfish/lib/gf-client.jar=arg=-configxml,arg=${glassfish.home}/glassfish/domains/domain1/config/glassfish-acc.xml,client=jar=${clientStubJar},arg=-name,arg=${clientAppArchiveName} \
                     org.glassfish.appclient.client.AppClientGroupFacade
                 </property>
+                
                 <property name="cmdLineArgSeparator">\\</property>
+                
                 <!-- Pass ENV vars here -->
-                <property name="clientEnvString">PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
-                    APPCPATH=${clientEarLibClasspath}:${glassfish.home}/glassfish/modules/security.jar</property>
-                <property name="clientDir">${project.basedir}</property>
-                <property name="clientStubsCmdLine">${env.JAVA_HOME}/bin/java \
-                    -jar \
-                    ${glassfish.home}/glassfish/modules/admin-cli.jar \
-                    get-client-stubs \
-                    --appName \
-                    ${deploymentName} \
-                    target
+                <property name="clientEnvString">
+                    PATH=${env.PATH};LD_LIBRARY_PATH=${glassfish.home}/lib;AS_DEBUG=true;
+                    APPCPATH=${clientEarLibClasspath}:${glassfish.home}/glassfish/modules/security.jar
                 </property>
+                
+                <property name="clientDir">${project.basedir}</property>
+                
+                <property name="clientStubsCmdLine">${env.JAVA_HOME}/bin/java \
+                    ${project.basedir}/src/test/java/arquillian/Clientstubs.java \
+                    ${glassfish.home}/glassfish/bin \
+                    ${deploymentName} \
+                </property>
+                
                 <property name="clientStubsJarSuffix">Client</property>
                 <property name="workDir">${ts.home}/tmp</property>
                 <property name="tsJteFile">${ts.home}/bin/ts.jte</property>

@@ -17,36 +17,37 @@
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+   <modelVersion>4.0.0</modelVersion>
 
    <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.3</version>
         <relativePath />
     </parent>
 
-    <groupId>jakarta.tck</groupId>
-    <artifactId>enterprise-beans-tck-install</artifactId>
-    <version>11.0.1</version>
-    <packaging>pom</packaging>
-    <name>TCK: Install Jakarta enterprise-beans TCK</name>
+   <groupId>jakarta.tck</groupId>
+   <artifactId>enterprise-beans-tck-install</artifactId>
+   <version>11.0.3</version>
+   <packaging>pom</packaging>
 
-    <properties>
-        <tck.test.enterprise-beans.file>jakartaeetck-${tck.test.enterprise-beans.version}-dist.zip</tck.test.enterprise-beans.file>
-        <tck.test.enterprise-beans.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.enterprise-beans.file}</tck.test.enterprise-beans.url>
+   <name>TCK: Install Jakarta enterprise-beans TCK</name>
+
+   <properties>
+        <tck.test.enterprise-beans.file>jakartaeetck-${tck.test.enterprise-beans.version}.zip</tck.test.enterprise-beans.file>
+        <tck.test.enterprise-beans.url>https://download.eclipse.org/jakartaee/platform/11/${tck.test.enterprise-beans.file}</tck.test.enterprise-beans.url>
         <!-- If this is set to a SNAPSHOT version you need to enable the -Psnapshots profile and have the snapshot
                 build staged in the download location.
         -->
-        <tck.test.enterprise-beans.version>11.0.1-SNAPSHOT</tck.test.enterprise-beans.version>
+        <tck.test.enterprise-beans.version>11.0.3</tck.test.enterprise-beans.version>
     </properties>
 
-    <build>
+   <build>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <groupId>io.github.download-maven-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
+                <version>2.1.0</version>
                 <configuration>
                     <url>${tck.test.enterprise-beans.url}</url>
                     <unpack>true</unpack>
@@ -109,10 +110,39 @@
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
+                    
+                    <execution>
+                        <id>install-whitebox-tx</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <file>${project.build.directory}/jakartaeetck/artifacts/whitebox-tx-${tck.test.enterprise-beans.version}.rar</file>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>whitebox-tx</artifactId>
+                            <version>${tck.test.enterprise-beans.version}</version>
+                            <packaging>rar</packaging>
+                        </configuration>
+                    </execution>
+                    
+                    <execution>
+                        <id>install-whitebox</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <file>${project.build.directory}/jakartaeetck/artifacts/whitebox-${tck.test.enterprise-beans.version}.jar</file>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>whitebox</artifactId>
+                            <version>${tck.test.enterprise-beans.version}</version>
+                            <packaging>jar</packaging>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
         </plugins>
     </build>
-
 </project>

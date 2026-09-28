@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2025 Contributors to the Eclipse Foundation.
+    Copyright (c) 2025, 2026 Contributors to the Eclipse Foundation.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,29 +22,30 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.4</version>
         <relativePath />
     </parent>
 
     <groupId>jakarta.tck</groupId>
     <artifactId>signature-tck-install</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.3-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta Signature Platform TCK</name>
 
     <properties>
-        <tck.test.signature.platform.file>jakartaeetck-${tck.test.signaturevalidation.version}-dist.zip</tck.test.signature.platform.file>
-        <tck.test.signature.platform.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.signature.platform.file}</tck.test.signature.platform.url>
-        <tck.test.signaturevalidation.version>11.0.1-M4</tck.test.signaturevalidation.version>
-        <tck.test.signature.version>11.0.0</tck.test.signature.version>
+        <tck.test.signaturevalidation.version>11.0.3</tck.test.signaturevalidation.version>
+        <tck.test.signature.platform.file>jakartaeetck-${tck.test.signaturevalidation.version}.zip</tck.test.signature.platform.file>
+        <tck.test.signature.platform.url>https://download.eclipse.org/jakartaee/platform/11/${tck.test.signature.platform.file}</tck.test.signature.platform.url>
+        
+        <tck.test.signature.version>11.1.1</tck.test.signature.version>
     </properties>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <groupId>io.github.download-maven-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
+                <version>2.1.0</version>
                 <configuration>
                     <url>${tck.test.signature.platform.url}</url>
                     <unpack>true</unpack>
@@ -78,6 +79,7 @@
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
+
                     <execution>
                         <id>install-signaturevalidation-tck-jar</id>
                         <goals>
@@ -92,7 +94,6 @@
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
-
                 </executions>
             </plugin>
 

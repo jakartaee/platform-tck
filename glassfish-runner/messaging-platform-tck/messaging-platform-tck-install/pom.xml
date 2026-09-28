@@ -22,28 +22,29 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.3</version>
         <relativePath />
     </parent>
 
     <groupId>jakarta.tck</groupId>
     <artifactId>messaging-tck-install</artifactId>
-    <version>11.0.1</version>
+    <version>11.0.3</version>
     <packaging>pom</packaging>
+
     <name>TCK: Install Jakarta Messaging Platform TCK</name>
 
     <properties>
-        <tck.test.messaging.platform.file>jakartaeetck-${tck.test.messaging.version}-dist.zip</tck.test.messaging.platform.file>
-        <tck.test.messaging.platform.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.messaging.platform.file}</tck.test.messaging.platform.url>
-        <tck.test.messaging.version>11.0.1-SNAPSHOT</tck.test.messaging.version>
+        <tck.test.messaging.platform.file>jakartaeetck-${tck.test.messaging.version}.zip</tck.test.messaging.platform.file>
+        <tck.test.messaging.platform.url>https://download.eclipse.org/jakartaee/platform/11/${tck.test.messaging.platform.file}</tck.test.messaging.platform.url>
+        <tck.test.messaging.version>11.0.3</tck.test.messaging.version>
     </properties>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <groupId>io.github.download-maven-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
+                <version>2.1.0</version>
                 <configuration>
                     <url>${tck.test.messaging.platform.url}</url>
                     <unpack>true</unpack>
@@ -62,8 +63,8 @@
             
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.4</version>
                 <executions>
-
                     <execution>
                         <id>install-messaging-platform-tck-jar</id>
                         <goals>
@@ -84,5 +85,4 @@
 
         </plugins>
     </build>
-
 </project>

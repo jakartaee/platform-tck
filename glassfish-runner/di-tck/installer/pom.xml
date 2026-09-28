@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.3</version>
         <relativePath />
     </parent>
 
@@ -34,7 +34,10 @@
         <tck.home>${project.build.directory}/tck</tck.home>
         <weld.version>6.0.1.Final</weld.version>
         <maven.compiler.release>17</maven.compiler.release>
-        <inject.tck.version>2.0.2</inject.tck.version>
+        
+        <tck.test.di.version>2.0.2</tck.test.di.version>
+        <tck.test.di.file>jakarta.inject-tck-${tck.test.di.version}-bin.zip</tck.test.di.file>
+        <tck.test.di.url>https://download.eclipse.org/jakartaee/dependency-injection/2.0/${tck.test.di.file}</tck.test.di.url>
     </properties>
 
     <build>
@@ -53,18 +56,18 @@
                         <configuration>
                             <target>
                                 <!-- Download, unzip and rename TCK -->
-                                <get src="https://download.eclipse.org/jakartaee/dependency-injection/2.0/jakarta.inject-tck-${inject.tck.version}-bin.zip"
+                                <get src="${tck.test.di.url}"
                                      dest="${project.build.directory}/tck.zip"
                                      skipexisting="true"/>
                                 <unzip src="${project.build.directory}/tck.zip"
                                        dest="${project.build.directory}"/>
-                                <move file="${project.build.directory}/jakarta.inject-tck-${inject.tck.version}"
+                                <move file="${project.build.directory}/jakarta.inject-tck-${tck.test.di.version}"
                                       tofile="${project.build.directory}/tck"/>
 
                                 <!-- Install the TCK into local Maven repository -->
                                 <exec executable="mvn">
                                     <arg value="install:install-file"/>
-                                    <arg value="-Dfile=${project.build.directory}/tck/jakarta.inject-tck-${inject.tck.version}.jar"/>
+                                    <arg value="-Dfile=${project.build.directory}/tck/jakarta.inject-tck-${tck.test.di.version}.jar"/>
                                 </exec>
 
                                 <!-- Setup example/pom.xml for correct Weld version -->
