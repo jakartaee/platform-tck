@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2025 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -160,6 +160,9 @@ public class TSeis {
     }
 
     public void insert(String key, String value, TSConnection con) throws TSEISException {
+        if (getResourceManager().isTransactionReadOnly(con)) {
+            throw new TSEISException("Read only transaction");
+        }
 
         boolean datapresent = false;
 
@@ -187,6 +190,9 @@ public class TSeis {
     }
 
     public void update(String key, String value, TSConnection con) throws TSEISException {
+        if (getResourceManager().isTransactionReadOnly(con)) {
+            throw new TSEISException("Read only transaction");
+        }
         DataElement de = read(key, con);
         de.updateVersion();
         de.setValue(value);
@@ -206,6 +212,9 @@ public class TSeis {
     }
 
     public void delete(String key, TSConnection con) throws TSEISException {
+        if (getResourceManager().isTransactionReadOnly(con)) {
+            throw new TSEISException("Read only transaction");
+        }
         DataElement de = read(key, con);
         if ((getResourceManager().getTransactionStatus(con) == TSXaTransaction.NOTRANSACTION) && con.getAutoCommit()) {
             System.out.println("TSeis.delete.permtable");
