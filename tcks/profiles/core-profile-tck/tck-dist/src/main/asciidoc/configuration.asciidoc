@@ -9,7 +9,8 @@ This chapter lays out how to configure the TCK Harness by specifying the SPI imp
 
 === TCK Properties
 
-The various TCKs will have properties or configuration variables that need to be set in order to enable running the TCK agains a compatible implementation. The examples directory in the TCK distribution illustrates sample properties setup using Maven.
+The various TCKs will have properties or configuration variables that need to be set in order to enable running the TCK agains a compatible implementation. 
+TODO : Add content that replaces the EE 11 examples directory in the TCK distribution that illustrated sample properties setup using Maven.
 
 [NOTE]
 ====
@@ -31,7 +32,7 @@ In the WildFly runner example these are set to `unused`. These properties are va
 
 === Standalone TCK Configuration
 
-Refer to the configuration section of the CDI, RESTful, JSON-P and JSON-B standalone TCK user guides for configuration specific to each TCK. The `examples` directory in the TCK distribution illustrates sample configuration setup using Maven.
+Refer to the configuration section of the CDI, RESTful, JSON-P and JSON-B standalone TCK user guides for configuration specific to each TCK. 
 
 ==== Jakarta RESTful TCK Configuration
 The Jakarta Core Profile TCK provides a JUnit 5 suite runner that excludes the tests tagged with `xml_binding`, `servlet` and `security` as these specifications are not part of the Core Profile. The https://github.com/wildfly/wildfly-tck-runners/tree/main/core-profile/rest-tck project contains a pom.xml that configure surefire to run the `ee.jakarta.tck.coreprofile.rs.CoreProfileRestTCKSuite` class which configures the Core Profile RESTful TCK test suite.

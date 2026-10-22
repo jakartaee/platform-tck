@@ -18,10 +18,6 @@ doc/
  – A detailed reference guide for the current version of TCK in both pdf and html formats along with the asciidoc source
 
 
-examples/
-
-- example maven based TCK runner projects for compatible implementations
-
 == Software Requirements
 
 * A Java SE 11+ runtime
@@ -37,7 +33,7 @@ To install the zip file distribution of TCK into local repository:
 
 == Running against a compatible implementation
 
-Following the instructions in the examples/wf-core-tck-runner project to execute the required standalone and Core Profile TCK against WildFly.
+TODO add instructions to replace examples/wf-core-tck-runner for explaining how a project can execute the required standalone and Core Profile TCK against an implementation.
 
 == Updating to a new TCK service release
 
