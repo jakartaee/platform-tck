@@ -49,11 +49,11 @@
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
-                <get src="https://download.eclipse.org/jakartaee/jsonb/3.0/jakarta-jsonb-tck-${jsonb.tck.version}.zip"
+                <get src="https://download.eclipse.org/jakartaee/jsonb/3.1/jakarta-jsonb-tck-${jsonb.tck.version}.zip"
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
-                <get src="https://download.eclipse.org/jakartaee/restful-ws/4.0/jakarta-restful-ws-tck-${rest.tck.version}.zip"
+                <get src="https://download.eclipse.org/jakartaee/restful-ws/5.0/jakarta-restful-ws-tck-${rest.tck.version}.zip"
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
@@ -242,12 +242,12 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.enterprise</groupId>
-              <artifactId>cdi-tck-core-impl</artifactId>
+              <groupId>jakarta.cdi</groupId>
+              <artifactId>jakarta.cdi-tck-core-impl</artifactId>
               <version>${cdi.tck.dist.version}</version>
               <packaging>sig</packaging>
-              <classifier>sigtest-jdk17</classifier>
-              <file>downloads/tcks/cdi-tck-${cdi.tck.dist.version}/artifacts/cdi-tck-core-impl-${cdi.tck.dist.version}-sigtest-jdk17.sig</file>
+              <classifier>sigtest-jdk21</classifier>
+              <file>downloads/tcks/cdi-tck-${cdi.tck.dist.version}/artifacts/jakarta.cdi-tck-core-impl-${cdi.tck.dist.version}-sigtest-jdk17.sig</file>
               <generatePom>false</generatePom>
             </configuration>
           </execution>
