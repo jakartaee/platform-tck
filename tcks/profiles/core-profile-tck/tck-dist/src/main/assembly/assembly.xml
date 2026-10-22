@@ -46,13 +46,7 @@
       </file>
    </files>
    <fileSets>
-      <!-- The compatible implementation tck runner examples. The content of the examples directory
-            is now included in the tck dist during the release build by cloning example runner
-            repos. Submodules are no longer used.
-       -->
       <fileSet>
-         <directory>${project.parent.basedir}/examples</directory>
-         <outputDirectory>examples</outputDirectory>
          <includes>
             <include>README.adoc</include>
             <include>wf-core-tck-runner/**</include>
