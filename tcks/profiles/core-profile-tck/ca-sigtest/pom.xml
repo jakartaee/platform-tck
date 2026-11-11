@@ -26,6 +26,7 @@
     <properties>
         <sigtest.file.name>common-annotations-api.sig</sigtest.file.name>
         <sigtest.path>${project.basedir}/src/main/resources/${sigtest.file.name}</sigtest.path>
+        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
     <dependencies>
