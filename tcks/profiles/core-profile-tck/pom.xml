@@ -60,7 +60,7 @@
         <connection>scm:git:git@github.com:jakartaee/platform-tck.git</connection>
         <developerConnection>scm:git:git@github.com:jakartaee/platform-tck.git</developerConnection>
         <url>https://github.com/jakartaee/platform-tck</url>
-        <tag>11.0.0</tag>
+        <tag>core-tck-11.0.1</tag>
     </scm>
 
     <modules>

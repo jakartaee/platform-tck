@@ -1,5 +1,9 @@
 = Jakarta Core Profile TCK Release notes
 
+
+== Version 11.0.1
+* Address TCK challenge https://github.com/jakartaee/platform-tck/issues/2730 Core Profile 11 composite tests fail on JDK 24+ (Utils.getDescriptor())
+
 == Version 11.0.0
 * Only updated the version number to 11.0.0 for final release ballot
 
