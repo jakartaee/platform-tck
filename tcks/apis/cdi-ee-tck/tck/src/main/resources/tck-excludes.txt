@@ -1,0 +1,6 @@
+# https://github.com/jakartaee/cdi-tck/issues/440
+org.jboss.cdi.tck.tests.full.extensions.lifecycle.processBeanAttributes.specialization.VetoTest
+# CDITCK-587
+org.jboss.cdi.tck.tests.event.observer.transactional.roolback.TransactionalObserverRollbackTest
+# CDITCK-597
+org.jboss.cdi.tck.tests.deployment.packaging.ejb.EJBJarDeploymentTest

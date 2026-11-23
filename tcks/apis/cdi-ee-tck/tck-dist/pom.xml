@@ -16,7 +16,7 @@
 
    <properties>
       <cdi.core.tck.version>4.1.0</cdi.core.tck.version>
-      <tck.version>4.1.0-SNAPSHOT</tck.version>
+      <tck.version>${project.version}</tck.version>
       <license.file>apl.txt</license.file>
       <asciidoctor.maven.plugin.version>2.2.2</asciidoctor.maven.plugin.version>
       <asciidoctorj.pdf.version>1.6.2</asciidoctorj.pdf.version>
@@ -61,8 +61,8 @@
          <groupId>jakarta.tck</groupId>
          <artifactId>cdi-tck-ee-impl</artifactId>
          <version>${tck.version}</version>
-         <type>xml</type>
-         <classifier>suite</classifier>
+         <type>txt</type>
+         <classifier>excludes</classifier>
       </dependency>
    </dependencies>
 

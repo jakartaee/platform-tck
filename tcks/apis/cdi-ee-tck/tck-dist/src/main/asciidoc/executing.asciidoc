@@ -8,56 +8,34 @@ This chapter explains how to run the TCK on Weld as well as your own implementat
 
 === The Test Suite Runner
 
-The test suite is executed by the Maven Surefire plugin during the test phase of the Maven life cycle. The execution happens within a TCK runner project (as opposed to the TCK project itself). Weld includes a TCK runner project that executes the CDI TCK on Weld running inside WildFly 27.x. To execute the CDI TCK on your own CDI implementation, you could modify the TCK runner project included with Weld to use your CDI implementation.
+The test suite is executed by Maven Surefire during the test phase in a separate runner project. The distribution includes `runners/wildfly-runner.pom` as an EE example. It uses Surefire 3.6.1 directory discovery, the versioned `txt:excludes` artifact, and the TCK JAR's TestNG listener service registration. Adapt its dependencies, Arquillian configuration, and server installation for another implementation. Check the resulting test count and per-class reports, not only the Maven exit code.
 
 
 
-=== Running the Tests In Standalone Mode
+=== CDI Core and SE Modes
 
-To execute the TCK test suite against Weld, first switch to the jboss-tck-runner directory in the extracted TCK distribution: 
-
-[source, console]
-----
-cd core-tck-4.x.y/weld/jboss-tck-runner
-----
-
-
-[NOTE]
-====
-These instructions assume you have extracted the Jakarta CDI TCK software according to the recommendation given in <<The TCK Environment>>.
-
-====
-
-
-Then execute the Maven life cycle through the test phase: 
-
-[source, console]
-----
-mvn test
-----
-
-Without any command-line flags, the test suite is run in standalone mode (activating weld-embedded Maven profile), which means that any test within the _integration_, _javaee-full_ and SE TestNG group is excluded. This mode uses the _Weld EE Embedded Arquillian container adapter_ to invoke the test within a mock Jakarta EE life cycle and capture the results of the test. However, passing the suite in this mode is not sufficient to pass the TCK as a whole. The suite must be passed while executing using the in-container mode.
+This Platform distribution's sample runner exercises the CDI EE tests in WildFly. Run the CDI Core and SE modes with a runner for the separate CDI Core TCK distribution. Those modes require their own group selections and container adapters; passing only embedded Core tests is not a complete CDI Full result.
 
 
 
 === Running the Tests In the Container - Core and EE parts
 
-To execute tests within Core and EE parts of the specification you need to use in-container mode with the JBoss TCK runner, you first have to setup WildFly as described in the <<running-against-weld>> callout.
+To run the EE tests, first extract the distribution and change to its `runners` directory. Prepare a test WildFly installation as described in the runner README, then execute:
 
 Then, execute the TCK runner with Maven as follows: 
 
 [source, console]
 ----
-mvn test -Dincontainer
+mvn -f wildfly-runner.pom -Pstaging -Dincontainer test
 ----
 
-The presence of the +incontainer+ property activates an incontainer Maven profile. This time, all the tests except the tests within SE TestNG group are executed. 
+The +incontainer+ property activates the managed WildFly profile. The runner scans the EE TCK artifact, applies its published Exclude List, and excludes the SE TestNG group.
 
 In order to run tests appropriate to the Jakarta EE Web Profile execute:
 
 [source, console]
 ----
-mvn test -Dincontainer=webprofile
+mvn -f wildfly-runner.pom -Pstaging -Dincontainer=webprofile test
 ----
 
 
@@ -66,7 +44,7 @@ To specify particular TCK version:
 
 [source, console]
 ----
-mvn test -Dincontainer -Dcdi.tck.ee.version=11.0.0
+mvn -f wildfly-runner.pom -Pstaging -Dincontainer -Dcdi.ee.tck.version=12.0.0-SNAPSHOT test
 ----
 
 
@@ -85,27 +63,14 @@ Since Arquillian in-container tests are executed in a remote JVM, the results of
 
 [NOTE]
 ====
-Some implementations of Jakarta Faces use modern Javascript that is incompatible with the TCK's default test tooling. In order to test these implementations, specify the property -Drun.selenium=true. An installation of Chrome is required.
+Some implementations of Jakarta Faces use modern JavaScript that requires Selenium. To run the AJAX conversation test, provide Chrome and a Selenium DevTools implementation matching the browser's CDP version, then specify `-Drun.selenium=true`. A browser/CDP mismatch is a runner environment error; it does not change the TCK's published Exclude List.
 
 ====
 
 
-=== Running the Tests In the Container - SE part
+=== Running the CDI SE Part
 
-To execute full TCK testsuite you have to run tests within SE group as well. 
-SE tests make use of link:$$https://github.com/arquillian/arquillian-container-se$$[Arquillian container SE].
-This way the tests are executed in a separate JVM instance with isolated and configurable classpath.
-The Arquillian container does not start CDI container in any way - this is still done directly in the tests using CDI SE bootstrap API and `jakarta.enterprise.inject.se.SeContainerInitializer`.
-In order to run SE TCK tests in Weld, you need to execute "weld-se" Maven profile from the JBoss TCK runner POM file as follows:
-
-[source, console]
----
-mvn test -Dincontainer=se
----
-
-The profile needs to provide RI dependencies as well as Arquillian settings (`arquillian.xml`).
-These two need to be stored into a directory so that Arquillian container can then be instructed to pick them up.
-link:$$https://github.com/weld/core/blob/b530cf78275c618d9d866ee2d4a7fa81d59220e0/jboss-tck-runner/pom.xml#L561$$[In Weld], this orchestration is done using `maven-dependency-plugin` along with `maven-surefire-plugin`.
+For CDI SE conformance, use the separate CDI Core TCK's SE runner. It configures the Arquillian SE adapter and the implementation libraries needed by `SeContainerInitializer`. The EE sample POM in this distribution has no SE profile.
 
 
 === Dumping the Test Archives
@@ -164,26 +129,9 @@ public class LangModelVerifierExtension implements BuildCompatibleExtension {
 }
 ----
 
-=== Example Weld Test Suite Runner
+=== Example Weld Language Model Runner
 
-To execute the TCK test suite against Weld, first switch to the lang-model-tck-runner directory in the extracted TCK distribution:
-
-[source, console]
-----
-cd core-tck-4.x.y/weld/lang-model-tck-runner
-----
-
-
-[NOTE]
-====
-These instructions assume you have extracted the Jakarta CDI TCK software according to the recommendation given in <<The TCK Environment>>.
-
-====
-
-Then, execute the TCK runner with Maven as follows:
-
-[source, console]
-----
-mvn test
-----
+The Language Model TCK belongs to the separate CDI core TCK distribution. Its
+Weld runner and execution instructions are provided with that distribution;
+they are not included in this CDI EE TCK ZIP.
 

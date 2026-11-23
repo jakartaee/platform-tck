@@ -29,6 +29,12 @@
          <destName>pom.xml</destName>
          <filtered>true</filtered>
       </file>
+      <!-- Preserve the EE TCK's transitive CDI core dependency on ZIP installation. -->
+      <file>
+         <source>../tck/.flattened-pom.xml</source>
+         <outputDirectory>artifacts</outputDirectory>
+         <destName>cdi-tck-ee-impl-${project.version}.pom</destName>
+      </file>
 
    </files>
 
@@ -54,7 +60,8 @@
       <dependencySet>
          <includes>
             <include>jakarta.tck:cdi-tck-ee-parent:pom</include>
-            <include>jakarta.tck:cdi-tck-ee-impl</include>
+            <include>jakarta.tck:cdi-tck-ee-impl:jar</include>
+            <include>jakarta.tck:cdi-tck-ee-impl:txt:excludes</include>
             <include>jakarta.enterprise:cdi-tck-api</include>
             <include>jakarta.enterprise:cdi-tck-ext-lib</include>
          </includes>

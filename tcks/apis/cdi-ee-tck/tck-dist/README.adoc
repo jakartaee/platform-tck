@@ -10,7 +10,7 @@ artifacts/
 
  – TCK binaries and sources, packaged as jars
  – specification audit (source and report)
- – TestNG suite.xml file for running the TCK
+ – Surefire exclusion file (`cdi-tck-ee-impl-*-excludes.txt`) for Surefire 3.6 runners
  - pom.xml to install the TCK artifacts into local maven repository
 
 doc/
