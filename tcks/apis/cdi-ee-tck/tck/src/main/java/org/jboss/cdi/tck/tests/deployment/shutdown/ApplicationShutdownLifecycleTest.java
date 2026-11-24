@@ -43,7 +43,6 @@ import org.jboss.cdi.tck.api.InSequence;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
 import org.jboss.cdi.tck.util.ActionSequence;
 import org.jboss.cdi.tck.util.SimpleLogger;
-import org.jboss.cdi.tck.util.TransformationUtils;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecAssertions;
@@ -75,7 +74,7 @@ public class ApplicationShutdownLifecycleTest extends AbstractTest {
     @Deployment(name = INFO, managed = false, testable = false)
     public static WebArchive createBarTestArchive() {
         return new WebArchiveBuilder().notTestArchive()
-                .withClasses(InfoServlet.class, ActionSequence.class, TransformationUtils.class, TransformationUtils.Function.class).build();
+                .withClasses(InfoServlet.class, ActionSequence.class).build();
     }
 
     @ArquillianResource

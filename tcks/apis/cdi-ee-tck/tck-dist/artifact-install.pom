@@ -87,11 +87,12 @@
               <version>${project.version}</version>
               <packaging>jar</packaging>
               <file>cdi-tck-ee-impl-${project.version}.jar</file>
-              <generatePom>true</generatePom>
+              <pomFile>cdi-tck-ee-impl-${project.version}.pom</pomFile>
+              <generatePom>false</generatePom>
             </configuration>
           </execution>
           <execution>
-            <id>install-cdi-ee-tck-suite</id>
+            <id>install-cdi-ee-tck-excludes</id>
             <phase>package</phase>
             <goals>
               <goal>install-file</goal>
@@ -100,13 +101,12 @@
               <groupId>jakarta.tck</groupId>
               <artifactId>cdi-tck-ee-impl</artifactId>
               <version>${project.version}</version>
-              <packaging>xml</packaging>
-              <classifier>suite</classifier>
-              <file>cdi-tck-ee-impl-${project.version}-suite.xml</file>
+              <packaging>txt</packaging>
+              <classifier>excludes</classifier>
+              <file>cdi-tck-ee-impl-${project.version}-excludes.txt</file>
               <generatePom>false</generatePom>
             </configuration>
           </execution>
-
         </executions>
       </plugin>
     </plugins>

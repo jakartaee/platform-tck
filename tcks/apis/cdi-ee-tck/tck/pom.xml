@@ -40,7 +40,7 @@
         <dependency>
             <groupId>jakarta.cdi</groupId>
             <artifactId>jakarta.cdi-tck-core-impl</artifactId>
-            <version>5.0.0.Alpha5</version>
+            <version>5.0.0</version>
         </dependency>
 
         <dependency>
@@ -285,6 +285,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.6.0</version>
                 <executions>
                     <execution>
                         <id>attach-artifacts</id>
@@ -295,9 +296,9 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${basedir}/src/main/resources/tck-tests.xml</file>
-                                    <type>xml</type>
-                                    <classifier>suite</classifier>
+                                    <file>${basedir}/src/main/resources/tck-excludes.txt</file>
+                                    <type>txt</type>
+                                    <classifier>excludes</classifier>
                                 </artifact>
                                 <artifact>
                                     <file>${basedir}/src/main/resources/tck-audit-mb.xml</file>

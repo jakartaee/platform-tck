@@ -90,7 +90,7 @@ You can configure the CDI TCK to just run tests related to the CDI Lite specific
             <configuration>
               <excludedGroups>cdi-full,se</excludedGroups>
               <dependenciesToScan>
-                <dependency>jakarta.enterprise:cdi-tck-core-impl</dependency>
+                <dependency>jakarta.cdi:jakarta.cdi-tck-core-impl</dependency>
               </dependenciesToScan>
             </configuration>
        </plugin>
@@ -108,8 +108,8 @@ You can configure the CDI TCK to just run tests appropriate to the Jakarta EE We
             <configuration>
               <excludedGroups>javaee-full,se</excludedGroups>
               <dependenciesToScan>
-                <dependency>jakarta.enterprise:cdi-tck-core-impl</dependency>
-                <dependency>jakarta.enterprise:cdi-tck-web-impl</dependency>
+                <dependency>jakarta.cdi:jakarta.cdi-tck-core-impl</dependency>
+                <dependency>jakarta.tck:cdi-tck-ee-impl</dependency>
               </dependenciesToScan>
             </configuration>
        </plugin>
@@ -127,8 +127,8 @@ You can configure the CDI TCK to just run tests appropriate to the Jakarta EE Fu
             <configuration>
               <excludedGroups>se</excludedGroups>
               <dependenciesToScan>
-                <dependency>jakarta.enterprise:cdi-tck-core-impl</dependency>
-                <dependency>jakarta.enterprise:cdi-tck-web-impl</dependency>
+                <dependency>jakarta.cdi:jakarta.cdi-tck-core-impl</dependency>
+                <dependency>jakarta.tck:cdi-tck-ee-impl</dependency>
               </dependenciesToScan>
             </configuration>
        </plugin>
@@ -146,7 +146,7 @@ You can configure the CDI TCK to just run tests appropriate to the Java SE runti
             <configuration>
               <groups>se,arquillian</groups>
               <dependenciesToScan>
-                <dependency>jakarta.enterprise:cdi-tck-core-impl</dependency>
+                <dependency>jakarta.cdi:jakarta.cdi-tck-core-impl</dependency>
               </dependenciesToScan>
             </configuration>
        </plugin>
@@ -161,33 +161,26 @@ The _arquillian_ group specification is needed due to an issue open issue with h
 
 The CDI TCK is built atop Arquillian and TestNG, and it's TestNG that is responsible for selecting the tests to execute, the order of execution, and reporting the results. Detailed TestNG documentation can be found at link:$$http://testng.org/doc/documentation-main.html$$[testng.org].
 
-Certain TestNG configuration file must be run by TestNG (described by the TestNG documentation as "with a +testng.xml+ file") unmodified for an implementation to pass the TCK. The TCK distribution contains the configuration file accurate at the date of the release - +artifacts/cdi-tck-impl-suite.xml+. However this artifact may not be up to date due to unresolved challenges or pending releases. Therefore a canonical configuration file exists. This file is located in the CDI TCK source code repository at _$$${CORRESPONDING_BRANCH_ROOT}/impl/src/main/resources/tck-tests.xml$$_.
+Starting with Maven Surefire 3.6.0, select TCK classes by package, including classes whose names do not end in `Test`. The `cdi-tck-ee-impl` artifact is the dependency to scan. The sample WildFly runner includes the `org.jboss.cdi.tck.tests` and `org.jboss.cdi.tck.interceptors.tests` package trees so that classes such as `ManagerTestEar` and `ProcessBeanAttributesNotFiredForBuiltinBean` are discovered, and excludes the `se` group for an EE run. Set `failIfNoTests` to `true` so an empty run fails.
 
+The TCK-owned `artifacts/cdi-tck-ee-impl-{revnumber}-excludes.txt` file is the canonical exclusion list for Surefire discovery. It is published as the `jakarta.tck:cdi-tck-ee-impl` artifact with type `txt` and classifier `excludes`. Read it as UTF-8 and pass its path to Surefire's `excludesFile`. Each non-comment line can exclude a whole class by fully qualified name or a single method with `Class#method`; a method entry leaves other methods in that class eligible to run. Do not replace the file with local exclusions for a compatibility run.
 
-[NOTE]
-====
-The canonical configuration file for CDI TCK is located at https://github.com/jakartaee/platform-tck/blob/main/cdi-ee-tck/tck/src/main/resources/tck-tests.xml.
-====
-
-This file also allows tests to be excluded from a run:
-
-[source.XML, xml]
+[source,xml]
 ----
-<suite name="CDI TCK" verbose="0" configfailurepolicy="continue">
-   <test name="CDI TCK">
-      ...
-      <classes>
-         <class name="org.jboss.cdi.tck.tests.context.application.ApplicationContextTest">
-            <methods>
-               <exclude name="testApplicationScopeActiveDuringServiceMethod"/>
-            </methods>
-         </class>
-      </classes>
-      ...
-   </test>
-</suite>
+<dependenciesToScan>
+  <dependency>jakarta.tck:cdi-tck-ee-impl</dependency>
+</dependenciesToScan>
+<includes>
+  <include>**/org/jboss/cdi/tck/tests/**/*.java</include>
+  <include>**/org/jboss/cdi/tck/interceptors/tests/**/*.java</include>
+</includes>
+<excludesFile>${project.build.directory}/suites/tck-excludes.txt</excludesFile>
+<failIfNoTests>true</failIfNoTests>
 ----
 
+The required `SingleTestClassMethodInterceptor` is registered through `META-INF/services/org.testng.ITestNGListener` in the TCK JAR. The TestNG engine first runs a dry discovery pass to build its test plan, then executes the selected tests. TestNG loads service-registered listeners in both passes, while Surefire's `listener` property takes effect only during execution. The interceptor must run during discovery because it can filter methods with `-DtckTest`; runners should not register it again through the `listener` property.
+
+The optional `ConfigurationLoggingListener` and `ProgressLoggingTestListener` are available in CDI core. The sample runner enables them with Surefire's `listener` property (a comma-separated class list) so they log actual execution rather than the discovery pass.
 
 TestNG provides extensive reporting information. Depending on the build tool or IDE you use, the reporting will take a different format. Please consult the TestNG documentation and the tool documentation for more information.
 

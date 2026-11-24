@@ -28,7 +28,7 @@ The current TCK Lead is listed on the link:$$https://jakarta.ee/specifications/c
 The worflow for TCK challenges is outlined in
 link:$$https://jakarta.ee/committees/specification/tckprocess/$$[Jakarta EE TCK Process 1.0].
 
-Periodically, an updated TCK will be released, containing tests altered due to challenges - no new tests will be added. Implementations are required to pass the updated TCK. This release stream is numbered 11.0.x, where x will be incremented.
+Periodically, an updated TCK will be released, containing tests altered due to challenges. Implementations are required to pass the updated TCK for the specification release they claim. The version number follows that release stream.
 
-Additionally, new tests will be added to the TCK improving coverage of the specification. We encourage implementations to pass this TCK, however it is not required. This release stream is named 3.y.z where y &gt;= 1.
+Additional tests may improve coverage of the specification in later TCK releases. Consult the requirements for the relevant specification release when selecting a TCK version.
 
