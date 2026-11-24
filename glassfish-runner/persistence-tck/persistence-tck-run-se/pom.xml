@@ -82,7 +82,7 @@
         <persistence.api.version>4.0.0-M6</persistence.api.version>
         <eclipselink.version>6.0.0-SNAPSHOT</eclipselink.version>
         <eclipselink.asm.version>9.10.0</eclipselink.asm.version>
-        <postgresql.jdbc.version>42.7.4</postgresql.jdbc.version>
+        <postgresql.jdbc.version>42.7.12</postgresql.jdbc.version>
         
         
         <!--
